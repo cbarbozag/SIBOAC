@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RolDePersonaPorVehiculoesController : Controller
+    public class IluminacionsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: RolDePersonaPorVehiculoes
+        // GET: Iluminacions
         public ActionResult Index()
         {
-            return View(db.RolDePersonaPorVehiculoes.ToList());
+            return View(db.Iluminacion.ToList());
         }
 
-        // GET: RolDePersonaPorVehiculoes/Details/5
-        public ActionResult Details(string id)
+        // GET: Iluminacions/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            if (rolDePersonaPorVehiculo == null)
+            Iluminacion iluminacion = db.Iluminacion.Find(id);
+            if (iluminacion == null)
             {
                 return HttpNotFound();
             }
-            return View(rolDePersonaPorVehiculo);
+            return View(iluminacion);
         }
 
-        // GET: RolDePersonaPorVehiculoes/Create
+        // GET: Iluminacions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RolDePersonaPorVehiculoes/Create
+        // POST: Iluminacions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ActivarVehiculo,Estado,FechaDeInicio,FechaDeFin")] RolDePersonaPorVehiculo rolDePersonaPorVehiculo)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Iluminacion iluminacion)
         {
             if (ModelState.IsValid)
             {
-                db.RolDePersonaPorVehiculoes.Add(rolDePersonaPorVehiculo);
+                db.Iluminacion.Add(iluminacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(rolDePersonaPorVehiculo);
+            return View(iluminacion);
         }
 
-        // GET: RolDePersonaPorVehiculoes/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Iluminacions/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            if (rolDePersonaPorVehiculo == null)
+            Iluminacion iluminacion = db.Iluminacion.Find(id);
+            if (iluminacion == null)
             {
                 return HttpNotFound();
             }
-            return View(rolDePersonaPorVehiculo);
+            return View(iluminacion);
         }
 
-        // POST: RolDePersonaPorVehiculoes/Edit/5
+        // POST: Iluminacions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ActivarVehiculo,Estado,FechaDeInicio,FechaDeFin")] RolDePersonaPorVehiculo rolDePersonaPorVehiculo)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Iluminacion iluminacion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rolDePersonaPorVehiculo).State = EntityState.Modified;
+                db.Entry(iluminacion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(rolDePersonaPorVehiculo);
+            return View(iluminacion);
         }
 
-        // GET: RolDePersonaPorVehiculoes/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Iluminacions/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            if (rolDePersonaPorVehiculo == null)
+            Iluminacion iluminacion = db.Iluminacion.Find(id);
+            if (iluminacion == null)
             {
                 return HttpNotFound();
             }
-            return View(rolDePersonaPorVehiculo);
+            return View(iluminacion);
         }
 
-        // POST: RolDePersonaPorVehiculoes/Delete/5
+        // POST: Iluminacions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            rolDePersonaPorVehiculo.Estado = "I";
+            Iluminacion iluminacion = db.Iluminacion.Find(id);
+            iluminacion.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
