@@ -15,12 +15,42 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="ESTCALZADA">
+          <Key>
+            <PropertyRef Name="CodECal" />
+          </Key>
+          <Property Name="CodECal" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="ESTCIVIL">
           <Key>
             <PropertyRef Name="estcivil" />
           </Key>
           <Property Name="estcivil" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ESTRUCTURA">
+          <Key>
+            <PropertyRef Name="CodEst" />
+          </Key>
+          <Property Name="CodEst" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="HOSPITAL">
+          <Key>
+            <PropertyRef Name="codhosp" />
+          </Key>
+          <Property Name="codhosp" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
@@ -35,12 +65,30 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="INCONSISTENCIA">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="smallint" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="MANIOBRA">
           <Key>
             <PropertyRef Name="CodMan" />
           </Key>
           <Property Name="CodMan" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MARCA">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Topmarca" Type="int" />
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
@@ -75,6 +123,36 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="OPCIONFORMULARIO">
+          <Key>
+            <PropertyRef Name="codformulario" />
+          </Key>
+          <Property Name="codformulario" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OPCIONPLANO">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="smallint" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OTROTIPOTRANSPORTE">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="ROLPERSONA_VEHICULO">
           <Key>
             <PropertyRef Name="codigo_rol" />
@@ -87,12 +165,20 @@
         </EntityType>
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="DISPOSITIVO" EntityType="Self.DISPOSITIVO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTCALZADA" EntityType="Self.ESTCALZADA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTCIVIL" EntityType="Self.ESTCIVIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESTRUCTURA" EntityType="Self.ESTRUCTURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOSPITAL" EntityType="Self.HOSPITAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ILUMINACION" EntityType="Self.ILUMINACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INCONSISTENCIA" EntityType="Self.INCONSISTENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MANIOBRA" EntityType="Self.MANIOBRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOTIVONOFIRMA" EntityType="Self.MOTIVONOFIRMA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OBSTACULO" EntityType="Self.OBSTACULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFICINAIMPUGNA" EntityType="Self.OFICINAIMPUGNA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OPCIONFORMULARIO" EntityType="Self.OPCIONFORMULARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OPCIONPLANO" EntityType="Self.OPCIONPLANO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTROTIPOTRANSPORTE" EntityType="Self.OTROTIPOTRANSPORTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -178,6 +264,14 @@
           <EntitySet Name="OficinaParaImpugnars" EntityType="PC_HH_AndroidModel.OficinaParaImpugnar" />
           <EntitySet Name="RolDePersonaPorVehiculoes" EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" />
           <EntitySet Name="Dispositivoes1" EntityType="PC_HH_AndroidModel.Dispositivo" />
+          <EntitySet Name="HOSPITAL" EntityType="PC_HH_AndroidModel.Hospital" />
+          <EntitySet Name="INCONSISTENCIA" EntityType="PC_HH_AndroidModel.Inconsistencia" />
+          <EntitySet Name="MARCA" EntityType="PC_HH_AndroidModel.MarcaDeAutomovil" />
+          <EntitySet Name="OTROTIPOTRANSPORTE" EntityType="PC_HH_AndroidModel.OtroTipoTransporte" />
+          <EntitySet Name="ESTCALZADA" EntityType="PC_HH_AndroidModel.EstadoDeLaCalzada" />
+          <EntitySet Name="ESTRUCTURA" EntityType="PC_HH_AndroidModel.TipoDeEstructura" />
+          <EntitySet Name="OPCIONFORMULARIO" EntityType="PC_HH_AndroidModel.OpcionDeFormulario" />
+          <EntitySet Name="OPCIONPLANO" EntityType="PC_HH_AndroidModel.OpcionesDelPlano" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -185,6 +279,84 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Hospital">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Inconsistencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MarcaDeAutomovil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Topmarca" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OtroTipoTransporte">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="EstadoDeLaCalzada">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TipoDeEstructura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OpcionDeFormulario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OpcionesDelPlano">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int16" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
@@ -283,6 +455,92 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HOSPITAL">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Hospital">
+              <MappingFragment StoreEntitySet="HOSPITAL">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codhosp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INCONSISTENCIA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Inconsistencia">
+              <MappingFragment StoreEntitySet="INCONSISTENCIA">
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARCA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.MarcaDeAutomovil">
+              <MappingFragment StoreEntitySet="MARCA">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Topmarca" ColumnName="Topmarca" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTROTIPOTRANSPORTE">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OtroTipoTransporte">
+              <MappingFragment StoreEntitySet="OTROTIPOTRANSPORTE">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTCALZADA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.EstadoDeLaCalzada">
+              <MappingFragment StoreEntitySet="ESTCALZADA">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="CodECal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESTRUCTURA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TipoDeEstructura">
+              <MappingFragment StoreEntitySet="ESTRUCTURA">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="CodEst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPCIONFORMULARIO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OpcionDeFormulario">
+              <MappingFragment StoreEntitySet="OPCIONFORMULARIO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codformulario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPCIONPLANO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OpcionesDelPlano">
+              <MappingFragment StoreEntitySet="OPCIONPLANO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -297,7 +555,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

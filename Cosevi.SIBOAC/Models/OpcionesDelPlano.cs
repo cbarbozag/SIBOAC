@@ -12,9 +12,9 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MotivoPorNoFirmar
+    public partial class OpcionesDelPlano
     {
-        public string Id { get; set; }
+        public short Id { get; set; }
         public string Descripcion { get; set; }
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }

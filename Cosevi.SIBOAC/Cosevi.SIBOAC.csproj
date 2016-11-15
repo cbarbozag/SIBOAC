@@ -186,12 +186,24 @@
     <Compile Include="Models\EstadoCivil.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EstadoDeLaCalzada.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hospital.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Iluminacion.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Inconsistencia.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Maniobra.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarcaDeAutomovil.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MotivoPorNoFirmar.cs">
@@ -201,6 +213,15 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OficinaParaImpugnar.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OpcionDeFormulario.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OpcionesDelPlano.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OtroTipoTransporte.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PC_HH_AndroidModel.Context.cs">
@@ -219,6 +240,9 @@
       <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\RolDePersonaPorVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeEstructura.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,10 +12,11 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MotivoPorNoFirmar
+    public partial class MarcaDeAutomovil
     {
         public string Id { get; set; }
         public string Descripcion { get; set; }
+        public Nullable<int> Topmarca { get; set; }
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }

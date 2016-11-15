@@ -13,6 +13,14 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.OficinaParaImpugnar" Width="1.5" PointX="7.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" Width="2.125" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.Dispositivo" Width="1.5" PointX="2.875" PointY="0.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Hospital" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Inconsistencia" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.MarcaDeAutomovil" Width="1.75" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.OtroTipoTransporte" Width="2.375" PointX="6.875" PointY="6.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.EstadoDeLaCalzada" Width="1.75" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeEstructura" Width="1.75" PointX="4.875" PointY="9.125" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.OpcionDeFormulario" Width="2" PointX="7.125" PointY="9.125" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.OpcionesDelPlano" Width="1.75" PointX="2.75" PointY="9.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
