@@ -295,6 +295,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Create.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Delete.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Details.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Edit.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Index.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Create.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Delete.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Details.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Edit.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

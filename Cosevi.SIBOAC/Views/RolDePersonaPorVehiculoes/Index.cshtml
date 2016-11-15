@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.RolDePersonaPorVehiculo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de Roles de Personas por Vehiculo</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
@@ -42,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Editar", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Detalles", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Eliminar", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id.Trim() }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.Id.Trim() }) |
+            @Html.ActionLink("Inactivar", "Delete", new { id=item.Id.Trim() })
         </td>
     </tr>
 }
