@@ -11,13 +11,18 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class OficinaParaImpugnar
     {
+        [DisplayName("Código")]
         public string Id { get; set; }
+        [DisplayName("Nombre de Oficina")]
         public string Descripcion { get; set; }
         public string Estado { get; set; }
+        [DisplayName("Fecha de Inicio")]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
+        [DisplayName("Fecha de Fin")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }
