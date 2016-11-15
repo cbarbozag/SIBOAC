@@ -159,15 +159,15 @@
           <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
           <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="ROLPERSONA_VEHICULO">
+        <EntityType Name="RolDePersonaPorVehiculo">
           <Key>
-            <PropertyRef Name="codigo_rol" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="codigo_rol" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="activar_vehiculo" Type="Boolean" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ActivarVehiculo" Type="Boolean" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityContainer Name="PC_HH_AndroidEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ESTCIVILs" EntityType="Self.ESTCIVIL" />
@@ -176,7 +176,7 @@
           <EntitySet Name="MotivoPorNoFirmars" EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" />
           <EntitySet Name="OBSTACULOes" EntityType="Self.OBSTACULO" />
           <EntitySet Name="OFICINAIMPUGNAs" EntityType="Self.OFICINAIMPUGNA" />
-          <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" />
+          <EntitySet Name="RolDePersonaPorVehiculoes" EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" />
           <EntitySet Name="DISPOSITIVOes" EntityType="PC_HH_AndroidModel.DISPOSITIVO" />
         </EntityContainer>
         <EntityType Name="DISPOSITIVO">
@@ -261,14 +261,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ROLPERSONA_VEHICULO">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ROLPERSONA_VEHICULO">
+          <EntitySetMapping Name="RolDePersonaPorVehiculoes">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolDePersonaPorVehiculo">
               <MappingFragment StoreEntitySet="ROLPERSONA_VEHICULO">
-                <ScalarProperty Name="codigo_rol" ColumnName="codigo_rol" />
-                <ScalarProperty Name="activar_vehiculo" ColumnName="activar_vehiculo" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="Id" ColumnName="codigo_rol" />
+                <ScalarProperty Name="ActivarVehiculo" ColumnName="activar_vehiculo" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
