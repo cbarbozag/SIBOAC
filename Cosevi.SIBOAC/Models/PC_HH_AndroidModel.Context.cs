@@ -41,5 +41,13 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<TipoDeEstructura> ESTRUCTURA { get; set; }
         public virtual DbSet<OpcionDeFormulario> OPCIONFORMULARIO { get; set; }
         public virtual DbSet<OpcionesDelPlano> OPCIONPLANO { get; set; }
+        public virtual DbSet<Plantillas> PLANTILLAS { get; set; }
+        public virtual DbSet<Provincia> PROVINCIA { get; set; }
+        public virtual DbSet<Sentido> SENTIDO { get; set; }
+        public virtual DbSet<Senalamiento> SEÑALAMIENTO { get; set; }
+        public virtual DbSet<Sexo> SEXO { get; set; }
+        public virtual DbSet<TipoDeIdentificacion> TIPO_IDENTIFICACION { get; set; }
+        public virtual DbSet<TipoDeLicencia> TIPO_LICENCIA { get; set; }
+        public virtual DbSet<TipoDeVehiculo> TIPOVEH { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MotivoPorNoFirmar
+    public partial class Sentido
     {
         public string Id { get; set; }
         public string Descripcion { get; set; }

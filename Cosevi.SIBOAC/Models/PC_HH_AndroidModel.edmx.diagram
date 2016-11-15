@@ -21,6 +21,14 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeEstructura" Width="1.75" PointX="4.875" PointY="9.125" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.OpcionDeFormulario" Width="2" PointX="7.125" PointY="9.125" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.OpcionesDelPlano" Width="1.75" PointX="2.75" PointY="9.125" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Plantillas" Width="1.5" PointX="5" PointY="13.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Provincia" Width="1.5" PointX="5" PointY="11.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Sentido" Width="1.5" PointX="7.25" PointY="11.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Senalamiento" Width="1.5" PointX="0.75" PointY="13.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Sexo" Width="1.5" PointX="2.75" PointY="13.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeIdentificacion" Width="2" PointX="2.75" PointY="11.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeLicencia" Width="1.5" PointX="7.25" PointY="13.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeVehiculo" Width="1.5" PointX="0.75" PointY="11.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
