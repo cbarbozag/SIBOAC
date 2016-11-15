@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DispositivoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
@@ -302,6 +303,11 @@
     <Content Include="Views\OficinaParaImpugnars\Details.cshtml" />
     <Content Include="Views\OficinaParaImpugnars\Edit.cshtml" />
     <Content Include="Views\OficinaParaImpugnars\Index.cshtml" />
+    <Content Include="Views\Dispositivoes\Create.cshtml" />
+    <Content Include="Views\Dispositivoes\Delete.cshtml" />
+    <Content Include="Views\Dispositivoes\Details.cshtml" />
+    <Content Include="Views\Dispositivoes\Edit.cshtml" />
+    <Content Include="Views\Dispositivoes\Index.cshtml" />
     <Content Include="Views\MotivoPorNoFirmars\Create.cshtml" />
     <Content Include="Views\MotivoPorNoFirmars\Delete.cshtml" />
     <Content Include="Views\MotivoPorNoFirmars\Details.cshtml" />
