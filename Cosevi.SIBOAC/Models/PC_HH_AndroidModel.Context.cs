@@ -26,11 +26,11 @@ namespace Cosevi.SIBOAC.Models
         }
     
         public virtual DbSet<ESTCIVIL> ESTCIVILs { get; set; }
-        public virtual DbSet<ILUMINACION> ILUMINACIONs { get; set; }
+        public virtual DbSet<ILUMINACION> ILUMINACION { get; set; }
         public virtual DbSet<MANIOBRA> MANIOBRAs { get; set; }
         public virtual DbSet<MotivoPorNoFirmar> MotivoPorNoFirmars { get; set; }
         public virtual DbSet<Obstaculo> Obstaculo { get; set; }
-        public virtual DbSet<OFICINAIMPUGNA> OFICINAIMPUGNAs { get; set; }
+        public virtual DbSet<OficinaParaImpugnar> OficinaParaImpugnars { get; set; }
         public virtual DbSet<RolDePersonaPorVehiculo> RolDePersonaPorVehiculoes { get; set; }
         public virtual DbSet<DISPOSITIVO> DISPOSITIVOes { get; set; }
     }

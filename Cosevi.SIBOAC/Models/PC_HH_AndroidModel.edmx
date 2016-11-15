@@ -149,15 +149,15 @@
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="OFICINAIMPUGNA">
+        <EntityType Name="OficinaParaImpugnar">
           <Key>
-            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Codigo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Oficina" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RolDePersonaPorVehiculo">
           <Key>
@@ -171,11 +171,11 @@
         </EntityType>
         <EntityContainer Name="PC_HH_AndroidEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ESTCIVILs" EntityType="Self.ESTCIVIL" />
-          <EntitySet Name="ILUMINACIONs" EntityType="Self.ILUMINACION" />
+          <EntitySet Name="ILUMINACION" EntityType="Self.ILUMINACION" />
           <EntitySet Name="MANIOBRAs" EntityType="Self.MANIOBRA" />
           <EntitySet Name="MotivoPorNoFirmars" EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" />
           <EntitySet Name="Obstaculo" EntityType="PC_HH_AndroidModel.Obstaculo" />
-          <EntitySet Name="OFICINAIMPUGNAs" EntityType="Self.OFICINAIMPUGNA" />
+          <EntitySet Name="OficinaParaImpugnars" EntityType="PC_HH_AndroidModel.OficinaParaImpugnar" />
           <EntitySet Name="RolDePersonaPorVehiculoes" EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" />
           <EntitySet Name="DISPOSITIVOes" EntityType="PC_HH_AndroidModel.DISPOSITIVO" />
         </EntityContainer>
@@ -206,7 +206,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ILUMINACIONs">
+          <EntitySetMapping Name="ILUMINACION">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.ILUMINACION">
               <MappingFragment StoreEntitySet="ILUMINACION">
                 <ScalarProperty Name="CodIlu" ColumnName="CodIlu" />
@@ -250,14 +250,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OFICINAIMPUGNAs">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OFICINAIMPUGNA">
+          <EntitySetMapping Name="OficinaParaImpugnars">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OficinaParaImpugnar">
               <MappingFragment StoreEntitySet="OFICINAIMPUGNA">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Oficina" ColumnName="Oficina" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="Id" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Oficina" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
