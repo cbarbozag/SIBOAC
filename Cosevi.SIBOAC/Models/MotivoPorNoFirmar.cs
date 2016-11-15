@@ -11,13 +11,20 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class MotivoPorNoFirmar
     {
         public string Id { get; set; }
         public string Descripcion { get; set; }
         public string Estado { get; set; }
+        [DisplayName("Fecha de inicio")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }
