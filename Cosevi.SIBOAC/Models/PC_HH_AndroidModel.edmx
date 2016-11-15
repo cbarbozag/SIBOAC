@@ -153,12 +153,90 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="PLANTILLAS">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PROVINCIA">
+          <Key>
+            <PropertyRef Name="CodPro" />
+          </Key>
+          <Property Name="CodPro" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="ROLPERSONA_VEHICULO">
           <Key>
             <PropertyRef Name="codigo_rol" />
           </Key>
           <Property Name="codigo_rol" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="activar_vehiculo" Type="bit" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SENTIDO">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SEÑALAMIENTO">
+          <Key>
+            <PropertyRef Name="CodSeña" />
+          </Key>
+          <Property Name="CodSeña" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SEXO">
+          <Key>
+            <PropertyRef Name="CodSexo" />
+          </Key>
+          <Property Name="CodSexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Descripcion" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TIPO_IDENTIFICACION">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+          </Key>
+          <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Indice" Type="char" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="TIPO_LICENCIA">
+          <Key>
+            <PropertyRef Name="tipo_lic" />
+          </Key>
+          <Property Name="tipo_lic" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TIPOVEH">
+          <Key>
+            <PropertyRef Name="CodVeh" />
+          </Key>
+          <Property Name="CodVeh" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
@@ -179,7 +257,15 @@
           <EntitySet Name="OPCIONFORMULARIO" EntityType="Self.OPCIONFORMULARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCIONPLANO" EntityType="Self.OPCIONPLANO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTROTIPOTRANSPORTE" EntityType="Self.OTROTIPOTRANSPORTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLANTILLAS" EntityType="Self.PLANTILLAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SENTIDO" EntityType="Self.SENTIDO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEÑALAMIENTO" EntityType="Self.SEÑALAMIENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_IDENTIFICACION" EntityType="Self.TIPO_IDENTIFICACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_LICENCIA" EntityType="Self.TIPO_LICENCIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOVEH" EntityType="Self.TIPOVEH" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -272,6 +358,14 @@
           <EntitySet Name="ESTRUCTURA" EntityType="PC_HH_AndroidModel.TipoDeEstructura" />
           <EntitySet Name="OPCIONFORMULARIO" EntityType="PC_HH_AndroidModel.OpcionDeFormulario" />
           <EntitySet Name="OPCIONPLANO" EntityType="PC_HH_AndroidModel.OpcionesDelPlano" />
+          <EntitySet Name="PLANTILLAS" EntityType="PC_HH_AndroidModel.Plantillas" />
+          <EntitySet Name="PROVINCIA" EntityType="PC_HH_AndroidModel.Provincia" />
+          <EntitySet Name="SENTIDO" EntityType="PC_HH_AndroidModel.Sentido" />
+          <EntitySet Name="SEÑALAMIENTO" EntityType="PC_HH_AndroidModel.Senalamiento" />
+          <EntitySet Name="SEXO" EntityType="PC_HH_AndroidModel.Sexo" />
+          <EntitySet Name="TIPO_IDENTIFICACION" EntityType="PC_HH_AndroidModel.TipoDeIdentificacion" />
+          <EntitySet Name="TIPO_LICENCIA" EntityType="PC_HH_AndroidModel.TipoDeLicencia" />
+          <EntitySet Name="TIPOVEH" EntityType="PC_HH_AndroidModel.TipoDeVehiculo" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -357,6 +451,84 @@
           </Key>
           <Property Name="Id" Type="Int16" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Plantillas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Sentido">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Senalamiento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Sexo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TipoDeIdentificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Indice" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TipoDeLicencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TipoDeVehiculo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
@@ -538,6 +710,92 @@
                 <ScalarProperty Name="Estado" ColumnName="estado" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLANTILLAS">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Plantillas">
+              <MappingFragment StoreEntitySet="PLANTILLAS">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCIA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Provincia">
+              <MappingFragment StoreEntitySet="PROVINCIA">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="CodPro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SENTIDO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Sentido">
+              <MappingFragment StoreEntitySet="SENTIDO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEÑALAMIENTO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Senalamiento">
+              <MappingFragment StoreEntitySet="SEÑALAMIENTO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="CodSeña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEXO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Sexo">
+              <MappingFragment StoreEntitySet="SEXO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="CodSexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_IDENTIFICACION">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TipoDeIdentificacion">
+              <MappingFragment StoreEntitySet="TIPO_IDENTIFICACION">
+                <ScalarProperty Name="Indice" ColumnName="Indice" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="tipo_ide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_LICENCIA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TipoDeLicencia">
+              <MappingFragment StoreEntitySet="TIPO_LICENCIA">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="tipo_lic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOVEH">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TipoDeVehiculo">
+              <MappingFragment StoreEntitySet="TIPOVEH">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="CodVeh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

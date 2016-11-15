@@ -12,7 +12,7 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Iluminacion
+    public partial class Provincia
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
