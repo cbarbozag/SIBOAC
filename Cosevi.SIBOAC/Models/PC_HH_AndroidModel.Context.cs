@@ -25,7 +25,7 @@ namespace Cosevi.SIBOAC.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ESTCIVIL> ESTCIVILs { get; set; }
+        public virtual DbSet<EstadoCivil> EstadoCivils { get; set; }
         public virtual DbSet<ILUMINACION> ILUMINACIONs { get; set; }
         public virtual DbSet<MANIOBRA> MANIOBRAs { get; set; }
         public virtual DbSet<MotivoPorNoFirmar> MotivoPorNoFirmars { get; set; }

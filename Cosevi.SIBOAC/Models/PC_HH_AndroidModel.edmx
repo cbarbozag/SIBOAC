@@ -99,15 +99,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PC_HH_AndroidModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="ESTCIVIL">
+        <EntityType Name="EstadoCivil">
           <Key>
-            <PropertyRef Name="estcivil1" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="estcivil1" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ILUMINACION">
           <Key>
@@ -170,7 +170,7 @@
           <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityContainer Name="PC_HH_AndroidEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ESTCIVILs" EntityType="Self.ESTCIVIL" />
+          <EntitySet Name="EstadoCivils" EntityType="PC_HH_AndroidModel.EstadoCivil" />
           <EntitySet Name="ILUMINACIONs" EntityType="Self.ILUMINACION" />
           <EntitySet Name="MANIOBRAs" EntityType="Self.MANIOBRA" />
           <EntitySet Name="MotivoPorNoFirmars" EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" />
@@ -195,14 +195,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PC_HH_AndroidModelStoreContainer" CdmEntityContainer="PC_HH_AndroidEntities">
-          <EntitySetMapping Name="ESTCIVILs">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ESTCIVIL">
+          <EntitySetMapping Name="EstadoCivils">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.EstadoCivil">
               <MappingFragment StoreEntitySet="ESTCIVIL">
-                <ScalarProperty Name="estcivil1" ColumnName="estcivil" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="Id" ColumnName="estcivil" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

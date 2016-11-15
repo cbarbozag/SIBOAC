@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2009d6fc668b4bbb971bddc97612a570" Name="Diagram1">
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.ESTCIVIL" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.EstadoCivil" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.ILUMINACION" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.MANIOBRA" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" Width="1.75" PointX="0.625" PointY="0.75" IsExpanded="true" />
