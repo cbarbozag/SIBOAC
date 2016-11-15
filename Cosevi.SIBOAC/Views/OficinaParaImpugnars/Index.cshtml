@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.MotivoPorNoFirmar>
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.OficinaParaImpugnar>
 
 @{
     ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Motivos para no firmar</h2>
+<h2>Lista de Oficinas para Impugnar</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create")
@@ -43,7 +43,7 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id.Trim() }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.Id.Trim() }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id.Trim() }) |
             @Html.ActionLink("Inactivar", "Delete", new { id=item.Id.Trim() })
         </td>
     </tr>

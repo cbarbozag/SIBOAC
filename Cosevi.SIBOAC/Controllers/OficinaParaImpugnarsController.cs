@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class MotivoPorNoFirmarsController : Controller
+    public class OficinaParaImpugnarsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: MotivoPorNoFirmars
+        // GET: OficinaParaImpugnars
         public ActionResult Index()
         {
-            return View(db.MotivoPorNoFirmars.ToList());
+            return View(db.OficinaParaImpugnars.ToList());
         }
 
-        // GET: MotivoPorNoFirmars/Details/5
+        // GET: OficinaParaImpugnars/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MotivoPorNoFirmar motivoPorNoFirmar = db.MotivoPorNoFirmars.Find(id);
-            if (motivoPorNoFirmar == null)
+            OficinaParaImpugnar oficinaParaImpugnar = db.OficinaParaImpugnars.Find(id);
+            if (oficinaParaImpugnar == null)
             {
                 return HttpNotFound();
             }
-            return View(motivoPorNoFirmar);
+            return View(oficinaParaImpugnar);
         }
 
-        // GET: MotivoPorNoFirmars/Create
+        // GET: OficinaParaImpugnars/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MotivoPorNoFirmars/Create
+        // POST: OficinaParaImpugnars/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] MotivoPorNoFirmar motivoPorNoFirmar)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] OficinaParaImpugnar oficinaParaImpugnar)
         {
             if (ModelState.IsValid)
             {
-                db.MotivoPorNoFirmars.Add(motivoPorNoFirmar);
+                db.OficinaParaImpugnars.Add(oficinaParaImpugnar);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(motivoPorNoFirmar);
+            return View(oficinaParaImpugnar);
         }
 
-        // GET: MotivoPorNoFirmars/Edit/5
+        // GET: OficinaParaImpugnars/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MotivoPorNoFirmar motivoPorNoFirmar = db.MotivoPorNoFirmars.Find(id);
-            if (motivoPorNoFirmar == null)
+            OficinaParaImpugnar oficinaParaImpugnar = db.OficinaParaImpugnars.Find(id);
+            if (oficinaParaImpugnar == null)
             {
                 return HttpNotFound();
             }
-            return View(motivoPorNoFirmar);
+            return View(oficinaParaImpugnar);
         }
 
-        // POST: MotivoPorNoFirmars/Edit/5
+        // POST: OficinaParaImpugnars/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] MotivoPorNoFirmar motivoPorNoFirmar)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] OficinaParaImpugnar oficinaParaImpugnar)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(motivoPorNoFirmar).State = EntityState.Modified;
+                db.Entry(oficinaParaImpugnar).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(motivoPorNoFirmar);
+            return View(oficinaParaImpugnar);
         }
 
-        // GET: MotivoPorNoFirmars/Delete/5
+        // GET: OficinaParaImpugnars/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MotivoPorNoFirmar motivoPorNoFirmar = db.MotivoPorNoFirmars.Find(id);
-            if (motivoPorNoFirmar == null)
+            OficinaParaImpugnar oficinaParaImpugnar = db.OficinaParaImpugnars.Find(id);
+            if (oficinaParaImpugnar == null)
             {
                 return HttpNotFound();
             }
-            return View(motivoPorNoFirmar);
+            return View(oficinaParaImpugnar);
         }
 
-        // POST: MotivoPorNoFirmars/Delete/5
+        // POST: OficinaParaImpugnars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            MotivoPorNoFirmar motivoPorNoFirmar = db.MotivoPorNoFirmars.Find(id);
-            motivoPorNoFirmar.Estado = "I";            
+            OficinaParaImpugnar oficinaParaImpugnar = db.OficinaParaImpugnars.Find(id);
+            db.OficinaParaImpugnars.Remove(oficinaParaImpugnar);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

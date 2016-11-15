@@ -1,4 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.MotivoPorNoFirmar
+﻿@model Cosevi.SIBOAC.Models.OficinaParaImpugnar
 
 @{
     ViewBag.Title = "Detalle";
@@ -8,7 +8,7 @@
 <h2>Detalle</h2>
 
 <div>
-    <h4>Motivo para no firmar</h4>
+    <h4>Oficina Para Impugnar</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -47,5 +47,5 @@
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id.Trim() }) |
-    @Html.ActionLink("Regresar a la lista", "Index")
+    @Html.ActionLink("Regresar a Lista", "Index")
 </p>

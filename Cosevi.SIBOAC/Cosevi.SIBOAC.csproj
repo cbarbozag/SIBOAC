@@ -173,7 +173,9 @@
     <Compile Include="Controllers\DispositivoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
     <Compile Include="Controllers\MotivoPorNoFirmarsController.cs" />
+    <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,15 +183,15 @@
     <Compile Include="Models\Dispositivo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ESTCIVIL.cs">
+    <Compile Include="Models\EstadoCivil.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ILUMINACION.cs">
+    <Compile Include="Models\Iluminacion.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MANIOBRA.cs">
+    <Compile Include="Models\Maniobra.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MotivoPorNoFirmar.cs">
@@ -295,6 +297,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Create.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Delete.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Details.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Edit.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Index.cshtml" />
     <Content Include="Views\Dispositivoes\Create.cshtml" />
     <Content Include="Views\Dispositivoes\Delete.cshtml" />
     <Content Include="Views\Dispositivoes\Details.cshtml" />
@@ -305,6 +312,11 @@
     <Content Include="Views\MotivoPorNoFirmars\Details.cshtml" />
     <Content Include="Views\MotivoPorNoFirmars\Edit.cshtml" />
     <Content Include="Views\MotivoPorNoFirmars\Index.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Create.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Delete.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Details.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Edit.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
