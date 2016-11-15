@@ -99,15 +99,15 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PC_HH_AndroidModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="EstadoCivil">
+        <EntityType Name="ESTCIVIL">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="estcivil1" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
-          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <Property Name="estcivil1" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ILUMINACION">
           <Key>
@@ -139,15 +139,15 @@
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="OBSTACULO">
+        <EntityType Name="Obstaculo">
           <Key>
-            <PropertyRef Name="CodObs" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CodObs" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="OFICINAIMPUGNA">
           <Key>
@@ -159,35 +159,35 @@
           <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
           <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="ROLPERSONA_VEHICULO">
-          <Key>
-            <PropertyRef Name="codigo_rol" />
-          </Key>
-          <Property Name="codigo_rol" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="activar_vehiculo" Type="Boolean" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityContainer Name="PC_HH_AndroidEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EstadoCivils" EntityType="PC_HH_AndroidModel.EstadoCivil" />
-          <EntitySet Name="ILUMINACIONs" EntityType="Self.ILUMINACION" />
-          <EntitySet Name="MANIOBRAs" EntityType="Self.MANIOBRA" />
-          <EntitySet Name="MotivoPorNoFirmars" EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" />
-          <EntitySet Name="OBSTACULOes" EntityType="Self.OBSTACULO" />
-          <EntitySet Name="OFICINAIMPUGNAs" EntityType="Self.OFICINAIMPUGNA" />
-          <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" />
-          <EntitySet Name="Dispositivoes1" EntityType="PC_HH_AndroidModel.Dispositivo" />
-        </EntityContainer>
-        <EntityType Name="Dispositivo">
+        <EntityType Name="RolDePersonaPorVehiculo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ActivarVehiculo" Type="Boolean" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="PC_HH_AndroidEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ESTCIVILs" EntityType="Self.ESTCIVIL" />
+          <EntitySet Name="ILUMINACIONs" EntityType="Self.ILUMINACION" />
+          <EntitySet Name="MANIOBRAs" EntityType="Self.MANIOBRA" />
+          <EntitySet Name="MotivoPorNoFirmars" EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" />
+          <EntitySet Name="Obstaculo" EntityType="PC_HH_AndroidModel.Obstaculo" />
+          <EntitySet Name="OFICINAIMPUGNAs" EntityType="Self.OFICINAIMPUGNA" />
+          <EntitySet Name="RolDePersonaPorVehiculoes" EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" />
+          <EntitySet Name="DISPOSITIVOes" EntityType="PC_HH_AndroidModel.DISPOSITIVO" />
+        </EntityContainer>
+        <EntityType Name="DISPOSITIVO">
+          <Key>
+            <PropertyRef Name="CodDis" />
+          </Key>
+          <Property Name="CodDis" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -195,14 +195,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PC_HH_AndroidModelStoreContainer" CdmEntityContainer="PC_HH_AndroidEntities">
-          <EntitySetMapping Name="EstadoCivils">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.EstadoCivil">
+          <EntitySetMapping Name="ESTCIVILs">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ESTCIVIL">
               <MappingFragment StoreEntitySet="ESTCIVIL">
-                <ScalarProperty Name="Id" ColumnName="estcivil" />
-                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="Estado" ColumnName="estado" />
-                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="estcivil1" ColumnName="estcivil" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -239,14 +239,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OBSTACULOes">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OBSTACULO">
+          <EntitySetMapping Name="Obstaculo">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Obstaculo">
               <MappingFragment StoreEntitySet="OBSTACULO">
-                <ScalarProperty Name="CodObs" ColumnName="CodObs" />
+                <ScalarProperty Name="Id" ColumnName="CodObs" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -261,25 +261,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ROLPERSONA_VEHICULO">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ROLPERSONA_VEHICULO">
+          <EntitySetMapping Name="RolDePersonaPorVehiculoes">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolDePersonaPorVehiculo">
               <MappingFragment StoreEntitySet="ROLPERSONA_VEHICULO">
-                <ScalarProperty Name="codigo_rol" ColumnName="codigo_rol" />
-                <ScalarProperty Name="activar_vehiculo" ColumnName="activar_vehiculo" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="Id" ColumnName="codigo_rol" />
+                <ScalarProperty Name="ActivarVehiculo" ColumnName="activar_vehiculo" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Dispositivoes1">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Dispositivo">
+          <EntitySetMapping Name="DISPOSITIVOes">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DISPOSITIVO">
               <MappingFragment StoreEntitySet="DISPOSITIVO">
-                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
-                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Id" ColumnName="CodDis" />
+                <ScalarProperty Name="CodDis" ColumnName="CodDis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
