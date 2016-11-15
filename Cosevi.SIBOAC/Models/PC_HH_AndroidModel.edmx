@@ -177,17 +177,17 @@
           <EntitySet Name="OBSTACULOes" EntityType="Self.OBSTACULO" />
           <EntitySet Name="OFICINAIMPUGNAs" EntityType="Self.OFICINAIMPUGNA" />
           <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" />
-          <EntitySet Name="DISPOSITIVOes" EntityType="PC_HH_AndroidModel.DISPOSITIVO" />
+          <EntitySet Name="Dispositivoes1" EntityType="PC_HH_AndroidModel.Dispositivo" />
         </EntityContainer>
-        <EntityType Name="DISPOSITIVO">
+        <EntityType Name="Dispositivo">
           <Key>
-            <PropertyRef Name="CodDis" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CodDis" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -272,14 +272,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DISPOSITIVOes">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DISPOSITIVO">
+          <EntitySetMapping Name="Dispositivoes1">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Dispositivo">
               <MappingFragment StoreEntitySet="DISPOSITIVO">
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="CodDis" ColumnName="CodDis" />
+                <ScalarProperty Name="Id" ColumnName="CodDis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
