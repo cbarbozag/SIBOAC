@@ -109,15 +109,15 @@
           <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
           <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Iluminacion">
+        <EntityType Name="ILUMINACION">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="CodIlu" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CodIlu" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
-          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="MANIOBRA">
           <Key>
@@ -139,44 +139,44 @@
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="OBSTACULO">
-          <Key>
-            <PropertyRef Name="CodObs" />
-          </Key>
-          <Property Name="CodObs" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="OficinaParaImpugnar">
+        <EntityType Name="Obstaculo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="ROLPERSONA_VEHICULO">
+        <EntityType Name="OFICINAIMPUGNA">
           <Key>
-            <PropertyRef Name="codigo_rol" />
+            <PropertyRef Name="Codigo" />
           </Key>
-          <Property Name="codigo_rol" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="activar_vehiculo" Type="Boolean" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Oficina" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
           <Property Name="fecha_fin" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="RolDePersonaPorVehiculo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ActivarVehiculo" Type="Boolean" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
         <EntityContainer Name="PC_HH_AndroidEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ESTCIVILs" EntityType="Self.ESTCIVIL" />
-          <EntitySet Name="Iluminacions1" EntityType="PC_HH_AndroidModel.Iluminacion" />
+          <EntitySet Name="ILUMINACIONs" EntityType="Self.ILUMINACION" />
           <EntitySet Name="MANIOBRAs" EntityType="Self.MANIOBRA" />
           <EntitySet Name="MotivoPorNoFirmars" EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" />
-          <EntitySet Name="OBSTACULOes" EntityType="Self.OBSTACULO" />
-          <EntitySet Name="OficinaParaImpugnars" EntityType="PC_HH_AndroidModel.OficinaParaImpugnar" />
-          <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" />
+          <EntitySet Name="Obstaculo" EntityType="PC_HH_AndroidModel.Obstaculo" />
+          <EntitySet Name="OFICINAIMPUGNAs" EntityType="Self.OFICINAIMPUGNA" />
+          <EntitySet Name="RolDePersonaPorVehiculoes" EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" />
           <EntitySet Name="DISPOSITIVOes" EntityType="PC_HH_AndroidModel.DISPOSITIVO" />
         </EntityContainer>
         <EntityType Name="DISPOSITIVO">
@@ -206,14 +206,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Iluminacions1">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Iluminacion">
+          <EntitySetMapping Name="ILUMINACIONs">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ILUMINACION">
               <MappingFragment StoreEntitySet="ILUMINACION">
-                <ScalarProperty Name="Id" ColumnName="CodIlu" />
+                <ScalarProperty Name="CodIlu" ColumnName="CodIlu" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Estado" ColumnName="estado" />
-                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -239,36 +239,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OBSTACULOes">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OBSTACULO">
+          <EntitySetMapping Name="Obstaculo">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Obstaculo">
               <MappingFragment StoreEntitySet="OBSTACULO">
-                <ScalarProperty Name="CodObs" ColumnName="CodObs" />
+                <ScalarProperty Name="Id" ColumnName="CodObs" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OficinaParaImpugnars">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OficinaParaImpugnar">
-              <MappingFragment StoreEntitySet="OFICINAIMPUGNA">
-                <ScalarProperty Name="Id" ColumnName="Codigo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Oficina" />
                 <ScalarProperty Name="Estado" ColumnName="estado" />
                 <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ROLPERSONA_VEHICULO">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ROLPERSONA_VEHICULO">
-              <MappingFragment StoreEntitySet="ROLPERSONA_VEHICULO">
-                <ScalarProperty Name="codigo_rol" ColumnName="codigo_rol" />
-                <ScalarProperty Name="activar_vehiculo" ColumnName="activar_vehiculo" />
+          <EntitySetMapping Name="OFICINAIMPUGNAs">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OFICINAIMPUGNA">
+              <MappingFragment StoreEntitySet="OFICINAIMPUGNA">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Oficina" ColumnName="Oficina" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolDePersonaPorVehiculoes">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolDePersonaPorVehiculo">
+              <MappingFragment StoreEntitySet="ROLPERSONA_VEHICULO">
+                <ScalarProperty Name="Id" ColumnName="codigo_rol" />
+                <ScalarProperty Name="ActivarVehiculo" ColumnName="activar_vehiculo" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

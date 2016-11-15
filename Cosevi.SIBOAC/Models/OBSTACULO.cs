@@ -12,12 +12,12 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OBSTACULO
+    public partial class Obstaculo
     {
-        public int CodObs { get; set; }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
-        public string estado { get; set; }
-        public Nullable<System.DateTime> fecha_inicio { get; set; }
-        public Nullable<System.DateTime> fecha_fin { get; set; }
+        public string Estado { get; set; }
+        public Nullable<System.DateTime> FechaDeInicio { get; set; }
+        public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }
