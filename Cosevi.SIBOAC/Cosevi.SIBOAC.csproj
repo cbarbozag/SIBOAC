@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IluminacionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
     <Compile Include="Controllers\MotivoPorNoFirmarsController.cs" />
@@ -323,6 +324,11 @@
     <Content Include="Views\Obstaculoes\Details.cshtml" />
     <Content Include="Views\Obstaculoes\Edit.cshtml" />
     <Content Include="Views\Obstaculoes\Index.cshtml" />
+    <Content Include="Views\Iluminacions\Create.cshtml" />
+    <Content Include="Views\Iluminacions\Delete.cshtml" />
+    <Content Include="Views\Iluminacions\Details.cshtml" />
+    <Content Include="Views\Iluminacions\Edit.cshtml" />
+    <Content Include="Views\Iluminacions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
