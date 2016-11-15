@@ -12,7 +12,7 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadoCivil
+    public partial class OtroTipoTransporte
     {
         public string Id { get; set; }
         public string Descripcion { get; set; }
