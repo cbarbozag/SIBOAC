@@ -12,12 +12,12 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ROLPERSONA_VEHICULO
+    public partial class RolDePersonaPorVehiculo
     {
-        public string codigo_rol { get; set; }
-        public bool activar_vehiculo { get; set; }
-        public string estado { get; set; }
-        public Nullable<System.DateTime> fecha_inicio { get; set; }
-        public Nullable<System.DateTime> fecha_fin { get; set; }
+        public string Id { get; set; }
+        public bool ActivarVehiculo { get; set; }
+        public string Estado { get; set; }
+        public Nullable<System.DateTime> FechaDeInicio { get; set; }
+        public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }

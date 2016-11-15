@@ -139,15 +139,15 @@
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="OBSTACULO">
+        <EntityType Name="Obstaculo">
           <Key>
-            <PropertyRef Name="CodObs" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CodObs" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="OFICINAIMPUGNA">
           <Key>
@@ -174,7 +174,7 @@
           <EntitySet Name="ILUMINACIONs" EntityType="Self.ILUMINACION" />
           <EntitySet Name="MANIOBRAs" EntityType="Self.MANIOBRA" />
           <EntitySet Name="MotivoPorNoFirmars" EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" />
-          <EntitySet Name="OBSTACULOes" EntityType="Self.OBSTACULO" />
+          <EntitySet Name="Obstaculo" EntityType="PC_HH_AndroidModel.Obstaculo" />
           <EntitySet Name="OFICINAIMPUGNAs" EntityType="Self.OFICINAIMPUGNA" />
           <EntitySet Name="RolDePersonaPorVehiculoes" EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" />
           <EntitySet Name="DISPOSITIVOes" EntityType="PC_HH_AndroidModel.DISPOSITIVO" />
@@ -239,14 +239,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OBSTACULOes">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OBSTACULO">
+          <EntitySetMapping Name="Obstaculo">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Obstaculo">
               <MappingFragment StoreEntitySet="OBSTACULO">
-                <ScalarProperty Name="CodObs" ColumnName="CodObs" />
+                <ScalarProperty Name="Id" ColumnName="CodObs" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
