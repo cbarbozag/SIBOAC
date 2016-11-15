@@ -11,13 +11,23 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Dispositivo
     {
+        [DisplayName("Código de dispositivo")] //etiqueta Código
         public int Id { get; set; }
+
+        [DisplayName("Descripción")] //etiqueta Descripción
         public string Descripcion { get; set; }
+
+        [DisplayName("Estado")] //etiqueta Estado
         public string Estado { get; set; }
+
+        [DisplayName ("Fecha de inicio")] //etiqueta Fecha de inicio
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
+
+        [DisplayName("Fecha de fin")] //etiqueta Fecha de fin
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }
