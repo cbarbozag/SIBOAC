@@ -17,14 +17,16 @@ namespace Cosevi.SIBOAC.Models
     public partial class MotivoPorNoFirmar
     {
         public string Id { get; set; }
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres.")]
         public string Descripcion { get; set; }
         public string Estado { get; set; }
         [DisplayName("Fecha de inicio")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
+        [DisplayName("Fecha de fin")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }
