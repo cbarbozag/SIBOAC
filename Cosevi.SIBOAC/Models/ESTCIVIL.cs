@@ -12,12 +12,12 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EstadoCivil
+    public partial class ESTCIVIL
     {
-        public string Id { get; set; }
-        public string Descripcion { get; set; }
-        public string Estado { get; set; }
-        public Nullable<System.DateTime> FechaDeInicio { get; set; }
-        public Nullable<System.DateTime> FechaDeFin { get; set; }
+        public string estcivil1 { get; set; }
+        public string descripcion { get; set; }
+        public string estado { get; set; }
+        public Nullable<System.DateTime> fecha_inicio { get; set; }
+        public Nullable<System.DateTime> fecha_fin { get; set; }
     }
 }
