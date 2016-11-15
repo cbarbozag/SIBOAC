@@ -1,19 +1,19 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.MotivoPorNoFirmar>
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.RolDePersonaPorVehiculo>
 
 @{
     ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Motivos para no firmar</h2>
+<h2>Lista de Roles de Personas por Vehiculo</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.ActivarVehiculo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
+            @Html.DisplayFor(modelItem => item.ActivarVehiculo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estado)

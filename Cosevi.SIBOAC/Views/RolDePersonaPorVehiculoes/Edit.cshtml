@@ -1,4 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.MotivoPorNoFirmar
+﻿@model Cosevi.SIBOAC.Models.RolDePersonaPorVehiculo
 
 @{
     ViewBag.Title = "Editar";
@@ -13,16 +13,18 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Motivos para no firmar</h4>
+        <h4>Lista de Roles de Personas por Vehiculo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ActivarVehiculo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ActivarVehiculo)
+                    @Html.ValidationMessageFor(model => model.ActivarVehiculo, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 

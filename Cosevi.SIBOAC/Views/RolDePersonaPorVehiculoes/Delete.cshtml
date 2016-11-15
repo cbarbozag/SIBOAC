@@ -1,22 +1,23 @@
-﻿@model Cosevi.SIBOAC.Models.MotivoPorNoFirmar
+﻿@model Cosevi.SIBOAC.Models.RolDePersonaPorVehiculo
 
 @{
-    ViewBag.Title = "Detalle";
+    ViewBag.Title = "Inactivar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalle</h2>
+<h2>Inactivar</h2>
 
+<h3>Esta seguro que desea cambiar el estado?</h3>
 <div>
-    <h4>Motivo para no firmar</h4>
+    <h4>Lista de Roles de Persona por Vehiculo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.ActivarVehiculo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.ActivarVehiculo)
         </dd>
 
         <dt>
@@ -44,8 +45,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Inactivar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id.Trim() }) |
-    @Html.ActionLink("Regresar a la lista", "Index")
-</p>

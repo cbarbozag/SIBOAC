@@ -1,22 +1,22 @@
-﻿@model Cosevi.SIBOAC.Models.MotivoPorNoFirmar
+﻿@model Cosevi.SIBOAC.Models.RolDePersonaPorVehiculo
 
 @{
-    ViewBag.Title = "Detalle";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalle</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>Motivo para no firmar</h4>
+    <h4>Lista de Roles de Personas por Vehiculo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.ActivarVehiculo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.ActivarVehiculo)
         </dd>
 
         <dt>
