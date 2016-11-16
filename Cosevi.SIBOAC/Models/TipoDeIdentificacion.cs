@@ -11,11 +11,22 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TipoDeIdentificacion
     {
+        [DisplayName("Codigo")]
+        [StringLength(2, ErrorMessage = "El Codigo no debe ser mayor a 2 caracteres")]
+        [Required(ErrorMessage = "El codigo es obligatorio")]
         public string Id { get; set; }
+
+        [DisplayName("Descripción")]
+        [StringLength(10, ErrorMessage = "La descripción no debe ser mayor a 10 caracteres")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
+
+
         public string Indice { get; set; }
     }
 }
