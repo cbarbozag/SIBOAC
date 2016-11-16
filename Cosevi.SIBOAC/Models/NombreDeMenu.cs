@@ -11,11 +11,24 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class NombreDeMenu
     {
+        [Required(ErrorMessage = "El nombre del menú original es obligatorio")]
+        [DisplayName("Nombre de Menú Original")]
+        [StringLength(50, ErrorMessage = "El nombre del menú original no debe ser mayor a 50 caracteres.")]
         public string Id { get; set; }
+
+        [Required(ErrorMessage = "El nombre del menú móvil es obligatorio")]
+        [DisplayName("Nombre de Menú Móvil")]
+        [StringLength(50, ErrorMessage = "El nombre del menú móvil no debe ser mayor a 50 caracteres.")]
         public string NombreDeMenuMovil { get; set; }
+
+        [Required(ErrorMessage = "El estado es obligatorio")]
+        [DisplayName("Estado")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         public string Estado { get; set; }
     }
 }
