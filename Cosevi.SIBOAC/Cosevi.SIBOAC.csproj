@@ -621,7 +621,6 @@
     <Content Include="Views\EstadoCivils\Edit.cshtml" />
     <Content Include="Views\EstadoCivils\Index.cshtml" />
     <Content Include="Views\Inconsistencias\Create.cshtml" />
-    <Content Include="Views\Inconsistencias\Delete.cshtml" />
     <Content Include="Views\Inconsistencias\Details.cshtml" />
     <Content Include="Views\Inconsistencias\Edit.cshtml" />
     <Content Include="Views\Inconsistencias\Index.cshtml" />

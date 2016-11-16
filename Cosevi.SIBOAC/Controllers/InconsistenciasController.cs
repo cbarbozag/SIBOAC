@@ -89,32 +89,6 @@ namespace Cosevi.SIBOAC.Controllers
             return View(inconsistencia);
         }
 
-        // GET: Inconsistencias/Delete/5
-        public ActionResult Delete(short? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Inconsistencia inconsistencia = db.INCONSISTENCIA.Find(id);
-            if (inconsistencia == null)
-            {
-                return HttpNotFound();
-            }
-            return View(inconsistencia);
-        }
-
-        // POST: Inconsistencias/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(short id)
-        {
-            Inconsistencia inconsistencia = db.INCONSISTENCIA.Find(id);
-            db.INCONSISTENCIA.Remove(inconsistencia);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
