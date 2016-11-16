@@ -170,6 +170,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
+    <Compile Include="Controllers\AlineacionVerticalsController.cs" />
     <Compile Include="Controllers\CantonsController.cs" />
     <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
     <Compile Include="Controllers\CarrilsController.cs" />
@@ -808,6 +810,16 @@
     <Content Include="Views\Cantons\Details.cshtml" />
     <Content Include="Views\Cantons\Edit.cshtml" />
     <Content Include="Views\Cantons\Index.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Create.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Delete.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Details.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Edit.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Index.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Create.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Delete.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Details.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Edit.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
