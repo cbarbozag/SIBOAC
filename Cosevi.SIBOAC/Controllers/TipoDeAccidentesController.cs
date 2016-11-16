@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TipoDeAccidente tipoDeAccidente = db.TIPOACCIDENTE.Find(id);
-            db.TIPOACCIDENTE.Remove(tipoDeAccidente);
+            tipoDeAccidente.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
