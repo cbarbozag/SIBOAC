@@ -11,13 +11,36 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class OficinaParaImpugnar
     {
+        [Required(ErrorMessage = "El código de la oficina es requerido")] //alerta de que el usuario debe llenar el espacio
+        [StringLength(2, ErrorMessage = "El código de la oficina no debe ser mayor a 2 caracteres.")]
+        [DisplayName("Código")] 
         public string Id { get; set; }
+
+        [Required(ErrorMessage = "La descripción de la oficina es requerido")] //alerta de que el usuario debe llenar el espacio
+        [StringLength(20, ErrorMessage = "La descripción de la oficina no debe ser mayor a 20 caracteres.")]
+        [DisplayName("Oficina")]
         public string Descripcion { get; set; }
+
+        [Required(ErrorMessage = "El estado  es requerido")] //alerta de que el usuario debe llenar el espacio
+        [StringLength(20, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
+        [DisplayName("Estado")]
         public string Estado { get; set; }
+
+        [Required(ErrorMessage = "La fecha de inicio es requerido")] //alerta de que el usuario debe llenar el espacio
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha Inicio")]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
+
+        [Required(ErrorMessage = "La fecha de Fin es requerido")] //alerta de que el usuario debe llenar el espacio
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha Fin")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }
