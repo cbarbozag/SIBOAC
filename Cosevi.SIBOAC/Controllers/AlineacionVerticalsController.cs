@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
-            db.ALINVERT.Remove(alineacionVertical);
+            alineacionVertical.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
