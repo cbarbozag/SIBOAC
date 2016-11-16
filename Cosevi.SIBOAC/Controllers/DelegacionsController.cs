@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Delegacion delegacion = db.DELEGACION.Find(id);
-            db.DELEGACION.Remove(delegacion);
+            delegacion.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
