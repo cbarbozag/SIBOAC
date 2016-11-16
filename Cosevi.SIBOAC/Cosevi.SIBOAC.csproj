@@ -197,9 +197,11 @@
     <Compile Include="Controllers\IluminacionsController.cs" />
     <Compile Include="Controllers\InconsistenciasController.cs" />
     <Compile Include="Controllers\InspectorsController.cs" />
+    <Compile Include="Controllers\InterseccionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
+    <Compile Include="Controllers\NombreDeMenusController.cs" />
     <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
     <Compile Include="Controllers\MotivoPorNoFirmarsController.cs" />
     <Compile Include="Controllers\ObstaculoesController.cs" />
@@ -226,6 +228,8 @@
     <Compile Include="Controllers\TipoDeSenalExistentesController.cs" />
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
+    <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
+    <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -844,6 +848,26 @@
     <Content Include="Views\Inspectors\Details.cshtml" />
     <Content Include="Views\Inspectors\Edit.cshtml" />
     <Content Include="Views\Inspectors\Index.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Create.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Delete.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Details.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Edit.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Index.cshtml" />
+    <Content Include="Views\Interseccions\Create.cshtml" />
+    <Content Include="Views\Interseccions\Delete.cshtml" />
+    <Content Include="Views\Interseccions\Details.cshtml" />
+    <Content Include="Views\Interseccions\Edit.cshtml" />
+    <Content Include="Views\Interseccions\Index.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Create.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Delete.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Details.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Edit.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Index.cshtml" />
+    <Content Include="Views\NombreDeMenus\Create.cshtml" />
+    <Content Include="Views\NombreDeMenus\Delete.cshtml" />
+    <Content Include="Views\NombreDeMenus\Details.cshtml" />
+    <Content Include="Views\NombreDeMenus\Edit.cshtml" />
+    <Content Include="Views\NombreDeMenus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
