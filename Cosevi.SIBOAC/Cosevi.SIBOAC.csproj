@@ -186,13 +186,17 @@
     <Compile Include="Controllers\DelitoesController.cs" />
     <Compile Include="Controllers\DepositoDePlacasController.cs" />
     <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
+    <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
+    <Compile Include="Controllers\ExamenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
     <Compile Include="Controllers\IluminacionsController.cs" />
     <Compile Include="Controllers\InconsistenciasController.cs" />
+    <Compile Include="Controllers\InspectorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
@@ -820,6 +824,26 @@
     <Content Include="Views\AlineacionVerticals\Details.cshtml" />
     <Content Include="Views\AlineacionVerticals\Edit.cshtml" />
     <Content Include="Views\AlineacionVerticals\Index.cshtml" />
+    <Content Include="Views\Distritoes\Create.cshtml" />
+    <Content Include="Views\Distritoes\Delete.cshtml" />
+    <Content Include="Views\Distritoes\Details.cshtml" />
+    <Content Include="Views\Distritoes\Edit.cshtml" />
+    <Content Include="Views\Distritoes\Index.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\Examen\Delete.cshtml" />
+    <Content Include="Views\Examen\Details.cshtml" />
+    <Content Include="Views\Examen\Edit.cshtml" />
+    <Content Include="Views\Examen\Index.cshtml" />
+    <Content Include="Views\Direccions\Create.cshtml" />
+    <Content Include="Views\Direccions\Delete.cshtml" />
+    <Content Include="Views\Direccions\Details.cshtml" />
+    <Content Include="Views\Direccions\Edit.cshtml" />
+    <Content Include="Views\Direccions\Index.cshtml" />
+    <Content Include="Views\Inspectors\Create.cshtml" />
+    <Content Include="Views\Inspectors\Delete.cshtml" />
+    <Content Include="Views\Inspectors\Details.cshtml" />
+    <Content Include="Views\Inspectors\Edit.cshtml" />
+    <Content Include="Views\Inspectors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
