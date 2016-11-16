@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Senalamiento senalamiento = db.SEÑALAMIENTO.Find(id);
-            db.SEÑALAMIENTO.Remove(senalamiento);
+            senalamiento.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
