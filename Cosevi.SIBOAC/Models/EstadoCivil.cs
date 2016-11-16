@@ -19,7 +19,7 @@ namespace Cosevi.SIBOAC.Models
         [DisplayName("Codigo")]
         [StringLength(1, ErrorMessage = "El Codigo no debe ser mayor a 1 caracter")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [DisplayName("Descripción")]
         [StringLength(10, ErrorMessage = "La descripción no debe ser mayor a 10 caracter")]

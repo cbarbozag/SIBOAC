@@ -26,7 +26,7 @@ namespace Cosevi.SIBOAC.Models
         public string Descripcion { get; set; }
 
         [DisplayName("Estado")]
-        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 carácter")]
         public string Estado { get; set; }
 
         [DisplayName("Fecha de Inicio")]
