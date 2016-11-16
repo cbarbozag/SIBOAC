@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Distrito distrito = db.DISTRITO.Find(id);
-            db.DISTRITO.Remove(distrito);
+            distrito.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
