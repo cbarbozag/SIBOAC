@@ -22,3 +22,43 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Bootstrap overrides */
+body {
+    padding-top: 90px;
+}
+.navbar-fixed-top {
+    min-height: 80px;
+    background: url("title_bar.png") center repeat-x #222222;
+    background-size: auto 100%;
+}
+.navbar-collapse {
+    background-color: #222222;
+}
+.navbar-toggle{
+    margin-top: 22px;
+}
+
+.brand img {
+    max-height: 81px;
+}
+
+@media (min-width: 768px){
+    .navbar-collapse {
+        background-color: transparent;
+    }
+    .navbar-nav > li > a {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+/*.navbar-fixed-top .navbar-collapse {
+    max-height: 80px;
+}*/
+
+/*@media (min-width: 768px) {
+    .navbar-fixed-top .navbar-collapse {
+        max-height: 50px;
+    }
+}*/
