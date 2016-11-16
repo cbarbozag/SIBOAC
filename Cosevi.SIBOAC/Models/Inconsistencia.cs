@@ -11,10 +11,19 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Inconsistencia
     {
+        [DisplayName("Codigo")]
+        [Required(ErrorMessage = "El codigo es obligatorio")]
         public short Id { get; set; }
+
+
+        [DisplayName("Descripción")]
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
     }
 }
