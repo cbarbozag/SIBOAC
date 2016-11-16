@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeCalzadasController : Controller
+    public class InspectorsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: TipoDeCalzadas
+        // GET: Inspectors
         public ActionResult Index()
         {
-            return View(db.TIPOCALZADA.ToList());
+            return View(db.INSPECTOR.ToList());
         }
 
-        // GET: TipoDeCalzadas/Details/5
-        public ActionResult Details(int? id)
+        // GET: Inspectors/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            if (tipoDeCalzada == null)
+            Inspector inspector = db.INSPECTOR.Find(id);
+            if (inspector == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeCalzada);
+            return View(inspector);
         }
 
-        // GET: TipoDeCalzadas/Create
+        // GET: Inspectors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoDeCalzadas/Create
+        // POST: Inspectors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeCalzada tipoDeCalzada)
+        public ActionResult Create([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] Inspector inspector)
         {
             if (ModelState.IsValid)
             {
-                db.TIPOCALZADA.Add(tipoDeCalzada);
+                db.INSPECTOR.Add(inspector);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tipoDeCalzada);
+            return View(inspector);
         }
 
-        // GET: TipoDeCalzadas/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Inspectors/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            if (tipoDeCalzada == null)
+            Inspector inspector = db.INSPECTOR.Find(id);
+            if (inspector == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeCalzada);
+            return View(inspector);
         }
 
-        // POST: TipoDeCalzadas/Edit/5
+        // POST: Inspectors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeCalzada tipoDeCalzada)
+        public ActionResult Edit([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] Inspector inspector)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoDeCalzada).State = EntityState.Modified;
+                db.Entry(inspector).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tipoDeCalzada);
+            return View(inspector);
         }
 
-        // GET: TipoDeCalzadas/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Inspectors/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            if (tipoDeCalzada == null)
+            Inspector inspector = db.INSPECTOR.Find(id);
+            if (inspector == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeCalzada);
+            return View(inspector);
         }
 
-        // POST: TipoDeCalzadas/Delete/5
+        // POST: Inspectors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            tipoDeCalzada.Estado = "I";
+            Inspector inspector = db.INSPECTOR.Find(id);
+            db.INSPECTOR.Remove(inspector);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

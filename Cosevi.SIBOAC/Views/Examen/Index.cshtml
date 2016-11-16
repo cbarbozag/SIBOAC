@@ -1,19 +1,25 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.TipoDeCalzada>
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.Examen>
 
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlcoholMinimo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlcoholMaximo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
@@ -33,6 +39,12 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.AlcoholMinimo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlcoholMaximo)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
@@ -42,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Inactivar", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

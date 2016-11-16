@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeCalzadasController : Controller
+    public class DistritoesController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: TipoDeCalzadas
+        // GET: Distritoes
         public ActionResult Index()
         {
-            return View(db.TIPOCALZADA.ToList());
+            return View(db.DISTRITO.ToList());
         }
 
-        // GET: TipoDeCalzadas/Details/5
+        // GET: Distritoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            if (tipoDeCalzada == null)
+            Distrito distrito = db.DISTRITO.Find(id);
+            if (distrito == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeCalzada);
+            return View(distrito);
         }
 
-        // GET: TipoDeCalzadas/Create
+        // GET: Distritoes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoDeCalzadas/Create
+        // POST: Distritoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeCalzada tipoDeCalzada)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Distrito distrito)
         {
             if (ModelState.IsValid)
             {
-                db.TIPOCALZADA.Add(tipoDeCalzada);
+                db.DISTRITO.Add(distrito);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tipoDeCalzada);
+            return View(distrito);
         }
 
-        // GET: TipoDeCalzadas/Edit/5
+        // GET: Distritoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            if (tipoDeCalzada == null)
+            Distrito distrito = db.DISTRITO.Find(id);
+            if (distrito == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeCalzada);
+            return View(distrito);
         }
 
-        // POST: TipoDeCalzadas/Edit/5
+        // POST: Distritoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeCalzada tipoDeCalzada)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Distrito distrito)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoDeCalzada).State = EntityState.Modified;
+                db.Entry(distrito).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tipoDeCalzada);
+            return View(distrito);
         }
 
-        // GET: TipoDeCalzadas/Delete/5
+        // GET: Distritoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            if (tipoDeCalzada == null)
+            Distrito distrito = db.DISTRITO.Find(id);
+            if (distrito == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeCalzada);
+            return View(distrito);
         }
 
-        // POST: TipoDeCalzadas/Delete/5
+        // POST: Distritoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
-            tipoDeCalzada.Estado = "I";
+            Distrito distrito = db.DISTRITO.Find(id);
+            db.DISTRITO.Remove(distrito);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
