@@ -89,6 +89,7 @@ namespace Cosevi.SIBOAC.Controllers
             return View(dispositivo);
         }
 
+
         // GET: Dispositivoes/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -114,6 +115,7 @@ namespace Cosevi.SIBOAC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

@@ -651,7 +651,6 @@
     <Content Include="Views\TipoDeVehiculoes\Edit.cshtml" />
     <Content Include="Views\TipoDeVehiculoes\Index.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Create.cshtml" />
-    <Content Include="Views\TipoDeIdentificacions\Delete.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Details.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Edit.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Index.cshtml" />

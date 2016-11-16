@@ -89,31 +89,7 @@ namespace Cosevi.SIBOAC.Controllers
             return View(tipoDeIdentificacion);
         }
 
-        // GET: TipoDeIdentificacions/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TipoDeIdentificacion tipoDeIdentificacion = db.TIPO_IDENTIFICACION.Find(id);
-            if (tipoDeIdentificacion == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tipoDeIdentificacion);
-        }
-
-        // POST: TipoDeIdentificacions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            TipoDeIdentificacion tipoDeIdentificacion = db.TIPO_IDENTIFICACION.Find(id);
-            db.TIPO_IDENTIFICACION.Remove(tipoDeIdentificacion);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+ 
 
         protected override void Dispose(bool disposing)
         {

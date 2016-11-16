@@ -15,7 +15,14 @@ namespace Cosevi.SIBOAC.Models
     public partial class Dispositivo
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "La descripción es requerida")] //alerta de que el usuario debe llenar el espacio
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres.")]
+        [DisplayName("Descripción")] //etiqueta Descripción
         public string Descripcion { get; set; }
+
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
+        [DisplayName("Estado")] //etiqueta Estado
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }
