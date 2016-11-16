@@ -191,6 +191,7 @@
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
+    <Compile Include="Controllers\SexoesController.cs" />
     <Compile Include="Controllers\TipoDeEstructurasController.cs" />
     <Compile Include="Controllers\TipoDeIdentificacionsController.cs" />
     <Compile Include="Controllers\TipoDeLicenciasController.cs" />
