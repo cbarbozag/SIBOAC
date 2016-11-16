@@ -12,10 +12,23 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MotivoPorNoFirmar
+    public partial class Inspector
     {
         public string Id { get; set; }
-        public string Descripcion { get; set; }
+        public string TipoDeIdentificacion { get; set; }
+        public string Identificacion { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public string Adonoren { get; set; }
+        public string FechaDeInclusion { get; set; }
+        public string FechaDeExclusion { get; set; }
+        public string DocumentoDeInclusion { get; set; }
+        public string DocumentoDeExclusion { get; set; }
+        public Nullable<System.DateTime> FechaReag { get; set; }
+        public string DocumentoReag { get; set; }
+        public string CodigoDeDelegacion { get; set; }
+        public string Email { get; set; }
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }

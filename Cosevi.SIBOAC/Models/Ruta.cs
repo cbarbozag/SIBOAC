@@ -12,10 +12,11 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MotivoPorNoFirmar
+    public partial class Ruta
     {
-        public string Id { get; set; }
-        public string Descripcion { get; set; }
+        public int Id { get; set; }
+        public string Inicia { get; set; }
+        public string Termina { get; set; }
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }

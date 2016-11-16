@@ -49,5 +49,39 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<TipoDeIdentificacion> TIPO_IDENTIFICACION { get; set; }
         public virtual DbSet<TipoDeLicencia> TIPO_LICENCIA { get; set; }
         public virtual DbSet<TipoDeVehiculo> TIPOVEH { get; set; }
+        public virtual DbSet<Peaton> Peaton { get; set; }
+        public virtual DbSet<Revision> Revision { get; set; }
+        public virtual DbSet<RolPorPersona> ROLPERSONA { get; set; }
+        public virtual DbSet<Ruta> Ruta { get; set; }
+        public virtual DbSet<Tiempo> Tiempo { get; set; }
+        public virtual DbSet<TipoDeAccidente> TIPOACCIDENTE { get; set; }
+        public virtual DbSet<TipoDeCalzada> TIPOCALZADA { get; set; }
+        public virtual DbSet<TipoDeDocumento> TIPODOCUMENTO { get; set; }
+        public virtual DbSet<TipoIdDeVehiculo> TIPOIDEVEHICULO { get; set; }
+        public virtual DbSet<TipoDeSenalExistente> TIPOSEÑALEXISTE { get; set; }
+        public virtual DbSet<ClaseDePlaca> CLASE { get; set; }
+        public virtual DbSet<CodigoDeLaPlaca> CODIGO { get; set; }
+        public virtual DbSet<CondicionDeLaCalzada> CONDCALZADA { get; set; }
+        public virtual DbSet<CondicionDeLaPersona> CONDPERSONA { get; set; }
+        public virtual DbSet<Dano> DAÑO { get; set; }
+        public virtual DbSet<Delegacion> DELEGACION { get; set; }
+        public virtual DbSet<Delito> DELITO { get; set; }
+        public virtual DbSet<DepositoDePlaca> DEPOSITOPLACA { get; set; }
+        public virtual DbSet<DepositoDeVehiculo> DEPOSITOVEHICULO { get; set; }
+        public virtual DbSet<AlineacionHorizontal> ALINHORI { get; set; }
+        public virtual DbSet<AlineacionVertical> ALINVERT { get; set; }
+        public virtual DbSet<Canton> CANTON { get; set; }
+        public virtual DbSet<CaracteristicasDeUbicacion> CARACUBI { get; set; }
+        public virtual DbSet<Carril> CARRIL { get; set; }
+        public virtual DbSet<Carroceria> CARROCERIA { get; set; }
+        public virtual DbSet<Circulacion> CIRCULACION { get; set; }
+        public virtual DbSet<Direccion> DIRECCION { get; set; }
+        public virtual DbSet<Distrito> DISTRITO { get; set; }
+        public virtual DbSet<Examen> EXAMEN { get; set; }
+        public virtual DbSet<Inspector> INSPECTOR { get; set; }
+        public virtual DbSet<Interseccion> INTERSECCION { get; set; }
+        public virtual DbSet<NombreDeMenu> Nombre_Menu { get; set; }
+        public virtual DbSet<UnidadesDeAlcohol> UNIDADES_ALCOHOL { get; set; }
+        public virtual DbSet<VariablesParaBloqueo> VARIABLESBLOQUEO { get; set; }
     }
 }

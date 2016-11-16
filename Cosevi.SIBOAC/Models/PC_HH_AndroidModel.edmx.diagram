@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2009d6fc668b4bbb971bddc97612a570" Name="Diagram1">
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.EstadoCivil" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.Iluminacion" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.Maniobra" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="2009d6fc668b4bbb971bddc97612a570" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.EstadoCivil" Width="1.5" PointX="6.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Iluminacion" Width="1.5" PointX="0.625" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Maniobra" Width="1.5" PointX="2.625" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.MotivoPorNoFirmar" Width="1.75" PointX="0.625" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.Obstaculo" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Obstaculo" Width="1.5" PointX="4.625" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.OficinaParaImpugnar" Width="1.5" PointX="7.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.RolDePersonaPorVehiculo" Width="2.125" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.Dispositivo" Width="1.5" PointX="2.875" PointY="0.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.Hospital" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.Inconsistencia" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.MarcaDeAutomovil" Width="1.75" PointX="4.75" PointY="6.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.OtroTipoTransporte" Width="2.375" PointX="6.875" PointY="6.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Hospital" Width="1.5" PointX="0.625" PointY="6" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Inconsistencia" Width="1.5" PointX="2.625" PointY="6" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.MarcaDeAutomovil" Width="1.75" PointX="4.625" PointY="6" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.OtroTipoTransporte" Width="2.375" PointX="6.75" PointY="6" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.EstadoDeLaCalzada" Width="1.75" PointX="0.75" PointY="9.125" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeEstructura" Width="1.75" PointX="4.875" PointY="9.125" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.OpcionDeFormulario" Width="2" PointX="7.125" PointY="9.125" />
@@ -29,6 +29,40 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeIdentificacion" Width="2" PointX="2.75" PointY="11.5" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeLicencia" Width="1.5" PointX="7.25" PointY="13.875" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeVehiculo" Width="1.5" PointX="0.75" PointY="11.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Peaton" Width="1.5" PointX="7.25" PointY="19.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Revision" Width="1.5" PointX="5.75" PointY="16.625" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.RolPorPersona" Width="1.5" PointX="5" PointY="19.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Ruta" Width="1.5" PointX="0.875" PointY="19.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Tiempo" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeAccidente" Width="2.125" PointX="0.75" PointY="16.625" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeCalzada" Width="1.5" PointX="2.75" PointY="22" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeDocumento" Width="1.75" PointX="2.75" PointY="19.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoIdDeVehiculo" Width="2" PointX="7.5" PointY="16.625" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoDeSenalExistente" Width="2.25" PointX="3.125" PointY="16.625" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.ClaseDePlaca" Width="1.75" PointX="5" PointY="27" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.CodigoDeLaPlaca" Width="1.75" PointX="3" PointY="27" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.CondicionDeLaCalzada" Width="2" PointX="5" PointY="24.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.CondicionDeLaPersona" Width="1.875" PointX="0.625" PointY="27" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Dano" Width="1.5" PointX="7.25" PointY="24.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Delegacion" Width="1.5" PointX="0.75" PointY="24.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Delito" Width="1.5" PointX="5" PointY="22" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.DepositoDePlaca" Width="1.75" PointX="7.25" PointY="22" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.DepositoDeVehiculo" Width="1.75" PointX="2.75" PointY="24.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.AlineacionHorizontal" Width="1.875" PointX="2.875" PointY="31.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.AlineacionVertical" Width="1.875" PointX="0.625" PointY="31.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Canton" Width="1.5" PointX="7.125" PointY="29.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.CaracteristicasDeUbicacion" Width="2.125" PointX="2.625" PointY="29.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Carril" Width="1.5" PointX="5" PointY="29.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Carroceria" Width="1.5" PointX="0.625" PointY="29.375" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Circulacion" Width="1.5" PointX="7.25" PointY="27" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Direccion" Width="1.5" PointX="2.875" PointY="37.25" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Distrito" Width="1.5" PointX="3" PointY="34.25" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Examen" Width="1.5" PointX="0.625" PointY="34.25" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Inspector" Width="1.875" PointX="7.625" PointY="31.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.Interseccion" Width="1.5" PointX="0.625" PointY="37.25" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.NombreDeMenu" Width="2" PointX="5.125" PointY="34.25" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.UnidadesDeAlcohol" Width="2" PointX="5.125" PointY="37.25" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.VariablesParaBloqueo" Width="1.875" PointX="5.125" PointY="31.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
