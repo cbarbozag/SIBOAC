@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CarroceriasController : Controller
+    public class NombreDeMenusController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Carrocerias
+        // GET: NombreDeMenus
         public ActionResult Index()
         {
-            return View(db.CARROCERIA.ToList());
+            return View(db.Nombre_Menu.ToList());
         }
 
-        // GET: Carrocerias/Details/5
-        public ActionResult Details(int? id)
+        // GET: NombreDeMenus/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            NombreDeMenu nombreDeMenu = db.Nombre_Menu.Find(id);
+            if (nombreDeMenu == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(nombreDeMenu);
         }
 
-        // GET: Carrocerias/Create
+        // GET: NombreDeMenus/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Carrocerias/Create
+        // POST: NombreDeMenus/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carroceria carroceria)
+        public ActionResult Create([Bind(Include = "Id,NombreDeMenuMovil,Estado")] NombreDeMenu nombreDeMenu)
         {
             if (ModelState.IsValid)
             {
-                db.CARROCERIA.Add(carroceria);
+                db.Nombre_Menu.Add(nombreDeMenu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(carroceria);
+            return View(nombreDeMenu);
         }
 
-        // GET: Carrocerias/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: NombreDeMenus/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            NombreDeMenu nombreDeMenu = db.Nombre_Menu.Find(id);
+            if (nombreDeMenu == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(nombreDeMenu);
         }
 
-        // POST: Carrocerias/Edit/5
+        // POST: NombreDeMenus/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carroceria carroceria)
+        public ActionResult Edit([Bind(Include = "Id,NombreDeMenuMovil,Estado")] NombreDeMenu nombreDeMenu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carroceria).State = EntityState.Modified;
+                db.Entry(nombreDeMenu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(carroceria);
+            return View(nombreDeMenu);
         }
 
-        // GET: Carrocerias/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: NombreDeMenus/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            NombreDeMenu nombreDeMenu = db.Nombre_Menu.Find(id);
+            if (nombreDeMenu == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(nombreDeMenu);
         }
 
-        // POST: Carrocerias/Delete/5
+        // POST: NombreDeMenus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            carroceria.Estado = "I";
+            NombreDeMenu nombreDeMenu = db.Nombre_Menu.Find(id);
+            db.Nombre_Menu.Remove(nombreDeMenu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,15 +1,14 @@
-﻿@model Cosevi.SIBOAC.Models.Carroceria
+﻿@model Cosevi.SIBOAC.Models.Interseccion
 
 @{
-    ViewBag.Title = "Inactivar";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Inactivar</h2>
+<h2>Details</h2>
 
-<h3>Esta seguro que desea cambiar el estado?</h3>
 <div>
-    <h4>Carrocería</h4>
+    <h4>Interseccion</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -45,13 +44,8 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Inactivar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar a la lista", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

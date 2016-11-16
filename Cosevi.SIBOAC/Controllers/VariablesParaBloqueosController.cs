@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CarroceriasController : Controller
+    public class VariablesParaBloqueosController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Carrocerias
+        // GET: VariablesParaBloqueos
         public ActionResult Index()
         {
-            return View(db.CARROCERIA.ToList());
+            return View(db.VARIABLESBLOQUEO.ToList());
         }
 
-        // GET: Carrocerias/Details/5
+        // GET: VariablesParaBloqueos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
+            if (variablesParaBloqueo == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(variablesParaBloqueo);
         }
 
-        // GET: Carrocerias/Create
+        // GET: VariablesParaBloqueos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Carrocerias/Create
+        // POST: VariablesParaBloqueos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carroceria carroceria)
+        public ActionResult Create([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] VariablesParaBloqueo variablesParaBloqueo)
         {
             if (ModelState.IsValid)
             {
-                db.CARROCERIA.Add(carroceria);
+                db.VARIABLESBLOQUEO.Add(variablesParaBloqueo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(carroceria);
+            return View(variablesParaBloqueo);
         }
 
-        // GET: Carrocerias/Edit/5
+        // GET: VariablesParaBloqueos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
+            if (variablesParaBloqueo == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(variablesParaBloqueo);
         }
 
-        // POST: Carrocerias/Edit/5
+        // POST: VariablesParaBloqueos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carroceria carroceria)
+        public ActionResult Edit([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] VariablesParaBloqueo variablesParaBloqueo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carroceria).State = EntityState.Modified;
+                db.Entry(variablesParaBloqueo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(carroceria);
+            return View(variablesParaBloqueo);
         }
 
-        // GET: Carrocerias/Delete/5
+        // GET: VariablesParaBloqueos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
+            if (variablesParaBloqueo == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(variablesParaBloqueo);
         }
 
-        // POST: Carrocerias/Delete/5
+        // POST: VariablesParaBloqueos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            carroceria.Estado = "I";
+            VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
+            db.VARIABLESBLOQUEO.Remove(variablesParaBloqueo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,25 +1,16 @@
-﻿@model Cosevi.SIBOAC.Models.Carroceria
+﻿@model Cosevi.SIBOAC.Models.UnidadesDeAlcohol
 
 @{
-    ViewBag.Title = "Inactivar";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Inactivar</h2>
+<h2>Details</h2>
 
-<h3>Esta seguro que desea cambiar el estado?</h3>
 <div>
-    <h4>Carrocería</h4>
+    <h4>UnidadesDeAlcohol</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
@@ -45,13 +36,8 @@
         </dd>
 
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Inactivar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar a la lista", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id.Trim() }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

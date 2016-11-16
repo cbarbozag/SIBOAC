@@ -1,20 +1,17 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.CondicionDeLaPersona>
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.VariablesParaBloqueo>
 
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de las Condiciones de la Persona</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -30,9 +27,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
@@ -42,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Inactivar", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

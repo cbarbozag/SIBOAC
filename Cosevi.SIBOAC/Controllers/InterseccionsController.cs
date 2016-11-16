@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CarroceriasController : Controller
+    public class InterseccionsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Carrocerias
+        // GET: Interseccions
         public ActionResult Index()
         {
-            return View(db.CARROCERIA.ToList());
+            return View(db.INTERSECCION.ToList());
         }
 
-        // GET: Carrocerias/Details/5
+        // GET: Interseccions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            Interseccion interseccion = db.INTERSECCION.Find(id);
+            if (interseccion == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(interseccion);
         }
 
-        // GET: Carrocerias/Create
+        // GET: Interseccions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Carrocerias/Create
+        // POST: Interseccions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carroceria carroceria)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Interseccion interseccion)
         {
             if (ModelState.IsValid)
             {
-                db.CARROCERIA.Add(carroceria);
+                db.INTERSECCION.Add(interseccion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(carroceria);
+            return View(interseccion);
         }
 
-        // GET: Carrocerias/Edit/5
+        // GET: Interseccions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            Interseccion interseccion = db.INTERSECCION.Find(id);
+            if (interseccion == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(interseccion);
         }
 
-        // POST: Carrocerias/Edit/5
+        // POST: Interseccions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carroceria carroceria)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Interseccion interseccion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carroceria).State = EntityState.Modified;
+                db.Entry(interseccion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(carroceria);
+            return View(interseccion);
         }
 
-        // GET: Carrocerias/Delete/5
+        // GET: Interseccions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            if (carroceria == null)
+            Interseccion interseccion = db.INTERSECCION.Find(id);
+            if (interseccion == null)
             {
                 return HttpNotFound();
             }
-            return View(carroceria);
+            return View(interseccion);
         }
 
-        // POST: Carrocerias/Delete/5
+        // POST: Interseccions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Carroceria carroceria = db.CARROCERIA.Find(id);
-            carroceria.Estado = "I";
+            Interseccion interseccion = db.INTERSECCION.Find(id);
+            db.INTERSECCION.Remove(interseccion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
