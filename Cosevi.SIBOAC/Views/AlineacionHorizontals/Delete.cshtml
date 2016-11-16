@@ -1,14 +1,15 @@
-﻿@model Cosevi.SIBOAC.Models.TipoDeEstructura
+﻿@model Cosevi.SIBOAC.Models.AlineacionHorizontal
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalles</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>TipoDeEstructura</h4>
+    <h4>AlineacionHorizontal</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -44,8 +45,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Regresar a la lista", "Index")
-</p>

@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeDocumentoesController : Controller
+    public class AlineacionHorizontalsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: TipoDeDocumentoes
+        // GET: AlineacionHorizontals
         public ActionResult Index()
         {
-            return View(db.TIPODOCUMENTO.ToList());
+            return View(db.ALINHORI.ToList());
         }
 
-        // GET: TipoDeDocumentoes/Details/5
-        public ActionResult Details(string id)
+        // GET: AlineacionHorizontals/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
+            if (alineacionHorizontal == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(alineacionHorizontal);
         }
 
-        // GET: TipoDeDocumentoes/Create
+        // GET: AlineacionHorizontals/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoDeDocumentoes/Create
+        // POST: AlineacionHorizontals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] AlineacionHorizontal alineacionHorizontal)
         {
             if (ModelState.IsValid)
             {
-                db.TIPODOCUMENTO.Add(tipoDeDocumento);
+                db.ALINHORI.Add(alineacionHorizontal);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tipoDeDocumento);
+            return View(alineacionHorizontal);
         }
 
-        // GET: TipoDeDocumentoes/Edit/5
-        public ActionResult Edit(string id)
+        // GET: AlineacionHorizontals/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
+            if (alineacionHorizontal == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(alineacionHorizontal);
         }
 
-        // POST: TipoDeDocumentoes/Edit/5
+        // POST: AlineacionHorizontals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] AlineacionHorizontal alineacionHorizontal)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoDeDocumento).State = EntityState.Modified;
+                db.Entry(alineacionHorizontal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tipoDeDocumento);
+            return View(alineacionHorizontal);
         }
 
-        // GET: TipoDeDocumentoes/Delete/5
-        public ActionResult Delete(string id)
+        // GET: AlineacionHorizontals/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
+            if (alineacionHorizontal == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(alineacionHorizontal);
         }
 
-        // POST: TipoDeDocumentoes/Delete/5
+        // POST: AlineacionHorizontals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            tipoDeDocumento.Estado = "I";
+            AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
+            db.ALINHORI.Remove(alineacionHorizontal);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeDocumentoesController : Controller
+    public class CarrilsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: TipoDeDocumentoes
+        // GET: Carrils
         public ActionResult Index()
         {
-            return View(db.TIPODOCUMENTO.ToList());
+            return View(db.CARRIL.ToList());
         }
 
-        // GET: TipoDeDocumentoes/Details/5
+        // GET: Carrils/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            Carril carril = db.CARRIL.Find(id);
+            if (carril == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(carril);
         }
 
-        // GET: TipoDeDocumentoes/Create
+        // GET: Carrils/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoDeDocumentoes/Create
+        // POST: Carrils/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carril carril)
         {
             if (ModelState.IsValid)
             {
-                db.TIPODOCUMENTO.Add(tipoDeDocumento);
+                db.CARRIL.Add(carril);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tipoDeDocumento);
+            return View(carril);
         }
 
-        // GET: TipoDeDocumentoes/Edit/5
+        // GET: Carrils/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            Carril carril = db.CARRIL.Find(id);
+            if (carril == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(carril);
         }
 
-        // POST: TipoDeDocumentoes/Edit/5
+        // POST: Carrils/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carril carril)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoDeDocumento).State = EntityState.Modified;
+                db.Entry(carril).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tipoDeDocumento);
+            return View(carril);
         }
 
-        // GET: TipoDeDocumentoes/Delete/5
+        // GET: Carrils/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            Carril carril = db.CARRIL.Find(id);
+            if (carril == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(carril);
         }
 
-        // POST: TipoDeDocumentoes/Delete/5
+        // POST: Carrils/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            tipoDeDocumento.Estado = "I";
+            Carril carril = db.CARRIL.Find(id);
+            db.CARRIL.Remove(carril);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

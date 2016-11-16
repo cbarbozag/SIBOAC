@@ -1,14 +1,14 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.TipoDeEstructura>
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.Carril>
 
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -42,9 +42,9 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Inactivar", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id.Trim() }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id.Trim() }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id.Trim() })
         </td>
     </tr>
 }

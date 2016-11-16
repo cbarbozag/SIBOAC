@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeDocumentoesController : Controller
+    public class CaracteristicasDeUbicacionsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: TipoDeDocumentoes
+        // GET: CaracteristicasDeUbicacions
         public ActionResult Index()
         {
-            return View(db.TIPODOCUMENTO.ToList());
+            return View(db.CARACUBI.ToList());
         }
 
-        // GET: TipoDeDocumentoes/Details/5
-        public ActionResult Details(string id)
+        // GET: CaracteristicasDeUbicacions/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
+            if (caracteristicasDeUbicacion == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(caracteristicasDeUbicacion);
         }
 
-        // GET: TipoDeDocumentoes/Create
+        // GET: CaracteristicasDeUbicacions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoDeDocumentoes/Create
+        // POST: CaracteristicasDeUbicacions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] CaracteristicasDeUbicacion caracteristicasDeUbicacion)
         {
             if (ModelState.IsValid)
             {
-                db.TIPODOCUMENTO.Add(tipoDeDocumento);
+                db.CARACUBI.Add(caracteristicasDeUbicacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tipoDeDocumento);
+            return View(caracteristicasDeUbicacion);
         }
 
-        // GET: TipoDeDocumentoes/Edit/5
-        public ActionResult Edit(string id)
+        // GET: CaracteristicasDeUbicacions/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
+            if (caracteristicasDeUbicacion == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(caracteristicasDeUbicacion);
         }
 
-        // POST: TipoDeDocumentoes/Edit/5
+        // POST: CaracteristicasDeUbicacions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] CaracteristicasDeUbicacion caracteristicasDeUbicacion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoDeDocumento).State = EntityState.Modified;
+                db.Entry(caracteristicasDeUbicacion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tipoDeDocumento);
+            return View(caracteristicasDeUbicacion);
         }
 
-        // GET: TipoDeDocumentoes/Delete/5
-        public ActionResult Delete(string id)
+        // GET: CaracteristicasDeUbicacions/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
+            if (caracteristicasDeUbicacion == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(caracteristicasDeUbicacion);
         }
 
-        // POST: TipoDeDocumentoes/Delete/5
+        // POST: CaracteristicasDeUbicacions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            tipoDeDocumento.Estado = "I";
+            CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
+            db.CARACUBI.Remove(caracteristicasDeUbicacion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

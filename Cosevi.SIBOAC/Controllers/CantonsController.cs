@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeDocumentoesController : Controller
+    public class CantonsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: TipoDeDocumentoes
+        // GET: Cantons
         public ActionResult Index()
         {
-            return View(db.TIPODOCUMENTO.ToList());
+            return View(db.CANTON.ToList());
         }
 
-        // GET: TipoDeDocumentoes/Details/5
-        public ActionResult Details(string id)
+        // GET: Cantons/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            Canton canton = db.CANTON.Find(id);
+            if (canton == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(canton);
         }
 
-        // GET: TipoDeDocumentoes/Create
+        // GET: Cantons/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoDeDocumentoes/Create
+        // POST: Cantons/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Canton canton)
         {
             if (ModelState.IsValid)
             {
-                db.TIPODOCUMENTO.Add(tipoDeDocumento);
+                db.CANTON.Add(canton);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tipoDeDocumento);
+            return View(canton);
         }
 
-        // GET: TipoDeDocumentoes/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Cantons/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            Canton canton = db.CANTON.Find(id);
+            if (canton == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(canton);
         }
 
-        // POST: TipoDeDocumentoes/Edit/5
+        // POST: Cantons/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] TipoDeDocumento tipoDeDocumento)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Canton canton)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoDeDocumento).State = EntityState.Modified;
+                db.Entry(canton).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tipoDeDocumento);
+            return View(canton);
         }
 
-        // GET: TipoDeDocumentoes/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Cantons/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            if (tipoDeDocumento == null)
+            Canton canton = db.CANTON.Find(id);
+            if (canton == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeDocumento);
+            return View(canton);
         }
 
-        // POST: TipoDeDocumentoes/Delete/5
+        // POST: Cantons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            tipoDeDocumento.Estado = "I";
+            Canton canton = db.CANTON.Find(id);
+            db.CANTON.Remove(canton);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
