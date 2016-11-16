@@ -26,7 +26,8 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
 
-
+        [DisplayName("Indice")]
+        [StringLength(4, ErrorMessage = "El indice no debe ser mayor a 4 caracteres")]
         public string Indice { get; set; }
     }
 }
