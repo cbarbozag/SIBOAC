@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Provincia provincia = db.PROVINCIA.Find(id);
-            db.PROVINCIA.Remove(provincia);
+            provincia.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
