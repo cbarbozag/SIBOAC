@@ -17,9 +17,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("SIBOAC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="brand">
+                    <img src="~/Content/cosevi_logo.png" alt="COSEVI" />
+                </a>
+                @*@Html.ActionLink("SIBOAC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
+                @Html.Partial("_LoginPartial")
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="@Url.Action("Index", "Home")">
@@ -33,8 +37,7 @@
                             Administrar
                         </a>
                     </li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+                </ul>                
             </div>
         </div>
     </div>
