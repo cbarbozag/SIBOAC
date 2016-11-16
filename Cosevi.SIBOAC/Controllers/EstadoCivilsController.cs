@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             EstadoCivil estadoCivil = db.EstadoCivil.Find(id);
-            db.EstadoCivil.Remove(estadoCivil);
+            estadoCivil.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

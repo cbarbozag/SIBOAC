@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(short id)
         {
             OpcionesDelPlano opcionesDelPlano = db.OPCIONPLANO.Find(id);
-            db.OPCIONPLANO.Remove(opcionesDelPlano);
+            opcionesDelPlano.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             OficinaParaImpugnar oficinaParaImpugnar = db.OficinaParaImpugnars.Find(id);
-            db.OficinaParaImpugnars.Remove(oficinaParaImpugnar);
+            oficinaParaImpugnar.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

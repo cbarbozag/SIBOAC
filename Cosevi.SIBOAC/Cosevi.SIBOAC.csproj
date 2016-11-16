@@ -186,9 +186,14 @@
     <Compile Include="Controllers\OpcionDeFormulariosController.cs" />
     <Compile Include="Controllers\OpcionesDelPlanoesController.cs" />
     <Compile Include="Controllers\OtroTipoTransportesController.cs" />
+    <Compile Include="Controllers\PlantillasController.cs" />
+    <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
+    <Compile Include="Controllers\SenalamientoesController.cs" />
+    <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\TipoDeEstructurasController.cs" />
     <Compile Include="Controllers\TipoDeIdentificacionsController.cs" />
+    <Compile Include="Controllers\TipoDeLicenciasController.cs" />
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -389,6 +394,68 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\Cosevi.SIBOAC.dll" />
+    <Content Include="bin\Cosevi.SIBOAC.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.xml" />
+    <Content Include="bin\Microsoft.Owin.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\title_bar.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -407,6 +474,11 @@
       <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
       <LastGenOutput>PC_HH_AndroidModel.cs</LastGenOutput>
     </Content>
+    <Content Include="obj\Debug\Cosevi.SIBOAC.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Cosevi.SIBOAC.dll" />
+    <Content Include="obj\Debug\Cosevi.SIBOAC.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\PC_HH_AndroidModel.edmx">
@@ -416,6 +488,15 @@
     <Content Include="Models\PC_HH_AndroidModel.edmx.diagram">
       <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
     </Content>
+    <Content Include="bin\Cosevi.SIBOAC.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="obj\Debug\Cosevi.SIBOAC.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.ssdl" />
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -553,6 +634,36 @@
     <Content Include="Views\TipoDeIdentificacions\Details.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Edit.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Index.cshtml" />
+    <Content Include="Views\Provincias\Create.cshtml" />
+    <Content Include="Views\Provincias\Delete.cshtml" />
+    <Content Include="Views\Provincias\Details.cshtml" />
+    <Content Include="Views\Provincias\Edit.cshtml" />
+    <Content Include="Views\Provincias\Index.cshtml" />
+    <Content Include="Views\Sentidoes\Create.cshtml" />
+    <Content Include="Views\Sentidoes\Delete.cshtml" />
+    <Content Include="Views\Sentidoes\Details.cshtml" />
+    <Content Include="Views\Sentidoes\Edit.cshtml" />
+    <Content Include="Views\Sentidoes\Index.cshtml" />
+    <Content Include="Views\Senalamientoes\Create.cshtml" />
+    <Content Include="Views\Senalamientoes\Delete.cshtml" />
+    <Content Include="Views\Senalamientoes\Details.cshtml" />
+    <Content Include="Views\Senalamientoes\Edit.cshtml" />
+    <Content Include="Views\Senalamientoes\Index.cshtml" />
+    <Content Include="Views\Sexoes\Create.cshtml" />
+    <Content Include="Views\Sexoes\Delete.cshtml" />
+    <Content Include="Views\Sexoes\Details.cshtml" />
+    <Content Include="Views\Sexoes\Edit.cshtml" />
+    <Content Include="Views\Sexoes\Index.cshtml" />
+    <Content Include="Views\Plantillas\Create.cshtml" />
+    <Content Include="Views\Plantillas\Delete.cshtml" />
+    <Content Include="Views\Plantillas\Details.cshtml" />
+    <Content Include="Views\Plantillas\Edit.cshtml" />
+    <Content Include="Views\Plantillas\Index.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Create.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Delete.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Details.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Edit.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
