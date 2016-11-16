@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DelegacionsController : Controller
+    public class CarrilsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Delegacions
+        // GET: Carrils
         public ActionResult Index()
         {
-            return View(db.DELEGACION.ToList());
+            return View(db.CARRIL.ToList());
         }
 
-        // GET: Delegacions/Details/5
+        // GET: Carrils/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            if (delegacion == null)
+            Carril carril = db.CARRIL.Find(id);
+            if (carril == null)
             {
                 return HttpNotFound();
             }
-            return View(delegacion);
+            return View(carril);
         }
 
-        // GET: Delegacions/Create
+        // GET: Carrils/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Delegacions/Create
+        // POST: Carrils/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Delegacion delegacion)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carril carril)
         {
             if (ModelState.IsValid)
             {
-                db.DELEGACION.Add(delegacion);
+                db.CARRIL.Add(carril);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(delegacion);
+            return View(carril);
         }
 
-        // GET: Delegacions/Edit/5
+        // GET: Carrils/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            if (delegacion == null)
+            Carril carril = db.CARRIL.Find(id);
+            if (carril == null)
             {
                 return HttpNotFound();
             }
-            return View(delegacion);
+            return View(carril);
         }
 
-        // POST: Delegacions/Edit/5
+        // POST: Carrils/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Delegacion delegacion)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Carril carril)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(delegacion).State = EntityState.Modified;
+                db.Entry(carril).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(delegacion);
+            return View(carril);
         }
 
-        // GET: Delegacions/Delete/5
+        // GET: Carrils/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            if (delegacion == null)
+            Carril carril = db.CARRIL.Find(id);
+            if (carril == null)
             {
                 return HttpNotFound();
             }
-            return View(delegacion);
+            return View(carril);
         }
 
-        // POST: Delegacions/Delete/5
+        // POST: Carrils/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            delegacion.Estado = "I";
+            Carril carril = db.CARRIL.Find(id);
+            db.CARRIL.Remove(carril);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

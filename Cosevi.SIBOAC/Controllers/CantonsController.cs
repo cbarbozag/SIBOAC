@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DelegacionsController : Controller
+    public class CantonsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Delegacions
+        // GET: Cantons
         public ActionResult Index()
         {
-            return View(db.DELEGACION.ToList());
+            return View(db.CANTON.ToList());
         }
 
-        // GET: Delegacions/Details/5
-        public ActionResult Details(string id)
+        // GET: Cantons/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            if (delegacion == null)
+            Canton canton = db.CANTON.Find(id);
+            if (canton == null)
             {
                 return HttpNotFound();
             }
-            return View(delegacion);
+            return View(canton);
         }
 
-        // GET: Delegacions/Create
+        // GET: Cantons/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Delegacions/Create
+        // POST: Cantons/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Delegacion delegacion)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Canton canton)
         {
             if (ModelState.IsValid)
             {
-                db.DELEGACION.Add(delegacion);
+                db.CANTON.Add(canton);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(delegacion);
+            return View(canton);
         }
 
-        // GET: Delegacions/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Cantons/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            if (delegacion == null)
+            Canton canton = db.CANTON.Find(id);
+            if (canton == null)
             {
                 return HttpNotFound();
             }
-            return View(delegacion);
+            return View(canton);
         }
 
-        // POST: Delegacions/Edit/5
+        // POST: Cantons/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Delegacion delegacion)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Canton canton)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(delegacion).State = EntityState.Modified;
+                db.Entry(canton).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(delegacion);
+            return View(canton);
         }
 
-        // GET: Delegacions/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Cantons/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            if (delegacion == null)
+            Canton canton = db.CANTON.Find(id);
+            if (canton == null)
             {
                 return HttpNotFound();
             }
-            return View(delegacion);
+            return View(canton);
         }
 
-        // POST: Delegacions/Delete/5
+        // POST: Cantons/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Delegacion delegacion = db.DELEGACION.Find(id);
-            delegacion.Estado = "I";
+            Canton canton = db.CANTON.Find(id);
+            db.CANTON.Remove(canton);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
