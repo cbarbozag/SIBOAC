@@ -186,9 +186,14 @@
     <Compile Include="Controllers\OpcionDeFormulariosController.cs" />
     <Compile Include="Controllers\OpcionesDelPlanoesController.cs" />
     <Compile Include="Controllers\OtroTipoTransportesController.cs" />
+    <Compile Include="Controllers\PlantillasController.cs" />
+    <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
+    <Compile Include="Controllers\SenalamientoesController.cs" />
+    <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\TipoDeEstructurasController.cs" />
     <Compile Include="Controllers\TipoDeIdentificacionsController.cs" />
+    <Compile Include="Controllers\TipoDeLicenciasController.cs" />
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,6 +276,7 @@
     <Compile Include="Models\Sexo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\SexoesController.cs" />
     <Compile Include="Models\TipoDeEstructura.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -451,6 +457,36 @@
     <Content Include="Views\TipoDeIdentificacions\Details.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Edit.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Index.cshtml" />
+    <Content Include="Views\Provincias\Create.cshtml" />
+    <Content Include="Views\Provincias\Delete.cshtml" />
+    <Content Include="Views\Provincias\Details.cshtml" />
+    <Content Include="Views\Provincias\Edit.cshtml" />
+    <Content Include="Views\Provincias\Index.cshtml" />
+    <Content Include="Views\Sentidoes\Create.cshtml" />
+    <Content Include="Views\Sentidoes\Delete.cshtml" />
+    <Content Include="Views\Sentidoes\Details.cshtml" />
+    <Content Include="Views\Sentidoes\Edit.cshtml" />
+    <Content Include="Views\Sentidoes\Index.cshtml" />
+    <Content Include="Views\Senalamientoes\Create.cshtml" />
+    <Content Include="Views\Senalamientoes\Delete.cshtml" />
+    <Content Include="Views\Senalamientoes\Details.cshtml" />
+    <Content Include="Views\Senalamientoes\Edit.cshtml" />
+    <Content Include="Views\Senalamientoes\Index.cshtml" />
+    <Content Include="Views\Sexoes\Create.cshtml" />
+    <Content Include="Views\Sexoes\Delete.cshtml" />
+    <Content Include="Views\Sexoes\Details.cshtml" />
+    <Content Include="Views\Sexoes\Edit.cshtml" />
+    <Content Include="Views\Sexoes\Index.cshtml" />
+    <Content Include="Views\Plantillas\Create.cshtml" />
+    <Content Include="Views\Plantillas\Delete.cshtml" />
+    <Content Include="Views\Plantillas\Details.cshtml" />
+    <Content Include="Views\Plantillas\Edit.cshtml" />
+    <Content Include="Views\Plantillas\Index.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Create.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Delete.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Details.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Edit.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
