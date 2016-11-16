@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RutasController : Controller
+    public class ExamenController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Rutas
+        // GET: Examen
         public ActionResult Index()
         {
-            return View(db.Ruta.ToList());
+            return View(db.EXAMEN.ToList());
         }
 
-        // GET: Rutas/Details/5
+        // GET: Examen/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Examen examen = db.EXAMEN.Find(id);
+            if (examen == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(examen);
         }
 
-        // GET: Rutas/Create
+        // GET: Examen/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Rutas/Create
+        // POST: Examen/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Inicia,Termina,Estado,FechaDeInicio,FechaDeFin")] Ruta ruta)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,AlcoholMinimo,AlcoholMaximo,Estado,FechaDeInicio,FechaDeFin")] Examen examen)
         {
             if (ModelState.IsValid)
             {
-                db.Ruta.Add(ruta);
+                db.EXAMEN.Add(examen);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(ruta);
+            return View(examen);
         }
 
-        // GET: Rutas/Edit/5
+        // GET: Examen/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Examen examen = db.EXAMEN.Find(id);
+            if (examen == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(examen);
         }
 
-        // POST: Rutas/Edit/5
+        // POST: Examen/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Inicia,Termina,Estado,FechaDeInicio,FechaDeFin")] Ruta ruta)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,AlcoholMinimo,AlcoholMaximo,Estado,FechaDeInicio,FechaDeFin")] Examen examen)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ruta).State = EntityState.Modified;
+                db.Entry(examen).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(ruta);
+            return View(examen);
         }
 
-        // GET: Rutas/Delete/5
+        // GET: Examen/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Examen examen = db.EXAMEN.Find(id);
+            if (examen == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(examen);
         }
 
-        // POST: Rutas/Delete/5
+        // POST: Examen/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Ruta ruta = db.Ruta.Find(id);
-            ruta.Estado = "I";
+            Examen examen = db.EXAMEN.Find(id);
+            db.EXAMEN.Remove(examen);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

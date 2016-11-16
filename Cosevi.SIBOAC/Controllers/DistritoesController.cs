@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RutasController : Controller
+    public class DistritoesController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Rutas
+        // GET: Distritoes
         public ActionResult Index()
         {
-            return View(db.Ruta.ToList());
+            return View(db.DISTRITO.ToList());
         }
 
-        // GET: Rutas/Details/5
+        // GET: Distritoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Distrito distrito = db.DISTRITO.Find(id);
+            if (distrito == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(distrito);
         }
 
-        // GET: Rutas/Create
+        // GET: Distritoes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Rutas/Create
+        // POST: Distritoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Inicia,Termina,Estado,FechaDeInicio,FechaDeFin")] Ruta ruta)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Distrito distrito)
         {
             if (ModelState.IsValid)
             {
-                db.Ruta.Add(ruta);
+                db.DISTRITO.Add(distrito);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(ruta);
+            return View(distrito);
         }
 
-        // GET: Rutas/Edit/5
+        // GET: Distritoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Distrito distrito = db.DISTRITO.Find(id);
+            if (distrito == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(distrito);
         }
 
-        // POST: Rutas/Edit/5
+        // POST: Distritoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Inicia,Termina,Estado,FechaDeInicio,FechaDeFin")] Ruta ruta)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Distrito distrito)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ruta).State = EntityState.Modified;
+                db.Entry(distrito).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(ruta);
+            return View(distrito);
         }
 
-        // GET: Rutas/Delete/5
+        // GET: Distritoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Distrito distrito = db.DISTRITO.Find(id);
+            if (distrito == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(distrito);
         }
 
-        // POST: Rutas/Delete/5
+        // POST: Distritoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Ruta ruta = db.Ruta.Find(id);
-            ruta.Estado = "I";
+            Distrito distrito = db.DISTRITO.Find(id);
+            db.DISTRITO.Remove(distrito);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

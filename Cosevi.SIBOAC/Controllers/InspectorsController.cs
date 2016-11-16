@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RutasController : Controller
+    public class InspectorsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Rutas
+        // GET: Inspectors
         public ActionResult Index()
         {
-            return View(db.Ruta.ToList());
+            return View(db.INSPECTOR.ToList());
         }
 
-        // GET: Rutas/Details/5
-        public ActionResult Details(int? id)
+        // GET: Inspectors/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Inspector inspector = db.INSPECTOR.Find(id);
+            if (inspector == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(inspector);
         }
 
-        // GET: Rutas/Create
+        // GET: Inspectors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Rutas/Create
+        // POST: Inspectors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Inicia,Termina,Estado,FechaDeInicio,FechaDeFin")] Ruta ruta)
+        public ActionResult Create([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] Inspector inspector)
         {
             if (ModelState.IsValid)
             {
-                db.Ruta.Add(ruta);
+                db.INSPECTOR.Add(inspector);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(ruta);
+            return View(inspector);
         }
 
-        // GET: Rutas/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Inspectors/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Inspector inspector = db.INSPECTOR.Find(id);
+            if (inspector == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(inspector);
         }
 
-        // POST: Rutas/Edit/5
+        // POST: Inspectors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Inicia,Termina,Estado,FechaDeInicio,FechaDeFin")] Ruta ruta)
+        public ActionResult Edit([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] Inspector inspector)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ruta).State = EntityState.Modified;
+                db.Entry(inspector).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(ruta);
+            return View(inspector);
         }
 
-        // GET: Rutas/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Inspectors/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Ruta ruta = db.Ruta.Find(id);
-            if (ruta == null)
+            Inspector inspector = db.INSPECTOR.Find(id);
+            if (inspector == null)
             {
                 return HttpNotFound();
             }
-            return View(ruta);
+            return View(inspector);
         }
 
-        // POST: Rutas/Delete/5
+        // POST: Inspectors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Ruta ruta = db.Ruta.Find(id);
-            ruta.Estado = "I";
+            Inspector inspector = db.INSPECTOR.Find(id);
+            db.INSPECTOR.Remove(inspector);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

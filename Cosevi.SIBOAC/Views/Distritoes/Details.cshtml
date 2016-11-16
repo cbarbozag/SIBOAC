@@ -1,30 +1,22 @@
-﻿@model Cosevi.SIBOAC.Models.Ruta
+﻿@model Cosevi.SIBOAC.Models.Distrito
 
 @{
-    ViewBag.Title = "Detalle";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detalle</h2>
+<h2>Details</h2>
 
 <div>
-    <h4>Ruta</h4>
+    <h4>Distrito</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Inicia)
+            @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Inicia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Termina)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Termina)
+            @Html.DisplayFor(model => model.Descripcion)
         </dd>
 
         <dt>
@@ -54,6 +46,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Regresar a la lista", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>
