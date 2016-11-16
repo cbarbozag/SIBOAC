@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Dispositivo dispositivo = db.Dispositivoes1.Find(id);
-            db.Dispositivoes1.Remove(dispositivo);
+            dispositivo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

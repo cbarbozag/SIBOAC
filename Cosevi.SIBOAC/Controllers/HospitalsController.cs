@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Hospital hospital = db.HOSPITAL.Find(id);
-            db.HOSPITAL.Remove(hospital);
+            hospital.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

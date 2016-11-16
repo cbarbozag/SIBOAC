@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TipoDeEstructura tipoDeEstructura = db.ESTRUCTURA.Find(id);
-            db.ESTRUCTURA.Remove(tipoDeEstructura);
+            tipoDeEstructura.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
