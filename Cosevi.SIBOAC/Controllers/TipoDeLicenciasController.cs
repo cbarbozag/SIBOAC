@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             TipoDeLicencia tipoDeLicencia = db.TIPO_LICENCIA.Find(id);
-            db.TIPO_LICENCIA.Remove(tipoDeLicencia);
+            tipoDeLicencia.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
