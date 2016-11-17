@@ -16,13 +16,13 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class DepositoDePlaca
     {
-        [DisplayName("Código Oficina")]
-        [Required(ErrorMessage = "El código es obligatoria")]
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
         public string Id { get; set; }
 
         [DisplayName("Oficina")]
-        [Required(ErrorMessage = "La descripción de la oficina es obligatoria")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         [StringLength(50, ErrorMessage = "La descripción de oficina no debe ser mayor a 50 caracteres")]
         public string Descripcion { get; set; }
 

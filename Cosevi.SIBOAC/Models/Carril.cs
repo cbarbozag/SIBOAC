@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Carril
     {
-        [DisplayName("Codigo")]
+        [DisplayName("Código")]
         [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }

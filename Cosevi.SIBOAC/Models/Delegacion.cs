@@ -16,13 +16,13 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Delegacion
     {
-        [DisplayName("Codigo")]
-        [StringLength(1, ErrorMessage = "El Codigo no debe ser mayor a 1 caracter")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [StringLength(1, ErrorMessage = "El código no debe ser mayor a 1 caracter")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
 
         [DisplayName("Descripción")]
-        [StringLength(10, ErrorMessage = "La descripción no debe ser mayor a 10 caracter")]
+        [StringLength(10, ErrorMessage = "La descripción no debe ser mayor a 10 caracteres")]
         [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
 

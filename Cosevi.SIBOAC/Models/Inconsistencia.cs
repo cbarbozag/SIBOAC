@@ -16,8 +16,8 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Inconsistencia
     {
-        [DisplayName("Codigo")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public short Id { get; set; }
 
 

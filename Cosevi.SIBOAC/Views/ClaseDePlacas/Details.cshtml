@@ -1,16 +1,22 @@
 ﻿@model Cosevi.SIBOAC.Models.ClaseDePlaca
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>ClaseDePlaca</h4>
+    <h4>Clase Placa</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clasedeplaca)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clasedeplaca)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.estado)
         </dt>
@@ -38,6 +44,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Clasedeplaca.Trim() }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Clasedeplaca.Trim() }) |
+    @Html.ActionLink("Regresar a Lista", "Index")
 </p>

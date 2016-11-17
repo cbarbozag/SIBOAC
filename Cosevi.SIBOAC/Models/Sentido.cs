@@ -17,11 +17,11 @@ namespace Cosevi.SIBOAC.Models
     public partial class Sentido
     {
         [DisplayName("Código")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
 
         [DisplayName("Descripción")]
-        [Required(ErrorMessage = "La descripción es obligatorio")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         [StringLength(30, ErrorMessage = "La descripción no debe ser mayor a 30 caracteres")]
         public string Descripcion { get; set; }
 

@@ -16,9 +16,9 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class MarcaDeAutomovil
     {
-        [DisplayName("Codigo")]
-        [StringLength(6, ErrorMessage = "El codigo no debe ser mayor a 6 caracteres")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [StringLength(6, ErrorMessage = "El código no debe ser mayor a 6 caracteres")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
 
         [DisplayName("Descripción")]
@@ -30,7 +30,7 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<int> Topmarca { get; set; }
 
         [DisplayName("Estado")]
-        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 carácter")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string Estado { get; set; }
 
         [DisplayName("Fecha de Inicio")]

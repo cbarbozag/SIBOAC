@@ -16,8 +16,8 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Senalamiento
     {
-        [DisplayName("Codigo")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 
         [DisplayName("Descripción")]
@@ -26,7 +26,7 @@ namespace Cosevi.SIBOAC.Models
         public string Descripcion { get; set; }
 
         [DisplayName("Estado")]
-        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 carácter")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string Estado { get; set; }
 
         [DisplayName("Fecha de Inicio")]

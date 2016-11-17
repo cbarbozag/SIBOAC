@@ -17,8 +17,8 @@ namespace Cosevi.SIBOAC.Models
     public partial class DepositoDeVehiculo
     {
 
-        [DisplayName("Codigo")]
-        [StringLength(1, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
+        [DisplayName("Código")]
+        [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
 

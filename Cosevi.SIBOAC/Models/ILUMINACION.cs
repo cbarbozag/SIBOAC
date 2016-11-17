@@ -17,8 +17,8 @@ namespace Cosevi.SIBOAC.Models
     public partial class Iluminacion
     {
 
-        [DisplayName("Codigo")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 
         [DisplayName("Descripción")]
