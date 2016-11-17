@@ -518,6 +518,7 @@
     <Content Include="obj\Debug\Cosevi.SIBOAC.pdb" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.cs.dll" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.Designer.cs.dll" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\PC_HH_AndroidModel.edmx">
@@ -549,7 +550,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
