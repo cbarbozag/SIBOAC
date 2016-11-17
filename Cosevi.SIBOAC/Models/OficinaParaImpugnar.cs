@@ -31,13 +31,13 @@ namespace Cosevi.SIBOAC.Models
         [DisplayName("Estado")]
         public string Estado { get; set; }
 
-        [Required(ErrorMessage = "La fecha de inicio es requerido")] //alerta de que el usuario debe llenar el espacio
+        [Required(ErrorMessage = "La fecha de inicio es requerida.")] //alerta de que el usuario debe llenar el espacio
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha Inicio")]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
 
-        [Required(ErrorMessage = "La fecha de Fin es requerido")] //alerta de que el usuario debe llenar el espacio
+        [Required(ErrorMessage = "La fecha de Fin es requerida.")] //alerta de que el usuario debe llenar el espacio
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha Fin")]

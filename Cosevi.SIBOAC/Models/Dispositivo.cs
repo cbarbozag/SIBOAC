@@ -16,25 +16,28 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Dispositivo
     {
+
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "La descripción es requerida")] //alerta de que el usuario debe llenar el espacio
+        [Required(ErrorMessage = "La descripción es obligatoria")] 
         [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres.")]
-        [DisplayName("Descripción")] //etiqueta Descripción
+        [DisplayName("Descripción")] 
         public string Descripcion { get; set; }
 
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
-        [DisplayName("Estado")] //etiqueta Estado
+        [DisplayName("Estado")] 
         public string Estado { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DisplayName("Fecha de inicio")] //etiqueta Fecha de inicio
+        [DisplayName("Fecha de inicio")] 
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DisplayName("Fecha de fin")] //etiqueta Fecha de fin
+        [DisplayName("Fecha de fin")] 
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }

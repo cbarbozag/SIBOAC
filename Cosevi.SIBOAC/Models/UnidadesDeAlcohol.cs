@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Models
     public partial class UnidadesDeAlcohol
     {
 
-        [DisplayName("Codigo")]
+        [DisplayName("Código")]
         [StringLength(6, ErrorMessage = "El código no debe ser mayor a 6 caracteres")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }

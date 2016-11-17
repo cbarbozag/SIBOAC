@@ -16,8 +16,8 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Examen
     {
-        [DisplayName("Codigo")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 
         [DisplayName("Descripción")]
@@ -25,12 +25,12 @@ namespace Cosevi.SIBOAC.Models
         [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
         public string Descripcion { get; set; }
 
-        [DisplayName("Alcohol Minimo")]
-        [Required(ErrorMessage = "La infomración es obligatoria")]
+        [DisplayName("Alcohol Mínimo")]
+        [Required(ErrorMessage = "La información es obligatoria")]
         public double AlcoholMinimo { get; set; }
 
-        [DisplayName("Alcohol Maximo")]
-        [Required(ErrorMessage = "La infomración es obligatoria")]
+        [DisplayName("Alcohol Máximo")]
+        [Required(ErrorMessage = "La información es obligatoria")]
         public double AlcoholMaximo { get; set; }
 
         [DisplayName("Estado")]

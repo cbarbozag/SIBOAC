@@ -16,9 +16,9 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Sexo
     {
-        [DisplayName("Codigo")]
-        [StringLength(1, ErrorMessage = "El Codigo no debe ser mayor a 1 caracter")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [StringLength(1, ErrorMessage = "El código no debe ser mayor a 1 caracter")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
 
         [DisplayName("Descripción")]

@@ -17,13 +17,13 @@ namespace Cosevi.SIBOAC.Models
     public partial class Distrito
     {
 
-        [DisplayName("Codigo")]
+        [DisplayName("Código")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 
 
         [DisplayName("Descripción")]
-        [StringLength(30, ErrorMessage = "La descripción no debe ser mayor a 30 caracteres")]
+        [StringLength(30, ErrorMessage = "La descripción no debe ser mayor a 30 caracteres.")]
         [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
 

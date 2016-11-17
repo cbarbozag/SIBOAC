@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Models
     public partial class ClaseDePlaca
     {
 
-        [DisplayName("Código Placa")]
+        [DisplayName("Código")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public string Clasedeplaca { get; set; }
 

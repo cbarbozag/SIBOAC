@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Dano
     {
-        [DisplayName("Codigo")]
+        [DisplayName("Código")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 

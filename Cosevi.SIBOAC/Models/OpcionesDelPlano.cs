@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class OpcionesDelPlano
     {
-        [DisplayName("Codigo")]
+        [DisplayName("Código")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public short Id { get; set; }
 

@@ -16,8 +16,8 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class TipoDeLicencia
     {
-        [DisplayName("Codigo")]
-        [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracter")]
+        [DisplayName("Código")]
+        [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
 

@@ -17,14 +17,14 @@ namespace Cosevi.SIBOAC.Models
     public partial class CodigoDeLaPlaca
     {
 
-        [DisplayName("Codigo")]
+        [DisplayName("Código")]
         [StringLength(3, ErrorMessage = "El código no debe ser mayor a 3 caracteres")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string Id { get; set; }
 
 
         [DisplayName("Estado")]
-        [StringLength(10, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string Estado { get; set; }
 
 

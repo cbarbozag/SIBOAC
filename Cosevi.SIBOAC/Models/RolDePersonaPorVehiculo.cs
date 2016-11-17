@@ -16,8 +16,8 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class RolDePersonaPorVehiculo
     {
-        [DisplayName("Codigo")]
-        [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracteres")]
+        [DisplayName("Código")]
+        [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
         public string Id { get; set; }
 
         [DisplayName("Activar Vehiculo")]
