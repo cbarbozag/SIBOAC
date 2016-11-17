@@ -89,31 +89,7 @@ namespace Cosevi.SIBOAC.Controllers
             return View(revision);
         }
 
-        // GET: Revisions/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Revision revision = db.Revision.Find(id);
-            if (revision == null)
-            {
-                return HttpNotFound();
-            }
-            return View(revision);
-        }
 
-        // POST: Revisions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            Revision revision = db.Revision.Find(id);
-            db.Revision.Remove(revision);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
