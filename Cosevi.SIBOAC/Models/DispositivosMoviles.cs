@@ -11,11 +11,20 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DispositivosMoviles
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "El IMEI es obligatorio")]
+        [StringLength(50, ErrorMessage = "El IMEI no debe ser mayor a 100 caracteres.")]
+        [DisplayName("IMEI")]
         public string IMEI { get; set; }
+
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres.")]
+        [DisplayName("Descripción")]
         public string Descripcion { get; set; }
         public bool Activo { get; set; }
     }
