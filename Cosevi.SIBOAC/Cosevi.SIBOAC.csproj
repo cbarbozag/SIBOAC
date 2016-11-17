@@ -381,6 +381,7 @@
     <Content Include="obj\Debug\Cosevi.SIBOAC.pdb" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.cs.dll" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.Designer.cs.dll" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\PC_HH_AndroidModel.edmx">
@@ -566,6 +567,7 @@
     <Content Include="Views\TipoDeLicencias\Details.cshtml" />
     <Content Include="Views\TipoDeLicencias\Edit.cshtml" />
     <Content Include="Views\TipoDeLicencias\Index.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
