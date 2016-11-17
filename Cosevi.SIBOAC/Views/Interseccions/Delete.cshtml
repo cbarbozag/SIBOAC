@@ -1,0 +1,57 @@
+﻿@model Cosevi.SIBOAC.Models.Interseccion
+
+@{
+    ViewBag.Title = "Inactivar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inactivar</h2>
+
+<h3>Esta seguro que desea cambiar el estado?</h3>
+<div>
+    <h4>Intersección</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Guardar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a Lista", "Index")
+        </div>
+    }
+</div>

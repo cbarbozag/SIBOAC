@@ -21,9 +21,9 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string Id { get; set; }
 
-        [DisplayName("DescripciÃ³n")]
-        [StringLength(10, ErrorMessage = "La descripciÃ³n no debe ser mayor a 10 caracter")]
-        [Required(ErrorMessage = "La descripciÃ³n es obligatoria")]
+        [DisplayName("Descripción")]
+        [StringLength(10, ErrorMessage = "La descripción no debe ser mayor a 10 caracter")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
 
         [DisplayName("Estado")]
@@ -43,3 +43,4 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }
 }
+

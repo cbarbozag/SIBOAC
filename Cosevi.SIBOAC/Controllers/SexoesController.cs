@@ -109,7 +109,7 @@ namespace Cosevi.SIBOAC.Models
         public ActionResult DeleteConfirmed(string id)
         {
             Sexo sexo = db.SEXO.Find(id);
-            db.SEXO.Remove(sexo);
+            sexo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

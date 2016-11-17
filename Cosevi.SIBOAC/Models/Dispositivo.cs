@@ -16,27 +16,24 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Dispositivo
     {
-        [DisplayName("C贸digo de dispositivo")] //etiqueta C贸digo
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "La descripci贸n es requerida")] //alerta de que el usuario debe llenar el espacio
-        [StringLength(50, ErrorMessage = "La descripci贸n no debe ser mayor a 50 caracteres.")]
-
-        [DisplayName("Descripci贸n")] //etiqueta Descripci贸n
+        [Required(ErrorMessage = "La descripci髇 es requerida")] //alerta de que el usuario debe llenar el espacio
+        [StringLength(50, ErrorMessage = "La descripci髇 no debe ser mayor a 50 caracteres.")]
+        [DisplayName("Descripci髇")] //etiqueta Descripci髇
         public string Descripcion { get; set; }
 
-        [StringLength(1, ErrorMessage = "La descripci贸n no debe ser mayor a 1 caracter.")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         [DisplayName("Estado")] //etiqueta Estado
         public string Estado { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] //Formato de fecha inicio
-
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")] //etiqueta Fecha de inicio
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] //Formato de fecha fin
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de fin")] //etiqueta Fecha de fin
         public Nullable<System.DateTime> FechaDeFin { get; set; }
     }

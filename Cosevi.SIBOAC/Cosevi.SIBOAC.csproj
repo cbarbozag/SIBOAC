@@ -170,42 +170,134 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
+    <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\CantonsController.cs" />
+    <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
+    <Compile Include="Controllers\CarrilsController.cs" />
+    <Compile Include="Controllers\CarroceriasController.cs" />
+    <Compile Include="Controllers\CirculacionsController.cs" />
+    <Compile Include="Controllers\ClaseDePlacasController.cs" />
+    <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
+    <Compile Include="Controllers\CondicionDeLaCalzadasController.cs" />
+    <Compile Include="Controllers\CondicionDeLaPersonasController.cs" />
+    <Compile Include="Controllers\DanoesController.cs" />
+    <Compile Include="Controllers\DelegacionsController.cs" />
+    <Compile Include="Controllers\DelitoesController.cs" />
+    <Compile Include="Controllers\DepositoDePlacasController.cs" />
+    <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
+    <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
+    <Compile Include="Controllers\ExamenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
     <Compile Include="Controllers\IluminacionsController.cs" />
     <Compile Include="Controllers\InconsistenciasController.cs" />
+    <Compile Include="Controllers\InspectorsController.cs" />
+    <Compile Include="Controllers\InterseccionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
+    <Compile Include="Controllers\NombreDeMenusController.cs" />
     <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
     <Compile Include="Controllers\MotivoPorNoFirmarsController.cs" />
     <Compile Include="Controllers\ObstaculoesController.cs" />
     <Compile Include="Controllers\OpcionDeFormulariosController.cs" />
     <Compile Include="Controllers\OpcionesDelPlanoesController.cs" />
     <Compile Include="Controllers\OtroTipoTransportesController.cs" />
+    <Compile Include="Controllers\PeatonsController.cs" />
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
+    <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
+    <Compile Include="Controllers\RolPorPersonasController.cs" />
+    <Compile Include="Controllers\RutasController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
+    <Compile Include="Controllers\SexoesController.cs" />
+    <Compile Include="Controllers\TiempoesController.cs" />
+    <Compile Include="Controllers\TipoDeAccidentesController.cs" />
+    <Compile Include="Controllers\TipoDeCalzadasController.cs" />
+    <Compile Include="Controllers\TipoDeDocumentoesController.cs" />
     <Compile Include="Controllers\TipoDeEstructurasController.cs" />
     <Compile Include="Controllers\TipoDeIdentificacionsController.cs" />
     <Compile Include="Controllers\TipoDeLicenciasController.cs" />
+    <Compile Include="Controllers\TipoDeSenalExistentesController.cs" />
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
+    <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
+    <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AlineacionHorizontal.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AlineacionVertical.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Canton.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CaracteristicasDeUbicacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Carril.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Carroceria.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Circulacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClaseDePlaca.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CodigoDeLaPlaca.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CondicionDeLaCalzada.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CondicionDeLaPersona.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dano.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Delegacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Delito.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepositoDePlaca.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepositoDeVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Direccion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dispositivo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Distrito.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EstadoCivil.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EstadoDeLaCalzada.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Examen.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hospital.cs">
@@ -218,6 +310,12 @@
     <Compile Include="Models\Inconsistencia.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Inspector.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Interseccion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Maniobra.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
@@ -226,6 +324,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MotivoPorNoFirmar.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NombreDeMenu.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Obstaculo.cs">
@@ -258,13 +359,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Peaton.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Plantillas.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Provincia.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Revision.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RolDePersonaPorVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolPorPersona.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ruta.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Senalamiento.cs">
@@ -276,7 +389,18 @@
     <Compile Include="Models\Sexo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\SexoesController.cs" />
+    <Compile Include="Models\Tiempo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeAccidente.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeCalzada.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeDocumento.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TipoDeEstructura.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -286,12 +410,21 @@
     <Compile Include="Models\TipoDeLicencia.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoDeSenalExistente.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TipoDeVehiculo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Models\TipoIdDeVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UnidadesDeAlcohol.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VariablesParaBloqueo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -493,7 +626,6 @@
     <Content Include="Views\EstadoCivils\Edit.cshtml" />
     <Content Include="Views\EstadoCivils\Index.cshtml" />
     <Content Include="Views\Inconsistencias\Create.cshtml" />
-    <Content Include="Views\Inconsistencias\Delete.cshtml" />
     <Content Include="Views\Inconsistencias\Details.cshtml" />
     <Content Include="Views\Inconsistencias\Edit.cshtml" />
     <Content Include="Views\Inconsistencias\Index.cshtml" />
@@ -533,7 +665,6 @@
     <Content Include="Views\TipoDeVehiculoes\Edit.cshtml" />
     <Content Include="Views\TipoDeVehiculoes\Index.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Create.cshtml" />
-    <Content Include="Views\TipoDeIdentificacions\Delete.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Details.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Edit.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\Index.cshtml" />
@@ -567,7 +698,175 @@
     <Content Include="Views\TipoDeLicencias\Details.cshtml" />
     <Content Include="Views\TipoDeLicencias\Edit.cshtml" />
     <Content Include="Views\TipoDeLicencias\Index.cshtml" />
-    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Create.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Delete.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Details.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Edit.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Index.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Create.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Delete.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Details.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Edit.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Index.cshtml" />
+    <Content Include="Views\Revisions\Create.cshtml" />
+    <Content Include="Views\Revisions\Details.cshtml" />
+    <Content Include="Views\Revisions\Edit.cshtml" />
+    <Content Include="Views\Revisions\Index.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\Rutas\Create.cshtml" />
+    <Content Include="Views\Rutas\Delete.cshtml" />
+    <Content Include="Views\Rutas\Details.cshtml" />
+    <Content Include="Views\Rutas\Edit.cshtml" />
+    <Content Include="Views\Rutas\Index.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Create.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Delete.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Details.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Edit.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Index.cshtml" />
+    <Content Include="Views\RolPorPersonas\Create.cshtml" />
+    <Content Include="Views\RolPorPersonas\Delete.cshtml" />
+    <Content Include="Views\RolPorPersonas\Details.cshtml" />
+    <Content Include="Views\RolPorPersonas\Edit.cshtml" />
+    <Content Include="Views\RolPorPersonas\Index.cshtml" />
+    <Content Include="Views\Peatons\Create.cshtml" />
+    <Content Include="Views\Peatons\Delete.cshtml" />
+    <Content Include="Views\Peatons\Details.cshtml" />
+    <Content Include="Views\Peatons\Edit.cshtml" />
+    <Content Include="Views\Peatons\Index.cshtml" />
+    <Content Include="Views\Tiempoes\Create.cshtml" />
+    <Content Include="Views\Tiempoes\Delete.cshtml" />
+    <Content Include="Views\Tiempoes\Details.cshtml" />
+    <Content Include="Views\Tiempoes\Edit.cshtml" />
+    <Content Include="Views\Tiempoes\Index.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Create.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Delete.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Details.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Edit.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Index.cshtml" />
+    <Content Include="Views\Delitoes\Create.cshtml" />
+    <Content Include="Views\Delitoes\Delete.cshtml" />
+    <Content Include="Views\Delitoes\Details.cshtml" />
+    <Content Include="Views\Delitoes\Edit.cshtml" />
+    <Content Include="Views\Delitoes\Index.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Create.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Delete.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Details.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Edit.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Index.cshtml" />
+    <Content Include="Views\Delegacions\Create.cshtml" />
+    <Content Include="Views\Delegacions\Delete.cshtml" />
+    <Content Include="Views\Delegacions\Details.cshtml" />
+    <Content Include="Views\Delegacions\Edit.cshtml" />
+    <Content Include="Views\Delegacions\Index.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Create.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Delete.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Details.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Edit.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Index.cshtml" />
+    <Content Include="Views\Danoes\Create.cshtml" />
+    <Content Include="Views\Danoes\Delete.cshtml" />
+    <Content Include="Views\Danoes\Details.cshtml" />
+    <Content Include="Views\Danoes\Edit.cshtml" />
+    <Content Include="Views\Danoes\Index.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Create.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Delete.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Details.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Edit.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Index.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Create.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Delete.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Details.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Edit.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Index.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Create.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Delete.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Details.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Index.cshtml" />
+    <Content Include="Views\Circulacions\Create.cshtml" />
+    <Content Include="Views\Circulacions\Delete.cshtml" />
+    <Content Include="Views\Circulacions\Details.cshtml" />
+    <Content Include="Views\Circulacions\Edit.cshtml" />
+    <Content Include="Views\Circulacions\Index.cshtml" />
+    <Content Include="Views\Carrocerias\Create.cshtml" />
+    <Content Include="Views\Carrocerias\Delete.cshtml" />
+    <Content Include="Views\Carrocerias\Details.cshtml" />
+    <Content Include="Views\Carrocerias\Edit.cshtml" />
+    <Content Include="Views\Carrocerias\Index.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Create.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Delete.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Details.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Edit.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Index.cshtml" />
+    <Content Include="Views\Carrils\Create.cshtml" />
+    <Content Include="Views\Carrils\Delete.cshtml" />
+    <Content Include="Views\Carrils\Details.cshtml" />
+    <Content Include="Views\Carrils\Edit.cshtml" />
+    <Content Include="Views\Carrils\Index.cshtml" />
+    <Content Include="Views\Cantons\Create.cshtml" />
+    <Content Include="Views\Cantons\Delete.cshtml" />
+    <Content Include="Views\Cantons\Details.cshtml" />
+    <Content Include="Views\Cantons\Edit.cshtml" />
+    <Content Include="Views\Cantons\Index.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Create.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Delete.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Details.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Edit.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Index.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Create.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Delete.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Details.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Edit.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Index.cshtml" />
+    <Content Include="Views\Distritoes\Create.cshtml" />
+    <Content Include="Views\Distritoes\Delete.cshtml" />
+    <Content Include="Views\Distritoes\Details.cshtml" />
+    <Content Include="Views\Distritoes\Edit.cshtml" />
+    <Content Include="Views\Distritoes\Index.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\Examen\Delete.cshtml" />
+    <Content Include="Views\Examen\Details.cshtml" />
+    <Content Include="Views\Examen\Edit.cshtml" />
+    <Content Include="Views\Examen\Index.cshtml" />
+    <Content Include="Views\Direccions\Create.cshtml" />
+    <Content Include="Views\Direccions\Delete.cshtml" />
+    <Content Include="Views\Direccions\Details.cshtml" />
+    <Content Include="Views\Direccions\Edit.cshtml" />
+    <Content Include="Views\Direccions\Index.cshtml" />
+    <Content Include="Views\Inspectors\Create.cshtml" />
+    <Content Include="Views\Inspectors\Delete.cshtml" />
+    <Content Include="Views\Inspectors\Details.cshtml" />
+    <Content Include="Views\Inspectors\Edit.cshtml" />
+    <Content Include="Views\Inspectors\Index.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Create.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Delete.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Details.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Edit.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Index.cshtml" />
+    <Content Include="Views\Interseccions\Create.cshtml" />
+    <Content Include="Views\Interseccions\Delete.cshtml" />
+    <Content Include="Views\Interseccions\Details.cshtml" />
+    <Content Include="Views\Interseccions\Edit.cshtml" />
+    <Content Include="Views\Interseccions\Index.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Create.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Delete.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Details.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Edit.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Index.cshtml" />
+    <Content Include="Views\NombreDeMenus\Create.cshtml" />
+    <Content Include="Views\NombreDeMenus\Delete.cshtml" />
+    <Content Include="Views\NombreDeMenus\Details.cshtml" />
+    <Content Include="Views\NombreDeMenus\Edit.cshtml" />
+    <Content Include="Views\NombreDeMenus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

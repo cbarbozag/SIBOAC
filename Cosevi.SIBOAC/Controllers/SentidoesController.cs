@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Sentido sentido = db.SENTIDO.Find(id);
-            db.SENTIDO.Remove(sentido);
+            sentido.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

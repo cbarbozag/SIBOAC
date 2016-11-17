@@ -1,0 +1,73 @@
+﻿@model Cosevi.SIBOAC.Models.Examen
+
+@{
+    ViewBag.Title = "Inactivar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inactivar</h2>
+
+<h3>Esta seguro que desea cambiar el estado?</h3>
+<div>
+    <h4>Examen</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlcoholMinimo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlcoholMinimo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlcoholMaximo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlcoholMaximo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Inactivar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>

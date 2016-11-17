@@ -1,4 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.TipoDeIdentificacion
+﻿@model Cosevi.SIBOAC.Models.VariablesParaBloqueo
 
 @{
     ViewBag.Title = "Delete";
@@ -9,23 +9,31 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>TipoDeIdentificacion</h4>
+    <h4>VariablesParaBloqueo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Estado)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.Estado)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Indice)
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Indice)
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
         </dd>
 
     </dl>
