@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             RolPorPersona rolPorPersona = db.ROLPERSONA.Find(id);
-            db.ROLPERSONA.Remove(rolPorPersona);
+            rolPorPersona.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
