@@ -21,7 +21,7 @@ namespace Cosevi.SIBOAC.Models
         [DisplayName("Código")] 
         public string Id { get; set; }
 
-        [Required(ErrorMessage = "La descripción de la oficina es requerido")] //alerta de que el usuario debe llenar el espacio
+        [Required(ErrorMessage = "La descripción es obligatoria")] //alerta de que el usuario debe llenar el espacio
         [StringLength(20, ErrorMessage = "La descripción de la oficina no debe ser mayor a 20 caracteres.")]
         [DisplayName("Oficina")]
         public string Descripcion { get; set; }
