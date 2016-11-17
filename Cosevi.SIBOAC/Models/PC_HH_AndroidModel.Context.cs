@@ -83,6 +83,5 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<NombreDeMenu> Nombre_Menu { get; set; }
         public virtual DbSet<UnidadesDeAlcohol> UNIDADES_ALCOHOL { get; set; }
         public virtual DbSet<VariablesParaBloqueo> VARIABLESBLOQUEO { get; set; }
-        public virtual DbSet<DispositivosMoviles> DispositivosMoviles { get; set; }
     }
 }

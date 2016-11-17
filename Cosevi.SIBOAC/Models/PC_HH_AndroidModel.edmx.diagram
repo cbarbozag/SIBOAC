@@ -63,7 +63,6 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.NombreDeMenu" Width="2" PointX="5.125" PointY="34.25" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.UnidadesDeAlcohol" Width="2" PointX="5.125" PointY="37.25" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.VariablesParaBloqueo" Width="1.875" PointX="5.125" PointY="31.875" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.DispositivosMoviles" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
