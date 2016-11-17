@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
-            db.UNIDADES_ALCOHOL.Remove(unidadesDeAlcohol);
+            unidadesDeAlcohol.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
