@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             ClaseDePlaca claseDePlaca = db.CLASE.Find(id);
-            db.CLASE.Remove(claseDePlaca);
+            claseDePlaca.estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
