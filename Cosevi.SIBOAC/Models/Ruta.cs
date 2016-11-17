@@ -22,7 +22,7 @@ namespace Cosevi.SIBOAC.Models
 
         [DisplayName("Inicia")]
         [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
-        [Required(ErrorMessage = "La ubicación es obligatoria")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Inicia { get; set; }
 
         [DisplayName("Termina")]
