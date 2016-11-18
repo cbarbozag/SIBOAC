@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Condiciones de la calzada</h2>
+<h2>Lista de condiciones de la calzada</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create")
@@ -44,7 +44,14 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Inactivar", "Delete", new { id=item.Id })
+            @if (item.Estado == "I")
+            {
+                @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+            }
+            else
+            {
+                @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+            }
         </td>
     </tr>
 }

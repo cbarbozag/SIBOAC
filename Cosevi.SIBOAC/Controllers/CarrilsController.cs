@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Carril carril = db.CARRIL.Find(id);
-            carril.Estado = "I";
+            if (carril.Estado == "A")
+                carril.Estado = "I";
+            else
+                carril.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

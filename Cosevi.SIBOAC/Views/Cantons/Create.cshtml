@@ -1,7 +1,7 @@
 ﻿@model Cosevi.SIBOAC.Models.Canton
 
 @{
-    ViewBag.Title = "Crear";
+    ViewBag.Title = "Nuevo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Canton</h4>
+        <h4>Cantón</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
