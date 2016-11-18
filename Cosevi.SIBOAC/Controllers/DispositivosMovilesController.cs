@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
-            dispositivosMoviles.Activo = false;
+            if (dispositivosMoviles.Activo == false)
+                dispositivosMoviles.Activo = true;
+            else
+                dispositivosMoviles.Activo = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

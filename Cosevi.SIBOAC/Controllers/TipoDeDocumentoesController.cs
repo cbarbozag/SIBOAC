@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
-            tipoDeDocumento.Estado = "I";
+            if (tipoDeDocumento.Estado == "I")
+                tipoDeDocumento.Estado = "A";
+            else
+                tipoDeDocumento.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

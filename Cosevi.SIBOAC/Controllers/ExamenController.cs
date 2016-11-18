@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Examen examen = db.EXAMEN.Find(id);
-            examen.Estado = "I";
+            if (examen.Estado == "I")
+                examen.Estado = "A";
+            else
+                examen.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

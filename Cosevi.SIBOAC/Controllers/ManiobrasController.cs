@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Maniobra maniobra = db.Maniobra.Find(id);
-            maniobra.Estado = "I";
+            if (maniobra.Estado == "I")
+                maniobra.Estado = "A";
+            else
+                maniobra.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

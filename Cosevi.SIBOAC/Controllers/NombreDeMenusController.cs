@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             NombreDeMenu nombreDeMenu = db.Nombre_Menu.Find(id);
-            nombreDeMenu.Estado = "I";
+            if (nombreDeMenu.Estado == "I")
+                nombreDeMenu.Estado = "A";
+            else
+                nombreDeMenu.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

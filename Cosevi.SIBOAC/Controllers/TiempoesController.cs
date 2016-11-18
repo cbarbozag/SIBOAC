@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Tiempo tiempo = db.Tiempo.Find(id);
-            tiempo.Estado = "I";
+            if (tiempo.Estado == "I")
+                tiempo.Estado = "A";
+            else
+                tiempo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
