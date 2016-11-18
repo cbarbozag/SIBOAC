@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Plantillas plantillas = db.PLANTILLAS.Find(id);
-            plantillas.Estado = "I";
+            if (plantillas.Estado == "I")
+                plantillas.Estado = "A";
+            else
+                plantillas.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

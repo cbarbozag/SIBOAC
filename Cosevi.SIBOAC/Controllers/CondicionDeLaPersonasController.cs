@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CondicionDeLaPersona condicionDeLaPersona = db.CONDPERSONA.Find(id);
-            condicionDeLaPersona.Estado = "I";
+            if (condicionDeLaPersona.Estado == "I")
+                condicionDeLaPersona.Estado = "A";
+            else
+                condicionDeLaPersona.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

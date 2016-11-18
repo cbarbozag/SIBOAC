@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Iluminacion iluminacion = db.Iluminacion.Find(id);
-            iluminacion.Estado = "I";
+            if (iluminacion.Estado == "I")
+                iluminacion.Estado = "A";
+            else
+                iluminacion.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -50,8 +50,16 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Inactivar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar a la lista", "Index")
+          @if (Model.Estado == "A")
+          {
+            <input type="submit" value="Inactivar" class="btn btn-default" />
+          }
+          else
+          {
+            <input type="submit" value="Activar" class="btn btn-default" />
+          }
+        |
+        @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }
 </div>

@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             CodigoDeLaPlaca codigoDeLaPlaca = db.CODIGO.Find(id);
-            codigoDeLaPlaca.Estado = "I";
+            if (condicionDeLaCalzada.Estado == "I")
+                condicionDeLaCalzada.Estado = "A";
+            else
+                condicionDeLaCalzada.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             MarcaDeAutomovil marcaDeAutomovil = db.MARCA.Find(id);
-            marcaDeAutomovil.Estado = "I";
+            if (marcaDeAutomovil.Estado == "I")
+                marcaDeAutomovil.Estado = "A";
+            else
+                marcaDeAutomovil.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
