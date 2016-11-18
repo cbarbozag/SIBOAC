@@ -5,7 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Inactivar</h2>
+@if (Model.Estado == "A")
+            {
+    <h2>Inactivar</h2>
+}
+else
+{
+    <h2>Activar</h2>
+}
 
 <h3>Esta seguro que desea cambiar el estado?</h3>
 <div>
