@@ -188,6 +188,7 @@
     <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
+    <Compile Include="Controllers\DispositivosMovilesController.cs" />
     <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
@@ -872,6 +873,11 @@
     <Content Include="Views\NombreDeMenus\Details.cshtml" />
     <Content Include="Views\NombreDeMenus\Edit.cshtml" />
     <Content Include="Views\NombreDeMenus\Index.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Create.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Delete.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Details.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Edit.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

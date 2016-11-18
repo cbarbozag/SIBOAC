@@ -5,13 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de variables para bloqueo</h2>
+<h2>Lista de Variables de Bloqueo</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -27,6 +30,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
@@ -37,7 +43,7 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.Id }) |
             @Html.ActionLink("Inactivar", "Delete", new { id=item.Id })
         </td>
     </tr>

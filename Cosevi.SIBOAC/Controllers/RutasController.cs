@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Ruta ruta = db.Ruta.Find(id);
-            ruta.Estado = "I";
+            if(ruta.Estado=="I")
+                  ruta.Estado = "A";
+            else
+                ruta.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

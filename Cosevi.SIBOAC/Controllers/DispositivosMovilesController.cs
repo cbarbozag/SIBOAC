@@ -10,111 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class AlineacionVerticalsController : Controller
+    public class DispositivosMovilesController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: AlineacionVerticals
+        // GET: DispositivosMoviles
         public ActionResult Index()
         {
-            return View(db.ALINVERT.ToList());
+            return View(db.DispositivosMoviles.ToList());
         }
 
-        // GET: AlineacionVerticals/Details/5
+        // GET: DispositivosMoviles/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
-            if (alineacionVertical == null)
+            DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
+            if (dispositivosMoviles == null)
             {
                 return HttpNotFound();
             }
-            return View(alineacionVertical);
+            return View(dispositivosMoviles);
         }
 
-        // GET: AlineacionVerticals/Create
+        // GET: DispositivosMoviles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: AlineacionVerticals/Create
+        // POST: DispositivosMoviles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] AlineacionVertical alineacionVertical)
+        public ActionResult Create([Bind(Include = "Id,IMEI,Descripcion,Activo")] DispositivosMoviles dispositivosMoviles)
         {
             if (ModelState.IsValid)
             {
-                db.ALINVERT.Add(alineacionVertical);
+                db.DispositivosMoviles.Add(dispositivosMoviles);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(alineacionVertical);
+            return View(dispositivosMoviles);
         }
 
-        // GET: AlineacionVerticals/Edit/5
+        // GET: DispositivosMoviles/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
-            if (alineacionVertical == null)
+            DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
+            if (dispositivosMoviles == null)
             {
                 return HttpNotFound();
             }
-            return View(alineacionVertical);
+            return View(dispositivosMoviles);
         }
 
-        // POST: AlineacionVerticals/Edit/5
+        // POST: DispositivosMoviles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] AlineacionVertical alineacionVertical)
+        public ActionResult Edit([Bind(Include = "Id,IMEI,Descripcion,Activo")] DispositivosMoviles dispositivosMoviles)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(alineacionVertical).State = EntityState.Modified;
+                db.Entry(dispositivosMoviles).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(alineacionVertical);
+            return View(dispositivosMoviles);
         }
 
-        // GET: AlineacionVerticals/Delete/5
+        // GET: DispositivosMoviles/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
-            if (alineacionVertical == null)
+            DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
+            if (dispositivosMoviles == null)
             {
                 return HttpNotFound();
             }
-            return View(alineacionVertical);
+            return View(dispositivosMoviles);
         }
 
-        // POST: AlineacionVerticals/Delete/5
+        // POST: DispositivosMoviles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
-            if (alineacionVertical.Estado == "A")
-                alineacionVertical.Estado = "I";
-            else
-                alineacionVertical.Estado = "A";
-            db.SaveChanges();
+            DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
+            dispositivosMoviles.Activo = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
