@@ -11,12 +11,35 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UnidadesDeAlcohol
     {
+
+        [DisplayName("Código")]
+        [StringLength(6, ErrorMessage = "El código no debe ser mayor a 6 caracteres")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
+
+
+        [DisplayName("Estado")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         public string Estado { get; set; }
+
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de inicio")]
+        [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public System.DateTime FechaDeInicio { get; set; }
+
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de fin")]
+        [Required(ErrorMessage = "La fecha de finalización es obligatoria")]
         public System.DateTime FechaDeFin { get; set; }
     }
 }

@@ -11,10 +11,19 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Revision
     {
+        [DisplayName("Código")]
+        [StringLength(1, ErrorMessage = "El código no debe ser mayor a 1 caracter")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
+
+        [DisplayName("Descripción")]
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
     }
 }

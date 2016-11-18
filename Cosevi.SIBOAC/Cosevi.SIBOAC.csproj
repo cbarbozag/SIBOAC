@@ -188,6 +188,7 @@
     <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
+    <Compile Include="Controllers\DispositivosMovilesController.cs" />
     <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
@@ -286,6 +287,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dispositivo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DispositivosMoviles.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Distrito.cs">
@@ -514,6 +518,7 @@
     <Content Include="obj\Debug\Cosevi.SIBOAC.pdb" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.cs.dll" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.Designer.cs.dll" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\PC_HH_AndroidModel.edmx">
@@ -545,7 +550,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -708,7 +715,6 @@
     <Content Include="Views\TipoDeSenalExistentes\Edit.cshtml" />
     <Content Include="Views\TipoDeSenalExistentes\Index.cshtml" />
     <Content Include="Views\Revisions\Create.cshtml" />
-    <Content Include="Views\Revisions\Delete.cshtml" />
     <Content Include="Views\Revisions\Details.cshtml" />
     <Content Include="Views\Revisions\Edit.cshtml" />
     <Content Include="Views\Revisions\Index.cshtml" />
@@ -867,6 +873,11 @@
     <Content Include="Views\NombreDeMenus\Details.cshtml" />
     <Content Include="Views\NombreDeMenus\Edit.cshtml" />
     <Content Include="Views\NombreDeMenus\Index.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Create.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Delete.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Details.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Edit.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

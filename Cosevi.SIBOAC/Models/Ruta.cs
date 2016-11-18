@@ -16,22 +16,22 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Ruta
     {
-        [DisplayName("Codigo")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 
         [DisplayName("Inicia")]
         [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
-        [Required(ErrorMessage = "La ubicación de inicia es obligatorio")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Inicia { get; set; }
 
         [DisplayName("Termina")]
         [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
-        [Required(ErrorMessage = "La ubicación de termina es obligatorio")]
+        [Required(ErrorMessage = "La ubicación es obligatoria")]
         public string Termina { get; set; }
 
         [DisplayName("Estado")]
-        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 carácter")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string Estado { get; set; }
 
         [DisplayName("Fecha de Inicio")]

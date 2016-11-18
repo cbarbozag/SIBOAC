@@ -183,6 +183,15 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="DispositivosMoviles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IMEI" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="DISTRITO">
           <Key>
             <PropertyRef Name="CodDis" />
@@ -607,6 +616,7 @@
           <EntitySet Name="DEPOSITOVEHICULO" EntityType="Self.DEPOSITOVEHICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DISPOSITIVO" EntityType="Self.DISPOSITIVO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DispositivosMoviles" EntityType="Self.DispositivosMoviles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DISTRITO" EntityType="Self.DISTRITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTCALZADA" EntityType="Self.ESTCALZADA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTCIVIL" EntityType="Self.ESTCIVIL" Schema="dbo" store:Type="Tables" />
@@ -781,6 +791,7 @@
           <EntitySet Name="Nombre_Menu" EntityType="PC_HH_AndroidModel.NombreDeMenu" />
           <EntitySet Name="UNIDADES_ALCOHOL" EntityType="PC_HH_AndroidModel.UnidadesDeAlcohol" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="PC_HH_AndroidModel.VariablesParaBloqueo" />
+          <EntitySet Name="DispositivosMoviles" EntityType="PC_HH_AndroidModel.DispositivosMoviles" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1294,6 +1305,15 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DispositivosMoviles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IMEI" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1939,6 +1959,16 @@
                 <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="Estado" ColumnName="estado" />
                 <ScalarProperty Name="Id" ColumnName="TiempoBloqueo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DispositivosMoviles">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DispositivosMoviles">
+              <MappingFragment StoreEntitySet="DispositivosMoviles">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -16,9 +16,9 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class TipoDeIdentificacion
     {
-        [DisplayName("Codigo")]
-        [StringLength(2, ErrorMessage = "El Codigo no debe ser mayor a 2 caracteres")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código")]
+        [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string Id { get; set; }
 
         [DisplayName("Descripción")]
@@ -26,8 +26,8 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
 
-        [DisplayName("Indice")]
-        [StringLength(4, ErrorMessage = "El indice no debe ser mayor a 4 caracteres")]
+        [DisplayName("Índice")]
+        [StringLength(4, ErrorMessage = "El índice no debe ser mayor a 4 caracteres")]
         public string Indice { get; set; }
     }
 }

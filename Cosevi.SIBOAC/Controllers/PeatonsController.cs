@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Peaton peaton = db.Peaton.Find(id);
-            db.Peaton.Remove(peaton);
+            peaton.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

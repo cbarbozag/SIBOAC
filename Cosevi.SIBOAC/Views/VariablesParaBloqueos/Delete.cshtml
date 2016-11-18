@@ -12,6 +12,19 @@
     <h4>Variables para Bloqueo</h4>
     <hr />
     <dl class="dl-horizontal">
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+
+
         <dt>
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
@@ -42,7 +55,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Inactivar" class="btn btn-default" /> |
+            <input type="submit" value="Guardar" class="btn btn-default" /> |
             @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }
