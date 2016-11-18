@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Circulacion circulacion = db.CIRCULACION.Find(id);
-            circulacion.Estado = "I";
+            if (circulacion.Estado == "A")
+                circulacion.Estado = "I";
+            else
+                circulacion.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
