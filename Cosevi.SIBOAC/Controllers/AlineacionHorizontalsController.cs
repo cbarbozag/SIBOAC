@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
-            alineacionHorizontal.Estado = "I";
+            if(alineacionHorizontal.Estado=="A")
+                alineacionHorizontal.Estado = "I";
+            else
+                alineacionHorizontal.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
