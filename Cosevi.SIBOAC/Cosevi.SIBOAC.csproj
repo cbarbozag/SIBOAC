@@ -177,7 +177,6 @@
     <Compile Include="Controllers\CarrilsController.cs" />
     <Compile Include="Controllers\CarroceriasController.cs" />
     <Compile Include="Controllers\CirculacionsController.cs" />
-    <Compile Include="Controllers\ClaseDePlacasController.cs" />
     <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
     <Compile Include="Controllers\CondicionDeLaCalzadasController.cs" />
     <Compile Include="Controllers\CondicionDeLaPersonasController.cs" />
@@ -793,11 +792,6 @@
     <Content Include="Views\CodigoDeLaPlacas\Details.cshtml" />
     <Content Include="Views\CodigoDeLaPlacas\Edit.cshtml" />
     <Content Include="Views\CodigoDeLaPlacas\Index.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Create.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Delete.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Details.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Index.cshtml" />
     <Content Include="Views\Circulacions\Create.cshtml" />
     <Content Include="Views\Circulacions\Delete.cshtml" />
     <Content Include="Views\Circulacions\Details.cshtml" />
