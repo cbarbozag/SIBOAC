@@ -8,9 +8,16 @@
 <h2>Detalles</h2>
 
 <div>
-    <h4>Revision</h4>
+    <h4>Revisión</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Descripcion)
         </dt>

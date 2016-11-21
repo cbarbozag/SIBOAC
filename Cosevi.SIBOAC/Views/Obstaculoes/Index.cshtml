@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Obstaculos</h2>
+<h2>Lista de obstáculos</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -44,7 +44,14 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Detalle", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Inactivar", "Delete", new { id=item.Id })
+            @if (item.Estado == "I")
+            {
+                @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+            }
+            else
+            {
+                @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+            }
         </td>
     </tr>
 }

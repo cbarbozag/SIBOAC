@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            rolDePersonaPorVehiculo.Estado = "I";
+            if (rolDePersonaPorVehiculo.Estado == "I")
+                rolDePersonaPorVehiculo.Estado = "A";
+            else
+                rolDePersonaPorVehiculo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

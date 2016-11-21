@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             EstadoDeLaCalzada estadoDeLaCalzada = db.ESTCALZADA.Find(id);
-            estadoDeLaCalzada.Estado = "I";
+            if (estadoDeLaCalzada.Estado == "I")
+                estadoDeLaCalzada.Estado = "A";
+            else
+                estadoDeLaCalzada.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

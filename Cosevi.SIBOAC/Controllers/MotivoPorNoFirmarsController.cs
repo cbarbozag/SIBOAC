@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             MotivoPorNoFirmar motivoPorNoFirmar = db.MotivoPorNoFirmars.Find(id);
-            motivoPorNoFirmar.Estado = "I";            
+            if (motivoPorNoFirmar.Estado == "I")
+                motivoPorNoFirmar.Estado = "A";
+            else
+                motivoPorNoFirmar.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

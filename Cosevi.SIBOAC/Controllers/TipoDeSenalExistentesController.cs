@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             TipoDeSenalExistente tipoDeSenalExistente = db.TIPOSEÑALEXISTE.Find(id);
-            tipoDeSenalExistente.Estado = "I";
+            if (tipoDeSenalExistente.Estado == "I")
+                tipoDeSenalExistente.Estado = "A";
+            else
+                tipoDeSenalExistente.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

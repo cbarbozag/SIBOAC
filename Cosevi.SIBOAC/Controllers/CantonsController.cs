@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Canton canton = db.CANTON.Find(id);
-            canton.Estado = "I";
+            if (canton.Estado == "A")
+                canton.Estado = "I";
+            else
+                canton.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

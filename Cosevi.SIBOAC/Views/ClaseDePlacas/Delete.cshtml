@@ -5,53 +5,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Inactivar</h2>
+@if (Model.Estado == "A")
+            {
+    <h2>Inactivar</h2>
+}
+else
+{
+    <h2>Activar</h2>
+}
 
 <h3>Esta seguro que desea cambiar el estado?</h3>
 <div>
-    <h4>Clase Placa</h4>
+    <h4>Clase de placa</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Clasedeplaca)
+            @Html.DisplayNameFor(model => model.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Clasedeplaca)
+            @Html.DisplayFor(model => model.Id)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.estado)
+            @Html.DisplayNameFor(model => model.Estado)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.estado)
+            @Html.DisplayFor(model => model.Estado)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha_inicio)
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_inicio)
+            @Html.DisplayFor(model => model.FechaDeInicio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha_fin)
+            @Html.DisplayNameFor(model => model.FechaDeFin)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_fin)
+            @Html.DisplayFor(model => model.FechaDeFin)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Guardar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar a Lista", "Index")
+            @if (Model.Estado == "A")
+            {
+                <input type="submit" value="Inactivar" class="btn btn-default" />
+            }
+            else
+            {
+                <input type="submit" value="Activar" class="btn btn-default" />
+            }
+            |
+            @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }
 </div>

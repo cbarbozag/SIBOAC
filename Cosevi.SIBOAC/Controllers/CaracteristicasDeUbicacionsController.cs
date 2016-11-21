@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
-            caracteristicasDeUbicacion.Estado = "I";
+            if (caracteristicasDeUbicacion.Estado == "A")
+                caracteristicasDeUbicacion.Estado = "I";
+            else
+                caracteristicasDeUbicacion.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

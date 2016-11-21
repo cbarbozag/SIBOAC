@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Interseccion interseccion = db.INTERSECCION.Find(id);
-            interseccion.Estado = "I";
+            if (interseccion.Estado == "I")
+                interseccion.Estado = "A";
+            else
+                interseccion.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

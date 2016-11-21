@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Delito delito = db.DELITO.Find(id);
-            delito.Estado = "I";
+            if (delito.Estado == "I")
+                delito.Estado = "A";
+            else
+                delito.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

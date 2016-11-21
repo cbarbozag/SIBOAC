@@ -5,11 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Inactivar</h2>
+@if (Model.Estado == "A")
+{
+    <h2>Inactivar</h2>
+}
+else
+{
+    <h2>Activar</h2>
+}
 
 <h3>Esta seguro que desea cambiar el estado?</h3>
 <div>
-    <h4>Nombre De Menú</h4>
+    <h4>Nombre de menú</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -46,8 +53,16 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Guardar" class="btn btn-default" /> |
-            @Html.ActionLink("Regresar a Lista", "Index")
+            @if (Model.Estado == "A")
+            {
+                <input type="submit" value="Inactivar" class="btn btn-default" />
+            }
+            else
+            {
+                <input type="submit" value="Activar" class="btn btn-default" />
+            }
+            |
+            @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }
 </div>

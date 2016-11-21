@@ -793,11 +793,6 @@
     <Content Include="Views\CodigoDeLaPlacas\Details.cshtml" />
     <Content Include="Views\CodigoDeLaPlacas\Edit.cshtml" />
     <Content Include="Views\CodigoDeLaPlacas\Index.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Create.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Delete.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Details.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
-    <Content Include="Views\ClaseDePlacas\Index.cshtml" />
     <Content Include="Views\Circulacions\Create.cshtml" />
     <Content Include="Views\Circulacions\Delete.cshtml" />
     <Content Include="Views\Circulacions\Details.cshtml" />
@@ -878,6 +873,11 @@
     <Content Include="Views\DispositivosMoviles\Details.cshtml" />
     <Content Include="Views\DispositivosMoviles\Edit.cshtml" />
     <Content Include="Views\DispositivosMoviles\Index.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Create.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Delete.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Details.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

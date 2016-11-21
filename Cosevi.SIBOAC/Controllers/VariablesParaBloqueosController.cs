@@ -110,7 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
-            variablesParaBloqueo.Estado = "I";
+            if (variablesParaBloqueo.Estado == "I")
+                variablesParaBloqueo.Estado = "A";
+            else
+                variablesParaBloqueo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
