@@ -43,15 +43,15 @@ function sortUnorderedList(ul, ascendant) {
     var vals = [];
     for (var i = 0, l = lis.length; i < l; i++) {
         vals.push(lis[i].innerHTML);
-    };        
+    };
     vals.sort();
     if (!ascendant) {
         vals.reverse();
-    };        
+    };
     for (var i = 0, l = lis.length; i < l; i++) {
         lis[i].innerHTML = vals[i];
-    };        
-}
+    };
+};
 
 $(document).ready(function () {
     initializeMenuShowClickEvent();
