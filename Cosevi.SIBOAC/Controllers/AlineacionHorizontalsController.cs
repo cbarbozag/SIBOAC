@@ -19,6 +19,20 @@ namespace Cosevi.SIBOAC.Controllers
         {
             return View(db.ALINHORI.ToList());
         }
+        public string  Verificar(int id)
+        {
+            string mensaje = "";
+           List<AlineacionHorizontal> alineacionTem = db.ALINHORI.ToList();
+            for (int i = 0; i < alineacionTem.Count; i++)
+            {
+                if (alineacionTem[i].Id == id)
+                {
+                    mensaje = "El codigo " + id+" ya esta registrado";
+                    return mensaje;
+                }
+            }
+            return "";
+        }
 
         // GET: AlineacionHorizontals/Details/5
         public ActionResult Details(int? id)
@@ -51,8 +65,18 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ALINHORI.Add(alineacionHorizontal);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(alineacionHorizontal.Id);
+                if(mensaje =="")
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Message"] = mensaje;
+                    return View(alineacionHorizontal);
+                }
+                
             }
 
             return View(alineacionHorizontal);
