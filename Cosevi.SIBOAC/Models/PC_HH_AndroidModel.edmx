@@ -202,6 +202,19 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="EDAD">
+          <Key>
+            <PropertyRef Name="fechamin_nacimiento" />
+            <PropertyRef Name="fechamax_nacimiento" />
+            <PropertyRef Name="estado" />
+          </Key>
+          <Property Name="fechamin_nacimiento" Type="datetime" Nullable="false" />
+          <Property Name="fechamax_nacimiento" Type="datetime" Nullable="false" />
+          <Property Name="fecha_default" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_final" Type="datetime" />
+        </EntityType>
         <EntityType Name="ESTCALZADA">
           <Key>
             <PropertyRef Name="CodECal" />
@@ -618,6 +631,7 @@
           <EntitySet Name="DISPOSITIVO" EntityType="Self.DISPOSITIVO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DispositivosMoviles" EntityType="Self.DispositivosMoviles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DISTRITO" EntityType="Self.DISTRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EDAD" EntityType="Self.EDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTCALZADA" EntityType="Self.ESTCALZADA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTCIVIL" EntityType="Self.ESTCIVIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTRUCTURA" EntityType="Self.ESTRUCTURA" Schema="dbo" store:Type="Tables" />
@@ -792,6 +806,7 @@
           <EntitySet Name="UNIDADES_ALCOHOL" EntityType="PC_HH_AndroidModel.UnidadesDeAlcohol" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="PC_HH_AndroidModel.VariablesParaBloqueo" />
           <EntitySet Name="DispositivosMoviles" EntityType="PC_HH_AndroidModel.DispositivosMoviles" />
+          <EntitySet Name="EDAD" EntityType="PC_HH_AndroidModel.Edad" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1314,6 +1329,19 @@
           <Property Name="IMEI" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Edad">
+          <Key>
+            <PropertyRef Name="FechaMinNacimiento" />
+            <PropertyRef Name="FechaMaxNacimiento" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="FechaMinNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaMaxNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaPorDefecto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1969,6 +1997,18 @@
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="IMEI" ColumnName="IMEI" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EDAD">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Edad">
+              <MappingFragment StoreEntitySet="EDAD">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaPorDefecto" ColumnName="fecha_default" />
+                <ScalarProperty Name="FechaMaxNacimiento" ColumnName="fechamax_nacimiento" />
+                <ScalarProperty Name="FechaMinNacimiento" ColumnName="fechamin_nacimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
