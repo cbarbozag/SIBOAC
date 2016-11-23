@@ -76,7 +76,12 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/toastr")
     @RenderSection("scripts", required: false)
+    <script>
+        var type = '@ViewBag.type';
+        var message = '@ViewBag.message';
+    </script>
+    @Scripts.Render("~/bundles/app")
 </body>
 </html>

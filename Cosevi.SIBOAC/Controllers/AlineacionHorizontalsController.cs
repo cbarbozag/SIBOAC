@@ -17,6 +17,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: AlineacionHorizontals
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.ALINHORI.ToList());
         }
         public string  Verificar(int id)
@@ -69,11 +71,16 @@ namespace Cosevi.SIBOAC.Controllers
                 if(mensaje =="")
                 {
                     db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
+
                 }
                 else
                 {
-                    TempData["Message"] = mensaje;
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
                     return View(alineacionHorizontal);
                 }
                 

@@ -53,7 +53,34 @@ function sortUnorderedList(ul, ascendant) {
     };
 };
 
+function showMessageIfExiste() {
+    if (message) {
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": true,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "7000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        toastr[type](message);
+    
+    }
+};
+
 $(document).ready(function () {
+    showMessageIfExiste();
     initializeMenuShowClickEvent();
     initializeMenuOptionSelectEvent();
     initializeMenuSearchEvents();
