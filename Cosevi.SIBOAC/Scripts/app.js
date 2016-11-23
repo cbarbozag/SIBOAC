@@ -59,7 +59,7 @@ function showMessageIfExiste() {
         toastr.options = {
             "closeButton": true,
             "debug": true,
-            "newestOnTop": false,
+            "newestOnTop": true,
             "progressBar": true,
             "positionClass": "toast-bottom-right",
             "preventDuplicates": false,

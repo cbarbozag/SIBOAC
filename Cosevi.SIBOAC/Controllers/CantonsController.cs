@@ -17,8 +17,22 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Cantons
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.CANTON.ToList());
         }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.CANTON.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
+        }
+
 
         // GET: Cantons/Details/5
         public ActionResult Details(int? id)
@@ -51,8 +65,20 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.CANTON.Add(canton);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(canton.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(canton);
+                }
             }
 
             return View(canton);

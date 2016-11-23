@@ -21,19 +21,16 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.ALINHORI.ToList());
         }
-        public string  Verificar(int id)
+
+        public string Verificar(int id)
         {
             string mensaje = "";
-           List<AlineacionHorizontal> alineacionTem = db.ALINHORI.ToList();
-            for (int i = 0; i < alineacionTem.Count; i++)
+            bool exist = db.ALINHORI.Any(x => x.Id == id);
+            if (exist)
             {
-                if (alineacionTem[i].Id == id)
-                {
-                    mensaje = "El codigo " + id+" ya esta registrado";
-                    return mensaje;
-                }
+                mensaje = "El codigo " + id + " ya esta registrado";
             }
-            return "";
+            return mensaje;
         }
 
         // GET: AlineacionHorizontals/Details/5
