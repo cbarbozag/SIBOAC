@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Rutas
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.Ruta.ToList());
+        }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.Ruta.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: Rutas/Details/5
@@ -51,8 +64,20 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Ruta.Add(ruta);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(ruta.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(ruta);
+                }
             }
 
             return View(ruta);

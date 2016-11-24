@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: OtroTipoTransportes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.OTROTIPOTRANSPORTE.ToList());
+        }
+
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.OTROTIPOTRANSPORTE.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: OtroTipoTransportes/Details/5
@@ -51,8 +64,20 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.OTROTIPOTRANSPORTE.Add(otroTipoTransporte);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(otroTipoTransporte.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(otroTipoTransporte);
+                }
             }
 
             return View(otroTipoTransporte);

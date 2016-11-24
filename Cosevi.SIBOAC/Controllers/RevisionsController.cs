@@ -20,6 +20,17 @@ namespace Cosevi.SIBOAC.Controllers
             return View(db.Revision.ToList());
         }
 
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.Revision.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
+        }
+
         // GET: Revisions/Details/5
         public ActionResult Details(string id)
         {
@@ -51,8 +62,20 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Revision.Add(revision);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(revision.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(revision);
+                }
             }
 
             return View(revision);

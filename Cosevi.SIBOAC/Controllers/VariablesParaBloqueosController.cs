@@ -17,8 +17,24 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: VariablesParaBloqueos
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.VARIABLESBLOQUEO.ToList());
         }
+
+
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.VARIABLESBLOQUEO.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
+        }
+
 
         // GET: VariablesParaBloqueos/Details/5
         public ActionResult Details(int? id)
@@ -51,8 +67,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.VARIABLESBLOQUEO.Add(variablesParaBloqueo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(variablesParaBloqueo.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(variablesParaBloqueo);
+                }
             }
 
             return View(variablesParaBloqueo);
