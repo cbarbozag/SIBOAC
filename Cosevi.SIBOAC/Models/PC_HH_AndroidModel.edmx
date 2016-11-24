@@ -257,6 +257,16 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="HORASLABORALES">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="estado" Type="nchar" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_final" Type="datetime" />
+        </EntityType>
         <EntityType Name="HOSPITAL">
           <Key>
             <PropertyRef Name="codhosp" />
@@ -475,6 +485,17 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="ROLPERSONAXTIPOIDEVEHICULO">
+          <Key>
+            <PropertyRef Name="codrol" />
+            <PropertyRef Name="codIdeVeh" />
+          </Key>
+          <Property Name="codrol" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="codIdeVeh" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="RUTA">
           <Key>
             <PropertyRef Name="ruta" />
@@ -594,6 +615,16 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="TIPOSVEHICULOS">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="TIPOVEH">
           <Key>
             <PropertyRef Name="CodVeh" />
@@ -648,6 +679,7 @@
           <EntitySet Name="ESTCIVIL" EntityType="Self.ESTCIVIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTRUCTURA" EntityType="Self.ESTRUCTURA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EXAMEN" EntityType="Self.EXAMEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HORASLABORALES" EntityType="Self.HORASLABORALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOSPITAL" EntityType="Self.HOSPITAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ILUMINACION" EntityType="Self.ILUMINACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INCONSISTENCIA" EntityType="Self.INCONSISTENCIA" Schema="dbo" store:Type="Tables" />
@@ -669,6 +701,7 @@
           <EntitySet Name="REVISION" EntityType="Self.REVISION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA" EntityType="Self.ROLPERSONA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLPERSONAXTIPOIDEVEHICULO" EntityType="Self.ROLPERSONAXTIPOIDEVEHICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RUTA" EntityType="Self.RUTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SENTIDO" EntityType="Self.SENTIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEÑALAMIENTO" EntityType="Self.SEÑALAMIENTO" Schema="dbo" store:Type="Tables" />
@@ -681,6 +714,7 @@
           <EntitySet Name="TIPODOCUMENTO" EntityType="Self.TIPODOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOIDEVEHICULO" EntityType="Self.TIPOIDEVEHICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOSEÑALEXISTE" EntityType="Self.TIPOSEÑALEXISTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOSVEHICULOS" EntityType="Self.TIPOSVEHICULOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOVEH" EntityType="Self.TIPOVEH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIDADES_ALCOHOL" EntityType="Self.UNIDADES_ALCOHOL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
@@ -821,6 +855,9 @@
           <EntitySet Name="DispositivosMoviles" EntityType="PC_HH_AndroidModel.DispositivosMoviles" />
           <EntitySet Name="EDAD" EntityType="PC_HH_AndroidModel.Edad" />
           <EntitySet Name="NACIONALIDAD" EntityType="PC_HH_AndroidModel.Nacionalidad" />
+          <EntitySet Name="HORASLABORALES" EntityType="PC_HH_AndroidModel.HorasLaborales" />
+          <EntitySet Name="ROLPERSONAXTIPOIDEVEHICULO" EntityType="PC_HH_AndroidModel.RolDePersonaPorTipoDeIdentificacionDeVehiculo" />
+          <EntitySet Name="TIPOSVEHICULOS" EntityType="PC_HH_AndroidModel.TiposDeVehiculos" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1368,6 +1405,37 @@
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
           <Property Name="Prioridad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="HorasLaborales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RolDePersonaPorTipoDeIdentificacionDeVehiculo">
+          <Key>
+            <PropertyRef Name="CodigoDeRol" />
+            <PropertyRef Name="CodigoDeIdentificacionVehiculo" />
+          </Key>
+          <Property Name="CodigoDeRol" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoDeIdentificacionVehiculo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TiposDeVehiculos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2047,6 +2115,39 @@
                 <ScalarProperty Name="Estado" ColumnName="estado" />
                 <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HORASLABORALES">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.HorasLaborales">
+              <MappingFragment StoreEntitySet="HORASLABORALES">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLPERSONAXTIPOIDEVEHICULO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolDePersonaPorTipoDeIdentificacionDeVehiculo">
+              <MappingFragment StoreEntitySet="ROLPERSONAXTIPOIDEVEHICULO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoDeIdentificacionVehiculo" ColumnName="codIdeVeh" />
+                <ScalarProperty Name="CodigoDeRol" ColumnName="codrol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOSVEHICULOS">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TiposDeVehiculos">
+              <MappingFragment StoreEntitySet="TIPOSVEHICULOS">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

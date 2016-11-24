@@ -86,5 +86,8 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<DispositivosMoviles> DispositivosMoviles { get; set; }
         public virtual DbSet<Edad> EDAD { get; set; }
         public virtual DbSet<Nacionalidad> NACIONALIDAD { get; set; }
+        public virtual DbSet<HorasLaborales> HORASLABORALES { get; set; }
+        public virtual DbSet<RolDePersonaPorTipoDeIdentificacionDeVehiculo> ROLPERSONAXTIPOIDEVEHICULO { get; set; }
+        public virtual DbSet<TiposDeVehiculos> TIPOSVEHICULOS { get; set; }
     }
 }
