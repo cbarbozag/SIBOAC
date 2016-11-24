@@ -194,6 +194,7 @@
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
     <Compile Include="Controllers\ExamenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorasLaboralesController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
     <Compile Include="Controllers\IluminacionsController.cs" />
     <Compile Include="Controllers\InconsistenciasController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Controllers\TipoDeSenalExistentesController.cs" />
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
+    <Compile Include="Controllers\TiposDeVehiculosController.cs" />
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -896,6 +898,16 @@
     <Content Include="Views\ClaseDePlacas\Details.cshtml" />
     <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
     <Content Include="Views\ClaseDePlacas\Index.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Create.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Delete.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Details.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Edit.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Index.cshtml" />
+    <Content Include="Views\HorasLaborales\Create.cshtml" />
+    <Content Include="Views\HorasLaborales\Delete.cshtml" />
+    <Content Include="Views\HorasLaborales\Details.cshtml" />
+    <Content Include="Views\HorasLaborales\Edit.cshtml" />
+    <Content Include="Views\HorasLaborales\Index.cshtml" />
     <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Create.cshtml" />
     <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Delete.cshtml" />
     <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Details.cshtml" />
@@ -904,6 +916,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Edads\" />
+    <Folder Include="Views\RolDePersonaPorTipoIdDeVehiculoes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

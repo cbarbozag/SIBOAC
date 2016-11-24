@@ -28,32 +28,64 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id.Trim() }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.Id.Trim() }) |
-            @if (item.Estado == "I")
-            {
-                @Html.ActionLink("Activar", "Delete", new { id = item.Id })
-            }
-            else
-            {
-                @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
-            }
-        </td>
-    </tr>
+    if (item.Estado == "I")
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id.Trim() }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.Id.Trim() }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr class="warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id.Trim() }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.Id.Trim() }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
 }
 
 </table>

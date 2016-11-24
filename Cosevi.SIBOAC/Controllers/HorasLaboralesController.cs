@@ -10,61 +10,63 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DanoesController : Controller
+    public class HorasLaboralesController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Danoes
+        // GET: HorasLaborales
         public ActionResult Index()
         {
-            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DAÑO.ToList());
+            return View(db.HORASLABORALES.ToList());
         }
+
+
 
         public string Verificar(int id)
         {
             string mensaje = "";
-            bool exist = db.DAÑO.Any(x => x.Id == id);
+            bool exist = db.HORASLABORALES.Any(x => x.Id == id);
             if (exist)
             {
-                mensaje = "El codigo " + id + " ya esta registrado";
+                mensaje = "El código " + id + " ya esta registrado";
             }
             return mensaje;
         }
 
-        // GET: Danoes/Details/5
+
+
+        // GET: HorasLaborales/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dano dano = db.DAÑO.Find(id);
-            if (dano == null)
+            HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
+            if (horasLaborales == null)
             {
                 return HttpNotFound();
             }
-            return View(dano);
+            return View(horasLaborales);
         }
 
-        // GET: Danoes/Create
+        // GET: HorasLaborales/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Danoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: HorasLaborales/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Dano dano)
+        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] HorasLaborales horasLaborales)
         {
             if (ModelState.IsValid)
             {
-                db.DAÑO.Add(dano);
-                string mensaje = Verificar(dano.Id);
+                db.HORASLABORALES.Add(horasLaborales);
+                string mensaje = Verificar(horasLaborales.Id);
                 if (mensaje == "")
                 {
                     db.SaveChanges();
@@ -78,69 +80,70 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
-                    return View(dano);
+                    return View(horasLaborales);
                 }
+
             }
 
-            return View(dano);
+            return View(horasLaborales);
         }
 
-        // GET: Danoes/Edit/5
+        // GET: HorasLaborales/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dano dano = db.DAÑO.Find(id);
-            if (dano == null)
+            HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
+            if (horasLaborales == null)
             {
                 return HttpNotFound();
             }
-            return View(dano);
+            return View(horasLaborales);
         }
 
-        // POST: Danoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: HorasLaborales/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Dano dano)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] HorasLaborales horasLaborales)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dano).State = EntityState.Modified;
+                db.Entry(horasLaborales).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(dano);
+            return View(horasLaborales);
         }
 
-        // GET: Danoes/Delete/5
+        // GET: HorasLaborales/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dano dano = db.DAÑO.Find(id);
-            if (dano == null)
+            HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
+            if (horasLaborales == null)
             {
                 return HttpNotFound();
             }
-            return View(dano);
+            return View(horasLaborales);
         }
 
-        // POST: Danoes/Delete/5
+        // POST: HorasLaborales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Dano dano = db.DAÑO.Find(id);
-            if (dano.Estado == "I")
-                dano.Estado = "A";
+            HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
+            if (horasLaborales.Estado == "A")
+                horasLaborales.Estado = "I";
             else
-                dano.Estado = "I";
+                horasLaborales.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

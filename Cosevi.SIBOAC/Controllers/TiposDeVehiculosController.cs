@@ -10,61 +10,63 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DanoesController : Controller
+    public class TiposDeVehiculosController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Danoes
+        // GET: TiposDeVehiculos
         public ActionResult Index()
         {
-            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DAÑO.ToList());
+            return View(db.TIPOSVEHICULOS.ToList());
         }
+
+
 
         public string Verificar(int id)
         {
             string mensaje = "";
-            bool exist = db.DAÑO.Any(x => x.Id == id);
+            bool exist = db.TIPOSVEHICULOS.Any(x => x.Id == id);
             if (exist)
             {
-                mensaje = "El codigo " + id + " ya esta registrado";
+                mensaje = "El código " + id + " ya esta registrado";
             }
             return mensaje;
         }
 
-        // GET: Danoes/Details/5
+
+
+        // GET: TiposDeVehiculos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dano dano = db.DAÑO.Find(id);
-            if (dano == null)
+            TiposDeVehiculos tiposDeVehiculos = db.TIPOSVEHICULOS.Find(id);
+            if (tiposDeVehiculos == null)
             {
                 return HttpNotFound();
             }
-            return View(dano);
+            return View(tiposDeVehiculos);
         }
 
-        // GET: Danoes/Create
+        // GET: TiposDeVehiculos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Danoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TiposDeVehiculos/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Dano dano)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Estado,FechaDeInicio,FechaDeFin")] TiposDeVehiculos tiposDeVehiculos)
         {
             if (ModelState.IsValid)
             {
-                db.DAÑO.Add(dano);
-                string mensaje = Verificar(dano.Id);
+                db.TIPOSVEHICULOS.Add(tiposDeVehiculos);
+                string mensaje = Verificar(tiposDeVehiculos.Id);
                 if (mensaje == "")
                 {
                     db.SaveChanges();
@@ -78,69 +80,70 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
-                    return View(dano);
+                    return View(tiposDeVehiculos);
                 }
+
             }
 
-            return View(dano);
+            return View(tiposDeVehiculos);
         }
 
-        // GET: Danoes/Edit/5
+        // GET: TiposDeVehiculos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dano dano = db.DAÑO.Find(id);
-            if (dano == null)
+            TiposDeVehiculos tiposDeVehiculos = db.TIPOSVEHICULOS.Find(id);
+            if (tiposDeVehiculos == null)
             {
                 return HttpNotFound();
             }
-            return View(dano);
+            return View(tiposDeVehiculos);
         }
 
-        // POST: Danoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TiposDeVehiculos/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Dano dano)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Estado,FechaDeInicio,FechaDeFin")] TiposDeVehiculos tiposDeVehiculos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dano).State = EntityState.Modified;
+                db.Entry(tiposDeVehiculos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(dano);
+            return View(tiposDeVehiculos);
         }
 
-        // GET: Danoes/Delete/5
+        // GET: TiposDeVehiculos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dano dano = db.DAÑO.Find(id);
-            if (dano == null)
+            TiposDeVehiculos tiposDeVehiculos = db.TIPOSVEHICULOS.Find(id);
+            if (tiposDeVehiculos == null)
             {
                 return HttpNotFound();
             }
-            return View(dano);
+            return View(tiposDeVehiculos);
         }
 
-        // POST: Danoes/Delete/5
+        // POST: TiposDeVehiculos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Dano dano = db.DAÑO.Find(id);
-            if (dano.Estado == "I")
-                dano.Estado = "A";
+            TiposDeVehiculos tiposDeVehiculos = db.TIPOSVEHICULOS.Find(id);
+            if (tiposDeVehiculos.Estado == "A")
+                tiposDeVehiculos.Estado = "I";
             else
-                dano.Estado = "I";
+                tiposDeVehiculos.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
