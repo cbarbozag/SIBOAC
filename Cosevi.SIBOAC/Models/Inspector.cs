@@ -11,16 +11,31 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Inspector
     {
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
+        [StringLength(4, ErrorMessage = "El código no debe ser mayor a 4 caracteres")]
         public string Id { get; set; }
+
         public string TipoDeIdentificacion { get; set; }
         public string Identificacion { get; set; }
+
+        [DisplayName("Nombre Completo")]
+        [Required(ErrorMessage = "El nombre es obligatorio")]
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
+
+        [DisplayName("Ad honorem")]
+        [Required(ErrorMessage = "El campo es obligatorio")]
+        [StringLength(10, ErrorMessage = "El código no debe ser mayor a 10 caracteres")]
         public string Adonoren { get; set; }
+
         public string FechaDeInclusion { get; set; }
         public string FechaDeExclusion { get; set; }
         public string DocumentoDeInclusion { get; set; }

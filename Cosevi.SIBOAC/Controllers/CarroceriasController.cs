@@ -68,11 +68,9 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {

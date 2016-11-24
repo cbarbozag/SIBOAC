@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Distritoes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.DISTRITO.ToList());
+        }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.DISTRITO.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: Distritoes/Details/5
@@ -51,8 +64,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DISTRITO.Add(distrito);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(distrito.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(distrito);
+                }
             }
 
             return View(distrito);
