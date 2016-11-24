@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Obstaculoes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.Obstaculo.ToList());
+        }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.Obstaculo.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: Obstaculoes/Details/5
@@ -51,8 +64,20 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Obstaculo.Add(obstaculo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(obstaculo.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(obstaculo);
+                }
             }
 
             return View(obstaculo);
