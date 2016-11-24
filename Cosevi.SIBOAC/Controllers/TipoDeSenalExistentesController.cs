@@ -17,8 +17,24 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoDeSenalExistentes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.TIPOSEÑALEXISTE.ToList());
         }
+
+
+
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.TIPOSEÑALEXISTE.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El código " + id + " ya esta registrado";
+            }
+            return mensaje;
+        }
+
 
         // GET: TipoDeSenalExistentes/Details/5
         public ActionResult Details(string id)
@@ -51,8 +67,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.TIPOSEÑALEXISTE.Add(tipoDeSenalExistente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(tipoDeSenalExistente.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeSenalExistente);
+                }
             }
 
             return View(tipoDeSenalExistente);

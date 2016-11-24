@@ -17,8 +17,23 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoDeAccidentes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.TIPOACCIDENTE.ToList());
         }
+
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.TIPOACCIDENTE.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El código " + id + " ya esta registrado";
+            }
+            return mensaje;
+        }
+
 
         // GET: TipoDeAccidentes/Details/5
         public ActionResult Details(int? id)
@@ -51,8 +66,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.TIPOACCIDENTE.Add(tipoDeAccidente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(tipoDeAccidente.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeAccidente);
+                }
             }
 
             return View(tipoDeAccidente);
