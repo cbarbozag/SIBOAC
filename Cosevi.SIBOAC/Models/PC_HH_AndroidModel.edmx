@@ -348,6 +348,18 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="NACIONALIDAD">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="estado" />
+          </Key>
+          <Property Name="codigo" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+          <Property Name="Prioridad" Type="int" />
+        </EntityType>
         <EntityType Name="Nombre_Menu">
           <Key>
             <PropertyRef Name="Nombre_Menu_Original" />
@@ -644,6 +656,7 @@
           <EntitySet Name="MANIOBRA" EntityType="Self.MANIOBRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOTIVONOFIRMA" EntityType="Self.MOTIVONOFIRMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NACIONALIDAD" EntityType="Self.NACIONALIDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nombre_Menu" EntityType="Self.Nombre_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OBSTACULO" EntityType="Self.OBSTACULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFICINAIMPUGNA" EntityType="Self.OFICINAIMPUGNA" Schema="dbo" store:Type="Tables" />
@@ -807,6 +820,7 @@
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="PC_HH_AndroidModel.VariablesParaBloqueo" />
           <EntitySet Name="DispositivosMoviles" EntityType="PC_HH_AndroidModel.DispositivosMoviles" />
           <EntitySet Name="EDAD" EntityType="PC_HH_AndroidModel.Edad" />
+          <EntitySet Name="NACIONALIDAD" EntityType="PC_HH_AndroidModel.Nacionalidad" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1342,6 +1356,18 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Nacionalidad">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <Property Name="Prioridad" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2009,6 +2035,18 @@
                 <ScalarProperty Name="FechaPorDefecto" ColumnName="fecha_default" />
                 <ScalarProperty Name="FechaMaxNacimiento" ColumnName="fechamax_nacimiento" />
                 <ScalarProperty Name="FechaMinNacimiento" ColumnName="fechamin_nacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NACIONALIDAD">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Nacionalidad">
+              <MappingFragment StoreEntitySet="NACIONALIDAD">
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
