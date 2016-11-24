@@ -17,6 +17,7 @@ namespace Cosevi.SIBOAC.Models
     public partial class MotivoPorNoFirmar
     {
         [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres.")]
         public string Id { get; set; }
 
@@ -26,7 +27,8 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
 
-
+        [DisplayName("Estado")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         public string Estado { get; set; }
 
