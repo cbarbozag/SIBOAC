@@ -21,17 +21,18 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string CodRol, string CodVeh)
         {
-            if (id == null)
+            if (CodRol == null|| CodVeh ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(id);
+            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(CodRol,CodVeh);
             if (rolDePersonaPorTipoDeIdentificacionDeVehiculo == null)
             {
                 return HttpNotFound();
             }
+            rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo = rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo.Trim();
             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
         }
 
@@ -59,20 +60,21 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Edit/5
-        public ActionResult Edit(string codRol, string CodIdVeh)
-        {
-            if (codRol == null || CodIdVeh ==null)
+        public ActionResult Edit(string codRol, string CodVeh)
+       {
+            if (codRol == null||CodVeh ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol, CodIdVeh);
+            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol, CodVeh);
             if (rolDePersonaPorTipoDeIdentificacionDeVehiculo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.codRol = new SelectList(db.ROLPERSONA, "codigo", "codigo", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol);
-            ViewBag.CodIdVeh = new SelectList(db.TIPOVEH, "CodVeh", "codVeh", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo);
-        
+            ViewBag.codRol = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion",codRol);
+            ViewBag.CodVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodVeh.ToString().Trim());
+
+            rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo = rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo.Trim();
             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
         }
 
@@ -83,25 +85,25 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CodigoDeRol,CodigoDeIdentificacionVehiculo,Estado,FechaDeInicio,FechaDeFin")] RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo)
         {
-            /* if (ModelState.IsValid)
+             if (ModelState.IsValid)
              {
                  db.Entry(rolDePersonaPorTipoDeIdentificacionDeVehiculo).State = EntityState.Modified;
                  db.SaveChanges();
                  return RedirectToAction("Index");
              }
-             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);*/
-            if(ModelState.IsValid)
+             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+          /*  if(ModelState.IsValid)
             {
                 string OCodRol = Request["CodigoDeRol"];
-                string OCodIdVeh = Request["CodigoDeIdentificacionVehiculo"];
+                string OCodIdVeh =Request["CodigoDeIdentificacionVehiculo"];
 
-                var services = db.ROLPERSONAXTIPOIDEVEHICULO.Where(a => a.CodigoDeRol == OCodRol)
-                                           .Where(a => a.CodigoDeIdentificacionVehiculo == OCodIdVeh);
+                //var services = db.ROLPERSONAXTIPOIDEVEHICULO.Where(a => a.CodigoDeRol == OCodRol)
+                //                           .Where(a => a.CodigoDeIdentificacionVehiculo == OCodIdVeh);
 
-                foreach (var s in services)
-                {
-                    db.ROLPERSONAXTIPOIDEVEHICULO.Remove(s);
-                }
+                //foreach (var s in services)
+                //{
+                //    db.ROLPERSONAXTIPOIDEVEHICULO.Remove(s);
+                //}
 
                 db.ROLPERSONAXTIPOIDEVEHICULO.Add(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
                 try
@@ -115,10 +117,10 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(rolDePersonaPorTipoDeIdentificacionDeVehiculo).State = EntityState.Modified;
                 return RedirectToAction("Index");
             }
-            ViewBag.codRol = new SelectList(db.ROLPERSONA, "codigo", "codigo", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol);
-            ViewBag.CodIdVeh = new SelectList(db.TIPOVEH, "CodVeh", "codVeh", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo);
+            ViewBag.codRol = new SelectList(db.ROLPERSONA, "Id", "Descripcion", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol);
+            ViewBag.CodVeh = new SelectList(db.TIPOVEH, "Id", "Descripcion", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo);
 
-            return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+            return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);*/
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Delete/5
