@@ -213,6 +213,7 @@
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
+    <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
@@ -895,6 +896,11 @@
     <Content Include="Views\ClaseDePlacas\Details.cshtml" />
     <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
     <Content Include="Views\ClaseDePlacas\Index.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
