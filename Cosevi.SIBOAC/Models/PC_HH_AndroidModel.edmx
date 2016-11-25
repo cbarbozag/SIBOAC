@@ -206,7 +206,6 @@
           <Key>
             <PropertyRef Name="fechamin_nacimiento" />
             <PropertyRef Name="fechamax_nacimiento" />
-            <PropertyRef Name="estado" />
           </Key>
           <Property Name="fechamin_nacimiento" Type="datetime" Nullable="false" />
           <Property Name="fechamax_nacimiento" Type="datetime" Nullable="false" />
@@ -361,13 +360,14 @@
         <EntityType Name="NACIONALIDAD">
           <Key>
             <PropertyRef Name="codigo" />
-            <PropertyRef Name="estado" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_fin" />
           </Key>
           <Property Name="codigo" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
-          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="fecha_inicio" Type="datetime" />
-          <Property Name="fecha_fin" Type="datetime" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_fin" Type="datetime" Nullable="false" />
           <Property Name="Prioridad" Type="int" />
         </EntityType>
         <EntityType Name="Nombre_Menu">
@@ -853,11 +853,11 @@
           <EntitySet Name="UNIDADES_ALCOHOL" EntityType="PC_HH_AndroidModel.UnidadesDeAlcohol" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="PC_HH_AndroidModel.VariablesParaBloqueo" />
           <EntitySet Name="DispositivosMoviles" EntityType="PC_HH_AndroidModel.DispositivosMoviles" />
-          <EntitySet Name="EDAD" EntityType="PC_HH_AndroidModel.Edad" />
-          <EntitySet Name="NACIONALIDAD" EntityType="PC_HH_AndroidModel.Nacionalidad" />
           <EntitySet Name="HORASLABORALES" EntityType="PC_HH_AndroidModel.HorasLaborales" />
           <EntitySet Name="ROLPERSONAXTIPOIDEVEHICULO" EntityType="PC_HH_AndroidModel.RolDePersonaPorTipoDeIdentificacionDeVehiculo" />
           <EntitySet Name="TIPOSVEHICULOS" EntityType="PC_HH_AndroidModel.TiposDeVehiculos" />
+          <EntitySet Name="NACIONALIDAD" EntityType="PC_HH_AndroidModel.Nacionalidad" />
+          <EntitySet Name="EDAD" EntityType="PC_HH_AndroidModel.Edad" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1381,32 +1381,6 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="Edad">
-          <Key>
-            <PropertyRef Name="FechaMinNacimiento" />
-            <PropertyRef Name="FechaMaxNacimiento" />
-            <PropertyRef Name="Estado" />
-          </Key>
-          <Property Name="FechaMinNacimiento" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FechaMaxNacimiento" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FechaPorDefecto" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
-          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Nacionalidad">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="FechaDeInicio" />
-            <PropertyRef Name="FechaDeFin" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" Nullable="false" />
-          <Property Name="FechaDeFin" Type="DateTime" Precision="3" Nullable="false" />
-          <Property Name="Prioridad" Type="Int32" />
-        </EntityType>
         <EntityType Name="HorasLaborales">
           <Key>
             <PropertyRef Name="Id" />
@@ -1435,6 +1409,31 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Nacionalidad">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="FechaDeInicio" />
+            <PropertyRef Name="FechaDeFin" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Prioridad" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Edad">
+          <Key>
+            <PropertyRef Name="FechaMinNacimiento" />
+            <PropertyRef Name="FechaMaxNacimiento" />
+          </Key>
+          <Property Name="FechaMinNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaMaxNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaPorDefecto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
@@ -2095,30 +2094,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EDAD">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Edad">
-              <MappingFragment StoreEntitySet="EDAD">
-                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
-                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="Estado" ColumnName="estado" />
-                <ScalarProperty Name="FechaPorDefecto" ColumnName="fecha_default" />
-                <ScalarProperty Name="FechaMaxNacimiento" ColumnName="fechamax_nacimiento" />
-                <ScalarProperty Name="FechaMinNacimiento" ColumnName="fechamin_nacimiento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NACIONALIDAD">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Nacionalidad">
-              <MappingFragment StoreEntitySet="NACIONALIDAD">
-                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
-                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
-                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="Estado" ColumnName="estado" />
-                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="Id" ColumnName="codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HORASLABORALES">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.HorasLaborales">
               <MappingFragment StoreEntitySet="HORASLABORALES">
@@ -2149,6 +2124,30 @@
                 <ScalarProperty Name="Estado" ColumnName="estado" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NACIONALIDAD">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Nacionalidad">
+              <MappingFragment StoreEntitySet="NACIONALIDAD">
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EDAD">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Edad">
+              <MappingFragment StoreEntitySet="EDAD">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaPorDefecto" ColumnName="fecha_default" />
+                <ScalarProperty Name="FechaMaxNacimiento" ColumnName="fechamax_nacimiento" />
+                <ScalarProperty Name="FechaMinNacimiento" ColumnName="fechamin_nacimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -84,10 +84,10 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<UnidadesDeAlcohol> UNIDADES_ALCOHOL { get; set; }
         public virtual DbSet<VariablesParaBloqueo> VARIABLESBLOQUEO { get; set; }
         public virtual DbSet<DispositivosMoviles> DispositivosMoviles { get; set; }
-        public virtual DbSet<Edad> EDAD { get; set; }
-        public virtual DbSet<Nacionalidad> NACIONALIDAD { get; set; }
         public virtual DbSet<HorasLaborales> HORASLABORALES { get; set; }
         public virtual DbSet<RolDePersonaPorTipoDeIdentificacionDeVehiculo> ROLPERSONAXTIPOIDEVEHICULO { get; set; }
         public virtual DbSet<TiposDeVehiculos> TIPOSVEHICULOS { get; set; }
+        public virtual DbSet<Nacionalidad> NACIONALIDAD { get; set; }
+        public virtual DbSet<Edad> EDAD { get; set; }
     }
 }
