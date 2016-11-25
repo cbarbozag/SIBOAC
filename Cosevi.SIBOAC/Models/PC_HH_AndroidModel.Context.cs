@@ -89,5 +89,18 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<TiposDeVehiculos> TIPOSVEHICULOS { get; set; }
         public virtual DbSet<Nacionalidad> NACIONALIDAD { get; set; }
         public virtual DbSet<Edad> EDAD { get; set; }
+        public virtual DbSet<ArticulosPorDepositosDeBienes> ARTICULOSXDEPOSITOSBIENES { get; set; }
+        public virtual DbSet<Autoridad> AUTORIDAD { get; set; }
+        public virtual DbSet<CatalogoDeArticulos> CATARTICULO { get; set; }
+        public virtual DbSet<DanioPorHospital> DAÑOXHOSPITAL { get; set; }
+        public virtual DbSet<DetallePorTipoDanio> DETALLETIPODAÑO { get; set; }
+        public virtual DbSet<DetallePorTipoSenial> DETALLETIPOSEÑAL { get; set; }
+        public virtual DbSet<DispositivoPorRolPersona> DISPXROLPERSONA { get; set; }
+        public virtual DbSet<Division> DIVISION { get; set; }
+        public virtual DbSet<OpcionFormularioPorArticulo> OPCFORMULARIOXARTICULO { get; set; }
+        public virtual DbSet<RutasPorDistritos> RUTASXDISTRITO { get; set; }
+        public virtual DbSet<TipoDeIdentificacionPorTipoVehiculo> TIPOIDEVEHICULOXTIPOVEH { get; set; }
+        public virtual DbSet<TiposPorDocumento> TIPOSXDOCUMENTO { get; set; }
+        public virtual DbSet<ValidarCarroceria> VALIDARCARROCERIA { get; set; }
     }
 }
