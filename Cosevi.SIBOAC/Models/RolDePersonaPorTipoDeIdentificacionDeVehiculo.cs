@@ -19,5 +19,41 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }
+
+        public string  DescripcionRol
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                if (CodigoDeRol != "")
+                {
+                    RolPorPersona rolPersona = db.ROLPERSONA.Find(CodigoDeRol);
+                    if (rolPersona.Id == CodigoDeRol)
+                    {
+                        return Descripcion = rolPersona.Descripcion;
+                    }
+                }
+                return Descripcion;                     
+            }
+        }
+
+        public string DescripcionTipoVehiculo
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                if (CodigoDeIdentificacionVehiculo != "")
+                {
+                    TipoDeVehiculo TipoVeh = db.TIPOVEH.Find(Convert.ToInt32(CodigoDeIdentificacionVehiculo.Trim()));
+                    if (TipoVeh.Id.ToString() == CodigoDeIdentificacionVehiculo.Trim())
+                    {
+                        return Descripcion = TipoVeh.Descripcion;
+                    }
+                }
+                return Descripcion;
+            }
+        }
     }
 }
