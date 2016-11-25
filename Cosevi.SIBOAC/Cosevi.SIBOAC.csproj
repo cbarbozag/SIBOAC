@@ -203,6 +203,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
+    <Compile Include="Controllers\NacionalidadsController.cs" />
     <Compile Include="Controllers\NombreDeMenusController.cs" />
     <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
     <Compile Include="Controllers\MotivoPorNoFirmarsController.cs" />
@@ -913,6 +914,11 @@
     <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Details.cshtml" />
     <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Edit.cshtml" />
     <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\Nacionalidads\Create.cshtml" />
+    <Content Include="Views\Nacionalidads\Delete.cshtml" />
+    <Content Include="Views\Nacionalidads\Details.cshtml" />
+    <Content Include="Views\Nacionalidads\Edit.cshtml" />
+    <Content Include="Views\Nacionalidads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
