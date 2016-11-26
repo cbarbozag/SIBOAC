@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.Autoridad>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+        </th>
+        <th>
+            @Html.Label("Desc")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeFin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario  /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

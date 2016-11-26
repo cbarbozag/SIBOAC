@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\AutoridadsController.cs" />
     <Compile Include="Controllers\CantonsController.cs" />
     <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
     <Compile Include="Controllers\CarrilsController.cs" />
@@ -983,6 +984,11 @@
     <Content Include="Views\Edads\Details.cshtml" />
     <Content Include="Views\Edads\Edit.cshtml" />
     <Content Include="Views\Edads\Index.cshtml" />
+    <Content Include="Views\Autoridads\Create.cshtml" />
+    <Content Include="Views\Autoridads\Delete.cshtml" />
+    <Content Include="Views\Autoridads\Details.cshtml" />
+    <Content Include="Views\Autoridads\Edit.cshtml" />
+    <Content Include="Views\Autoridads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

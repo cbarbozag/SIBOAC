@@ -20,5 +20,24 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }
+
+        public string DescripcionCodigoOpcionFormulario
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                {
+                    OpcionDeFormulario opcionDeFormulario = db.OPCIONFORMULARIO.Find(CodigoOpcionFormulario);
+                    if (opcionDeFormulario.Id == CodigoOpcionFormulario)
+                    {
+                        return Descripcion = opcionDeFormulario.Descripcion;
+                    }
+                }
+                return Descripcion;
+            }
+        }
+
     }
 }
+
