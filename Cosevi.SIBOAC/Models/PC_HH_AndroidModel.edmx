@@ -213,6 +213,13 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="DEPOSITOBIENES">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="DEPOSITOPLACA">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -969,6 +976,7 @@
           <EntitySet Name="DAÑOXHOSPITAL" EntityType="Self.DAÑOXHOSPITAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELEGACION" EntityType="Self.DELEGACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELITO" EntityType="Self.DELITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPOSITOBIENES" EntityType="Self.DEPOSITOBIENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DEPOSITOPLACA" EntityType="Self.DEPOSITOPLACA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DEPOSITOVEHICULO" EntityType="Self.DEPOSITOVEHICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DETALLETIPODAÑO" EntityType="Self.DETALLETIPODAÑO" Schema="dbo" store:Type="Tables" />
@@ -1218,6 +1226,7 @@
             <End Role="RolSIBOAC" EntitySet="RolSIBOAC" />
             <End Role="UsuarioSIBOAC" EntitySet="UsuarioSIBOAC" />
           </AssociationSet>
+          <EntitySet Name="DEPOSITOBIENES" EntityType="PC_HH_AndroidModel.DepositosBienes" />
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2041,6 +2050,13 @@
           <End Type="PC_HH_AndroidModel.RolSIBOAC" Role="RolSIBOAC" Multiplicity="*" />
           <End Type="PC_HH_AndroidModel.UsuarioSIBOAC" Role="UsuarioSIBOAC" Multiplicity="*" />
         </Association>
+        <EntityType Name="DepositosBienes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2989,6 +3005,14 @@
               <ScalarProperty Name="Id" ColumnName="IdRol" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="DEPOSITOBIENES">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DepositosBienes">
+              <MappingFragment StoreEntitySet="DEPOSITOBIENES">
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
