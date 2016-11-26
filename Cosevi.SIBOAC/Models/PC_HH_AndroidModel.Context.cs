@@ -108,5 +108,6 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<RolSIBOAC> RolSIBOAC { get; set; }
         public virtual DbSet<TipoVehiculoPorCodigoPorClase> TIPOVEHCODIGOCLASE { get; set; }
         public virtual DbSet<UsuarioSIBOAC> UsuarioSIBOAC { get; set; }
+        public virtual DbSet<DepositosBienes> DEPOSITOBIENES { get; set; }
     }
 }
