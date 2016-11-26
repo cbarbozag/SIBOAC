@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.Division>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCanton)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoOficinaImpugna)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionCanton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionOficina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeFin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin/* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
