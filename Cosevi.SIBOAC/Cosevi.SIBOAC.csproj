@@ -191,6 +191,7 @@
     <Compile Include="Controllers\DispositivoesController.cs" />
     <Compile Include="Controllers\DispositivosMovilesController.cs" />
     <Compile Include="Controllers\DistritoesController.cs" />
+    <Compile Include="Controllers\EdadsController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
     <Compile Include="Controllers\ExamenController.cs" />
@@ -977,15 +978,14 @@
     <Content Include="Views\Nacionalidads\Details.cshtml" />
     <Content Include="Views\Nacionalidads\Edit.cshtml" />
     <Content Include="Views\Nacionalidads\Index.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Create.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Delete.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Details.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Edit.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Index.cshtml" />
+    <Content Include="Views\Edads\Create.cshtml" />
+    <Content Include="Views\Edads\Delete.cshtml" />
+    <Content Include="Views\Edads\Details.cshtml" />
+    <Content Include="Views\Edads\Edit.cshtml" />
+    <Content Include="Views\Edads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Edads\" />
     <Folder Include="Views\RolDePersonaPorTipoIdDeVehiculoes\" />
   </ItemGroup>
   <ItemGroup>
