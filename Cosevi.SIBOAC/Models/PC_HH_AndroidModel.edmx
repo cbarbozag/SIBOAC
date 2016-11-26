@@ -25,6 +25,35 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="ARTICULOSXDEPOSITOSBIENES">
+          <Key>
+            <PropertyRef Name="CodDepositoBienes" />
+            <PropertyRef Name="CodFormulario" />
+            <PropertyRef Name="CodArticulo" />
+            <PropertyRef Name="Conducta" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_final" />
+          </Key>
+          <Property Name="CodDepositoBienes" Type="int" Nullable="false" />
+          <Property Name="CodFormulario" Type="int" Nullable="false" />
+          <Property Name="CodArticulo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Conducta" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_final" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="AUTORIDAD">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="codformulario" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="35" />
+          <Property Name="codformulario" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="CANTON">
           <Key>
             <PropertyRef Name="CodCan" />
@@ -64,6 +93,23 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CATARTICULO">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="conducta" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_final" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="conducta" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_final" Type="datetime" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="multa" Type="money" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="puntos" Type="int" Nullable="false" />
+          <Property Name="totalidad" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CIRCULACION">
           <Key>
@@ -113,12 +159,36 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="CONSECUTIVONUMEROMARCO">
+          <Key>
+            <PropertyRef Name="ConsecutivoNumeroMarco" />
+            <PropertyRef Name="ConsecutivoNumeroMarcoAnt" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_final" />
+          </Key>
+          <Property Name="ConsecutivoNumeroMarco" Type="int" Nullable="false" />
+          <Property Name="ConsecutivoNumeroMarcoAnt" Type="int" Nullable="false" />
+          <Property Name="estado" Type="nchar" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_final" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="DAÑO">
           <Key>
             <PropertyRef Name="CodDaño" />
           </Key>
           <Property Name="CodDaño" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAÑOXHOSPITAL">
+          <Key>
+            <PropertyRef Name="codhosp" />
+            <PropertyRef Name="coddaño" />
+          </Key>
+          <Property Name="codhosp" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="coddaño" Type="int" Nullable="false" />
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
@@ -163,6 +233,30 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="DETALLETIPODAÑO">
+          <Key>
+            <PropertyRef Name="codigod" />
+            <PropertyRef Name="codigotd" />
+          </Key>
+          <Property Name="codigod" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="codigotd" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DETALLETIPOSEÑAL">
+          <Key>
+            <PropertyRef Name="codigose" />
+            <PropertyRef Name="codsenex" />
+          </Key>
+          <Property Name="codigose" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="codsenex" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="DIRECCION">
           <Key>
             <PropertyRef Name="coddir" />
@@ -192,6 +286,14 @@
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
           <Property Name="Activo" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="DISPXROLPERSONA">
+          <Key>
+            <PropertyRef Name="CodRol" />
+            <PropertyRef Name="CodDisp" />
+          </Key>
+          <Property Name="CodRol" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CodDisp" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="DISTRITO">
           <Key>
             <PropertyRef Name="CodDis" />
@@ -201,6 +303,19 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DIVISION">
+          <Key>
+            <PropertyRef Name="Canton" />
+            <PropertyRef Name="Impugnacion" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_fin" />
+          </Key>
+          <Property Name="Canton" Type="int" Nullable="false" />
+          <Property Name="Impugnacion" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_fin" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="EDAD">
           <Key>
@@ -398,6 +513,21 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="OPCFORMULARIOXARTICULO">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="conducta" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_final" />
+            <PropertyRef Name="codformulario" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="conducta" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_final" Type="datetime" Nullable="false" />
+          <Property Name="codformulario" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+        </EntityType>
         <EntityType Name="OPCIONFORMULARIO">
           <Key>
             <PropertyRef Name="codformulario" />
@@ -417,6 +547,14 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OpcionSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoOpcion" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="96" Nullable="false" />
         </EntityType>
         <EntityType Name="OTROTIPOTRANSPORTE">
           <Key>
@@ -465,6 +603,14 @@
           <Property Name="codrev" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="RolOpcionSIBOAC">
+          <Key>
+            <PropertyRef Name="IdRol" />
+            <PropertyRef Name="IdOpcion" />
+          </Key>
+          <Property Name="IdRol" Type="int" Nullable="false" />
+          <Property Name="IdOpcion" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ROLPERSONA">
           <Key>
             <PropertyRef Name="codigo" />
@@ -474,6 +620,17 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ROLPERSONA_OPCIONFORMULARIO">
+          <Key>
+            <PropertyRef Name="codRol" />
+            <PropertyRef Name="codFormulario" />
+          </Key>
+          <Property Name="codRol" Type="int" Nullable="false" />
+          <Property Name="codFormulario" Type="int" Nullable="false" />
+          <Property Name="estado" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_fin" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ROLPERSONA_VEHICULO">
           <Key>
@@ -496,6 +653,22 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="RolSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoRol" Type="varchar" MaxLength="32" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolUsuarioSIBOAC">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="RUTA">
           <Key>
             <PropertyRef Name="ruta" />
@@ -503,6 +676,19 @@
           <Property Name="ruta" Type="int" Nullable="false" />
           <Property Name="inicia" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="termina" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RUTASXDISTRITO">
+          <Key>
+            <PropertyRef Name="codigo_distrito" />
+            <PropertyRef Name="codigo_ruta" />
+            <PropertyRef Name="km" />
+          </Key>
+          <Property Name="codigo_distrito" Type="int" Nullable="false" />
+          <Property Name="codigo_ruta" Type="int" Nullable="false" />
+          <Property Name="km" Type="int" Nullable="false" />
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
@@ -605,6 +791,17 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="TIPOIDEVEHICULOXTIPOVEH">
+          <Key>
+            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Codveh" />
+          </Key>
+          <Property Name="Codigo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Codveh" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="TIPOSEÑALEXISTE">
           <Key>
             <PropertyRef Name="codigose" />
@@ -625,6 +822,17 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="TIPOSXDOCUMENTO">
+          <Key>
+            <PropertyRef Name="codigod" />
+            <PropertyRef Name="codigot" />
+          </Key>
+          <Property Name="codigod" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="codigot" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="TIPOVEH">
           <Key>
             <PropertyRef Name="CodVeh" />
@@ -632,6 +840,21 @@
           <Property Name="CodVeh" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TIPOVEHCODIGOCLASE">
+          <Key>
+            <PropertyRef Name="codigotipovehic" />
+            <PropertyRef Name="clase" />
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="codigovehiculo" />
+          </Key>
+          <Property Name="codigotipovehic" Type="int" Nullable="false" />
+          <Property Name="clase" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="codigo" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="codigovehiculo" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
@@ -644,6 +867,31 @@
           <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
           <Property Name="fecha_fin" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="UsuarioSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaDeUltimoCambio" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VALIDARCARROCERIA">
+          <Key>
+            <PropertyRef Name="CodigoTipoIdentificacion" />
+            <PropertyRef Name="CodigoTipoVehiculo" />
+            <PropertyRef Name="CodigoCarroceria" />
+          </Key>
+          <Property Name="CodigoTipoIdentificacion" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="CodigoTipoVehiculo" Type="int" Nullable="false" />
+          <Property Name="CodigoCarroceria" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="VARIABLESBLOQUEO">
           <Key>
             <PropertyRef Name="TiempoBloqueo" />
@@ -653,27 +901,84 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <Association Name="FK_RolOpcionOpcionSIBOAC">
+          <End Role="OpcionSIBOAC" Type="Self.OpcionSIBOAC" Multiplicity="1" />
+          <End Role="RolOpcionSIBOAC" Type="Self.RolOpcionSIBOAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpcionSIBOAC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolOpcionSIBOAC">
+              <PropertyRef Name="IdOpcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolOpcionRolSIBOAC">
+          <End Role="RolSIBOAC" Type="Self.RolSIBOAC" Multiplicity="1" />
+          <End Role="RolOpcionSIBOAC" Type="Self.RolOpcionSIBOAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolSIBOAC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolOpcionSIBOAC">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolUsuarioRolSIBOAC">
+          <End Role="RolSIBOAC" Type="Self.RolSIBOAC" Multiplicity="1" />
+          <End Role="RolUsuarioSIBOAC" Type="Self.RolUsuarioSIBOAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolSIBOAC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolUsuarioSIBOAC">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolUsuarioUsuarioSIBOAC">
+          <End Role="UsuarioSIBOAC" Type="Self.UsuarioSIBOAC" Multiplicity="1" />
+          <End Role="RolUsuarioSIBOAC" Type="Self.RolUsuarioSIBOAC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioSIBOAC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolUsuarioSIBOAC">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="Self.ARTICULOSXDEPOSITOSBIENES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AUTORIDAD" EntityType="Self.AUTORIDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CANTON" EntityType="Self.CANTON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARACUBI" EntityType="Self.CARACUBI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARRIL" EntityType="Self.CARRIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARROCERIA" EntityType="Self.CARROCERIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATARTICULO" EntityType="Self.CATARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CIRCULACION" EntityType="Self.CIRCULACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLASE" EntityType="Self.CLASE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CODIGO" EntityType="Self.CODIGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONDCALZADA" EntityType="Self.CONDCALZADA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONDPERSONA" EntityType="Self.CONDPERSONA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONSECUTIVONUMEROMARCO" EntityType="Self.CONSECUTIVONUMEROMARCO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DAÑO" EntityType="Self.DAÑO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAÑOXHOSPITAL" EntityType="Self.DAÑOXHOSPITAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELEGACION" EntityType="Self.DELEGACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELITO" EntityType="Self.DELITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DEPOSITOPLACA" EntityType="Self.DEPOSITOPLACA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DEPOSITOVEHICULO" EntityType="Self.DEPOSITOVEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLETIPODAÑO" EntityType="Self.DETALLETIPODAÑO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DETALLETIPOSEÑAL" EntityType="Self.DETALLETIPOSEÑAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DISPOSITIVO" EntityType="Self.DISPOSITIVO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DispositivosMoviles" EntityType="Self.DispositivosMoviles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISPXROLPERSONA" EntityType="Self.DISPXROLPERSONA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DISTRITO" EntityType="Self.DISTRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIVISION" EntityType="Self.DIVISION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EDAD" EntityType="Self.EDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTCALZADA" EntityType="Self.ESTCALZADA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTCIVIL" EntityType="Self.ESTCIVIL" Schema="dbo" store:Type="Tables" />
@@ -692,17 +997,24 @@
           <EntitySet Name="Nombre_Menu" EntityType="Self.Nombre_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OBSTACULO" EntityType="Self.OBSTACULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFICINAIMPUGNA" EntityType="Self.OFICINAIMPUGNA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OPCFORMULARIOXARTICULO" EntityType="Self.OPCFORMULARIOXARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCIONFORMULARIO" EntityType="Self.OPCIONFORMULARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCIONPLANO" EntityType="Self.OPCIONPLANO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OpcionSIBOAC" EntityType="Self.OpcionSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTROTIPOTRANSPORTE" EntityType="Self.OTROTIPOTRANSPORTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEATON" EntityType="Self.PEATON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PLANTILLAS" EntityType="Self.PLANTILLAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REVISION" EntityType="Self.REVISION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolOpcionSIBOAC" EntityType="Self.RolOpcionSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA" EntityType="Self.ROLPERSONA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLPERSONA_OPCIONFORMULARIO" EntityType="Self.ROLPERSONA_OPCIONFORMULARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONAXTIPOIDEVEHICULO" EntityType="Self.ROLPERSONAXTIPOIDEVEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolSIBOAC" EntityType="Self.RolSIBOAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolUsuarioSIBOAC" EntityType="Self.RolUsuarioSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RUTA" EntityType="Self.RUTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RUTASXDISTRITO" EntityType="Self.RUTASXDISTRITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SENTIDO" EntityType="Self.SENTIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEÑALAMIENTO" EntityType="Self.SEÑALAMIENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
@@ -713,11 +1025,32 @@
           <EntitySet Name="TIPOCALZADA" EntityType="Self.TIPOCALZADA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPODOCUMENTO" EntityType="Self.TIPODOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOIDEVEHICULO" EntityType="Self.TIPOIDEVEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOIDEVEHICULOXTIPOVEH" EntityType="Self.TIPOIDEVEHICULOXTIPOVEH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOSEÑALEXISTE" EntityType="Self.TIPOSEÑALEXISTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOSVEHICULOS" EntityType="Self.TIPOSVEHICULOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOSXDOCUMENTO" EntityType="Self.TIPOSXDOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOVEH" EntityType="Self.TIPOVEH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOVEHCODIGOCLASE" EntityType="Self.TIPOVEHCODIGOCLASE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIDADES_ALCOHOL" EntityType="Self.UNIDADES_ALCOHOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioSIBOAC" EntityType="Self.UsuarioSIBOAC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RolOpcionOpcionSIBOAC" Association="Self.FK_RolOpcionOpcionSIBOAC">
+            <End Role="OpcionSIBOAC" EntitySet="OpcionSIBOAC" />
+            <End Role="RolOpcionSIBOAC" EntitySet="RolOpcionSIBOAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolOpcionRolSIBOAC" Association="Self.FK_RolOpcionRolSIBOAC">
+            <End Role="RolSIBOAC" EntitySet="RolSIBOAC" />
+            <End Role="RolOpcionSIBOAC" EntitySet="RolOpcionSIBOAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolUsuarioRolSIBOAC" Association="Self.FK_RolUsuarioRolSIBOAC">
+            <End Role="RolSIBOAC" EntitySet="RolSIBOAC" />
+            <End Role="RolUsuarioSIBOAC" EntitySet="RolUsuarioSIBOAC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolUsuarioUsuarioSIBOAC" Association="Self.FK_RolUsuarioUsuarioSIBOAC">
+            <End Role="UsuarioSIBOAC" EntitySet="UsuarioSIBOAC" />
+            <End Role="RolUsuarioSIBOAC" EntitySet="RolUsuarioSIBOAC" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -858,6 +1191,33 @@
           <EntitySet Name="TIPOSVEHICULOS" EntityType="PC_HH_AndroidModel.TiposDeVehiculos" />
           <EntitySet Name="NACIONALIDAD" EntityType="PC_HH_AndroidModel.Nacionalidad" />
           <EntitySet Name="EDAD" EntityType="PC_HH_AndroidModel.Edad" />
+          <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="PC_HH_AndroidModel.ArticulosPorDepositosDeBienes" />
+          <EntitySet Name="AUTORIDAD" EntityType="PC_HH_AndroidModel.Autoridad" />
+          <EntitySet Name="CATARTICULO" EntityType="PC_HH_AndroidModel.CatalogoDeArticulos" />
+          <EntitySet Name="DAÑOXHOSPITAL" EntityType="PC_HH_AndroidModel.DanioPorHospital" />
+          <EntitySet Name="DETALLETIPODAÑO" EntityType="PC_HH_AndroidModel.DetallePorTipoDanio" />
+          <EntitySet Name="DETALLETIPOSEÑAL" EntityType="PC_HH_AndroidModel.DetallePorTipoSenial" />
+          <EntitySet Name="DISPXROLPERSONA" EntityType="PC_HH_AndroidModel.DispositivoPorRolPersona" />
+          <EntitySet Name="DIVISION" EntityType="PC_HH_AndroidModel.Division" />
+          <EntitySet Name="OPCFORMULARIOXARTICULO" EntityType="PC_HH_AndroidModel.OpcionFormularioPorArticulo" />
+          <EntitySet Name="RUTASXDISTRITO" EntityType="PC_HH_AndroidModel.RutasPorDistritos" />
+          <EntitySet Name="TIPOIDEVEHICULOXTIPOVEH" EntityType="PC_HH_AndroidModel.TipoDeIdentificacionPorTipoVehiculo" />
+          <EntitySet Name="TIPOSXDOCUMENTO" EntityType="PC_HH_AndroidModel.TiposPorDocumento" />
+          <EntitySet Name="VALIDARCARROCERIA" EntityType="PC_HH_AndroidModel.ValidarCarroceria" />
+          <EntitySet Name="CONSECUTIVONUMEROMARCO" EntityType="PC_HH_AndroidModel.ConsecutivoNumeroMarco" />
+          <EntitySet Name="OpcionSIBOAC" EntityType="PC_HH_AndroidModel.OpcionSIBOAC" />
+          <EntitySet Name="ROLPERSONA_OPCIONFORMULARIO" EntityType="PC_HH_AndroidModel.RolPorPersonaOpcionFormulario" />
+          <EntitySet Name="RolSIBOAC" EntityType="PC_HH_AndroidModel.RolSIBOAC" />
+          <EntitySet Name="TIPOVEHCODIGOCLASE" EntityType="PC_HH_AndroidModel.TipoVehiculoPorCodigoPorClase" />
+          <EntitySet Name="UsuarioSIBOAC" EntityType="PC_HH_AndroidModel.UsuarioSIBOAC" />
+          <AssociationSet Name="RolOpcionSIBOAC" Association="PC_HH_AndroidModel.RolOpcionSIBOAC">
+            <End Role="OpcionSIBOAC" EntitySet="OpcionSIBOAC" />
+            <End Role="RolSIBOAC" EntitySet="RolSIBOAC" />
+          </AssociationSet>
+          <AssociationSet Name="RolUsuarioSIBOAC" Association="PC_HH_AndroidModel.RolUsuarioSIBOAC">
+            <End Role="RolSIBOAC" EntitySet="RolSIBOAC" />
+            <End Role="UsuarioSIBOAC" EntitySet="UsuarioSIBOAC" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1437,6 +1797,250 @@
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="ArticulosPorDepositosDeBienes">
+          <Key>
+            <PropertyRef Name="CodigoDepositosBienes" />
+            <PropertyRef Name="CodigoOpcionFormulario" />
+            <PropertyRef Name="CodigoArticulo" />
+            <PropertyRef Name="Conducta" />
+            <PropertyRef Name="FechaDeInicio" />
+            <PropertyRef Name="FechaDeFin" />
+          </Key>
+          <Property Name="CodigoDepositosBienes" Type="Int32" Nullable="false" />
+          <Property Name="CodigoOpcionFormulario" Type="Int32" Nullable="false" />
+          <Property Name="CodigoArticulo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Autoridad">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CodigoOpcionFormulario" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoOpcionFormulario" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CatalogoDeArticulos">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Conducta" />
+            <PropertyRef Name="FechaDeInicio" />
+            <PropertyRef Name="FechaDeFin" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Multa" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Puntos" Type="Int32" Nullable="false" />
+          <Property Name="Totalidad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DanioPorHospital">
+          <Key>
+            <PropertyRef Name="IdHospital" />
+            <PropertyRef Name="IdDanio" />
+          </Key>
+          <Property Name="IdHospital" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IdDanio" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DetallePorTipoDanio">
+          <Key>
+            <PropertyRef Name="CodigoDanio" />
+            <PropertyRef Name="CodigoTipoDanio" />
+          </Key>
+          <Property Name="CodigoDanio" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoTipoDanio" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DetallePorTipoSenial">
+          <Key>
+            <PropertyRef Name="CodigoTipoSenial" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CodigoTipoSenial" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DispositivoPorRolPersona">
+          <Key>
+            <PropertyRef Name="CodigoRolPersona" />
+            <PropertyRef Name="CodigoDispositivo" />
+          </Key>
+          <Property Name="CodigoRolPersona" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoDispositivo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="IdCanton" />
+            <PropertyRef Name="CodigoOficinaImpugna" />
+            <PropertyRef Name="FechaDeInicio" />
+            <PropertyRef Name="FechaDeFin" />
+          </Key>
+          <Property Name="IdCanton" Type="Int32" Nullable="false" />
+          <Property Name="CodigoOficinaImpugna" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="OpcionFormularioPorArticulo">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Conducta" />
+            <PropertyRef Name="FechaDeInicio" />
+            <PropertyRef Name="FechaDeFin" />
+            <PropertyRef Name="CodigoOpcionFormulario" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoOpcionFormulario" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RutasPorDistritos">
+          <Key>
+            <PropertyRef Name="CodigoDistrito" />
+            <PropertyRef Name="CodigoRuta" />
+            <PropertyRef Name="Km" />
+          </Key>
+          <Property Name="CodigoDistrito" Type="Int32" Nullable="false" />
+          <Property Name="CodigoRuta" Type="Int32" Nullable="false" />
+          <Property Name="Km" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TipoDeIdentificacionPorTipoVehiculo">
+          <Key>
+            <PropertyRef Name="CodigoTipoIDEVehiculo" />
+            <PropertyRef Name="CodigoTipoVeh" />
+          </Key>
+          <Property Name="CodigoTipoIDEVehiculo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoTipoVeh" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TiposPorDocumento">
+          <Key>
+            <PropertyRef Name="CodigoTipoDocumento" />
+            <PropertyRef Name="CodigoTipoDeIdentificacion" />
+          </Key>
+          <Property Name="CodigoTipoDocumento" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoTipoDeIdentificacion" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ValidarCarroceria">
+          <Key>
+            <PropertyRef Name="CodigoTipoIdVehiculo" />
+            <PropertyRef Name="CodigoTiposVehiculos" />
+            <PropertyRef Name="CodigoCarroceria" />
+          </Key>
+          <Property Name="CodigoTipoIdVehiculo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoTiposVehiculos" Type="Int32" Nullable="false" />
+          <Property Name="CodigoCarroceria" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ConsecutivoNumeroMarco">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdAnterior" />
+            <PropertyRef Name="FechaDeInicio" />
+            <PropertyRef Name="FechaDeFin" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdAnterior" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="OpcionSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoOpcion" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="96" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RolSIBOAC" Relationship="PC_HH_AndroidModel.RolOpcionSIBOAC" FromRole="OpcionSIBOAC" ToRole="RolSIBOAC" />
+        </EntityType>
+        <EntityType Name="RolPorPersonaOpcionFormulario">
+          <Key>
+            <PropertyRef Name="CodigoRolPersona" />
+            <PropertyRef Name="CodigoOpcionFormulario" />
+          </Key>
+          <Property Name="CodigoRolPersona" Type="Int32" Nullable="false" />
+          <Property Name="CodigoOpcionFormulario" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RolSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoRol" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OpcionSIBOAC" Relationship="PC_HH_AndroidModel.RolOpcionSIBOAC" FromRole="RolSIBOAC" ToRole="OpcionSIBOAC" />
+          <NavigationProperty Name="UsuarioSIBOAC" Relationship="PC_HH_AndroidModel.RolUsuarioSIBOAC" FromRole="RolSIBOAC" ToRole="UsuarioSIBOAC" />
+        </EntityType>
+        <EntityType Name="TipoVehiculoPorCodigoPorClase">
+          <Key>
+            <PropertyRef Name="CodigoTiposVehiculos" />
+            <PropertyRef Name="CodigoClasePlaca" />
+            <PropertyRef Name="CodigoCodigoPlaca" />
+            <PropertyRef Name="CodigoTipoVeh" />
+          </Key>
+          <Property Name="CodigoTiposVehiculos" Type="Int32" Nullable="false" />
+          <Property Name="CodigoClasePlaca" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoCodigoPlaca" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CodigoTipoVeh" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UsuarioSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoUsuario" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaDeUltimoCambio" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RolSIBOAC" Relationship="PC_HH_AndroidModel.RolUsuarioSIBOAC" FromRole="UsuarioSIBOAC" ToRole="RolSIBOAC" />
+        </EntityType>
+        <Association Name="RolOpcionSIBOAC">
+          <End Type="PC_HH_AndroidModel.OpcionSIBOAC" Role="OpcionSIBOAC" Multiplicity="*" />
+          <End Type="PC_HH_AndroidModel.RolSIBOAC" Role="RolSIBOAC" Multiplicity="*" />
+        </Association>
+        <Association Name="RolUsuarioSIBOAC">
+          <End Type="PC_HH_AndroidModel.RolSIBOAC" Role="RolSIBOAC" Multiplicity="*" />
+          <End Type="PC_HH_AndroidModel.UsuarioSIBOAC" Role="UsuarioSIBOAC" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2151,6 +2755,240 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ARTICULOSXDEPOSITOSBIENES">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ArticulosPorDepositosDeBienes">
+              <MappingFragment StoreEntitySet="ARTICULOSXDEPOSITOSBIENES">
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Conducta" ColumnName="Conducta" />
+                <ScalarProperty Name="CodigoArticulo" ColumnName="CodArticulo" />
+                <ScalarProperty Name="CodigoOpcionFormulario" ColumnName="CodFormulario" />
+                <ScalarProperty Name="CodigoDepositosBienes" ColumnName="CodDepositoBienes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AUTORIDAD">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Autoridad">
+              <MappingFragment StoreEntitySet="AUTORIDAD">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoOpcionFormulario" ColumnName="codformulario" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATARTICULO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.CatalogoDeArticulos">
+              <MappingFragment StoreEntitySet="CATARTICULO">
+                <ScalarProperty Name="Totalidad" ColumnName="totalidad" />
+                <ScalarProperty Name="Puntos" ColumnName="puntos" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Multa" ColumnName="multa" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Conducta" ColumnName="conducta" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAÑOXHOSPITAL">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DanioPorHospital">
+              <MappingFragment StoreEntitySet="DAÑOXHOSPITAL">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="IdDanio" ColumnName="coddaño" />
+                <ScalarProperty Name="IdHospital" ColumnName="codhosp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLETIPODAÑO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DetallePorTipoDanio">
+              <MappingFragment StoreEntitySet="DETALLETIPODAÑO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="CodigoTipoDanio" ColumnName="codigotd" />
+                <ScalarProperty Name="CodigoDanio" ColumnName="codigod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETALLETIPOSEÑAL">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DetallePorTipoSenial">
+              <MappingFragment StoreEntitySet="DETALLETIPOSEÑAL">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="codsenex" />
+                <ScalarProperty Name="CodigoTipoSenial" ColumnName="codigose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DISPXROLPERSONA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DispositivoPorRolPersona">
+              <MappingFragment StoreEntitySet="DISPXROLPERSONA">
+                <ScalarProperty Name="CodigoDispositivo" ColumnName="CodDisp" />
+                <ScalarProperty Name="CodigoRolPersona" ColumnName="CodRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIVISION">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Division">
+              <MappingFragment StoreEntitySet="DIVISION">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoOficinaImpugna" ColumnName="Impugnacion" />
+                <ScalarProperty Name="IdCanton" ColumnName="Canton" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPCFORMULARIOXARTICULO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OpcionFormularioPorArticulo">
+              <MappingFragment StoreEntitySet="OPCFORMULARIOXARTICULO">
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoOpcionFormulario" ColumnName="codformulario" />
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Conducta" ColumnName="conducta" />
+                <ScalarProperty Name="Id" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RUTASXDISTRITO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RutasPorDistritos">
+              <MappingFragment StoreEntitySet="RUTASXDISTRITO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="Km" ColumnName="km" />
+                <ScalarProperty Name="CodigoRuta" ColumnName="codigo_ruta" />
+                <ScalarProperty Name="CodigoDistrito" ColumnName="codigo_distrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOIDEVEHICULOXTIPOVEH">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TipoDeIdentificacionPorTipoVehiculo">
+              <MappingFragment StoreEntitySet="TIPOIDEVEHICULOXTIPOVEH">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoTipoVeh" ColumnName="Codveh" />
+                <ScalarProperty Name="CodigoTipoIDEVehiculo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOSXDOCUMENTO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TiposPorDocumento">
+              <MappingFragment StoreEntitySet="TIPOSXDOCUMENTO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoTipoDeIdentificacion" ColumnName="codigot" />
+                <ScalarProperty Name="CodigoTipoDocumento" ColumnName="codigod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VALIDARCARROCERIA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ValidarCarroceria">
+              <MappingFragment StoreEntitySet="VALIDARCARROCERIA">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoCarroceria" ColumnName="CodigoCarroceria" />
+                <ScalarProperty Name="CodigoTiposVehiculos" ColumnName="CodigoTipoVehiculo" />
+                <ScalarProperty Name="CodigoTipoIdVehiculo" ColumnName="CodigoTipoIdentificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONSECUTIVONUMEROMARCO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ConsecutivoNumeroMarco">
+              <MappingFragment StoreEntitySet="CONSECUTIVONUMEROMARCO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_final" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="IdAnterior" ColumnName="ConsecutivoNumeroMarcoAnt" />
+                <ScalarProperty Name="Id" ColumnName="ConsecutivoNumeroMarco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OpcionSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OpcionSIBOAC">
+              <MappingFragment StoreEntitySet="OpcionSIBOAC">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CodigoOpcion" ColumnName="CodigoOpcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLPERSONA_OPCIONFORMULARIO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolPorPersonaOpcionFormulario">
+              <MappingFragment StoreEntitySet="ROLPERSONA_OPCIONFORMULARIO">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoOpcionFormulario" ColumnName="codFormulario" />
+                <ScalarProperty Name="CodigoRolPersona" ColumnName="codRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolSIBOAC">
+              <MappingFragment StoreEntitySet="RolSIBOAC">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CodigoRol" ColumnName="CodigoRol" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPOVEHCODIGOCLASE">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TipoVehiculoPorCodigoPorClase">
+              <MappingFragment StoreEntitySet="TIPOVEHCODIGOCLASE">
+                <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="Estado" ColumnName="estado" />
+                <ScalarProperty Name="CodigoTipoVeh" ColumnName="codigovehiculo" />
+                <ScalarProperty Name="CodigoCodigoPlaca" ColumnName="codigo" />
+                <ScalarProperty Name="CodigoClasePlaca" ColumnName="clase" />
+                <ScalarProperty Name="CodigoTiposVehiculos" ColumnName="codigotipovehic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.UsuarioSIBOAC">
+              <MappingFragment StoreEntitySet="UsuarioSIBOAC">
+                <ScalarProperty Name="FechaDeUltimoCambio" ColumnName="FechaDeUltimoCambio" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RolOpcionSIBOAC" TypeName="PC_HH_AndroidModel.RolOpcionSIBOAC" StoreEntitySet="RolOpcionSIBOAC">
+            <EndProperty Name="RolSIBOAC">
+              <ScalarProperty Name="Id" ColumnName="IdRol" />
+            </EndProperty>
+            <EndProperty Name="OpcionSIBOAC">
+              <ScalarProperty Name="Id" ColumnName="IdOpcion" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RolUsuarioSIBOAC" TypeName="PC_HH_AndroidModel.RolUsuarioSIBOAC" StoreEntitySet="RolUsuarioSIBOAC">
+            <EndProperty Name="UsuarioSIBOAC">
+              <ScalarProperty Name="Id" ColumnName="IdUsuario" />
+            </EndProperty>
+            <EndProperty Name="RolSIBOAC">
+              <ScalarProperty Name="Id" ColumnName="IdRol" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
