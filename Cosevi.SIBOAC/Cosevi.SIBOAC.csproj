@@ -178,6 +178,7 @@
     <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
     <Compile Include="Controllers\CarrilsController.cs" />
     <Compile Include="Controllers\CarroceriasController.cs" />
+    <Compile Include="Controllers\CatalogoDeArticulosController.cs" />
     <Compile Include="Controllers\CirculacionsController.cs" />
     <Compile Include="Controllers\ClaseDePlacasController.cs" />
     <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
@@ -992,6 +993,11 @@
     <Content Include="Views\Autoridads\Details.cshtml" />
     <Content Include="Views\Autoridads\Edit.cshtml" />
     <Content Include="Views\Autoridads\Index.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Create.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Delete.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Details.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Edit.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
