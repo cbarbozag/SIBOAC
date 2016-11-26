@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
     <Compile Include="Controllers\CantonsController.cs" />
     <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
     <Compile Include="Controllers\CarrilsController.cs" />
@@ -986,6 +987,16 @@
     <Content Include="Views\Edads\Details.cshtml" />
     <Content Include="Views\Edads\Edit.cshtml" />
     <Content Include="Views\Edads\Index.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Create.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Delete.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Details.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Edit.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Index.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Create.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Delete.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Details.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Edit.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,62 @@
+﻿@model Cosevi.SIBOAC.Models.ArticulosPorDepositosDeBienes
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ArticulosPorDepositosDeBienes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoDepositosBienes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionDepositosBienes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoFormulario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conducta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conducta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { CodDepositoBienes = Model.CodigoDepositosBienes, CodFormulario = Model.CodigoOpcionFormulario, CodArticulo = Model.CodigoArticulo, Conducta = Model.Conducta, FechaInicio = Model.FechaDeInicio, FechaFin = Model.FechaDeFin }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
