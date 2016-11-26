@@ -169,6 +169,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Content\ValidarCarroceriasController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
@@ -976,6 +977,11 @@
     <Content Include="Views\Nacionalidads\Details.cshtml" />
     <Content Include="Views\Nacionalidads\Edit.cshtml" />
     <Content Include="Views\Nacionalidads\Index.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Create.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Delete.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Details.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Edit.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
