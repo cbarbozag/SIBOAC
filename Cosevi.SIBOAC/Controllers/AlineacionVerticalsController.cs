@@ -142,7 +142,6 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 alineacionVertical.Estado = "A";
             db.SaveChanges();
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
