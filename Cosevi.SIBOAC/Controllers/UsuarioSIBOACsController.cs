@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class AutoridadsController : Controller
+    public class UsuarioSIBOACsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Autoridads
+        // GET: UsuarioSIBOACs
         public ActionResult Index()
         {
-            return View(db.AUTORIDAD.ToList());
+            return View(db.UsuarioSIBOAC.ToList());
         }
 
-        // GET: Autoridads/Details/5
-        public ActionResult Details(string codigo, int codFormulario)
+        // GET: UsuarioSIBOACs/Details/5
+        public ActionResult Details(int? id)
         {
-            if (codigo == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
+            if (usuarioSIBOAC == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(usuarioSIBOAC);
         }
 
-        // GET: Autoridads/Create
+        // GET: UsuarioSIBOACs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Autoridads/Create
+        // POST: UsuarioSIBOACs/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,CodigoOpcionFormulario,Estado,FechaDeInicio,FechaDeFin")] Autoridad autoridad)
+        public ActionResult Create([Bind(Include = "Id,CodigoUsuario,Nombre,Estado,Clave,FechaDeCreacion,FechaDeUltimoCambio")] UsuarioSIBOAC usuarioSIBOAC)
         {
             if (ModelState.IsValid)
             {
-                db.AUTORIDAD.Add(autoridad);
+                db.UsuarioSIBOAC.Add(usuarioSIBOAC);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(autoridad);
+            return View(usuarioSIBOAC);
         }
 
-        // GET: Autoridads/Edit/5
-        public ActionResult Edit(string codigo, int codFormulario)
+        // GET: UsuarioSIBOACs/Edit/5
+        public ActionResult Edit(int? id)
         {
-            if (codigo == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
+            if (usuarioSIBOAC == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(usuarioSIBOAC);
         }
 
-        // POST: Autoridads/Edit/5
+        // POST: UsuarioSIBOACs/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,CodigoOpcionFormulario,Estado,FechaDeInicio,FechaDeFin")] Autoridad autoridad)
+        public ActionResult Edit([Bind(Include = "Id,CodigoUsuario,Nombre,Estado,Clave,FechaDeCreacion,FechaDeUltimoCambio")] UsuarioSIBOAC usuarioSIBOAC)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(autoridad).State = EntityState.Modified;
+                db.Entry(usuarioSIBOAC).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(autoridad);
+            return View(usuarioSIBOAC);
         }
 
-        // GET: Autoridads/Delete/5
-        public ActionResult Delete(string codigo, int codFormulario)
+        // GET: UsuarioSIBOACs/Delete/5
+        public ActionResult Delete(int? id)
         {
-            if (codigo == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
+            if (usuarioSIBOAC == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(usuarioSIBOAC);
         }
 
-        // POST: Autoridads/Delete/5
+        // POST: UsuarioSIBOACs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string codigo, int codFormulario)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            db.AUTORIDAD.Remove(autoridad);
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
+            db.UsuarioSIBOAC.Remove(usuarioSIBOAC);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

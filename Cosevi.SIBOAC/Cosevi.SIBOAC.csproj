@@ -190,6 +190,7 @@
     <Compile Include="Controllers\DelitoesController.cs" />
     <Compile Include="Controllers\DepositoDePlacasController.cs" />
     <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\DetallePorTipoDaniosController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
     <Compile Include="Controllers\DispositivosMovilesController.cs" />
@@ -216,6 +217,7 @@
     <Compile Include="Controllers\ObstaculoesController.cs" />
     <Compile Include="Controllers\OpcionDeFormulariosController.cs" />
     <Compile Include="Controllers\OpcionesDelPlanoesController.cs" />
+    <Compile Include="Controllers\OpcionSIBOACsController.cs" />
     <Compile Include="Controllers\OtroTipoTransportesController.cs" />
     <Compile Include="Controllers\PeatonsController.cs" />
     <Compile Include="Controllers\PlantillasController.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
     <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
+    <Compile Include="Controllers\RolSIBOACsController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
@@ -241,7 +244,9 @@
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
     <Compile Include="Controllers\TiposDeVehiculosController.cs" />
+    <Compile Include="Controllers\TipoVehiculoPorCodigoPorClasesController.cs" />
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
+    <Compile Include="Controllers\UsuarioSIBOACsController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1007,11 +1012,6 @@
     <Content Include="Views\Autoridads\Details.cshtml" />
     <Content Include="Views\Autoridads\Edit.cshtml" />
     <Content Include="Views\Autoridads\Index.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Create.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Delete.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Details.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Edit.cshtml" />
-    <Content Include="Views\ValidarCarrocerias\Index.cshtml" />
     <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Create.cshtml" />
     <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Delete.cshtml" />
     <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Details.cshtml" />
@@ -1027,6 +1027,31 @@
     <Content Include="Views\RolPorPersonaOpcionFormularios\Details.cshtml" />
     <Content Include="Views\RolPorPersonaOpcionFormularios\Edit.cshtml" />
     <Content Include="Views\RolPorPersonaOpcionFormularios\Index.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Create.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Delete.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Details.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Edit.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Index.cshtml" />
+    <Content Include="Views\RolSIBOACs\Create.cshtml" />
+    <Content Include="Views\RolSIBOACs\Delete.cshtml" />
+    <Content Include="Views\RolSIBOACs\Details.cshtml" />
+    <Content Include="Views\RolSIBOACs\Edit.cshtml" />
+    <Content Include="Views\RolSIBOACs\Index.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Create.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Delete.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Details.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Edit.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Index.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Create.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Delete.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Details.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Edit.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Index.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Create.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Delete.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Details.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Edit.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
