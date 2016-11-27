@@ -19,5 +19,38 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
         public System.DateTime FechaDeInicio { get; set; }
         public System.DateTime FechaDeFin { get; set; }
+
+        public string DescripcionCanton
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                Canton canton = db.CANTON.Find(IdCanton);
+                if (canton.Id == IdCanton)
+                {
+                     return Descripcion = canton.Descripcion;
+                }
+              
+                return Descripcion;
+            }
+        }
+
+        public string DescripcionOficina
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                OficinaParaImpugnar oficina = db.OficinaParaImpugnars.Find(CodigoOficinaImpugna);
+                if (oficina.Id == CodigoOficinaImpugna)
+                {
+                    return Descripcion = oficina.Descripcion;
+                }
+
+                return Descripcion;
+            }
+        }
+
     }
 }
