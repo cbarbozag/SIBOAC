@@ -240,6 +240,7 @@
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
     <Compile Include="Controllers\TiposDeVehiculosController.cs" />
+    <Compile Include="Controllers\TiposPorDocumentoesController.cs" />
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1021,6 +1022,11 @@
     <Content Include="Views\CatalogoDeArticulos\Details.cshtml" />
     <Content Include="Views\CatalogoDeArticulos\Edit.cshtml" />
     <Content Include="Views\CatalogoDeArticulos\Index.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Create.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Delete.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Details.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Edit.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
