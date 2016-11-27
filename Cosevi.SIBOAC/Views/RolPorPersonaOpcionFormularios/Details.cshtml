@@ -1,33 +1,29 @@
-﻿@model Cosevi.SIBOAC.Models.Autoridad
+﻿@model Cosevi.SIBOAC.Models.RolPorPersonaOpcionFormulario
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Autoridad</h4>
+    <h4>RolPorPersonaOpcionFormulario</h4>
     <hr />
     <dl class="dl-horizontal">
 
-
         <dt>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.CodigoRolPersona)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Id)
+            @Html.DisplayFor(model => model.CodigoRolPersona)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.Label("Descripcion RolPersona")
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.DescripcionCodigoRolPersona)
         </dd>
 
         <dt>
@@ -39,12 +35,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Descripcion OpcionFormulario")
+            @Html.Label("Descripcion OpcionFormulario")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DescripcionCodigoOpcionFormulario)
         </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Estado)
@@ -71,12 +68,8 @@
         </dd>
 
     </dl>
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { codRol = Model.CodigoRolPersona, codFormulario = Model.CodigoOpcionFormulario /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

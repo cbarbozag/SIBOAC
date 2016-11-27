@@ -222,6 +222,7 @@
     <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
+    <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
@@ -999,6 +1000,11 @@
     <Content Include="Views\CatalogoDeArticulos\Details.cshtml" />
     <Content Include="Views\CatalogoDeArticulos\Edit.cshtml" />
     <Content Include="Views\CatalogoDeArticulos\Index.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Create.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Delete.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Details.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Edit.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

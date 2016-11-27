@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.Autoridad>
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.RolPorPersonaOpcionFormulario>
 
 @{
     ViewBag.Title = "Index";
@@ -12,18 +12,20 @@
 </p>
 <table class="table">
     <tr>
+
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.CodigoRolPersona)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.Label("Desc RolPersona")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
         </th>
         <th>
-            @Html.Label("DescripcionOpcionFormulario")
+            @Html.Label("Desc OpcionFormulario")
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -38,11 +40,12 @@
 
 @foreach (var item in Model) {
     <tr>
+
         <td>
-            @Html.DisplayFor(modelItem => item.Id)
+            @Html.DisplayFor(modelItem => item.CodigoRolPersona)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoRolPersona)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
@@ -60,9 +63,9 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario  /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ })
         </td>
     </tr>
 }
