@@ -233,6 +233,7 @@
     <Compile Include="Controllers\TipoDeCalzadasController.cs" />
     <Compile Include="Controllers\TipoDeDocumentoesController.cs" />
     <Compile Include="Controllers\TipoDeEstructurasController.cs" />
+    <Compile Include="Controllers\TipoDeIdentificacionPorTipoVehiculoesController.cs" />
     <Compile Include="Controllers\TipoDeIdentificacionsController.cs" />
     <Compile Include="Controllers\TipoDeLicenciasController.cs" />
     <Compile Include="Controllers\TipoDeSenalExistentesController.cs" />
@@ -1010,6 +1011,16 @@
     <Content Include="Views\ValidarCarrocerias\Details.cshtml" />
     <Content Include="Views\ValidarCarrocerias\Edit.cshtml" />
     <Content Include="Views\ValidarCarrocerias\Index.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Create.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Delete.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Details.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Edit.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Index.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Create.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Delete.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Details.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Edit.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
