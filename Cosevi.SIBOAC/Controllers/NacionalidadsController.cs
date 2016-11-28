@@ -17,17 +17,34 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Nacionalidads
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.NACIONALIDAD.ToList());
         }
 
-        // GET: Nacionalidads/Details/5
-        public ActionResult Details(string id)
+        public string Verificar(string id, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (id == null)
+            string mensaje = "";
+            bool exist = this.db.NACIONALIDAD.Any( x => x.Id == id && x.FechaDeInicio == FechaInicio && x.FechaDeFin == FechaFin);
+
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+
+            }
+
+            return mensaje;
+
+        }
+
+        // GET: Nacionalidads/Details/5
+        public ActionResult Details(string id, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (id == null || FechaFin == null || FechaFin== null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id);
+            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
             if (nacionalidad == null)
             {
                 return HttpNotFound();
@@ -51,21 +68,35 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.NACIONALIDAD.Add(nacionalidad);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(nacionalidad.Id, nacionalidad.FechaDeInicio, nacionalidad.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(nacionalidad);
+                }
             }
 
             return View(nacionalidad);
         }
 
         // GET: Nacionalidads/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (id == null)
+            if (id == null || FechaFin == null || FechaFin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id);
+            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
             if (nacionalidad == null)
             {
                 return HttpNotFound();
@@ -90,13 +121,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Nacionalidads/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string id, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (id == null)
+            if (id == null || FechaFin == null || FechaFin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id);
+            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
             if (nacionalidad == null)
             {
                 return HttpNotFound();
@@ -107,10 +138,13 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: Nacionalidads/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id, DateTime FechaInicio, DateTime FechaFin)
         {
-            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id);
-            db.NACIONALIDAD.Remove(nacionalidad);
+            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
+            if (nacionalidad.Estado == "A")
+                nacionalidad.Estado = "I";
+            else
+                nacionalidad.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
