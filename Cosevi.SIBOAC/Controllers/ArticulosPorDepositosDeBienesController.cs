@@ -160,7 +160,6 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
             ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
-            db.ARTICULOSXDEPOSITOSBIENES.Remove(articulosPorDepositosDeBienes);
             if (articulosPorDepositosDeBienes.Estado == "A")
                 articulosPorDepositosDeBienes.Estado = "I";
             else

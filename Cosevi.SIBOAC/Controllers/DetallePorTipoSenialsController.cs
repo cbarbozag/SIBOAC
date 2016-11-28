@@ -17,17 +17,19 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DetallePorTipoSenials
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.DETALLETIPOSEÑAL.ToList());
         }
 
         // GET: DetallePorTipoSenials/Details/5
-        public ActionResult Details(string codigose, string codsenex )
+        public ActionResult Details(string codsenex, string id )
         {
-            if (codigose == null || codsenex == null )
+            if (codsenex == null || id == null )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codigose, codsenex);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, id);
             if (detallePorTipoSenial == null)
             {
                 return HttpNotFound();
@@ -51,21 +53,36 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DETALLETIPOSEÑAL.Add(detallePorTipoSenial);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(detallePorTipoSenial.CodigoTipoSenial,
+                                          detallePorTipoSenial.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(detallePorTipoSenial);
+                }
             }
 
             return View(detallePorTipoSenial);
         }
 
         // GET: DetallePorTipoSenials/Edit/5
-        public ActionResult Edit(string codigose, string codsenex)
+        public ActionResult Edit(string codsenex, string id)
         {
-            if (codigose == null || codsenex == null)
+            if (codsenex == null || id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codigose, codsenex);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex,id);
             if (detallePorTipoSenial == null)
             {
                 return HttpNotFound();
@@ -90,13 +107,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DetallePorTipoSenials/Delete/5
-        public ActionResult Delete(string codigose, string codsenex)
+        public ActionResult Delete(string codsenex, string id)
         {
-            if (codigose == null || codsenex == null)
+            if (codsenex == null || id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codigose, codsenex);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, id);
             if (detallePorTipoSenial == null)
             {
                 return HttpNotFound();
@@ -107,10 +124,13 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: DetallePorTipoSenials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string codigose, string codsenex)
+        public ActionResult DeleteConfirmed(string codsenex, string id)
         {
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codigose, codsenex);
-            db.DETALLETIPOSEÑAL.Remove(detallePorTipoSenial);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex,id);
+            if (detallePorTipoSenial.Estado == "A")
+                detallePorTipoSenial.Estado = "I";
+            else
+                detallePorTipoSenial.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -122,6 +142,21 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public string Verificar(string codsenex, string id)
+        {
+            string mensaje = "";
+            bool exist = db.DETALLETIPOSEÑAL.Any(x => x.CodigoTipoSenial == codsenex
+                                                    && x.Id == id);
+            if (exist)
+            {
+                mensaje = "El registro con los siguientes datos ya se encuentra registrados:" +
+                           " código de Tipo Señal" + codsenex +
+                           ", código" + id;
+
+            }
+            return mensaje;
         }
     }
 }
