@@ -38,6 +38,16 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Autoridads/Create
         public ActionResult Create()
         {
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsOpcionformulario = db.OPCIONFORMULARIO
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Descripcion
+
+              });
+
+            ViewBag.ComboOpcionformulario = itemsOpcionformulario;
             return View();
         }
 
@@ -59,9 +69,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Autoridads/Edit/5
-        public ActionResult Edit(string codigo, int codFormulario)
+        public ActionResult Edit(string codigo, int? codFormulario)
         {
-            if (codigo == null)
+            if (codigo == null|| codFormulario == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -70,6 +80,9 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboOpcionformulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codFormulario);
+
             return View(autoridad);
         }
 
@@ -90,9 +103,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Autoridads/Delete/5
-        public ActionResult Delete(string codigo, int codFormulario)
+        public ActionResult Delete(string codigo, int? codFormulario)
         {
-            if (codigo == null)
+            if (codigo == null||codFormulario ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -110,7 +123,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigo, int codFormulario)
         {
             Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            db.AUTORIDAD.Remove(autoridad);
+            if (autoridad.Estado == "A")
+                autoridad.Estado = "I";
+            else
+                autoridad.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
