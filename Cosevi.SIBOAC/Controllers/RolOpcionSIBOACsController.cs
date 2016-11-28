@@ -21,13 +21,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolOpcionSIBOACs/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? idRol, int? idOpcion)
         {
-            if (id == null)
+            if (idRol == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(id);
+            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(idRol, idOpcion);
             if (rolOpcionSIBOAC == null)
             {
                 return HttpNotFound();
@@ -59,13 +59,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolOpcionSIBOACs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? idRol, int? idOpcion)
         {
-            if (id == null)
+            if (idRol == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(id);
+            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(idRol, idOpcion);
             if (rolOpcionSIBOAC == null)
             {
                 return HttpNotFound();
@@ -90,13 +90,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolOpcionSIBOACs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? idRol, int? idOpcion)
         {
-            if (id == null)
+            if (idRol == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(id);
+            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(idRol, idOpcion);
             if (rolOpcionSIBOAC == null)
             {
                 return HttpNotFound();
@@ -107,9 +107,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: RolOpcionSIBOACs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? idRol, int? idOpcion)
         {
-            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(id);
+            RolOpcionSIBOAC rolOpcionSIBOAC = db.RolOpcionSIBOAC.Find(idRol, idOpcion);
             db.RolOpcionSIBOAC.Remove(rolOpcionSIBOAC);
             db.SaveChanges();
             return RedirectToAction("Index");

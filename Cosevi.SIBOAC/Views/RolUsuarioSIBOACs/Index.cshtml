@@ -12,15 +12,29 @@
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdRol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.IdRol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUsuario)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { idRol = item.IdRol, idUsuario  = item.IdUsuario  /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { idRol = item.IdRol, idUsuario = item.IdUsuario /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { idRol = item.IdRol, idUsuario = item.IdUsuario /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

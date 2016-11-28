@@ -21,13 +21,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolUsuarioSIBOACs/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? idRol, int? idUsuario)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(idRol, idUsuario);
             if (rolUsuarioSIBOAC == null)
             {
                 return HttpNotFound();
@@ -59,13 +59,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolUsuarioSIBOACs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? idRol, int? idUsuario)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(idRol, idUsuario);
             if (rolUsuarioSIBOAC == null)
             {
                 return HttpNotFound();
@@ -90,13 +90,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolUsuarioSIBOACs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? idRol, int? idUsuario)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+           // if (id == null)
+           // {
+          //      return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+          //  }
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(idRol, idUsuario);
             if (rolUsuarioSIBOAC == null)
             {
                 return HttpNotFound();
@@ -107,9 +107,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: RolUsuarioSIBOACs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? idRol, int? idUsuario)
         {
-            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(idRol, idUsuario);
             db.RolUsuarioSIBOAC.Remove(rolUsuarioSIBOAC);
             db.SaveChanges();
             return RedirectToAction("Index");

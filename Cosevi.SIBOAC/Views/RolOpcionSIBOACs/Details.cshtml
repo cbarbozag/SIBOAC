@@ -11,9 +11,28 @@
     <h4>RolOpcionSIBOAC</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdRol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdRol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdOpcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdOpcion)
+        </dd>
+
+
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { idRol = Model.IdRol, idOpcion = Model.IdOpcion /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
