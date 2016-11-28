@@ -248,6 +248,7 @@
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
     <Compile Include="Controllers\TiposDeVehiculosController.cs" />
+    <Compile Include="Controllers\TiposPorDocumentoesController.cs" />
     <Compile Include="Controllers\TipoVehiculoPorCodigoPorClasesController.cs" />
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
     <Compile Include="Controllers\UsuarioSIBOACsController.cs" />
