@@ -229,7 +229,6 @@
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
     <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
-    <Compile Include="Controllers\RolPorPersonas1Controller.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
     <Compile Include="Controllers\RolSIBOACsController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
