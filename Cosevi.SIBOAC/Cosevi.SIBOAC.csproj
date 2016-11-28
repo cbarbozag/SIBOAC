@@ -180,6 +180,7 @@
     <Compile Include="Controllers\CarrilsController.cs" />
     <Compile Include="Controllers\CarroceriasController.cs" />
     <Compile Include="Controllers\CatalogoDeArticulosController.cs" />
+    <Compile Include="Controllers\Circulacions1Controller.cs" />
     <Compile Include="Controllers\CirculacionsController.cs" />
     <Compile Include="Controllers\ClaseDePlacasController.cs" />
     <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Controllers\ObstaculoesController.cs" />
     <Compile Include="Controllers\OpcionDeFormulariosController.cs" />
     <Compile Include="Controllers\OpcionesDelPlanoesController.cs" />
+    <Compile Include="Controllers\OpcionSIBOACsController.cs" />
     <Compile Include="Controllers\OtroTipoTransportesController.cs" />
     <Compile Include="Controllers\PeatonsController.cs" />
     <Compile Include="Controllers\PlantillasController.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
     <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
+    <Compile Include="Controllers\RolSIBOACsController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
     <Compile Include="Controllers\RutasPorDistritosController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
@@ -249,6 +252,7 @@
     <Compile Include="Controllers\TiposPorDocumentoesController.cs" />
     <Compile Include="Controllers\TipoVehiculoPorCodigoPorClasesController.cs" />
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
+    <Compile Include="Controllers\UsuarioSIBOACsController.cs" />
     <Compile Include="Controllers\ValidarCarroceriasController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1079,6 +1083,32 @@
     <Content Include="Views\TiposPorDocumentoes\Details.cshtml" />
     <Content Include="Views\TiposPorDocumentoes\Edit.cshtml" />
     <Content Include="Views\TiposPorDocumentoes\Index.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\RolSIBOACs\Create.cshtml" />
+    <Content Include="Views\RolSIBOACs\Delete.cshtml" />
+    <Content Include="Views\RolSIBOACs\Details.cshtml" />
+    <Content Include="Views\RolSIBOACs\Edit.cshtml" />
+    <Content Include="Views\RolSIBOACs\Index.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Create.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Delete.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Details.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Edit.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Index.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Create.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Delete.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Details.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Edit.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Index.cshtml" />
+    <Content Include="Views\RolPorPersonas1\Create.cshtml" />
+    <Content Include="Views\RolPorPersonas1\Delete.cshtml" />
+    <Content Include="Views\RolPorPersonas1\Details.cshtml" />
+    <Content Include="Views\RolPorPersonas1\Edit.cshtml" />
+    <Content Include="Views\RolPorPersonas1\Index.cshtml" />
+    <Content Include="Views\Circulacions1\Create.cshtml" />
+    <Content Include="Views\Circulacions1\Delete.cshtml" />
+    <Content Include="Views\Circulacions1\Details.cshtml" />
+    <Content Include="Views\Circulacions1\Edit.cshtml" />
+    <Content Include="Views\Circulacions1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
