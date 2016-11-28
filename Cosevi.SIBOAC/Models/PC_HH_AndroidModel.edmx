@@ -1213,21 +1213,23 @@
           <EntitySet Name="TIPOSXDOCUMENTO" EntityType="PC_HH_AndroidModel.TiposPorDocumento" />
           <EntitySet Name="VALIDARCARROCERIA" EntityType="PC_HH_AndroidModel.ValidarCarroceria" />
           <EntitySet Name="CONSECUTIVONUMEROMARCO" EntityType="PC_HH_AndroidModel.ConsecutivoNumeroMarco" />
-          <EntitySet Name="OpcionSIBOAC" EntityType="PC_HH_AndroidModel.OpcionSIBOAC" />
           <EntitySet Name="ROLPERSONA_OPCIONFORMULARIO" EntityType="PC_HH_AndroidModel.RolPorPersonaOpcionFormulario" />
-          <EntitySet Name="RolSIBOAC" EntityType="PC_HH_AndroidModel.RolSIBOAC" />
           <EntitySet Name="TIPOVEHCODIGOCLASE" EntityType="PC_HH_AndroidModel.TipoVehiculoPorCodigoPorClase" />
+          <EntitySet Name="DEPOSITOBIENES" EntityType="PC_HH_AndroidModel.DepositosBienes" />
+          <EntitySet Name="RolOpcionSIBOAC" EntityType="PC_HH_AndroidModel.RolOpcionSIBOAC" />
+          <EntitySet Name="RolUsuarioSIBOAC" EntityType="PC_HH_AndroidModel.RolUsuarioSIBOAC" />
+          <EntitySet Name="OpcionSIBOAC" EntityType="PC_HH_AndroidModel.OpcionSIBOAC" />
+          <EntitySet Name="RolSIBOAC" EntityType="PC_HH_AndroidModel.RolSIBOAC" />
           <EntitySet Name="UsuarioSIBOAC" EntityType="PC_HH_AndroidModel.UsuarioSIBOAC" />
-          <AssociationSet Name="RolOpcionSIBOAC" Association="PC_HH_AndroidModel.RolOpcionSIBOAC">
+          <AssociationSet Name="RolOpcionSIBOAC1" Association="PC_HH_AndroidModel.RolOpcionSIBOAC1">
             <End Role="OpcionSIBOAC" EntitySet="OpcionSIBOAC" />
             <End Role="RolSIBOAC" EntitySet="RolSIBOAC" />
           </AssociationSet>
-          <AssociationSet Name="RolUsuarioSIBOAC" Association="PC_HH_AndroidModel.RolUsuarioSIBOAC">
+          <AssociationSet Name="RolUsuarioSIBOAC1" Association="PC_HH_AndroidModel.RolUsuarioSIBOAC1">
             <End Role="RolSIBOAC" EntitySet="RolSIBOAC" />
             <End Role="UsuarioSIBOAC" EntitySet="UsuarioSIBOAC" />
           </AssociationSet>
-          <EntitySet Name="DEPOSITOBIENES" EntityType="PC_HH_AndroidModel.DepositosBienes" />
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
             <PropertyRef Name="Id" />
@@ -1984,15 +1986,6 @@
           <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="OpcionSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoOpcion" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="96" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RolSIBOAC" Relationship="PC_HH_AndroidModel.RolOpcionSIBOAC" FromRole="OpcionSIBOAC" ToRole="RolSIBOAC" />
-        </EntityType>
         <EntityType Name="RolPorPersonaOpcionFormulario">
           <Key>
             <PropertyRef Name="CodigoRolPersona" />
@@ -2003,16 +1996,6 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="RolSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoRol" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="OpcionSIBOAC" Relationship="PC_HH_AndroidModel.RolOpcionSIBOAC" FromRole="RolSIBOAC" ToRole="OpcionSIBOAC" />
-          <NavigationProperty Name="UsuarioSIBOAC" Relationship="PC_HH_AndroidModel.RolUsuarioSIBOAC" FromRole="RolSIBOAC" ToRole="UsuarioSIBOAC" />
         </EntityType>
         <EntityType Name="TipoVehiculoPorCodigoPorClase">
           <Key>
@@ -2029,6 +2012,48 @@
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="DepositosBienes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RolOpcionSIBOAC">
+          <Key>
+            <PropertyRef Name="IdRol" />
+            <PropertyRef Name="IdOpcion" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <Property Name="IdOpcion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RolUsuarioSIBOAC">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OpcionSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoOpcion" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="96" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RolSIBOAC" Relationship="PC_HH_AndroidModel.RolOpcionSIBOAC1" FromRole="OpcionSIBOAC" ToRole="RolSIBOAC" />
+        </EntityType>
+        <EntityType Name="RolSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodigoRol" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OpcionSIBOAC" Relationship="PC_HH_AndroidModel.RolOpcionSIBOAC1" FromRole="RolSIBOAC" ToRole="OpcionSIBOAC" />
+          <NavigationProperty Name="UsuarioSIBOAC" Relationship="PC_HH_AndroidModel.RolUsuarioSIBOAC1" FromRole="RolSIBOAC" ToRole="UsuarioSIBOAC" />
+        </EntityType>
         <EntityType Name="UsuarioSIBOAC">
           <Key>
             <PropertyRef Name="Id" />
@@ -2040,24 +2065,17 @@
           <Property Name="Clave" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeUltimoCambio" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="RolSIBOAC" Relationship="PC_HH_AndroidModel.RolUsuarioSIBOAC" FromRole="UsuarioSIBOAC" ToRole="RolSIBOAC" />
+          <NavigationProperty Name="RolSIBOAC" Relationship="PC_HH_AndroidModel.RolUsuarioSIBOAC1" FromRole="UsuarioSIBOAC" ToRole="RolSIBOAC" />
         </EntityType>
-        <Association Name="RolOpcionSIBOAC">
+        <Association Name="RolOpcionSIBOAC1">
           <End Type="PC_HH_AndroidModel.OpcionSIBOAC" Role="OpcionSIBOAC" Multiplicity="*" />
           <End Type="PC_HH_AndroidModel.RolSIBOAC" Role="RolSIBOAC" Multiplicity="*" />
         </Association>
-        <Association Name="RolUsuarioSIBOAC">
+        <Association Name="RolUsuarioSIBOAC1">
           <End Type="PC_HH_AndroidModel.RolSIBOAC" Role="RolSIBOAC" Multiplicity="*" />
           <End Type="PC_HH_AndroidModel.UsuarioSIBOAC" Role="UsuarioSIBOAC" Multiplicity="*" />
         </Association>
-        <EntityType Name="DepositosBienes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2934,15 +2952,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OpcionSIBOAC">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OpcionSIBOAC">
-              <MappingFragment StoreEntitySet="OpcionSIBOAC">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="CodigoOpcion" ColumnName="CodigoOpcion" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ROLPERSONA_OPCIONFORMULARIO">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolPorPersonaOpcionFormulario">
               <MappingFragment StoreEntitySet="ROLPERSONA_OPCIONFORMULARIO">
@@ -2951,15 +2960,6 @@
                 <ScalarProperty Name="Estado" ColumnName="estado" />
                 <ScalarProperty Name="CodigoOpcionFormulario" ColumnName="codFormulario" />
                 <ScalarProperty Name="CodigoRolPersona" ColumnName="codRol" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RolSIBOAC">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolSIBOAC">
-              <MappingFragment StoreEntitySet="RolSIBOAC">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="CodigoRol" ColumnName="CodigoRol" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2976,6 +2976,48 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DEPOSITOBIENES">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DepositosBienes">
+              <MappingFragment StoreEntitySet="DEPOSITOBIENES">
+                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolOpcionSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolOpcionSIBOAC">
+              <MappingFragment StoreEntitySet="RolOpcionSIBOAC">
+                <ScalarProperty Name="IdOpcion" ColumnName="IdOpcion" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolUsuarioSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolUsuarioSIBOAC">
+              <MappingFragment StoreEntitySet="RolUsuarioSIBOAC">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OpcionSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OpcionSIBOAC">
+              <MappingFragment StoreEntitySet="OpcionSIBOAC">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CodigoOpcion" ColumnName="CodigoOpcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolSIBOAC">
+              <MappingFragment StoreEntitySet="RolSIBOAC">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CodigoRol" ColumnName="CodigoRol" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UsuarioSIBOAC">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.UsuarioSIBOAC">
               <MappingFragment StoreEntitySet="UsuarioSIBOAC">
@@ -2989,7 +3031,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="RolOpcionSIBOAC" TypeName="PC_HH_AndroidModel.RolOpcionSIBOAC" StoreEntitySet="RolOpcionSIBOAC">
+          <AssociationSetMapping Name="RolOpcionSIBOAC1" TypeName="PC_HH_AndroidModel.RolOpcionSIBOAC1" StoreEntitySet="RolOpcionSIBOAC">
             <EndProperty Name="RolSIBOAC">
               <ScalarProperty Name="Id" ColumnName="IdRol" />
             </EndProperty>
@@ -2997,7 +3039,7 @@
               <ScalarProperty Name="Id" ColumnName="IdOpcion" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="RolUsuarioSIBOAC" TypeName="PC_HH_AndroidModel.RolUsuarioSIBOAC" StoreEntitySet="RolUsuarioSIBOAC">
+          <AssociationSetMapping Name="RolUsuarioSIBOAC1" TypeName="PC_HH_AndroidModel.RolUsuarioSIBOAC1" StoreEntitySet="RolUsuarioSIBOAC">
             <EndProperty Name="UsuarioSIBOAC">
               <ScalarProperty Name="Id" ColumnName="IdUsuario" />
             </EndProperty>
@@ -3005,15 +3047,7 @@
               <ScalarProperty Name="Id" ColumnName="IdRol" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="DEPOSITOBIENES">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.DepositosBienes">
-              <MappingFragment StoreEntitySet="DEPOSITOBIENES">
-                <ScalarProperty Name="Descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="Id" ColumnName="Codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

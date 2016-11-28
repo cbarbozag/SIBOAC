@@ -70,6 +70,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+
             return View(dispositivoPorRolPersona);
         }
 
