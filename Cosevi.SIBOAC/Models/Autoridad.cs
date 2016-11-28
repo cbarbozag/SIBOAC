@@ -11,14 +11,39 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Autoridad
     {
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
+        [StringLength(5, ErrorMessage = "El codigo no debe ser mayor a 5 caracteres")]
         public string Id { get; set; }
+
+        [DisplayName("Descripción")]
+        [StringLength(35, ErrorMessage = "La descripción no debe ser mayor a 35 caracteres")]
         public string Descripcion { get; set; }
+
+        [DisplayName("Código de opción de formulario")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoOpcionFormulario { get; set; }
+
+        [DisplayName("Estado")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         public string Estado { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de inicio")]
+        [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de fin")]
+        [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
         public string DescripcionCodigoOpcionFormulario
