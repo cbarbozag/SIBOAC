@@ -11,7 +11,7 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class DanioPorHospital
     {
         public string IdHospital { get; set; }
@@ -19,5 +19,43 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }
+
+        public string DescripcionHospital
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                {
+                    Hospital hospital = db.HOSPITAL.Find(IdHospital);
+                    if (hospital.Id == IdHospital)
+                    {
+                        return Descripcion = hospital.Descripcion;
+                    }
+                }
+                return Descripcion;
+            }
+        }
+
+
+        public string DescripcionDanio
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                {
+                    Dano dano = db.DAÑO.Find(IdDanio);
+                    if (dano.Id == IdDanio)
+                    {
+                        return Descripcion = dano.Descripcion;
+                    }
+                }
+                return Descripcion;
+            }
+        }
+
+
+
     }
 }

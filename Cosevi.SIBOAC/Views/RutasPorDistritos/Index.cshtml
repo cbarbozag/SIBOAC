@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.RutasPorDistritos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoDistrito)
+        </th>
+        <th>
+            @Html.Label("Nombre Distrito")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoRuta)
+        </th>
+        <th>
+            @Html.Label("Descripción Ruta")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Km)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoRuta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionRuta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Km)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeFin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { codigo_distrito = item.CodigoDistrito,  codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km/* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

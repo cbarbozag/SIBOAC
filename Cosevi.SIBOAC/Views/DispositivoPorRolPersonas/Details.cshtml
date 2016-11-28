@@ -1,0 +1,50 @@
+﻿@model Cosevi.SIBOAC.Models.DispositivoPorRolPersona
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DispositivoPorRolPersona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoRolPersona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoRolPersona)
+        </dd>
+
+        <dt>
+            @Html.Label("Descripción RolPersona")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionRolPersona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoDispositivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoDispositivo)
+        </dd>
+        <dt>
+            @Html.Label("Descripción Dispositivo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionDispositivo)
+        </dd>
+    </dl>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { Model.CodigoRolPersona, Model.CodigoDispositivo /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

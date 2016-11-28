@@ -1,4 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.Autoridad
+﻿@model Cosevi.SIBOAC.Models.DetallePorTipoDanio
 
 @{
     ViewBag.Title = "Edit";
@@ -13,30 +13,29 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Autoridad</h4>
+        <h4>DetallePorTipoDanio</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.CodigoOpcionFormulario)
+        @Html.HiddenFor(model => model.CodigoDanio)
+
+        @Html.HiddenFor(model => model.CodigoTipoDanio)
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CodigoDanio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CodigoDanio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CodigoDanio, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CodigoOpcionFormulario, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CodigoTipoDanio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CodigoOpcionFormulario, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CodigoOpcionFormulario, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CodigoTipoDanio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CodigoTipoDanio, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -45,7 +44,6 @@
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
         </div>
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -12,6 +12,16 @@
 </p>
 <table class="table">
     <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoTipoIdVehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoTiposVehiculos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoCarroceria)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -25,7 +35,17 @@
     </tr>
 
 @foreach (var item in Model) {
+
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoTipoIdVehiculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoCarroceria)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
@@ -36,9 +56,9 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { codigoIdentificacionVehiculo = item.CodigoTipoIdVehiculo, codigoTipoVehiculo = item.CodigoTiposVehiculos, codigoCarroceria = item.CodigoCarroceria  /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria  /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

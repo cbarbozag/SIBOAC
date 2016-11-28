@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class AutoridadsController : Controller
+    public class DispositivoPorRolPersonasController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Autoridads
+        // GET: DispositivoPorRolPersonas
         public ActionResult Index()
         {
-            return View(db.AUTORIDAD.ToList());
+            return View(db.DISPXROLPERSONA.ToList());
         }
 
-        // GET: Autoridads/Details/5
-        public ActionResult Details(string codigo, int codFormulario)
+        // GET: DispositivoPorRolPersonas/Details/5
+        public ActionResult Details(string CodRol, int CodDisp)
         {
-            if (codigo == null)
+            if (CodRol == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            DispositivoPorRolPersona dispositivoPorRolPersona = db.DISPXROLPERSONA.Find(CodRol, CodDisp);
+            if (dispositivoPorRolPersona == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(dispositivoPorRolPersona);
         }
 
-        // GET: Autoridads/Create
+        // GET: DispositivoPorRolPersonas/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Autoridads/Create
+        // POST: DispositivoPorRolPersonas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,CodigoOpcionFormulario,Estado,FechaDeInicio,FechaDeFin")] Autoridad autoridad)
+        public ActionResult Create([Bind(Include = "CodigoRolPersona,CodigoDispositivo")] DispositivoPorRolPersona dispositivoPorRolPersona)
         {
             if (ModelState.IsValid)
             {
-                db.AUTORIDAD.Add(autoridad);
+                db.DISPXROLPERSONA.Add(dispositivoPorRolPersona);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(autoridad);
+            return View(dispositivoPorRolPersona);
         }
 
-        // GET: Autoridads/Edit/5
-        public ActionResult Edit(string codigo, int codFormulario)
+        // GET: DispositivoPorRolPersonas/Edit/5
+        public ActionResult Edit(string CodRol, int CodDisp)
         {
-            if (codigo == null)
+            if (CodRol == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            DispositivoPorRolPersona dispositivoPorRolPersona = db.DISPXROLPERSONA.Find(CodRol, CodDisp);
+            if (dispositivoPorRolPersona == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(dispositivoPorRolPersona);
         }
 
-        // POST: Autoridads/Edit/5
+        // POST: DispositivoPorRolPersonas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,CodigoOpcionFormulario,Estado,FechaDeInicio,FechaDeFin")] Autoridad autoridad)
+        public ActionResult Edit([Bind(Include = "CodigoRolPersona,CodigoDispositivo")] DispositivoPorRolPersona dispositivoPorRolPersona)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(autoridad).State = EntityState.Modified;
+                db.Entry(dispositivoPorRolPersona).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(autoridad);
+            return View(dispositivoPorRolPersona);
         }
 
-        // GET: Autoridads/Delete/5
-        public ActionResult Delete(string codigo, int codFormulario)
+        // GET: DispositivoPorRolPersonas/Delete/5
+        public ActionResult Delete(string CodRol, int CodDisp)
         {
-            if (codigo == null)
+            if (CodRol == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            DispositivoPorRolPersona dispositivoPorRolPersona = db.DISPXROLPERSONA.Find(CodRol, CodDisp);
+            if (dispositivoPorRolPersona == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(dispositivoPorRolPersona);
         }
 
-        // POST: Autoridads/Delete/5
+        // POST: DispositivoPorRolPersonas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string codigo, int codFormulario)
+        public ActionResult DeleteConfirmed(string CodRol, int CodDisp)
         {
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            db.AUTORIDAD.Remove(autoridad);
+            DispositivoPorRolPersona dispositivoPorRolPersona = db.DISPXROLPERSONA.Find(CodRol, CodDisp);
+            db.DISPXROLPERSONA.Remove(dispositivoPorRolPersona);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class AutoridadsController : Controller
+    public class DetallePorTipoDaniosController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Autoridads
+        // GET: DetallePorTipoDanios
         public ActionResult Index()
         {
-            return View(db.AUTORIDAD.ToList());
+            return View(db.DETALLETIPODAÑO.ToList());
         }
 
-        // GET: Autoridads/Details/5
-        public ActionResult Details(string codigo, int codFormulario)
+        // GET: DetallePorTipoDanios/Details/5
+        public ActionResult Details(string codigod, string codigotd )
         {
-            if (codigo == null)
+            if (codigod == null  || codigotd == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+            if (detallePorTipoDanio == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(detallePorTipoDanio);
         }
 
-        // GET: Autoridads/Create
+        // GET: DetallePorTipoDanios/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Autoridads/Create
+        // POST: DetallePorTipoDanios/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion,CodigoOpcionFormulario,Estado,FechaDeInicio,FechaDeFin")] Autoridad autoridad)
+        public ActionResult Create([Bind(Include = "CodigoDanio,CodigoTipoDanio,Descripcion,Estado,FechaDeInicio,FechaDeFin")] DetallePorTipoDanio detallePorTipoDanio)
         {
             if (ModelState.IsValid)
             {
-                db.AUTORIDAD.Add(autoridad);
+                db.DETALLETIPODAÑO.Add(detallePorTipoDanio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(autoridad);
+            return View(detallePorTipoDanio);
         }
 
-        // GET: Autoridads/Edit/5
-        public ActionResult Edit(string codigo, int codFormulario)
+        // GET: DetallePorTipoDanios/Edit/5
+        public ActionResult Edit(string codigod, string codigotd)
         {
-            if (codigo == null)
+            if (codigod == null || codigotd == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+            if (detallePorTipoDanio == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(detallePorTipoDanio);
         }
 
-        // POST: Autoridads/Edit/5
+        // POST: DetallePorTipoDanios/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion,CodigoOpcionFormulario,Estado,FechaDeInicio,FechaDeFin")] Autoridad autoridad)
+        public ActionResult Edit([Bind(Include = "CodigoDanio,CodigoTipoDanio,Descripcion,Estado,FechaDeInicio,FechaDeFin")] DetallePorTipoDanio detallePorTipoDanio)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(autoridad).State = EntityState.Modified;
+                db.Entry(detallePorTipoDanio).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(autoridad);
+            return View(detallePorTipoDanio);
         }
 
-        // GET: Autoridads/Delete/5
-        public ActionResult Delete(string codigo, int codFormulario)
+        // GET: DetallePorTipoDanios/Delete/5
+        public ActionResult Delete(string codigod, string codigotd)
         {
-            if (codigo == null)
+            if (codigod == null || codigotd == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+            if (detallePorTipoDanio == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(detallePorTipoDanio);
         }
 
-        // POST: Autoridads/Delete/5
+        // POST: DetallePorTipoDanios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string codigo, int codFormulario)
+        public ActionResult DeleteConfirmed(string codigod, string codigotd)
         {
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            db.AUTORIDAD.Remove(autoridad);
+            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+            db.DETALLETIPODAÑO.Remove(detallePorTipoDanio);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
