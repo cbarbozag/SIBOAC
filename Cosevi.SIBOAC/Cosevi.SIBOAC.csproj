@@ -1100,11 +1100,6 @@
     <Content Include="Views\UsuarioSIBOACs\Details.cshtml" />
     <Content Include="Views\UsuarioSIBOACs\Edit.cshtml" />
     <Content Include="Views\UsuarioSIBOACs\Index.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Create.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Delete.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Details.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Edit.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Index.cshtml" />
     <Content Include="Views\Circulacions1\Create.cshtml" />
     <Content Include="Views\Circulacions1\Delete.cshtml" />
     <Content Include="Views\Circulacions1\Details.cshtml" />
