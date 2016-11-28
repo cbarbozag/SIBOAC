@@ -21,9 +21,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolPorPersonaOpcionFormularios/Details/5
-        public ActionResult Details(int? codRol, int codFormulario)
+        public ActionResult Details(int? codRol, int? codFormulario)
         {
-            if (codRol == null)
+            if (codRol == null|| codFormulario == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -38,6 +38,23 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: RolPorPersonaOpcionFormularios/Create
         public ActionResult Create()
         {
+
+            IEnumerable<SelectListItem> itemsRol = db.ROLPERSONA
+             .Select(o => new SelectListItem
+             {
+                 Value = o.Id,
+                 Text = o.Descripcion
+             });
+            ViewBag.ComboRolPersona = itemsRol;
+
+            IEnumerable<SelectListItem> itemsOpcionFormulario = db.OPCIONFORMULARIO
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Descripcion
+            });
+            ViewBag.ComboOpcionFormulario = itemsOpcionFormulario;
+           
             return View();
         }
 
@@ -70,6 +87,10 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion", codRol);
+            ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codFormulario);
+
             return View(rolPorPersonaOpcionFormulario);
         }
 
@@ -90,9 +111,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolPorPersonaOpcionFormularios/Delete/5
-        public ActionResult Delete(int? codRol, int codFormulario)
+        public ActionResult Delete(int? codRol, int? codFormulario)
         {
-            if (codRol == null)
+            if (codRol == null|| codFormulario==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -110,7 +131,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int codRol, int codFormulario)
         {
             RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
-            db.ROLPERSONA_OPCIONFORMULARIO.Remove(rolPorPersonaOpcionFormulario);
+            if (rolPorPersonaOpcionFormulario.Estado == "I")
+                rolPorPersonaOpcionFormulario.Estado = "A";
+            else
+                rolPorPersonaOpcionFormulario.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

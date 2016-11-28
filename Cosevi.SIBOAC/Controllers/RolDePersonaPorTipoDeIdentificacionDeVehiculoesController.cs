@@ -88,8 +88,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.codRol = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion",codRol);
-            ViewBag.CodVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodVeh.ToString().Trim());
+            ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion",codRol);
+            ViewBag.ComboTipoVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodVeh.ToString().Trim());
 
             rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo = rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo.Trim();
             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);

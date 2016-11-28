@@ -21,13 +21,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DanioPorHospitals/Details/5
-        public ActionResult Details(string codHosp, int codDanio)
+        public ActionResult Details(string id)
         {
-            if (codHosp == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(codHosp, codDanio);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
             if (danioPorHospital == null)
             {
                 return HttpNotFound();
@@ -42,8 +42,8 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // POST: DanioPorHospitals/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdHospital,IdDanio,Estado,FechaDeInicio,FechaDeFin")] DanioPorHospital danioPorHospital)
@@ -59,13 +59,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DanioPorHospitals/Edit/5
-        public ActionResult Edit(string codHosp, int codDanio)
+        public ActionResult Edit(string id)
         {
-            if (codHosp == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(codHosp, codDanio);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
             if (danioPorHospital == null)
             {
                 return HttpNotFound();
@@ -74,8 +74,8 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // POST: DanioPorHospitals/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdHospital,IdDanio,Estado,FechaDeInicio,FechaDeFin")] DanioPorHospital danioPorHospital)
@@ -90,13 +90,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DanioPorHospitals/Delete/5
-        public ActionResult Delete(string codHosp, int codDanio)
+        public ActionResult Delete(string id)
         {
-            if (codHosp == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(codHosp, codDanio);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
             if (danioPorHospital == null)
             {
                 return HttpNotFound();
@@ -107,9 +107,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: DanioPorHospitals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string codHosp, int codDanio)
+        public ActionResult DeleteConfirmed(string id)
         {
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(codHosp, codDanio);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
             db.DAÑOXHOSPITAL.Remove(danioPorHospital);
             db.SaveChanges();
             return RedirectToAction("Index");
