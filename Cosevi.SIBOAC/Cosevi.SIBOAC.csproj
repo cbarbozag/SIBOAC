@@ -232,6 +232,7 @@
     <Compile Include="Controllers\RolPorPersonasController.cs" />
     <Compile Include="Controllers\RolSIBOACsController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
+    <Compile Include="Controllers\RutasPorDistritosController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
@@ -1076,6 +1077,11 @@
     <Content Include="Views\DispositivoPorRolPersonas\Details.cshtml" />
     <Content Include="Views\DispositivoPorRolPersonas\Edit.cshtml" />
     <Content Include="Views\DispositivoPorRolPersonas\Index.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Create.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Delete.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Details.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Edit.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

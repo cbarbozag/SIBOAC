@@ -20,5 +20,40 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
         public Nullable<System.DateTime> FechaDeFin { get; set; }
+
+        public string DescripcionDistrito
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                {
+                    Distrito distrito = db.DISTRITO.Find(CodigoDistrito);
+                    if (distrito.Id == CodigoDistrito)
+                    {
+                        return Descripcion = distrito.Descripcion;
+                    }
+                }
+                return Descripcion;
+            }
+        }
+
+        public string DescripcionRuta
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                {
+                    Ruta ruta = db.Ruta.Find(CodigoRuta);
+                    if (ruta.Id == CodigoRuta)
+                    {
+                        return Descripcion = ruta.Inicia  + " - " + ruta.Termina ;
+                    }
+                }
+                return Descripcion;
+            }
+        }
+
     }
 }
