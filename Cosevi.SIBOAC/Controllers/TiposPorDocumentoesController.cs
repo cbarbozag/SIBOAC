@@ -38,6 +38,23 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TiposPorDocumentoes/Create
         public ActionResult Create()
         {
+
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsTipoDocumento = db.TIPODOCUMENTO
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id,
+                  Text = o.Descripcion
+              });
+            ViewBag.ComboTipoDocumento = itemsTipoDocumento;
+
+            IEnumerable<SelectListItem> itemsTipoIdentificacion = db.TIPO_IDENTIFICACION
+             .Select(c => new SelectListItem
+             {
+                 Value = c.Id.ToString(),
+                 Text = c.Descripcion
+             });
+            ViewBag.ComboTipoIdentificacion = itemsTipoIdentificacion;
             return View();
         }
 
@@ -70,6 +87,11 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboTipoDocumento = new SelectList(db.TIPODOCUMENTO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigod);
+            ViewBag.ComboTipoIdentificacion = new SelectList(db.TIPO_IDENTIFICACION.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigot);
+
+
             return View(tiposPorDocumento);
         }
 
