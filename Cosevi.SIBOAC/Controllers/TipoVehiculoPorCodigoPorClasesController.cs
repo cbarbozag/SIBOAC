@@ -38,6 +38,31 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoVehiculoPorCodigoPorClases/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> itemsTiposVehiculos = db.TIPOSVEHICULOS
+          .Select(o => new SelectListItem
+          {
+              Value = o.Id.ToString(),
+              Text = o.Nombre
+          });
+            ViewBag.ComboTiposVehiculos = itemsTiposVehiculos;
+
+     
+            IEnumerable<SelectListItem> itemsCodigoPlaca = db.CODIGO
+               .Select(o => new SelectListItem
+               {
+                   Value = o.Id.ToString(),
+                   Text = o.Id.ToString()
+               });
+            ViewBag.ComboCodigoPlaca = itemsCodigoPlaca;
+
+            IEnumerable<SelectListItem> itemsClasePlaca = db.CLASE
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Id.ToString()
+              });
+            ViewBag.ComboClasePlaca = itemsClasePlaca;
+
             return View();
         }
 
@@ -61,17 +86,22 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoVehiculoPorCodigoPorClases/Edit/5
         public ActionResult Edit(int? codigoTipoVehic, string clase, string codigo, int? codigoVehiculo)
         {
-            if (clase == null || codigo == null)
+            if (codigoTipoVehic==null|| clase == null || codigo == null|| codigoVehiculo ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTipoVehic, clase, codigo, codigoVehiculo);
-            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(23, "INC", "OP ", 3);
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTipoVehic,  clase,  codigo,codigoVehiculo);
             if (tipoVehiculoPorCodigoPorClase == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoVehiculoPorCodigoPorClase);
+
+
+            ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", codigoTipoVehic);
+            ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", codigo);
+            ViewBag.ComboClasePlaca = new SelectList(db.CLASE.OrderBy(x => x.Id), "Id", "Id", clase);
+             return View(tipoVehiculoPorCodigoPorClase);
         }
 
         // POST: TipoVehiculoPorCodigoPorClases/Edit/5
@@ -93,7 +123,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoVehiculoPorCodigoPorClases/Delete/5
         public ActionResult Delete(int? codigoTipoVehic, string clase, string codigo, int? codigoVehiculo)
         {
-            if (clase == null || codigo == null)
+            if (codigoTipoVehic == null || clase == null || codigo == null || codigoVehiculo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
