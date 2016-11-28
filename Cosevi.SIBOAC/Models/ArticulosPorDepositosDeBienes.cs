@@ -11,7 +11,8 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class ArticulosPorDepositosDeBienes
     {
         public int CodigoDepositosBienes { get; set; }
@@ -67,6 +68,7 @@ namespace Cosevi.SIBOAC.Models
                 return Descripcion;
             }
         }
+
 
     }
 }

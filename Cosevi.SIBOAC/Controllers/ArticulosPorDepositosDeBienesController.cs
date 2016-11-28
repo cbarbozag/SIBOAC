@@ -36,8 +36,37 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ArticulosPorDepositosDeBienes/Create
+   
         public ActionResult Create()
         {
+            
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsDepositosBienes = db.DEPOSITOBIENES
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Descripcion
+                 
+              });
+
+        
+            ViewBag.ComboDepositosBienes = itemsDepositosBienes;
+
+            IEnumerable<SelectListItem> itemsOpcionFormularios = db.OPCIONFORMULARIO
+             .Select(o => new SelectListItem
+             {
+                 Value = o.Id.ToString(),
+                 Text = o.Descripcion
+             });
+            ViewBag.ComboOpcionFormulario = itemsOpcionFormularios;
+
+            IEnumerable<SelectListItem> itemsCatArticulos = db.CATARTICULO
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Descripcion
+            });
+            ViewBag.ComboArticulos = itemsCatArticulos;
             return View();
         }
 
