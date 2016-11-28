@@ -185,6 +185,7 @@
     <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
     <Compile Include="Controllers\CondicionDeLaCalzadasController.cs" />
     <Compile Include="Controllers\CondicionDeLaPersonasController.cs" />
+    <Compile Include="Controllers\DanioPorHospitalsController.cs" />
     <Compile Include="Controllers\DanoesController.cs" />
     <Compile Include="Controllers\DelegacionsController.cs" />
     <Compile Include="Controllers\DelitoesController.cs" />
@@ -1033,6 +1034,11 @@
     <Content Include="Views\TiposPorDocumentoes\Details.cshtml" />
     <Content Include="Views\TiposPorDocumentoes\Edit.cshtml" />
     <Content Include="Views\TiposPorDocumentoes\Index.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Create.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Delete.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Details.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Edit.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
