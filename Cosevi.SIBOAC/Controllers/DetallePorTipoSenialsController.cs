@@ -40,6 +40,14 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DetallePorTipoSenials/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> itemsTipoSenial = db.TIPOSEÑALEXISTE
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Descripcion
+            });
+            ViewBag.ComboTipoSenialExiste = itemsTipoSenial;
+            
             return View();
         }
 
@@ -87,6 +95,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ComboTipoSenialExiste = new SelectList(db.TIPOSEÑALEXISTE.OrderBy(x => x.Descripcion), "Id", "Descripcion", codsenex);
+
             return View(detallePorTipoSenial);
         }
 
