@@ -40,6 +40,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoDeIdentificacionPorTipoVehiculoes/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> itemsTipoIdVehiculo = db.TIPOIDEVEHICULO
+           .Select(o => new SelectListItem
+           {
+               Value = o.Id,
+               Text = o.Descripcion
+           });
+            ViewBag.ComboTipoIdVehiculo = itemsTipoIdVehiculo;
+            IEnumerable<SelectListItem> itemsTipoVeh = db.TIPOVEH
+             .Select(c => new SelectListItem
+             {
+                 Value = c.Id.ToString(),
+                 Text = c.Descripcion
+             });
+            ViewBag.ComboTipoVeh = itemsTipoVeh;
             return View();
         }
 
@@ -72,6 +86,10 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboTipoIdVehiculo = new SelectList(db.TIPOIDEVEHICULO.OrderBy(x => x.Descripcion), "Id", "Descripcion", Codigo);
+            ViewBag.ComboCodVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodVeh);
+
             return View(tipoDeIdentificacionPorTipoVehiculo);
         }
 
