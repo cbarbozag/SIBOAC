@@ -16,5 +16,41 @@ namespace Cosevi.SIBOAC.Models
     {
         public string CodigoRolPersona { get; set; }
         public int CodigoDispositivo { get; set; }
+
+
+        public string DescripcionRolPersona
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                {
+                    RolPorPersona rolPorPersona = db.ROLPERSONA.Find(CodigoRolPersona);
+                    if (rolPorPersona.Id == CodigoRolPersona)
+                    {
+                        return Descripcion = rolPorPersona.Descripcion;
+                    }
+                }
+                return Descripcion;
+            }
+        }
+
+        public string DescripcionDispositivo
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                {
+                    Dispositivo dispositivo = db.Dispositivoes1.Find(CodigoDispositivo);
+                    if (dispositivo.Id == CodigoDispositivo)
+                    {
+                        return Descripcion = dispositivo.Descripcion;
+                    }
+                }
+                return Descripcion;
+            }
+        }
+
     }
 }

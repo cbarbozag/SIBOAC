@@ -192,8 +192,10 @@
     <Compile Include="Controllers\DepositoDePlacasController.cs" />
     <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
     <Compile Include="Controllers\DetallePorTipoDaniosController.cs" />
+    <Compile Include="Controllers\DetallePorTipoSenialsController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
+    <Compile Include="Controllers\DispositivoPorRolPersonasController.cs" />
     <Compile Include="Controllers\DispositivosMovilesController.cs" />
     <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\DivisionsController.cs" />
@@ -1064,6 +1066,16 @@
     <Content Include="Views\DanioPorHospitals\Details.cshtml" />
     <Content Include="Views\DanioPorHospitals\Edit.cshtml" />
     <Content Include="Views\DanioPorHospitals\Index.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Create.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Delete.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Details.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Edit.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Index.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Create.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Delete.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Details.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Edit.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
