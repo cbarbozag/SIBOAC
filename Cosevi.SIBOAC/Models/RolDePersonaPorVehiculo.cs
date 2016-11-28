@@ -21,10 +21,12 @@ namespace Cosevi.SIBOAC.Models
         public string Id { get; set; }
 
         [DisplayName("Activar Vehiculo")]
+        [Required(ErrorMessage = "El dato es obligatorio")]
         public bool ActivarVehiculo { get; set; }
 
         [DisplayName("Estado")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         public string Estado { get; set; }
 
         [DisplayName("Fecha de Inicio")]
