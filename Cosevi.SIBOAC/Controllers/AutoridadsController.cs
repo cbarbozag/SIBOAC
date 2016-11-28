@@ -47,7 +47,6 @@ namespace Cosevi.SIBOAC.Controllers
 
               });
 
-
             ViewBag.ComboOpcionformulario = itemsOpcionformulario;
             return View();
         }
@@ -70,9 +69,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Autoridads/Edit/5
-        public ActionResult Edit(string codigo, int codFormulario)
+        public ActionResult Edit(string codigo, int? codFormulario)
         {
-            if (codigo == null)
+            if (codigo == null|| codFormulario == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -104,9 +103,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Autoridads/Delete/5
-        public ActionResult Delete(string codigo, int codFormulario)
+        public ActionResult Delete(string codigo, int? codFormulario)
         {
-            if (codigo == null)
+            if (codigo == null||codFormulario ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -124,7 +123,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigo, int codFormulario)
         {
             Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            db.AUTORIDAD.Remove(autoridad);
+            if (autoridad.Estado == "A")
+                autoridad.Estado = "I";
+            else
+                autoridad.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

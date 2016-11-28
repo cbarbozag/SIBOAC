@@ -38,6 +38,27 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Divisions/Create
         public ActionResult Create()
         {
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsCanton = db.CANTON
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Descripcion
+
+              });
+
+
+            ViewBag.ComboCanton = itemsCanton;
+
+            IEnumerable<SelectListItem> itemsOficina = db.OficinaParaImpugnars
+          .Select(o => new SelectListItem
+          {
+              Value = o.Id.ToString(),
+              Text = o.Descripcion
+
+          });
+
+            ViewBag.ComboOficina = itemsOficina;
             return View();
         }
 
@@ -70,6 +91,10 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboCanton = new SelectList(db.CANTON.OrderBy(x => x.Descripcion), "Id", "Descripcion", canton);
+            ViewBag.ComboOficina = new SelectList(db.OficinaParaImpugnars.OrderBy(x => x.Descripcion), "Id", "Descripcion", OficinaImpugna);
+
             return View(division);
         }
 
@@ -110,8 +135,11 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? canton, string OficinaImpugna, DateTime FechaInicio, DateTime FechaFin)
         {
             Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
-            db.DIVISION.Remove(division);
-            db.SaveChanges();
+            if(division.Estado =="A")
+                division.Estado = "I";
+            else
+                division.Estado = "A";
+            db.SaveChanges();        
             return RedirectToAction("Index");
         }
 
