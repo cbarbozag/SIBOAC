@@ -86,13 +86,6 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.RolPorPersonaOpcionFormulario" Width="1.5" PointX="16.375" PointY="3.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TipoVehiculoPorCodigoPorClase" Width="1.5" PointX="16.375" PointY="6.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.DepositosBienes" Width="1.5" PointX="16.375" PointY="10.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.RolOpcionSIBOAC" Width="1.5" PointX="10.375" PointY="15.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.RolUsuarioSIBOAC" Width="1.5" PointX="12.375" PointY="15.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.OpcionSIBOAC" Width="1.5" PointX="14.375" PointY="16.375" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.RolSIBOAC" Width="1.5" PointX="16.625" PointY="16.25" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.UsuarioSIBOAC" Width="1.5" PointX="18.875" PointY="16" />
-        <AssociationConnector Association="PC_HH_AndroidModel.RolOpcionSIBOAC1" />
-        <AssociationConnector Association="PC_HH_AndroidModel.RolUsuarioSIBOAC1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
