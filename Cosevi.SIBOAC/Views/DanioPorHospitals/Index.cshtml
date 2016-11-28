@@ -13,18 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdHospital)
-        </th>
-        <th>
-            @Html.Label("Descripcion Hospital")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdDanio)
-        </th>
-        <th>
-            @Html.Label("Descripcion Daño")
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
         <th>
@@ -38,19 +26,6 @@
 
 @foreach (var item in Model) {
     <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.IdHospital)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionHospital)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdDanio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionDanio)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estado)
         </td>
@@ -61,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { codHosp = item.IdHospital, codDanio = item.IdDanio /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { codHosp = item.IdHospital, codDanio = item.IdDanio /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { codHosp = item.IdHospital, codDanio = item.IdDanio /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

@@ -1083,6 +1083,12 @@
     <Content Include="Views\RutasPorDistritos\Details.cshtml" />
     <Content Include="Views\RutasPorDistritos\Edit.cshtml" />
     <Content Include="Views\RutasPorDistritos\Index.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Create.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Delete.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Details.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Edit.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
