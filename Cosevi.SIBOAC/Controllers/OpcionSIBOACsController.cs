@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: OpcionSIBOACs
         public ActionResult Index()
         {
-            return View(db.OpcionSIBOACs.ToList());
+            return View(db.OpcionSIBOAC.ToList());
         }
 
         // GET: OpcionSIBOACs/Details/5
@@ -27,7 +27,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOACs.Find(id);
+            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOAC.Find(id);
             if (opcionSIBOAC == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.OpcionSIBOACs.Add(opcionSIBOAC);
+                db.OpcionSIBOAC.Add(opcionSIBOAC);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOACs.Find(id);
+            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOAC.Find(id);
             if (opcionSIBOAC == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOACs.Find(id);
+            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOAC.Find(id);
             if (opcionSIBOAC == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOACs.Find(id);
-            db.OpcionSIBOACs.Remove(opcionSIBOAC);
+            OpcionSIBOAC opcionSIBOAC = db.OpcionSIBOAC.Find(id);
+            db.OpcionSIBOAC.Remove(opcionSIBOAC);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
