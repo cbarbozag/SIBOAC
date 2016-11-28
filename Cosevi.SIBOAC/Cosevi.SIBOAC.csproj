@@ -228,9 +228,11 @@
     <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
+    <Compile Include="Controllers\RolOpcionSIBOACsController.cs" />
     <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
     <Compile Include="Controllers\RolSIBOACsController.cs" />
+    <Compile Include="Controllers\RolUsuarioSIBOACsController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
     <Compile Include="Controllers\RutasPorDistritosController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
@@ -1098,6 +1100,16 @@
     <Content Include="Views\UsuarioSIBOACs\Details.cshtml" />
     <Content Include="Views\UsuarioSIBOACs\Edit.cshtml" />
     <Content Include="Views\UsuarioSIBOACs\Index.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Create.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Delete.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Details.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Edit.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Index.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Create.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Delete.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Details.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Edit.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

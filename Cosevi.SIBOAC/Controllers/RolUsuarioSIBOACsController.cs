@@ -10,107 +10,107 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RolSIBOACsController : Controller
+    public class RolUsuarioSIBOACsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: RolSIBOACs
+        // GET: RolUsuarioSIBOACs
         public ActionResult Index()
         {
-            return View(db.RolSIBOAC.ToList());
+            return View(db.RolUsuarioSIBOAC.ToList());
         }
 
-        // GET: RolSIBOACs/Details/5
+        // GET: RolUsuarioSIBOACs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolSIBOAC rolSIBOAC = db.RolSIBOAC.Find(id);
-            if (rolSIBOAC == null)
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+            if (rolUsuarioSIBOAC == null)
             {
                 return HttpNotFound();
             }
-            return View(rolSIBOAC);
+            return View(rolUsuarioSIBOAC);
         }
 
-        // GET: RolSIBOACs/Create
+        // GET: RolUsuarioSIBOACs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RolSIBOACs/Create
+        // POST: RolUsuarioSIBOACs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CodigoRol,Descripcion")] RolSIBOAC rolSIBOAC)
+        public ActionResult Create([Bind(Include = "IdUsuario,IdRol")] RolUsuarioSIBOAC rolUsuarioSIBOAC)
         {
             if (ModelState.IsValid)
             {
-                db.RolSIBOAC.Add(rolSIBOAC);
+                db.RolUsuarioSIBOAC.Add(rolUsuarioSIBOAC);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(rolSIBOAC);
+            return View(rolUsuarioSIBOAC);
         }
 
-        // GET: RolSIBOACs/Edit/5
+        // GET: RolUsuarioSIBOACs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolSIBOAC rolSIBOAC = db.RolSIBOAC.Find(id);
-            if (rolSIBOAC == null)
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+            if (rolUsuarioSIBOAC == null)
             {
                 return HttpNotFound();
             }
-            return View(rolSIBOAC);
+            return View(rolUsuarioSIBOAC);
         }
 
-        // POST: RolSIBOACs/Edit/5
+        // POST: RolUsuarioSIBOACs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CodigoRol,Descripcion")] RolSIBOAC rolSIBOAC)
+        public ActionResult Edit([Bind(Include = "IdUsuario,IdRol")] RolUsuarioSIBOAC rolUsuarioSIBOAC)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rolSIBOAC).State = EntityState.Modified;
+                db.Entry(rolUsuarioSIBOAC).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(rolSIBOAC);
+            return View(rolUsuarioSIBOAC);
         }
 
-        // GET: RolSIBOACs/Delete/5
+        // GET: RolUsuarioSIBOACs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolSIBOAC rolSIBOAC = db.RolSIBOAC.Find(id);
-            if (rolSIBOAC == null)
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+            if (rolUsuarioSIBOAC == null)
             {
                 return HttpNotFound();
             }
-            return View(rolSIBOAC);
+            return View(rolUsuarioSIBOAC);
         }
 
-        // POST: RolSIBOACs/Delete/5
+        // POST: RolUsuarioSIBOACs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            RolSIBOAC rolSIBOAC = db.RolSIBOAC.Find(id);
-            db.RolSIBOAC.Remove(rolSIBOAC);
+            RolUsuarioSIBOAC rolUsuarioSIBOAC = db.RolUsuarioSIBOAC.Find(id);
+            db.RolUsuarioSIBOAC.Remove(rolUsuarioSIBOAC);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

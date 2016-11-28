@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: UsuarioSIBOACs
         public ActionResult Index()
         {
-            return View(db.UsuarioSIBOACs.ToList());
+            return View(db.UsuarioSIBOAC.ToList());
         }
 
         // GET: UsuarioSIBOACs/Details/5
@@ -27,7 +27,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOACs.Find(id);
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
             if (usuarioSIBOAC == null)
             {
                 return HttpNotFound();
@@ -50,7 +50,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.UsuarioSIBOACs.Add(usuarioSIBOAC);
+                db.UsuarioSIBOAC.Add(usuarioSIBOAC);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOACs.Find(id);
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
             if (usuarioSIBOAC == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOACs.Find(id);
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
             if (usuarioSIBOAC == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOACs.Find(id);
-            db.UsuarioSIBOACs.Remove(usuarioSIBOAC);
+            UsuarioSIBOAC usuarioSIBOAC = db.UsuarioSIBOAC.Find(id);
+            db.UsuarioSIBOAC.Remove(usuarioSIBOAC);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
