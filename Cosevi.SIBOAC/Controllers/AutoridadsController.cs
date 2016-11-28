@@ -38,6 +38,17 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Autoridads/Create
         public ActionResult Create()
         {
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsOpcionformulario = db.OPCIONFORMULARIO
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Descripcion
+
+              });
+
+
+            ViewBag.ComboOpcionformulario = itemsOpcionformulario;
             return View();
         }
 
@@ -70,6 +81,9 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboOpcionformulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codFormulario);
+
             return View(autoridad);
         }
 
