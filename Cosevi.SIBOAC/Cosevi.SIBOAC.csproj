@@ -180,7 +180,6 @@
     <Compile Include="Controllers\CarrilsController.cs" />
     <Compile Include="Controllers\CarroceriasController.cs" />
     <Compile Include="Controllers\CatalogoDeArticulosController.cs" />
-    <Compile Include="Controllers\Circulacions1Controller.cs" />
     <Compile Include="Controllers\CirculacionsController.cs" />
     <Compile Include="Controllers\ClaseDePlacasController.cs" />
     <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
@@ -1099,16 +1098,6 @@
     <Content Include="Views\UsuarioSIBOACs\Details.cshtml" />
     <Content Include="Views\UsuarioSIBOACs\Edit.cshtml" />
     <Content Include="Views\UsuarioSIBOACs\Index.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Create.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Delete.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Details.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Edit.cshtml" />
-    <Content Include="Views\RolPorPersonas1\Index.cshtml" />
-    <Content Include="Views\Circulacions1\Create.cshtml" />
-    <Content Include="Views\Circulacions1\Delete.cshtml" />
-    <Content Include="Views\Circulacions1\Details.cshtml" />
-    <Content Include="Views\Circulacions1\Edit.cshtml" />
-    <Content Include="Views\Circulacions1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
