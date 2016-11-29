@@ -54,6 +54,18 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="BitacoraSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="NombreTabla" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Operacion" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ValorAntes" Type="varchar(max)" />
+          <Property Name="ValorDespues" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="CANTON">
           <Key>
             <PropertyRef Name="CodCan" />
@@ -920,6 +932,7 @@
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="Self.ARTICULOSXDEPOSITOSBIENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AUTORIDAD" EntityType="Self.AUTORIDAD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BitacoraSIBOAC" EntityType="Self.BitacoraSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CANTON" EntityType="Self.CANTON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARACUBI" EntityType="Self.CARACUBI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARRIL" EntityType="Self.CARRIL" Schema="dbo" store:Type="Tables" />
@@ -1166,6 +1179,7 @@
           <EntitySet Name="RolUsuarioSIBOAC" EntityType="PC_HH_AndroidModel.RolUsuarioSIBOAC" />
           <EntitySet Name="TIPODANO" EntityType="PC_HH_AndroidModel.TIPODANO" />
           <EntitySet Name="UsuarioSIBOAC" EntityType="PC_HH_AndroidModel.UsuarioSIBOAC" />
+          <EntitySet Name="BitacoraSIBOAC" EntityType="PC_HH_AndroidModel.BitacoraSIBOAC" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2006,6 +2020,18 @@
           <Property Name="Clave" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeUltimoCambio" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BitacoraSIBOAC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NombreTabla" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoUsuario" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Operacion" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ValorAntes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ValorDespues" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2967,6 +2993,19 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BitacoraSIBOAC">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.BitacoraSIBOAC">
+              <MappingFragment StoreEntitySet="BitacoraSIBOAC">
+                <ScalarProperty Name="ValorDespues" ColumnName="ValorDespues" />
+                <ScalarProperty Name="ValorAntes" ColumnName="ValorAntes" />
+                <ScalarProperty Name="Operacion" ColumnName="Operacion" />
+                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
+                <ScalarProperty Name="NombreTabla" ColumnName="NombreTabla" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

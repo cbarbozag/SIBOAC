@@ -22,10 +22,11 @@ namespace Cosevi.SIBOAC.Controllers
             return View(db.CATARTICULO.ToList());
         }
 
+
         // GET: CatalogoDeArticulos/Details/5
         public ActionResult Details(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal )
         {
-            if (codigo == null || conducta == null )
+            if (codigo == null || conducta == null || fechaInicio == null || fechaFinal == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -96,7 +97,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: CatalogoDeArticulos/Edit/5
         public ActionResult Edit(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
         {
-            if (codigo == null || conducta == null )
+            if (codigo == null || conducta == null || fechaInicio == null || fechaFinal == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -127,7 +128,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: CatalogoDeArticulos/Delete/5
         public ActionResult Delete(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
         {
-            if (codigo == null || conducta == null )
+            if (codigo == null || conducta == null || fechaInicio == null || fechaFinal == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -149,7 +150,7 @@ namespace Cosevi.SIBOAC.Controllers
                 catalogoDeArticulos.Estado = "I";
             else
                 catalogoDeArticulos.Estado = "A";
-            db.SaveChanges();
+                db.SaveChanges();
             return RedirectToAction("Index");
         }
 
