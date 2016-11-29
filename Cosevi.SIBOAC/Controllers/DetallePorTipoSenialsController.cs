@@ -23,13 +23,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DetallePorTipoSenials/Details/5
-        public ActionResult Details(string codsenex, string id )
+        public ActionResult Details(string codsenex, string codigose)
         {
-            if (codsenex == null || id == null )
+            if (codsenex == null || codigose == null )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, id);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
             if (detallePorTipoSenial == null)
             {
                 return HttpNotFound();
@@ -84,13 +84,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DetallePorTipoSenials/Edit/5
-        public ActionResult Edit(string codsenex, string id)
+        public ActionResult Edit(string codsenex, string codigose)
         {
-            if (codsenex == null || id == null)
+            if (codsenex == null || codigose == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex,id);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
             if (detallePorTipoSenial == null)
             {
                 return HttpNotFound();
@@ -117,13 +117,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DetallePorTipoSenials/Delete/5
-        public ActionResult Delete(string codsenex, string id)
+        public ActionResult Delete(string codsenex, string codigose)
         {
-            if (codsenex == null || id == null)
+            if (codsenex == null || codigose == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, id);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
             if (detallePorTipoSenial == null)
             {
                 return HttpNotFound();
@@ -134,9 +134,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: DetallePorTipoSenials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string codsenex, string id)
+        public ActionResult DeleteConfirmed(string codsenex, string codigose)
         {
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex,id);
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
             if (detallePorTipoSenial.Estado == "A")
                 detallePorTipoSenial.Estado = "I";
             else
@@ -154,16 +154,16 @@ namespace Cosevi.SIBOAC.Controllers
             base.Dispose(disposing);
         }
 
-        public string Verificar(string codsenex, string id)
+        public string Verificar(string codsenex, string codigose)
         {
             string mensaje = "";
             bool exist = db.DETALLETIPOSEÑAL.Any(x => x.CodigoTipoSenial == codsenex
-                                                    && x.Id == id);
+                                                    && x.Id == codigose);
             if (exist)
             {
                 mensaje = "El registro con los siguientes datos ya se encuentra registrados:" +
                            " código de Tipo Señal" + codsenex +
-                           ", código" + id;
+                           ", código" + codigose;
 
             }
             return mensaje;

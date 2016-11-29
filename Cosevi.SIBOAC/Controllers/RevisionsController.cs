@@ -70,6 +70,9 @@ namespace Cosevi.SIBOAC.Controllers
                     db.SaveChanges();
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
+
+                    GuardarBitacora("I",revision);
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -83,6 +86,30 @@ namespace Cosevi.SIBOAC.Controllers
             return View(revision);
         }
 
+        public void GuardarBitacora(string Accion, Revision revision)
+        {
+            BitacoraSIBOAC bitacora = new BitacoraSIBOAC();
+            switch (Accion)
+            {
+                case "I"://insert
+                    bitacora.NombreTabla = "REVISION";
+                    bitacora.FechaHora = DateTime.Now;
+                    bitacora.CodigoUsuario = "Admin";
+                    bitacora.Operacion = Accion;
+                    bitacora.ValorAntes = "";
+                    bitacora.ValorDespues = "Id="+revision.Id +", Descripcion="+ revision.Descripcion;
+                    db.BitacoraSIBOAC.Add(bitacora);
+                    db.SaveChanges();
+                    break;
+                case "U":// Update
+
+                    break;
+                case "D": //Delete
+                default:
+                    break;
+
+            }
+        }
         // GET: Revisions/Edit/5
         public ActionResult Edit(string id)
         {

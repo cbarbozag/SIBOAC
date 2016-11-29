@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.DetallePorTipoSenial>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de detalles por tipos de señal</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -38,35 +38,81 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoSenial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoSenial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Detalles", "Details", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Inactivar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+
+    else
+    {
+
+        <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CodigoTipoSenial)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoSenial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { codigose = item.CodigoTipoSenial, codsenex = item.Id /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { codigose = item.CodigoTipoSenial, codsenex = item.Id /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { codigose = item.CodigoTipoSenial, codsenex = item.Id /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoSenial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codsenex = item.CodigoTipoSenial, codigose = item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { codsenex = item.CodigoTipoSenial, codigose = item.Id }) |
+
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
+            </td>
+        </tr>
+    }
 }
 
 </table>

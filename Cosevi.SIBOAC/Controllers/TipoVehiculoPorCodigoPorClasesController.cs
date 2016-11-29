@@ -23,13 +23,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: TipoVehiculoPorCodigoPorClases/Details/5
-        public ActionResult Details(int? codigoTipoVehic, string clase, string codigo, int? codigoVehiculo)
+        public ActionResult Details(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
         {
-            if (codigoTipoVehic == null || clase == null || codigo == null || codigoVehiculo == null)
+            if (codigoTiposVehiculos == null || codigoClasePlaca == null || codigoCodigoPlaca == null || codigoTipoVeh == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTipoVehic, clase, codigo, codigoVehiculo);
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
             if (tipoVehiculoPorCodigoPorClase == null)
             {
                 return HttpNotFound();
@@ -65,6 +65,15 @@ namespace Cosevi.SIBOAC.Controllers
               });
             ViewBag.ComboClasePlaca = itemsClasePlaca;
 
+
+            IEnumerable<SelectListItem> itemsCodigoVehiculo = db.TIPOVEH
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Id.ToString()
+              });
+            ViewBag.ComboCodigoVehiculo = itemsCodigoVehiculo;
+
             return View();
         }
 
@@ -86,23 +95,23 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: TipoVehiculoPorCodigoPorClases/Edit/5
-        public ActionResult Edit(int? codigoTipoVehic, string clase, string codigo, int? codigoVehiculo)
+        public ActionResult Edit(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
         {
-            if (codigoTipoVehic==null|| clase == null || codigo == null|| codigoVehiculo ==null)
+            if (codigoTiposVehiculos == null || codigoClasePlaca == null || codigoCodigoPlaca == null || codigoTipoVeh == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             // TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTipoVehic, clase, codigo, codigoVehiculo);
-            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTipoVehic,  clase,  codigo,codigoVehiculo);
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
             if (tipoVehiculoPorCodigoPorClase == null)
             {
                 return HttpNotFound();
             }
 
-
-            ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", codigoTipoVehic);
-            ViewBag.ComboClasePlaca = new SelectList(db.CLASE.OrderBy(x => x.Id), "Id", "Id", clase);
-            ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", codigo);
+            ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", codigoTiposVehiculos);
+            ViewBag.ComboClasePlaca = new SelectList(db.CLASE.OrderBy(x => x.Id), "Id", "Id", codigoClasePlaca);
+            ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", codigoCodigoPlaca);
+            ViewBag.ComboCodigoVehiculo = new SelectList(db.TIPOVEH.OrderBy(x => x.Id), "Id", "Id", codigoTipoVeh);
             return View(tipoVehiculoPorCodigoPorClase);
         }
 
@@ -123,13 +132,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: TipoVehiculoPorCodigoPorClases/Delete/5
-        public ActionResult Delete(int? codigoTipoVehic, string clase, string codigo, int? codigoVehiculo)
+        public ActionResult Delete(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
         {
-            if (codigoTipoVehic == null || clase == null || codigo == null || codigoVehiculo == null)
+            if (codigoTiposVehiculos == null || codigoClasePlaca == null || codigoCodigoPlaca == null || codigoTipoVeh == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTipoVehic, clase, codigo, codigoVehiculo);
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
             if (tipoVehiculoPorCodigoPorClase == null)
             {
                 return HttpNotFound();
@@ -140,10 +149,13 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: TipoVehiculoPorCodigoPorClases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? codigoTipoVehic, string clase, string codigo, int? codigoVehiculo)
+        public ActionResult DeleteConfirmed(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
         {
-            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTipoVehic, clase, codigo, codigoVehiculo);
-            db.TIPOVEHCODIGOCLASE.Remove(tipoVehiculoPorCodigoPorClase);
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
+            if (tipoVehiculoPorCodigoPorClase.Estado == "A")
+                tipoVehiculoPorCodigoPorClase.Estado = "I";
+            else
+                tipoVehiculoPorCodigoPorClase.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

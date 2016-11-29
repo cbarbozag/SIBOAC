@@ -31,7 +31,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CodigoDepositosBienes.ToString(), (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CodigoDepositosBienes, (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CodigoDepositosBienes, "", new { @class = "text-danger" })
             </div>
         </div>
