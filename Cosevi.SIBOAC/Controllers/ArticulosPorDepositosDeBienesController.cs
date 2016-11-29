@@ -40,8 +40,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ArticulosPorDepositosDeBienes/Create
    
         public ActionResult Create()
-        {
-                      
+        {            
             //se llenan los combos
             IEnumerable<SelectListItem> itemsDepositosBienes = db.DEPOSITOBIENES
               .Select(o => new SelectListItem
@@ -72,7 +71,7 @@ namespace Cosevi.SIBOAC.Controllers
             return View();
         }
 
-       
+     
 
         // POST: ArticulosPorDepositosDeBienes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
