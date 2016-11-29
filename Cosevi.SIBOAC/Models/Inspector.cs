@@ -45,31 +45,35 @@ namespace Cosevi.SIBOAC.Models
         //[StringLength(10, ErrorMessage = "El código no debe ser mayor a 10 caracteres")]
         public string Adonoren { get; set; }
 
-        [DisplayName("Fecha de inclusion")]
+        [DisplayName("Fecha de inclusión")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string FechaDeInclusion { get; set; }
 
-        [DisplayName("Fecha de exclusion")]
+        [DisplayName("Fecha de exclusión")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string FechaDeExclusion { get; set; }
 
-        [DisplayName("Documento de inclusion")]
+        [DisplayName("Documento de inclusión")]
         public string DocumentoDeInclusion { get; set; }
 
-        [DisplayName("Documento de exclusion")]
+        [DisplayName("Documento de exclusión")]
         public string DocumentoDeExclusion { get; set; }
 
-        [DisplayName("Fecha registro")]
+        [DisplayName("Fecha de registro")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaReag { get; set; }
 
-        [DisplayName("Fecha de registro")]
+        [DisplayName("Documento de registro")]
         public string DocumentoReag { get; set; }
 
         [DisplayName("Codigo de delegación")]
         public string CodigoDeDelegacion { get; set; }
 
         [DisplayName("Email")]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessage ="Ingrese un correo valido")]
         public string Email { get; set; }
 
         [DisplayName("Estado")]
