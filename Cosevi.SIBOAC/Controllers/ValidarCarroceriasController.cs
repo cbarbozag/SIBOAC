@@ -17,6 +17,9 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ValidarCarrocerias
         public ActionResult Index()
         {
+
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.VALIDARCARROCERIA.ToList());
         }
 
@@ -140,7 +143,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
         {
             ValidarCarroceria validarCarroceria = db.VALIDARCARROCERIA.Find(CodigoTipoIdentificacion, CodigoTipoVehiculo, CodigoCarroceria);
-            db.VALIDARCARROCERIA.Remove(validarCarroceria);
+            if (validarCarroceria.Estado == "I")
+                validarCarroceria.Estado = "A";
+            else
+                validarCarroceria.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

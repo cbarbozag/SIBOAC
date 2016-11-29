@@ -17,6 +17,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: CatalogoDeArticulos
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.CATARTICULO.ToList());
         }
 
@@ -41,6 +43,24 @@ namespace Cosevi.SIBOAC.Controllers
             return View();
         }
 
+        public string Verificar(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
+        {
+            string mensaje = "";
+            bool exist = db.CATARTICULO.Any(x => x.Id == codigo
+                                          && x.Conducta == conducta
+                                          &&x.FechaDeInicio == fechaInicio
+                                          &&x.FechaDeFin == fechaFinal);
+            if (exist)
+            {
+                mensaje = "El codigo " + codigo +
+                    ",con la conducta "+ conducta+
+                    ",Fecha Inicio "+ fechaInicio +
+                    ",Fecha Fin "+ fechaFinal
+                    +" ya esta registrado";
+            }
+            return mensaje;
+        }
+
         // POST: CatalogoDeArticulos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -51,8 +71,23 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.CATARTICULO.Add(catalogoDeArticulos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(catalogoDeArticulos.Id, 
+                                            catalogoDeArticulos.Conducta,
+                                            catalogoDeArticulos.FechaDeInicio,
+                                            catalogoDeArticulos.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(catalogoDeArticulos);
+                }
             }
 
             return View(catalogoDeArticulos);
@@ -110,7 +145,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
         {
             CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
-            db.CATARTICULO.Remove(catalogoDeArticulos);
+            if (catalogoDeArticulos.Estado == "A")
+                catalogoDeArticulos.Estado = "I";
+            else
+                catalogoDeArticulos.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

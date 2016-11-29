@@ -17,17 +17,19 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ConsecutivoNumeroMarcoes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.CONSECUTIVONUMEROMARCO.ToList());
         }
 
         // GET: ConsecutivoNumeroMarcoes/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (id == null)
+            if (id == null || consecutivoNumeroMarcoAnterior==null  || FechaInicio == null || FechaFin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id);
+            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id,consecutivoNumeroMarcoAnterior,FechaInicio,FechaFin);
             if (consecutivoNumeroMarco == null)
             {
                 return HttpNotFound();
@@ -41,6 +43,25 @@ namespace Cosevi.SIBOAC.Controllers
             return View();
         }
 
+        public string Verificar(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
+        {
+            string mensaje = "";
+            bool exist = db.CONSECUTIVONUMEROMARCO.Any(x => x.Id == id
+                                                       &&x.IdAnterior == consecutivoNumeroMarcoAnterior
+                                                       &&x.FechaDeInicio == FechaInicio
+                                                       &&x.FechaDeFin == FechaFin);
+            if (exist)
+            {
+                mensaje = "El codigo consecutivo marco " + id + 
+                           ", código anterior marco "+ consecutivoNumeroMarcoAnterior+
+                           ", Fecha Inicio "+ FechaInicio +
+                           ", Fecha Fin "+ FechaFin+
+                            " ya esta registrado";
+            }
+            return mensaje;
+        }
+
+
         // POST: ConsecutivoNumeroMarcoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -51,21 +72,35 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.CONSECUTIVONUMEROMARCO.Add(consecutivoNumeroMarco);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(consecutivoNumeroMarco.Id, consecutivoNumeroMarco.IdAnterior, consecutivoNumeroMarco.FechaDeInicio, consecutivoNumeroMarco.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(consecutivoNumeroMarco);
+                }
             }
 
             return View(consecutivoNumeroMarco);
         }
 
         // GET: ConsecutivoNumeroMarcoes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (id == null)
+            if (id == null || consecutivoNumeroMarcoAnterior==null  || FechaInicio == null || FechaFin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id);
+            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id, consecutivoNumeroMarcoAnterior, FechaInicio, FechaFin);
             if (consecutivoNumeroMarco == null)
             {
                 return HttpNotFound();
@@ -90,13 +125,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ConsecutivoNumeroMarcoes/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (id == null)
+            if (id == null || consecutivoNumeroMarcoAnterior == null || FechaInicio == null || FechaFin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id);
+            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id,consecutivoNumeroMarcoAnterior,FechaInicio,FechaFin);
             if (consecutivoNumeroMarco == null)
             {
                 return HttpNotFound();
@@ -107,10 +142,13 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: ConsecutivoNumeroMarcoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
         {
-            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id);
-            db.CONSECUTIVONUMEROMARCO.Remove(consecutivoNumeroMarco);
+            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id, consecutivoNumeroMarcoAnterior, FechaInicio, FechaFin);
+            if (consecutivoNumeroMarco.Estado == "A")
+                consecutivoNumeroMarco.Estado = "I";
+            else
+                consecutivoNumeroMarco.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -146,7 +146,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string IdHospital, int IdDanio)
         {
             DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital,IdDanio);
-            db.DAÑOXHOSPITAL.Remove(danioPorHospital);
+            if (danioPorHospital.Estado == "A")
+                danioPorHospital.Estado = "I";
+            else
+                danioPorHospital.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

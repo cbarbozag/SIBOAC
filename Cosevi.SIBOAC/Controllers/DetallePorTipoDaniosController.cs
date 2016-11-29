@@ -17,6 +17,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DetallePorTipoDanios
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.DETALLETIPODAÑO.ToList());
         }
 
@@ -38,7 +40,37 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DetallePorTipoDanios/Create
         public ActionResult Create()
         {
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsDanio = db.DAÑO
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Descripcion
+              });
+            ViewBag.ComboDanio = itemsDanio;
+            
+            IEnumerable<SelectListItem> itemsTipoDanio = db.TIPODANO
+              .Select(o => new SelectListItem
+              {
+                  Value = o.codigod,
+                  Text = o.descripcion
+              });
+            ViewBag.ComboTipoDanio = itemsTipoDanio;
+
             return View();
+        }
+        public string Verificar(string codigod, string codigotd)
+        {
+            string mensaje = "";
+            bool exist = db.DETALLETIPODAÑO.Any(x => x.CodigoDanio == codigod
+                                                       && x.CodigoTipoDanio == codigotd);
+            if (exist)
+            {
+                mensaje = "El codigo daño " + codigod +
+                           ", código tipo daño " + codigotd +
+                            " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // POST: DetallePorTipoDanios/Create
@@ -51,8 +83,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DETALLETIPODAÑO.Add(detallePorTipoDanio);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(detallePorTipoDanio.CodigoDanio, detallePorTipoDanio.CodigoTipoDanio);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(detallePorTipoDanio);
+                }
             }
 
             return View(detallePorTipoDanio);
@@ -110,7 +156,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigod, string codigotd)
         {
             DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
-            db.DETALLETIPODAÑO.Remove(detallePorTipoDanio);
+            if (detallePorTipoDanio.Estado == "A")
+                detallePorTipoDanio.Estado = "I";
+            else
+                detallePorTipoDanio.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

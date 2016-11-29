@@ -17,6 +17,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Divisions
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.DIVISION.ToList());
         }
 
@@ -62,6 +64,25 @@ namespace Cosevi.SIBOAC.Controllers
             return View();
         }
 
+        public string Verificar(int? canton, string OficinaImpugna, DateTime FechaInicio, DateTime FechaFin)
+        {
+            string mensaje = "";
+            bool exist = db.DIVISION.Any(x => x.IdCanton == canton
+                                              && x.CodigoOficinaImpugna == OficinaImpugna
+                                              &&x.FechaDeInicio == FechaInicio
+                                              &&x.FechaDeFin == FechaFin);
+            if (exist)
+            {
+                mensaje = "El codigo cantón " + canton +
+                           ", código Oficina impugna " + OficinaImpugna +
+                           ", fecha inicio " + FechaInicio +
+                           ", fecha fin " + FechaFin +
+                            " ya esta registrado";
+            }
+            return mensaje;
+        }
+
+
         // POST: Divisions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -72,8 +93,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DIVISION.Add(division);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(division.IdCanton, division.CodigoOficinaImpugna, division.FechaDeInicio, division.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(division);
+                }
             }
 
             return View(division);
