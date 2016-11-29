@@ -31,6 +31,7 @@ namespace Cosevi.SIBOAC.Models
         public string Termina { get; set; }
 
         [DisplayName("Estado")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string Estado { get; set; }
 

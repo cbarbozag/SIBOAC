@@ -70,8 +70,8 @@
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
-                @Html.ActionLink("Details", "Details", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
+                @Html.ActionLink("Editar", "Edit", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
+                @Html.ActionLink("Detalle", "Details", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento })
