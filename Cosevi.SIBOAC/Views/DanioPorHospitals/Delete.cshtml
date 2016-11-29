@@ -41,6 +41,20 @@ else
 
 
         <dt>
+            @Html.DisplayNameFor(model => model.DescripcionDanio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionDanio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionHospital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionHospital)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
 
@@ -72,11 +86,11 @@ else
         <div class="form-actions no-color">
             @if (Model.Estado == "A")
             {
-                <input type="submit" value="Inactivar" class="btn btn-default" />
+                <input type="submit" value="Inactivar" class="btn btn-warning" />
             }
             else
             {
-                <input type="submit" value="Activar" class="btn btn-default" />
+                <input type="submit" value="Activar" class="btn btn-success" />
             }
             |
             @Html.ActionLink("Regresar a la lista", "Index")

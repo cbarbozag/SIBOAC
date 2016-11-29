@@ -65,7 +65,14 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario  /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalles", "Details", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Inactivar", "Delete", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ })
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codigo = item.Id, codFormulario = item.CodigoOpcionFormulario })
+                }
             </td>
         </tr>
     }
