@@ -22,9 +22,9 @@ namespace Cosevi.SIBOAC.Controllers
 
         // GET: ValidarCarrocerias/Details/5        
 
-        public ActionResult Details(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
+        public ActionResult Details(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
         {
-            if (CodigoTipoIdentificacion == null)
+            if (CodigoTipoIdentificacion == null || CodigoTipoVehiculo == null || CodigoCarroceria == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -60,9 +60,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ValidarCarrocerias/Edit/5
-        public ActionResult Edit(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
+        public ActionResult Edit(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
         {
-            if (CodigoTipoIdentificacion == null)
+            if (CodigoTipoIdentificacion == null || CodigoTipoVehiculo == null || CodigoCarroceria == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -91,9 +91,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ValidarCarrocerias/Delete/5
-        public ActionResult Delete(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
+        public ActionResult Delete(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
         {
-            if (CodigoTipoIdentificacion == null)
+            if (CodigoTipoIdentificacion == null|| CodigoTipoVehiculo == null || CodigoCarroceria == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

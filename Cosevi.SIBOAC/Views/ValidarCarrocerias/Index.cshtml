@@ -56,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria  /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria }) |
             @Html.ActionLink("Details", "Details", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ })
         </td>
