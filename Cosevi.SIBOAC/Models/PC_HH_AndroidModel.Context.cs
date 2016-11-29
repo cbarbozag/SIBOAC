@@ -103,11 +103,14 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<TiposPorDocumento> TIPOSXDOCUMENTO { get; set; }
         public virtual DbSet<ValidarCarroceria> VALIDARCARROCERIA { get; set; }
         public virtual DbSet<ConsecutivoNumeroMarco> CONSECUTIVONUMEROMARCO { get; set; }
-        public virtual DbSet<OpcionSIBOAC> OpcionSIBOAC { get; set; }
         public virtual DbSet<RolPorPersonaOpcionFormulario> ROLPERSONA_OPCIONFORMULARIO { get; set; }
-        public virtual DbSet<RolSIBOAC> RolSIBOAC { get; set; }
         public virtual DbSet<TipoVehiculoPorCodigoPorClase> TIPOVEHCODIGOCLASE { get; set; }
-        public virtual DbSet<UsuarioSIBOAC> UsuarioSIBOAC { get; set; }
         public virtual DbSet<DepositosBienes> DEPOSITOBIENES { get; set; }
+        public virtual DbSet<OpcionSIBOAC> OpcionSIBOAC { get; set; }
+        public virtual DbSet<RolOpcionSIBOAC> RolOpcionSIBOAC { get; set; }
+        public virtual DbSet<RolSIBOAC> RolSIBOAC { get; set; }
+        public virtual DbSet<RolUsuarioSIBOAC> RolUsuarioSIBOAC { get; set; }
+        public virtual DbSet<TIPODANO> TIPODANO { get; set; }
+        public virtual DbSet<UsuarioSIBOAC> UsuarioSIBOAC { get; set; }
     }
 }

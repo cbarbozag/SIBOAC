@@ -14,20 +14,8 @@ namespace Cosevi.SIBOAC.Models
     
     public partial class RolSIBOAC
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RolSIBOAC()
-        {
-            this.OpcionSIBOAC = new HashSet<OpcionSIBOAC>();
-            this.UsuarioSIBOAC = new HashSet<UsuarioSIBOAC>();
-        }
-    
         public int Id { get; set; }
         public string CodigoRol { get; set; }
         public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OpcionSIBOAC> OpcionSIBOAC { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UsuarioSIBOAC> UsuarioSIBOAC { get; set; }
     }
 }

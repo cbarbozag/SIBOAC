@@ -17,13 +17,15 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Autoridads
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.AUTORIDAD.ToList());
         }
 
         // GET: Autoridads/Details/5
-        public ActionResult Details(string codigo, int codFormulario)
+        public ActionResult Details(string codigo, int? codFormulario)
         {
-            if (codigo == null)
+            if (codigo == null|| codFormulario == null )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -61,8 +63,23 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.AUTORIDAD.Add(autoridad);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(autoridad.Id,
+                                             autoridad.CodigoOpcionFormulario);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(autoridad);
+                }
             }
 
             return View(autoridad);
@@ -138,6 +155,21 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public string Verificar(string codigo, int? codFormulario)
+        {
+            string mensaje = "";
+            bool exist = db.AUTORIDAD.Any(x => x.Id == codigo
+                                                    && x.CodigoOpcionFormulario == codFormulario);
+            if (exist)
+            {
+                mensaje = "El registro con los siguientes datos ya se encuentra registrados:"+
+                           " código de Autoridad" + codigo +
+                           ", código formulario" + codFormulario;
+
+            }
+            return mensaje;
         }
     }
 }

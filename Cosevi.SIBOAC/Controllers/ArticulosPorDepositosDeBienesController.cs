@@ -17,6 +17,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ArticulosPorDepositosDeBienes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.ARTICULOSXDEPOSITOSBIENES.ToList());
         }
 
@@ -80,8 +82,27 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ARTICULOSXDEPOSITOSBIENES.Add(articulosPorDepositosDeBienes);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(articulosPorDepositosDeBienes.CodigoDepositosBienes,
+                                           articulosPorDepositosDeBienes.CodigoOpcionFormulario,
+                                           articulosPorDepositosDeBienes.CodigoArticulo,
+                                           articulosPorDepositosDeBienes.Conducta,
+                                           articulosPorDepositosDeBienes.FechaDeInicio,
+                                           articulosPorDepositosDeBienes.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(articulosPorDepositosDeBienes);
+                }
             }
 
             return View(articulosPorDepositosDeBienes);
@@ -144,7 +165,6 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
             ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
-            db.ARTICULOSXDEPOSITOSBIENES.Remove(articulosPorDepositosDeBienes);
             if (articulosPorDepositosDeBienes.Estado == "A")
                 articulosPorDepositosDeBienes.Estado = "I";
             else
@@ -160,6 +180,28 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public string Verificar(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
+        {
+            string mensaje = "";
+            bool exist = db.ARTICULOSXDEPOSITOSBIENES.Any(x => x.CodigoDepositosBienes == CodDepositoBienes
+                                                    && x.CodigoOpcionFormulario == CodFormulario
+                                                    && x.CodigoArticulo == CodArticulo
+                                                    &&x.Conducta == Conducta
+                                                    &&x.FechaDeInicio == FechaInicio
+                                                    &&x.FechaDeFin == FechaFin);
+            if (exist)
+            {
+                mensaje = "El registro con los siguientes datos ya se encuentra registrados: código de depósito de bienes" + CodDepositoBienes +
+                           ", código opción formulario" + CodFormulario +
+                           ", código árticulo" + CodArticulo +
+                           ", conducta " + Conducta +
+                           ", Fecha Inicio " + FechaInicio +
+                           ", fecha Fin " + FechaFin;                          
+                      
+            }
+            return mensaje;
         }
     }
 }

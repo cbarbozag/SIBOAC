@@ -17,17 +17,19 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DanioPorHospitals
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.DAÑOXHOSPITAL.ToList());
         }
 
         // GET: DanioPorHospitals/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string IdHospital, int? IdDanio)
         {
-            if (id == null)
+            if (IdHospital == null|| IdDanio == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
             if (danioPorHospital == null)
             {
                 return HttpNotFound();
@@ -38,6 +40,21 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DanioPorHospitals/Create
         public ActionResult Create()
         {
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsHospital = db.HOSPITAL
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id,
+                  Text = o.Descripcion
+              });
+            ViewBag.ComboHospital = itemsHospital;
+            IEnumerable<SelectListItem> itemsDannio = db.DAÑO
+             .Select(c => new SelectListItem
+             {
+                 Value = c.Id.ToString(),
+                 Text = c.Descripcion
+             });
+            ViewBag.ComboDannio = itemsDannio;
             return View();
         }
 
@@ -51,25 +68,44 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DAÑOXHOSPITAL.Add(danioPorHospital);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(danioPorHospital.IdHospital,
+                                               danioPorHospital.IdDanio);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(danioPorHospital);
+                }
             }
 
             return View(danioPorHospital);
         }
 
         // GET: DanioPorHospitals/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string IdHospital, int? IdDanio)
         {
-            if (id == null)
+            if (IdHospital == null || IdDanio == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
             if (danioPorHospital == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboHospital = new SelectList(db.HOSPITAL.OrderBy(x => x.Descripcion), "Id", "Descripcion", IdHospital);
+            ViewBag.ComboDannio = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", IdDanio.ToString().Trim());
+
             return View(danioPorHospital);
         }
 
@@ -90,13 +126,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: DanioPorHospitals/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string IdHospital, int? IdDanio)
         {
-            if (id == null)
+            if (IdHospital == null|| IdDanio ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
             if (danioPorHospital == null)
             {
                 return HttpNotFound();
@@ -107,10 +143,13 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: DanioPorHospitals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string IdHospital, int IdDanio)
         {
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(id);
-            db.DAÑOXHOSPITAL.Remove(danioPorHospital);
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital,IdDanio);
+            if (danioPorHospital.Estado == "A")
+                danioPorHospital.Estado = "I";
+            else
+                danioPorHospital.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -123,5 +162,21 @@ namespace Cosevi.SIBOAC.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public string Verificar(string IdHospital, int IdDanio)
+        {
+            string mensaje = "";
+            bool exist = db.DAÑOXHOSPITAL.Any(x => x.IdHospital == IdHospital
+                                                    && x.IdDanio == IdDanio);
+            if (exist)
+            {
+                mensaje = "El registro con los siguientes datos ya se encuentra registrado:" +
+                           " código de Hospital" + IdHospital +
+                           ", código Daño" + IdDanio;
+
+            }
+            return mensaje;
+        }
+
     }
 }

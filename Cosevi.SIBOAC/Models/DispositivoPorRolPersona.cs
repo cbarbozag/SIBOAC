@@ -11,10 +11,18 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DispositivoPorRolPersona
     {
+        [DisplayName("Codigo de rol de la persona")]
+        [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracter.")]
+        [Required(ErrorMessage = "El codigo es obligatorio")]
         public string CodigoRolPersona { get; set; }
+
+        [DisplayName("Código del dispositivo")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoDispositivo { get; set; }
 
 

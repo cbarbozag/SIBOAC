@@ -17,6 +17,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: RolDePersonaPorVehiculoes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.RolDePersonaPorVehiculoes.ToList());
         }
 

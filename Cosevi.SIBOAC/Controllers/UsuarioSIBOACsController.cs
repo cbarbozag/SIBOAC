@@ -42,8 +42,8 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // POST: UsuarioSIBOACs/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CodigoUsuario,Nombre,Estado,Clave,FechaDeCreacion,FechaDeUltimoCambio")] UsuarioSIBOAC usuarioSIBOAC)
@@ -74,8 +74,8 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // POST: UsuarioSIBOACs/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,CodigoUsuario,Nombre,Estado,Clave,FechaDeCreacion,FechaDeUltimoCambio")] UsuarioSIBOAC usuarioSIBOAC)

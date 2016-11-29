@@ -11,14 +11,87 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ValidarCarroceria
     {
+        [DisplayName("Codigo de identificacion del vehiculo")]
+        [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracter.")]
+        [Required(ErrorMessage = "El codigo es obligatorio")]
         public string CodigoTipoIdVehiculo { get; set; }
+
+        [DisplayName("Código de los tipos de vehiculos")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoTiposVehiculos { get; set; }
+
+        [DisplayName("Código de carroceria")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoCarroceria { get; set; }
+
+        [DisplayName("Estado")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         public string Estado { get; set; }
+
+        [DisplayName("Fecha de inicio")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
+
+        [DisplayName("Fecha de fin")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
+
+        public string DescripcionCodigoTipoIdVehiculo
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                TipoIdDeVehiculo codigotipoidveh = db.TIPOIDEVEHICULO.Find(CodigoTipoIdVehiculo);
+                if (codigotipoidveh.Id == CodigoTipoIdVehiculo)
+                {
+                    return Descripcion = codigotipoidveh.Descripcion;
+                }
+
+                return Descripcion;
+            }
+        }
+
+        public string DescripcionCodigoTiposVehiculos
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                TiposDeVehiculos codigotiposvehiculos = db.TIPOSVEHICULOS.Find(CodigoTiposVehiculos);
+                if (codigotiposvehiculos.Id == CodigoTiposVehiculos)
+                {
+                    return Descripcion = codigotiposvehiculos.Nombre;
+                }
+
+                return Descripcion;
+            }
+        }
+
+        public string DescripcionCodigoCarroceria
+        {
+            get
+            {
+                string Descripcion = "";
+                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+                Carroceria codigocarroceria = db.CARROCERIA.Find(CodigoCarroceria);
+                if (codigocarroceria.Id == CodigoCarroceria)
+                {
+                    return Descripcion = codigocarroceria.Descripcion;
+                }
+
+                return Descripcion;
+            }
+        }
     }
 }

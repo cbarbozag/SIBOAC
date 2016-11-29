@@ -17,14 +17,17 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ValidarCarrocerias
         public ActionResult Index()
         {
+
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.VALIDARCARROCERIA.ToList());
         }
 
         // GET: ValidarCarrocerias/Details/5        
 
-        public ActionResult Details(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
+        public ActionResult Details(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
         {
-            if (CodigoTipoIdentificacion == null)
+            if (CodigoTipoIdentificacion == null || CodigoTipoVehiculo == null || CodigoCarroceria == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -39,6 +42,31 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ValidarCarrocerias/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> itemsTipoIdentificacion = db.TIPOIDEVEHICULO
+             .Select(o => new SelectListItem
+             {
+                 Value = o.Id,
+                 Text = o.Descripcion
+             });
+            ViewBag.ComboTipoIdVehiculo = itemsTipoIdentificacion;
+
+            IEnumerable<SelectListItem> itemsTiposVehiculos = db.TIPOSVEHICULOS
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Nombre
+            });
+            ViewBag.ComboTiposVehiculos = itemsTiposVehiculos;
+
+
+            IEnumerable<SelectListItem> itemsCarroceria = db.CARROCERIA
+             .Select(o => new SelectListItem
+             {
+                 Value = o.Id.ToString(),
+                 Text = o.Descripcion
+             });
+            ViewBag.ComboCarroceria = itemsCarroceria;
+
             return View();
         }
 
@@ -60,9 +88,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ValidarCarrocerias/Edit/5
-        public ActionResult Edit(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
+        public ActionResult Edit(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
         {
-            if (CodigoTipoIdentificacion == null)
+            if (CodigoTipoIdentificacion == null || CodigoTipoVehiculo == null || CodigoCarroceria == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -71,6 +99,10 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboTipoIdVehiculo = new SelectList(db.TIPOIDEVEHICULO.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodigoTipoIdentificacion);
+            ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", CodigoTipoVehiculo);
+            ViewBag.ComboCarroceria = new SelectList(db.CARROCERIA.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodigoCarroceria);
             return View(validarCarroceria);
         }
 
@@ -91,9 +123,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ValidarCarrocerias/Delete/5
-        public ActionResult Delete(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
+        public ActionResult Delete(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
         {
-            if (CodigoTipoIdentificacion == null)
+            if (CodigoTipoIdentificacion == null|| CodigoTipoVehiculo == null || CodigoCarroceria == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -111,7 +143,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
         {
             ValidarCarroceria validarCarroceria = db.VALIDARCARROCERIA.Find(CodigoTipoIdentificacion, CodigoTipoVehiculo, CodigoCarroceria);
-            db.VALIDARCARROCERIA.Remove(validarCarroceria);
+            if (validarCarroceria.Estado == "I")
+                validarCarroceria.Estado = "A";
+            else
+                validarCarroceria.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
