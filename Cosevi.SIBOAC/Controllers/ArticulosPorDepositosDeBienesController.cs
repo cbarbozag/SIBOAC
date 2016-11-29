@@ -41,7 +41,7 @@ namespace Cosevi.SIBOAC.Controllers
    
         public ActionResult Create()
         {
-            
+                      
             //se llenan los combos
             IEnumerable<SelectListItem> itemsDepositosBienes = db.DEPOSITOBIENES
               .Select(o => new SelectListItem
@@ -54,7 +54,7 @@ namespace Cosevi.SIBOAC.Controllers
         
             ViewBag.ComboDepositosBienes = itemsDepositosBienes;
 
-            IEnumerable<SelectListItem> itemsOpcionFormularios = db.OPCIONFORMULARIO
+            IEnumerable<SelectListItem> itemsOpcionFormularios = db.OPCIONFORMULARIO.Where(a => a.Estado == "A")
              .Select(o => new SelectListItem
              {
                  Value = o.Id.ToString(),
@@ -62,7 +62,7 @@ namespace Cosevi.SIBOAC.Controllers
              });
             ViewBag.ComboOpcionFormulario = itemsOpcionFormularios;
 
-            IEnumerable<SelectListItem> itemsCatArticulos = db.CATARTICULO
+            IEnumerable<SelectListItem> itemsCatArticulos = db.CATARTICULO.Where(a => a.Estado == "A")
             .Select(o => new SelectListItem
             {
                 Value = o.Id.ToString(),
@@ -71,6 +71,8 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.ComboArticulos = itemsCatArticulos;
             return View();
         }
+
+       
 
         // POST: ArticulosPorDepositosDeBienes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

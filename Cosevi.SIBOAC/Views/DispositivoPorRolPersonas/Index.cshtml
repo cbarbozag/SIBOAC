@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista</h2>
+<h2>Lista de los dispositivos por rol de persona</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
@@ -27,20 +27,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoRolPersona)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionRolPersona)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoDispositivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionDispositivo)
-        </td>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoRolPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionRolPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDispositivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDispositivo)
+            </td>
 
         <td>
             @Html.ActionLink("Editar", "Edit", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo /* id=item.PrimaryKey */ }) |

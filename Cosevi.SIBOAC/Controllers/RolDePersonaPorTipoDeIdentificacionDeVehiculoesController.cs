@@ -71,8 +71,23 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ROLPERSONAXTIPOIDEVEHICULO.Add(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol,
+                                         rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+                }
             }
 
             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
@@ -144,6 +159,20 @@ namespace Cosevi.SIBOAC.Controllers
                 rolDePersonaPorTipoDeIdentificacionDeVehiculo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public string Verificar(string codRol, string CodVeh)
+        {
+            string mensaje = "";
+            bool exist = db.ROLPERSONAXTIPOIDEVEHICULO.Any(x => x.CodigoDeRol == codRol
+                                                        && x.CodigoDeIdentificacionVehiculo == CodVeh);
+            if (exist)
+            {
+                mensaje = "El codigo rol persona" + codRol +
+                    ", código tipo de identificación vehiculo " + CodVeh +
+                    " ya esta registrado";
+            }
+            return mensaje;
         }
 
         protected override void Dispose(bool disposing)
