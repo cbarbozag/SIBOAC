@@ -295,6 +295,9 @@
     <Compile Include="Models\Distrito.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Edad.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EstadoCivil.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -878,6 +881,7 @@
     <Content Include="Views\ClaseDePlacas\Details.cshtml" />
     <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
     <Content Include="Views\ClaseDePlacas\Index.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

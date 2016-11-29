@@ -14,7 +14,7 @@ function initializeMenuOptionSelectEvent() {
 function markSelectedMenuOption() {
     var location = window.location.pathname;
     $('.nav-stacked').find('a').each(function () {
-        $(this).parent().toggleClass('active', $(this).attr('href') == location);
+        $(this).parent().toggleClass('active', $(this).attr('href') === location);
     });
 };
 
@@ -38,7 +38,7 @@ function initializeSorting() {
 };
 
 function sortUnorderedList(ul, ascendant) {
-    var ul = document.getElementById(ul);
+    ul = document.getElementById(ul);
     var lis = ul.getElementsByTagName("li");
     var vals = [];
     for (var i = 0, l = lis.length; i < l; i++) {
@@ -48,8 +48,8 @@ function sortUnorderedList(ul, ascendant) {
     if (!ascendant) {
         vals.reverse();
     };
-    for (var i = 0, l = lis.length; i < l; i++) {
-        lis[i].innerHTML = vals[i];
+    for (var j = 0, l = lis.length; j < l; j++) {
+        lis[j].innerHTML = vals[j];
     };
 };
 
