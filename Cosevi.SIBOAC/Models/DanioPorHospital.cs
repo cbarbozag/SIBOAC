@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class DanioPorHospital
     {
-        [DisplayName("Codigo del hospital")]
+        [DisplayName("Código hospital")]
         [StringLength(3, ErrorMessage = "El codigo no debe ser mayor a 3 caracter.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string IdHospital { get; set; }
@@ -42,6 +42,7 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
+        [DisplayName("Desc. Hospital")]
         public string DescripcionHospital
         {
             get
@@ -59,7 +60,7 @@ namespace Cosevi.SIBOAC.Models
             }
         }
 
-
+        [DisplayName("Desc. Daño")]
         public string DescripcionDanio
         {
             get
