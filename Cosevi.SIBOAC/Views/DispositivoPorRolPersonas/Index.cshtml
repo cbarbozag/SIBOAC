@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.DispositivoPorRolPersona>
 
 @{
-    ViewBag.Title = "Index";   
+    ViewBag.Title = "Lista";   
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de los dispositivos por rol de persona</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -27,27 +27,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoRolPersona)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionRolPersona)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoDispositivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionDispositivo)
-        </td>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoRolPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionRolPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDispositivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDispositivo)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo  /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo  /* id=item.PrimaryKey */ }) |
+
+            </td>
+        </tr>
+    }
 
 </table>

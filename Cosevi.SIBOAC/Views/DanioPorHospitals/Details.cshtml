@@ -1,7 +1,7 @@
 ﻿@model Cosevi.SIBOAC.Models.DanioPorHospital
 
 Detalles
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,6 +11,25 @@ Detalles
     <h4>Daño por hospital</h4>
     <hr />
     <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdHospital)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdHospital)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdDanio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdDanio)
+        </dd>
+
+
         <dt>
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
@@ -38,6 +57,6 @@ Detalles
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Editar", "Edit", new { Model.IdHospital, Model.IdDanio }) |
     @Html.ActionLink("Regresar a la lista", "Index")
 </p>

@@ -12,6 +12,16 @@
 </p>
 <table class="table">
     <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.IdHospital)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.IdDanio)
+        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -29,6 +39,15 @@
     if (item.Estado == "I")
     {
         <tr class="warning">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdHospital)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDanio)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
@@ -49,6 +68,15 @@
     else
     {
         <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdHospital)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDanio)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
