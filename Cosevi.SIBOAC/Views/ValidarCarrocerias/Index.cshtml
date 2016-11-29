@@ -16,12 +16,21 @@
         <th>
             @Html.DisplayNameFor(model => model.CodigoTipoIdVehiculo)
         </th>
+        <td>
+            @Html.Label("Descripción TipoId")
+        </td>
         <th>
             @Html.DisplayNameFor(model => model.CodigoTiposVehiculos)
         </th>
+        <td>
+            @Html.Label("Descripción Tipo")
+        </td>
         <th>
             @Html.DisplayNameFor(model => model.CodigoCarroceria)
         </th>
+        <td>
+            @Html.Label("Descripción Carroceria")
+        </td>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -41,10 +50,19 @@
             @Html.DisplayFor(modelItem => item.CodigoTipoIdVehiculo)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoIdVehiculo)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CodigoCarroceria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoCarroceria)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estado)
