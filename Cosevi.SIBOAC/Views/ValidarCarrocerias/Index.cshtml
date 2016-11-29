@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.ValidarCarroceria>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de validación de carrocerías</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -43,42 +43,93 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
 
-    <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoIdVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoIdVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoCarroceria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoCarroceria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria }) |
+                @Html.ActionLink("Detalles", "Details", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Inactivar", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+    else
+
+    {
+        <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CodigoTipoIdVehiculo)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoIdVehiculo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoCarroceria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoCarroceria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria }) |
-            @Html.ActionLink("Details", "Details", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoIdVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoCarroceria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoCarroceria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria }) |
+                @Html.ActionLink("Detalles", "Details", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria }) |
+
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria })
+                }
+            </td>
+        </tr>
+    }
 }
 
 </table>
