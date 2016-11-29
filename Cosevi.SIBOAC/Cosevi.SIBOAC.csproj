@@ -1074,7 +1074,6 @@
     <Content Include="Views\DetallePorTipoSenials\Edit.cshtml" />
     <Content Include="Views\DetallePorTipoSenials\Index.cshtml" />
     <Content Include="Views\DispositivoPorRolPersonas\Create.cshtml" />
-    <Content Include="Views\DispositivoPorRolPersonas\Delete.cshtml" />
     <Content Include="Views\DispositivoPorRolPersonas\Details.cshtml" />
     <Content Include="Views\DispositivoPorRolPersonas\Edit.cshtml" />
     <Content Include="Views\DispositivoPorRolPersonas\Index.cshtml" />
@@ -1128,7 +1127,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Release\" />
-    <Folder Include="Views\RolDePersonaPorTipoIdDeVehiculoes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
