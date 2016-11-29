@@ -40,6 +40,22 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DispositivoPorRolPersonas/Create
         public ActionResult Create()
         {
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsRol = db.ROLPERSONA
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id,
+                  Text = o.Descripcion
+              });
+            ViewBag.ComboRolPersona = itemsRol;
+
+            IEnumerable<SelectListItem> itemsDispositivos = db.Dispositivoes1
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Descripcion
+            });
+            ViewBag.ComboDispositivo = itemsDispositivos;
             return View();
         }
 
@@ -53,7 +69,7 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DISPXROLPERSONA.Add(dispositivoPorRolPersona);
-                string mensaje = Verificar(dispositivoPorRolPersona.DescripcionRolPersona,
+                string mensaje = Verificar(dispositivoPorRolPersona.CodigoRolPersona,
                                             dispositivoPorRolPersona.CodigoDispositivo);
                 if (mensaje == "")
                 {
@@ -87,6 +103,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodRol.ToString());
+            ViewBag.ComboDispositivo = new SelectList(db.Dispositivoes1.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodDisp);
 
 
             return View(dispositivoPorRolPersona);
@@ -101,6 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                dispositivoPorRolPersona.CodigoRolPersona = dispositivoPorRolPersona.CodigoRolPersona.Trim();
                 db.Entry(dispositivoPorRolPersona).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
