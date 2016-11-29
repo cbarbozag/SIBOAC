@@ -45,7 +45,8 @@ namespace Cosevi.SIBOAC.Models
 
         [DisplayName("Monto de la multa")]
         [Required(ErrorMessage = "El monto es obligatorio")]
-        [Range(0.01, 100, ErrorMessage = "El precio solo puede tener 2 decimales 0.00")]
+        //[Range(0.01, 100, ErrorMessage = "El precio solo puede tener 2 decimales 0.00")]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Currency)]
         public decimal Multa { get; set; }
 
