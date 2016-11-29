@@ -116,6 +116,9 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboDanio = new SelectList(db.DAÑO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigod);
+            ViewBag.ComboTipoDanio = new SelectList(db.TIPODANO.OrderBy(x => x.descripcion), "codigod", "descripcion", codigotd);
             return View(detallePorTipoDanio);
         }
 
