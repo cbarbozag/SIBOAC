@@ -69,6 +69,7 @@ namespace Cosevi.SIBOAC.Models
         public string CodigoDeDelegacion { get; set; }
 
         [DisplayName("Email")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [DisplayName("Estado")]
