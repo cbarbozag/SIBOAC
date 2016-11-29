@@ -33,7 +33,7 @@
 @foreach (var item in Model) {
     if (item.Estado == "I")
     {
-    <tr>
+    <tr class="warning">
         <td>
             @Html.DisplayFor(modelItem => item.Id)
         </td>
