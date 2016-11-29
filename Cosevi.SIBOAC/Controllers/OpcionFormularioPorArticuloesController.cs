@@ -23,13 +23,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: OpcionFormularioPorArticuloes/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
         {
-            if (id == null)
+            if (id ==null||conducta==null||FechaInicio==null||FechaFin ==null||codFormulario==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id);
+            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id,conducta,FechaInicio,FechaFin,codFormulario);
             if (opcionFormularioPorArticulo == null)
             {
                 return HttpNotFound();
@@ -40,6 +40,14 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: OpcionFormularioPorArticuloes/Create
         public ActionResult Create()
         {
+            //se llenan los combos
+            IEnumerable<SelectListItem> itemsOpcionFormulario = db.OPCIONFORMULARIO
+              .Select(o => new SelectListItem
+              {
+                  Value = o.Id.ToString(),
+                  Text = o.Descripcion
+              });
+            ViewBag.ComboOpcionFormulario = itemsOpcionFormulario;
             return View();
         }
 
@@ -53,25 +61,45 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.OPCFORMULARIOXARTICULO.Add(opcionFormularioPorArticulo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(opcionFormularioPorArticulo.Id,
+                                            opcionFormularioPorArticulo.Conducta,
+                                            opcionFormularioPorArticulo.FechaDeInicio,
+                                            opcionFormularioPorArticulo.FechaDeFin,
+                                            opcionFormularioPorArticulo.CodigoOpcionFormulario);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(opcionFormularioPorArticulo);
+                }
             }
 
             return View(opcionFormularioPorArticulo);
         }
 
         // GET: OpcionFormularioPorArticuloes/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
         {
-            if (id == null)
+            if (id == null || conducta == null || FechaInicio == null || FechaFin == null || codFormulario == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id);
+            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
             if (opcionFormularioPorArticulo == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codFormulario);
+
             return View(opcionFormularioPorArticulo);
         }
 
@@ -92,27 +120,48 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: OpcionFormularioPorArticuloes/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
         {
-            if (id == null)
+            if (id == null || conducta == null || FechaInicio == null || FechaFin == null || codFormulario == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id);
+            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
             if (opcionFormularioPorArticulo == null)
             {
                 return HttpNotFound();
             }
             return View(opcionFormularioPorArticulo);
         }
-
+        public string Verificar(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
+        {
+            string mensaje = "";
+            bool exist = db.OPCFORMULARIOXARTICULO.Any(x => x.Id == id
+                                                        &&x.Conducta==conducta
+                                                        &&x.FechaDeInicio==FechaInicio
+                                                        &&x.FechaDeFin== FechaFin
+                                                        &&x.CodigoOpcionFormulario ==codFormulario);
+            if (exist)
+            {
+                mensaje = "El codigo " + id +
+                    ", conducta "+conducta+
+                    ", FechaInicio "+ FechaInicio+
+                    ", Fecha Fin "+ FechaFin+
+                    ", Opción Formulario "+ codFormulario+
+                    " ya esta registrado";
+            }
+            return mensaje;
+        }
         // POST: OpcionFormularioPorArticuloes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
         {
-            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id);
-            db.OPCFORMULARIOXARTICULO.Remove(opcionFormularioPorArticulo);
+            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
+            if (opcionFormularioPorArticulo.Estado == "I")
+                opcionFormularioPorArticulo.Estado = "A";
+            else
+                opcionFormularioPorArticulo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
