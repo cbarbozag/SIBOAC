@@ -59,7 +59,14 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio   /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio  /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio  /* id=item.PrimaryKey */ })
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio })
+                }
             </td>
         </tr>
     }

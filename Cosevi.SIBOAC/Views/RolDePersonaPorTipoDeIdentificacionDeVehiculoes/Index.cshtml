@@ -55,9 +55,16 @@
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { codRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo /*id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { codRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo  /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { codRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo  /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Editar", "Edit", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
+                @Html.ActionLink("Detalle", "Details", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo })
+                }
             </td>
         </tr>
     }
@@ -83,10 +90,17 @@
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { codRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo /*id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { codRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo  /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { codRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo  /* id=item.PrimaryKey */ })
-</td>
+                @Html.ActionLink("Editar", "Edit", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
+                @Html.ActionLink("Detalle", "Details", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo })
+                }
+            </td>
         </tr>
     }
 }

@@ -54,7 +54,14 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { Codigo = item.CodigoTipoIDEVehiculo, CodVeh = item.CodigoTipoVeh /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalles", "Details", new { Codigo = item.CodigoTipoIDEVehiculo, CodVeh = item.CodigoTipoVeh  /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Inactivar", "Delete", new { Codigo = item.CodigoTipoIDEVehiculo, CodVeh = item.CodigoTipoVeh /* id=item.PrimaryKey */ })
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { Codigo = item.CodigoTipoIDEVehiculo, CodVeh = item.CodigoTipoVeh })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { Codigo = item.CodigoTipoIDEVehiculo, CodVeh = item.CodigoTipoVeh })
+                }
             </td>
         </tr>
     }

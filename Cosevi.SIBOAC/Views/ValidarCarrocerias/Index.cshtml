@@ -79,7 +79,14 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria }) |
                 @Html.ActionLink("Detalles", "Details", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Inactivar", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo, CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria /* id=item.PrimaryKey */ })
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { CodigoTipoIdentificacion = item.CodigoTipoIdVehiculo.Trim(), CodigoTipoVehiculo = item.CodigoTiposVehiculos, CodigoCarroceria = item.CodigoCarroceria })
+                }
             </td>
         </tr>
     }
