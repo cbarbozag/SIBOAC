@@ -39,6 +39,31 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ValidarCarrocerias/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> itemsTipoIdentificacion = db.TIPOIDEVEHICULO
+             .Select(o => new SelectListItem
+             {
+                 Value = o.Id,
+                 Text = o.Descripcion
+             });
+            ViewBag.ComboTipoIdVehiculo = itemsTipoIdentificacion;
+
+            IEnumerable<SelectListItem> itemsTiposVehiculos = db.TIPOSVEHICULOS
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Nombre
+            });
+            ViewBag.ComboTiposVehiculos = itemsTiposVehiculos;
+
+
+            IEnumerable<SelectListItem> itemsCarroceria = db.CARROCERIA
+             .Select(o => new SelectListItem
+             {
+                 Value = o.Id.ToString(),
+                 Text = o.Descripcion
+             });
+            ViewBag.ComboCarroceria = itemsCarroceria;
+
             return View();
         }
 
@@ -71,6 +96,10 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboTipoIdVehiculo = new SelectList(db.TIPOIDEVEHICULO.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodigoTipoIdentificacion);
+            ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", CodigoTipoVehiculo);
+            ViewBag.ComboCarroceria = new SelectList(db.CARROCERIA.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodigoCarroceria);
             return View(validarCarroceria);
         }
 
