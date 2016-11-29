@@ -43,12 +43,11 @@
                 @Html.DisplayFor(modelItem => item.DescripcionDispositivo)
             </td>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo  /* id=item.PrimaryKey */ }) |
-
-            </td>
-        </tr>
-    }
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalle", "Details", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo  /* id=item.PrimaryKey */ }) |           
+        </td>
+    </tr>
+}
 
 </table>

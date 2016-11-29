@@ -19,9 +19,15 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.IdDanio)
+            @Html.DisplayNameFor(model => model.DescripcionHospital)
         </th>
 
+        <th>
+            @Html.DisplayNameFor(model => model.IdDanio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionDanio)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -43,11 +49,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdHospital)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionHospital)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdDanio)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDanio)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
@@ -71,7 +81,6 @@
             </td>
         </tr>
     }
-
     else
     {
         <tr>
@@ -79,11 +88,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdHospital)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionHospital)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdDanio)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDanio)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
