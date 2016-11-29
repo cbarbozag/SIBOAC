@@ -17,8 +17,25 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoDeVehiculoes
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.TIPOVEH.ToList());
         }
+
+
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.TIPOVEH.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El código " + id + " ya esta registrado";
+            }
+            return mensaje;
+        }
+
+
 
         // GET: TipoDeVehiculoes/Details/5
         public ActionResult Details(int? id)
@@ -51,8 +68,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.TIPOVEH.Add(tipoDeVehiculo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(tipoDeVehiculo.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeVehiculo);
+                }
             }
 
             return View(tipoDeVehiculo);

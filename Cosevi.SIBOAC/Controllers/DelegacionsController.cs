@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Delegacions
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.DELEGACION.ToList());
+        }
+
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.DELEGACION.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: Delegacions/Details/5
@@ -51,8 +64,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DELEGACION.Add(delegacion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(delegacion.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(delegacion);
+                }
             }
 
             return View(delegacion);

@@ -17,6 +17,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Inspectors
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.INSPECTOR.ToList());
         }
 
@@ -82,6 +84,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                               
                 db.Entry(inspector).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -110,7 +113,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Inspector inspector = db.INSPECTOR.Find(id);
-            db.INSPECTOR.Remove(inspector);
+            if (inspector.Estado == "A")
+                inspector.Estado = "I";
+            else
+                inspector.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

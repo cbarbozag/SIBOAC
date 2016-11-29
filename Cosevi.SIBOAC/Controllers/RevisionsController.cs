@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: Revisions
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.Revision.ToList());
+        }
+
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.Revision.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: Revisions/Details/5
@@ -51,13 +64,52 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Revision.Add(revision);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(revision.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+
+                    GuardarBitacora("I",revision);
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(revision);
+                }
             }
 
             return View(revision);
         }
 
+        public void GuardarBitacora(string Accion, Revision revision)
+        {
+            BitacoraSIBOAC bitacora = new BitacoraSIBOAC();
+            switch (Accion)
+            {
+                case "I"://insert
+                    bitacora.NombreTabla = "REVISION";
+                    bitacora.FechaHora = DateTime.Now;
+                    bitacora.CodigoUsuario = "Admin";
+                    bitacora.Operacion = Accion;
+                    bitacora.ValorAntes = "";
+                    bitacora.ValorDespues = "Id="+revision.Id +", Descripcion="+ revision.Descripcion;
+                    db.BitacoraSIBOAC.Add(bitacora);
+                    db.SaveChanges();
+                    break;
+                case "U":// Update
+
+                    break;
+                case "D": //Delete
+                default:
+                    break;
+
+            }
+        }
         // GET: Revisions/Edit/5
         public ActionResult Edit(string id)
         {

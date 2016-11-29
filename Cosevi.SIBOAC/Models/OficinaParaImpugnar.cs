@@ -27,7 +27,7 @@ namespace Cosevi.SIBOAC.Models
         public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "El estado  es requerido")] //alerta de que el usuario debe llenar el espacio
-        [StringLength(20, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         [DisplayName("Estado")]
         public string Estado { get; set; }
 

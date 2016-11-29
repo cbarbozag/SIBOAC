@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.CatalogoDeArticulos>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de catálogo de artículos</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Conducta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Multa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Puntos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Totalidad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+            <th>
+                @Html.DisplayFor(modelItem => item.Id)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Conducta)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </th>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Multa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puntos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Totalidad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin  /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+
+    }
+
+    else
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conducta)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Multa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puntos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Totalidad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin  /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+
+
+    }
+
+}
+
+</table>

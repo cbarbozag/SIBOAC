@@ -27,16 +27,19 @@ namespace Cosevi.SIBOAC.Models
         public string Descripcion { get; set; }
 
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         [DisplayName("Estado")]
         public string Estado { get; set; }
 
 
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "La fehca de inicio es obligatoria")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")] //etiqueta Fecha de inicio
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
 
         [DataType(DataType.Date)]
+        [Required(ErrorMessage = "La fehca de fin es obligatoria")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de fin")] //etiqueta Fecha de fin
         public Nullable<System.DateTime> FechaDeFin { get; set; }

@@ -1,0 +1,95 @@
+﻿@model Cosevi.SIBOAC.Models.RolPorPersonaOpcionFormulario
+
+@{
+    ViewBag.Title = "Inactivar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Estado == "A")
+{
+    <h2>Inactivar</h2>
+}
+else
+{
+    <h2>Activar</h2>
+}
+
+<h3>Esta seguro que desea cambiar el estado?</h3>
+<div>
+    <h4>Rol por persona opción formulario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoRolPersona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoRolPersona)
+        </dd>
+        <dt>
+            @Html.Label("Descripcion RolPersona")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoRolPersona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoOpcionFormulario)
+        </dd>
+
+        <dt>
+            @Html.Label("Descripcion OpcionFormulario")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoOpcionFormulario)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if (Model.Estado == "A")
+            {
+                <input type="submit" value="Inactivar" class="btn btn-warning" />
+            }
+            else
+            {
+                <input type="submit" value="Activar" class="btn btn-success" />
+            }
+            |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>

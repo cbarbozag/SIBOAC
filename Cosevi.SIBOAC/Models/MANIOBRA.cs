@@ -23,9 +23,11 @@ namespace Cosevi.SIBOAC.Models
 
         [DisplayName("Descripción")]
         [Required(ErrorMessage = "La descripción es obligatoria")]
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
         public string Descripcion { get; set; }
 
         [DisplayName("Estado")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string Estado { get; set; }
 

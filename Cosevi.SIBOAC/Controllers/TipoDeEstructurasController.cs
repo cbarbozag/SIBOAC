@@ -17,8 +17,22 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoDeEstructuras
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.ESTRUCTURA.ToList());
         }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.ESTRUCTURA.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El código " + id + " ya esta registrado";
+            }
+            return mensaje;
+        }
+
 
         // GET: TipoDeEstructuras/Details/5
         public ActionResult Details(int? id)
@@ -51,8 +65,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ESTRUCTURA.Add(tipoDeEstructura);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(tipoDeEstructura.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeEstructura);
+                }
             }
 
             return View(tipoDeEstructura);

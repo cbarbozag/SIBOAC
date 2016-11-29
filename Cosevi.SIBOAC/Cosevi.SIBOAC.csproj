@@ -172,28 +172,39 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\AutoridadsController.cs" />
+    <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
     <Compile Include="Controllers\CantonsController.cs" />
     <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
     <Compile Include="Controllers\CarrilsController.cs" />
     <Compile Include="Controllers\CarroceriasController.cs" />
+    <Compile Include="Controllers\CatalogoDeArticulosController.cs" />
     <Compile Include="Controllers\CirculacionsController.cs" />
     <Compile Include="Controllers\ClaseDePlacasController.cs" />
     <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
     <Compile Include="Controllers\CondicionDeLaCalzadasController.cs" />
     <Compile Include="Controllers\CondicionDeLaPersonasController.cs" />
+    <Compile Include="Controllers\ConsecutivoNumeroMarcoesController.cs" />
+    <Compile Include="Controllers\DanioPorHospitalsController.cs" />
     <Compile Include="Controllers\DanoesController.cs" />
     <Compile Include="Controllers\DelegacionsController.cs" />
     <Compile Include="Controllers\DelitoesController.cs" />
     <Compile Include="Controllers\DepositoDePlacasController.cs" />
     <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\DetallePorTipoDaniosController.cs" />
+    <Compile Include="Controllers\DetallePorTipoSenialsController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\DispositivoesController.cs" />
+    <Compile Include="Controllers\DispositivoPorRolPersonasController.cs" />
     <Compile Include="Controllers\DispositivosMovilesController.cs" />
     <Compile Include="Controllers\DistritoesController.cs" />
+    <Compile Include="Controllers\DivisionsController.cs" />
+    <Compile Include="Controllers\EdadsController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
     <Compile Include="Controllers\ExamenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorasLaboralesController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
     <Compile Include="Controllers\IluminacionsController.cs" />
     <Compile Include="Controllers\InconsistenciasController.cs" />
@@ -202,20 +213,29 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
+    <Compile Include="Controllers\NacionalidadsController.cs" />
     <Compile Include="Controllers\NombreDeMenusController.cs" />
     <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
     <Compile Include="Controllers\MotivoPorNoFirmarsController.cs" />
     <Compile Include="Controllers\ObstaculoesController.cs" />
     <Compile Include="Controllers\OpcionDeFormulariosController.cs" />
     <Compile Include="Controllers\OpcionesDelPlanoesController.cs" />
+    <Compile Include="Controllers\OpcionFormularioPorArticuloesController.cs" />
+    <Compile Include="Controllers\OpcionSIBOACsController.cs" />
     <Compile Include="Controllers\OtroTipoTransportesController.cs" />
     <Compile Include="Controllers\PeatonsController.cs" />
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
+    <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
+    <Compile Include="Controllers\RolOpcionSIBOACsController.cs" />
+    <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
+    <Compile Include="Controllers\RolSIBOACsController.cs" />
+    <Compile Include="Controllers\RolUsuarioSIBOACsController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
+    <Compile Include="Controllers\RutasPorDistritosController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
@@ -224,12 +244,18 @@
     <Compile Include="Controllers\TipoDeCalzadasController.cs" />
     <Compile Include="Controllers\TipoDeDocumentoesController.cs" />
     <Compile Include="Controllers\TipoDeEstructurasController.cs" />
+    <Compile Include="Controllers\TipoDeIdentificacionPorTipoVehiculoesController.cs" />
     <Compile Include="Controllers\TipoDeIdentificacionsController.cs" />
     <Compile Include="Controllers\TipoDeLicenciasController.cs" />
     <Compile Include="Controllers\TipoDeSenalExistentesController.cs" />
     <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
     <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
+    <Compile Include="Controllers\TiposDeVehiculosController.cs" />
+    <Compile Include="Controllers\TiposPorDocumentoesController.cs" />
+    <Compile Include="Controllers\TipoVehiculoPorCodigoPorClasesController.cs" />
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
+    <Compile Include="Controllers\UsuarioSIBOACsController.cs" />
+    <Compile Include="Controllers\ValidarCarroceriasController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,6 +265,15 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AlineacionVertical.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ArticulosPorDepositosDeBienes.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Autoridad.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BitacoraSIBOAC.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Canton.cs">
@@ -251,6 +286,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Carroceria.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CatalogoDeArticulos.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Circulacion.cs">
@@ -268,6 +306,12 @@
     <Compile Include="Models\CondicionDeLaPersona.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConsecutivoNumeroMarco.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanioPorHospital.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dano.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -283,16 +327,31 @@
     <Compile Include="Models\DepositoDeVehiculo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DepositosBienes.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetallePorTipoDanio.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetallePorTipoSenial.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Direccion.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Dispositivo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DispositivoPorRolPersona.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DispositivosMoviles.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Distrito.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Division.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Edad.cs">
@@ -305,6 +364,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Examen.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HorasLaborales.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hospital.cs">
@@ -333,6 +395,9 @@
     <Compile Include="Models\MotivoPorNoFirmar.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Nacionalidad.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NombreDeMenu.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -346,6 +411,12 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OpcionesDelPlano.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OpcionFormularioPorArticulo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OpcionSIBOAC.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OtroTipoTransporte.cs">
@@ -378,13 +449,31 @@
     <Compile Include="Models\Revision.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RolDePersonaPorTipoDeIdentificacionDeVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RolDePersonaPorVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolOpcionSIBOAC.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RolPorPersona.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RolPorPersonaOpcionFormulario.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolSIBOAC.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolUsuarioSIBOAC.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Ruta.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RutasPorDistritos.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Senalamiento.cs">
@@ -397,6 +486,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tiempo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPODANO.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoDeAccidente.cs">
@@ -414,6 +506,9 @@
     <Compile Include="Models\TipoDeIdentificacion.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoDeIdentificacionPorTipoVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TipoDeLicencia.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -426,7 +521,22 @@
     <Compile Include="Models\TipoIdDeVehiculo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TiposDeVehiculos.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TiposPorDocumento.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoVehiculoPorCodigoPorClase.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UnidadesDeAlcohol.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioSIBOAC.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ValidarCarroceria.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VariablesParaBloqueo.cs">
@@ -502,6 +612,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cosevi_logo.png" />
+    <Content Include="Content\Toastr-2.1.3.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -552,6 +663,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Toastr-2.1.3.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -881,10 +993,140 @@
     <Content Include="Views\ClaseDePlacas\Details.cshtml" />
     <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
     <Content Include="Views\ClaseDePlacas\Index.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Create.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Delete.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Details.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Edit.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Index.cshtml" />
+    <Content Include="Views\HorasLaborales\Create.cshtml" />
+    <Content Include="Views\HorasLaborales\Delete.cshtml" />
+    <Content Include="Views\HorasLaborales\Details.cshtml" />
+    <Content Include="Views\HorasLaborales\Edit.cshtml" />
+    <Content Include="Views\HorasLaborales\Index.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\Nacionalidads\Create.cshtml" />
+    <Content Include="Views\Nacionalidads\Delete.cshtml" />
+    <Content Include="Views\Nacionalidads\Details.cshtml" />
+    <Content Include="Views\Nacionalidads\Edit.cshtml" />
+    <Content Include="Views\Nacionalidads\Index.cshtml" />
+    <Content Include="Views\Edads\Create.cshtml" />
+    <Content Include="Views\Edads\Delete.cshtml" />
+    <Content Include="Views\Edads\Details.cshtml" />
+    <Content Include="Views\Edads\Edit.cshtml" />
+    <Content Include="Views\Edads\Index.cshtml" />
+    <Content Include="Views\Divisions\Create.cshtml" />
+    <Content Include="Views\Divisions\Delete.cshtml" />
+    <Content Include="Views\Divisions\Details.cshtml" />
+    <Content Include="Views\Divisions\Edit.cshtml" />
+    <Content Include="Views\Divisions\Index.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Create.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Delete.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Details.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Edit.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Index.cshtml" />
+    <Content Include="Views\Autoridads\Create.cshtml" />
+    <Content Include="Views\Autoridads\Delete.cshtml" />
+    <Content Include="Views\Autoridads\Details.cshtml" />
+    <Content Include="Views\Autoridads\Edit.cshtml" />
+    <Content Include="Views\Autoridads\Index.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Create.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Delete.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Details.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Edit.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Index.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Create.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Delete.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Details.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Edit.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Index.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Create.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Delete.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Details.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Edit.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Index.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Create.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Delete.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Details.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Edit.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Index.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Create.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Delete.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Details.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Edit.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Index.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Create.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Delete.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Details.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Edit.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Index.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Create.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Delete.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Details.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Edit.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Index.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Create.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Delete.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Details.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Edit.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Index.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Create.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Details.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Edit.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Index.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Create.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Delete.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Details.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Edit.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Index.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Create.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Delete.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Details.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Edit.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Index.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\RolSIBOACs\Create.cshtml" />
+    <Content Include="Views\RolSIBOACs\Delete.cshtml" />
+    <Content Include="Views\RolSIBOACs\Details.cshtml" />
+    <Content Include="Views\RolSIBOACs\Edit.cshtml" />
+    <Content Include="Views\RolSIBOACs\Index.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Create.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Delete.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Details.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Edit.cshtml" />
+    <Content Include="Views\OpcionSIBOACs\Index.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Create.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Delete.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Details.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Edit.cshtml" />
+    <Content Include="Views\UsuarioSIBOACs\Index.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Create.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Delete.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Details.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Edit.cshtml" />
+    <Content Include="Views\RolUsuarioSIBOACs\Index.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Create.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Delete.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Details.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Edit.cshtml" />
+    <Content Include="Views\RolOpcionSIBOACs\Index.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Create.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Delete.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Details.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Edit.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Index.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Create.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Delete.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Details.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Edit.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\Release\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

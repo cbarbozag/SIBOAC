@@ -1,0 +1,123 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.DetallePorTipoSenial>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de detalles por tipos de señal</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoTipoSenial)
+        </th>
+
+        <th>
+            @Html.Label("Descripción Tipo Señal")
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoSenial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoSenial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Detalles", "Details", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
+            </td>
+        </tr>
+    }
+    else
+    {
+
+        <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoTipoSenial)
+        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoSenial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codsenex = item.CodigoTipoSenial, codigose = item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { codsenex = item.CodigoTipoSenial, codigose = item.Id }) |
+
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
+            </td>
+        </tr>
+    }
+}
+
+</table>

@@ -84,5 +84,34 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<UnidadesDeAlcohol> UNIDADES_ALCOHOL { get; set; }
         public virtual DbSet<VariablesParaBloqueo> VARIABLESBLOQUEO { get; set; }
         public virtual DbSet<DispositivosMoviles> DispositivosMoviles { get; set; }
+        public virtual DbSet<HorasLaborales> HORASLABORALES { get; set; }
+        public virtual DbSet<RolDePersonaPorTipoDeIdentificacionDeVehiculo> ROLPERSONAXTIPOIDEVEHICULO { get; set; }
+        public virtual DbSet<TiposDeVehiculos> TIPOSVEHICULOS { get; set; }
+        public virtual DbSet<Nacionalidad> NACIONALIDAD { get; set; }
+        public virtual DbSet<Edad> EDAD { get; set; }
+        public virtual DbSet<ArticulosPorDepositosDeBienes> ARTICULOSXDEPOSITOSBIENES { get; set; }
+        public virtual DbSet<Autoridad> AUTORIDAD { get; set; }
+        public virtual DbSet<CatalogoDeArticulos> CATARTICULO { get; set; }
+        public virtual DbSet<DanioPorHospital> DAÑOXHOSPITAL { get; set; }
+        public virtual DbSet<DetallePorTipoDanio> DETALLETIPODAÑO { get; set; }
+        public virtual DbSet<DetallePorTipoSenial> DETALLETIPOSEÑAL { get; set; }
+        public virtual DbSet<DispositivoPorRolPersona> DISPXROLPERSONA { get; set; }
+        public virtual DbSet<Division> DIVISION { get; set; }
+        public virtual DbSet<OpcionFormularioPorArticulo> OPCFORMULARIOXARTICULO { get; set; }
+        public virtual DbSet<RutasPorDistritos> RUTASXDISTRITO { get; set; }
+        public virtual DbSet<TipoDeIdentificacionPorTipoVehiculo> TIPOIDEVEHICULOXTIPOVEH { get; set; }
+        public virtual DbSet<TiposPorDocumento> TIPOSXDOCUMENTO { get; set; }
+        public virtual DbSet<ValidarCarroceria> VALIDARCARROCERIA { get; set; }
+        public virtual DbSet<ConsecutivoNumeroMarco> CONSECUTIVONUMEROMARCO { get; set; }
+        public virtual DbSet<RolPorPersonaOpcionFormulario> ROLPERSONA_OPCIONFORMULARIO { get; set; }
+        public virtual DbSet<TipoVehiculoPorCodigoPorClase> TIPOVEHCODIGOCLASE { get; set; }
+        public virtual DbSet<DepositosBienes> DEPOSITOBIENES { get; set; }
+        public virtual DbSet<OpcionSIBOAC> OpcionSIBOAC { get; set; }
+        public virtual DbSet<RolOpcionSIBOAC> RolOpcionSIBOAC { get; set; }
+        public virtual DbSet<RolSIBOAC> RolSIBOAC { get; set; }
+        public virtual DbSet<RolUsuarioSIBOAC> RolUsuarioSIBOAC { get; set; }
+        public virtual DbSet<TIPODANO> TIPODANO { get; set; }
+        public virtual DbSet<UsuarioSIBOAC> UsuarioSIBOAC { get; set; }
+        public virtual DbSet<BitacoraSIBOAC> BitacoraSIBOAC { get; set; }
     }
 }

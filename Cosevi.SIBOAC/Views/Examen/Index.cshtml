@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
@@ -34,38 +37,82 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AlcoholMinimo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AlcoholMaximo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalle", "Details", new { id=item.Id }) |
-            @if (item.Estado == "I")
-            {
-                @Html.ActionLink("Activar", "Delete", new { id = item.Id })
-            }
-            else
-            {
-                @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
-            }
-        </td>
-    </tr>
+    if(item.Estado=="I")
+    { 
+        <tr class="warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlcoholMinimo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlcoholMaximo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Detalle", "Details", new { id=item.Id }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlcoholMinimo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlcoholMaximo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
 }
 
 </table>

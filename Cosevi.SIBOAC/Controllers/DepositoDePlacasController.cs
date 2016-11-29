@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: DepositoDePlacas
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.DEPOSITOPLACA.ToList());
+        }
+
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.DEPOSITOPLACA.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: DepositoDePlacas/Details/5
@@ -51,8 +64,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.DEPOSITOPLACA.Add(depositoDePlaca);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(depositoDePlaca.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(depositoDePlaca);
+                }
             }
 
             return View(depositoDePlaca);

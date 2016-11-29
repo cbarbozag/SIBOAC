@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: ClaseDePlacas
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.CLASE.ToList());
+        }
+
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.CLASE.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: ClaseDePlacas/Details/5
@@ -46,13 +59,27 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Clasedeplaca,estado,fecha_inicio,fecha_fin")] ClaseDePlaca claseDePlaca)
+        public ActionResult Create([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] ClaseDePlaca claseDePlaca)
         {
             if (ModelState.IsValid)
             {
                 db.CLASE.Add(claseDePlaca);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(claseDePlaca.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(claseDePlaca);
+                }
             }
 
             return View(claseDePlaca);

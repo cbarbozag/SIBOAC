@@ -17,7 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: CondicionDeLaPersonas
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View(db.CONDPERSONA.ToList());
+        }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = db.CONDPERSONA.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: CondicionDeLaPersonas/Details/5
@@ -51,8 +64,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.CONDPERSONA.Add(condicionDeLaPersona);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(condicionDeLaPersona.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(condicionDeLaPersona);
+                }
             }
 
             return View(condicionDeLaPersona);

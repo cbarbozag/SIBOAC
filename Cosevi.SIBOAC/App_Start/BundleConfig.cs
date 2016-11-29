@@ -23,12 +23,19 @@ namespace Cosevi.SIBOAC
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+                      "~/Scripts/Toastr-2.1.3.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      "~/Scripts/app.js"));
+                     "~/Scripts/app.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Toastr-2.1.3.min.css",
                       "~/Content/site.css"));
+
+
+            
         }
     }
 }
