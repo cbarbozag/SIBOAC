@@ -11,6 +11,50 @@
     <h4>ValidarCarroceria</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoTipoIdVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTipoIdVehiculo)
+        </dd>
+        <dt>
+            @Html.Label("Descripción TipoId")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTipoIdVehiculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoTiposVehiculos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTiposVehiculos)
+        </dd>
+        <dt>
+            @Html.Label("Descripción Tipo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTiposVehiculos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoCarroceria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoCarroceria)
+        </dd>        
+        <dt>
+            @Html.Label("Descripción Carroceria")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoCarroceria)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
