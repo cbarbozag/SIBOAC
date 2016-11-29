@@ -132,7 +132,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigod, string codigot)
         {
             TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
-            db.TIPOSXDOCUMENTO.Remove(tiposPorDocumento);
+            if (tiposPorDocumento.Estado == "A")
+                tiposPorDocumento.Estado = "I";
+            else
+                tiposPorDocumento.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }

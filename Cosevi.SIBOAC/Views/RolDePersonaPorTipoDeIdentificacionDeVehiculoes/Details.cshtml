@@ -1,14 +1,14 @@
 ﻿@model Cosevi.SIBOAC.Models.RolDePersonaPorTipoDeIdentificacionDeVehiculo
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>RolDePersonaPorTipoDeIdentificacionDeVehiculo</h4>
+    <h4>Rol de la persona por tipo de identificación de vehículo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -50,6 +50,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { codRol = Model.CodigoDeRol, CodVeh = Model.CodigoDeIdentificacionVehiculo }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { codRol = Model.CodigoDeRol, CodVeh = Model.CodigoDeIdentificacionVehiculo }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>

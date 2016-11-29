@@ -23,7 +23,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoVehiculoPorCodigoPorClases/Details/5
         public ActionResult Details(int? codigoTipoVehic, string clase, string codigo, int? codigoVehiculo)
         {
-            if (clase == null || codigo == null)
+            if (codigoTipoVehic == null || clase == null || codigo == null || codigoVehiculo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -99,9 +99,9 @@ namespace Cosevi.SIBOAC.Controllers
 
 
             ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", codigoTipoVehic);
-            ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", codigo);
             ViewBag.ComboClasePlaca = new SelectList(db.CLASE.OrderBy(x => x.Id), "Id", "Id", clase);
-             return View(tipoVehiculoPorCodigoPorClase);
+            ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", codigo);
+            return View(tipoVehiculoPorCodigoPorClase);
         }
 
         // POST: TipoVehiculoPorCodigoPorClases/Edit/5

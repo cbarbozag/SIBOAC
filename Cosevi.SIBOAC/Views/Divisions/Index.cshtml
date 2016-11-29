@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.Division>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de divisiones</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -30,29 +30,69 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCanton)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionOficina)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin/* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCanton)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionOficina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin/* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+
+    }
+
+    else
+    {
+            <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCanton)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionOficina)
+            </td >
+            <td >
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td >
+            <td >
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td >
+            <td >
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td >
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+
+        @if (item.Estado == "I")
+        {
+            @Html.ActionLink("Activar", "Delete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
+        }
+        else
+        {
+            @Html.ActionLink("Inactivar", "Delete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
+        }
+    </td>
+            </tr >
+    }
 }
 
 </table>
