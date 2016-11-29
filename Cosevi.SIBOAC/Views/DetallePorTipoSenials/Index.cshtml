@@ -67,12 +67,17 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalles", "Details", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Inactivar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id /* id=item.PrimaryKey */ })
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codsenex = item.CodigoTipoSenial, codigose = item.Id })
+                }
             </td>
         </tr>
     }
-
-
     else
     {
 

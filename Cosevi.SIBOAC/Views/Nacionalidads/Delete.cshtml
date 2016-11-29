@@ -73,11 +73,11 @@ else
         <div class="form-actions no-color">
             @if (Model.Estado == "A")
             {
-                <input type="submit" value="Inactivar" class="btn btn-default" />
+                <input type="submit" value="Inactivar" class="btn btn-warning" />
             }
             else
             {
-                <input type="submit" value="Activar" class="btn btn-default" />
+                <input type="submit" value="Activar" class="btn btn-success" />
             }
             @Html.ActionLink("Regresar a la lista", "Index")
         </div>
