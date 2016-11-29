@@ -25,10 +25,10 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: RutasPorDistritos/Details/5
         public ActionResult Details(int? codigo_distrito, int ? codigo_ruta, int? km)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            if (codigo_distrito == null|| codigo_ruta ==null || km==null)
+            {
+               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
             if (rutasPorDistritos == null)
             {
@@ -40,7 +40,39 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: RutasPorDistritos/Create
         public ActionResult Create()
         {
+
+            IEnumerable<SelectListItem> itemsDistritos = db.DISTRITO
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id.ToString(),
+                Text = o.Descripcion
+            });
+            ViewBag.ComboDistrito = itemsDistritos;
+
+            IEnumerable<SelectListItem> itemsRuta = db.Ruta
+           .Select(o => new SelectListItem
+           {
+               Value = o.Id.ToString(),
+               Text = o.Inicia +"|"+ o.Termina
+           });
+            ViewBag.ComboRuta = itemsRuta;
             return View();
+        }
+
+        public string Verificar(int? codigo_distrito, int? codigo_ruta, int? km)
+        {
+            string mensaje = "";
+            bool exist = db.RUTASXDISTRITO.Any(x => x.CodigoDistrito == codigo_distrito
+                                                &&x.CodigoRuta == codigo_ruta
+                                                &&x.Km==km);
+            if (exist)
+            {
+                mensaje = "El codigo de distrito" +codigo_distrito + 
+                     ", Código ruta "+ codigo_ruta+
+                     ", kilometro "+ km+        
+                    " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // POST: RutasPorDistritos/Create
@@ -53,8 +85,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.RUTASXDISTRITO.Add(rutasPorDistritos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(rutasPorDistritos.CodigoDistrito, rutasPorDistritos.CodigoRuta, rutasPorDistritos.Km);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rutasPorDistritos);
+                }
             }
 
             return View(rutasPorDistritos);
@@ -63,15 +109,17 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: RutasPorDistritos/Edit/5
         public ActionResult Edit(int? codigo_distrito, int? codigo_ruta, int? km)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            if (codigo_distrito == null || codigo_ruta == null || km == null)
+            {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+             }
             RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
             if (rutasPorDistritos == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ComboDistrito = new SelectList(db.DISTRITO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigo_distrito);
+            ViewBag.ComboRuta = new SelectList(db.Ruta.OrderBy(x => x.Id), "Id", "Inicio"+ "Termina", codigo_ruta);
             return View(rutasPorDistritos);
         }
 
@@ -94,11 +142,11 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: RutasPorDistritos/Delete/5
         public ActionResult Delete(int? codigo_distrito, int? codigo_ruta, int? km)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
+            if (codigo_distrito == null || codigo_ruta == null || km == null)
+             {
+               return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+             }
+                RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
             if (rutasPorDistritos == null)
             {
                 return HttpNotFound();
@@ -112,7 +160,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? codigo_distrito, int? codigo_ruta, int? km)
         {
             RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
-            db.RUTASXDISTRITO.Remove(rutasPorDistritos);
+            if (rutasPorDistritos.Estado == "A")
+                rutasPorDistritos.Estado = "I";
+            else
+                rutasPorDistritos.Estado = "A";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
