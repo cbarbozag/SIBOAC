@@ -1,14 +1,14 @@
 ﻿@model Cosevi.SIBOAC.Models.TipoDeIdentificacionPorTipoVehiculo
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>TipoDeIdentificacionPorTipoVehiculo</h4>
+    <h4>Tipo de identificación por tipo vehículo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -52,6 +52,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { Codigo = Model.CodigoTipoIDEVehiculo, CodVeh = Model.CodigoTipoVeh  /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { Codigo = Model.CodigoTipoIDEVehiculo, CodVeh = Model.CodigoTipoVeh  /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>

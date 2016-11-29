@@ -1,11 +1,11 @@
 ﻿@model Cosevi.SIBOAC.Models.ArticulosPorDepositosDeBienes
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nuevo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Nuevo</h2>
 <script>
 function CallChangefunc(val)
 {
@@ -22,7 +22,7 @@ function CallChangefunc(val)
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ArticulosPorDepositosDeBienes</h4>
+        <h4>Artículos por depósitos de bienes</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

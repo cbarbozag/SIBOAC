@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.TipoVehiculoPorCodigoPorClase>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de tipos de vehículos por código y clase</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -36,7 +36,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoClasePlaca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoCodigoPlaca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoVeh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
+                @Html.ActionLink("Detalles", "Details", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
+                @Html.ActionLink("Inactivar", "Delete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh })
+            </td>
+        </tr>
+    }
+
+    else
+    {
+
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
@@ -60,11 +96,22 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh}) |
-            @Html.ActionLink("Details", "Details", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
-            @Html.ActionLink("Delete", "Delete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh })
+            @Html.ActionLink("Editar", "Edit", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
+            @Html.ActionLink("Detalles", "Details", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
+
+            @if (item.Estado == "I")
+            {
+                @Html.ActionLink("Activar", "Delete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh })
+            }
+            else
+            {
+                @Html.ActionLink("Inactivar", "Delete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh })
+            }
+
         </td>
     </tr>
+
+    }
 }
 
 </table>

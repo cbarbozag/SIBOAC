@@ -120,6 +120,11 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.ComboDepositosBienes = new SelectList(db.DEPOSITOBIENES.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodDepositoBienes);
+            ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodFormulario);
+            ViewBag.ComboArticulos = new SelectList(db.CATARTICULO.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodArticulo);
+
             return View(articulosPorDepositosDeBienes);
         }
 

@@ -1,14 +1,14 @@
 ﻿@model Cosevi.SIBOAC.Models.ArticulosPorDepositosDeBienes
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>ArticulosPorDepositosDeBienes</h4>
+    <h4>Artículos por depósitos de bienes</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -57,6 +57,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { CodDepositoBienes = Model.CodigoDepositosBienes, CodFormulario = Model.CodigoOpcionFormulario, CodArticulo = Model.CodigoArticulo, Conducta = Model.Conducta, FechaInicio = Model.FechaDeInicio, FechaFin = Model.FechaDeFin }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = Model.CodigoDepositosBienes, CodFormulario = Model.CodigoOpcionFormulario, CodArticulo = Model.CodigoArticulo, Conducta = Model.Conducta, FechaInicio = Model.FechaDeInicio, FechaFin = Model.FechaDeFin }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>

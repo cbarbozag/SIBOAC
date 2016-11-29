@@ -1,11 +1,11 @@
 ﻿@model Cosevi.SIBOAC.Models.ArticulosPorDepositosDeBienes
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Editar</h2>
 
 
 @using (Html.BeginForm())
@@ -13,7 +13,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ArticulosPorDepositosDeBienes</h4>
+        <h4>Artículos por depósitos de bienes</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.CodigoDepositosBienes)
@@ -31,21 +31,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CodigoDepositosBienes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.CodigoDepositosBienes.ToString(), (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CodigoDepositosBienes, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoOpcionFormulario, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CodigoOpcionFormulario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.CodigoOpcionFormulario, (IEnumerable<SelectListItem>)ViewBag.ComboOpcionFormulario, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CodigoOpcionFormulario, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoArticulo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CodigoArticulo, new { htmlAttributes = new { @class = "form-control" } })
+               @Html.DropDownListFor(model => model.CodigoArticulo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new { @class = "form-control", @onchange = "CallChangefunc(this.value)" })
                 @Html.ValidationMessageFor(model => model.CodigoArticulo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -79,14 +79,14 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar a la lista", "Index")
 </div>
 
 @section Scripts {

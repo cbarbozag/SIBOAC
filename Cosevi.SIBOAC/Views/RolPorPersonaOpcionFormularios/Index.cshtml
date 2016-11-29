@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.RolPorPersonaOpcionFormulario>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de los roles de persona por formulario</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -38,36 +38,81 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
 
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoRolPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoRolPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Detalles", "Details", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Inactivar", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+
+    else
+    {
+        <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CodigoRolPersona)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoRolPersona)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoRolPersona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */  }) |
+                @Html.ActionLink("Detalles", "Details", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */  }) |
+
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario })
+                }
+            </td>
+        </tr>
+    }
 }
 
 </table>

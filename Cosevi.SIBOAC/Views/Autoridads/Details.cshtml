@@ -1,11 +1,11 @@
 ﻿@model Cosevi.SIBOAC.Models.Autoridad
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
     <h4>Autoridad</h4>
@@ -74,6 +74,6 @@
 <p>
 
 
-    @Html.ActionLink("Edit", "Edit", new { codigo = Model.Id, codFormulario = Model.CodigoOpcionFormulario  /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { codigo = Model.Id, codFormulario = Model.CodigoOpcionFormulario  /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>

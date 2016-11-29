@@ -121,6 +121,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
             if (division == null)
             {
@@ -129,6 +130,8 @@ namespace Cosevi.SIBOAC.Controllers
 
             ViewBag.ComboCanton = new SelectList(db.CANTON.OrderBy(x => x.Descripcion), "Id", "Descripcion", canton);
             ViewBag.ComboOficina = new SelectList(db.OficinaParaImpugnars.OrderBy(x => x.Descripcion), "Id", "Descripcion", OficinaImpugna);
+
+            division.CodigoOficinaImpugna = division.CodigoOficinaImpugna.Trim();
 
             return View(division);
         }

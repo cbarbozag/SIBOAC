@@ -53,7 +53,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Value = c.Id.ToString(),
                  Text = c.Descripcion
              });
-            ViewBag.ComboTipoVeh = itemsTipoVeh;
+            ViewBag.ComboCodVeh = itemsTipoVeh;
             return View();
         }
 

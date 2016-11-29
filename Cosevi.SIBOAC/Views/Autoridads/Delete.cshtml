@@ -1,13 +1,20 @@
 ﻿@model Cosevi.SIBOAC.Models.Autoridad
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Inactivar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+@if (Model.Estado == "A")
+{
+    <h2>Inactivar</h2>
+}
+else
+{
+    <h2>Activar</h2>
+}
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Esta seguro que desea cambiar el estado?</h3>
 <div>
     <h4>Autoridad</h4>
     <hr />
@@ -75,8 +82,16 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @if (Model.Estado == "A")
+            {
+                <input type="submit" value="Inactivar" class="btn btn-default" />
+            }
+            else
+            {
+                <input type="submit" value="Activar" class="btn btn-default" />
+            }
+            |
+            @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }
 </div>
