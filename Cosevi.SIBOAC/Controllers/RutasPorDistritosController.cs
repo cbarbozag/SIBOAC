@@ -119,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 return HttpNotFound();
             }
             ViewBag.ComboDistrito = new SelectList(db.DISTRITO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigo_distrito);
-            ViewBag.ComboRuta = new SelectList(db.Ruta.OrderBy(x => x.Id), "Id", "Inicio"+ "Termina", codigo_ruta);
+            ViewBag.ComboRuta = new SelectList(db.Ruta.OrderBy(x => x.Id), "Id", "Inicio" + " " + "Termina", codigo_ruta);
             return View(rutasPorDistritos);
         }
 

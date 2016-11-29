@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.DanioPorHospital>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lista de los daños por hospital</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -24,23 +24,55 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Detalles", "Details", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Inactivar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
+            </td>
+        </tr>
+    }
+
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Detalles", "Details", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
+                }
+            </td>
+        </tr>
+    }
 }
 
 </table>
