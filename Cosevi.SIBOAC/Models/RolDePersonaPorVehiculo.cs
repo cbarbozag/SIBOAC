@@ -40,5 +40,13 @@ namespace Cosevi.SIBOAC.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
+
+
+
+        [DisplayName("Desc. Rol")]
+        public string DescripcionRolPersona { get; set; }
+      
+     
+
     }
 }

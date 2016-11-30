@@ -16,6 +16,9 @@
             @Html.DisplayNameFor(model => model.Id)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DescripcionRolPersona)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ActivarVehiculo)
         </th>
         <th>
@@ -38,6 +41,9 @@
             @Html.DisplayFor(modelItem => item.Id)
         </td>
         <td>
+            @Html.DisplayNameFor(model => model.DescripcionRolPersona)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ActivarVehiculo)
         </td>
         <td>
@@ -54,11 +60,11 @@
             @Html.ActionLink("Detalle", "Details", new { id = item.Id.Trim() }) |
             @if (item.Estado == "I")
             {
-                @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                @Html.ActionLink("Activar", "Delete", new { id = item.Id.Trim() })
             }
             else
             {
-                @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                @Html.ActionLink("Inactivar", "Delete", new { id = item.Id.Trim() })
             }
         </td>
     </tr>
@@ -68,6 +74,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionRolPersona)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ActivarVehiculo)
@@ -86,11 +95,11 @@
                 @Html.ActionLink("Detalle", "Details", new { id = item.Id.Trim() }) |
                 @if (item.Estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id.Trim() })
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id.Trim() })
                 }
             </td>
         </tr>
