@@ -46,8 +46,7 @@ namespace Cosevi.SIBOAC.Controllers
               .Select(o => new SelectListItem
               {
                   Value = o.Id.ToString(),
-                  Text = o.Descripcion
-                 
+                  Text = o.Descripcion                 
               });
 
         
@@ -61,18 +60,47 @@ namespace Cosevi.SIBOAC.Controllers
              });
             ViewBag.ComboOpcionFormulario = itemsOpcionFormularios;
 
+
             IEnumerable<SelectListItem> itemsCatArticulos = db.CATARTICULO.Where(a => a.Estado == "A")
             .Select(o => new SelectListItem
             {
                 Value = o.Id.ToString(),
-                Text = o.Descripcion
+                Text = o.Id.ToString() + " | " + o.Conducta + " | " + o.FechaDeInicio.ToString() + " | " + o.FechaDeFin
             });
             ViewBag.ComboArticulos = itemsCatArticulos;
+        
             return View();
         }
+      
 
-     
 
+        public List<CatalogoDeArticulos> ListCatalogoArticulos()
+        {
+
+          
+            var list =
+              (from c in db.CATARTICULO
+               where c.Estado =="A"
+               select new
+               {
+                    CodArticulo = c.Id,
+                    Conducta = c.Conducta,
+                    estado = c.Estado,
+                    fecha_inicio = c.FechaDeInicio,
+                    fecha_final = c.FechaDeFin,
+               }).ToList()
+               .Select(x => new CatalogoDeArticulos
+               {
+                   Id = x.CodArticulo,
+                   Conducta = x.Conducta,
+                   Estado = x.estado,
+                   FechaDeInicio = x.fecha_inicio,
+                   FechaDeFin = x.fecha_final,
+               });
+           
+          
+            return list.ToList();
+        } 
         // POST: ArticulosPorDepositosDeBienes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
