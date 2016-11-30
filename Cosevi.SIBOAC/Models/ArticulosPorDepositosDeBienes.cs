@@ -57,32 +57,7 @@ namespace Cosevi.SIBOAC.Models
 
         public string DescripcionCodigoFormulario
         { get; set; }
-
-                //OpcionDeFormulario opcionFormulario = db.OPCIONFORMULARIO.Find(CodigoOpcionFormulario);
-                //if (opcionFormulario.Id == CodigoOpcionFormulario)
-                //{
-                //    return Descripcion = opcionFormulario.Descripcion;
-                //}
-                //return Descripcion;
-        //    }
-        //}
-        public string DescripcionArticulo
-        { get; set; }
-        //{
-        //    get;
-            //{
-                //string Descripcion = "";
-                //PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
-                //CatalogoDeArticulos articulo = db.CATARTICULO.Find(CodigoArticulo.Trim(),Conducta,FechaDeInicio,FechaDeFin);
-                //if (articulo.Id.Trim() == CodigoArticulo.Trim())
-                //{
-                //    return Descripcion = articulo.Descripcion;
-                //}
-                //return Descripcion;
-            //}
-        //}
-
+        public string DescripcionArticulo { get; set; }
 
     }
 }
