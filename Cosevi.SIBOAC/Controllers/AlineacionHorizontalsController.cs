@@ -10,7 +10,7 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    [Authorize(Roles = "SuperAdministrador")]
+    [Authorize]
     public class AlineacionHorizontalsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
