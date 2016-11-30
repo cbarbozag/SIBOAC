@@ -82,10 +82,8 @@
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.Id
-                    }) |
-                @Html.ActionLink("Detalles", "Details", new { id=item.Id
-                }) |
+                @Html.ActionLink("Editar", "Edit", new { id=item.Id}) |
+                @Html.ActionLink("Detalles", "Details", new { id=item.Id}) |
                 @if(item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id })

@@ -66,9 +66,16 @@
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detalles", "Details", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Inactivar", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario/* id=item.PrimaryKey */ })
+                @Html.ActionLink("Editar", "Edit", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario }) |
+                @Html.ActionLink("Detalle", "Details", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario })
+                }
             </td>
         </tr>
     }
