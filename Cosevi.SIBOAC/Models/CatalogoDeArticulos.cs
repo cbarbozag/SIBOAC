@@ -45,9 +45,11 @@ namespace Cosevi.SIBOAC.Models
 
         [DisplayName("Monto de la multa")]
         [Required(ErrorMessage = "El monto es obligatorio")]
-        //[Range(0.01, 100, ErrorMessage = "El precio solo puede tener 2 decimales 0.00")]
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Currency)]
+        //[Range(0.01, 999999999.99, ErrorMessage = "El precio solo puede tener 2 decimales 0.00")]
+        //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
+        [RegularExpression(@"^\$?\-?([1-9]{1}[0-9]{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\-?\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))$|^\(\$?([1-9]{1}\d{0,2}(\,\d{3})*(\.\d{0,2})?|[1-9]{1}\d{0,}(\.\d{0,2})?|0(\.\d{0,2})?|(\.\d{1,2}))\)$", ErrorMessage = "El precio solo puede tener 2 decimales 0.00")]
+        //[Range(0, 9999999999999999.99)]
+        [DataType(DataType.Currency, ErrorMessage ="El valor ingresado no es un monto valido")]
         public decimal Multa { get; set; }
 
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
