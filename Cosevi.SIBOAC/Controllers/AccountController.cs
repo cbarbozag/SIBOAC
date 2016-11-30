@@ -9,12 +9,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Cosevi.SIBOAC.Models;
-using Cosevi.SIBOAC.Security;
 
 namespace Cosevi.SIBOAC.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
