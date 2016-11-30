@@ -56,14 +56,9 @@ namespace Cosevi.SIBOAC.Models
         {
             get; set;
         }
-        public string DescripcionCodigoFormulario
-        {
-            get; set;
-        }
-        public string DescripcionArticulo
-        {
-            get; set;          
-        }
+        public string DescripcionCodigoFormulario { get; set; }
+
+        public string DescripcionArticulo {get; set;  }
 
 
     }
