@@ -19,7 +19,45 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.ARTICULOSXDEPOSITOSBIENES.ToList());
+
+            var list =
+            (from a in db.ARTICULOSXDEPOSITOSBIENES
+             join d in db.DEPOSITOBIENES on new { CodigoDepositosBienes = a.CodigoDepositosBienes } equals new { CodigoDepositosBienes = d.Id } into d_join
+             from d in d_join.DefaultIfEmpty()
+             join o in db.OPCIONFORMULARIO on new { Id = a.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+             from o in o_join.DefaultIfEmpty()
+             join c in db.CATARTICULO
+                   on new { a.CodigoArticulo, a.Conducta, a.FechaDeInicio, a.FechaDeFin }
+               equals new { CodigoArticulo = c.Id, c.Conducta, c.FechaDeInicio, c.FechaDeFin } into c_join
+             from c in c_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDepositosBienes = a.CodigoDepositosBienes,
+                 CodigoOpcionFormulario = a.CodigoOpcionFormulario,
+                 CodigoArticulo = a.CodigoArticulo,
+                 Conducta = a.Conducta,
+                 FechaDeInicio = a.FechaDeInicio,
+                 FechaDeFin = a.FechaDeFin,
+                 DescripcionDepositosBienes = d.Descripcion,
+                 DescripcionCodigoFormulario = o.Descripcion,
+                 DescripcionArticulo = c.Descripcion
+             }).ToList()
+
+             .Select(x => new ArticulosPorDepositosDeBienes
+             {
+                 CodigoDepositosBienes = x.CodigoDepositosBienes,
+                 CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                 CodigoArticulo = x.CodigoArticulo,
+                 Conducta = x.Conducta,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionDepositosBienes = x.DescripcionDepositosBienes,
+                 DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
+                 DescripcionArticulo = x.DescripcionArticulo
+
+             });
+
+            return View(list);
         }
 
         // GET: ArticulosPorDepositosDeBienes/Details/5
@@ -29,12 +67,52 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes,  CodFormulario,  CodArticulo, Conducta, FechaInicio, FechaFin);
-            if (articulosPorDepositosDeBienes == null)
+            //ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes,  CodFormulario,  CodArticulo, Conducta, FechaInicio, FechaFin);
+
+
+            var list =
+            (from a in db.ARTICULOSXDEPOSITOSBIENES
+             join d in db.DEPOSITOBIENES on new { CodigoDepositosBienes = a.CodigoDepositosBienes } equals new { CodigoDepositosBienes = d.Id } into d_join
+             where a.CodigoDepositosBienes == CodDepositoBienes
+             from d in d_join.DefaultIfEmpty()
+             join o in db.OPCIONFORMULARIO on new { Id = a.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+             where a.CodigoOpcionFormulario == CodFormulario
+             from o in o_join.DefaultIfEmpty()
+             join c in db.CATARTICULO on new { a.CodigoArticulo, a.Conducta, a.FechaDeInicio, a.FechaDeFin } equals new { CodigoArticulo = c.Id, c.Conducta, c.FechaDeInicio, c.FechaDeFin } into c_join
+             where a.CodigoArticulo == CodArticulo && a.Conducta == Conducta && a.FechaDeInicio == FechaInicio && a.FechaDeFin == FechaFin
+             from c in c_join.DefaultIfEmpty()
+             select new
+             {
+                 a.CodigoDepositosBienes,
+                 a.CodigoOpcionFormulario,
+                 a.CodigoArticulo,
+                 a.Conducta,
+                 a.FechaDeInicio,
+                 a.FechaDeFin,
+                 DescripcionDepositosBienes = d.Descripcion,
+                 DescripcionCodigoFormulario = o.Descripcion,
+                 DescripcionArticulo = c.Descripcion
+             }).ToList()
+
+             .Select(x => new ArticulosPorDepositosDeBienes
+             {
+                 CodigoDepositosBienes = x.CodigoDepositosBienes,
+                 CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                 CodigoArticulo = x.CodigoArticulo,
+                 Conducta = x.Conducta,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionDepositosBienes = x.DescripcionDepositosBienes,
+                 DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
+                 DescripcionArticulo = x.DescripcionArticulo
+
+             }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(articulosPorDepositosDeBienes);
+            return View(list);
         }
 
         // GET: ArticulosPorDepositosDeBienes/Create
@@ -144,8 +222,48 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
-            if (articulosPorDepositosDeBienes == null)
+            //ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
+
+            var list =
+            (from a in db.ARTICULOSXDEPOSITOSBIENES
+             join d in db.DEPOSITOBIENES on new { CodigoDepositosBienes = a.CodigoDepositosBienes } equals new { CodigoDepositosBienes = d.Id } into d_join
+             where a.CodigoDepositosBienes == CodDepositoBienes
+             from d in d_join.DefaultIfEmpty()
+             join o in db.OPCIONFORMULARIO on new { Id = a.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+             where a.CodigoOpcionFormulario == CodFormulario
+             from o in o_join.DefaultIfEmpty()
+             join c in db.CATARTICULO on new { a.CodigoArticulo, a.Conducta, a.FechaDeInicio, a.FechaDeFin } equals new { CodigoArticulo = c.Id, c.Conducta, c.FechaDeInicio, c.FechaDeFin } into c_join
+             where a.CodigoArticulo == CodArticulo && a.Conducta == Conducta && a.FechaDeInicio == FechaInicio && a.FechaDeFin == FechaFin
+             from c in c_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDepositosBienes = a.CodigoDepositosBienes,
+                 CodigoOpcionFormulario = a.CodigoOpcionFormulario,
+                 CodigoArticulo = a.CodigoArticulo,
+                 Conducta = a.Conducta,
+                 FechaDeInicio = a.FechaDeInicio,
+                 FechaDeFin = a.FechaDeFin,
+                 DescripcionDepositosBienes = d.Descripcion,
+                 DescripcionCodigoFormulario = o.Descripcion,
+                 DescripcionArticulo = c.Descripcion
+             }).ToList()
+
+             .Select(x => new ArticulosPorDepositosDeBienes
+             {
+                 CodigoDepositosBienes = x.CodigoDepositosBienes,
+                 CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                 CodigoArticulo = x.CodigoArticulo,
+                 Conducta = x.Conducta,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionDepositosBienes = x.DescripcionDepositosBienes,
+                 DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
+                 DescripcionArticulo = x.DescripcionArticulo
+
+             }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
@@ -154,7 +272,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodFormulario);
             ViewBag.ComboArticulos = new SelectList(db.CATARTICULO.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodArticulo);
 
-            return View(articulosPorDepositosDeBienes);
+            return View(list);
         }
 
         // POST: ArticulosPorDepositosDeBienes/Edit/5
@@ -180,12 +298,51 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
-            if (articulosPorDepositosDeBienes == null)
+            //ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
+
+            var list =
+            (from a in db.ARTICULOSXDEPOSITOSBIENES
+             join d in db.DEPOSITOBIENES on new { CodigoDepositosBienes = a.CodigoDepositosBienes } equals new { CodigoDepositosBienes = d.Id } into d_join
+             where a.CodigoDepositosBienes == CodDepositoBienes
+             from d in d_join.DefaultIfEmpty()
+             join o in db.OPCIONFORMULARIO on new { Id = a.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+             where a.CodigoOpcionFormulario == CodFormulario
+             from o in o_join.DefaultIfEmpty()
+             join c in db.CATARTICULO on new { a.CodigoArticulo, a.Conducta, a.FechaDeInicio, a.FechaDeFin } equals new { CodigoArticulo = c.Id, c.Conducta, c.FechaDeInicio, c.FechaDeFin } into c_join
+             where a.CodigoArticulo == CodArticulo && a.Conducta == Conducta && a.FechaDeInicio == FechaInicio && a.FechaDeFin == FechaFin
+             from c in c_join.DefaultIfEmpty()
+             select new
+             {
+                 a.CodigoDepositosBienes,
+                 a.CodigoOpcionFormulario,
+                 a.CodigoArticulo,
+                 a.Conducta,
+                 a.FechaDeInicio,
+                 a.FechaDeFin,
+                 DescripcionDepositosBienes = d.Descripcion,
+                 DescripcionCodigoFormulario = o.Descripcion,
+                 DescripcionArticulo = c.Descripcion
+             }).ToList()
+
+             .Select(x => new ArticulosPorDepositosDeBienes
+             {
+                 CodigoDepositosBienes = x.CodigoDepositosBienes,
+                 CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                 CodigoArticulo = x.CodigoArticulo,
+                 Conducta = x.Conducta,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionDepositosBienes = x.DescripcionDepositosBienes,
+                 DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
+                 DescripcionArticulo = x.DescripcionArticulo
+
+             }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(articulosPorDepositosDeBienes);
+            return View(list);
         }
 
         // POST: ArticulosPorDepositosDeBienes/Delete/5

@@ -15,24 +15,43 @@
         <th>
             @Html.DisplayNameFor(model => model.CodigoDepositosBienes)
         </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
         <th>
             @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
         </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
         <th>
             @Html.DisplayNameFor(model => model.CodigoArticulo)
         </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
         <th>
             @Html.DisplayNameFor(model => model.Conducta)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.FechaDeInicio)
         </th>
+
         <th>
             @Html.DisplayNameFor(model => model.FechaDeFin)
         </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+
         <th></th>
     </tr>
 
@@ -43,33 +62,55 @@
         <tr class="warning">
 
             <td>
+                @Html.DisplayFor(modelItem => item.CodigoDepositosBienes)
+            </td>
+
+
+            <td>
                 @Html.DisplayFor(modelItem => item.DescripcionDepositosBienes)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoFormulario)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoArticulo)
+            </td>
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionArticulo)
             </td>
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.Conducta)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeInicio)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
+
             <td>
-                @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
+                @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
                 
                 @if (item.Estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
+                    @Html.ActionLink("Activar", "Delete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin})
                 }
                 else
                 {
@@ -86,29 +127,50 @@
     {
         <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DescripcionDepositosBienes)
+            @Html.DisplayFor(modelItem => item.CodigoDepositosBienes)
         </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDepositosBienes)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoFormulario)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoArticulo)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionArticulo)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Conducta)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeInicio)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
+
             <td>
-                @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
+                @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
                 
 
                 @if (item.Estado == "I")
