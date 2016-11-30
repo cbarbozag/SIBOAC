@@ -49,13 +49,13 @@ namespace Cosevi.SIBOAC.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Usuario", Prompt = "Nombre de usuario")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Password", Prompt = "Contraseña")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]

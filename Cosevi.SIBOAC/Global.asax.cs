@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace Cosevi.SIBOAC
 {
@@ -16,6 +17,18 @@ namespace Cosevi.SIBOAC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //WebSecurity.InitializeDatabaseConnection("DefaultConnection", "User", "Id", "UserName", autoCreateTables: true);
+            //if (!Roles.RoleExists("SuperAdministrador"))
+            //{
+            //    Roles.CreateRole("SuperAdministrador");
+            //    Roles.CreateRole("Administrador");
+            //    Roles.CreateRole("Oficial");
+            //    Roles.CreateRole("GeneradorDeReportes");
+            //    Roles.CreateRole("Digitador");
+            //    WebSecurity.CreateUserAndAccount("admin@csv.go.cr", "12345");
+            //    Roles.AddUserToRole("admin@csv.go.cr", "SuperAdministrador");
+            //}
         }
     }
 }

@@ -9,10 +9,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Cosevi.SIBOAC.Models;
+using Cosevi.SIBOAC.Security;
 
 namespace Cosevi.SIBOAC.Controllers
 {
     [Authorize]
+    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -73,9 +75,10 @@ namespace Cosevi.SIBOAC.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
+            //This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -86,9 +89,20 @@ namespace Cosevi.SIBOAC.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Intento de login fallido.");
                     return View(model);
             }
+            //bool authenticated = WebSecurity.Login(model.Email, model.Password, model.RememberMe);
+
+            //if (authenticated)
+            //{
+            //    return RedirectToLocal(returnUrl);
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("", "Intento de login fallido.");
+            //    return View(model);
+            //}
         }
 
         //
