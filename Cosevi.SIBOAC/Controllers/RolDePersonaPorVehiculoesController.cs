@@ -19,7 +19,28 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.RolDePersonaPorVehiculoes.ToList());
+            var list=            
+           (from r in db.RolDePersonaPorVehiculoes
+            join rp in db.ROLPERSONA on r.Id equals rp.Id
+            select new 
+            {
+                Id = r.Id,
+                ActivarVehiculo = r.ActivarVehiculo,
+                Estado = r.Estado,
+                FechaDeInicio = r.FechaDeInicio,
+                FechaDeFin = r.FechaDeFin,
+                DescripcionRolPersona = rp.Descripcion
+            }).ToList()
+            .Select(x=> new RolDePersonaPorVehiculo
+            {
+                Id = x.Id,
+                ActivarVehiculo = x.ActivarVehiculo,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionRolPersona = x.DescripcionRolPersona
+            });
+            return View(list);
         }
 
         // GET: RolDePersonaPorVehiculoes/Details/5
@@ -29,18 +50,58 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            if (rolDePersonaPorVehiculo == null)
+            var item =
+              (from r in db.RolDePersonaPorVehiculoes
+               join rp in db.ROLPERSONA on r.Id equals rp.Id
+               where r.Id == id
+               select new
+               {
+                   Id = r.Id,
+                   ActivarVehiculo = r.ActivarVehiculo,
+                   Estado = r.Estado,
+                   FechaDeInicio = r.FechaDeInicio,
+                   FechaDeFin = r.FechaDeFin,
+                   DescripcionRolPersona = rp.Descripcion
+               }).ToList()
+              .Select(x => new RolDePersonaPorVehiculo
+              {
+                  Id = x.Id,
+                  ActivarVehiculo = x.ActivarVehiculo,
+                  Estado = x.Estado,
+                  FechaDeInicio = x.FechaDeInicio,
+                  FechaDeFin = x.FechaDeFin,
+                  DescripcionRolPersona = x.DescripcionRolPersona
+              }).SingleOrDefault();
+
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(rolDePersonaPorVehiculo);
+            return View(item);
         }
 
         // GET: RolDePersonaPorVehiculoes/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> itemsRolPersona = db.ROLPERSONA
+            .Select(o => new SelectListItem
+            {
+                Value = o.Id,
+                Text = o.Descripcion
+            });
+            ViewBag.ComboRolPersona = itemsRolPersona;
             return View();
+        }
+        public string Verificar(string codRol)
+        {
+            string mensaje = "";
+            bool exist = db.ROLPERSONA.Any(x => x.Id == codRol);
+            if (exist)
+            {
+                mensaje = "El codigo rol persona" + codRol +
+                    " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // POST: RolDePersonaPorVehiculoes/Create
@@ -53,8 +114,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.RolDePersonaPorVehiculoes.Add(rolDePersonaPorVehiculo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(rolDePersonaPorVehiculo.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolDePersonaPorVehiculo);
+                }
             }
 
             return View(rolDePersonaPorVehiculo);
@@ -67,12 +142,37 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            if (rolDePersonaPorVehiculo == null)
+            //RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
+            var item =
+            (from r in db.RolDePersonaPorVehiculoes
+             join rp in db.ROLPERSONA on r.Id equals rp.Id
+             where r.Id == id
+             select new 
+             {
+                 Id = r.Id,
+                 ActivarVehiculo = r.ActivarVehiculo,
+                 Estado = r.Estado,
+                 FechaDeInicio = r.FechaDeInicio,
+                 FechaDeFin = r.FechaDeFin,
+                 DescripcionRolPersona = rp.Descripcion
+             }).ToList()
+            .Select(x => new RolDePersonaPorVehiculo
+            {
+                Id = x.Id,
+                ActivarVehiculo = x.ActivarVehiculo,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionRolPersona = x.DescripcionRolPersona
+            }).SingleOrDefault();
+
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(rolDePersonaPorVehiculo);
+            ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion", id);
+
+            return View(item);
         }
 
         // POST: RolDePersonaPorVehiculoes/Edit/5
@@ -98,12 +198,33 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
-            if (rolDePersonaPorVehiculo == null)
+            var item =
+             (from r in db.RolDePersonaPorVehiculoes
+              join rp in db.ROLPERSONA on r.Id equals rp.Id
+              where r.Id == id
+              select new
+              {
+                  Id = r.Id,
+                  ActivarVehiculo = r.ActivarVehiculo,
+                  Estado = r.Estado,
+                  FechaDeInicio = r.FechaDeInicio,
+                  FechaDeFin = r.FechaDeFin,
+                  DescripcionRolPersona = rp.Descripcion
+              }).ToList()
+             .Select(x => new RolDePersonaPorVehiculo
+             {
+                 Id = x.Id,
+                 ActivarVehiculo = x.ActivarVehiculo,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionRolPersona = x.DescripcionRolPersona
+             }).SingleOrDefault();
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(rolDePersonaPorVehiculo);
+            return View(item);
         }
 
         // POST: RolDePersonaPorVehiculoes/Delete/5
