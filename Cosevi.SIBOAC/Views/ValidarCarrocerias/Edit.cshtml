@@ -52,6 +52,20 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                @*@{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Activar",
+                        Value = "A"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Inactivar",
+                        Value = "I",
+                    });
+                }
+                @Html.DropDownList("DDlDemo", new SelectList(listItems, "Value", "Text"))*@
             </div>
         </div>
 
