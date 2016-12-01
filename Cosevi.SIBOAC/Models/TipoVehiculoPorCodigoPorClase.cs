@@ -16,21 +16,21 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class TipoVehiculoPorCodigoPorClase
     {
-        [DisplayName("Código de los tipos de vehiculos")]
+        [DisplayName("Código tipos vehiculos")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoTiposVehiculos { get; set; }
 
-        [DisplayName("Código de la clase de placa")]
+        [DisplayName("Código clase placa")]
         [Required(ErrorMessage = "El código es obligatorio")]
         [StringLength(3, ErrorMessage = "El codigo no debe ser mayor a 3 caracter.")]
         public string CodigoClasePlaca { get; set; }
 
-        [DisplayName("Código de los tipos de vehiculos")]
+        [DisplayName("Código Placa")]
         [Required(ErrorMessage = "El código es obligatorio")]
         [StringLength(3, ErrorMessage = "El codigo no debe ser mayor a 3 caracter.")]
         public string CodigoCodigoPlaca { get; set; }
 
-        [DisplayName("Código del tipo de Vehiculo")]
+        [DisplayName("Código Tipo Veh.")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoTipoVeh { get; set; }
 
@@ -51,36 +51,15 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
+        [DisplayName("Descripción")]
         public string DescripcionCodigoTiposVehiculos
         {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                TiposDeVehiculos tiposvehiculos = db.TIPOSVEHICULOS.Find(CodigoTiposVehiculos);
-                if (tiposvehiculos.Id == CodigoTiposVehiculos)
-                {
-                    return Descripcion = tiposvehiculos.Nombre;
-                }
-
-                return Descripcion;
-            }
+            get; set;
         }
-
+        [DisplayName("Descripción")]
         public string DescripcionCodigoTipoVeh
         {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                TipoDeVehiculo tipovehiculo = db.TIPOVEH.Find(CodigoTipoVeh);
-                if (tipovehiculo.Id == CodigoTiposVehiculos)
-                {
-                    return Descripcion = tipovehiculo.Descripcion;
-                }
-
-                return Descripcion;
-            }
+            get; set;
         }
     }
 }
