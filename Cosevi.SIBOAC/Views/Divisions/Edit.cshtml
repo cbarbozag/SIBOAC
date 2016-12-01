@@ -23,16 +23,27 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdCanton, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IdCanton, (IEnumerable<SelectListItem>)ViewBag.ComboCanton, new { @class = "form-control" })
+                @Html.DisplayFor(model => model.IdCanton,new { @class = "form-control" })           
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescripcionCanton, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DescripcionCanton, (IEnumerable<SelectListItem>)ViewBag.ComboCanton, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdCanton, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoOficinaImpugna, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @Html.DisplayFor(model => model.CodigoOficinaImpugna, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescripcionOficina, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CodigoOficinaImpugna, (IEnumerable<SelectListItem>)ViewBag.ComboOficina, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CodigoOficinaImpugna, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DescripcionOficina, "", new { @class = "text-danger" })
             </div>
         </div>
 

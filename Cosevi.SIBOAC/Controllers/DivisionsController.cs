@@ -19,7 +19,36 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DIVISION.ToList());
+            var list =
+              (
+                from d in db.DIVISION
+                join c in db.CANTON on new { IdCanton = d.IdCanton } equals new { IdCanton = c.Id } into c_join
+                from c in c_join.DefaultIfEmpty()
+                join o in db.OficinaParaImpugnars on new { Id = d.CodigoOficinaImpugna } equals new { Id = o.Id } into o_join
+                from o in o_join.DefaultIfEmpty()
+                select new
+                {
+                    IdCanton = d.IdCanton,
+                    CodigoOficinaImpugna = d.CodigoOficinaImpugna,
+                    Estado = d.Estado,
+                    FechaDeInicio= d.FechaDeInicio,
+                    FechaDeFin = d.FechaDeFin,
+                    DescripcionCanton = c.Descripcion,
+                    DescripcionOficina = o.Descripcion
+                }).ToList()
+               .Select(x => new Division
+               {
+
+                   IdCanton = x.IdCanton,
+                   CodigoOficinaImpugna = x.CodigoOficinaImpugna,
+                   Estado = x.Estado,
+                   FechaDeInicio = x.FechaDeInicio,
+                   FechaDeFin = x.FechaDeFin,
+                   DescripcionCanton = x.DescripcionCanton,
+                   DescripcionOficina = x.DescripcionOficina
+
+               });
+            return View(list);
         }
 
         // GET: Divisions/Details/5
@@ -29,12 +58,40 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
-            if (division == null)
-            {
-                return HttpNotFound();
-            }
-            return View(division);
+            var list =
+            (  from d in db.DIVISION
+                  join c in db.CANTON on new { IdCanton = d.IdCanton } equals new { IdCanton = c.Id } into c_join
+                  where d.IdCanton == canton && d.CodigoOficinaImpugna == OficinaImpugna && d.FechaDeInicio == FechaInicio && d.FechaDeFin == FechaFin
+                  from c in c_join.DefaultIfEmpty()
+                  join o in db.OficinaParaImpugnars on new { Id = d.CodigoOficinaImpugna } equals new { Id = o.Id } into o_join
+                  from o in o_join.DefaultIfEmpty()
+                  select new
+                  {
+                      IdCanton = d.IdCanton,
+                      CodigoOficinaImpugna = d.CodigoOficinaImpugna,
+                      Estado = d.Estado,
+                      FechaDeInicio = d.FechaDeInicio,
+                      FechaDeFin = d.FechaDeFin,
+                      DescripcionCanton = c.Descripcion,
+                      DescripcionOficina = o.Descripcion
+                  }).ToList()
+                 .Select(x => new Division
+                  {
+
+                           IdCanton = x.IdCanton,
+                           CodigoOficinaImpugna = x.CodigoOficinaImpugna,
+                           Estado = x.Estado,
+                           FechaDeInicio = x.FechaDeInicio,
+                           FechaDeFin = x.FechaDeFin,
+                           DescripcionCanton = x.DescripcionCanton,
+                           DescripcionOficina = x.DescripcionOficina
+                 }).SingleOrDefault();
+
+                if (list == null)
+                {
+                   return HttpNotFound();
+                }
+                return View(list);
         }
 
         // GET: Divisions/Create
@@ -122,8 +179,36 @@ namespace Cosevi.SIBOAC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
-            if (division == null)
+            var list =
+           (from d in db.DIVISION
+            join c in db.CANTON on new { IdCanton = d.IdCanton } equals new { IdCanton = c.Id } into c_join
+            where d.IdCanton == canton && d.CodigoOficinaImpugna == OficinaImpugna && d.FechaDeInicio == FechaInicio && d.FechaDeFin == FechaFin
+            from c in c_join.DefaultIfEmpty()
+            join o in db.OficinaParaImpugnars on new { Id = d.CodigoOficinaImpugna } equals new { Id = o.Id } into o_join
+            from o in o_join.DefaultIfEmpty()
+            select new
+            {
+                IdCanton = d.IdCanton,
+                CodigoOficinaImpugna = d.CodigoOficinaImpugna,
+                Estado = d.Estado,
+                FechaDeInicio = d.FechaDeInicio,
+                FechaDeFin = d.FechaDeFin,
+                DescripcionCanton = c.Descripcion,
+                DescripcionOficina = o.Descripcion
+            }).ToList()
+                .Select(x => new Division
+                {
+
+                    IdCanton = x.IdCanton,
+                    CodigoOficinaImpugna = x.CodigoOficinaImpugna,
+                    Estado = x.Estado,
+                    FechaDeInicio = x.FechaDeInicio,
+                    FechaDeFin = x.FechaDeFin,
+                    DescripcionCanton = x.DescripcionCanton,
+                    DescripcionOficina = x.DescripcionOficina
+                }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
@@ -131,9 +216,9 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.ComboCanton = new SelectList(db.CANTON.OrderBy(x => x.Descripcion), "Id", "Descripcion", canton);
             ViewBag.ComboOficina = new SelectList(db.OficinaParaImpugnars.OrderBy(x => x.Descripcion), "Id", "Descripcion", OficinaImpugna);
 
-            division.CodigoOficinaImpugna = division.CodigoOficinaImpugna.Trim();
+            list.CodigoOficinaImpugna = list.CodigoOficinaImpugna.Trim();
 
-            return View(division);
+            return View(list);
         }
 
         // POST: Divisions/Edit/5
@@ -159,12 +244,40 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
-            if (division == null)
+            var list =
+          (from d in db.DIVISION
+           join c in db.CANTON on new { IdCanton = d.IdCanton } equals new { IdCanton = c.Id } into c_join
+           where d.IdCanton == canton && d.CodigoOficinaImpugna == OficinaImpugna && d.FechaDeInicio == FechaInicio && d.FechaDeFin == FechaFin
+           from c in c_join.DefaultIfEmpty()
+           join o in db.OficinaParaImpugnars on new { Id = d.CodigoOficinaImpugna } equals new { Id = o.Id } into o_join
+           from o in o_join.DefaultIfEmpty()
+           select new
+           {
+               IdCanton = d.IdCanton,
+               CodigoOficinaImpugna = d.CodigoOficinaImpugna,
+               Estado = d.Estado,
+               FechaDeInicio = d.FechaDeInicio,
+               FechaDeFin = d.FechaDeFin,
+               DescripcionCanton = c.Descripcion,
+               DescripcionOficina = o.Descripcion
+           }).ToList()
+               .Select(x => new Division
+               {
+
+                   IdCanton = x.IdCanton,
+                   CodigoOficinaImpugna = x.CodigoOficinaImpugna,
+                   Estado = x.Estado,
+                   FechaDeInicio = x.FechaDeInicio,
+                   FechaDeFin = x.FechaDeFin,
+                   DescripcionCanton = x.DescripcionCanton,
+                   DescripcionOficina = x.DescripcionOficina
+               }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(division);
+            return View(list);
         }
 
         // POST: Divisions/Delete/5
