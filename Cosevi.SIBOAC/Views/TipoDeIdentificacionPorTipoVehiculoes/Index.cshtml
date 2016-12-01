@@ -16,7 +16,13 @@
             @Html.DisplayNameFor(model => model.CodigoTipoIDEVehiculo)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTipoIDEVehiculo)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CodigoTipoVeh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTipoVeh)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
@@ -35,9 +41,14 @@
     if (item.Estado == "I")
     {
         <tr class="warning">
-
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoIDEVehiculo)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoIDEVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoVeh)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoVeh)
@@ -68,9 +79,15 @@
     else
     {      
         <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoIDEVehiculo)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoIDEVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoIDEVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoVeh)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoVeh)
             </td>

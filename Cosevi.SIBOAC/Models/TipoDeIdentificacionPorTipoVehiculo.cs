@@ -16,12 +16,12 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class TipoDeIdentificacionPorTipoVehiculo
     {
-        [DisplayName("Codigo de identificación del vehiculo")]
+        [DisplayName("Código Ident. Veh.")]
         [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string CodigoTipoIDEVehiculo { get; set; }
 
-        [DisplayName("Codigo del tipo del vehiculo")]
+        [DisplayName("Código Tipo Veh.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public int CodigoTipoVeh { get; set; }
 
@@ -42,40 +42,10 @@ namespace Cosevi.SIBOAC.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
-        public string DescripcionCodigoTipoIDEVehiculo
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                if (CodigoTipoIDEVehiculo != "")
-                {
-                    TipoIdDeVehiculo  TipoIdVeh = db.TIPOIDEVEHICULO.Find(CodigoTipoIDEVehiculo);
-                    if (TipoIdVeh.Id.Trim() == CodigoTipoIDEVehiculo.Trim())
-                    {
-                        return Descripcion = TipoIdVeh.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
-
-        public string DescripcionCodigoTipoVeh
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-               
-                TipoDeVehiculo TipoVeh = db.TIPOVEH.Find(CodigoTipoVeh);
-                if (TipoVeh.Id == CodigoTipoVeh)
-                {
-                    return Descripcion = TipoVeh.Descripcion;
-               
-                }
-                return Descripcion;
-            }
-        }
+        [DisplayName("Descripción")]
+        public string DescripcionCodigoTipoIDEVehiculo { get; set; }
+        [DisplayName("Descripción")]
+        public string DescripcionCodigoTipoVeh { get; set; }
 
 
     }
