@@ -46,22 +46,7 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
-        public string DescripcionCodigoOpcionFormulario
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    OpcionDeFormulario opcionDeFormulario = db.OPCIONFORMULARIO.Find(CodigoOpcionFormulario);
-                    if (opcionDeFormulario.Id == CodigoOpcionFormulario)
-                    {
-                        return Descripcion = opcionDeFormulario.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
+        public string DescripcionCodigoOpcionFormulario { get; set;  }
 
     }
 }
