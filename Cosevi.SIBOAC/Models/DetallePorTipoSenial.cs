@@ -50,19 +50,12 @@ namespace Cosevi.SIBOAC.Models
 
         public string DescripcionCodigoTipoSenial
         {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    TipoDeSenalExistente tipoDeSenalExistente = db.TIPOSEÑALEXISTE.Find(CodigoTipoSenial);
-                    if (tipoDeSenalExistente.Id == CodigoTipoSenial)
-                    {
-                        return Descripcion = tipoDeSenalExistente.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
+            get; set;
+        }
+
+        public string DescripcionSenalamiento
+        {
+            get; set;
         }
 
     }
