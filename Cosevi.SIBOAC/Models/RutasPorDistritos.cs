@@ -16,11 +16,11 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class RutasPorDistritos
     {
-        [DisplayName("Código del distrito")]
+        [DisplayName("Distrito")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoDistrito { get; set; }
 
-        [DisplayName("Código de la ruta")]
+        [DisplayName("Ruta")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoRuta { get; set; }
 
@@ -45,38 +45,15 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
+        [DisplayName("Descripción")]
         public string DescripcionDistrito
         {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    Distrito distrito = db.DISTRITO.Find(CodigoDistrito);
-                    if (distrito.Id == CodigoDistrito)
-                    {
-                        return Descripcion = distrito.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
+            get; set;
         }
-
+        [DisplayName("Descripción")]
         public string DescripcionRuta
         {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    Ruta ruta = db.Ruta.Find(CodigoRuta);
-                    if (ruta.Id == CodigoRuta)
-                    {
-                        return Descripcion = ruta.Inicia  + " - " + ruta.Termina ;
-                    }
-                }
-                return Descripcion;
-            }
+            get;set;
         }
 
     }

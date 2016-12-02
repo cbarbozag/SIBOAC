@@ -19,7 +19,38 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.RUTASXDISTRITO.ToList());
+            var list =
+             (
+               from rtd in db.RUTASXDISTRITO
+               join di in db.DISTRITO on new { CodigoDistrito = rtd.CodigoDistrito } equals new { CodigoDistrito = di.Id } into di_join
+               from di in di_join.DefaultIfEmpty()
+               join ru in db.Ruta on new { CodigoRuta = rtd.CodigoRuta } equals new { CodigoRuta = ru.Id } into ru_join
+               from ru in ru_join.DefaultIfEmpty()
+               select new
+               {
+                   CodigoDistrito =rtd.CodigoDistrito,
+                   CodigoRuta = rtd.CodigoRuta,
+                   Km= rtd.Km,
+                   Estado= rtd.Estado,
+                   FechaDeInicio = rtd.FechaDeInicio,
+                   FechaDeFin = rtd.FechaDeFin,
+                   DescripcionDistrito = di.Descripcion,
+                   DescripcionRuta = ru.Inicia +" | "+ ru.Termina
+               }).ToList()
+
+              .Select(x => new RutasPorDistritos
+              {
+                  CodigoDistrito = x.CodigoDistrito,
+                  CodigoRuta = x.CodigoRuta,
+                  Km = x.Km,
+                  Estado = x.Estado,
+                  FechaDeInicio = x.FechaDeInicio,
+                  FechaDeFin = x.FechaDeFin,
+                  DescripcionDistrito = x.DescripcionDistrito,
+                  DescripcionRuta = x.DescripcionRuta
+
+              });
+            return View(list);
         }
 
         // GET: RutasPorDistritos/Details/5
@@ -29,12 +60,42 @@ namespace Cosevi.SIBOAC.Controllers
             {
                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
-            if (rutasPorDistritos == null)
+            var list =
+             (
+               from rtd in db.RUTASXDISTRITO
+               join di in db.DISTRITO on new { CodigoDistrito = rtd.CodigoDistrito } equals new { CodigoDistrito = di.Id } into di_join
+               where rtd.CodigoDistrito == codigo_distrito && rtd.CodigoRuta== codigo_ruta && rtd.Km == km
+               from di in di_join.DefaultIfEmpty()
+               join ru in db.Ruta on new { CodigoRuta = rtd.CodigoRuta } equals new { CodigoRuta = ru.Id } into ru_join
+               from ru in ru_join.DefaultIfEmpty()
+               select new
+               {
+                   CodigoDistrito = rtd.CodigoDistrito,
+                   CodigoRuta = rtd.CodigoRuta,
+                   Km = rtd.Km,
+                   Estado = rtd.Estado,
+                   FechaDeInicio = rtd.FechaDeInicio,
+                   FechaDeFin = rtd.FechaDeFin,
+                   DescripcionDistrito = di.Descripcion,
+                   DescripcionRuta = ru.Inicia + " | " + ru.Termina
+               }).ToList()
+              .Select(x => new RutasPorDistritos
+              {
+                  CodigoDistrito = x.CodigoDistrito,
+                  CodigoRuta = x.CodigoRuta,
+                  Km = x.Km,
+                  Estado = x.Estado,
+                  FechaDeInicio = x.FechaDeInicio,
+                  FechaDeFin = x.FechaDeFin,
+                  DescripcionDistrito = x.DescripcionDistrito,
+                  DescripcionRuta = x.DescripcionRuta
+              }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(rutasPorDistritos);
+            return View(list);
         }
 
         // GET: RutasPorDistritos/Create
@@ -113,14 +174,44 @@ namespace Cosevi.SIBOAC.Controllers
             {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
              }
-            RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
-            if (rutasPorDistritos == null)
+            var list =
+             (
+               from rtd in db.RUTASXDISTRITO
+               join di in db.DISTRITO on new { CodigoDistrito = rtd.CodigoDistrito } equals new { CodigoDistrito = di.Id } into di_join
+               where rtd.CodigoDistrito == codigo_distrito && rtd.CodigoRuta == codigo_ruta && rtd.Km == km
+               from di in di_join.DefaultIfEmpty()
+               join ru in db.Ruta on new { CodigoRuta = rtd.CodigoRuta } equals new { CodigoRuta = ru.Id } into ru_join
+               from ru in ru_join.DefaultIfEmpty()
+               select new
+               {
+                   CodigoDistrito = rtd.CodigoDistrito,
+                   CodigoRuta = rtd.CodigoRuta,
+                   Km = rtd.Km,
+                   Estado = rtd.Estado,
+                   FechaDeInicio = rtd.FechaDeInicio,
+                   FechaDeFin = rtd.FechaDeFin,
+                   DescripcionDistrito = di.Descripcion,
+                   DescripcionRuta = ru.Inicia + " | " + ru.Termina
+               }).ToList()
+              .Select(x => new RutasPorDistritos
+              {
+                  CodigoDistrito = x.CodigoDistrito,
+                  CodigoRuta = x.CodigoRuta,
+                  Km = x.Km,
+                  Estado = x.Estado,
+                  FechaDeInicio = x.FechaDeInicio,
+                  FechaDeFin = x.FechaDeFin,
+                  DescripcionDistrito = x.DescripcionDistrito,
+                  DescripcionRuta = x.DescripcionRuta
+              }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
             ViewBag.ComboDistrito = new SelectList(db.DISTRITO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigo_distrito);
-            ViewBag.ComboRuta = new SelectList(db.Ruta.OrderBy(x => x.Id), "Id", "Inicio" + " " + "Termina", codigo_ruta);
-            return View(rutasPorDistritos);
+            ViewBag.ComboRuta = new SelectList(db.Ruta.ToList(), "Id", "DescripcionRuta", codigo_ruta);
+            return View(list);
         }
 
         // POST: RutasPorDistritos/Edit/5
@@ -146,12 +237,42 @@ namespace Cosevi.SIBOAC.Controllers
              {
                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
              }
-                RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
-            if (rutasPorDistritos == null)
+            var list =
+           (
+             from rtd in db.RUTASXDISTRITO
+             join di in db.DISTRITO on new { CodigoDistrito = rtd.CodigoDistrito } equals new { CodigoDistrito = di.Id } into di_join
+             where rtd.CodigoDistrito == codigo_distrito && rtd.CodigoRuta == codigo_ruta && rtd.Km == km
+             from di in di_join.DefaultIfEmpty()
+             join ru in db.Ruta on new { CodigoRuta = rtd.CodigoRuta } equals new { CodigoRuta = ru.Id } into ru_join
+             from ru in ru_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDistrito = rtd.CodigoDistrito,
+                 CodigoRuta = rtd.CodigoRuta,
+                 Km = rtd.Km,
+                 Estado = rtd.Estado,
+                 FechaDeInicio = rtd.FechaDeInicio,
+                 FechaDeFin = rtd.FechaDeFin,
+                 DescripcionDistrito = di.Descripcion,
+                 DescripcionRuta = ru.Inicia + " | " + ru.Termina
+             }).ToList()
+            .Select(x => new RutasPorDistritos
+            {
+                CodigoDistrito = x.CodigoDistrito,
+                CodigoRuta = x.CodigoRuta,
+                Km = x.Km,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionDistrito = x.DescripcionDistrito,
+                DescripcionRuta = x.DescripcionRuta
+            }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(rutasPorDistritos);
+            return View(list);
         }
 
         // POST: RutasPorDistritos/Delete/5
