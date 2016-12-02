@@ -16,49 +16,19 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class DispositivoPorRolPersona
     {
-        [DisplayName("Codigo de rol de la persona")]
+        [DisplayName("Código Rol Persona")]
         [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracter.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string CodigoRolPersona { get; set; }
 
-        [DisplayName("Código del dispositivo")]
+        [DisplayName("Código Dispositivo")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoDispositivo { get; set; }
 
-
-        public string DescripcionRolPersona
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    RolPorPersona rolPorPersona = db.ROLPERSONA.Find(CodigoRolPersona);
-                    if (rolPorPersona.Id == CodigoRolPersona)
-                    {
-                        return Descripcion = rolPorPersona.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
-
-        public string DescripcionDispositivo
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    Dispositivo dispositivo = db.Dispositivoes1.Find(CodigoDispositivo);
-                    if (dispositivo.Id == CodigoDispositivo)
-                    {
-                        return Descripcion = dispositivo.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
+        [DisplayName("Descripción")]
+        public string DescripcionRolPersona { set; get;  }
+        [DisplayName("Descripción")]
+        public string DescripcionDispositivo { get; set; }
 
     }
 }
