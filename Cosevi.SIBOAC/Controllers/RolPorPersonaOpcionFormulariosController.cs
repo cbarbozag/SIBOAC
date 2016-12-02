@@ -17,7 +17,41 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: RolPorPersonaOpcionFormularios
         public ActionResult Index()
         {
-            return View(db.ROLPERSONA_OPCIONFORMULARIO.ToList());
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+
+            var list =
+           (from ro in db.ROLPERSONA_OPCIONFORMULARIO
+            join r in db.ROLPERSONA on ro.CodigoRolPersona.ToString() equals r.Id into r_join
+            from r in r_join.DefaultIfEmpty()
+            join o in db.OPCIONFORMULARIO on new { Id = ro.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+            from o in o_join.DefaultIfEmpty()
+            select new
+            {
+                CodigoRolPersona = ro.CodigoRolPersona,
+                CodigoOpcionFormulario = ro.CodigoOpcionFormulario,
+                Estado = ro.Estado,
+                FechaDeInicio = ro.FechaDeInicio,
+                FechaDeFin = ro.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = r.Descripcion,
+                DescripcionCodigoRolPersona = o.Descripcion
+            }).ToList()
+
+
+            .Select(x => new RolPorPersonaOpcionFormulario
+            {
+
+                CodigoRolPersona = x.CodigoRolPersona,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+                DescripcionCodigoRolPersona = x.DescripcionCodigoRolPersona
+
+            });
+
+            return View(list);
         }
 
         // GET: RolPorPersonaOpcionFormularios/Details/5
@@ -27,12 +61,47 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
-            if (rolPorPersonaOpcionFormulario == null)
+            //RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
+
+
+            var list =
+           (from ro in db.ROLPERSONA_OPCIONFORMULARIO
+            join r in db.ROLPERSONA on ro.CodigoRolPersona.ToString() equals r.Id into r_join
+            where ro.CodigoRolPersona == codRol
+            from r in r_join.DefaultIfEmpty()
+            join o in db.OPCIONFORMULARIO on new { Id = ro.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+            where ro.CodigoOpcionFormulario == codFormulario
+            from o in o_join.DefaultIfEmpty()
+            select new
+            {
+                CodigoRolPersona = ro.CodigoRolPersona,
+                CodigoOpcionFormulario = ro.CodigoOpcionFormulario,
+                Estado = ro.Estado,
+                FechaDeInicio = ro.FechaDeInicio,
+                FechaDeFin = ro.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = r.Descripcion,
+                DescripcionCodigoRolPersona = o.Descripcion
+            }).ToList()
+
+
+            .Select(x => new RolPorPersonaOpcionFormulario
+            {
+
+                CodigoRolPersona = x.CodigoRolPersona,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+                DescripcionCodigoRolPersona = x.DescripcionCodigoRolPersona
+
+            }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(rolPorPersonaOpcionFormulario);
+            return View(list);
         }
 
         // GET: RolPorPersonaOpcionFormularios/Create
@@ -82,8 +151,42 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
-            if (rolPorPersonaOpcionFormulario == null)
+            //RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
+
+            var list =
+           (from ro in db.ROLPERSONA_OPCIONFORMULARIO
+           join r in db.ROLPERSONA on ro.CodigoRolPersona.ToString() equals r.Id into r_join
+           where ro.CodigoRolPersona == codRol
+           from r in r_join.DefaultIfEmpty()
+           join o in db.OPCIONFORMULARIO on new { Id = ro.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+           where ro.CodigoOpcionFormulario == codFormulario
+           from o in o_join.DefaultIfEmpty()
+           select new
+           {
+               CodigoRolPersona = ro.CodigoRolPersona,
+               CodigoOpcionFormulario = ro.CodigoOpcionFormulario,
+               Estado = ro.Estado,
+               FechaDeInicio = ro.FechaDeInicio,
+               FechaDeFin = ro.FechaDeFin,
+               DescripcionCodigoOpcionFormulario = r.Descripcion,
+               DescripcionCodigoRolPersona = o.Descripcion
+           }).ToList()
+
+
+           .Select(x => new RolPorPersonaOpcionFormulario
+           {
+
+               CodigoRolPersona = x.CodigoRolPersona,
+               CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+               DescripcionCodigoRolPersona = x.DescripcionCodigoRolPersona
+
+           }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
@@ -91,7 +194,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion", codRol);
             ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codFormulario);
 
-            return View(rolPorPersonaOpcionFormulario);
+            return View(list);
         }
 
         // POST: RolPorPersonaOpcionFormularios/Edit/5
@@ -117,12 +220,46 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
-            if (rolPorPersonaOpcionFormulario == null)
+            //RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
+
+            var list =
+           (from ro in db.ROLPERSONA_OPCIONFORMULARIO
+            join r in db.ROLPERSONA on ro.CodigoRolPersona.ToString() equals r.Id into r_join
+            where ro.CodigoRolPersona == codRol
+            from r in r_join.DefaultIfEmpty()
+            join o in db.OPCIONFORMULARIO on new { Id = ro.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+            where ro.CodigoOpcionFormulario == codFormulario
+            from o in o_join.DefaultIfEmpty()
+            select new
+            {
+                CodigoRolPersona = ro.CodigoRolPersona,
+                CodigoOpcionFormulario = ro.CodigoOpcionFormulario,
+                Estado = ro.Estado,
+                FechaDeInicio = ro.FechaDeInicio,
+                FechaDeFin = ro.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = r.Descripcion,
+                DescripcionCodigoRolPersona = o.Descripcion
+            }).ToList()
+
+
+           .Select(x => new RolPorPersonaOpcionFormulario
+           {
+
+               CodigoRolPersona = x.CodigoRolPersona,
+               CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+               DescripcionCodigoRolPersona = x.DescripcionCodigoRolPersona
+
+           }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(rolPorPersonaOpcionFormulario);
+            return View(list);
         }
 
         // POST: RolPorPersonaOpcionFormularios/Delete/5

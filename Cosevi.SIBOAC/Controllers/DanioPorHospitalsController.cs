@@ -19,7 +19,36 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DAÑOXHOSPITAL.ToList());
+
+            var list =
+            (from dh in db.DAÑOXHOSPITAL
+             join ho in db.HOSPITAL on new { IdHospital = dh.IdHospital } equals new { IdHospital = ho.Id } into ho_join
+             from ho in ho_join.DefaultIfEmpty()
+             join da in db.DAÑO on new { IdDanio = dh.IdDanio } equals new { IdDanio = da.Id } into da_join
+             from da in da_join.DefaultIfEmpty()
+             select new
+             {
+                 IdHospital = dh.IdHospital,
+                 IdDanio = dh.IdDanio,
+                 Estado = dh.Estado,
+                 FechaDeInicio = dh.FechaDeInicio,
+                 FechaDeFin = dh.FechaDeFin,
+                 DescripcionHospital = ho.Descripcion,
+                 DescripcionDanio = da.Descripcion
+             }).ToList()
+
+            .Select(x => new DanioPorHospital
+             {
+                 IdHospital = x.IdHospital,
+                 IdDanio = x.IdDanio,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionHospital = x.DescripcionHospital,
+                 DescripcionDanio = x.DescripcionDanio
+            });
+
+            return View(list);
         }
 
         // GET: DanioPorHospitals/Details/5
@@ -29,12 +58,44 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
-            if (danioPorHospital == null)
+            //DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
+
+            var list =
+            (from dh in db.DAÑOXHOSPITAL
+             join ho in db.HOSPITAL on new { IdHospital = dh.IdHospital } equals new { IdHospital = ho.Id } into ho_join
+             where dh.IdHospital == IdHospital
+             from ho in ho_join.DefaultIfEmpty()
+             join da in db.DAÑO on new { IdDanio = dh.IdDanio } equals new { IdDanio = da.Id } into da_join
+             where dh.IdDanio == IdDanio
+             from da in da_join.DefaultIfEmpty()
+             select new
+             {
+                 IdHospital = dh.IdHospital,
+                 IdDanio = dh.IdDanio,
+                 Estado = dh.Estado,
+                 FechaDeInicio = dh.FechaDeInicio,
+                 FechaDeFin = dh.FechaDeFin,
+                 DescripcionHospital = ho.Descripcion,
+                 DescripcionDanio = da.Descripcion
+             }).ToList()
+
+            .Select(x => new DanioPorHospital
+            {
+                IdHospital = x.IdHospital,
+                IdDanio = x.IdDanio,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionHospital = x.DescripcionHospital,
+                DescripcionDanio = x.DescripcionDanio
+
+            }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(danioPorHospital);
+            return View(list);
         }
 
         // GET: DanioPorHospitals/Create
@@ -97,8 +158,42 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
-            if (danioPorHospital == null)
+            //DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
+
+
+            var list =
+            (from dh in db.DAÑOXHOSPITAL
+             join ho in db.HOSPITAL on new { IdHospital = dh.IdHospital } equals new { IdHospital = ho.Id } into ho_join
+             where dh.IdHospital == IdHospital
+             from ho in ho_join.DefaultIfEmpty()
+             join da in db.DAÑO on new { IdDanio = dh.IdDanio } equals new { IdDanio = da.Id } into da_join
+             where dh.IdDanio == IdDanio
+             from da in da_join.DefaultIfEmpty()
+             select new
+             {
+                 IdHospital = dh.IdHospital,
+                 IdDanio = dh.IdDanio,
+                 Estado = dh.Estado,
+                 FechaDeInicio = dh.FechaDeInicio,
+                 FechaDeFin = dh.FechaDeFin,
+                 DescripcionHospital = ho.Descripcion,
+                 DescripcionDanio = da.Descripcion
+             }).ToList()
+
+            .Select(x => new DanioPorHospital
+            {
+                IdHospital = x.IdHospital,
+                IdDanio = x.IdDanio,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionHospital = x.DescripcionHospital,
+                DescripcionDanio = x.DescripcionDanio
+
+            }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
@@ -106,7 +201,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.ComboHospital = new SelectList(db.HOSPITAL.OrderBy(x => x.Descripcion), "Id", "Descripcion", IdHospital);
             ViewBag.ComboDannio = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", IdDanio.ToString().Trim());
 
-            return View(danioPorHospital);
+            return View(list);
         }
 
         // POST: DanioPorHospitals/Edit/5
@@ -132,12 +227,45 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
-            if (danioPorHospital == null)
+            //DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
+
+            var list =
+            (from dh in db.DAÑOXHOSPITAL
+            join ho in db.HOSPITAL on new { IdHospital = dh.IdHospital } equals new { IdHospital = ho.Id } into ho_join
+            where dh.IdHospital == IdHospital
+            from ho in ho_join.DefaultIfEmpty()
+            join da in db.DAÑO on new { IdDanio = dh.IdDanio } equals new { IdDanio = da.Id } into da_join
+            where dh.IdDanio == IdDanio
+            from da in da_join.DefaultIfEmpty()
+            select new
+            {
+                IdHospital = dh.IdHospital,
+                IdDanio = dh.IdDanio,
+                Estado = dh.Estado,
+                FechaDeInicio = dh.FechaDeInicio,
+                FechaDeFin = dh.FechaDeFin,
+                DescripcionHospital = ho.Descripcion,
+                DescripcionDanio = da.Descripcion
+            }).ToList()
+
+           .Select(x => new DanioPorHospital
+           {
+               IdHospital = x.IdHospital,
+               IdDanio = x.IdDanio,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionHospital = x.DescripcionHospital,
+               DescripcionDanio = x.DescripcionDanio
+
+           }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(danioPorHospital);
+            return View(list);
         }
 
         // POST: DanioPorHospitals/Delete/5

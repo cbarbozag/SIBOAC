@@ -49,37 +49,9 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
         public string DescripcionCodigoDano
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                if (CodigoDanio != "")
-                {
-                    Dano dano = db.DAÑO.Find(CodigoDanio);
-                    if (dano.Id.ToString() == CodigoDanio.Trim())
-                    {
-                        return Descripcion = dano.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
+        { get; set; }
 
-        //public string DescripcionCodigoTiposVehiculos
-        //{
-        //    get
-        //    {
-        //        string Descripcion = "";
-        //        PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-        //        TiposDeVehiculos tiposvehiculos = db.TIPOSVEHICULOS.Find(CodigoTiposVehiculos);
-        //        if (tiposvehiculos.Id == CodigoTiposVehiculos)
-        //        {
-        //            return Descripcion = tiposvehiculos.Nombre;
-        //        }
-
-        //        return Descripcion;
-        //    }
-        //}
+        public string DescripcionCodigoTiposVehiculos
+        { get; set; }
     }
 }

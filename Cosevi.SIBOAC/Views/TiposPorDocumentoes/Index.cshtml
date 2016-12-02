@@ -15,9 +15,19 @@
         <th>
             @Html.DisplayNameFor(model => model.CodigoTipoDocumento)
         </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
         <th>
             @Html.DisplayNameFor(model => model.CodigoTipoDeIdentificacion)
         </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -36,9 +46,18 @@
     {
         <tr class="warning">
 
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDocumento)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDocumento)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDeIdentificacion)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDeIdentificacion)
             </td>
@@ -71,12 +90,21 @@
     {
         <tr >
 
-            <td >
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDocumento)
+            </td>
+
+            <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDocumento)
-            </td >
-            <td >
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDeIdentificacion)
+            </td>
+
+            <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDeIdentificacion)
-            </td >
+            </td>
             <td >
                 @Html.DisplayFor(modelItem => item.Estado)
             </td >
