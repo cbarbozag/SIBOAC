@@ -16,21 +16,21 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class TipoVehiculoPorCodigoPorClase
     {
-        [DisplayName("Código tipos vehiculos")]
+        [DisplayName("Tipo de Vehículo")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoTiposVehiculos { get; set; }
 
-        [DisplayName("Código clase placa")]
+        [DisplayName("Clase")]
         [Required(ErrorMessage = "El código es obligatorio")]
         [StringLength(3, ErrorMessage = "El codigo no debe ser mayor a 3 caracter.")]
         public string CodigoClasePlaca { get; set; }
 
-        [DisplayName("Código Placa")]
+        [DisplayName("Código")]
         [Required(ErrorMessage = "El código es obligatorio")]
         [StringLength(3, ErrorMessage = "El codigo no debe ser mayor a 3 caracter.")]
         public string CodigoCodigoPlaca { get; set; }
 
-        [DisplayName("Código Tipo Veh.")]
+        [DisplayName("Vehículo")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoTipoVeh { get; set; }
 
@@ -51,12 +51,12 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
-        [DisplayName("Descripción")]
+        [DisplayName("Tipo de Vehículo")]
         public string DescripcionCodigoTiposVehiculos
         {
             get; set;
         }
-        [DisplayName("Descripción")]
+        [DisplayName("Vehículo")]
         public string DescripcionCodigoTipoVeh
         {
             get; set;
