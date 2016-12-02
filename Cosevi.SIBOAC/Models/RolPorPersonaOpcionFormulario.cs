@@ -43,43 +43,11 @@ namespace Cosevi.SIBOAC.Models
         public System.DateTime FechaDeFin { get; set; }
 
         public string DescripcionCodigoOpcionFormulario
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    OpcionDeFormulario opcionDeFormulario = db.OPCIONFORMULARIO.Find(CodigoOpcionFormulario);
-                    if (opcionDeFormulario.Id == CodigoOpcionFormulario)
-                    {
-                        return Descripcion = opcionDeFormulario.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
+        { get; set; }
 
 
         public string DescripcionCodigoRolPersona
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    RolPorPersona rolPorPersona = db.ROLPERSONA.Find(CodigoRolPersona.ToString());
-                    if (rolPorPersona.Id.Trim() == CodigoRolPersona.ToString().Trim())
-                    {
-                        return Descripcion = rolPorPersona.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
+        { get; set; }
 
     }
-
-
-
-
 }

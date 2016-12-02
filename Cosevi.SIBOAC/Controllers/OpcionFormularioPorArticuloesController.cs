@@ -19,7 +19,43 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.OPCFORMULARIOXARTICULO.ToList());
+
+
+            var list =
+            (from fxa in db.OPCFORMULARIOXARTICULO
+             join ca in db.CATARTICULO
+             on new { fxa.Id, fxa.Conducta, fxa.FechaDeInicio, fxa.FechaDeFin }
+             equals new { ca.Id, ca.Conducta, ca.FechaDeInicio, ca.FechaDeFin } into ca_join
+             from ca in ca_join.DefaultIfEmpty()
+             join opf in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = fxa.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = opf.Id } into opf_join
+             from opf in opf_join.DefaultIfEmpty()
+             select new
+             {
+                 Id = fxa.Id,
+                 Conducta = fxa.Conducta,
+                 FechaDeInicio = fxa.FechaDeInicio,
+                 FechaDeFin = fxa.FechaDeFin,
+                 CodigoOpcionFormulario = fxa.CodigoOpcionFormulario,
+                 Estado = fxa.Estado,
+                 DescripcionCodigoOpcionFormulario = ca.Descripcion,
+                 DescripcionCodigoCatArticulo = opf.Descripcion
+             }).ToList()
+
+            .Select(x => new OpcionFormularioPorArticulo
+            {
+                Id = x.Id,
+                Conducta = x.Conducta,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+                DescripcionCodigoCatArticulo = x.DescripcionCodigoCatArticulo
+
+            });
+
+
+            return View(list);
         }
 
         // GET: OpcionFormularioPorArticuloes/Details/5
@@ -29,12 +65,47 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id,conducta,FechaInicio,FechaFin,codFormulario);
-            if (opcionFormularioPorArticulo == null)
+            //OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id,conducta,FechaInicio,FechaFin,codFormulario);
+
+            var list =
+            (from fxa in db.OPCFORMULARIOXARTICULO
+             join ca in db.CATARTICULO
+             on new { fxa.Id, fxa.Conducta, fxa.FechaDeInicio, fxa.FechaDeFin } equals new { ca.Id, ca.Conducta, ca.FechaDeInicio, ca.FechaDeFin } into ca_join
+             where fxa.Id == id && fxa.Conducta == conducta && fxa.FechaDeInicio == FechaInicio && fxa.FechaDeFin == FechaFin
+             from ca in ca_join.DefaultIfEmpty()
+             join opf in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = fxa.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = opf.Id } into opf_join
+             where fxa.CodigoOpcionFormulario == codFormulario
+             from opf in opf_join.DefaultIfEmpty()
+             select new
+             {
+                 Id = fxa.Id,
+                 Conducta = fxa.Conducta,
+                 FechaDeInicio = fxa.FechaDeInicio,
+                 FechaDeFin = fxa.FechaDeFin,
+                 CodigoOpcionFormulario = fxa.CodigoOpcionFormulario,
+                 Estado = fxa.Estado,
+                 DescripcionCodigoOpcionFormulario = ca.Descripcion,
+                 DescripcionCodigoCatArticulo = opf.Descripcion
+             }).Take(50).ToList()
+
+            .Select(x => new OpcionFormularioPorArticulo
+            {
+                Id = x.Id,
+                Conducta = x.Conducta,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+                DescripcionCodigoCatArticulo = x.DescripcionCodigoCatArticulo
+
+            }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(opcionFormularioPorArticulo);
+            return View(list);
         }
 
         // GET: OpcionFormularioPorArticuloes/Create
@@ -93,14 +164,51 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
-            if (opcionFormularioPorArticulo == null)
+            //OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
+
+            var list =
+            (from fxa in db.OPCFORMULARIOXARTICULO
+             join ca in db.CATARTICULO
+             on new { fxa.Id, fxa.Conducta, fxa.FechaDeInicio, fxa.FechaDeFin } equals new { ca.Id, ca.Conducta, ca.FechaDeInicio, ca.FechaDeFin } into ca_join
+             where fxa.Id == id && fxa.Conducta == conducta && fxa.FechaDeInicio == FechaInicio && fxa.FechaDeFin == FechaFin
+             from ca in ca_join.DefaultIfEmpty()
+             join opf in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = fxa.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = opf.Id } into opf_join
+             where fxa.CodigoOpcionFormulario == codFormulario
+             from opf in opf_join.DefaultIfEmpty()
+             select new
+             {
+                 Id = fxa.Id,
+                 Conducta = fxa.Conducta,
+                 FechaDeInicio = fxa.FechaDeInicio,
+                 FechaDeFin = fxa.FechaDeFin,
+                 CodigoOpcionFormulario = fxa.CodigoOpcionFormulario,
+                 Estado = fxa.Estado,
+                 DescripcionCodigoOpcionFormulario = ca.Descripcion,
+                 DescripcionCodigoCatArticulo = opf.Descripcion
+             }).Take(50).ToList()
+
+            .Select(x => new OpcionFormularioPorArticulo
+            {
+                Id = x.Id,
+                Conducta = x.Conducta,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+                DescripcionCodigoCatArticulo = x.DescripcionCodigoCatArticulo
+
+            }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codFormulario);
 
-            return View(opcionFormularioPorArticulo);
+            return View(list);
         }
 
         // POST: OpcionFormularioPorArticuloes/Edit/5
@@ -126,13 +234,50 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
-            if (opcionFormularioPorArticulo == null)
+            //OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
+
+            var list =
+            (from fxa in db.OPCFORMULARIOXARTICULO
+             join ca in db.CATARTICULO
+             on new { fxa.Id, fxa.Conducta, fxa.FechaDeInicio, fxa.FechaDeFin } equals new { ca.Id, ca.Conducta, ca.FechaDeInicio, ca.FechaDeFin } into ca_join
+             where fxa.Id == id && fxa.Conducta == conducta && fxa.FechaDeInicio == FechaInicio && fxa.FechaDeFin == FechaFin
+             from ca in ca_join.DefaultIfEmpty()
+             join opf in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = fxa.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = opf.Id } into opf_join
+             where fxa.CodigoOpcionFormulario == codFormulario
+             from opf in opf_join.DefaultIfEmpty()
+             select new
+             {
+                 Id = fxa.Id,
+                 Conducta = fxa.Conducta,
+                 FechaDeInicio = fxa.FechaDeInicio,
+                 FechaDeFin = fxa.FechaDeFin,
+                 CodigoOpcionFormulario = fxa.CodigoOpcionFormulario,
+                 Estado = fxa.Estado,
+                 DescripcionCodigoOpcionFormulario = ca.Descripcion,
+                 DescripcionCodigoCatArticulo = opf.Descripcion
+             }).Take(50).ToList()
+
+            .Select(x => new OpcionFormularioPorArticulo
+            {
+                Id = x.Id,
+                Conducta = x.Conducta,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+                DescripcionCodigoCatArticulo = x.DescripcionCodigoCatArticulo
+
+            }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(opcionFormularioPorArticulo);
+            return View(list);
         }
+
+
         public string Verificar(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
         {
             string mensaje = "";

@@ -19,7 +19,39 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.ROLPERSONAXTIPOIDEVEHICULO.ToList());
+
+            var list =
+
+            (from ro in db.ROLPERSONAXTIPOIDEVEHICULO
+             join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
+             from r in r_join.DefaultIfEmpty()
+             join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+             from t in t_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDeRol = ro.CodigoDeRol,
+                 CodigoDeIdentificacionVehiculo = ro.CodigoDeIdentificacionVehiculo,
+                 Estado = ro.Estado,
+                 FechaDeInicio = ro.FechaDeInicio,
+                 FechaDeFin = ro.FechaDeFin,
+                 DescripcionRol = r.Descripcion,
+                 DescripcionTipoVehiculo = t.Descripcion
+             }).ToList()
+
+            .Select(x => new RolDePersonaPorTipoDeIdentificacionDeVehiculo
+            {
+                CodigoDeRol = x.CodigoDeRol,
+                CodigoDeIdentificacionVehiculo = x.CodigoDeIdentificacionVehiculo,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionRol = x.DescripcionRol,
+                DescripcionTipoVehiculo = x.DescripcionTipoVehiculo
+
+            });
+
+
+            return View(list);
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Details/5
@@ -29,13 +61,45 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(CodRol,CodVeh);
-            if (rolDePersonaPorTipoDeIdentificacionDeVehiculo == null)
+            //RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(CodRol,CodVeh);
+
+            var list =
+           (from ro in db.ROLPERSONAXTIPOIDEVEHICULO
+            join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
+            where ro.CodigoDeRol == CodRol
+            from r in r_join.DefaultIfEmpty()
+            join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+            where ro.CodigoDeIdentificacionVehiculo == CodVeh
+            from t in t_join.DefaultIfEmpty()
+            select new
+            {
+                CodigoDeRol = ro.CodigoDeRol,
+                CodigoDeIdentificacionVehiculo = ro.CodigoDeIdentificacionVehiculo,
+                Estado = ro.Estado,
+                FechaDeInicio = ro.FechaDeInicio,
+                FechaDeFin = ro.FechaDeFin,
+                DescripcionRol = r.Descripcion,
+                DescripcionTipoVehiculo = t.Descripcion
+            }).ToList()
+
+           .Select(x => new RolDePersonaPorTipoDeIdentificacionDeVehiculo
+           {
+               CodigoDeRol = x.CodigoDeRol,
+               CodigoDeIdentificacionVehiculo = x.CodigoDeIdentificacionVehiculo,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionRol = x.DescripcionRol,
+               DescripcionTipoVehiculo = x.DescripcionTipoVehiculo
+
+           }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo = rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo.Trim();
-            return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+
+            return View(list);
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Create
@@ -94,22 +158,53 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Edit/5
-        public ActionResult Edit(string codRol, string CodVeh)
+        public ActionResult Edit(string CodRol, string CodVeh)
        {
-            if (codRol == null||CodVeh ==null)
+            if (CodRol == null||CodVeh ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol, CodVeh);
-            if (rolDePersonaPorTipoDeIdentificacionDeVehiculo == null)
+            //RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol, CodVeh);
+
+
+            var list =
+            (from ro in db.ROLPERSONAXTIPOIDEVEHICULO
+            join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
+            where ro.CodigoDeRol == CodRol
+             from r in r_join.DefaultIfEmpty()
+            join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+            where ro.CodigoDeIdentificacionVehiculo == CodVeh
+            from t in t_join.DefaultIfEmpty()
+            select new
+            {
+                CodigoDeRol = ro.CodigoDeRol,
+                CodigoDeIdentificacionVehiculo = ro.CodigoDeIdentificacionVehiculo,
+                Estado = ro.Estado,
+                FechaDeInicio = ro.FechaDeInicio,
+                FechaDeFin = ro.FechaDeFin,
+                DescripcionRol = r.Descripcion,
+                DescripcionTipoVehiculo = t.Descripcion
+            }).ToList()
+
+           .Select(x => new RolDePersonaPorTipoDeIdentificacionDeVehiculo
+           {
+               CodigoDeRol = x.CodigoDeRol,
+               CodigoDeIdentificacionVehiculo = x.CodigoDeIdentificacionVehiculo,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionRol = x.DescripcionRol,
+               DescripcionTipoVehiculo = x.DescripcionTipoVehiculo
+           }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion",codRol);
+            ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodRol);
             ViewBag.ComboTipoVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodVeh.ToString().Trim());
 
-            rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo = rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo.Trim();
-            return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+            return View(list);
         }
 
         // POST: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Edit/5
@@ -125,34 +220,69 @@ namespace Cosevi.SIBOAC.Controllers
                  db.SaveChanges();
                  return RedirectToAction("Index");
              }
-             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
-                   ViewBag.codRol = new SelectList(db.ROLPERSONA, "Id", "Descripcion", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol);
+
+            return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+            ViewBag.CodRol = new SelectList(db.ROLPERSONA, "Id", "Descripcion", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol);
             ViewBag.CodVeh = new SelectList(db.TIPOVEH, "Id", "Descripcion", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo);
                     
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Delete/5
-        public ActionResult Delete(string codRol, string CodVeh)
+        public ActionResult Delete(string CodRol, string CodVeh)
         {
-            if (codRol ==null || CodVeh == null)
+            if (CodRol == null || CodVeh == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol, CodVeh);
-            if (rolDePersonaPorTipoDeIdentificacionDeVehiculo == null)
+            //RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol, CodVeh);
+
+
+            var list =
+            (from ro in db.ROLPERSONAXTIPOIDEVEHICULO
+             join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
+             where ro.CodigoDeRol == CodRol
+             from r in r_join.DefaultIfEmpty()
+             join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+             where ro.CodigoDeIdentificacionVehiculo == CodVeh
+             from t in t_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDeRol = ro.CodigoDeRol,
+                 CodigoDeIdentificacionVehiculo = ro.CodigoDeIdentificacionVehiculo,
+                 Estado = ro.Estado,
+                 FechaDeInicio = ro.FechaDeInicio,
+                 FechaDeFin = ro.FechaDeFin,
+                 DescripcionRol = r.Descripcion,
+                 DescripcionTipoVehiculo = t.Descripcion
+             }).ToList()
+
+           .Select(x => new RolDePersonaPorTipoDeIdentificacionDeVehiculo
+           {
+               CodigoDeRol = x.CodigoDeRol,
+               CodigoDeIdentificacionVehiculo = x.CodigoDeIdentificacionVehiculo,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionRol = x.DescripcionRol,
+               DescripcionTipoVehiculo = x.DescripcionTipoVehiculo
+           }).SingleOrDefault();
+
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
             
-            return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+            return View(list);
         }
 
         // POST: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string codRol, string CodVeh)
+        public ActionResult DeleteConfirmed(string CodRol, string CodVeh)
         {
-            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol,CodVeh);
+            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(CodRol, CodVeh);
             if (rolDePersonaPorTipoDeIdentificacionDeVehiculo.Estado == "I")
                 rolDePersonaPorTipoDeIdentificacionDeVehiculo.Estado = "A";
             else

@@ -17,7 +17,40 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TiposPorDocumentoes
         public ActionResult Index()
         {
-            return View(db.TIPOSXDOCUMENTO.ToList());
+
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+
+            var list =
+           (from td in db.TIPOSXDOCUMENTO
+            join d in db.TIPODOCUMENTO on new { Id = td.CodigoTipoDocumento } equals new { Id = d.Id } into d_join
+            from d in d_join.DefaultIfEmpty()
+            join i in db.TIPO_IDENTIFICACION on new { Id = td.CodigoTipoDeIdentificacion } equals new { Id = i.Id } into i_join
+            from i in i_join.DefaultIfEmpty()
+            select new
+            {
+                CodigoTipoDocumento = td.CodigoTipoDocumento,
+                CodigoTipoDeIdentificacion = td.CodigoTipoDeIdentificacion,
+                Estado = td.Estado,
+                FechaDeInicio = td.FechaDeInicio,
+                FechaDeFin = td.FechaDeFin,
+                DescripcionCodigoTipoDocumento = d.Descripcion,
+                DescripcionCodigoTipoDeIdentificacion = i.Descripcion
+            }).ToList()
+
+
+            .Select(x => new TiposPorDocumento
+            {
+                CodigoTipoDocumento = x.CodigoTipoDocumento,
+                CodigoTipoDeIdentificacion = x.CodigoTipoDeIdentificacion,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionCodigoTipoDocumento = x.DescripcionCodigoTipoDocumento,
+                DescripcionCodigoTipoDeIdentificacion = x.DescripcionCodigoTipoDeIdentificacion
+            });
+
+            return View(list);
         }
 
         // GET: TiposPorDocumentoes/Details/5
@@ -27,12 +60,46 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod,codigot);
-            if (tiposPorDocumento == null)
+            //TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod,codigot);
+
+
+            var list =
+          (from td in db.TIPOSXDOCUMENTO
+           join d in db.TIPODOCUMENTO on new { Id = td.CodigoTipoDocumento } equals new { Id = d.Id } into d_join
+           where td.CodigoTipoDocumento == codigod
+           from d in d_join.DefaultIfEmpty()
+           join i in db.TIPO_IDENTIFICACION on new { Id = td.CodigoTipoDeIdentificacion } equals new { Id = i.Id } into i_join
+           where td.CodigoTipoDeIdentificacion == codigot
+           from i in i_join.DefaultIfEmpty()
+           select new
+           {
+               CodigoTipoDocumento = td.CodigoTipoDocumento,
+               CodigoTipoDeIdentificacion = td.CodigoTipoDeIdentificacion,
+               Estado = td.Estado,
+               FechaDeInicio = td.FechaDeInicio,
+               FechaDeFin = td.FechaDeFin,
+               DescripcionCodigoTipoDocumento = d.Descripcion,
+               DescripcionCodigoTipoDeIdentificacion = i.Descripcion
+           }).ToList()
+
+
+           .Select(x => new TiposPorDocumento
+           {
+               CodigoTipoDocumento = x.CodigoTipoDocumento,
+               CodigoTipoDeIdentificacion = x.CodigoTipoDeIdentificacion,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionCodigoTipoDocumento = x.DescripcionCodigoTipoDocumento,
+               DescripcionCodigoTipoDeIdentificacion = x.DescripcionCodigoTipoDeIdentificacion
+           }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(tiposPorDocumento);
+            return View(list);
         }
 
         // GET: TiposPorDocumentoes/Create
@@ -82,8 +149,42 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
-            if (tiposPorDocumento == null)
+            //TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
+
+
+            var list =
+                (from td in db.TIPOSXDOCUMENTO
+                 join d in db.TIPODOCUMENTO on new { Id = td.CodigoTipoDocumento } equals new { Id = d.Id } into d_join
+                 where td.CodigoTipoDocumento == codigod
+                 from d in d_join.DefaultIfEmpty()
+                 join i in db.TIPO_IDENTIFICACION on new { Id = td.CodigoTipoDeIdentificacion } equals new { Id = i.Id } into i_join
+                 where td.CodigoTipoDeIdentificacion == codigot
+                 from i in i_join.DefaultIfEmpty()
+                 select new
+                 {
+                     CodigoTipoDocumento = td.CodigoTipoDocumento,
+                     CodigoTipoDeIdentificacion = td.CodigoTipoDeIdentificacion,
+                     Estado = td.Estado,
+                     FechaDeInicio = td.FechaDeInicio,
+                     FechaDeFin = td.FechaDeFin,
+                     DescripcionCodigoTipoDocumento = d.Descripcion,
+                     DescripcionCodigoTipoDeIdentificacion = i.Descripcion
+                 }).ToList()
+
+
+          .Select(x => new TiposPorDocumento
+          {
+              CodigoTipoDocumento = x.CodigoTipoDocumento,
+              CodigoTipoDeIdentificacion = x.CodigoTipoDeIdentificacion,
+              Estado = x.Estado,
+              FechaDeInicio = x.FechaDeInicio,
+              FechaDeFin = x.FechaDeFin,
+              DescripcionCodigoTipoDocumento = x.DescripcionCodigoTipoDocumento,
+              DescripcionCodigoTipoDeIdentificacion = x.DescripcionCodigoTipoDeIdentificacion
+          }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
@@ -92,7 +193,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.ComboTipoIdentificacion = new SelectList(db.TIPO_IDENTIFICACION.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigot);
 
 
-            return View(tiposPorDocumento);
+            return View(list);
         }
 
         // POST: TiposPorDocumentoes/Edit/5
@@ -118,12 +219,46 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
-            if (tiposPorDocumento == null)
+            //TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
+
+
+            var list =
+                (from td in db.TIPOSXDOCUMENTO
+                 join d in db.TIPODOCUMENTO on new { Id = td.CodigoTipoDocumento } equals new { Id = d.Id } into d_join
+                 where td.CodigoTipoDocumento == codigod
+                 from d in d_join.DefaultIfEmpty()
+                 join i in db.TIPO_IDENTIFICACION on new { Id = td.CodigoTipoDeIdentificacion } equals new { Id = i.Id } into i_join
+                 where td.CodigoTipoDeIdentificacion == codigot
+                 from i in i_join.DefaultIfEmpty()
+                 select new
+                 {
+                     CodigoTipoDocumento = td.CodigoTipoDocumento,
+                     CodigoTipoDeIdentificacion = td.CodigoTipoDeIdentificacion,
+                     Estado = td.Estado,
+                     FechaDeInicio = td.FechaDeInicio,
+                     FechaDeFin = td.FechaDeFin,
+                     DescripcionCodigoTipoDocumento = d.Descripcion,
+                     DescripcionCodigoTipoDeIdentificacion = i.Descripcion
+                 }).ToList()
+
+
+          .Select(x => new TiposPorDocumento
+          {
+              CodigoTipoDocumento = x.CodigoTipoDocumento,
+              CodigoTipoDeIdentificacion = x.CodigoTipoDeIdentificacion,
+              Estado = x.Estado,
+              FechaDeInicio = x.FechaDeInicio,
+              FechaDeFin = x.FechaDeFin,
+              DescripcionCodigoTipoDocumento = x.DescripcionCodigoTipoDocumento,
+              DescripcionCodigoTipoDeIdentificacion = x.DescripcionCodigoTipoDeIdentificacion
+          }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(tiposPorDocumento);
+            return View(list);
         }
 
         // POST: TiposPorDocumentoes/Delete/5

@@ -13,16 +13,17 @@
 <table class="table">
     <tr>
 
-
         <th>
             @Html.DisplayNameFor(model => model.Id)
         </th>
 
+        <td>
+            @Html.Label("Descripción")
+        </td>
 
         <th>
             @Html.DisplayNameFor(model => model.Conducta)
         </th>
-
 
         <th>
             @Html.DisplayNameFor(model => model.FechaDeInicio)
@@ -37,6 +38,9 @@
             @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
         </th>
 
+        <td>
+            @Html.Label("Descripción")
+        </td>
 
         <th>
             @Html.DisplayNameFor(model => model.Estado)
@@ -52,6 +56,10 @@
 
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoCatArticulo)
             </td>
 
             <td>
@@ -73,6 +81,9 @@
                 @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
             </td>
 
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
+            </td>
 
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
@@ -101,6 +112,10 @@
             </td>
 
             <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoCatArticulo)
+            </td>
+
+            <td>
                 @Html.DisplayFor(modelItem => item.Conducta)
             </td>
 
@@ -119,6 +134,9 @@
                 @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
             </td>
 
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
+            </td>
 
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)

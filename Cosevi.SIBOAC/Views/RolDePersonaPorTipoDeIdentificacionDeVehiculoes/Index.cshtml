@@ -16,9 +16,23 @@
         <th>
             @Html.DisplayNameFor(model => model.CodigoDeRol)
         </th>
+
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+
         <th>
             @Html.DisplayNameFor(model => model.CodigoDeIdentificacionVehiculo)
         </th>
+
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -37,10 +51,20 @@
     {
         <tr class="warning">
 
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDeRol)
+            </td>
+
             <td>
                 @Html.DisplayFor(model => item.DescripcionRol)
 
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDeIdentificacionVehiculo)
+            </td>
+
             <td>
                 @Html.DisplayFor(model => item.DescripcionTipoVehiculo)
 
@@ -72,10 +96,20 @@
     else
     {
         <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDeRol)
+            </td>
+
             <td>
                 @Html.DisplayFor(model => item.DescripcionRol)
 
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDeIdentificacionVehiculo)
+            </td>
+
             <td>
                 @Html.DisplayFor(model => item.DescripcionTipoVehiculo)
 

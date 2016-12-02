@@ -48,19 +48,9 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
 
         public string DescripcionCodigoOpcionFormulario
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                OpcionDeFormulario codigoformulario = db.OPCIONFORMULARIO.Find(CodigoOpcionFormulario);
-                if (codigoformulario.Id == CodigoOpcionFormulario)
-                {
-                    return Descripcion = codigoformulario.Descripcion;
-                }
+        { get; set; }
 
-                return Descripcion;
-            }
-        }
+        public string DescripcionCodigoCatArticulo
+        { get; set; }
     }
 }

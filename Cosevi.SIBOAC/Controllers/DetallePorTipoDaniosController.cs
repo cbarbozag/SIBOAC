@@ -19,7 +19,41 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DETALLETIPODAÑO.ToList());
+
+            var list =
+            (from dtd in db.DETALLETIPODAÑO
+             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+             from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
+             from td in td_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDanio = dtd.CodigoDanio,
+                 CodigoTipoDanio = dtd.CodigoTipoDanio,
+                 Descripcion = dtd.Descripcion,
+                 Estado = dtd.Estado,
+                 FechaDeInicio = dtd.FechaDeInicio,
+                 FechaDeFin = dtd.FechaDeFin,
+                 DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoTiposVehiculos = td.descripcion
+
+             }).ToList()
+
+
+             .Select(x => new DetallePorTipoDanio
+             {
+                 CodigoDanio = x.CodigoDanio,
+                 CodigoTipoDanio = x.CodigoTipoDanio,
+                 Descripcion = x.Descripcion,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+
+             });
+
+            return View(list);
         }
 
         // GET: DetallePorTipoDanios/Details/5
@@ -29,12 +63,50 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
-            if (detallePorTipoDanio == null)
+            //DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+
+
+            var list =
+            (from dtd in db.DETALLETIPODAÑO
+             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+             where dtd.CodigoDanio == codigod
+             from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
+             where dtd.CodigoTipoDanio == codigotd
+             from td in td_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDanio = dtd.CodigoDanio,
+                 CodigoTipoDanio = dtd.CodigoTipoDanio,
+                 Descripcion = dtd.Descripcion,
+                 Estado = dtd.Estado,
+                 FechaDeInicio = dtd.FechaDeInicio,
+                 FechaDeFin = dtd.FechaDeFin,
+                 DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoTiposVehiculos = td.descripcion
+
+             }).ToList()
+
+
+             .Select(x => new DetallePorTipoDanio
+             {
+                 CodigoDanio = x.CodigoDanio,
+                 CodigoTipoDanio = x.CodigoTipoDanio,
+                 Descripcion = x.Descripcion,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+
+             }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(detallePorTipoDanio);
+            return View(list);
         }
 
         // GET: DetallePorTipoDanios/Create
@@ -111,15 +183,54 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
-            if (detallePorTipoDanio == null)
+            //DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+
+
+            var list =
+            (from dtd in db.DETALLETIPODAÑO
+             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+             where dtd.CodigoDanio == codigod
+             from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
+             where dtd.CodigoTipoDanio == codigotd
+             from td in td_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDanio = dtd.CodigoDanio,
+                 CodigoTipoDanio = dtd.CodigoTipoDanio,
+                 Descripcion = dtd.Descripcion,
+                 Estado = dtd.Estado,
+                 FechaDeInicio = dtd.FechaDeInicio,
+                 FechaDeFin = dtd.FechaDeFin,
+                 DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoTiposVehiculos = td.descripcion
+
+             }).ToList()
+
+
+             .Select(x => new DetallePorTipoDanio
+             {
+                 CodigoDanio = x.CodigoDanio,
+                 CodigoTipoDanio = x.CodigoTipoDanio,
+                 Descripcion = x.Descripcion,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+
+             }).SingleOrDefault();
+
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
 
             ViewBag.ComboDanio = new SelectList(db.DAÑO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigod);
             ViewBag.ComboTipoDanio = new SelectList(db.TIPODANO.OrderBy(x => x.descripcion), "codigod", "descripcion", codigotd);
-            return View(detallePorTipoDanio);
+            return View(list);
         }
 
         // POST: DetallePorTipoDanios/Edit/5
@@ -145,12 +256,50 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
-            if (detallePorTipoDanio == null)
+            //DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+
+
+            var list =
+            (from dtd in db.DETALLETIPODAÑO
+             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+             where dtd.CodigoDanio == codigod
+             from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
+             where dtd.CodigoTipoDanio == codigotd
+             from td in td_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDanio = dtd.CodigoDanio,
+                 CodigoTipoDanio = dtd.CodigoTipoDanio,
+                 Descripcion = dtd.Descripcion,
+                 Estado = dtd.Estado,
+                 FechaDeInicio = dtd.FechaDeInicio,
+                 FechaDeFin = dtd.FechaDeFin,
+                 DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoTiposVehiculos = td.descripcion
+
+             }).ToList()
+
+
+             .Select(x => new DetallePorTipoDanio
+             {
+                 CodigoDanio = x.CodigoDanio,
+                 CodigoTipoDanio = x.CodigoTipoDanio,
+                 Descripcion = x.Descripcion,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+
+             }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(detallePorTipoDanio);
+            return View(list);
         }
 
         // POST: DetallePorTipoDanios/Delete/5

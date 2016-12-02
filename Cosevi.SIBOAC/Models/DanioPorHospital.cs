@@ -44,41 +44,11 @@ namespace Cosevi.SIBOAC.Models
 
         [DisplayName("Desc. Hospital")]
         public string DescripcionHospital
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    Hospital hospital = db.HOSPITAL.Find(IdHospital);
-                    if (hospital.Id == IdHospital)
-                    {
-                        return Descripcion = hospital.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
+        { get; set; }
 
         [DisplayName("Desc. Daño")]
         public string DescripcionDanio
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    Dano dano = db.DAÑO.Find(IdDanio);
-                    if (dano.Id == IdDanio)
-                    {
-                        return Descripcion = dano.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
-
-
+        { get; set; }
 
     }
 }
