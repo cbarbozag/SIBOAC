@@ -16,7 +16,13 @@
             @Html.DisplayNameFor(model => model.IdCanton)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DescripcionCanton)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CodigoOficinaImpugna)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionOficina)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
@@ -37,7 +43,13 @@
         <tr class="warning">
 
             <td>
+                @Html.DisplayFor(modelItem => item.IdCanton)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.DescripcionCanton)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOficinaImpugna)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DescripcionOficina)
@@ -70,12 +82,18 @@
     else
     {
             <tr>
-             <td>
-                @Html.DisplayFor(modelItem => item.DescripcionCanton)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescripcionOficina)
-            </td >
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCanton)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionCanton)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoOficinaImpugna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionOficina)
+                </td>
             <td >
                 @Html.DisplayFor(modelItem => item.Estado)
             </td >

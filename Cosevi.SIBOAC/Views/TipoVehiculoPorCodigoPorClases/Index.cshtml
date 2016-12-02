@@ -15,6 +15,9 @@
         <th>
             @Html.DisplayNameFor(model => model.CodigoTiposVehiculos)
         </th>
+        <td>
+            @Html.Label("Descripción")
+        </td>
         <th>
             @Html.DisplayNameFor(model => model.CodigoClasePlaca)
         </th>
@@ -24,6 +27,9 @@
         <th>
             @Html.DisplayNameFor(model => model.CodigoTipoVeh)
         </th>
+        <td>
+            @Html.Label("Descripción")
+        </td>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
@@ -45,6 +51,9 @@
                 @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CodigoClasePlaca)
             </td>
             <td>
@@ -52,6 +61,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CodigoTipoVeh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoVeh)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
@@ -85,6 +97,9 @@
             @Html.DisplayFor(modelItem => item.CodigoTiposVehiculos)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CodigoClasePlaca)
         </td>
         <td>
@@ -92,6 +107,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CodigoTipoVeh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoVeh)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Estado)

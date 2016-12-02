@@ -16,12 +16,12 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class DetallePorTipoSenial
     {
-        [DisplayName("Codigo del tipo de señal")]
+        [DisplayName("Código Tipo Señal")]
         [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracteres.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string CodigoTipoSenial { get; set; }
 
-        [DisplayName("Codigo del detalle del tipo de señal")]
+        [DisplayName("Código Detalle Tipo Señal")]
         [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracteres.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string Id { get; set; }
@@ -48,22 +48,11 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
-        public string DescripcionCodigoTipoSenial
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                {
-                    TipoDeSenalExistente tipoDeSenalExistente = db.TIPOSEÑALEXISTE.Find(CodigoTipoSenial);
-                    if (tipoDeSenalExistente.Id == CodigoTipoSenial)
-                    {
-                        return Descripcion = tipoDeSenalExistente.Descripcion;
-                    }
-                }
-                return Descripcion;
-            }
-        }
+        [DisplayName("Descripción")]
+        public string DescripcionCodigoTipoSenial {get; set; }
+
+        [DisplayName("Descripción")]
+        public string DescripcionSenalamiento { get; set;  }
 
     }
 }

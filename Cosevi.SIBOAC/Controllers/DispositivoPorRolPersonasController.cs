@@ -19,7 +19,29 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DISPXROLPERSONA.ToList());
+            var list =
+              (
+                from drp in db.DISPXROLPERSONA
+                join rp in db.ROLPERSONA on new { CodigoRolPersona = drp.CodigoRolPersona } equals new { CodigoRolPersona = rp.Id } into rp_join
+                from rp in rp_join.DefaultIfEmpty()
+                join di in db.Dispositivoes1 on new { CodigoDispositivo = drp.CodigoDispositivo } equals new { CodigoDispositivo = di.Id } into di_join
+                from di in di_join.DefaultIfEmpty()
+                select new
+                {
+                    CodigoRolPersona =  drp.CodigoRolPersona,
+                    CodigoDispositivo=  drp.CodigoDispositivo,
+                    DescripcionRolPersona = rp.Descripcion,
+                    DescripcionDispositivo = di.Descripcion
+                }).ToList()
+               .Select(x => new DispositivoPorRolPersona
+               {
+                   CodigoRolPersona = x.CodigoRolPersona,
+                   CodigoDispositivo = x.CodigoDispositivo,
+                   DescripcionRolPersona = x.DescripcionRolPersona,
+                   DescripcionDispositivo = x.DescripcionDispositivo
+
+               });
+            return View(list);
         }
 
         // GET: DispositivoPorRolPersonas/Details/5
@@ -29,12 +51,34 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DispositivoPorRolPersona dispositivoPorRolPersona = db.DISPXROLPERSONA.Find(CodRol, CodDisp);
-            if (dispositivoPorRolPersona == null)
+            var list =
+           (
+                from drp in db.DISPXROLPERSONA
+                join rp in db.ROLPERSONA on new { CodigoRolPersona = drp.CodigoRolPersona } equals new { CodigoRolPersona = rp.Id } into rp_join
+                where drp.CodigoRolPersona == CodRol && drp.CodigoDispositivo == CodDisp
+                from rp in rp_join.DefaultIfEmpty()
+                join di in db.Dispositivoes1 on new { CodigoDispositivo = drp.CodigoDispositivo } equals new { CodigoDispositivo = di.Id } into di_join
+                from di in di_join.DefaultIfEmpty()
+                select new
+                {
+                    CodigoRolPersona = drp.CodigoRolPersona,
+                    CodigoDispositivo = drp.CodigoDispositivo,
+                    DescripcionRolPersona = rp.Descripcion,
+                    DescripcionDispositivo = di.Descripcion
+                }).ToList()
+            .Select(x => new DispositivoPorRolPersona
+            {
+                CodigoRolPersona = x.CodigoRolPersona,
+                CodigoDispositivo = x.CodigoDispositivo,
+                DescripcionRolPersona = x.DescripcionRolPersona,
+                DescripcionDispositivo = x.DescripcionDispositivo
+            }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(dispositivoPorRolPersona);
+            return View(list);
         }
 
         // GET: DispositivoPorRolPersonas/Create
@@ -98,16 +142,33 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DispositivoPorRolPersona dispositivoPorRolPersona = db.DISPXROLPERSONA.Find(CodRol, CodDisp);
-            if (dispositivoPorRolPersona == null)
-            {
-                return HttpNotFound();
-            }
+            var list =
+          (
+               from drp in db.DISPXROLPERSONA
+               join rp in db.ROLPERSONA on new { CodigoRolPersona = drp.CodigoRolPersona } equals new { CodigoRolPersona = rp.Id } into rp_join
+               where drp.CodigoRolPersona == CodRol && drp.CodigoDispositivo == CodDisp
+               from rp in rp_join.DefaultIfEmpty()
+               join di in db.Dispositivoes1 on new { CodigoDispositivo = drp.CodigoDispositivo } equals new { CodigoDispositivo = di.Id } into di_join
+               from di in di_join.DefaultIfEmpty()
+               select new
+               {
+                   CodigoRolPersona = drp.CodigoRolPersona,
+                   CodigoDispositivo = drp.CodigoDispositivo,
+                   DescripcionRolPersona = rp.Descripcion,
+                   DescripcionDispositivo = di.Descripcion
+               }).ToList()
+           .Select(x => new DispositivoPorRolPersona
+           {
+               CodigoRolPersona = x.CodigoRolPersona,
+               CodigoDispositivo = x.CodigoDispositivo,
+               DescripcionRolPersona = x.DescripcionRolPersona,
+               DescripcionDispositivo = x.DescripcionDispositivo
+           }).SingleOrDefault();
             ViewBag.ComboRolPersona = new SelectList(db.ROLPERSONA.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodRol.ToString());
             ViewBag.ComboDispositivo = new SelectList(db.Dispositivoes1.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodDisp);
 
 
-            return View(dispositivoPorRolPersona);
+            return View(list);
         }
 
         // POST: DispositivoPorRolPersonas/Edit/5

@@ -19,7 +19,34 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.AUTORIDAD.ToList());
+            var list =
+             (
+                from a in db.AUTORIDAD
+                join o in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = a.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = o.Id } into o_join
+                from o in o_join.DefaultIfEmpty()
+                select new
+                {
+                    Id= a.Id,
+                    Descripcion= a.Descripcion,
+                    CodigoOpcionFormulario =a.CodigoOpcionFormulario,
+                    Estado = a.Estado,
+                    FechaDeInicio= a.FechaDeInicio,
+                    FechaDeFin= a.FechaDeFin,
+                    DescripcionCodigoOpcionFormulario = o.Descripcion
+              }).ToList()
+
+              .Select(x => new Autoridad
+              {
+                  Id = x.Id,
+                  Descripcion = x.Descripcion,
+                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                  Estado = x.Estado,
+                  FechaDeInicio = x.FechaDeInicio,
+                  FechaDeFin = x.FechaDeFin,
+                  DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario
+
+              });
+            return View(list);
         }
 
         // GET: Autoridads/Details/5
@@ -29,12 +56,38 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            var list =
+             (
+                from a in db.AUTORIDAD
+                join o in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = a.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = o.Id } into o_join
+                where a.CodigoOpcionFormulario == codFormulario && a.Id == codigo
+                from o in o_join.DefaultIfEmpty()
+                select new
+                {
+                    Id = a.Id,
+                    Descripcion = a.Descripcion,
+                    CodigoOpcionFormulario = a.CodigoOpcionFormulario,
+                    Estado = a.Estado,
+                    FechaDeInicio = a.FechaDeInicio,
+                    FechaDeFin = a.FechaDeFin,
+                    DescripcionCodigoOpcionFormulario = o.Descripcion
+                }).ToList()
+              .Select(x => new Autoridad
+              {
+                  Id = x.Id,
+                  Descripcion = x.Descripcion,
+                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                  Estado = x.Estado,
+                  FechaDeInicio = x.FechaDeInicio,
+                  FechaDeFin = x.FechaDeFin,
+                  DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario
+                }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(list);
         }
 
         // GET: Autoridads/Create
@@ -92,15 +145,40 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            var list =
+            (
+               from a in db.AUTORIDAD
+               join o in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = a.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = o.Id } into o_join
+               where a.CodigoOpcionFormulario == codFormulario && a.Id == codigo
+               from o in o_join.DefaultIfEmpty()
+               select new
+               {
+                   Id = a.Id,
+                   Descripcion = a.Descripcion,
+                   CodigoOpcionFormulario = a.CodigoOpcionFormulario,
+                   Estado = a.Estado,
+                   FechaDeInicio = a.FechaDeInicio,
+                   FechaDeFin = a.FechaDeFin,
+                   DescripcionCodigoOpcionFormulario = o.Descripcion
+               }).ToList()
+             .Select(x => new Autoridad
+             {
+                 Id = x.Id,
+                 Descripcion = x.Descripcion,
+                 CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario
+             }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-
             ViewBag.ComboOpcionformulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codFormulario);
 
-            return View(autoridad);
+            return View(list);
         }
 
         // POST: Autoridads/Edit/5
@@ -126,12 +204,38 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
-            if (autoridad == null)
+            var list =
+           (
+              from a in db.AUTORIDAD
+              join o in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = a.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = o.Id } into o_join
+              where a.CodigoOpcionFormulario == codFormulario && a.Id == codigo
+              from o in o_join.DefaultIfEmpty()
+              select new
+              {
+                  Id = a.Id,
+                  Descripcion = a.Descripcion,
+                  CodigoOpcionFormulario = a.CodigoOpcionFormulario,
+                  Estado = a.Estado,
+                  FechaDeInicio = a.FechaDeInicio,
+                  FechaDeFin = a.FechaDeFin,
+                  DescripcionCodigoOpcionFormulario = o.Descripcion
+              }).ToList()
+            .Select(x => new Autoridad
+            {
+                Id = x.Id,
+                Descripcion = x.Descripcion,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario
+            }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(autoridad);
+            return View(list);
         }
 
         // POST: Autoridads/Delete/5

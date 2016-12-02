@@ -17,7 +17,38 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: TipoDeIdentificacionPorTipoVehiculoes
         public ActionResult Index()
         {
-            return View(db.TIPOIDEVEHICULOXTIPOVEH.ToList());
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+            var list =
+             (
+                from t in db.TIPOIDEVEHICULOXTIPOVEH
+                join ti in db.TIPOIDEVEHICULO on new { Id = t.CodigoTipoIDEVehiculo } equals new { Id = ti.Id } into ti_join
+                from ti in ti_join.DefaultIfEmpty()
+                join tv in db.TIPOVEH on new { Id = t.CodigoTipoVeh } equals new { Id = tv.Id } into tv_join
+                from tv in tv_join.DefaultIfEmpty()
+                select new
+                {
+                    CodigoTipoIDEVehiculo= t.CodigoTipoIDEVehiculo,
+                    CodigoTipoVeh = t.CodigoTipoVeh,
+                    Estado= t.Estado,
+                    FechaDeInicio= t.FechaDeInicio,
+                    FechaDeFin = t.FechaDeFin,
+                    DescripcionCodigoTipoIDEVehiculo = ti.Descripcion,
+                    DescripcionCodigoTipoVeh = tv.Descripcion
+                }).ToList()
+
+              .Select(x => new TipoDeIdentificacionPorTipoVehiculo
+              {
+                  CodigoTipoIDEVehiculo = x.CodigoTipoIDEVehiculo,
+                  CodigoTipoVeh = x.CodigoTipoVeh,
+                  Estado = x.Estado,
+                  FechaDeInicio = x.FechaDeInicio,
+                  FechaDeFin = x.FechaDeFin,
+                  DescripcionCodigoTipoIDEVehiculo = x.DescripcionCodigoTipoIDEVehiculo,
+                  DescripcionCodigoTipoVeh = x.DescripcionCodigoTipoVeh
+
+              });
+            return View(list);
         }
 
         // GET: TipoDeIdentificacionPorTipoVehiculoes/Details/5
@@ -28,13 +59,41 @@ namespace Cosevi.SIBOAC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            TipoDeIdentificacionPorTipoVehiculo tipoDeIdentificacionPorTipoVehiculo = db.TIPOIDEVEHICULOXTIPOVEH.Find(Codigo,CodVeh);
-            if (tipoDeIdentificacionPorTipoVehiculo == null)
+            var list =
+               (
+                  from t in db.TIPOIDEVEHICULOXTIPOVEH
+                  join ti in db.TIPOIDEVEHICULO on new { Id = t.CodigoTipoIDEVehiculo } equals new { Id = ti.Id } into ti_join
+                  where t.CodigoTipoIDEVehiculo == Codigo  && t.CodigoTipoVeh == CodVeh
+                  from ti in ti_join.DefaultIfEmpty()
+                  join tv in db.TIPOVEH on new { Id = t.CodigoTipoVeh } equals new { Id = tv.Id } into tv_join
+                  from tv in tv_join.DefaultIfEmpty()
+                  select new
+                  {
+                      CodigoTipoIDEVehiculo = t.CodigoTipoIDEVehiculo,
+                      CodigoTipoVeh = t.CodigoTipoVeh,
+                      Estado = t.Estado,
+                      FechaDeInicio = t.FechaDeInicio,
+                      FechaDeFin = t.FechaDeFin,
+                      DescripcionCodigoTipoIDEVehiculo = ti.Descripcion,
+                      DescripcionCodigoTipoVeh = tv.Descripcion
+                  }).ToList()
+                .Select(x => new TipoDeIdentificacionPorTipoVehiculo
+                {
+                    CodigoTipoIDEVehiculo = x.CodigoTipoIDEVehiculo,
+                    CodigoTipoVeh = x.CodigoTipoVeh,
+                    Estado = x.Estado,
+                    FechaDeInicio = x.FechaDeInicio,
+                    FechaDeFin = x.FechaDeFin,
+                    DescripcionCodigoTipoIDEVehiculo = x.DescripcionCodigoTipoIDEVehiculo,
+                    DescripcionCodigoTipoVeh = x.DescripcionCodigoTipoVeh
+
+                }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-           
-            return View(tipoDeIdentificacionPorTipoVehiculo);
+            return View(list);
         }
 
         // GET: TipoDeIdentificacionPorTipoVehiculoes/Create
@@ -67,11 +126,41 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.TIPOIDEVEHICULOXTIPOVEH.Add(tipoDeIdentificacionPorTipoVehiculo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(tipoDeIdentificacionPorTipoVehiculo.CodigoTipoIDEVehiculo,
+                                              tipoDeIdentificacionPorTipoVehiculo.CodigoTipoVeh);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeIdentificacionPorTipoVehiculo);
+                }
             }
 
             return View(tipoDeIdentificacionPorTipoVehiculo);
+        }
+
+        public string Verificar(string Codigo, int? CodVeh)
+        {
+            string mensaje = "";
+            bool exist = db.TIPOIDEVEHICULOXTIPOVEH.Any(x => x.CodigoTipoIDEVehiculo == Codigo
+                                                    && x.CodigoTipoVeh == CodVeh);
+            if (exist)
+            {
+                mensaje = "El registro con los siguientes datos ya se encuentra registrados:" +
+                           " código de tipo identificación vehículo " + Codigo +
+                           ", código tipo vehículo" + CodVeh;
+
+            }
+            return mensaje;
         }
 
         // GET: TipoDeIdentificacionPorTipoVehiculoes/Edit/5
@@ -81,16 +170,45 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeIdentificacionPorTipoVehiculo tipoDeIdentificacionPorTipoVehiculo = db.TIPOIDEVEHICULOXTIPOVEH.Find(Codigo,CodVeh);
-            if (tipoDeIdentificacionPorTipoVehiculo == null)
+            var list =
+              (
+                 from t in db.TIPOIDEVEHICULOXTIPOVEH
+                 join ti in db.TIPOIDEVEHICULO on new { Id = t.CodigoTipoIDEVehiculo } equals new { Id = ti.Id } into ti_join
+                 where t.CodigoTipoIDEVehiculo == Codigo && t.CodigoTipoVeh == CodVeh
+                 from ti in ti_join.DefaultIfEmpty()
+                 join tv in db.TIPOVEH on new { Id = t.CodigoTipoVeh } equals new { Id = tv.Id } into tv_join
+                 from tv in tv_join.DefaultIfEmpty()
+                 select new
+                 {
+                     CodigoTipoIDEVehiculo = t.CodigoTipoIDEVehiculo,
+                     CodigoTipoVeh = t.CodigoTipoVeh,
+                     Estado = t.Estado,
+                     FechaDeInicio = t.FechaDeInicio,
+                     FechaDeFin = t.FechaDeFin,
+                     DescripcionCodigoTipoIDEVehiculo = ti.Descripcion,
+                     DescripcionCodigoTipoVeh = tv.Descripcion
+                 }).ToList()
+               .Select(x => new TipoDeIdentificacionPorTipoVehiculo
+               {
+                   CodigoTipoIDEVehiculo = x.CodigoTipoIDEVehiculo,
+                   CodigoTipoVeh = x.CodigoTipoVeh,
+                   Estado = x.Estado,
+                   FechaDeInicio = x.FechaDeInicio,
+                   FechaDeFin = x.FechaDeFin,
+                   DescripcionCodigoTipoIDEVehiculo = x.DescripcionCodigoTipoIDEVehiculo,
+                   DescripcionCodigoTipoVeh = x.DescripcionCodigoTipoVeh
+
+               }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
 
             ViewBag.ComboTipoIdVehiculo = new SelectList(db.TIPOIDEVEHICULO.OrderBy(x => x.Descripcion), "Id", "Descripcion", Codigo);
-            ViewBag.ComboCodVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", CodVeh);
+            ViewBag.ComboCodVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id".ToString(), "Descripcion", CodVeh);
 
-            return View(tipoDeIdentificacionPorTipoVehiculo);
+            return View(list);
         }
 
         // POST: TipoDeIdentificacionPorTipoVehiculoes/Edit/5
@@ -116,12 +234,41 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoDeIdentificacionPorTipoVehiculo tipoDeIdentificacionPorTipoVehiculo = db.TIPOIDEVEHICULOXTIPOVEH.Find(Codigo,CodVeh);
-            if (tipoDeIdentificacionPorTipoVehiculo == null)
+            var list =
+              (
+                 from t in db.TIPOIDEVEHICULOXTIPOVEH
+                 join ti in db.TIPOIDEVEHICULO on new { Id = t.CodigoTipoIDEVehiculo } equals new { Id = ti.Id } into ti_join
+                 where t.CodigoTipoIDEVehiculo == Codigo && t.CodigoTipoVeh == CodVeh
+                 from ti in ti_join.DefaultIfEmpty()
+                 join tv in db.TIPOVEH on new { Id = t.CodigoTipoVeh } equals new { Id = tv.Id } into tv_join
+                 from tv in tv_join.DefaultIfEmpty()
+                 select new
+                 {
+                     CodigoTipoIDEVehiculo = t.CodigoTipoIDEVehiculo,
+                     CodigoTipoVeh = t.CodigoTipoVeh,
+                     Estado = t.Estado,
+                     FechaDeInicio = t.FechaDeInicio,
+                     FechaDeFin = t.FechaDeFin,
+                     DescripcionCodigoTipoIDEVehiculo = ti.Descripcion,
+                     DescripcionCodigoTipoVeh = tv.Descripcion
+                 }).ToList()
+               .Select(x => new TipoDeIdentificacionPorTipoVehiculo
+               {
+                   CodigoTipoIDEVehiculo = x.CodigoTipoIDEVehiculo,
+                   CodigoTipoVeh = x.CodigoTipoVeh,
+                   Estado = x.Estado,
+                   FechaDeInicio = x.FechaDeInicio,
+                   FechaDeFin = x.FechaDeFin,
+                   DescripcionCodigoTipoIDEVehiculo = x.DescripcionCodigoTipoIDEVehiculo,
+                   DescripcionCodigoTipoVeh = x.DescripcionCodigoTipoVeh
+
+               }).SingleOrDefault();
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoDeIdentificacionPorTipoVehiculo);
+            return View(list);
         }
 
         // POST: TipoDeIdentificacionPorTipoVehiculoes/Delete/5

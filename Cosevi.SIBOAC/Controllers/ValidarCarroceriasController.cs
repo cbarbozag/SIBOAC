@@ -26,7 +26,7 @@ namespace Cosevi.SIBOAC.Controllers
            (from vc in db.VALIDARCARROCERIA
             join tidv in db.TIPOIDEVEHICULO on new { CodigoTipoIdVehiculo = vc.CodigoTipoIdVehiculo } equals new { CodigoTipoIdVehiculo = tidv.Id } into tidv_join
             from tidv in tidv_join.DefaultIfEmpty()
-            join tv in db.TIPOVEH on new { CodigoTiposVehiculos = vc.CodigoTiposVehiculos } equals new { CodigoTiposVehiculos = tv.Id } into tv_join
+            join tv in db.TIPOSVEHICULOS on new { CodigoTiposVehiculos = vc.CodigoTiposVehiculos } equals new { CodigoTiposVehiculos = tv.Id } into tv_join
             from tv in tv_join.DefaultIfEmpty()
             join ca in db.CARROCERIA on new { CodigoCarroceria = (int)vc.CodigoCarroceria } equals new { CodigoCarroceria = ca.Id } into ca_join
             from ca in ca_join.DefaultIfEmpty()
@@ -39,7 +39,7 @@ namespace Cosevi.SIBOAC.Controllers
                 vc.FechaDeInicio,
                 vc.FechaDeFin,
                 DescripcionCodigoTipoIdVehiculo = tidv.Descripcion,
-                DescripcionCodigoTiposVehiculos = tv.Descripcion,
+                DescripcionCodigoTiposVehiculos = tv.Nombre,
                 DescripcionCodigoCarroceria = ca.Descripcion
 
             }).ToList()
@@ -61,6 +61,21 @@ namespace Cosevi.SIBOAC.Controllers
 
         }
 
+        public string Verificar(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
+        {
+            string mensaje = "";
+            bool exist = db.VALIDARCARROCERIA.Any(x => x.CodigoTipoIdVehiculo == CodigoTipoIdentificacion
+                                          && x.CodigoTiposVehiculos == CodigoTipoVehiculo
+                                          && x.CodigoCarroceria == CodigoCarroceria);
+            if (exist)
+            {
+                mensaje = "El codigo de identificación" + CodigoTipoIdentificacion +
+                    ",codigo de tipo vehiculo " + CodigoTipoVehiculo +
+                    ", y el codigo de carroceria " + CodigoCarroceria + " ya estan registrado";
+            }
+            return mensaje;
+        }
+
         // GET: ValidarCarrocerias/Details/5        
 
         public ActionResult Details(string CodigoTipoIdentificacion, int? CodigoTipoVehiculo, int? CodigoCarroceria)
@@ -75,7 +90,7 @@ namespace Cosevi.SIBOAC.Controllers
             join tidv in db.TIPOIDEVEHICULO on new { CodigoTipoIdVehiculo = vc.CodigoTipoIdVehiculo } equals new { CodigoTipoIdVehiculo = tidv.Id } into tidv_join
             where vc.CodigoTipoIdVehiculo == CodigoTipoIdentificacion
             from tidv in tidv_join.DefaultIfEmpty()
-            join tv in db.TIPOVEH on new { CodigoTiposVehiculos = vc.CodigoTiposVehiculos } equals new { CodigoTiposVehiculos = tv.Id } into tv_join
+            join tv in db.TIPOSVEHICULOS on new { CodigoTiposVehiculos = vc.CodigoTiposVehiculos } equals new { CodigoTiposVehiculos = tv.Id } into tv_join
             where vc.CodigoTiposVehiculos == CodigoTipoVehiculo
             from tv in tv_join.DefaultIfEmpty()
             join ca in db.CARROCERIA on new { CodigoCarroceria = (int)vc.CodigoCarroceria } equals new { CodigoCarroceria = ca.Id } into ca_join
@@ -91,7 +106,7 @@ namespace Cosevi.SIBOAC.Controllers
                 vc.FechaDeInicio,
                 vc.FechaDeFin,
                 DescripcionCodigoTipoIdVehiculo = tidv.Descripcion,
-                DescripcionCodigoTiposVehiculos = tv.Descripcion,
+                DescripcionCodigoTiposVehiculos = tv.Nombre,
                 DescripcionCodigoCarroceria = ca.Descripcion
 
             }).ToList()
@@ -157,8 +172,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.VALIDARCARROCERIA.Add(validarCarroceria);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(validarCarroceria.CodigoTipoIdVehiculo,
+                                            validarCarroceria.CodigoTiposVehiculos,
+                                            validarCarroceria.CodigoCarroceria);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(validarCarroceria);
+                }
             }
 
             return View(validarCarroceria);
@@ -178,7 +207,7 @@ namespace Cosevi.SIBOAC.Controllers
             join tidv in db.TIPOIDEVEHICULO on new { CodigoTipoIdVehiculo = vc.CodigoTipoIdVehiculo } equals new { CodigoTipoIdVehiculo = tidv.Id } into tidv_join
             where vc.CodigoTipoIdVehiculo == CodigoTipoIdentificacion
             from tidv in tidv_join.DefaultIfEmpty()
-            join tv in db.TIPOVEH on new { CodigoTiposVehiculos = vc.CodigoTiposVehiculos } equals new { CodigoTiposVehiculos = tv.Id } into tv_join
+            join tv in db.TIPOSVEHICULOS on new { CodigoTiposVehiculos = vc.CodigoTiposVehiculos } equals new { CodigoTiposVehiculos = tv.Id } into tv_join
             where vc.CodigoTiposVehiculos == CodigoTipoVehiculo
             from tv in tv_join.DefaultIfEmpty()
             join ca in db.CARROCERIA on new { CodigoCarroceria = (int)vc.CodigoCarroceria } equals new { CodigoCarroceria = ca.Id } into ca_join
@@ -194,7 +223,7 @@ namespace Cosevi.SIBOAC.Controllers
                 vc.FechaDeInicio,
                 vc.FechaDeFin,
                 DescripcionCodigoTipoIdVehiculo = tidv.Descripcion,
-                DescripcionCodigoTiposVehiculos = tv.Descripcion,
+                DescripcionCodigoTiposVehiculos = tv.Nombre,
                 DescripcionCodigoCarroceria = ca.Descripcion
 
             }).ToList()

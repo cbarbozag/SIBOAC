@@ -16,16 +16,16 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class ValidarCarroceria
     {
-        [DisplayName("Código de identificación del vehículo")]
+        [DisplayName("Código ID Vehículo")]
         [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracter.")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public string CodigoTipoIdVehiculo { get; set; }
 
-        [DisplayName("Código de los tipos de vehículos")]
+        [DisplayName("Código Tipo Vehículo")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoTiposVehiculos { get; set; }
 
-        [DisplayName("Código de carrocería")]
+        [DisplayName("Código Carrocería")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoCarroceria { get; set; }
 
@@ -34,13 +34,13 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "El estado es obligatorio")]
         public string Estado { get; set; }
 
-        [DisplayName("Fecha de inicio")]
+        [DisplayName("Fecha Inicio")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
 
-        [DisplayName("Fecha de fin")]
+        [DisplayName("Fecha Fin")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]

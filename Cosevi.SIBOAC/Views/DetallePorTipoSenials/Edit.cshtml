@@ -19,31 +19,32 @@
         @Html.HiddenFor(model => model.CodigoTipoSenial)
         @Html.HiddenFor(model => model.Id)
 
-
-
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoTipoSenial, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.CodigoTipoSenial)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescripcionCodigoTipoSenial, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CodigoTipoSenial, (IEnumerable<SelectListItem>)ViewBag.ComboTipoSenialExiste, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CodigoTipoSenial, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayNameFor(model => model.Id)
                 @Html.DisplayFor(model => model.Id)
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>           
 
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })

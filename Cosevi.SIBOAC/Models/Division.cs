@@ -16,11 +16,11 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Division
     {
-        [DisplayName("Código del canton")]
+        [DisplayName("Código cantón")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int IdCanton { get; set; }
 
-        [DisplayName("Codigo de la Oficina de impugnación")]
+        [DisplayName("Código Oficina de impugnación")]
         [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracter.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string CodigoOficinaImpugna { get; set; }
@@ -42,37 +42,12 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public System.DateTime FechaDeFin { get; set; }
 
-        public string DescripcionCanton
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                Canton canton = db.CANTON.Find(IdCanton);
-                if (canton.Id == IdCanton)
-                {
-                     return Descripcion = canton.Descripcion;
-                }
-              
-                return Descripcion;
-            }
-        }
+        [DisplayName("Descripción")]
+        public string DescripcionCanton { get; set; }
 
-        public string DescripcionOficina
-        {
-            get
-            {
-                string Descripcion = "";
-                PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-                OficinaParaImpugnar oficina = db.OficinaParaImpugnars.Find(CodigoOficinaImpugna);
-                if (oficina.Id == CodigoOficinaImpugna)
-                {
-                    return Descripcion = oficina.Descripcion;
-                }
-
-                return Descripcion;
-            }
-        }
+        [DisplayName("Descripción")]
+        public string DescripcionOficina { get; set; }
+       
 
     }
 }

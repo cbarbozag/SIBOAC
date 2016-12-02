@@ -46,5 +46,10 @@ namespace Cosevi.SIBOAC.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
+
+        public string DescripcionRuta { 
+            get { return Inicia + " | " + Termina; }
+           
+        }
     }
 }
