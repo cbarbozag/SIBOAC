@@ -19,7 +19,33 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DETALLETIPOSEÑAL.ToList());
+            var list =
+              (
+                   from dts in db.DETALLETIPOSEÑAL
+                   join tse in db.TIPOSEÑALEXISTE on new { CodigoTipoSenial = dts.CodigoTipoSenial } equals new { CodigoTipoSenial = tse.Id } into tse_join
+                   from tse in tse_join.DefaultIfEmpty()
+                   select new
+                    {
+                        CodigoTipoSenial = dts.CodigoTipoSenial,
+                        Id= dts.Id,
+                        Descripcion = dts.Descripcion,
+                        Estado = dts.Estado,
+                        FechaDeInicio= dts.FechaDeInicio,
+                        FechaDeFin = dts.FechaDeFin,                     
+                        DescripcionCodigoTipoSenial = tse.Descripcion
+                    }).ToList()
+                   .Select(x => new DetallePorTipoSenial
+                   {
+                       CodigoTipoSenial = x.CodigoTipoSenial,
+                       Id = x.Id,
+                       Descripcion = x.Descripcion,
+                       Estado = x.Estado,
+                       FechaDeInicio = x.FechaDeInicio,
+                       FechaDeFin = x.FechaDeFin,                    
+                       DescripcionCodigoTipoSenial = x.DescripcionCodigoTipoSenial
+
+                   });
+            return View(list);
         }
 
         // GET: DetallePorTipoSenials/Details/5
@@ -29,12 +55,38 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
-            if (detallePorTipoSenial == null)
+            var list =
+            (
+                from dts in db.DETALLETIPOSEÑAL
+                 join tse in db.TIPOSEÑALEXISTE on new { CodigoTipoSenial = dts.CodigoTipoSenial } equals new { CodigoTipoSenial = tse.Id } into tse_join
+                 where dts.Id == codigose && dts.CodigoTipoSenial == codsenex
+                 from tse in tse_join.DefaultIfEmpty()           
+                  select new
+                  {
+                      CodigoTipoSenial = dts.CodigoTipoSenial,
+                      Id = dts.Id,
+                      Descripcion = dts.Descripcion,
+                      Estado = dts.Estado,
+                      FechaDeInicio = dts.FechaDeInicio,
+                      FechaDeFin = dts.FechaDeFin,                      
+                      DescripcionCodigoTipoSenial = tse.Descripcion
+                  }).ToList()
+                 .Select(x => new DetallePorTipoSenial
+                 {
+                     CodigoTipoSenial = x.CodigoTipoSenial,
+                     Id = x.Id,
+                     Descripcion = x.Descripcion,
+                     Estado = x.Estado,
+                     FechaDeInicio = x.FechaDeInicio,
+                     FechaDeFin = x.FechaDeFin,
+                     DescripcionCodigoTipoSenial = x.DescripcionCodigoTipoSenial
+
+                 }).SingleOrDefault();
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(detallePorTipoSenial);
+            return View(list);
         }
 
         // GET: DetallePorTipoSenials/Create
@@ -90,14 +142,41 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
-            if (detallePorTipoSenial == null)
+            var list =
+         (
+                from dts in db.DETALLETIPOSEÑAL
+                join tse in db.TIPOSEÑALEXISTE on new { CodigoTipoSenial = dts.CodigoTipoSenial } equals new { CodigoTipoSenial = tse.Id } into tse_join
+                where dts.Id == codigose && dts.CodigoTipoSenial == codsenex
+                from tse in tse_join.DefaultIfEmpty()
+                select new
+                {
+                    CodigoTipoSenial = dts.CodigoTipoSenial,
+                    Id = dts.Id,
+                    Descripcion = dts.Descripcion,
+                    Estado = dts.Estado,
+                    FechaDeInicio = dts.FechaDeInicio,
+                    FechaDeFin = dts.FechaDeFin,
+                    DescripcionCodigoTipoSenial = tse.Descripcion
+                }).ToList()
+                 .Select(x => new DetallePorTipoSenial
+                 {
+                     CodigoTipoSenial = x.CodigoTipoSenial,
+                     Id = x.Id,
+                     Descripcion = x.Descripcion,
+                     Estado = x.Estado,
+                     FechaDeInicio = x.FechaDeInicio,
+                     FechaDeFin = x.FechaDeFin,
+                     DescripcionCodigoTipoSenial = x.DescripcionCodigoTipoSenial
+
+                 }).SingleOrDefault();
+            if (list == null)
             {
                 return HttpNotFound();
             }
+          
             ViewBag.ComboTipoSenialExiste = new SelectList(db.TIPOSEÑALEXISTE.OrderBy(x => x.Descripcion), "Id", "Descripcion", codsenex);
 
-            return View(detallePorTipoSenial);
+            return View(list);
         }
 
         // POST: DetallePorTipoSenials/Edit/5
@@ -123,12 +202,43 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
-            if (detallePorTipoSenial == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detallePorTipoSenial);
+            var list =
+          (
+               from dts in db.DETALLETIPOSEÑAL
+               join se in db.SEÑALAMIENTO on new { CodigoTipoSenial = dts.CodigoTipoSenial } equals new { CodigoTipoSenial = se.Id.ToString() } into se_join
+               where dts.Id == codigose && dts.CodigoTipoSenial == codsenex
+               from se in se_join.DefaultIfEmpty()
+               join tse in db.TIPOSEÑALEXISTE on dts.Id equals tse.Id into tse_join
+               from tse in tse_join.DefaultIfEmpty()
+               select new
+                {
+                       CodigoTipoSenial = dts.CodigoTipoSenial,
+                       Id = dts.Id,
+                       Descripcion = dts.Descripcion,
+                       Estado = dts.Estado,
+                       FechaDeInicio = dts.FechaDeInicio,
+                       FechaDeFin = dts.FechaDeFin,
+                       DescripcionSenalamiento = se.Descripcion,
+                       DescripcionCodigoTipoSenial = tse.Descripcion
+                }).ToList()
+                .Select(x => new DetallePorTipoSenial
+                 {
+                      CodigoTipoSenial = x.CodigoTipoSenial,
+                      Id = x.Id,
+                      Descripcion = x.Descripcion,
+                      Estado = x.Estado,
+                      FechaDeInicio = x.FechaDeInicio,
+                      FechaDeFin = x.FechaDeFin,
+                      DescripcionSenalamiento = x.DescripcionSenalamiento,
+                      DescripcionCodigoTipoSenial = x.DescripcionCodigoTipoSenial
+
+                  }).SingleOrDefault();
+                    if (list == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+            return View(list);
         }
 
         // POST: DetallePorTipoSenials/Delete/5
