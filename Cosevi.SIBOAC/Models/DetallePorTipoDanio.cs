@@ -51,7 +51,7 @@ namespace Cosevi.SIBOAC.Models
         public string DescripcionCodigoDano
         { get; set; }
 
-        public string DescripcionCodigoTiposVehiculos
+        public string DescripcionCodigoTipoDano
         { get; set; }
     }
 }
