@@ -86,47 +86,47 @@
     }
     else
     {
-    <tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CodigoDistrito)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DescripcionDistrito)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CodigoRuta)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DescripcionRuta)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Km)
-    </td>
-
-    <td>
-        @Html.DisplayFor(modelItem => item.Estado)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FechaDeInicio)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FechaDeFin)
-    </td>
+        <tr>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
-            @Html.ActionLink("Detalles", "Details", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
-
-            @if (item.Estado == "I")
-            {
-                @Html.ActionLink("Activar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
-            }
-            else
-            {
-                @Html.ActionLink("Inactivar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
-            }
+            @Html.DisplayFor(modelItem => item.CodigoDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoRuta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionRuta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Km)
         </td>
 
-    </tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeFin)
+        </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
+                @Html.ActionLink("Detalles", "Details", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
+
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
+                }
+            </td>
+
+        </tr>
 
     }
 }
