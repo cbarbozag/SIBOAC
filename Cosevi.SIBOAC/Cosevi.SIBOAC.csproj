@@ -1135,6 +1135,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Release\" />
+    <Folder Include="Reportes\" />
     <Folder Include="Security\" />
   </ItemGroup>
   <ItemGroup>

@@ -16,17 +16,17 @@
             @Html.DisplayNameFor(model => model.CodigoDanio)
         </th>
 
-        <td>
-            @Html.Label("Descripción")
-        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoDano)
+        </th>
 
         <th>
             @Html.DisplayNameFor(model => model.CodigoTipoDanio)
         </th>
 
-        <td>
-            @Html.Label("Descripción")
-        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTipoDano)
+        </th>
 
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -65,31 +65,35 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDano)
             </td>
 
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeInicio)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
+
             <td>
-                @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio   /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio  /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
                 @if (item.Estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio })
+                    @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio })
+                    @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
                 }
             </td>
         </tr>
@@ -112,7 +116,7 @@
         </td>
 
         <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoTiposVehiculos)
+            @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDano)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
@@ -127,16 +131,16 @@
             @Html.DisplayFor(modelItem => item.FechaDeFin)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio }) |
-            @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio }) |
+            @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+            @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
 
             @if (item.Estado == "I")
             {
-                @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio })
+                @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
             }
             else
             {
-                @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio, codigotd = item.CodigoTipoDanio })
+                @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
             }
         </td>
 
