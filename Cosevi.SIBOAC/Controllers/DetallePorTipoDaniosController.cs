@@ -35,7 +35,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
                  DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTiposVehiculos = td.descripcion
+                 DescripcionCodigoTipoDano = td.descripcion
 
              }).ToList()
 
@@ -49,7 +49,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
                  DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
 
              });
 
@@ -83,7 +83,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
                  DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTiposVehiculos = td.descripcion
+                 DescripcionCodigoTipoDano = td.descripcion
 
              }).ToList()
 
@@ -97,7 +97,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
                  DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
 
              }).SingleOrDefault();
 
@@ -203,7 +203,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
                  DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTiposVehiculos = td.descripcion
+                 DescripcionCodigoTipoDano = td.descripcion
 
              }).ToList()
 
@@ -217,7 +217,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
                  DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
 
              }).SingleOrDefault();
 
@@ -276,7 +276,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
                  DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTiposVehiculos = td.descripcion
+                 DescripcionCodigoTipoDano = td.descripcion
 
              }).ToList()
 
@@ -290,7 +290,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
                  DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos
+                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
 
              }).SingleOrDefault();
 
