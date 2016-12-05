@@ -1,4 +1,9 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.Carril>
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Carril>
+@using PagedList.Mvc;
+
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Lista";
@@ -10,22 +15,28 @@
 <p>
     @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.First().Id)
+            @*@Html.DisplayNameFor(model => model.Id)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.First().Descripcion)
+            @*@Html.DisplayNameFor(model => model.Descripcion)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.First().Estado)
+            @*@Html.DisplayNameFor(model => model.Estado)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeInicio)
+            @Html.DisplayNameFor(model => model.First().FechaDeInicio)
+            @*@Html.DisplayNameFor(model => model.FechaDeInicio)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeFin)
+            @Html.DisplayNameFor(model => model.First().FechaDeFin)
+            @*@Html.DisplayNameFor(model => model.FechaDeFin)*@
         </th>
         <th></th>
     </tr>
@@ -98,3 +109,10 @@
 }
 
 </table>
+<br />
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+    @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) 
+
+
+

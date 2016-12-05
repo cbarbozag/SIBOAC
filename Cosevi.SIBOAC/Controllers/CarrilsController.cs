@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using  PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -14,14 +15,19 @@ namespace Cosevi.SIBOAC.Controllers
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: Carrils
-        public ActionResult Index()
+   
+        public ViewResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.CARRIL.ToList());
-        }
 
+            var sCarril = db.CARRIL.ToList();
+                         
+         
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(sCarril.ToPagedList(pageNumber, pageSize));
+        }
         public string Verificar(string id)
         {
             string mensaje = "";
