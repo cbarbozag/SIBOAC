@@ -21,14 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                       @Html.DisplayFor(model => model.Id)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Id, (IEnumerable<SelectListItem>)ViewBag.ComboRolPersona, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Id, (IEnumerable<SelectListItem>)ViewBag.ComboRolPersona, new { @class = "form-control", disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
             </div>
         </div>

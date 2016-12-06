@@ -17,12 +17,12 @@ namespace Cosevi.SIBOAC.Models
     public partial class RolPorPersonaOpcionFormulario
     {
 
-        [DisplayName("Codigo del rol de la persona")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código del rol de la persona")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoRolPersona { get; set; }
 
-        [DisplayName("Codigo del formilario")]
-        [Required(ErrorMessage = "El codigo es obligatorio")]
+        [DisplayName("Código del formulario")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoOpcionFormulario { get; set; }
 
         [DisplayName("Estado")]

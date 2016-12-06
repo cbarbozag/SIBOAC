@@ -43,6 +43,18 @@ namespace Cosevi.SIBOAC.Controllers
             return View(list);
         }
 
+        public string Verificar(string codRol)
+        {
+            string mensaje = "";
+            bool exist = db.ROLPERSONA.Any(x => x.Id == codRol);
+            if (exist)
+            {
+                mensaje = "El codigo rol persona" + codRol +
+                    " ya esta registrado";
+            }
+            return mensaje;
+        }
+
         // GET: RolDePersonaPorVehiculoes/Details/5
         public ActionResult Details(string id)
         {
@@ -91,17 +103,6 @@ namespace Cosevi.SIBOAC.Controllers
             });
             ViewBag.ComboRolPersona = itemsRolPersona;
             return View();
-        }
-        public string Verificar(string codRol)
-        {
-            string mensaje = "";
-            bool exist = db.ROLPERSONA.Any(x => x.Id == codRol);
-            if (exist)
-            {
-                mensaje = "El codigo rol persona" + codRol +
-                    " ya esta registrado";
-            }
-            return mensaje;
         }
 
         // POST: RolDePersonaPorVehiculoes/Create

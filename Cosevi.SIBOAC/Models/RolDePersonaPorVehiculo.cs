@@ -43,7 +43,7 @@ namespace Cosevi.SIBOAC.Models
 
 
 
-        [DisplayName("Desc. Rol")]
+        [DisplayName("Descripción")]
         public string DescripcionRolPersona { get; set; }
       
      
