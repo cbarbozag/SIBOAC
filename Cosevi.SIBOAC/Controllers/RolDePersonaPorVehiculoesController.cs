@@ -19,6 +19,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+            ViewBag.ComboRolPersona = TempData["ComboRolPersona"] != null ? TempData["ComboRolPersona"].ToString() : "";
             var list=            
            (from r in db.RolDePersonaPorVehiculoes
             join rp in db.ROLPERSONA on r.Id equals rp.Id
@@ -43,13 +44,13 @@ namespace Cosevi.SIBOAC.Controllers
             return View(list);
         }
 
-        public string Verificar(string codRol)
+        public string Verificar(string id)
         {
             string mensaje = "";
-            bool exist = db.ROLPERSONA.Any(x => x.Id == codRol);
+            bool exist = db.RolDePersonaPorVehiculoes.Any(x => x.Id == id);
             if (exist)
             {
-                mensaje = "El codigo rol persona" + codRol +
+                mensaje = "El codigo rol persona" + id +
                     " ya esta registrado";
             }
             return mensaje;
@@ -101,6 +102,7 @@ namespace Cosevi.SIBOAC.Controllers
                 Value = o.Id,
                 Text = o.Descripcion
             });
+            TempData["ComboRolPersona"] = itemsRolPersona;
             ViewBag.ComboRolPersona = itemsRolPersona;
             return View();
         }
@@ -129,6 +131,15 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    //IEnumerable<SelectListItem> itemsRolPersona = db.ROLPERSONA
+                    //                .Select(o => new SelectListItem
+                    //                {
+                    //                    Value = o.Id,
+                    //                    Text = o.Descripcion
+                    //                });
+                    //TempData["ComboRolPersona"] = itemsRolPersona;
+                    //ViewBag.ComboRolPersona = itemsRolPersona;
+                    
                     return View(rolDePersonaPorVehiculo);
                 }
             }
