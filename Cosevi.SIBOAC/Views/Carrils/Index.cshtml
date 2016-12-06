@@ -1,4 +1,5 @@
-﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Carril>
+﻿
+@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Carril>
 @using PagedList.Mvc;
 
 
@@ -17,7 +18,8 @@
 </p>
 
 <table class="table">
-    <tr>
+   
+    <tr  class="panel-heading">
         <th>
             @Html.DisplayNameFor(model => model.First().Id)
             @*@Html.DisplayNameFor(model => model.Id)*@
@@ -61,17 +63,27 @@
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id.Trim() }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.Id.Trim() }) |
-                @if (item.Estado == "I")
-                {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
-                }
-                else
-                {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
-                }
-            </td>
+               
+                  
+                        <button data-title="Edit" data-toggle="modal" class="btn btn-success btn-xs" data-target="#Editar" onclick="location.href='@Url.Action("Edit", "Carrils", new { id = item.Id.Trim() })'">
+                            <span class="glyphicon glyphicon-pencil">
+                            </span>
+                        </button>
+                  
+              
+                        <button data-title="Edit" data-toggle="modal" class="btn btn-success btn-xs" data-target="#Detalles" onclick="location.href='@Url.Action("Details", "Carrils", new { id = item.Id.Trim() })'">
+                            <span class="glyphicon glyphicon-eye-open">
+                            </span>
+                        </button>
+                 
+
+                      <button data-title="Edit" data-toggle="modal" class="btn btn-success btn-xs" data-target="#Activar" onclick="location.href='@Url.Action("Delete", "Carrils", new { id = item.Id.Trim() })'">
+                            <span class="glyphicon glyphicon-ok">
+                            </span>
+                        </button>
+                  
+
+</td>
         </tr>
     }
     else
@@ -93,17 +105,23 @@
                 @Html.DisplayFor(modelItem => item.FechaDeFin)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id.Trim() }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.Id.Trim() }) |
-                @if (item.Estado == "I")
-                {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
-                }
-                else
-                {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
-                }
-            </td>
+               
+                    <button data-title="Edit" data-toggle="modal" class="btn btn-success btn-xs" data-target="#Editar" onclick="location.href='@Url.Action("Edit", "Carrils", new { id = item.Id.Trim() })'">
+                        <span class="glyphicon glyphicon-pencil">                         
+                       </span>
+                    </button>
+                
+                    <button data-title="Edit" data-toggle="modal" class="btn btn-success btn-xs" data-target="#Detalles" onclick="location.href='@Url.Action("Details", "Carrils", new { id = item.Id.Trim() })'">
+                        <span class="glyphicon glyphicon-eye-open">
+                        </span>
+                    </button>
+                    <button data-title="Edit" data-toggle="modal" class="btn btn-success btn-xs" data-target="#Inactivar" onclick="location.href='@Url.Action("Delete", "Carrils", new { id = item.Id.Trim() })'">
+                       <span class="glyphicon glyphicon-remove">
+                       </span>
+                   </button>
+                
+                  
+</td>
         </tr>
     }
 }
