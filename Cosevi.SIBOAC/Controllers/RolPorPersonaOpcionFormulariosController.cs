@@ -125,7 +125,7 @@ namespace Cosevi.SIBOAC.Controllers
             IEnumerable<SelectListItem> itemsRol = db.ROLPERSONA
              .Select(o => new SelectListItem
              {
-                 Value = o.Id,
+                 Value = o.Id.ToString(),
                  Text = o.Descripcion
              });
             ViewBag.ComboRolPersona = itemsRol;
