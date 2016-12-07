@@ -233,6 +233,7 @@
     <Compile Include="Controllers\PeatonsController.cs" />
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
+    <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
@@ -1130,6 +1131,7 @@
     <Content Include="Views\OpcionFormularioPorArticuloes\Edit.cshtml" />
     <Content Include="Views\OpcionFormularioPorArticuloes\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
