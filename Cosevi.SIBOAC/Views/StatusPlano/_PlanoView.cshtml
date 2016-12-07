@@ -1,0 +1,91 @@
+﻿<br />
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <a>Relación Parte Oficial - Planos</a>
+        </td>
+    </tr>
+</table>
+@using (Html.BeginForm("ExportToExcel", "StatusPlano", FormMethod.Get))
+{
+     <input type="submit" value="Excel"/>
+    @*<button id="excel" ><img src="~/Content/btnExcel.png" /></button>*@
+}
+@using (Html.BeginForm("DownloadPartialViewPDF", "StatusPlano", FormMethod.Get))
+{
+    <input type="submit" value="PDF" />
+}
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td >Autoridad Detalle</td>
+            <td>Fecha Accidente</td>
+            <td>Fecha Descarga</td>
+        </tr>
+     </thead>
+    
+
+       @foreach (var item in ViewBag.Valor)
+        {
+        <tr>
+            <td>                
+                <a>@item.DescripcionAutoridad</a>
+            </td>
+            <td>
+                <a>@item.FechaAccidente</a>
+            </td>
+            <td>
+                <a>@item.FechaDescarga</a>
+            </td>
+        </tr>
+           break;
+       }
+</table>
+<br />
+<br />
+@using (Html.BeginForm("GuardarEstado", "StatusPlano", FormMethod.Get))
+{
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td>Número de Boleta</td>
+            <td>Rol de Persona</td>
+            <td>Clase de Placa</td>
+            <td>Código de Placa</td>
+            <td>Número de Placa</td>
+        </tr>
+    </thead>
+    
+    @foreach (var item in ViewBag.Valor)
+    {
+        
+        <tr>
+            <td>
+                <a>@item.NumeroBoleta</a>
+            </td>
+            <td>
+                <a>@item.DescripcionRol</a>
+            </td>
+            <td>
+                <a>@item.ClasePlaca</a>
+            </td>
+            <td>
+                <a>@item.CodigoPlaca</a>
+            </td>
+            <td>
+                <a>@item.NumeroPlaca</a>
+            </td>
+        </tr>
+    }
+</table>
+    <div>
+        <a>Entregó Plano</a>
+    </div>
+    <div>
+        <input type="radio" name="EntregoPlano" value="1"/> Si
+        <input type="radio" name="EntregoPlano" value="0"> No<br>    
+    </div>
+    <input type="submit" value="Guardar" />
+}

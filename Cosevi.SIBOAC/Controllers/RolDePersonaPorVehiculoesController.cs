@@ -129,10 +129,18 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsRolPersona = db.ROLPERSONA
+                   .Select(o => new SelectListItem
+                   {
+                       Value = o.Id,
+                       Text = o.Descripcion
+                   });
+                    ViewBag.ComboRolPersona = itemsRolPersona;
                     return View(rolDePersonaPorVehiculo);
                 }
             }
 
+           
             return View(rolDePersonaPorVehiculo);
         }
 
