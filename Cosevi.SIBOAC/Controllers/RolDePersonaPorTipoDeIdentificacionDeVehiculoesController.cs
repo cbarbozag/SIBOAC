@@ -25,7 +25,7 @@ namespace Cosevi.SIBOAC.Controllers
             (from ro in db.ROLPERSONAXTIPOIDEVEHICULO
              join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
              from r in r_join.DefaultIfEmpty()
-             join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+             join t in db.TIPOVEH on new {Id = ro.CodigoDeIdentificacionVehiculo.Trim()} equals new { Id = t.Id.ToString()} into t_join
              from t in t_join.DefaultIfEmpty()
              select new
              {
@@ -68,7 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
             join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
             where ro.CodigoDeRol == CodRol
             from r in r_join.DefaultIfEmpty()
-            join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+            join t in db.TIPOVEH on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.ToString() } into t_join
             where ro.CodigoDeIdentificacionVehiculo == CodVeh
             from t in t_join.DefaultIfEmpty()
             select new
@@ -172,7 +172,7 @@ namespace Cosevi.SIBOAC.Controllers
             join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
             where ro.CodigoDeRol == CodRol
              from r in r_join.DefaultIfEmpty()
-            join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+            join t in db.TIPOVEH on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.ToString() } into t_join
             where ro.CodigoDeIdentificacionVehiculo == CodVeh
             from t in t_join.DefaultIfEmpty()
             select new
@@ -242,7 +242,7 @@ namespace Cosevi.SIBOAC.Controllers
              join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
              where ro.CodigoDeRol == CodRol
              from r in r_join.DefaultIfEmpty()
-             join t in db.TIPOIDEVEHICULO on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.Trim() } into t_join
+             join t in db.TIPOVEH on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.ToString() } into t_join
              where ro.CodigoDeIdentificacionVehiculo == CodVeh
              from t in t_join.DefaultIfEmpty()
              select new
