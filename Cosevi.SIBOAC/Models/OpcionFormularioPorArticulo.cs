@@ -38,7 +38,7 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public System.DateTime FechaDeFin { get; set; }
 
-        [DisplayName("Código por opción de formulario")]
+        [DisplayName("Código de formulario")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoOpcionFormulario { get; set; }
 

@@ -54,6 +54,20 @@ namespace Cosevi.SIBOAC.Controllers
             return View(list);
         }
 
+        public string Verificar(int? codRol, int? codFormulario)
+        {
+            string mensaje = "";
+            bool exist = db.ROLPERSONA_OPCIONFORMULARIO.Any(x => x.CodigoRolPersona == codRol
+                                                && x.CodigoOpcionFormulario == codFormulario);
+            if (exist)
+            {
+                mensaje = "El código del rol de la persona " + codRol +
+                     ", código opción formulario " + codFormulario +
+                     " ya esta registrado";
+            }
+            return mensaje;
+        }
+
         // GET: RolPorPersonaOpcionFormularios/Details/5
         public ActionResult Details(int? codRol, int? codFormulario)
         {
@@ -111,7 +125,7 @@ namespace Cosevi.SIBOAC.Controllers
             IEnumerable<SelectListItem> itemsRol = db.ROLPERSONA
              .Select(o => new SelectListItem
              {
-                 Value = o.Id,
+                 Value = o.Id.ToString(),
                  Text = o.Descripcion
              });
             ViewBag.ComboRolPersona = itemsRol;
@@ -137,17 +151,31 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ROLPERSONA_OPCIONFORMULARIO.Add(rolPorPersonaOpcionFormulario);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(rolPorPersonaOpcionFormulario.CodigoRolPersona, rolPorPersonaOpcionFormulario.CodigoOpcionFormulario);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolPorPersonaOpcionFormulario);
+                }
             }
 
             return View(rolPorPersonaOpcionFormulario);
         }
 
         // GET: RolPorPersonaOpcionFormularios/Edit/5
-        public ActionResult Edit(int? codRol, int codFormulario)
+        public ActionResult Edit(int? codRol, int? codFormulario)
         {
-            if (codRol == null)
+            if (codRol == null || codFormulario == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
