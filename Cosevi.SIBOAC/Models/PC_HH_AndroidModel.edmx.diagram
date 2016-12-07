@@ -93,6 +93,8 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TIPODANO" Width="1.5" PointX="10.375" PointY="20.5" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.UsuarioSIBOAC" Width="1.5" PointX="10.375" PointY="17.625" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.BitacoraSIBOAC" Width="1.5" PointX="16.375" PointY="13.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.ParteOficial" Width="1.5" PointX="16.375" PointY="17.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.BOLETA" Width="1.5" PointX="18.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

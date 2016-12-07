@@ -113,5 +113,7 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<TIPODANO> TIPODANO { get; set; }
         public virtual DbSet<UsuarioSIBOAC> UsuarioSIBOAC { get; set; }
         public virtual DbSet<BitacoraSIBOAC> BitacoraSIBOAC { get; set; }
+        public virtual DbSet<ParteOficial> PARTEOFICIAL { get; set; }
+        public virtual DbSet<BOLETA> BOLETA { get; set; }
     }
 }
