@@ -395,6 +395,7 @@
     <Compile Include="Models\Inconsistencia.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\InformacionBoleta.cs" />
     <Compile Include="Models\Inspector.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -1150,6 +1151,8 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\StatusPlano\Index.cshtml" />
     <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
+    <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
+    <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

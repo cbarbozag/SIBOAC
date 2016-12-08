@@ -43,3 +43,11 @@
 
 </body>
 </html>
+@if (ViewBag.Datos != null)
+{
+   using (Html.BeginForm("DownloadPartialViewPDF", "ReimpresionDeBoletas", FormMethod.Get))
+   {
+    <input type="submit" value="PDF" />
+   }
+    @Html.Partial("_MostrarBoletaView");
+}
