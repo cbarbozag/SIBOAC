@@ -42,6 +42,25 @@
           <Property Name="fecha_final" Type="datetime" Nullable="false" />
           <Property Name="estado" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="ARTICULOXBOLETA">
+          <Key>
+            <PropertyRef Name="codigo_articulo" />
+            <PropertyRef Name="conducta" />
+            <PropertyRef Name="Fecha_Inicio" />
+            <PropertyRef Name="Fecha_Final" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero_boleta" />
+          </Key>
+          <Property Name="codigo_articulo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="conducta" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Fecha_Inicio" Type="datetime" Nullable="false" />
+          <Property Name="Fecha_Final" Type="datetime" Nullable="false" />
+          <Property Name="fuente" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="numero_boleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="multa" Type="money" />
+        </EntityType>
         <EntityType Name="AUTORIDAD">
           <Key>
             <PropertyRef Name="codigo" />
@@ -478,6 +497,26 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="GENERALES">
+          <Key>
+            <PropertyRef Name="Inspector" />
+          </Key>
+          <Property Name="Inspector" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="ConsecutivoBC" Type="bigint" Nullable="false" />
+          <Property Name="ConsecutivoPO" Type="bigint" />
+          <Property Name="HandHeld" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Copias" Type="int" Nullable="false" />
+          <Property Name="Piepagina" Type="nvarchar" MaxLength="2200" />
+          <Property Name="ClaveIns" Type="nvarchar" MaxLength="20" />
+          <Property Name="ClaveAdmin" Type="nvarchar" MaxLength="20" />
+          <Property Name="Serie" Type="int" />
+          <Property Name="ConsecutivoSinDoc" Type="bigint" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+          <Property Name="ConsecutivoNumeroMarco" Type="nchar" MaxLength="10" />
+          <Property Name="PasswordActualizado" Type="bit" />
+        </EntityType>
         <EntityType Name="HORASLABORALES">
           <Key>
             <PropertyRef Name="codigo" />
@@ -735,6 +774,43 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PERSONA">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="NumeroBoleta" />
+            <PropertyRef Name="Serie" />
+          </Key>
+          <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="tipo_lic" Type="char" MaxLength="2" />
+          <Property Name="apellido1" Type="varchar" MaxLength="20" />
+          <Property Name="apellido2" Type="varchar" MaxLength="20" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" />
+          <Property Name="direccion" Type="varchar" MaxLength="200" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="Inscrito" Type="char" MaxLength="1" />
+          <Property Name="sexo" Type="char" MaxLength="1" />
+          <Property Name="esmenor" Type="char" MaxLength="1" />
+          <Property Name="edad" Type="int" />
+          <Property Name="estcivil" Type="char" MaxLength="1" />
+          <Property Name="ocupacion" Type="varchar" MaxLength="20" />
+          <Property Name="cod_provincia" Type="int" />
+          <Property Name="cod_canton" Type="int" />
+          <Property Name="cod_distrito" Type="int" />
+          <Property Name="direccionNoSuministrada" Type="bit" />
+          <Property Name="senasDireccion" Type="varchar" MaxLength="250" />
+          <Property Name="NumeroBoleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Serie" Type="int" Nullable="false" />
+          <Property Name="fechaNacimientoNoSuministrada" Type="bit" />
+          <Property Name="codigo_horaslaborales" Type="bit" />
+          <Property Name="fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="clase_vehiculo_colision" Type="nvarchar" MaxLength="3" />
+          <Property Name="codigo_vehiculo_colision" Type="nvarchar" MaxLength="3" />
+          <Property Name="placa_vehiculo_colision" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="PLANTILLAS">
           <Key>
@@ -1072,6 +1148,7 @@
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="Self.ARTICULOSXDEPOSITOSBIENES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ARTICULOXBOLETA" EntityType="Self.ARTICULOXBOLETA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AUTORIDAD" EntityType="Self.AUTORIDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BitacoraSIBOAC" EntityType="Self.BitacoraSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BOLETA" EntityType="Self.BOLETA" Schema="dbo" store:Type="Tables" />
@@ -1106,6 +1183,7 @@
           <EntitySet Name="ESTCIVIL" EntityType="Self.ESTCIVIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTRUCTURA" EntityType="Self.ESTRUCTURA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EXAMEN" EntityType="Self.EXAMEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GENERALES" EntityType="Self.GENERALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HORASLABORALES" EntityType="Self.HORASLABORALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOSPITAL" EntityType="Self.HOSPITAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ILUMINACION" EntityType="Self.ILUMINACION" Schema="dbo" store:Type="Tables" />
@@ -1126,6 +1204,7 @@
           <EntitySet Name="OTROTIPOTRANSPORTE" EntityType="Self.OTROTIPOTRANSPORTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PARTEOFICIAL" EntityType="Self.PARTEOFICIAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEATON" EntityType="Self.PEATON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONA" EntityType="Self.PERSONA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PLANTILLAS" EntityType="Self.PLANTILLAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REVISION" EntityType="Self.REVISION" Schema="dbo" store:Type="Tables" />
@@ -1325,6 +1404,9 @@
           <EntitySet Name="BitacoraSIBOAC" EntityType="PC_HH_AndroidModel.BitacoraSIBOAC" />
           <EntitySet Name="PARTEOFICIAL" EntityType="PC_HH_AndroidModel.ParteOficial" />
           <EntitySet Name="BOLETA" EntityType="PC_HH_AndroidModel.BOLETA" />
+          <EntitySet Name="PERSONA" EntityType="PC_HH_AndroidModel.PERSONA" />
+          <EntitySet Name="GENERALES" EntityType="PC_HH_AndroidModel.GENERALES" />
+          <EntitySet Name="ARTICULOXBOLETA" EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2318,6 +2400,82 @@
           <Property Name="calle2" Type="Int32" />
           <Property Name="avenida2" Type="Int32" />
           <Property Name="kilometro" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PERSONA">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="NumeroBoleta" />
+            <PropertyRef Name="Serie" />
+          </Key>
+          <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_lic" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Inscrito" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="esmenor" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="edad" Type="Int32" />
+          <Property Name="estcivil" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ocupacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cod_provincia" Type="Int32" />
+          <Property Name="cod_canton" Type="Int32" />
+          <Property Name="cod_distrito" Type="Int32" />
+          <Property Name="direccionNoSuministrada" Type="Boolean" />
+          <Property Name="senasDireccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroBoleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Serie" Type="Int32" Nullable="false" />
+          <Property Name="fechaNacimientoNoSuministrada" Type="Boolean" />
+          <Property Name="codigo_horaslaborales" Type="Boolean" />
+          <Property Name="fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clase_vehiculo_colision" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="codigo_vehiculo_colision" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="placa_vehiculo_colision" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GENERALES">
+          <Key>
+            <PropertyRef Name="Inspector" />
+          </Key>
+          <Property Name="Inspector" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="ConsecutivoBC" Type="Int64" Nullable="false" />
+          <Property Name="ConsecutivoPO" Type="Int64" />
+          <Property Name="HandHeld" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Copias" Type="Int32" Nullable="false" />
+          <Property Name="Piepagina" Type="String" MaxLength="2200" FixedLength="false" Unicode="true" />
+          <Property Name="ClaveIns" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ClaveAdmin" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Serie" Type="Int32" />
+          <Property Name="ConsecutivoSinDoc" Type="Int64" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="ConsecutivoNumeroMarco" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PasswordActualizado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ARTICULOXBOLETA">
+          <Key>
+            <PropertyRef Name="codigo_articulo" />
+            <PropertyRef Name="conducta" />
+            <PropertyRef Name="Fecha_Inicio" />
+            <PropertyRef Name="Fecha_Final" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero_boleta" />
+          </Key>
+          <Property Name="codigo_articulo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fecha_Final" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="numero_boleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="multa" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3432,6 +3590,76 @@
                 <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
                 <ScalarProperty Name="serie" ColumnName="serie" />
                 <ScalarProperty Name="fuente" ColumnName="fuente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSONA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.PERSONA">
+              <MappingFragment StoreEntitySet="PERSONA">
+                <ScalarProperty Name="placa_vehiculo_colision" ColumnName="placa_vehiculo_colision" />
+                <ScalarProperty Name="codigo_vehiculo_colision" ColumnName="codigo_vehiculo_colision" />
+                <ScalarProperty Name="clase_vehiculo_colision" ColumnName="clase_vehiculo_colision" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="codigo_horaslaborales" ColumnName="codigo_horaslaborales" />
+                <ScalarProperty Name="fechaNacimientoNoSuministrada" ColumnName="fechaNacimientoNoSuministrada" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="NumeroBoleta" ColumnName="NumeroBoleta" />
+                <ScalarProperty Name="senasDireccion" ColumnName="senasDireccion" />
+                <ScalarProperty Name="direccionNoSuministrada" ColumnName="direccionNoSuministrada" />
+                <ScalarProperty Name="cod_distrito" ColumnName="cod_distrito" />
+                <ScalarProperty Name="cod_canton" ColumnName="cod_canton" />
+                <ScalarProperty Name="cod_provincia" ColumnName="cod_provincia" />
+                <ScalarProperty Name="ocupacion" ColumnName="ocupacion" />
+                <ScalarProperty Name="estcivil" ColumnName="estcivil" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+                <ScalarProperty Name="esmenor" ColumnName="esmenor" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="Inscrito" ColumnName="Inscrito" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="tipo_lic" ColumnName="tipo_lic" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GENERALES">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.GENERALES">
+              <MappingFragment StoreEntitySet="GENERALES">
+                <ScalarProperty Name="PasswordActualizado" ColumnName="PasswordActualizado" />
+                <ScalarProperty Name="ConsecutivoNumeroMarco" ColumnName="ConsecutivoNumeroMarco" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ConsecutivoSinDoc" ColumnName="ConsecutivoSinDoc" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="ClaveAdmin" ColumnName="ClaveAdmin" />
+                <ScalarProperty Name="ClaveIns" ColumnName="ClaveIns" />
+                <ScalarProperty Name="Piepagina" ColumnName="Piepagina" />
+                <ScalarProperty Name="Copias" ColumnName="Copias" />
+                <ScalarProperty Name="HandHeld" ColumnName="HandHeld" />
+                <ScalarProperty Name="ConsecutivoPO" ColumnName="ConsecutivoPO" />
+                <ScalarProperty Name="ConsecutivoBC" ColumnName="ConsecutivoBC" />
+                <ScalarProperty Name="Inspector" ColumnName="Inspector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ARTICULOXBOLETA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ARTICULOXBOLETA">
+              <MappingFragment StoreEntitySet="ARTICULOXBOLETA">
+                <ScalarProperty Name="multa" ColumnName="multa" />
+                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="fuente" ColumnName="fuente" />
+                <ScalarProperty Name="Fecha_Final" ColumnName="Fecha_Final" />
+                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+                <ScalarProperty Name="conducta" ColumnName="conducta" />
+                <ScalarProperty Name="codigo_articulo" ColumnName="codigo_articulo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

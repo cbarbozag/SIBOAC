@@ -95,6 +95,9 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.BitacoraSIBOAC" Width="1.5" PointX="16.375" PointY="13.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.ParteOficial" Width="1.5" PointX="16.375" PointY="17.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.BOLETA" Width="1.5" PointX="18.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.PERSONA" Width="1.5" PointX="18.375" PointY="18.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.GENERALES" Width="1.5" PointX="20.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" Width="1.5" PointX="20.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

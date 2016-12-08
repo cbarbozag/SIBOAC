@@ -115,5 +115,8 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<BitacoraSIBOAC> BitacoraSIBOAC { get; set; }
         public virtual DbSet<ParteOficial> PARTEOFICIAL { get; set; }
         public virtual DbSet<BOLETA> BOLETA { get; set; }
+        public virtual DbSet<PERSONA> PERSONA { get; set; }
+        public virtual DbSet<GENERALES> GENERALES { get; set; }
+        public virtual DbSet<ARTICULOXBOLETA> ARTICULOXBOLETA { get; set; }
     }
 }
