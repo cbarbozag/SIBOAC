@@ -1,0 +1,100 @@
+﻿@model Cosevi.SIBOAC.Models.ParteOficial
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte Status Actual de Plano o Croquis</h2>
+<br>
+<br>
+
+
+@using (Html.BeginForm("Index", "StatusActualDelPlano", FormMethod.Get))
+{
+
+    <style type="text/css">
+        select, ul {
+            height: 100px;
+            overflow: auto;
+            width: 100px;
+            border: 1px solid #000;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        label {
+            display: block;
+            color: WindowText;
+            background-color: Window;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+            label:hover {
+                background-color: Highlight;
+                color: HighlightText;
+            }
+    </style>
+
+
+    <div>
+        <h3>Seleccione la opción status plano:</h3>
+    </div>
+    <div>
+        <input type="radio" name="ConPlano" value="1"> Con Plano
+        <br>
+        <input type="radio" name="SinPlano" value="2"> Sin Plano 
+        <br>
+        <input type="radio" name="EntregaPosterior" value="3"> Entrega Posterior
+        <br>
+        <input type="radio" name="EntregaPosteriorSi" value="4"> Entrega Posterior Sí
+        <br>
+        <input type="radio" name="EntregaPosteriorNo" value="5"> Entrega Posterior No
+        <br>
+        <br>
+    </div>
+
+
+    <div>
+        <h3>Rango de fechas</h3>
+    </div>
+
+    <div>
+        Fecha de inicio <br> <input type="date" name="FechaDeInicio" value="" /> 
+        <br>
+        <br>
+        Fecha de finalización <br> <input type="date" name="FechaDeFin" value="" /> 
+        <br>
+    </div>
+    <br>
+
+
+    <ul>
+        <li><label for="chk1"><input type="checkbox" name="chk1" id="chk1">First</label></li>
+        <li><label for="chk2"><input type="checkbox" name="chk2" id="chk2">Second</label></li>
+        <li><label for="chk3"><input type="checkbox" name="chk3" id="chk3">Third</label></li>
+        <li><label for="chk4"><input type="checkbox" name="chk4" id="chk4">Fourth</label></li>
+        <li><label for="chk5"><input type="checkbox" name="chk5" id="chk5">Fifth</label></li>
+        <li><label for="chk6"><input type="checkbox" name="chk6" id="chk6">Sixth</label></li>
+        <li><label for="chk7"><input type="checkbox" name="chk7" id="chk7">Seventh</label></li>
+    </ul>
+
+
+    <br>
+    <br>
+    <br>
+        <input type="submit" value="Generar Reporte" />
+
+}

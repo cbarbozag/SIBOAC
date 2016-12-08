@@ -251,6 +251,7 @@
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
+    <Compile Include="Controllers\StatusActualDelPlanoController.cs" />
     <Compile Include="Controllers\StatusPlanoController.cs" />
     <Compile Include="Controllers\TiempoesController.cs" />
     <Compile Include="Controllers\TipoDeAccidentesController.cs" />
@@ -505,6 +506,7 @@
     <Compile Include="Models\Sexo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusActualDelPlano.cs" />
     <Compile Include="Models\StatusPlano.cs" />
     <Compile Include="Models\Tiempo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
@@ -1153,6 +1155,8 @@
     <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
+    <Content Include="Views\StatusActualDelPlano\Index.cshtml" />
+    <Content Include="Views\StatusActualDelPlano\_PlanoActualView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

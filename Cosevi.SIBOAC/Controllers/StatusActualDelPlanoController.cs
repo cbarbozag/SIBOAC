@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace Cosevi.SIBOAC.Controllers
+{
+    public class StatusActualDelPlanoController : Controller
+    {
+        // GET: StatusActualDelPlano
+        public ActionResult Index()
+        {
+            return View();
+        }
+    }
+}
