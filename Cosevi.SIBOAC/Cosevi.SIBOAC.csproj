@@ -284,6 +284,9 @@
     <Compile Include="Models\ArticulosPorDepositosDeBienes.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ARTICULOXBOLETA.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Autoridad.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -383,6 +386,9 @@
     <Compile Include="Models\Examen.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GENERALES.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\HorasLaborales.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -459,6 +465,9 @@
       <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Peaton.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PERSONA.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Plantillas.cs">
@@ -632,6 +641,7 @@
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\btnExcel.png" />
+    <Content Include="Content\btnExportarPDF.png" />
     <Content Include="Content\btnPDF.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PDF.png" />

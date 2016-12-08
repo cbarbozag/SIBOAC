@@ -119,6 +119,16 @@ namespace Cosevi.SIBOAC.Controllers
             return View();            
         }
 
+        public ActionResult Exportar(string Excel)
+        {
+            if (Excel == "Excel")
+            {
+                return ExportToExcel();
+            }
+            else
+                return DownloadPartialViewPDF();
+
+        }
         public ActionResult ExportToExcel()
         {
             var grid = new GridView();

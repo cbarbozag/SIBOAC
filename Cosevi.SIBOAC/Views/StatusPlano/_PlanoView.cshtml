@@ -4,19 +4,13 @@
 <table align="center">
     <tr>
         <td>
-            <a>Relación Parte Oficial - Planos</a>
+            <h1>Relación Parte Oficial - Planos</h1>
         </td>
     </tr>
 </table>
-@using (Html.BeginForm("ExportToExcel", "StatusPlano", FormMethod.Get))
-{
-     <input type="submit" value="Excel"/>
-    @*<button id="excel" ><img src="~/Content/btnExcel.png" /></button>*@
-}
-@using (Html.BeginForm("DownloadPartialViewPDF", "StatusPlano", FormMethod.Get))
-{
-    <input type="submit" value="PDF" />
-}
+<br />
+<br />
+
 <table border="1" align="center">
     <thead>
         <tr>
@@ -31,13 +25,13 @@
         {
         <tr>
             <td>                
-                <a>@item.DescripcionAutoridad</a>
+                @item.DescripcionAutoridad
             </td>
             <td>
-                <a>@item.FechaAccidente</a>
+                @item.FechaAccidente
             </td>
             <td>
-                <a>@item.FechaDescarga</a>
+                @item.FechaDescarga
             </td>
         </tr>
            break;
@@ -45,8 +39,7 @@
 </table>
 <br />
 <br />
-@using (Html.BeginForm("GuardarEstado", "StatusPlano", FormMethod.Get))
-{
+
 <table border="1" align="center">
     <thead>
         <tr>
@@ -63,29 +56,21 @@
         
         <tr>
             <td>
-                <a>@item.NumeroBoleta</a>
+                @item.NumeroBoleta
             </td>
             <td>
-                <a>@item.DescripcionRol</a>
+                @item.DescripcionRol
             </td>
             <td>
-                <a>@item.ClasePlaca</a>
+                @item.ClasePlaca
             </td>
             <td>
-                <a>@item.CodigoPlaca</a>
+                @item.CodigoPlaca
             </td>
             <td>
-                <a>@item.NumeroPlaca</a>
+                @item.NumeroPlaca
             </td>
         </tr>
     }
 </table>
-    <div>
-        <a>Entregó Plano</a>
-    </div>
-    <div>
-        <input type="radio" name="EntregoPlano" value="1"/> Si
-        <input type="radio" name="EntregoPlano" value="0"> No<br>    
-    </div>
-    <input type="submit" value="Guardar" />
-}
+    
