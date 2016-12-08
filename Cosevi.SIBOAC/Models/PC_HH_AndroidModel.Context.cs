@@ -118,5 +118,6 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<PERSONA> PERSONA { get; set; }
         public virtual DbSet<GENERALES> GENERALES { get; set; }
         public virtual DbSet<ARTICULOXBOLETA> ARTICULOXBOLETA { get; set; }
+        public virtual DbSet<VEHICULO> VEHICULO { get; set; }
     }
 }

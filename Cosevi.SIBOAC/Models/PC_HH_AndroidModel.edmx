@@ -1144,6 +1144,32 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="VEHICULO">
+          <Key>
+            <PropertyRef Name="clase" />
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="placa" />
+            <PropertyRef Name="NumeroBoleta" />
+            <PropertyRef Name="Serie" />
+          </Key>
+          <Property Name="clase" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="placa" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="marca" Type="char" MaxLength="6" />
+          <Property Name="tipo_carroceria" Type="int" />
+          <Property Name="tipo_ide_dueño" Type="char" MaxLength="2" />
+          <Property Name="identificacion_dueño" Type="varchar" MaxLength="17" />
+          <Property Name="nombre_dueño" Type="varchar" MaxLength="80" />
+          <Property Name="numero_vin" Type="varchar" MaxLength="20" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="seguro" Type="char" MaxLength="1" />
+          <Property Name="rev_tecnica" Type="char" MaxLength="1" />
+          <Property Name="año" Type="int" />
+          <Property Name="capacidad" Type="int" />
+          <Property Name="codveh" Type="int" />
+          <Property Name="NumeroBoleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Serie" Type="int" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
@@ -1238,6 +1264,7 @@
           <EntitySet Name="UsuarioSIBOAC" EntityType="Self.UsuarioSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1407,6 +1434,7 @@
           <EntitySet Name="PERSONA" EntityType="PC_HH_AndroidModel.PERSONA" />
           <EntitySet Name="GENERALES" EntityType="PC_HH_AndroidModel.GENERALES" />
           <EntitySet Name="ARTICULOXBOLETA" EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" />
+          <EntitySet Name="VEHICULO" EntityType="PC_HH_AndroidModel.VEHICULO" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2476,6 +2504,32 @@
           <Property Name="serie" Type="Int32" Nullable="false" />
           <Property Name="numero_boleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="multa" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="VEHICULO">
+          <Key>
+            <PropertyRef Name="clase" />
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="placa" />
+            <PropertyRef Name="NumeroBoleta" />
+            <PropertyRef Name="Serie" />
+          </Key>
+          <Property Name="clase" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="codigo" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="placa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="marca" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="tipo_carroceria" Type="Int32" />
+          <Property Name="tipo_ide_dueño" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="identificacion_dueño" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_dueño" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="numero_vin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="seguro" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="rev_tecnica" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="año" Type="Int32" />
+          <Property Name="capacidad" Type="Int32" />
+          <Property Name="codveh" Type="Int32" />
+          <Property Name="NumeroBoleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Serie" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3660,6 +3714,29 @@
                 <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
                 <ScalarProperty Name="conducta" ColumnName="conducta" />
                 <ScalarProperty Name="codigo_articulo" ColumnName="codigo_articulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEHICULO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.VEHICULO">
+              <MappingFragment StoreEntitySet="VEHICULO">
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="NumeroBoleta" ColumnName="NumeroBoleta" />
+                <ScalarProperty Name="codveh" ColumnName="codveh" />
+                <ScalarProperty Name="capacidad" ColumnName="capacidad" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="rev_tecnica" ColumnName="rev_tecnica" />
+                <ScalarProperty Name="seguro" ColumnName="seguro" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="numero_vin" ColumnName="numero_vin" />
+                <ScalarProperty Name="nombre_dueño" ColumnName="nombre_dueño" />
+                <ScalarProperty Name="identificacion_dueño" ColumnName="identificacion_dueño" />
+                <ScalarProperty Name="tipo_ide_dueño" ColumnName="tipo_ide_dueño" />
+                <ScalarProperty Name="tipo_carroceria" ColumnName="tipo_carroceria" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="placa" ColumnName="placa" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="clase" ColumnName="clase" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
