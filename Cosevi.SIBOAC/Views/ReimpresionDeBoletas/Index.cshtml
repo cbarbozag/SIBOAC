@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Sistema de Reportes para Boletas Digitales</h2>
+
+<br>
+<br>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <h3>Reimpresión de boletas de campo</h3>
+</head>
+
+<body>
+    <br>
+    <br>
+            <tr>
+                <td width="50%">
+
+                    <label>Serie de la boleta </label>
+                    <input type="text" size="30" name="txtSerieDeLaBoleta" STYLE="text-align:left" />
+
+            </tr>
+    <br>
+    <br>
+            <tr>
+                <td width="50%">
+
+                    <label>Número de la boleta </label>
+                    <input type="text" size="30" name="txtNumeroDeLaBoleta" STYLE="text-align:left" />
+            </tr>
+    <br>
+    <br>
+
+        <p>
+            @Html.ActionLink("Generar reporte", "Index", null, new { @class = "btn btn-success" })
+
+</body>
+</html>
+@if (ViewBag.Datos != null)
+{
+   using (Html.BeginForm("DownloadPartialViewPDF", "ReimpresionDeBoletas", FormMethod.Get))
+   {
+    <input type="submit" value="PDF" />
+   }
+    @Html.Partial("_MostrarBoletaView");
+}

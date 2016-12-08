@@ -1,0 +1,45 @@
+﻿@model Cosevi.SIBOAC.Models.ParteOficial
+
+@{
+    ViewBag.Title = "Reporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Información de Plano</h2>
+<br>
+<br>
+<br>
+<br>
+@using (Html.BeginForm("Index","StatusPlano", FormMethod.Get))
+{
+
+<table>
+    <tr>
+        <th>
+            @Html.LabelFor(model => model.Serie, htmlAttributes: new { @class = "control-label col-md-2" })
+        </th>
+        <td>
+            @Html.EditorFor(model => model.Serie)
+            @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            @Html.LabelFor(model => model.NumeroParte, htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.EditorFor(model => model.NumeroParte)
+            @Html.ValidationMessageFor(model => model.NumeroParte, "", new { @class = "text-danger" })
+        </td>
+        <td>
+            <input type="submit" value="Generar Reporte" />
+        </td>
+    </tr>
+</table>
+}
+
+@if (ViewBag.Valor != null)
+{
+    TempData["Type"] = null;
+    TempData["Message"] = null;
+    @Html.Partial("_PlanoView",Model);
+}
+

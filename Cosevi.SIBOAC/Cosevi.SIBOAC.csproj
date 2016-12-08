@@ -57,6 +57,10 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -233,6 +237,7 @@
     <Compile Include="Controllers\PeatonsController.cs" />
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
+    <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
@@ -246,6 +251,7 @@
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
+    <Compile Include="Controllers\StatusPlanoController.cs" />
     <Compile Include="Controllers\TiempoesController.cs" />
     <Compile Include="Controllers\TipoDeAccidentesController.cs" />
     <Compile Include="Controllers\TipoDeCalzadasController.cs" />
@@ -281,6 +287,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BitacoraSIBOAC.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BOLETA.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Canton.cs">
@@ -386,6 +395,7 @@
     <Compile Include="Models\Inconsistencia.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\InformacionBoleta.cs" />
     <Compile Include="Models\Inspector.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -427,6 +437,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OtroTipoTransporte.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ParteOficial.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PC_HH_AndroidModel.Context.cs">
@@ -492,6 +505,7 @@
     <Compile Include="Models\Sexo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusPlano.cs" />
     <Compile Include="Models\Tiempo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -615,7 +629,10 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\btnExcel.png" />
+    <Content Include="Content\btnPDF.png" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PDF.png" />
     <Content Include="Content\title_bar.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -640,6 +657,7 @@
     <Content Include="obj\Debug\Cosevi.SIBOAC.pdb" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.cs.dll" />
     <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.Designer.cs.dll" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -659,6 +677,7 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.csdl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.msl" />
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.ssdl" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1130,6 +1149,10 @@
     <Content Include="Views\OpcionFormularioPorArticuloes\Edit.cshtml" />
     <Content Include="Views\OpcionFormularioPorArticuloes\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\StatusPlano\Index.cshtml" />
+    <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
+    <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
+    <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
