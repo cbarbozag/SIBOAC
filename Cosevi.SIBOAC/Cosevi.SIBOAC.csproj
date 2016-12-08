@@ -630,6 +630,7 @@
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\btnExcel.png" />
+    <Content Include="Content\btnExportarPDF.png" />
     <Content Include="Content\btnPDF.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PDF.png" />

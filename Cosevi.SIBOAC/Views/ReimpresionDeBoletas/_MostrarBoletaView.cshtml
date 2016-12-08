@@ -22,7 +22,7 @@
             </strong>
             <br />
             <strong>
-               @ViewBag.Datos.NumeroBoleta -@ViewBag.Datos.FechaHoraBoleta
+               @ViewBag.Datos.NumeroBoleta  -   @ViewBag.Datos.FechaHoraBoleta
             </strong>
         </center>
         <br />
@@ -62,7 +62,7 @@
             <br />
             Revisión tecnica: @ViewBag.Datos.RevisionTecnica
             <br />
-            Oficina de impugnación: DescripcionOficinaImpugna
+            Oficina de impugnación: @ViewBag.Datos.DescripcionOficinaImpugna
             <br />
             Nivel de gases: @ViewBag.Datos.NivelGases %
             <br />
@@ -129,7 +129,7 @@
                 </center>
                 <hr />
                 <FONT_SMALL>
-                    @ViewBag.Datos.PiePagina
+                   @Html.Raw(ViewBag.Datos.PiePagina)
                     <br />
                     <br />
                     <br />
