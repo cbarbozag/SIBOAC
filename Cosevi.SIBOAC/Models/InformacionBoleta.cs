@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Cosevi.SIBOAC.Models
 {
@@ -55,6 +54,7 @@ namespace Cosevi.SIBOAC.Models
 
         public string CodigoInspector { get; set; }
         public string NombreInspector { get; set; }
+        public string ParteOficial { get; set; }
         public string PiePagina { get; set; }
         public  List<Articulos> ListaArticulos {
             get { return newLista; }
