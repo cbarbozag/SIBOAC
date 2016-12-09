@@ -15,15 +15,127 @@ namespace Cosevi.SIBOAC.Controllers
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         // GET: ReimpresionDeBoletas
-        public ActionResult Index(string serie, string numero_boleta)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serie"></param>
+        /// <param name="numero_boleta"></param>
+        /// <returns></returns>
+        public ViewResult Index(int? serie, decimal? numero_boleta)
         {
+            if (serie == null && numero_boleta == null)
+                return View();
+            ViewBag.Datos = null;
+          
+            ViewBag.type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
 
+            var boleta =
+                (
+                from BOLETA in db.BOLETA
+                join PERSONA in db.PERSONA
+                     on new { BOLETA.tipo_ide, BOLETA.identificacion }
+                 equals new { PERSONA.tipo_ide, PERSONA.identificacion }
+                 where BOLETA.serie == serie && BOLETA.numero_boleta ==numero_boleta
+                join TIPO_IDENTIFICACION in db.TIPO_IDENTIFICACION on new { Id = BOLETA.tipo_ide } equals new { Id = TIPO_IDENTIFICACION.Id }
+                join ROLPERSONA in db.ROLPERSONA on new { Id = BOLETA.codrol } equals new { Id = ROLPERSONA.Id }
+                join DELEGACION in db.DELEGACION on new { Id = BOLETA.codigo_delegacion } equals new { Id = DELEGACION.Id }
+                join VEHICULO in db.VEHICULO
+                     on new { codigo = BOLETA.codigo_placa, clase = BOLETA.clase_placa, placa = BOLETA.numero_placa, Serie = BOLETA.serie, NumeroBoleta = BOLETA.numero_boleta }
+                     equals new { VEHICULO.codigo, VEHICULO.clase, VEHICULO.placa, VEHICULO.Serie, VEHICULO.NumeroBoleta }
+                join TIPOVEH in db.TIPOVEH on new { Id = (int)VEHICULO.codveh } equals new { Id = TIPOVEH.Id }
+                join CARROCERIA in db.CARROCERIA on new { Id = (int)VEHICULO.tipo_carroceria } equals new { Id = CARROCERIA.Id }
+                join MARCA in db.MARCA on new { Id = VEHICULO.marca } equals new { Id = MARCA.Id }
+                join OficinaParaImpugnars in db.OficinaParaImpugnars on new { Id = BOLETA.codOficinaImpugnacion } equals new { Id = OficinaParaImpugnars.Id }
+                join INSPECTOR in db.INSPECTOR on new { Id = BOLETA.codigo_inspector } equals new { Id = INSPECTOR.Id }
+                join GENERALES in db.GENERALES on new { Inspector = BOLETA.codigo_inspector } equals new { Inspector = GENERALES.Inspector }
+                select new
+                {
+                    BOLETA.fuente,
+                    Serie = BOLETA.serie,
+                    NumeroBoleta = BOLETA.numero_boleta,
+                    FechaHoraBoleta = BOLETA.fecha_hora_boleta,
+                    CodigoDelegacion = BOLETA.codigo_delegacion,
+                    DescripcionDelegacion = DELEGACION.Descripcion,
+                    CodigoAutoridad = BOLETA.codigo_autoridad_registra,
+                    DescripcionAutoridad = "",
+                    CodigoRol = BOLETA.codrol,
+                    DescripcionRol = ROLPERSONA.Descripcion,
+                    Usuario = PERSONA.apellido1 + " " + PERSONA.apellido2 + " " + PERSONA.nombre,
+                    BOLETA.tipo_ide,
+                    TipoDocumento = TIPO_IDENTIFICACION.Descripcion,
+                    Sexo = PERSONA.sexo,
+                    FechaNacimiento = PERSONA.FechaNacimiento,
+                    DireccionUsuario = PERSONA.senasDireccion,
+                    TipoLicencia = BOLETA.tipo_lic,
+                    Identificacion = BOLETA.identificacion,
+                    LugarHechos = BOLETA.lugar_hechos,
+                    Km = BOLETA.kilometro,
+                    Placa = BOLETA.numero_placa,
+                    codveh = (int?)VEHICULO.codveh,
+                    DescripcionTipoAutomovil = TIPOVEH.Descripcion,
+                    tipo_carroceria = (int?)VEHICULO.tipo_carroceria,
+                    DescripcionCarroceria = CARROCERIA.Descripcion,
+                    CodigoMarca = BOLETA.marca,
+                    DescripcionMarca = MARCA.Descripcion,
+                    RevisionTecnica = VEHICULO.rev_tecnica == "1" ? "SI" : "NO",
+                    CodigoOficinaImpugna = BOLETA.codOficinaImpugnacion,
+                    DescripcionOficinaImpugna = OficinaParaImpugnars.Descripcion,
+                    NivelGases = BOLETA.humo,
+                    Velocidad = BOLETA.velocidad,
+                    CodigoInspector = BOLETA.codigo_inspector,
+                    NombreInspector = INSPECTOR.Nombre,
+                    ParteOficial = (BOLETA.fuente_parteoficial + "-" + BOLETA.serie_parteoficial + "-" + BOLETA.numeroparte),
+                    PiePagina = GENERALES.Piepagina
+                }).ToList().Take(1);
 
+            if (boleta.Count() == 0 || boleta.FirstOrDefault() == null)
+            {
+
+                ViewBag.type = "";
+                ViewBag.message = "";
+                ViewBag.type = TempData["Type"] = "error";
+                ViewBag.message = TempData["Message"] = "No se encontró información la boleta  " + serie + " " + numero_boleta;
+                return View();
+            }
+            InformacionBoleta infoBoleta = new InformacionBoleta();
+
+            foreach (var item in boleta)
+            {
+
+                infoBoleta.NumeroBoleta = item.NumeroBoleta.ToString();
+                infoBoleta.FechaHoraBoleta = item.FechaHoraBoleta == null ? DateTime.Now : (DateTime)item.FechaHoraBoleta;
+                infoBoleta.DescripcionDelegacion = item.DescripcionDelegacion;
+                infoBoleta.DescripcionAutoridad = item.DescripcionAutoridad;
+                infoBoleta.DescripcionRol = item.DescripcionRol;
+                infoBoleta.Usuario = item.Usuario;
+                infoBoleta.TipoDocumento = item.TipoDocumento;
+                infoBoleta.Sexo = item.Sexo;
+                infoBoleta.FechaNacimiento = item.FechaNacimiento == null ? DateTime.Now : (DateTime)item.FechaNacimiento;
+                infoBoleta.DireccionUsuario = item.DireccionUsuario;
+                infoBoleta.TipoLicencia = item.TipoLicencia;
+                infoBoleta.Identificacion = item.Identificacion;
+                infoBoleta.LugarHechos = item.LugarHechos;
+                infoBoleta.Km = item.Km == null ? 0 : (int)item.Km;
+                infoBoleta.Placa = item.Placa;
+                infoBoleta.DescripcionTipoAutomovil = item.DescripcionTipoAutomovil;
+                infoBoleta.DescripcionCarroceria = item.DescripcionCarroceria;
+                infoBoleta.DescripcionMarca = item.DescripcionMarca;
+                infoBoleta.RevisionTecnica = item.RevisionTecnica;
+                infoBoleta.DescripcionOficinaImpugna = item.DescripcionOficinaImpugna;
+                infoBoleta.NivelGases = item.NivelGases;
+                infoBoleta.Velocidad = item.Velocidad == null ? 0 : (int)item.Velocidad;
+                infoBoleta.NombreInspector = item.NombreInspector;
+                infoBoleta.CodigoInspector = item.CodigoInspector;
+                infoBoleta.ParteOficial = item.ParteOficial;
+                infoBoleta.PiePagina = item.PiePagina.Replace("@", "<br/>");               
+            }
+          
             //articulos por boleta 
             var articulos =
                 (
                 from ARTICULOXBOLETA in db.ARTICULOXBOLETA
-                where ARTICULOXBOLETA.serie == 2012 && ARTICULOXBOLETA.numero_boleta == 89400391
+                where ARTICULOXBOLETA.serie == serie && ARTICULOXBOLETA.numero_boleta == numero_boleta
                 join CATARTICULO in db.CATARTICULO
                      on new { Id = ARTICULOXBOLETA.codigo_articulo, Conducta = ARTICULOXBOLETA.conducta, FechaDeInicio = ARTICULOXBOLETA.Fecha_Inicio, FechaDeFin = ARTICULOXBOLETA.Fecha_Final }
                  equals new { Id = CATARTICULO.Id, CATARTICULO.Conducta, FechaDeInicio = CATARTICULO.FechaDeInicio, FechaDeFin = CATARTICULO.FechaDeFin }
@@ -40,45 +152,17 @@ namespace Cosevi.SIBOAC.Controllers
                     CATARTICULO.Descripcion,
                     CATARTICULO.Puntos
                 }).ToList().Distinct();
-                
-                
-
-            InformacionBoleta infoBoleta = new InformacionBoleta();
-            infoBoleta.NumeroBoleta = "2-2016-9990084";
-            infoBoleta.DescripcionDelegacion = "SAN JOSE";
-            infoBoleta.DescripcionAutoridad = "ADMINISTRATIVA (COSEVI)";
-            infoBoleta.DescripcionRol = "Conductor";
-            infoBoleta.Usuario = "Hernandez Jimenez Jeffry";
-            infoBoleta.TipoDocumento = "Cedula de identidad o juvenil";
-            infoBoleta.Sexo = "M";
-            infoBoleta.FechaNacimiento = DateTime.Now;
-            infoBoleta.DireccionUsuario = "San Jose Perez Zeledon San Isidro del General Abajo de un palo de mango";
-            infoBoleta.TipoLicencia = "B2";
-            infoBoleta.TipoDocumento = "CI 11562323";
-            infoBoleta.LugarHechos = "Heredia Heredia Heredia";
-            infoBoleta.Km = 27;
-            infoBoleta.Placa = "YYY666";
-            infoBoleta.DescripcionTipoAutomovil = "Automóvil";
-            infoBoleta.DescripcionCarroceria = "Convertible";
-            infoBoleta.DescripcionMarca = "Alfa Romeo";
-            infoBoleta.RevisionTecnica = "Sí";
-            infoBoleta.DescripcionOficinaImpugna = "Heredia";
-            infoBoleta.NivelGases = "0%";
-            infoBoleta.Velocidad = 200;
-         
+            
             //Recorre la lista de articulos para agregarlos a la clase articulos y luego a la lista
             foreach (var item in articulos)
             {
                 Articulos _articulo = new Articulos(item.codigo_articulo, item.Descripcion, item.multa, item.Puntos);
-                infoBoleta.ListaArticulos.Add(_articulo);
+                infoBoleta.ListaArticulos.Add(_articulo);               
             }
-            
-            infoBoleta.CodigoInspector = "";
-            infoBoleta.PiePagina = "ADVERTENCIAS DE LEY AL INFRACTOR@LEY DE TRÁNSITO POR VÍAS PÚBLICAS TERRESTRES Y SEGURIDAD VIAL  N° 9078@1.Multa Fija: De no presentarse inconformidad dentro de un plazo improrrogable de diez días, contados a partir del día siguiente a la fecha de la confección de la boleta, la misma tomará@firmeza(artículos 163, 164, 165).@2.En caso de disconformidad podrá recurrir ante la Unidad de Impugnaciones de Boletas de Citación del COSEVI, dentro del plazo improrrogable de diez días hábiles(artículo 163).@3.Ante casos de accidente se debe apersonar ante la Autoridad Judicial competente dentro de los diez días hábiles, para manifestarse si acepta o no los cargos o se abstiene de declarar.@4.Dentro del plazo de diez días hábiles, contados a partir de la firmeza de la infracción, se podrá cancelar la multa impuesta menos un quince por ciento (15 %), excluyendo de tal@excepción las infracciones contenidas en el artículo 143 de esta ley; que constituyen las más@severamente sancionadas.@5.Además, correrán intereses de mora del 3 % mensual sobre el monto original hasta un máximo de 36 %, después de transcurridos veinte (20) días hábiles a partir de su firmeza(artículo 194).@6.Si la multa no se cancela dentro del plazo de veinte(20) días hábiles, a partir de su firmeza, puede ser enviada a@Cobro Judicial(artículo 195).@";
-            infoBoleta.PiePagina = infoBoleta.PiePagina.Replace("@", "<br/>");
-            infoBoleta.NombreInspector = "Pruebas Hand Held";
+            ViewBag.type = "";
+            ViewBag.message = "";
             ViewBag.Datos = infoBoleta;
-            Session["Datos"] = infoBoleta;
+            Session["Datos"] = infoBoleta ;
             return View();
         }
 
