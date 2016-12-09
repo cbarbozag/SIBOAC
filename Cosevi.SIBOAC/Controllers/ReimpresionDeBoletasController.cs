@@ -33,22 +33,31 @@ namespace Cosevi.SIBOAC.Controllers
             var boleta =
                 (
                 from BOLETA in db.BOLETA
+                where BOLETA.serie ==serie && BOLETA.numero_boleta==numero_boleta
                 join PERSONA in db.PERSONA
-                     on new { BOLETA.tipo_ide, BOLETA.identificacion }
-                 equals new { PERSONA.tipo_ide, PERSONA.identificacion }
-                 where BOLETA.serie == serie && BOLETA.numero_boleta ==numero_boleta
-                join TIPO_IDENTIFICACION in db.TIPO_IDENTIFICACION on new { Id = BOLETA.tipo_ide } equals new { Id = TIPO_IDENTIFICACION.Id }
-                join ROLPERSONA in db.ROLPERSONA on new { Id = BOLETA.codrol } equals new { Id = ROLPERSONA.Id }
+                     on new { BOLETA.tipo_ide, BOLETA.identificacion, NumeroBoleta = BOLETA.numero_boleta, Serie = BOLETA.serie }
+                 equals new { PERSONA.tipo_ide, PERSONA.identificacion, PERSONA.NumeroBoleta, PERSONA.Serie } into PERSONA_join
+                from PERSONA in PERSONA_join.DefaultIfEmpty()
+                join TIPO_IDENTIFICACION in db.TIPO_IDENTIFICACION on new { Id = BOLETA.tipo_ide } equals new { Id = TIPO_IDENTIFICACION.Id } into TIPO_IDENTIFICACION_join
+                from TIPO_IDENTIFICACION in TIPO_IDENTIFICACION_join.DefaultIfEmpty()
+                join ROLPERSONA in db.ROLPERSONA on new { Id = BOLETA.codrol } equals new { Id = ROLPERSONA.Id } into ROLPERSONA_join
+                from ROLPERSONA in ROLPERSONA_join.DefaultIfEmpty()
                 join DELEGACION in db.DELEGACION on new { Id = BOLETA.codigo_delegacion } equals new { Id = DELEGACION.Id }
                 join VEHICULO in db.VEHICULO
-                     on new { codigo = BOLETA.codigo_placa, clase = BOLETA.clase_placa, placa = BOLETA.numero_placa, Serie = BOLETA.serie, NumeroBoleta = BOLETA.numero_boleta }
-                     equals new { VEHICULO.codigo, VEHICULO.clase, VEHICULO.placa, VEHICULO.Serie, VEHICULO.NumeroBoleta }
-                join TIPOVEH in db.TIPOVEH on new { Id = (int)VEHICULO.codveh } equals new { Id = TIPOVEH.Id }
-                join CARROCERIA in db.CARROCERIA on new { Id = (int)VEHICULO.tipo_carroceria } equals new { Id = CARROCERIA.Id }
-                join MARCA in db.MARCA on new { Id = VEHICULO.marca } equals new { Id = MARCA.Id }
-                join OficinaParaImpugnars in db.OficinaParaImpugnars on new { Id = BOLETA.codOficinaImpugnacion } equals new { Id = OficinaParaImpugnars.Id }
+                     on new { clase = BOLETA.clase_placa, codigo = BOLETA.codigo_placa, placa = BOLETA.numero_placa, Serie = BOLETA.serie, NumeroBoleta = BOLETA.numero_boleta }
+                 equals new { VEHICULO.clase, VEHICULO.codigo, VEHICULO.placa, VEHICULO.Serie, VEHICULO.NumeroBoleta } into VEHICULO_join
+                from VEHICULO in VEHICULO_join.DefaultIfEmpty()
+                join TIPOVEH in db.TIPOVEH on new { Id = (int)VEHICULO.codveh } equals new { Id = TIPOVEH.Id } into TIPOVEH_join
+                from TIPOVEH in TIPOVEH_join.DefaultIfEmpty()
+                join CARROCERIA in db.CARROCERIA on new { Id = (int)VEHICULO.tipo_carroceria } equals new { Id = CARROCERIA.Id } into CARROCERIA_join
+                from CARROCERIA in CARROCERIA_join.DefaultIfEmpty()
+                join MARCA in db.MARCA on new { Id = VEHICULO.marca } equals new { Id = MARCA.Id } into MARCA_join
+                from MARCA in MARCA_join.DefaultIfEmpty()
+                join OficinaParaImpugnars in db.OficinaParaImpugnars on new { Id = BOLETA.codOficinaImpugnacion } equals new { Id = OficinaParaImpugnars.Id } into OficinaParaImpugnars_join
+                from OficinaParaImpugnars in OficinaParaImpugnars_join.DefaultIfEmpty()
                 join INSPECTOR in db.INSPECTOR on new { Id = BOLETA.codigo_inspector } equals new { Id = INSPECTOR.Id }
-                join GENERALES in db.GENERALES on new { Inspector = BOLETA.codigo_inspector } equals new { Inspector = GENERALES.Inspector }
+                join GENERALES in db.GENERALES on new { Inspector = BOLETA.codigo_inspector } equals new { Inspector = GENERALES.Inspector } into GENERALES_join
+                from GENERALES in GENERALES_join.DefaultIfEmpty()
                 select new
                 {
                     BOLETA.fuente,
@@ -58,7 +67,13 @@ namespace Cosevi.SIBOAC.Controllers
                     CodigoDelegacion = BOLETA.codigo_delegacion,
                     DescripcionDelegacion = DELEGACION.Descripcion,
                     CodigoAutoridad = BOLETA.codigo_autoridad_registra,
-                    DescripcionAutoridad = "",
+                    DescripcionAutoridad = (((from AUTORIDAD in db.AUTORIDAD
+                                               where
+                                                 AUTORIDAD.Id == BOLETA.codigo_autoridad_registra
+                                               select new
+                                               {
+                                                   AUTORIDAD.Descripcion
+                                               }).Distinct()).FirstOrDefault().Descripcion),
                     CodigoRol = BOLETA.codrol,
                     DescripcionRol = ROLPERSONA.Descripcion,
                     Usuario = PERSONA.apellido1 + " " + PERSONA.apellido2 + " " + PERSONA.nombre,
