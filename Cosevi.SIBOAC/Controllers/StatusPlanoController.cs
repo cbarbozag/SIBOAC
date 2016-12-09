@@ -184,8 +184,14 @@ namespace Cosevi.SIBOAC.Controllers
 
                 return RedirectToAction("Index");
             }
-                
-            return View();
+            ViewBag.type = "";
+            ViewBag.message = "";
+            ViewBag.type = TempData["Type"] = "error";
+            ViewBag.message = TempData["Message"] = "No se actualizó";       
+            ViewBag.Datos = Session["Datos"];        
+
+          return RedirectToAction("Index","StatusPlano", new { Serie = Session["SerieParte"], NumeroParte = Session["NumParte"] });
+        
         }
     }
 }
