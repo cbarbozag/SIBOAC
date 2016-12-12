@@ -238,6 +238,7 @@
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\ReportePorUsuarioController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
@@ -1166,6 +1167,8 @@
     <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
+    <Content Include="Views\ReportePorUsuario\_MostrarBoletaView.cshtml" />
+    <Content Include="Views\ReportePorUsuario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

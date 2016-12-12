@@ -1,0 +1,144 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+ 
+</head>
+
+
+<body>
+    <FONT_LARGE>
+        <center>
+            <strong>
+                MINISTERIO DE OBRAS PÚBLICAS Y TRANSPORTE
+            </strong>
+            <br />
+            <strong>
+                DIRECCION GENERAL DE LA POLICÍA DE TRÁNSITO
+            </strong>
+            <br />
+            <strong>
+                BOLETA DE CITACIÓN
+            </strong>
+            <br />
+            <strong>
+               @ViewBag.Datos.NumeroBoleta  -   @ViewBag.Datos.FechaHoraBoleta
+            </strong>
+        </center>
+        <br />
+        <br />
+        <FONT_MEDIUM>
+            Delegación:@ViewBag.Datos.DescripcionDelegacion
+            <br />
+            Autoridad competente: @ViewBag.Datos.DescripcionAutoridad
+            <br />
+            Rol: @ViewBag.Datos.DescripcionRol
+            <br />
+            Usuario: @ViewBag.Datos.Usuario
+            <br />
+            Tipo documento: @ViewBag.Datos.TipoDocumento
+            <br />
+            Sexo: @ViewBag.Datos.Sexo
+            <br />
+            Fecha de nacimiento: @ViewBag.Datos.FechaNacimiento
+            <br />
+            Dirección usuario: @ViewBag.Datos.DireccionUsuario
+            <br />
+            Tipo licencia: @ViewBag.Datos.TipoLicencia
+            <br />
+            Identificación: @ViewBag.Datos.Identificacion
+            <br />
+            Lugar de los hechos: @ViewBag.Datos.LugarHechos
+            <br />
+            Kilometro: @ViewBag.Datos.Km
+            <br />
+            Placa: @ViewBag.Datos.Placa
+            <br />
+            Tipo automóvil: @ViewBag.Datos.DescripcionTipoAutomovil
+            <br />
+            Carrocería: @ViewBag.Datos.DescripcionCarroceria
+            <br />
+            Marca: @ViewBag.Datos.DescripcionMarca
+            <br />
+            Revisión tecnica: @ViewBag.Datos.RevisionTecnica
+            <br />
+            Oficina de impugnación: @ViewBag.Datos.DescripcionOficinaImpugna
+            <br />
+            Nivel de gases: @ViewBag.Datos.NivelGases %
+            <br />
+            Velocidad: @ViewBag.Datos.Velocidad Km/h
+            <br />
+            <hr />
+           <table width="1000" border="1">
+               <tr>
+                   <td width="200">
+                       Artículo
+                   </td>
+                   <td width="700">
+                       Descripción
+                   </td>
+                   <td>
+                       Monto Colones
+                   </td>
+               </tr>
+               @foreach(var item in ViewBag.Datos.ListaArticulos)
+               {
+                   <tr>
+                       <td>
+                           @item.codigo_articulo
+                       </td>
+                       <td>
+                           @item.descripcion
+                       </td>
+                       <td>
+                           @item.multa
+                       </td>
+                   </tr>
+
+               }
+           </table>
+            <br />
+            <br />
+            <FONT_MEDIUM>                   
+                    <table width="1000">
+                        <tr>
+                            <td width="830">
+                                <strong>
+                                    Con esta infracción acumula @ViewBag.Datos.TotalPuntos Puntos
+                                </strong> 
+                            </td>
+                            <td align="left">
+                                <strong>
+                                Total colones: @ViewBag.Datos.TotalMulta
+                                </strong>
+                            </td>
+                        </tr>
+                    </table>                      
+           
+                <br />
+                [FIRMAUSUARIO]
+                <span>                           </span>
+                [FIRMAINSPECTOR]
+
+                Firma del usuario                         Firma del inspector @ViewBag.Datos.CodigoInspector
+                <br />
+                <center>
+                    <strong>
+                        @ViewBag.Datos.NombreInspector
+                    </strong>
+                </center>
+                <hr />
+                <FONT_SMALL>
+                   @Html.Raw(ViewBag.Datos.PiePagina)
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />               
+                   </body>
+
+</html>
+
