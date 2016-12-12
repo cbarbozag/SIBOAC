@@ -119,6 +119,16 @@ namespace Cosevi.SIBOAC.Controllers
             return View();            
         }
 
+        public ActionResult Exportar(string Excel)
+        {
+            if (Excel == "Excel")
+            {
+                return ExportToExcel();
+            }
+            else
+                return DownloadPartialViewPDF();
+
+        }
         public ActionResult ExportToExcel()
         {
             var grid = new GridView();
@@ -174,8 +184,14 @@ namespace Cosevi.SIBOAC.Controllers
 
                 return RedirectToAction("Index");
             }
-                
-            return View();
+            ViewBag.type = "";
+            ViewBag.message = "";
+            ViewBag.type = TempData["Type"] = "error";
+            ViewBag.message = TempData["Message"] = "No se actualizó";       
+            ViewBag.Datos = Session["Datos"];        
+
+          return RedirectToAction("Index","StatusPlano", new { Serie = Session["SerieParte"], NumeroParte = Session["NumParte"] });
+        
         }
     }
 }

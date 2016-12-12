@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Cosevi.SIBOAC.Models
 {
 
     public class Articulos
     {
-        public string _codigoArticulo;
-        public string _Descripcion;
-        public double _Monto;
-        public int _puntos;
+       
+        public string codigo_articulo;
+        public string descripcion;
+        public decimal? multa;
+        public int puntos;
 
-        public Articulos(string codigoArticulo, string Descripcion, double Monto, int puntos) 
+        public Articulos(string codigo_articulo, string descripcion, decimal? multa, int puntos)
         {
-            this._codigoArticulo = codigoArticulo;
-            this._Descripcion = Descripcion;
-            this._Monto = Monto;
-            this._puntos = puntos;
+            this.codigo_articulo = codigo_articulo;
+            this.descripcion = descripcion;
+            this.multa = multa;
+            this.puntos = puntos;
         }
+
     }
 
     public class InformacionBoleta
@@ -53,18 +54,20 @@ namespace Cosevi.SIBOAC.Models
 
         public string CodigoInspector { get; set; }
         public string NombreInspector { get; set; }
+        public string ParteOficial { get; set; }
         public string PiePagina { get; set; }
         public  List<Articulos> ListaArticulos {
             get { return newLista; }
             set { newLista = value; }
 
         }  
-        public double TotalMulta {
+        public decimal TotalMulta {
             get {
-                double Total = 0.0;
+                decimal Total = 0;
                 for (int i=0;i<newLista.Count();i++)
                 {
-                    Total += newLista[i]._Monto;
+                    Total += newLista[i].multa == null ? 0: (decimal)newLista[i].multa;    
+                                                       
 
                 }
                 return Total;
@@ -78,7 +81,7 @@ namespace Cosevi.SIBOAC.Models
                 int Total = 0;
                 for (int i = 0; i < newLista.Count(); i++)
                 {
-                    Total += newLista[i]._puntos;
+                    Total += newLista[i].puntos;
 
                 }
                 return Total;
