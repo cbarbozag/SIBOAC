@@ -20,37 +20,53 @@
 
         @Html.HiddenFor(model => model.CodigoOficinaImpugna)
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.IdCanton, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdCanton, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdCanton, "", new { @class = "text-danger" })           
+            </div>
+        </div>*@
         <div class="form-group">
             @Html.LabelFor(model => model.IdCanton, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.IdCanton,new { @class = "form-control" })           
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DescripcionCanton, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DescripcionCanton, (IEnumerable<SelectListItem>)ViewBag.ComboCanton, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.IdCanton, (IEnumerable<SelectListItem>)ViewBag.ComboCanton, new { @class = "form-control", disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.IdCanton, "", new { @class = "text-danger" })
             </div>
         </div>
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.CodigoOficinaImpugna, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CodigoOficinaImpugna, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CodigoOficinaImpugna, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoOficinaImpugna, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.CodigoOficinaImpugna, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CodigoOficinaImpugna, (IEnumerable<SelectListItem>)ViewBag.ComboOficina, new { @class = "form-control", disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.CodigoOficinaImpugna, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => model.DescripcionOficina, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CodigoOficinaImpugna, (IEnumerable<SelectListItem>)ViewBag.ComboOficina, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DescripcionOficina, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.Estado,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "A" , Text = "Activo" },
+                       new SelectListItem { Value = "I" , Text = "Inactivo" }
+                    },
+                  new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeInicio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.FechaDeInicio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,16 +74,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeFin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.FechaDeFin, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
 
