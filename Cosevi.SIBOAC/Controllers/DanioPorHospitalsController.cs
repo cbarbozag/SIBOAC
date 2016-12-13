@@ -199,7 +199,7 @@ namespace Cosevi.SIBOAC.Controllers
             }
 
             ViewBag.ComboHospital = new SelectList(db.HOSPITAL.OrderBy(x => x.Descripcion), "Id", "Descripcion", IdHospital);
-            ViewBag.ComboDannio = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id", "Descripcion", IdDanio.ToString().Trim());
+            ViewBag.ComboDannio = new SelectList(db.DAÑO.OrderBy(x => x.Descripcion), "Id", "Descripcion", IdDanio/*.ToString().Trim()*/);
 
             return View(list);
         }

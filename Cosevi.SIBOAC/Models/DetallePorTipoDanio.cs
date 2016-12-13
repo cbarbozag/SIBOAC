@@ -48,6 +48,7 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
+        [DisplayName("Descripción")]
         public string DescripcionCodigoDano
         { get; set; }
     }
