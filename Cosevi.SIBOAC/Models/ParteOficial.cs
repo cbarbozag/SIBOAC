@@ -11,7 +11,8 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class ParteOficial
     {
         public string Fuente { get; set; }
@@ -60,5 +61,8 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> fecha_entregacorte { get; set; }
         public string usuario_entregacorte { get; set; }
         public Nullable<bool> AmbienteEnCampo { get; set; }
+
+        public IEnumerable<SelectListItem> UsuarioList { get; set; }
+        public IEnumerable<string> SelectedItemId { get; set; }
     }
 }

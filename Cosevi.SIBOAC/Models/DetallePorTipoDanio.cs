@@ -50,8 +50,5 @@ namespace Cosevi.SIBOAC.Models
 
         public string DescripcionCodigoDano
         { get; set; }
-
-        public string DescripcionCodigoTipoDano
-        { get; set; }
     }
 }

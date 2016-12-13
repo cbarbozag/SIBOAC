@@ -1167,8 +1167,8 @@
     <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
-    <Content Include="Views\ReportePorUsuario\_MostrarBoletaView.cshtml" />
     <Content Include="Views\ReportePorUsuario\Index.cshtml" />
+    <Content Include="Views\ReportePorUsuario\_MostrarReporteView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
