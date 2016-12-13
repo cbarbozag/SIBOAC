@@ -1,65 +1,72 @@
 ﻿@model Cosevi.SIBOAC.Models.ParteOficial
 
 @{
-    ViewBag.Title = "ReportePorUsuario";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reporte por Usuario - Estatus Plano o Croquis</h2>
+<h2 class="text-center">Reporte por Usuario - Estatus Plano o Croquis</h2>
 <br>
 <br>
 <br>
-<br>
+@*<br>*@
 @using (Html.BeginForm("Index", "ReportePorUsuario", FormMethod.Get))
 {
 
-    <table>
+    <table border="0" align="center">
         <tr>
-            <th>
-                @Html.Label("Fecha de Inicio", htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
             <td>
-                @Html.EditorFor(model => model.Fecha)
-                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                Fecha de Inicio:
             </td>
             <td>
-                @Html.Label("Fecha de Finalización", htmlAttributes: new { @class = "control-label col-md-2" })
+                <input type="date" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
             </td>
             <td>
-                @Html.EditorFor(model => model.Fecha)
-                @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                Fecha de Finalización:
             </td>
+            <td>
+                <input type="date" name="FechaFin" value="@Request.Params["FechaFin"]" />
+            </td>
+        </tr>
+
+        <tr>
             <td>
                 <input type="submit" value="Generar Reporte" class="btn btn-success" />
             </td>
         </tr>
     </table>
 
-    <td>
-        @Html.ListBoxFor(model => model.SelectedItemId, new MultiSelectList(Model.usuario, "Value", "Text"), new { @id = "lstEmail" })
-    </td>
 }
-<br />
-<br />
-
-@if (ViewBag.Valor != null)
-{
-    TempData["Type"] = null;
-    TempData["Message"] = null;
-
-
-    using (Html.BeginForm("Exportar", "ReportePorUsuario", FormMethod.Get))
+<div style="font-family:Arial" class="text-center">
+    @using (Html.BeginForm())
     {
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
-                <input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
-            </div>
-            <div class="panel-body">
-                @Html.Partial("_MostrarReporteView", Model)
-            </div>
-        </div>
+        @Html.ListBoxFor(m => m.SelectedUsuario, Model.UsuariosLis, new { id = "listBox1", size = 20 })
+        <br />
+
+            <input id="btnAgregar" type="submit" value="Agregar" />
     }
+</div>
+        <br />
+        <br />
 
-}
+        @if (ViewBag.Datos != null)
+        {
+            TempData["Type"] = null;
+            TempData["Message"] = null;
 
+
+            using (Html.BeginForm("Exportar", "ActividadOficial", FormMethod.Get))
+            {
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+                        <input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("_ListaActividad", Model)
+                    </div>
+                </div>
+            }
+
+
+        }
