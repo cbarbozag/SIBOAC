@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class Autoridad
     {
-        [DisplayName("Código")]
+        [DisplayName("Código de Autoridad")]
         [Required(ErrorMessage = "El código es obligatorio")]
         [StringLength(5, ErrorMessage = "El codigo no debe ser mayor a 5 caracteres")]
         public string Id { get; set; }
@@ -25,7 +25,7 @@ namespace Cosevi.SIBOAC.Models
         [StringLength(35, ErrorMessage = "La descripción no debe ser mayor a 35 caracteres")]
         public string Descripcion { get; set; }
 
-        [DisplayName("Código de opción de formulario")]
+        [DisplayName("Código de Formulario")]
         [Required(ErrorMessage = "El código es obligatorio")]
         public int CodigoOpcionFormulario { get; set; }
 
