@@ -25,7 +25,9 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    if(item.Activo==false)
+    { 
+    <tr class="warning">
         <td>
             @Html.DisplayFor(modelItem => item.IMEI)
         </td>
@@ -48,6 +50,33 @@
             }
         </td>
     </tr>
+    }
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IMEI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                @if (item.Activo == false)
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
 }
 
 </table>

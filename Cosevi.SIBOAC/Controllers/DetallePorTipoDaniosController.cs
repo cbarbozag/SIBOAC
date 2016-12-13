@@ -68,11 +68,11 @@ namespace Cosevi.SIBOAC.Controllers
 
             var list =
             (from dtd in db.DETALLETIPODAÑO
-             //join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
-             //where dtd.CodigoDanio == codigod
-             //from da in da_join.DefaultIfEmpty()
+             //join dd in db.DETALLETIPODAÑO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = (dd.CodigoTipoDanio.ToString()) } into dd_join
+             //where dtd.CodigoTipoDanio == codigotd
+             //from dd in dd_join.DefaultIfEmpty()
              join td in db.TIPODANO on new { CodigoDano = dtd.CodigoDanio } equals new { CodigoDano = td.codigod } into td_join
-             where dtd.CodigoDanio == codigod
+             where dtd.CodigoDanio == codigod && dtd.CodigoTipoDanio == codigotd
              from td in td_join.DefaultIfEmpty()
              select new
              {
@@ -113,13 +113,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult Create()
         {
             //se llenan los combos
-            IEnumerable<SelectListItem> itemsDanio = db.DAÑO
-              .Select(o => new SelectListItem
-              {
-                  Value = o.Id.ToString(),
-                  Text = o.Descripcion
-              });
-            ViewBag.ComboDanio = itemsDanio;
+            //IEnumerable<SelectListItem> itemsDanio = db.DAÑO
+            //  .Select(o => new SelectListItem
+            //  {
+            //      Value = o.Id.ToString(),
+            //      Text = o.Descripcion
+            //  });
+            //ViewBag.ComboDanio = itemsDanio;
             
             IEnumerable<SelectListItem> itemsTipoDanio = db.TIPODANO
               .Select(o => new SelectListItem
@@ -192,7 +192,7 @@ namespace Cosevi.SIBOAC.Controllers
              //where dtd.CodigoDanio == codigod
              //from da in da_join.DefaultIfEmpty()
              join td in db.TIPODANO on new { CodigoDanio = dtd.CodigoDanio } equals new { CodigoDanio = td.codigod } into td_join
-             where dtd.CodigoDanio == codigod
+             where dtd.CodigoDanio == codigod && dtd.CodigoTipoDanio == codigotd
              from td in td_join.DefaultIfEmpty()
              select new
              {
@@ -265,7 +265,7 @@ namespace Cosevi.SIBOAC.Controllers
              //where dtd.CodigoDanio == codigod
              //from da in da_join.DefaultIfEmpty()
              join td in db.TIPODANO on new { CodigoDanio = dtd.CodigoDanio } equals new { CodigoDanio = td.codigod } into td_join
-             where dtd.CodigoDanio == codigod
+             where dtd.CodigoDanio == codigod && dtd.CodigoTipoDanio == codigotd
              from td in td_join.DefaultIfEmpty()
              select new
              {
