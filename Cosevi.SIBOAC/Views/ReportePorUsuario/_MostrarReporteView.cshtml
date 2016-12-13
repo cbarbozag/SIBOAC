@@ -1,0 +1,82 @@
+﻿<br />
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <h1>Reporte por Usaurio - Estatus Planos o Croquis</h1>
+        </td>
+    </tr>
+</table>
+<br />
+<br />
+
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td>Autoridad Detalle</td>
+            <td>Fecha Accidente</td>
+            <td>Fecha Descarga</td>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in ViewBag.Valor)
+    {
+        <tr>
+            <td>
+                @item.DescripcionAutoridad
+            </td>
+            <td>
+                @item.FechaAccidente
+            </td>
+            <td>
+                @item.FechaDescarga
+            </td>
+        </tr>
+        break;
+    }
+</table>
+<br />
+<br />
+
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td>Usuario</td>
+            <td>Autoridad</td>
+            <td>Fecha de Accidente</td>
+            <td>Serie</td>
+            <td>Parte Oficial</td>
+            <td>Boletas</td>
+            <td>Fecha de descarga</td>
+            <td>Clase de Placa</td>
+            <td>Códgo de Placa</td>
+            <td>Número de Placa</td>
+            <td>Status</td>
+        </tr>
+    </thead>
+
+    @foreach (var item in ViewBag.Valor)
+    {
+
+        <tr>
+            <td>
+                @item.NumeroBoleta
+            </td>
+            <td>
+                @item.DescripcionRol
+            </td>
+            <td>
+                @item.ClasePlaca
+            </td>
+            <td>
+                @item.CodigoPlaca
+            </td>
+            <td>
+                @item.NumeroPlaca
+            </td>
+        </tr>
+    }
+</table>
+
