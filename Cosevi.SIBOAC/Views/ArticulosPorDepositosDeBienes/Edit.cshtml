@@ -31,21 +31,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CodigoDepositosBienes, (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CodigoDepositosBienes, (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control", @disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.CodigoDepositosBienes, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoOpcionFormulario, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CodigoOpcionFormulario, (IEnumerable<SelectListItem>)ViewBag.ComboOpcionFormulario, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CodigoOpcionFormulario, (IEnumerable<SelectListItem>)ViewBag.ComboOpcionFormulario, new { @class = "form-control", @disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.CodigoOpcionFormulario, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoArticulo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownListFor(model => model.CodigoArticulo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new { @class = "form-control", @onchange = "CallChangefunc(this.value)" })
+               @Html.DropDownListFor(model => model.CodigoArticulo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new { @class = "form-control", @disabled = "disabled"@*, @onchange = "CallChangefunc(this.value)"*@ })
                 @Html.ValidationMessageFor(model => model.CodigoArticulo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -73,8 +73,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control", } })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.Estado,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "A" , Text = "Activo" },
+                       new SelectListItem { Value = "I" , Text = "Inactivo" }
+                    },
+                  new { @class = "form-control" })
             </div>
         </div>
         <div class="form-group">
