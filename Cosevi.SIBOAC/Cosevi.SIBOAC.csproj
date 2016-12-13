@@ -181,6 +181,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadOficialController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
     <Compile Include="Controllers\AutoridadsController.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Controllers\DelitoesController.cs" />
     <Compile Include="Controllers\DepositoDePlacasController.cs" />
     <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\DescargaParteOficialController.cs" />
     <Compile Include="Controllers\DetallePorTipoDaniosController.cs" />
     <Compile Include="Controllers\DetallePorTipoSenialsController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
@@ -274,6 +276,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActividadOficial.cs" />
     <Compile Include="Models\AlineacionHorizontal.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -1166,6 +1169,9 @@
     <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
+    <Content Include="Views\DescargaParteOficial\Index.cshtml" />
+    <Content Include="Views\ActividadOficial\Index.cshtml" />
+    <Content Include="Views\ActividadOficial\_ListaActividad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

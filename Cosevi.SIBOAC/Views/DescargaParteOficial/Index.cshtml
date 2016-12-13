@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+<h2>Descarga Parte Oficial</h2>
+<table border="0">
+    <tr>
+        <td width="300">
+            Seleccione una opción para las fechas
+        </td>
+        <td>
+            <table>
+                <tr>
+                  <td>
+                      <input type="radio" name="TipoFecha"/> Fecha de Descarga
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="TipoFecha" /> Fecha de Entrega de Plano
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="TipoFecha" /> Fecha del Accidente
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td width="300">
+            Rango de Fechas
+        </td>
+        <td>
+           Fecha Inicio <input type="text"  name="FechaInicio"/>
+        </td>
+        <td>
+           Fecha Final <input type="text" name="FechaFin" />
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td width="300">
+            Delegación
+        </td>
+        <td>
+         @Html.ListBox("Id", (MultiSelectList)ViewBag.Categories, new { size = 8 })
+
+
+        </td>      
+    </tr>
+</table>
+
+
