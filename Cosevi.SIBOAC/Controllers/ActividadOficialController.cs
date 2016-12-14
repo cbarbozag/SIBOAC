@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Cosevi.SIBOAC.Controllers
 {
+    [Authorize]
     public class ActividadOficialController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();

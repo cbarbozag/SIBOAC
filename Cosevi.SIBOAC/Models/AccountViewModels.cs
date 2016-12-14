@@ -50,16 +50,15 @@ namespace Cosevi.SIBOAC.Models
     {
         [Required]
         [Display(Name = "Usuario", Prompt = "Nombre de usuario")]
-        [EmailAddress]
-        public string Email { get; set; }
+        public string Usuario { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password", Prompt = "Contraseña")]
-        public string Password { get; set; }
+        [Display(Name = "Contrasena", Prompt = "Contraseña")]
+        public string Contrasena { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
+        [Display(Name = "Recordarme?")]
+        public bool Recordarme { get; set; }
     }
 
     public class RegisterViewModel

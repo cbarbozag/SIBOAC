@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    [Authorize(Roles = "SuperAdministrador,Administrador,Oficial,GeneradorDeReportes,Digitador")]
+    //[Authorize(Roles = "SuperAdministrador,Administrador,Oficial,GeneradorDeReportes,Digitador")]
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
