@@ -332,7 +332,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
         {
-            RolUsuarioSIBOAC tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
             if (tipoVehiculoPorCodigoPorClase.Estado == "A")
                 tipoVehiculoPorCodigoPorClase.Estado = "I";
             else

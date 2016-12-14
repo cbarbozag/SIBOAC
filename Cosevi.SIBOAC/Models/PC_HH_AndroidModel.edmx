@@ -1456,7 +1456,7 @@
           <EntitySet Name="TIPODANO" EntityType="PC_HH_AndroidModel.TIPODANO" />
           <EntitySet Name="BitacoraSIBOAC" EntityType="PC_HH_AndroidModel.BitacoraSIBOAC" />
           <EntitySet Name="PARTEOFICIAL" EntityType="PC_HH_AndroidModel.ParteOficial" />
-          <EntitySet Name="BOLETA" EntityType="PC_HH_AndroidModel.BOLETA" />
+          <EntitySet Name="BOLETA" EntityType="PC_HH_AndroidModel.Boletas" />
           <EntitySet Name="PERSONA" EntityType="PC_HH_AndroidModel.PERSONA" />
           <EntitySet Name="GENERALES" EntityType="PC_HH_AndroidModel.GENERALES" />
           <EntitySet Name="ARTICULOXBOLETA" EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" />
@@ -2335,7 +2335,7 @@
           <Property Name="usuario_entregacorte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AmbienteEnCampo" Type="Boolean" />
         </EntityType>
-        <EntityType Name="BOLETA">
+        <EntityType Name="Boletas">
           <Key>
             <PropertyRef Name="fuente" />
             <PropertyRef Name="serie" />
@@ -3580,7 +3580,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BOLETA">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.BOLETA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Boletas">
               <MappingFragment StoreEntitySet="BOLETA">
                 <ScalarProperty Name="kilometro" ColumnName="kilometro" />
                 <ScalarProperty Name="avenida2" ColumnName="avenida2" />
