@@ -1,8 +1,28 @@
-﻿
+﻿@model Cosevi.SIBOAC.Models.Autoridad
+
 @{
     ViewBag.Title = "_PlanoActualView";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>_PlanoActualView</h2>
+@using (Html.BeginForm("Index", "StatusActualDelPlano", FormMethod.Get))
+{
+<table align="center">
+    <tr>
+        <td>
+            <div style="font-family:Arial">
+                <h3 class="text-center">Listado de autoridades judiciales</h3>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.ListBoxFor(m => m.SelectedAutoridades, Model.Autoridades, new { id = "listBox2", size = 10 })
+
+                    //<input id="btnAgregar" type="submit" value="Agregar"/>
+                }
+
+            </div>
+
+        </td>
+    </tr>
+</table>
+}
 
