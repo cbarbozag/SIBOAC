@@ -7,9 +7,11 @@ using Cosevi.SIBOAC.Models;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Cosevi.SIBOAC.Security;
 
 namespace Cosevi.SIBOAC.Controllers
 {
+    [AccessDeniedAuthorize(Roles = "SuperAdministrador")]
     public class ActividadOficialController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();

@@ -7,10 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using Cosevi.SIBOAC.Security;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    [Authorize]
+    [AccessDeniedAuthorize(Roles = "Administrador")]
     public class AlineacionHorizontalsController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
