@@ -265,6 +265,7 @@
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
+    <Compile Include="Controllers\StatusActualDelPlanoController.cs" />
     <Compile Include="Controllers\SIBOACUsuariosController.cs" />
     <Compile Include="Controllers\StatusPlanoController.cs" />
     <Compile Include="Controllers\TiempoesController.cs" />
@@ -543,6 +544,7 @@
     <Compile Include="Models\SIBOACUsuarios.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusActualDelPlano.cs" />
     <Compile Include="Models\StatusPlano.cs" />
     <Compile Include="Models\Tiempo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
@@ -611,6 +613,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050.mdf" />
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050_log.ldf">
+      <DependentUpon>aspnet-Cosevi.SIBOAC-20161115085050.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\Cosevi.SIBOAC.dll" />
@@ -1229,9 +1235,10 @@
     <Content Include="Views\SIBOACUsuarios\Details.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Edit.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Index.cshtml" />
+    <Content Include="Views\StatusActualDelPlano\Index.cshtml" />
+    <Content Include="Views\StatusActualDelPlano\_PlanoActualView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="obj\Release\" />
     <Folder Include="Reportes\" />
     <Folder Include="Views\Usuarios\" />

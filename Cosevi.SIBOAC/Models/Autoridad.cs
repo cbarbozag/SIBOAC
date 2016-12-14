@@ -13,6 +13,7 @@ namespace Cosevi.SIBOAC.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class Autoridad
     {
@@ -47,6 +48,12 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> FechaDeFin { get; set; }
 
         public string DescripcionCodigoOpcionFormulario { get; set;  }
+
+
+        public IEnumerable<string> SelectedAutoridades { get; set; }
+
+
+        public IEnumerable<SelectListItem> Autoridades { get; set; }
 
     }
 }
