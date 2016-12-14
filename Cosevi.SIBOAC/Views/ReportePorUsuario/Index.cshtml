@@ -1,4 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.ParteOficial
+﻿@model Cosevi.SIBOAC.Models.USUARIO
 
 @{
     ViewBag.Title = "Index";
@@ -31,19 +31,20 @@
 
         <tr>
             <td>
-                <input type="submit" value="Generar Reporte" class="btn btn-success" />
+                @*<input type="submit" value="Generar Reporte" class="btn btn-success" />*@
             </td>
         </tr>
     </table>
 
 }
+
 <div style="font-family:Arial" class="text-center">
     @using (Html.BeginForm())
     {
         @Html.ListBoxFor(m => m.SelectedUsuario, Model.UsuariosLis, new { id = "listBox1", size = 20 })
         <br />
-
-            <input id="btnAgregar" type="submit" value="Agregar" />
+            <input id="btnAgregar" type="submit" value="Generar Reporte" class="btn btn-success" />
+            @*<input id="btnAgregar" type="submit" value="Agregar" name="Usuario" />*@
     }
 </div>
         <br />
@@ -55,7 +56,7 @@
             TempData["Message"] = null;
 
 
-            using (Html.BeginForm("Exportar", "ActividadOficial", FormMethod.Get))
+            using (Html.BeginForm("Exportar", "ReportePorUsuario", FormMethod.Get))
             {
                 <div class="panel panel-success">
                     <div class="panel-heading">
@@ -63,7 +64,7 @@
                         <input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
                     </div>
                     <div class="panel-body">
-                        @Html.Partial("_ListaActividad", Model)
+                        @Html.Partial("_MostrarReporteView", Model)
                     </div>
                 </div>
             }

@@ -62,7 +62,5 @@ namespace Cosevi.SIBOAC.Models
         public string usuario_entregacorte { get; set; }
         public Nullable<bool> AmbienteEnCampo { get; set; }
 
-        public IEnumerable<string> SelectedUsuario { get; set; }
-        public IEnumerable<SelectListItem> UsuariosLis { get; set; }
     }
 }

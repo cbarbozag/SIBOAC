@@ -11,7 +11,8 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class USUARIO
     {
         public string Usuario { get; set; }
@@ -28,5 +29,8 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<bool> Reportes { get; set; }
         public Nullable<bool> Modifica { get; set; }
         public Nullable<bool> Imprimeparte { get; set; }
+
+        public IEnumerable<string> SelectedUsuario { get; set; }
+        public IEnumerable<SelectListItem> UsuariosLis { get; set; }
     }
 }
