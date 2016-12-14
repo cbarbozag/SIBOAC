@@ -259,7 +259,6 @@
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
     <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
     <Compile Include="Controllers\RolPorPersonasController.cs" />
-    <Compile Include="Controllers\RolUsuarioSIBOACsController.cs" />
     <Compile Include="Controllers\RutasController.cs" />
     <Compile Include="Controllers\RutasPorDistritosController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
@@ -283,7 +282,6 @@
     <Compile Include="Controllers\TiposPorDocumentoesController.cs" />
     <Compile Include="Controllers\TipoVehiculoPorCodigoPorClasesController.cs" />
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
-    <Compile Include="Controllers\UsuarioSIBOACsController.cs" />
     <Compile Include="Controllers\ValidarCarroceriasController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -521,10 +519,10 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SIBOACRoles.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SIBOACRolesDeUsuarios.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SIBOACSecurityModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -542,7 +540,7 @@
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SIBOACUsuarios.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusActualDelPlano.cs" />
     <Compile Include="Models\StatusPlano.cs" />
@@ -1185,31 +1183,6 @@
     <Content Include="Views\TiposPorDocumentoes\Edit.cshtml" />
     <Content Include="Views\TiposPorDocumentoes\Index.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
-    <Content Include="Views\RolSIBOACs\Create.cshtml" />
-    <Content Include="Views\RolSIBOACs\Delete.cshtml" />
-    <Content Include="Views\RolSIBOACs\Details.cshtml" />
-    <Content Include="Views\RolSIBOACs\Edit.cshtml" />
-    <Content Include="Views\RolSIBOACs\Index.cshtml" />
-    <Content Include="Views\OpcionSIBOACs\Create.cshtml" />
-    <Content Include="Views\OpcionSIBOACs\Delete.cshtml" />
-    <Content Include="Views\OpcionSIBOACs\Details.cshtml" />
-    <Content Include="Views\OpcionSIBOACs\Edit.cshtml" />
-    <Content Include="Views\OpcionSIBOACs\Index.cshtml" />
-    <Content Include="Views\UsuarioSIBOACs\Create.cshtml" />
-    <Content Include="Views\UsuarioSIBOACs\Delete.cshtml" />
-    <Content Include="Views\UsuarioSIBOACs\Details.cshtml" />
-    <Content Include="Views\UsuarioSIBOACs\Edit.cshtml" />
-    <Content Include="Views\UsuarioSIBOACs\Index.cshtml" />
-    <Content Include="Views\RolUsuarioSIBOACs\Create.cshtml" />
-    <Content Include="Views\RolUsuarioSIBOACs\Delete.cshtml" />
-    <Content Include="Views\RolUsuarioSIBOACs\Details.cshtml" />
-    <Content Include="Views\RolUsuarioSIBOACs\Edit.cshtml" />
-    <Content Include="Views\RolUsuarioSIBOACs\Index.cshtml" />
-    <Content Include="Views\RolOpcionSIBOACs\Create.cshtml" />
-    <Content Include="Views\RolOpcionSIBOACs\Delete.cshtml" />
-    <Content Include="Views\RolOpcionSIBOACs\Details.cshtml" />
-    <Content Include="Views\RolOpcionSIBOACs\Edit.cshtml" />
-    <Content Include="Views\RolOpcionSIBOACs\Index.cshtml" />
     <Content Include="Views\ConsecutivoNumeroMarcoes\Create.cshtml" />
     <Content Include="Views\ConsecutivoNumeroMarcoes\Delete.cshtml" />
     <Content Include="Views\ConsecutivoNumeroMarcoes\Details.cshtml" />
