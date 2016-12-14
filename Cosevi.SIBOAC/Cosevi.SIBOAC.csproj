@@ -616,6 +616,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050.mdf" />
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050_log.ldf">
+      <DependentUpon>aspnet-Cosevi.SIBOAC-20161115085050.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\Cosevi.SIBOAC.dll" />
@@ -1220,9 +1224,15 @@
     <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
     <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
+    <Content Include="Views\DescargaParteOficial\Index.cshtml" />
+    <Content Include="Views\ActividadOficial\Index.cshtml" />
+    <Content Include="Views\ActividadOficial\_ListaActividad.cshtml" />
+    <Content Include="Views\ReportePorUsuario\Index.cshtml" />
+    <Content Include="Views\ReportePorUsuario\_MostrarReporteView.cshtml" />
+    <Content Include="Views\StatusActualDelPlano\Index.cshtml" />
+    <Content Include="Views\StatusActualDelPlano\_PlanoActualView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="obj\Release\" />
     <Folder Include="Reportes\" />
   </ItemGroup>
