@@ -11,11 +11,19 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class Boletas
     {
         public string fuente { get; set; }
+
+        [DisplayName("Serie")]
+        [Range(0, int.MaxValue, ErrorMessage = "Solo se permiten números")]
         public int serie { get; set; }
+
+        [DisplayName("Número Boleta")]
         public decimal numero_boleta { get; set; }
         public string codigo_delito { get; set; }
         public string tipo_documento { get; set; }
@@ -95,5 +103,6 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<int> calle2 { get; set; }
         public Nullable<int> avenida2 { get; set; }
         public Nullable<int> kilometro { get; set; }
+
     }
 }

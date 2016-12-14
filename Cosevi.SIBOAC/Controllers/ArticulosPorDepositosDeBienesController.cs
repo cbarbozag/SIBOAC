@@ -44,7 +44,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new RolOpcionSIBOAC
+             .Select(x => new ArticulosPorDepositosDeBienes
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -63,9 +63,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ArticulosPorDepositosDeBienes/Details/5
-        public ActionResult Details(int? CodDepositoBienes,int? CodFormulario, string CodArticulo,string Conducta, DateTime FechaInicio, DateTime FechaFin )
+        public ActionResult Details(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (CodDepositoBienes == null|| CodFormulario == null || CodArticulo ==null || Conducta == null || FechaInicio == null || FechaFin == null )
+            if (CodDepositoBienes == null || CodFormulario == null || CodArticulo == null || Conducta == null || FechaInicio == null || FechaFin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -97,7 +97,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new RolOpcionSIBOAC
+             .Select(x => new ArticulosPorDepositosDeBienes
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -120,18 +120,18 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ArticulosPorDepositosDeBienes/Create
-   
+
         public ActionResult Create()
-        {            
+        {
             //se llenan los combos
             IEnumerable<SelectListItem> itemsDepositosBienes = db.DEPOSITOBIENES
               .Select(o => new SelectListItem
               {
                   Value = o.Id.ToString(),
-                  Text = o.Descripcion                 
+                  Text = o.Descripcion
               });
 
-        
+
             ViewBag.ComboDepositosBienes = itemsDepositosBienes;
 
             IEnumerable<SelectListItem> itemsOpcionFormularios = db.OPCIONFORMULARIO.Where(a => a.Estado == "A")
@@ -150,28 +150,28 @@ namespace Cosevi.SIBOAC.Controllers
                 Text = o.Id.ToString() + " | " + o.Conducta + " | " + o.FechaDeInicio.ToString() + " | " + o.FechaDeFin
             });
             ViewBag.ComboArticulos = itemsCatArticulos;
-        
+
             return View();
         }
-      
 
 
-        public List<OpcionSIBOAC> ListCatalogoArticulos()
+
+        public List<CatalogoDeArticulos> ListCatalogoArticulos()
         {
 
-          
+
             var list =
               (from c in db.CATARTICULO
-               where c.Estado =="A"
+               where c.Estado == "A"
                select new
                {
-                    CodArticulo = c.Id,
-                    Conducta = c.Conducta,
-                    estado = c.Estado,
-                    fecha_inicio = c.FechaDeInicio,
-                    fecha_final = c.FechaDeFin,
+                   CodArticulo = c.Id,
+                   Conducta = c.Conducta,
+                   estado = c.Estado,
+                   fecha_inicio = c.FechaDeInicio,
+                   fecha_final = c.FechaDeFin,
                }).ToList()
-               .Select(x => new OpcionSIBOAC
+               .Select(x => new CatalogoDeArticulos
                {
                    Id = x.CodArticulo,
                    Conducta = x.Conducta,
@@ -179,16 +179,16 @@ namespace Cosevi.SIBOAC.Controllers
                    FechaDeInicio = x.fecha_inicio,
                    FechaDeFin = x.fecha_final,
                });
-           
-          
+
+
             return list.ToList();
-        } 
+        }
         // POST: ArticulosPorDepositosDeBienes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] RolOpcionSIBOAC articulosPorDepositosDeBienes)
+        public ActionResult Create([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes)
         {
             if (ModelState.IsValid)
             {
@@ -253,7 +253,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new RolOpcionSIBOAC
+             .Select(x => new ArticulosPorDepositosDeBienes
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -286,7 +286,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] RolOpcionSIBOAC articulosPorDepositosDeBienes)
+        public ActionResult Edit([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes)
         {
             if (ModelState.IsValid)
             {
@@ -331,7 +331,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new RolOpcionSIBOAC
+             .Select(x => new ArticulosPorDepositosDeBienes
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -358,7 +358,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
-            RolOpcionSIBOAC articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
+            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
             if (articulosPorDepositosDeBienes.Estado == "A")
                 articulosPorDepositosDeBienes.Estado = "I";
             else
@@ -382,9 +382,9 @@ namespace Cosevi.SIBOAC.Controllers
             bool exist = db.ARTICULOSXDEPOSITOSBIENES.Any(x => x.CodigoDepositosBienes == CodDepositoBienes
                                                     && x.CodigoOpcionFormulario == CodFormulario
                                                     && x.CodigoArticulo == CodArticulo
-                                                    &&x.Conducta == Conducta
-                                                    &&x.FechaDeInicio == FechaInicio
-                                                    &&x.FechaDeFin == FechaFin);
+                                                    && x.Conducta == Conducta
+                                                    && x.FechaDeInicio == FechaInicio
+                                                    && x.FechaDeFin == FechaFin);
             if (exist)
             {
                 mensaje = "El registro con los siguientes datos ya se encuentra registrados: código de depósito de bienes" + CodDepositoBienes +
@@ -392,8 +392,8 @@ namespace Cosevi.SIBOAC.Controllers
                            ", código árticulo" + CodArticulo +
                            ", conducta " + Conducta +
                            ", Fecha Inicio " + FechaInicio +
-                           ", fecha Fin " + FechaFin;                          
-                      
+                           ", fecha Fin " + FechaFin;
+
             }
             return mensaje;
         }

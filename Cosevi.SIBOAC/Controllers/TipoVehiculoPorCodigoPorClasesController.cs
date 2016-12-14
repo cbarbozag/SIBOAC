@@ -34,11 +34,11 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     CodigoTiposVehiculos = t.CodigoTiposVehiculos,
                     CodigoClasePlaca = t.CodigoClasePlaca,
-                    CodigoCodigoPlaca=t.CodigoCodigoPlaca,
-                    CodigoTipoVeh =  t.CodigoTipoVeh,
-                    Estado= t.Estado,
-                    FechaDeInicio= t.FechaDeInicio,
-                    FechaDeFin= t.FechaDeFin,
+                    CodigoCodigoPlaca = t.CodigoCodigoPlaca,
+                    CodigoTipoVeh = t.CodigoTipoVeh,
+                    Estado = t.Estado,
+                    FechaDeInicio = t.FechaDeInicio,
+                    FechaDeFin = t.FechaDeFin,
                     DescripcionCodigoTiposVehiculos = ts.Nombre,
                     DescripcionCodigoTipoVeh = v.Descripcion
                 }).ToList()
@@ -70,7 +70,7 @@ namespace Cosevi.SIBOAC.Controllers
                 (
                   from t in db.TIPOVEHCODIGOCLASE
                   join ts in db.TIPOSVEHICULOS on new { Id = t.CodigoTiposVehiculos } equals new { Id = ts.Id } into ts_join
-                  where t.CodigoTiposVehiculos == codigoTiposVehiculos && t.CodigoClasePlaca == codigoClasePlaca && t.CodigoCodigoPlaca == codigoCodigoPlaca && t.CodigoTipoVeh == codigoTipoVeh 
+                  where t.CodigoTiposVehiculos == codigoTiposVehiculos && t.CodigoClasePlaca == codigoClasePlaca && t.CodigoCodigoPlaca == codigoCodigoPlaca && t.CodigoTipoVeh == codigoTipoVeh
                   from ts in ts_join.DefaultIfEmpty()
                   join c in db.CLASE on new { Id = t.CodigoClasePlaca } equals new { Id = c.Id } into c_join
                   from c in c_join.DefaultIfEmpty()
@@ -115,15 +115,15 @@ namespace Cosevi.SIBOAC.Controllers
             string mensaje = "";
             bool exist = db.TIPOVEHCODIGOCLASE.Any(x => x.CodigoTiposVehiculos == codigoTiposVehiculos
                                                     && x.CodigoClasePlaca == codigoClasePlaca
-                                                    &&x.CodigoCodigoPlaca== codigoCodigoPlaca
-                                                    &&x.CodigoTipoVeh== codigoTipoVeh);
+                                                    && x.CodigoCodigoPlaca == codigoCodigoPlaca
+                                                    && x.CodigoTipoVeh == codigoTipoVeh);
             if (exist)
             {
                 mensaje = "El registro con los siguientes datos ya se encuentra registrados:" +
                            " código de tipos vehículos " + codigoTiposVehiculos +
-                           ", código clase placa" + codigoClasePlaca+
-                           ", código placa "+ codigoCodigoPlaca+
-                           ", código tipo vehículo "+ codigoTipoVeh;
+                           ", código clase placa" + codigoClasePlaca +
+                           ", código placa " + codigoCodigoPlaca +
+                           ", código tipo vehículo " + codigoTipoVeh;
 
             }
             return mensaje;
@@ -139,7 +139,7 @@ namespace Cosevi.SIBOAC.Controllers
           });
             ViewBag.ComboTiposVehiculos = itemsTiposVehiculos;
 
-     
+
             IEnumerable<SelectListItem> itemsCodigoPlaca = db.CODIGO
                .Select(o => new SelectListItem
                {
@@ -173,7 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] RolUsuarioSIBOAC tipoVehiculoPorCodigoPorClase)
+        public ActionResult Create([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase)
         {
             if (ModelState.IsValid)
             {
@@ -264,7 +264,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] RolUsuarioSIBOAC tipoVehiculoPorCodigoPorClase)
+        public ActionResult Edit([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase)
         {
             if (ModelState.IsValid)
             {
