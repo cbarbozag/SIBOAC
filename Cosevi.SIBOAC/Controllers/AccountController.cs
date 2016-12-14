@@ -69,29 +69,50 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            // Metodo funcionando bien
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
+            //using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
+            //{
+            //    var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Usuario) && a.Contrasena.Equals(model.Contrasena)).FirstOrDefault();
+            //    if (user != null)
+            //    {
+            //        FormsAuthentication.SetAuthCookie(user.Usuario, model.Recordarme);
+            //        if (Url.IsLocalUrl(returnUrl))
+            //        {
+            //            return RedirectToLocal(returnUrl);
+            //        }
+            //        else
+            //        {
+            //            return RedirectToAction("Profile", "Home");
+            //        }
+            //    }
+            //}            
+            //ModelState.Remove("Password");
+            //ModelState.AddModelError("", "Intento de login fallido.");
+            //return View();            
+
+            if (ModelState.IsValid)
             {
-                return View(model);
-            }
-            using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
-            {
-                var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Usuario) && a.Contrasena.Equals(model.Contrasena)).FirstOrDefault();
-                if (user != null)
+                var isValidUser = Membership.ValidateUser(model.Usuario, model.Contrasena);
+                if (isValidUser)
                 {
-                    FormsAuthentication.SetAuthCookie(user.Usuario, model.Recordarme);
+                    FormsAuthentication.SetAuthCookie(model.Usuario, model.Recordarme);
                     if (Url.IsLocalUrl(returnUrl))
                     {
-                        return RedirectToLocal(returnUrl);
+                        return Redirect(returnUrl);
                     }
                     else
                     {
-                        return RedirectToAction("Profile", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
-            }            
+            }
             ModelState.Remove("Password");
             ModelState.AddModelError("", "Intento de login fallido.");
-            return View();            
+            return View();
         }
 
         [Authorize]
