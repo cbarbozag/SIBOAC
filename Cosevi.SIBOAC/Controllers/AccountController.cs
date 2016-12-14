@@ -69,7 +69,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            // Metodo funcionando bien
+            // Metodo simple, funcionando bien pero Custom Membership es mejor (No borrar)
             //if (!ModelState.IsValid)
             //{
             //    return View(model);

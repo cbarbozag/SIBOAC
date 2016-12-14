@@ -12,7 +12,16 @@ namespace Cosevi.SIBOAC.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             return View();
+        }
+
+        public ActionResult Denied()
+        {
+            TempData["Type"] = "error";
+            TempData["Message"] = "No tiene el rol indicado para acceder a esa funcionalidad.";
+            return RedirectToAction("Index");
         }
     }
 }
