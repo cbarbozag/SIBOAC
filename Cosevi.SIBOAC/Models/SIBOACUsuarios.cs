@@ -21,10 +21,10 @@ namespace Cosevi.SIBOAC.Models
         }
     
         public int Id { get; set; }
+        public string Usuario { get; set; }
         public string Email { get; set; }
         public string Contrasena { get; set; }
         public string Nombre { get; set; }
-        public string Usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SIBOACRolesDeUsuarios> SIBOACRolesDeUsuarios { get; set; }

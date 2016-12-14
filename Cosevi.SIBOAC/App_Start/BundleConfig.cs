@@ -21,7 +21,9 @@ namespace Cosevi.SIBOAC
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap-datepicker.min.js",
+                      "~/Scripts/listgroup.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
                       "~/Scripts/Toastr-2.1.3.min.js"));
@@ -29,8 +31,13 @@ namespace Cosevi.SIBOAC
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                      "~/Scripts/app.js"));
 
+            // Report bundles
+            bundles.Add(new ScriptBundle("~/bundles/reportePorUsuario").Include(
+                     "~/Scripts/reportePorUsuario.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datepicker.min.css",
                       "~/Content/Toastr-2.1.3.min.css",
                       "~/Content/site.css"));
 

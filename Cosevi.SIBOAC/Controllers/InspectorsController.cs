@@ -29,7 +29,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Inspector inspector = db.INSPECTOR.Find(id);
+            UsuarioSIBOAC inspector = db.INSPECTOR.Find(id);
             if (inspector == null)
             {
                 return HttpNotFound();
@@ -48,7 +48,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] Inspector inspector)
+        public ActionResult Create([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] UsuarioSIBOAC inspector)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Inspector inspector = db.INSPECTOR.Find(id);
+            UsuarioSIBOAC inspector = db.INSPECTOR.Find(id);
             if (inspector == null)
             {
                 return HttpNotFound();
@@ -80,7 +80,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] Inspector inspector)
+        public ActionResult Edit([Bind(Include = "Id,TipoDeIdentificacion,Identificacion,Nombre,Apellido1,Apellido2,Adonoren,FechaDeInclusion,FechaDeExclusion,DocumentoDeInclusion,DocumentoDeExclusion,FechaReag,DocumentoReag,CodigoDeDelegacion,Email,Estado,FechaDeInicio,FechaDeFin")] UsuarioSIBOAC inspector)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Inspector inspector = db.INSPECTOR.Find(id);
+            UsuarioSIBOAC inspector = db.INSPECTOR.Find(id);
             if (inspector == null)
             {
                 return HttpNotFound();
@@ -112,7 +112,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Inspector inspector = db.INSPECTOR.Find(id);
+            UsuarioSIBOAC inspector = db.INSPECTOR.Find(id);
             if (inspector.Estado == "A")
                 inspector.Estado = "I";
             else

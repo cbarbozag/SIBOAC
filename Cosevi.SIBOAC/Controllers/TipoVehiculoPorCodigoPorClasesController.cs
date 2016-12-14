@@ -173,7 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase)
+        public ActionResult Create([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] RolUsuarioSIBOAC tipoVehiculoPorCodigoPorClase)
         {
             if (ModelState.IsValid)
             {
@@ -264,7 +264,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase)
+        public ActionResult Edit([Bind(Include = "CodigoTiposVehiculos,CodigoClasePlaca,CodigoCodigoPlaca,CodigoTipoVeh,Estado,FechaDeInicio,FechaDeFin")] RolUsuarioSIBOAC tipoVehiculoPorCodigoPorClase)
         {
             if (ModelState.IsValid)
             {
@@ -332,7 +332,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
         {
-            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
+            RolUsuarioSIBOAC tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
             if (tipoVehiculoPorCodigoPorClase.Estado == "A")
                 tipoVehiculoPorCodigoPorClase.Estado = "I";
             else

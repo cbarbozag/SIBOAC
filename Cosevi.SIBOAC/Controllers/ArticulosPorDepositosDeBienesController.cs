@@ -44,7 +44,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new ArticulosPorDepositosDeBienes
+             .Select(x => new RolOpcionSIBOAC
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -97,7 +97,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new ArticulosPorDepositosDeBienes
+             .Select(x => new RolOpcionSIBOAC
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -156,7 +156,7 @@ namespace Cosevi.SIBOAC.Controllers
       
 
 
-        public List<CatalogoDeArticulos> ListCatalogoArticulos()
+        public List<OpcionSIBOAC> ListCatalogoArticulos()
         {
 
           
@@ -171,7 +171,7 @@ namespace Cosevi.SIBOAC.Controllers
                     fecha_inicio = c.FechaDeInicio,
                     fecha_final = c.FechaDeFin,
                }).ToList()
-               .Select(x => new CatalogoDeArticulos
+               .Select(x => new OpcionSIBOAC
                {
                    Id = x.CodArticulo,
                    Conducta = x.Conducta,
@@ -188,7 +188,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes)
+        public ActionResult Create([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] RolOpcionSIBOAC articulosPorDepositosDeBienes)
         {
             if (ModelState.IsValid)
             {
@@ -253,7 +253,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new ArticulosPorDepositosDeBienes
+             .Select(x => new RolOpcionSIBOAC
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -286,7 +286,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes)
+        public ActionResult Edit([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] RolOpcionSIBOAC articulosPorDepositosDeBienes)
         {
             if (ModelState.IsValid)
             {
@@ -331,7 +331,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionArticulo = c.Descripcion
              }).ToList()
 
-             .Select(x => new ArticulosPorDepositosDeBienes
+             .Select(x => new RolOpcionSIBOAC
              {
                  CodigoDepositosBienes = x.CodigoDepositosBienes,
                  CodigoOpcionFormulario = x.CodigoOpcionFormulario,
@@ -358,7 +358,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
-            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
+            RolOpcionSIBOAC articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
             if (articulosPorDepositosDeBienes.Estado == "A")
                 articulosPorDepositosDeBienes.Estado = "I";
             else

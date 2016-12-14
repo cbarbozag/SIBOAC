@@ -78,7 +78,7 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<Direccion> DIRECCION { get; set; }
         public virtual DbSet<Distrito> DISTRITO { get; set; }
         public virtual DbSet<Examen> EXAMEN { get; set; }
-        public virtual DbSet<Inspector> INSPECTOR { get; set; }
+        public virtual DbSet<UsuarioSIBOAC> INSPECTOR { get; set; }
         public virtual DbSet<Interseccion> INTERSECCION { get; set; }
         public virtual DbSet<NombreDeMenu> Nombre_Menu { get; set; }
         public virtual DbSet<UnidadesDeAlcohol> UNIDADES_ALCOHOL { get; set; }
@@ -89,9 +89,9 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<TiposDeVehiculos> TIPOSVEHICULOS { get; set; }
         public virtual DbSet<Nacionalidad> NACIONALIDAD { get; set; }
         public virtual DbSet<Edad> EDAD { get; set; }
-        public virtual DbSet<ArticulosPorDepositosDeBienes> ARTICULOSXDEPOSITOSBIENES { get; set; }
+        public virtual DbSet<RolOpcionSIBOAC> ARTICULOSXDEPOSITOSBIENES { get; set; }
         public virtual DbSet<Autoridad> AUTORIDAD { get; set; }
-        public virtual DbSet<CatalogoDeArticulos> CATARTICULO { get; set; }
+        public virtual DbSet<OpcionSIBOAC> CATARTICULO { get; set; }
         public virtual DbSet<DanioPorHospital> DAÑOXHOSPITAL { get; set; }
         public virtual DbSet<DetallePorTipoDanio> DETALLETIPODAÑO { get; set; }
         public virtual DbSet<DetallePorTipoSenial> DETALLETIPOSEÑAL { get; set; }
@@ -104,14 +104,9 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<ValidarCarroceria> VALIDARCARROCERIA { get; set; }
         public virtual DbSet<ConsecutivoNumeroMarco> CONSECUTIVONUMEROMARCO { get; set; }
         public virtual DbSet<RolPorPersonaOpcionFormulario> ROLPERSONA_OPCIONFORMULARIO { get; set; }
-        public virtual DbSet<TipoVehiculoPorCodigoPorClase> TIPOVEHCODIGOCLASE { get; set; }
+        public virtual DbSet<RolUsuarioSIBOAC> TIPOVEHCODIGOCLASE { get; set; }
         public virtual DbSet<DepositosBienes> DEPOSITOBIENES { get; set; }
-        public virtual DbSet<OpcionSIBOAC> OpcionSIBOAC { get; set; }
-        public virtual DbSet<RolOpcionSIBOAC> RolOpcionSIBOAC { get; set; }
-        public virtual DbSet<RolSIBOAC> RolSIBOAC { get; set; }
-        public virtual DbSet<RolUsuarioSIBOAC> RolUsuarioSIBOAC { get; set; }
         public virtual DbSet<TIPODANO> TIPODANO { get; set; }
-        public virtual DbSet<UsuarioSIBOAC> UsuarioSIBOAC { get; set; }
         public virtual DbSet<BitacoraSIBOAC> BitacoraSIBOAC { get; set; }
         public virtual DbSet<ParteOficial> PARTEOFICIAL { get; set; }
         public virtual DbSet<BOLETA> BOLETA { get; set; }
@@ -120,5 +115,8 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<ARTICULOXBOLETA> ARTICULOXBOLETA { get; set; }
         public virtual DbSet<VEHICULO> VEHICULO { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<SIBOACRoles> SIBOACRoles { get; set; }
+        public virtual DbSet<SIBOACRolesDeUsuarios> SIBOACRolesDeUsuarios { get; set; }
+        public virtual DbSet<SIBOACUsuarios> SIBOACUsuarios { get; set; }
     }
 }

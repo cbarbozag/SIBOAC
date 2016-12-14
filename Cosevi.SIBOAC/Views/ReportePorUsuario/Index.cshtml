@@ -5,69 +5,227 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center">Reporte por Usuario - Estatus Plano o Croquis</h2>
-<br>
-<br>
-<br>
-@*<br>*@
-@using (Html.BeginForm("Index", "ReportePorUsuario", FormMethod.Get))
-{
+<h2>Reporte por Usuario - Estatus Plano o Croquis</h2>
+<h4>Filtro</h4>
+<hr />
 
-    <table border="0" align="center">
-        <tr>
-            <td>
-                Fecha de Inicio:
-            </td>
-            <td>
-                <input type="date" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
-            </td>
-            <td>
-                Fecha de Finalización:
-            </td>
-            <td>
-                <input type="date" name="FechaFin" value="@Request.Params["FechaFin"]" />
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                @*<input type="submit" value="Generar Reporte" class="btn btn-success" />*@
-            </td>
-        </tr>
-    </table>
-
-}
-
-<div style="font-family:Arial" class="text-center">
-    @using (Html.BeginForm())
-    {
-        @Html.ListBoxFor(m => m.SelectedUsuario, Model.UsuariosLis, new { id = "listBox1", size = 20 })
-        <br />
-            <input id="btnAgregar" type="submit" value="Generar Reporte" class="btn btn-success" />
-            @*<input id="btnAgregar" type="submit" value="Agregar" name="Usuario" />*@
-    }
+<div class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input type="text" class="input-sm form-control" name="start" />
+            <span class="input-group-addon">to</span>
+            <input type="text" class="input-sm form-control" name="end" />
+        </div>
+    </div>
 </div>
-        <br />
-        <br />
+<br />
+<br />
+<br />
+<div class="form-group">
+    <label class="control-label col-md-2">Usuarios</label>
+    <div class="col-md-10">
+        <ul id="list" class="list-group" data-toggle="items">
+            <!-- -->
+        </ul>
+    </div>
+</div>
 
-        @if (ViewBag.Datos != null)
-        {
-            TempData["Type"] = null;
-            TempData["Message"] = null;
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar reporte</button>
+    <button id="todos" type="button" class="btn btn-primary">Todos</button>
+</div>
+
+<br />
+<br />
+<br />
+<h4>Reporte</h4>
+<hr />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-2">
+                Usuario
+            </div>
+            <div class="col-md-1">
+                Autoridad
+            </div>
+            <div class="col-md-1">
+                Fecha de accidente
+            </div>
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Parte oficial
+            </div>
+            <div class="col-md-1">
+                Boleta
+            </div>
+            <div class="col-md-1">
+                Fecha de descarga
+            </div>
+            <div class="col-md-1">
+                Clase de placa
+            </div>
+            <div class="col-md-1">
+                Código de placa
+            </div>
+            <div class="col-md-1">
+                Número de placa
+            </div>
+            <div class="col-md-1">
+                Status
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">
+                Usuario
+            </div>
+            <div class="col-md-1">
+                Autoridad
+            </div>
+            <div class="col-md-1">
+                Fecha de accidente
+            </div>
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Parte oficial
+            </div>
+            <div class="col-md-1">
+                Boleta
+            </div>
+            <div class="col-md-1">
+                Fecha de descarga
+            </div>
+            <div class="col-md-1">
+                Clase de placa
+            </div>
+            <div class="col-md-1">
+                Código de placa
+            </div>
+            <div class="col-md-1">
+                Número de placa
+            </div>
+            <div class="col-md-1">
+                Status
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                Usuario
+            </div>
+            <div class="col-md-1">
+                Autoridad
+            </div>
+            <div class="col-md-1">
+                Fecha de accidente
+            </div>
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Parte oficial
+            </div>
+            <div class="col-md-1">
+                Boleta
+            </div>
+            <div class="col-md-1">
+                Fecha de descarga
+            </div>
+            <div class="col-md-1">
+                Clase de placa
+            </div>
+            <div class="col-md-1">
+                Código de placa
+            </div>
+            <div class="col-md-1">
+                Número de placa
+            </div>
+            <div class="col-md-1">
+                Status
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                Usuario
+            </div>
+            <div class="col-md-1">
+                Autoridad
+            </div>
+            <div class="col-md-1">
+                Fecha de accidente
+            </div>
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Parte oficial
+            </div>
+            <div class="col-md-1">
+                Boleta
+            </div>
+            <div class="col-md-1">
+                Fecha de descarga
+            </div>
+            <div class="col-md-1">
+                Clase de placa
+            </div>
+            <div class="col-md-1">
+                Código de placa
+            </div>
+            <div class="col-md-1">
+                Número de placa
+            </div>
+            <div class="col-md-1">
+                Status
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                Usuario
+            </div>
+            <div class="col-md-1">
+                Autoridad
+            </div>
+            <div class="col-md-1">
+                Fecha de accidente
+            </div>
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Parte oficial
+            </div>
+            <div class="col-md-1">
+                Boleta
+            </div>
+            <div class="col-md-1">
+                Fecha de descarga
+            </div>
+            <div class="col-md-1">
+                Clase de placa
+            </div>
+            <div class="col-md-1">
+                Código de placa
+            </div>
+            <div class="col-md-1">
+                Número de placa
+            </div>
+            <div class="col-md-1">
+                Status
+            </div>
+        </div>
+    </div>
+</div>
 
 
-            using (Html.BeginForm("Exportar", "ReportePorUsuario", FormMethod.Get))
-            {
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
-                        <input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
-                    </div>
-                    <div class="panel-body">
-                        @Html.Partial("_MostrarReporteView", Model)
-                    </div>
-                </div>
-            }
 
-
-        }
+@section Scripts {
+    @Scripts.Render("~/bundles/reportePorUsuario")
+}

@@ -30,7 +30,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
+            OpcionSIBOAC catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
             if (catalogoDeArticulos == null)
             {
                 return HttpNotFound();
@@ -67,7 +67,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Conducta,FechaDeInicio,FechaDeFin,Descripcion,Multa,Estado,Puntos,Totalidad")] CatalogoDeArticulos catalogoDeArticulos)
+        public ActionResult Create([Bind(Include = "Id,Conducta,FechaDeInicio,FechaDeFin,Descripcion,Multa,Estado,Puntos,Totalidad")] OpcionSIBOAC catalogoDeArticulos)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
+            OpcionSIBOAC catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
             if (catalogoDeArticulos == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Conducta,FechaDeInicio,FechaDeFin,Descripcion,Multa,Estado,Puntos,Totalidad")] CatalogoDeArticulos catalogoDeArticulos)
+        public ActionResult Edit([Bind(Include = "Id,Conducta,FechaDeInicio,FechaDeFin,Descripcion,Multa,Estado,Puntos,Totalidad")] OpcionSIBOAC catalogoDeArticulos)
         {
             if (ModelState.IsValid)
             {
@@ -132,7 +132,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
+            OpcionSIBOAC catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
             if (catalogoDeArticulos == null)
             {
                 return HttpNotFound();
@@ -145,7 +145,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
         {
-            CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
+            OpcionSIBOAC catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
             if (catalogoDeArticulos.Estado == "A")
                 catalogoDeArticulos.Estado = "I";
             else

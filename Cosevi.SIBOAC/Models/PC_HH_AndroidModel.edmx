@@ -694,14 +694,6 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
-        <EntityType Name="OpcionSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodigoOpcion" Type="varchar" MaxLength="16" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="96" Nullable="false" />
-        </EntityType>
         <EntityType Name="OTROTIPOTRANSPORTE">
           <Key>
             <PropertyRef Name="codigo" />
@@ -839,14 +831,6 @@
           <Property Name="codrev" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="RolOpcionSIBOAC">
-          <Key>
-            <PropertyRef Name="IdRol" />
-            <PropertyRef Name="IdOpcion" />
-          </Key>
-          <Property Name="IdRol" Type="int" Nullable="false" />
-          <Property Name="IdOpcion" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="ROLPERSONA">
           <Key>
             <PropertyRef Name="codigo" />
@@ -888,22 +872,6 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
-        </EntityType>
-        <EntityType Name="RolSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodigoRol" Type="varchar" MaxLength="32" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="80" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RolUsuarioSIBOAC">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-            <PropertyRef Name="IdRol" />
-          </Key>
-          <Property Name="IdUsuario" Type="int" Nullable="false" />
-          <Property Name="IdRol" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RUTA">
           <Key>
@@ -958,6 +926,31 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SIBOACRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIBOACRolesDeUsuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIBOACUsuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="TIEMPO">
           <Key>
@@ -1129,18 +1122,6 @@
           <Property Name="Modifica" Type="bit" />
           <Property Name="Imprimeparte" Type="bit" />
         </EntityType>
-        <EntityType Name="UsuarioSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CodigoUsuario" Type="varchar" MaxLength="16" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Clave" Type="varchar" MaxLength="16" Nullable="false" />
-          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
-          <Property Name="FechaDeUltimoCambio" Type="datetime" />
-        </EntityType>
         <EntityType Name="VALIDARCARROCERIA">
           <Key>
             <PropertyRef Name="CodigoTipoIdentificacion" />
@@ -1189,6 +1170,30 @@
           <Property Name="NumeroBoleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Serie" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles">
+          <End Role="SIBOACRoles" Type="Self.SIBOACRoles" Multiplicity="1" />
+          <End Role="SIBOACRolesDeUsuarios" Type="Self.SIBOACRolesDeUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIBOACRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIBOACRolesDeUsuarios">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACUsuarios">
+          <End Role="SIBOACUsuarios" Type="Self.SIBOACUsuarios" Multiplicity="1" />
+          <End Role="SIBOACRolesDeUsuarios" Type="Self.SIBOACRolesDeUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIBOACUsuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIBOACRolesDeUsuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
@@ -1245,7 +1250,6 @@
           <EntitySet Name="OPCFORMULARIOXARTICULO" EntityType="Self.OPCFORMULARIOXARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCIONFORMULARIO" EntityType="Self.OPCIONFORMULARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCIONPLANO" EntityType="Self.OPCIONPLANO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OpcionSIBOAC" EntityType="Self.OpcionSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTROTIPOTRANSPORTE" EntityType="Self.OTROTIPOTRANSPORTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PARTEOFICIAL" EntityType="Self.PARTEOFICIAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEATON" EntityType="Self.PEATON" Schema="dbo" store:Type="Tables" />
@@ -1253,18 +1257,18 @@
           <EntitySet Name="PLANTILLAS" EntityType="Self.PLANTILLAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REVISION" EntityType="Self.REVISION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RolOpcionSIBOAC" EntityType="Self.RolOpcionSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA" EntityType="Self.ROLPERSONA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA_OPCIONFORMULARIO" EntityType="Self.ROLPERSONA_OPCIONFORMULARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONA_VEHICULO" EntityType="Self.ROLPERSONA_VEHICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ROLPERSONAXTIPOIDEVEHICULO" EntityType="Self.ROLPERSONAXTIPOIDEVEHICULO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RolSIBOAC" EntityType="Self.RolSIBOAC" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RolUsuarioSIBOAC" EntityType="Self.RolUsuarioSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RUTA" EntityType="Self.RUTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RUTASXDISTRITO" EntityType="Self.RUTASXDISTRITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SENTIDO" EntityType="Self.SENTIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEÑALAMIENTO" EntityType="Self.SEÑALAMIENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIBOACRoles" EntityType="Self.SIBOACRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIBOACRolesDeUsuarios" EntityType="Self.SIBOACRolesDeUsuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIBOACUsuarios" EntityType="Self.SIBOACUsuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIEMPO" EntityType="Self.TIEMPO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_IDENTIFICACION" EntityType="Self.TIPO_IDENTIFICACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_LICENCIA" EntityType="Self.TIPO_LICENCIA" Schema="dbo" store:Type="Tables" />
@@ -1281,10 +1285,17 @@
           <EntitySet Name="TIPOVEHCODIGOCLASE" EntityType="Self.TIPOVEHCODIGOCLASE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIDADES_ALCOHOL" EntityType="Self.UNIDADES_ALCOHOL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UsuarioSIBOAC" EntityType="Self.UsuarioSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles" Association="Self.FK_SIBOACRolesDeUsuarios_SIBOACRoles">
+            <End Role="SIBOACRoles" EntitySet="SIBOACRoles" />
+            <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" Association="Self.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios">
+            <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
+            <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1442,12 +1453,7 @@
           <EntitySet Name="ROLPERSONA_OPCIONFORMULARIO" EntityType="PC_HH_AndroidModel.RolPorPersonaOpcionFormulario" />
           <EntitySet Name="TIPOVEHCODIGOCLASE" EntityType="PC_HH_AndroidModel.TipoVehiculoPorCodigoPorClase" />
           <EntitySet Name="DEPOSITOBIENES" EntityType="PC_HH_AndroidModel.DepositosBienes" />
-          <EntitySet Name="OpcionSIBOAC" EntityType="PC_HH_AndroidModel.OpcionSIBOAC" />
-          <EntitySet Name="RolOpcionSIBOAC" EntityType="PC_HH_AndroidModel.RolOpcionSIBOAC" />
-          <EntitySet Name="RolSIBOAC" EntityType="PC_HH_AndroidModel.RolSIBOAC" />
-          <EntitySet Name="RolUsuarioSIBOAC" EntityType="PC_HH_AndroidModel.RolUsuarioSIBOAC" />
           <EntitySet Name="TIPODANO" EntityType="PC_HH_AndroidModel.TIPODANO" />
-          <EntitySet Name="UsuarioSIBOAC" EntityType="PC_HH_AndroidModel.UsuarioSIBOAC" />
           <EntitySet Name="BitacoraSIBOAC" EntityType="PC_HH_AndroidModel.BitacoraSIBOAC" />
           <EntitySet Name="PARTEOFICIAL" EntityType="PC_HH_AndroidModel.ParteOficial" />
           <EntitySet Name="BOLETA" EntityType="PC_HH_AndroidModel.BOLETA" />
@@ -1456,6 +1462,17 @@
           <EntitySet Name="ARTICULOXBOLETA" EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" />
           <EntitySet Name="VEHICULO" EntityType="PC_HH_AndroidModel.VEHICULO" />
           <EntitySet Name="USUARIO" EntityType="PC_HH_AndroidModel.USUARIO" />
+          <EntitySet Name="SIBOACRoles" EntityType="PC_HH_AndroidModel.SIBOACRoles" />
+          <EntitySet Name="SIBOACRolesDeUsuarios" EntityType="PC_HH_AndroidModel.SIBOACRolesDeUsuarios" />
+          <EntitySet Name="SIBOACUsuarios" EntityType="PC_HH_AndroidModel.SIBOACUsuarios" />
+          <AssociationSet Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles" Association="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles">
+            <End Role="SIBOACRoles" EntitySet="SIBOACRoles" />
+            <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" Association="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios">
+            <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
+            <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2246,56 +2263,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="OpcionSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoOpcion" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="96" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="RolOpcionSIBOAC">
-          <Key>
-            <PropertyRef Name="IdRol" />
-            <PropertyRef Name="IdOpcion" />
-          </Key>
-          <Property Name="IdRol" Type="Int32" Nullable="false" />
-          <Property Name="IdOpcion" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RolSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoRol" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="RolUsuarioSIBOAC">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-            <PropertyRef Name="IdRol" />
-          </Key>
-          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-          <Property Name="IdRol" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="TIPODANO">
           <Key>
             <PropertyRef Name="codigod" />
           </Key>
           <Property Name="codigod" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="descripcion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="UsuarioSIBOAC">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CodigoUsuario" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Clave" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FechaDeUltimoCambio" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BitacoraSIBOAC">
           <Key>
@@ -2571,6 +2544,59 @@
           <Property Name="Modifica" Type="Boolean" />
           <Property Name="Imprimeparte" Type="Boolean" />
         </EntityType>
+        <EntityType Name="SIBOACRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIBOACRolesDeUsuarios" Relationship="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" FromRole="SIBOACRoles" ToRole="SIBOACRolesDeUsuarios" />
+        </EntityType>
+        <EntityType Name="SIBOACRolesDeUsuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SIBOACRoles" Relationship="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" FromRole="SIBOACRolesDeUsuarios" ToRole="SIBOACRoles" />
+          <NavigationProperty Name="SIBOACUsuarios" Relationship="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" FromRole="SIBOACRolesDeUsuarios" ToRole="SIBOACUsuarios" />
+        </EntityType>
+        <EntityType Name="SIBOACUsuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIBOACRolesDeUsuarios" Relationship="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" FromRole="SIBOACUsuarios" ToRole="SIBOACRolesDeUsuarios" />
+        </EntityType>
+        <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles">
+          <End Type="PC_HH_AndroidModel.SIBOACRoles" Role="SIBOACRoles" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.SIBOACRolesDeUsuarios" Role="SIBOACRolesDeUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIBOACRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIBOACRolesDeUsuarios">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACUsuarios">
+          <End Type="PC_HH_AndroidModel.SIBOACUsuarios" Role="SIBOACUsuarios" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.SIBOACRolesDeUsuarios" Role="SIBOACRolesDeUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIBOACUsuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIBOACRolesDeUsuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3480,58 +3506,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OpcionSIBOAC">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OpcionSIBOAC">
-              <MappingFragment StoreEntitySet="OpcionSIBOAC">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="CodigoOpcion" ColumnName="CodigoOpcion" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RolOpcionSIBOAC">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolOpcionSIBOAC">
-              <MappingFragment StoreEntitySet="RolOpcionSIBOAC">
-                <ScalarProperty Name="IdOpcion" ColumnName="IdOpcion" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RolSIBOAC">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolSIBOAC">
-              <MappingFragment StoreEntitySet="RolSIBOAC">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="CodigoRol" ColumnName="CodigoRol" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RolUsuarioSIBOAC">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.RolUsuarioSIBOAC">
-              <MappingFragment StoreEntitySet="RolUsuarioSIBOAC">
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TIPODANO">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.TIPODANO">
               <MappingFragment StoreEntitySet="TIPODANO">
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="codigod" ColumnName="codigod" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UsuarioSIBOAC">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.UsuarioSIBOAC">
-              <MappingFragment StoreEntitySet="UsuarioSIBOAC">
-                <ScalarProperty Name="FechaDeUltimoCambio" ColumnName="FechaDeUltimoCambio" />
-                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="CodigoUsuario" ColumnName="CodigoUsuario" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3797,6 +3776,34 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIBOACRoles">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACRoles">
+              <MappingFragment StoreEntitySet="SIBOACRoles">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIBOACRolesDeUsuarios">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACRolesDeUsuarios">
+              <MappingFragment StoreEntitySet="SIBOACRolesDeUsuarios">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIBOACUsuarios">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACUsuarios">
+              <MappingFragment StoreEntitySet="SIBOACUsuarios">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
