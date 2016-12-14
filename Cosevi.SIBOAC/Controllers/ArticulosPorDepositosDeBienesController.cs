@@ -38,6 +38,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Conducta = a.Conducta,
                  FechaDeInicio = a.FechaDeInicio,
                  FechaDeFin = a.FechaDeFin,
+                 Estado = a.Estado,
                  DescripcionDepositosBienes = d.Descripcion,
                  DescripcionCodigoFormulario = o.Descripcion,
                  DescripcionArticulo = c.Descripcion
@@ -51,6 +52,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Conducta = x.Conducta,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
+                 Estado = x.Estado,
                  DescripcionDepositosBienes = x.DescripcionDepositosBienes,
                  DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
                  DescripcionArticulo = x.DescripcionArticulo
@@ -89,6 +91,7 @@ namespace Cosevi.SIBOAC.Controllers
                  a.Conducta,
                  a.FechaDeInicio,
                  a.FechaDeFin,
+                 a.Estado,
                  DescripcionDepositosBienes = d.Descripcion,
                  DescripcionCodigoFormulario = o.Descripcion,
                  DescripcionArticulo = c.Descripcion
@@ -102,6 +105,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Conducta = x.Conducta,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
+                 Estado = x.Estado,
                  DescripcionDepositosBienes = x.DescripcionDepositosBienes,
                  DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
                  DescripcionArticulo = x.DescripcionArticulo
@@ -243,6 +247,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Conducta = a.Conducta,
                  FechaDeInicio = a.FechaDeInicio,
                  FechaDeFin = a.FechaDeFin,
+                 Estado = a.Estado,
                  DescripcionDepositosBienes = d.Descripcion,
                  DescripcionCodigoFormulario = o.Descripcion,
                  DescripcionArticulo = c.Descripcion
@@ -256,6 +261,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Conducta = x.Conducta,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
+                 Estado = x.Estado,
                  DescripcionDepositosBienes = x.DescripcionDepositosBienes,
                  DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
                  DescripcionArticulo = x.DescripcionArticulo
@@ -319,6 +325,7 @@ namespace Cosevi.SIBOAC.Controllers
                  a.Conducta,
                  a.FechaDeInicio,
                  a.FechaDeFin,
+                 a.Estado,
                  DescripcionDepositosBienes = d.Descripcion,
                  DescripcionCodigoFormulario = o.Descripcion,
                  DescripcionArticulo = c.Descripcion
@@ -332,6 +339,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Conducta = x.Conducta,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
+                 Estado = x.Estado,
                  DescripcionDepositosBienes = x.DescripcionDepositosBienes,
                  DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
                  DescripcionArticulo = x.DescripcionArticulo

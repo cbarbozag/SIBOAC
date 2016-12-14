@@ -24,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoDanio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CodigoDanio, (IEnumerable<SelectListItem>)ViewBag.ComboDanio, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.CodigoDanio, (IEnumerable<SelectListItem>)ViewBag.ComboTipoDanio, new { @class = "form-control", disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.CodigoDanio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,8 +32,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoTipoDanio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownListFor(model => model.CodigoTipoDanio, (IEnumerable<SelectListItem>)ViewBag.ComboTipoDanio, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CodigoTipoDanio, "", new { @class = "text-danger" })
+               @Html.EditorFor(model => model.CodigoTipoDanio, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.CodigoTipoDanio, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -48,8 +48,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.Estado,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "A" , Text = "Activo" },
+                       new SelectListItem { Value = "I" , Text = "Inactivo" }
+                    },
+                  new { @class = "form-control" })
             </div>
         </div>
 

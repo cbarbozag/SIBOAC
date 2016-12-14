@@ -1,0 +1,73 @@
+﻿@model Cosevi.SIBOAC.Models.USUARIO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Reporte por Usuario - Estatus Plano o Croquis</h2>
+<br>
+<br>
+<br>
+@*<br>*@
+@using (Html.BeginForm("Index", "ReportePorUsuario", FormMethod.Get))
+{
+
+    <table border="0" align="center">
+        <tr>
+            <td>
+                Fecha de Inicio:
+            </td>
+            <td>
+                <input type="date" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
+            </td>
+            <td>
+                Fecha de Finalización:
+            </td>
+            <td>
+                <input type="date" name="FechaFin" value="@Request.Params["FechaFin"]" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @*<input type="submit" value="Generar Reporte" class="btn btn-success" />*@
+            </td>
+        </tr>
+    </table>
+
+}
+
+<div style="font-family:Arial" class="text-center">
+    @using (Html.BeginForm())
+    {
+        @Html.ListBoxFor(m => m.SelectedUsuario, Model.UsuariosLis, new { id = "listBox1", size = 20 })
+        <br />
+            <input id="btnAgregar" type="submit" value="Generar Reporte" class="btn btn-success" />
+            @*<input id="btnAgregar" type="submit" value="Agregar" name="Usuario" />*@
+    }
+</div>
+        <br />
+        <br />
+
+        @if (ViewBag.Datos != null)
+        {
+            TempData["Type"] = null;
+            TempData["Message"] = null;
+
+
+            using (Html.BeginForm("Exportar", "ReportePorUsuario", FormMethod.Get))
+            {
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+                        <input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("_MostrarReporteView", Model)
+                    </div>
+                </div>
+            }
+
+
+        }

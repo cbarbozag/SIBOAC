@@ -16,12 +16,12 @@ namespace Cosevi.SIBOAC.Models
 
     public partial class DetallePorTipoSenial
     {
-        [DisplayName("Código Tipo Señal")]
+        [DisplayName("Código Señal Existe")]
         [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracteres.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string CodigoTipoSenial { get; set; }
 
-        [DisplayName("Código Detalle Tipo Señal")]
+        [DisplayName("Código Tipo Señal")]
         [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracteres.")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string Id { get; set; }

@@ -22,9 +22,9 @@ namespace Cosevi.SIBOAC.Controllers
 
             var list =
             (from dtd in db.DETALLETIPODAÑO
-             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
-             from da in da_join.DefaultIfEmpty()
-             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
+             //join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+             //from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoDanio = dtd.CodigoDanio } equals new { CodigoDanio = td.codigod } into td_join
              from td in td_join.DefaultIfEmpty()
              select new
              {
@@ -34,8 +34,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = dtd.Estado,
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
-                 DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTipoDano = td.descripcion
+                 //DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoDano = td.descripcion
 
              }).ToList()
 
@@ -48,8 +48,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = x.Estado,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
-                 DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
+                 //DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano
 
              });
 
@@ -68,11 +68,11 @@ namespace Cosevi.SIBOAC.Controllers
 
             var list =
             (from dtd in db.DETALLETIPODAÑO
-             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
-             where dtd.CodigoDanio == codigod
-             from da in da_join.DefaultIfEmpty()
-             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
-             where dtd.CodigoTipoDanio == codigotd
+             //join dd in db.DETALLETIPODAÑO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = (dd.CodigoTipoDanio.ToString()) } into dd_join
+             //where dtd.CodigoTipoDanio == codigotd
+             //from dd in dd_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoDano = dtd.CodigoDanio } equals new { CodigoDano = td.codigod } into td_join
+             where dtd.CodigoDanio == codigod && dtd.CodigoTipoDanio == codigotd
              from td in td_join.DefaultIfEmpty()
              select new
              {
@@ -82,8 +82,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = dtd.Estado,
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
-                 DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTipoDano = td.descripcion
+                 //DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoDano = td.descripcion
 
              }).ToList()
 
@@ -96,8 +96,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = x.Estado,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
-                 DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
+                 //DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano
 
              }).SingleOrDefault();
 
@@ -113,13 +113,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult Create()
         {
             //se llenan los combos
-            IEnumerable<SelectListItem> itemsDanio = db.DAÑO
-              .Select(o => new SelectListItem
-              {
-                  Value = o.Id.ToString(),
-                  Text = o.Descripcion
-              });
-            ViewBag.ComboDanio = itemsDanio;
+            //IEnumerable<SelectListItem> itemsDanio = db.DAÑO
+            //  .Select(o => new SelectListItem
+            //  {
+            //      Value = o.Id.ToString(),
+            //      Text = o.Descripcion
+            //  });
+            //ViewBag.ComboDanio = itemsDanio;
             
             IEnumerable<SelectListItem> itemsTipoDanio = db.TIPODANO
               .Select(o => new SelectListItem
@@ -188,11 +188,11 @@ namespace Cosevi.SIBOAC.Controllers
 
             var list =
             (from dtd in db.DETALLETIPODAÑO
-             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
-             where dtd.CodigoDanio == codigod
-             from da in da_join.DefaultIfEmpty()
-             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
-             where dtd.CodigoTipoDanio == codigotd
+             //join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+             //where dtd.CodigoDanio == codigod
+             //from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoDanio = dtd.CodigoDanio } equals new { CodigoDanio = td.codigod } into td_join
+             where dtd.CodigoDanio == codigod && dtd.CodigoTipoDanio == codigotd
              from td in td_join.DefaultIfEmpty()
              select new
              {
@@ -202,8 +202,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = dtd.Estado,
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
-                 DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTipoDano = td.descripcion
+                 //DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoDano = td.descripcion
 
              }).ToList()
 
@@ -216,8 +216,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = x.Estado,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
-                 DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
+                 //DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano
 
              }).SingleOrDefault();
 
@@ -228,7 +228,7 @@ namespace Cosevi.SIBOAC.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.ComboDanio = new SelectList(db.DAÑO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigod);
+            //ViewBag.ComboDanio = new SelectList(db.DAÑO.OrderBy(x => x.Descripcion), "Id", "Descripcion", codigod);
             ViewBag.ComboTipoDanio = new SelectList(db.TIPODANO.OrderBy(x => x.descripcion), "codigod", "descripcion", codigotd);
             return View(list);
         }
@@ -261,11 +261,11 @@ namespace Cosevi.SIBOAC.Controllers
 
             var list =
             (from dtd in db.DETALLETIPODAÑO
-             join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
-             where dtd.CodigoDanio == codigod
-             from da in da_join.DefaultIfEmpty()
-             join td in db.TIPODANO on new { CodigoTipoDanio = (string)dtd.CodigoTipoDanio } equals new { CodigoTipoDanio = td.codigod } into td_join
-             where dtd.CodigoTipoDanio == codigotd
+             //join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+             //where dtd.CodigoDanio == codigod
+             //from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoDanio = dtd.CodigoDanio } equals new { CodigoDanio = td.codigod } into td_join
+             where dtd.CodigoDanio == codigod && dtd.CodigoTipoDanio == codigotd
              from td in td_join.DefaultIfEmpty()
              select new
              {
@@ -275,8 +275,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = dtd.Estado,
                  FechaDeInicio = dtd.FechaDeInicio,
                  FechaDeFin = dtd.FechaDeFin,
-                 DescripcionCodigoDano = da.Descripcion,
-                 DescripcionCodigoTipoDano = td.descripcion
+                 //DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoDano = td.descripcion
 
              }).ToList()
 
@@ -289,8 +289,8 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = x.Estado,
                  FechaDeInicio = x.FechaDeInicio,
                  FechaDeFin = x.FechaDeFin,
-                 DescripcionCodigoDano = x.DescripcionCodigoDano,
-                 DescripcionCodigoTipoDano = x.DescripcionCodigoTipoDano
+                 //DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano
 
              }).SingleOrDefault();
 

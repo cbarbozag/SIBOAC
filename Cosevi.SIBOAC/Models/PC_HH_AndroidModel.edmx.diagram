@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2009d6fc668b4bbb971bddc97612a570" Name="Diagram1" ZoomLevel="71">
+      <Diagram DiagramId="2009d6fc668b4bbb971bddc97612a570" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="PC_HH_AndroidModel.EstadoCivil" Width="1.5" PointX="6.625" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.Iluminacion" Width="1.5" PointX="0.625" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.Maniobra" Width="1.5" PointX="2.625" PointY="3.25" IsExpanded="true" />
@@ -99,6 +99,7 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.GENERALES" Width="1.5" PointX="20.375" PointY="0.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" Width="1.5" PointX="20.375" PointY="5.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.VEHICULO" Width="1.5" PointX="20.375" PointY="9.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.USUARIO" Width="1.5" PointX="10.375" PointY="22.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1110,6 +1110,25 @@
           <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
           <Property Name="fecha_fin" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="35" />
+          <Property Name="Nombre" Type="varchar" MaxLength="15" />
+          <Property Name="Apellido1" Type="varchar" MaxLength="15" />
+          <Property Name="Apellido2" Type="varchar" MaxLength="15" />
+          <Property Name="Codigo_Oficina" Type="varchar" MaxLength="4" />
+          <Property Name="Estado" Type="char" MaxLength="1" />
+          <Property Name="Fecha_Registro" Type="datetime" />
+          <Property Name="Fecha_Actualizacion" Type="datetime" />
+          <Property Name="Usuario_Registra" Type="varchar" MaxLength="20" />
+          <Property Name="Maquina" Type="varchar" MaxLength="20" />
+          <Property Name="Reportes" Type="bit" />
+          <Property Name="Modifica" Type="bit" />
+          <Property Name="Imprimeparte" Type="bit" />
+        </EntityType>
         <EntityType Name="UsuarioSIBOAC">
           <Key>
             <PropertyRef Name="Id" />
@@ -1261,6 +1280,7 @@
           <EntitySet Name="TIPOVEH" EntityType="Self.TIPOVEH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOVEHCODIGOCLASE" EntityType="Self.TIPOVEHCODIGOCLASE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UNIDADES_ALCOHOL" EntityType="Self.UNIDADES_ALCOHOL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioSIBOAC" EntityType="Self.UsuarioSIBOAC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
@@ -1435,6 +1455,7 @@
           <EntitySet Name="GENERALES" EntityType="PC_HH_AndroidModel.GENERALES" />
           <EntitySet Name="ARTICULOXBOLETA" EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" />
           <EntitySet Name="VEHICULO" EntityType="PC_HH_AndroidModel.VEHICULO" />
+          <EntitySet Name="USUARIO" EntityType="PC_HH_AndroidModel.USUARIO" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2530,6 +2551,25 @@
           <Property Name="codveh" Type="Int32" />
           <Property Name="NumeroBoleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Serie" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo_Oficina" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Fecha_Registro" Type="DateTime" Precision="3" />
+          <Property Name="Fecha_Actualizacion" Type="DateTime" Precision="3" />
+          <Property Name="Usuario_Registra" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Maquina" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Reportes" Type="Boolean" />
+          <Property Name="Modifica" Type="Boolean" />
+          <Property Name="Imprimeparte" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3737,6 +3777,26 @@
                 <ScalarProperty Name="placa" ColumnName="placa" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="clase" ColumnName="clase" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="Imprimeparte" ColumnName="Imprimeparte" />
+                <ScalarProperty Name="Modifica" ColumnName="Modifica" />
+                <ScalarProperty Name="Reportes" ColumnName="Reportes" />
+                <ScalarProperty Name="Maquina" ColumnName="Maquina" />
+                <ScalarProperty Name="Usuario_Registra" ColumnName="Usuario_Registra" />
+                <ScalarProperty Name="Fecha_Actualizacion" ColumnName="Fecha_Actualizacion" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Codigo_Oficina" ColumnName="Codigo_Oficina" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

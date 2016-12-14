@@ -13,6 +13,7 @@ namespace Cosevi.SIBOAC.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class BOLETA
     {
@@ -102,5 +103,6 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<int> calle2 { get; set; }
         public Nullable<int> avenida2 { get; set; }
         public Nullable<int> kilometro { get; set; }
+
     }
 }
