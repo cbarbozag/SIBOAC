@@ -197,6 +197,7 @@
     <Compile Include="Controllers\ActividadOficialController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\api\ReportesPorUsuarioController.cs" />
     <Compile Include="Controllers\api\SIBOACUsuariosController.cs" />
     <Compile Include="Controllers\AutoridadsController.cs" />
     <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
@@ -487,7 +488,6 @@
     <Compile Include="Models\Provincia.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ReporteUsuario.cs" />
     <Compile Include="Models\Revision.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
