@@ -33,6 +33,7 @@
     function prepararEventos() {
         $('#generar').click(generarReporte);
         $('#todos').click(marcarTodos);
+        $('#limpiar').click(limpiarTodos);
     };
 
     function generarReporte() {
@@ -42,13 +43,15 @@
         var usuariosSeleccionados = $('li.active');
         for (var i = 0; i < usuariosSeleccionados.length; i++) {
             idUsuarios += 'idUsuarios=' + $(usuariosSeleccionados[i]).data('id') + '&';
-        };       
+        };
+
+        limpiar();
 
         $.ajax({
             type: 'GET',
             url: '/api/ReportesPorUsuario?' + idUsuarios + 'desde='+ desde +'&hasta='+ hasta,
             success: function (results) {
-                var reporte = $('#reporte');                
+                var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {
                     reporte.append('<div class="row"><div class="col-md-2">' + results[i].Usuario + '</div><div class="col-md-1">' + results[i].Autoridad + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].Serie + '</div><div class="col-md-1">' + results[i].NumeroParte + '</div><div class="col-md-1">' + results[i].Boletas + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].ClasePlaca + '</div><div class="col-md-1">' + results[i].CodigoPlaca + '</div><div class="col-md-1">' + results[i].NumeroPlaca + '</div><div class="col-md-1">' + results[i].EstadoPlano + '</div></div>');
                 };
@@ -60,19 +63,23 @@
     };
 
     function marcarTodos() {
-        //    $.ajax({
-        //    type: 'GET',
-        //    url: '/api/SIBOACUsuarios',
-        //    ////data: {},
-        //    success: function (results) {
-        //        var list = $('#list');
-        //        for (var i = 0; i < results.length; i++) {
-        //            list.('<li data-id=' + results[i].Id + ' class="list-group-item active">' + results[i].Usuario + ' - ' + results[i].Nombre + '</li>');
-        //        };
-        //    },
-        //    error: function (jqXHR, textStatus, errorThrown) {
-        //        console.log(jqXHR);
-        //    }
-        //});
+        var items = $('li.list-group-item');
+        for (var i = 0; i < items.length; i++) {
+            if (!$(items[i]).hasClass('active')) {
+                $(items[i]).addClass('active')
+            }
+        }
+    };
+
+    function limpiarTodos() {
+        var items = $('li.list-group-item');
+        for (var i = 0; i < items.length; i++) {
+            $(items[i]).removeClass('active');
+        }
+    };
+
+    function limpiar() {
+        var reporte = $('#reporte');
+        reporte.empty();
     };
 })();
