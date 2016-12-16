@@ -1,0 +1,151 @@
+﻿@model Cosevi.SIBOAC.Models.Delegacion
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Reporte por Estado Actual del Plano o Croquis</h2>
+<h4>Filtro</h4>
+<hr />
+
+
+
+<div class="form-group">
+    <label class="control-label col-md-2">Seleccione la opción status plano</label>
+    <div class="col-md-10">
+
+        <div class="radio" id="radioButton">
+            <label><input id="radio" type="radio" name="estadoPlano" value="1">Con Plano</label>
+            <br>
+            <label><input id="radio" type="radio" name="estadoPlano" value="2">Sin Plano</label>
+            <br>
+            <label><input id="radio" type="radio" name="estadoPlano" value="3">Entrega Posterior</label>
+            <br>
+            <label><input id="radio" type="radio" name="estadoPlano" value="4">Entrega Posterior Sí</label>
+            <br>
+            <label><input id="radio" type="radio" name="estadoPlano" value="5">Entrega Posterior No</label>
+        </div>
+
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br />
+<br />
+
+
+<div class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input id="desde" type="text" class="input-sm form-control" name="start" />
+            <span class="input-group-addon">to</span>
+            <input id="hasta" type="text" class="input-sm form-control" name="end" />
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="row" >
+     <div class="col-md-6">
+         <div class="form-group">
+             <label class="control-label col-md-2">Delegación</label>
+             <div class="col-max col-md-10">
+                 <ul id="listaDelegaciones" class="list-group" data-toggle="items">
+                     <!-- -->
+                 </ul>
+             </div>
+             <br>
+             <button id="todosDelegacion" type="button" class="btn btn-primary">Marcar todos</button>
+             <button id="limpiarDelegacion" type="button" class="btn btn-warning">Limpiar</button>
+         </div>
+     </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-2">Autoridad Judicial</label>
+            <div class="col-max col-md-10">
+                <ul id="listaAutoridades" class="list-group" data-toggle="items">
+                    <!-- -->
+                </ul>
+            </div>
+            <br>
+            <button id="todosAutoridad" type="button" class="btn btn-primary">Marcar todos</button>
+            <button id="limpiarAutoridad" type="button" class="btn btn-warning">Limpiar</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<br />
+<br />
+<br />
+
+
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar reporte</button>
+    @*<button id="todos" type="button" class="btn btn-primary">Todos</button>*@
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<h4>Reporte</h4>
+<hr/>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-2">
+                Autoridad
+            </div>
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Parte Oficial
+            </div>
+            <div class="col-md-1">
+                Boletas
+            </div>
+            <div class="col-md-1">
+                Fecha Accidente
+            </div>
+            <div class="col-md-1">
+                Fecha Descarga
+            </div>
+            <div class="col-md-1">
+                Identificación
+            </div>
+            <div class="col-md-1">
+                Nombre
+            </div>
+            <div class="col-md-1">
+                Apellido1
+            </div>
+            <div class="col-md-1">
+                Apellido2
+            </div>
+        </div>
+    </div>
+    <div id="reporte" class="panel-body">
+        <!-- -->
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorEstadoActualDelPlano")
+}

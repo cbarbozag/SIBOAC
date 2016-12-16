@@ -31,9 +31,13 @@ namespace Cosevi.SIBOAC
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                      "~/Scripts/app.js"));
 
-            // Report bundles
+            // Report: reportePorUsuario bundles
             bundles.Add(new ScriptBundle("~/bundles/reportePorUsuario").Include(
                      "~/Scripts/reportePorUsuario.js"));
+
+            // Report: ReportePorEstadoActualDelPlano bundles
+            bundles.Add(new ScriptBundle("~/bundles/ReportePorEstadoActualDelPlano").Include(
+                     "~/Scripts/reportePorEstadoActualDelPlano.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

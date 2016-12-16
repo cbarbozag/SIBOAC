@@ -112,3 +112,10 @@ textarea {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+/* Estilos para reportes */
+
+.col-max {
+    overflow-y: scroll;
+    max-height: 500px;
+}
