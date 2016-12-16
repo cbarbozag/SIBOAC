@@ -9,6 +9,8 @@
         $('.input-daterange').datepicker({
             startView: 2
         });
+
+
     };
 
     function cargarDatos() {
@@ -30,7 +32,7 @@
 
     function prepararEventos() {
         $('#generar').click(generarReporte);
-
+        $('#todos').click(marcarTodos);
     };
 
     function generarReporte() {
@@ -40,9 +42,7 @@
         var usuariosSeleccionados = $('li.active');
         for (var i = 0; i < usuariosSeleccionados.length; i++) {
             idUsuarios += 'idUsuarios=' + $(usuariosSeleccionados[i]).data('id') + '&';
-        };
-
-        
+        };       
 
         $.ajax({
             type: 'GET',
@@ -57,5 +57,22 @@
                 console.log(jqXHR);
             }
         });
+    };
+
+    function marcarTodos() {
+        //    $.ajax({
+        //    type: 'GET',
+        //    url: '/api/SIBOACUsuarios',
+        //    ////data: {},
+        //    success: function (results) {
+        //        var list = $('#list');
+        //        for (var i = 0; i < results.length; i++) {
+        //            list.('<li data-id=' + results[i].Id + ' class="list-group-item active">' + results[i].Usuario + ' - ' + results[i].Nombre + '</li>');
+        //        };
+        //    },
+        //    error: function (jqXHR, textStatus, errorThrown) {
+        //        console.log(jqXHR);
+        //    }
+        //});
     };
 })();

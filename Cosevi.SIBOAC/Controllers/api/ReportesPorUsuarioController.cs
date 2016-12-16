@@ -39,9 +39,12 @@ namespace Cosevi.SIBOAC.Controllers.api
                                 CodigoPlaca = bo.codigo_placa,
                                 NumeroPlaca = bo.numero_placa,
                                 EstadoPlano = pto.StatusPlano
-                            });
+                            }).OrderBy(x => ( x.Usuario + x.Autoridad ) );
+
             return reportes;
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
