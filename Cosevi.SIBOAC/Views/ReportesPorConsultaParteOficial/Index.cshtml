@@ -1,0 +1,161 @@
+﻿@model Cosevi.SIBOAC.Models.Boletas
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Reporte Consulta e Impresión de Parte Oficial</h2>
+<h4>Filtro</h4>
+<hr />
+
+
+<div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Seleccione la opción por la que desea consultar:</label>
+        <div class="col-md-10">
+            <div class="radio" id="radioButton">
+                <label><input id="radio01" type="radio" name="opcionConsulta" checked="checked" value="1">Parte Oficial</label>
+                <br>
+                <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                <br>
+                <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                <br>
+                <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                <br>
+            </div>
+
+        </div>
+    </div>
+    <br/>
+    <br/>
+    @*<style type="text/css">
+        .desc {
+            display: none;
+        }
+    </style>*@
+    <br/>
+    <br />
+    <br />
+    <div id="opc-1" style="display:none">
+        <br>
+        Serie del Parte Oficial
+        <br>
+        <input type='text' name='serieParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br>
+        N° del Parte Oficial
+        <br>
+        <input type='text' name='numeroParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br>
+    </div>
+
+    <div id="opc-2" style="display:none;">
+        <br>
+        Serie de la boleta de citación
+        <br>
+        <input type='text' name='serieBoleta' class="input-sm form-control">
+        <br>
+        N° de la boleta de citación
+        <br>
+        <input type='text' name='numeroBoleta' class="input-sm form-control">
+        <br>
+    </div>
+
+    <div id="opc-3" style="display:none;">
+        <br>
+        Tipo de Identificación
+        <br>
+        <input type='text' name='tipoId' class="input-sm form-control">
+        <br>
+        N° Identificación del Implicado
+        <br>
+        <input type='text' name='numeroID' class="input-sm form-control">
+        <br>
+    </div>
+
+    <div id="opc-4" style="display:none;">
+        <br>
+        N° de Placa
+        <br>
+        <input type='text' name='numeroPlaca' class="input-sm form-control">
+        <br>
+        Código de Placa
+        <br>
+        <input type='text' name='codigoPlaca' class="input-sm form-control">
+        <br>
+        Clase de Placa
+        <br>
+        <input type='text' name='clasePlaca' class="input-sm form-control">
+        <br>
+    </div>
+</div>
+
+<br/>
+
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar reporte</button>
+    @*<button id="todos" type="button" class="btn btn-primary">Todos</button>*@
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<h4>Reporte</h4>
+<hr/>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-1">
+                Serie Boleta
+            </div>
+            <div class="col-md-1">
+                N° Boleta
+            </div>
+            <div class="col-md-1">
+                Fecha Accidente
+            </div>
+            <div class="col-md-1">
+                Autoridad Judicial
+            </div>
+            <div class="col-md-1">
+                Delegación
+            </div>
+            <div class="col-md-1">
+                Clase Placa
+            </div>
+            <div class="col-md-1">
+                Codigo Placa
+            </div>
+            <div class="col-md-1">
+                N° Placa
+            </div>
+            <div class="col-md-1">
+                ID Usuario
+            </div>
+            <div class="col-md-1">
+                Nombre Usuario
+            </div>
+            <div class="col-md-1">
+                Rol Usuario
+            </div>
+            <div class="col-md-1">
+                Serie Parte Oficial
+            </div>
+            <div class="col-md-1">
+                Numero Parte Oficial
+            </div>
+        </div>
+    </div>
+    <div id="reporte" class="panel-body">
+        <!-- -->
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorConsultaParteOficial")
+}
