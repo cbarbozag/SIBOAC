@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -214,6 +215,7 @@
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
     <Compile Include="Controllers\api\ReportePorDescargaDeBoletasController.cs" />
+    <Compile Include="Controllers\api\ReportePorConsultaParteOficialController.cs" />
     <Compile Include="Controllers\api\ReportePorEstadoActualDelPlanoController.cs" />
     <Compile Include="Controllers\api\ReportesPorUsuarioController.cs" />
     <Compile Include="Controllers\api\AutoridadJudicialController.cs" />
@@ -276,6 +278,7 @@
     <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorUsuarioController.cs" />
+    <Compile Include="Controllers\ReportesPorConsultaParteOficialController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
     <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
@@ -806,6 +809,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ReportePorDescargaDeBoletas.js" />
     <Content Include="Scripts\ReportePorEstadoActualDelPlano.js" />
+    <Content Include="Scripts\ReportesPorConsultaParteOficial.js" />
     <Content Include="Scripts\reportePorUsuario.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1258,7 +1262,6 @@
     <Content Include="Views\SIBOACUsuarios\Edit.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Index.cshtml" />
     <Content Include="Views\ReportePorEstadoActualDelPlano\Index.cshtml" />
-    <Content Include="Views\ReportePorDescargaDeBoletas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

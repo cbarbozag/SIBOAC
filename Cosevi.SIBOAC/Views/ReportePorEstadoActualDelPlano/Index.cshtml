@@ -42,7 +42,7 @@
     <div class="col-md-10">
         <div class="input-daterange input-group" id="datepicker">
             <input id="desde" type="text" class="input-sm form-control" name="start" />
-            <span class="input-group-addon">to</span>
+            <span class="input-group-addon">a</span>
             <input id="hasta" type="text" class="input-sm form-control" name="end" />
         </div>
     </div>
@@ -82,28 +82,21 @@
     </div>
 </div>
 
-
-
-
-
-
 <br />
 <br />
-<br />
-
 
 <div class="pull-right">
     <button id="generar" type="button" class="btn btn-success">Generar reporte</button>
     @*<button id="todos" type="button" class="btn btn-primary">Todos</button>*@
 </div>
 
-
-<br/>
 <br/>
 <br/>
 <h4>Reporte</h4>
 <hr/>
 
+<input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+<input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
 
 <div class="panel panel-primary">
     <div class="panel-heading">

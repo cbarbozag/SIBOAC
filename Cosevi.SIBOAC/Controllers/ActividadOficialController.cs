@@ -71,8 +71,8 @@ namespace Cosevi.SIBOAC.Controllers
             }
             else
                 return DownloadPartialViewPDF();
-
         }
+
         public ActionResult ExportToExcel()
         {
             var grid = new GridView();
