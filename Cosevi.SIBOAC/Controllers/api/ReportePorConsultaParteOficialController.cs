@@ -13,7 +13,9 @@ namespace Cosevi.SIBOAC.Controllers.api
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: api/ReportePorConsultaParteOficial
-        public IQueryable<DTOReportePorConsultaParteOficial> GetReportePorConsultaParteOficial([FromUri] string serieParte, [FromUri] string numeroParte)
+        public IQueryable<DTOReportePorConsultaParteOficial> GetReportePorConsultaParteOficial([FromUri] string  serieParte , 
+            [FromUri] string numeroParte, [FromUri] int ? serieBoleta, [FromUri] decimal ? numeroBoleta, [FromUri] string tipoId, 
+            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
         {
             var reportes = (from pto in db.PARTEOFICIAL
                             join bo in db.BOLETA on new { serie_parteoficial = pto.Serie, numeroparte = pto.NumeroParte }
@@ -23,9 +25,10 @@ namespace Cosevi.SIBOAC.Controllers.api
                             join de in db.DELEGACION on new { codigo_delegacion = (string)bo.codigo_delegacion } equals new { codigo_delegacion = de.Id }
                             join ro in db.ROLPERSONA on new { codrol = (string)bo.codrol } equals new { codrol = ro.Id }
                             where
-                             pto.Serie == serieParte &&
-                             pto.NumeroParte == numeroParte
-                             
+                            (serieParte == null ? 1 == 1: pto.Serie == serieParte && numeroParte==null? 1==1: pto.NumeroParte == numeroParte) &&
+                            (serieBoleta == null ? 1 == 1 : bo.serie == serieBoleta && numeroBoleta == null ? 1 == 1 : bo.numero_boleta == numeroBoleta) &&
+                            (tipoId == null ? 1 == 1 : pe.tipo_ide == tipoId && numeroID == null ? 1 == 1 : pe.identificacion == numeroID) &&
+                            (numeroPlaca == null ? 1 == 1 : bo.numero_placa == numeroPlaca && codigoPlaca == null ? 1 == 1 : bo.codigo_placa == codigoPlaca && clasePlaca == null ? 1 == 1:bo.clase_placa == clasePlaca)
                             select new DTOReportePorConsultaParteOficial
                             {
                                 SerieBoleta = bo.serie,
@@ -35,10 +38,9 @@ namespace Cosevi.SIBOAC.Controllers.api
                                 select new {a.Descripcion}).Distinct()).FirstOrDefault().Descripcion),
                                 Delegacion = de.Descripcion,
                                 ClasePlaca = bo.clase_placa,
-                                CodigoPlaca = bo.codigo_placa,
-                                NumeroPlaca = bo.numero_placa,
-                                Identificacion = pe.identificacion,
-                                Nombre = pe.nombre + pe.apellido1 + pe.apellido2,
+                                CodigoNumeroPlaca = bo.codigo_placa +" " + bo.numero_boleta,
+                                Identificacion = pe.tipo_ide+" "+pe.identificacion,
+                                Nombre = pe.nombre +" " + pe.apellido1 + " "+ pe.apellido2,
                                 Rol = ro.Descripcion,
                                 SerieParte = bo.serie_parteoficial,
                                 NumeroParte = bo.numeroparte
@@ -67,8 +69,7 @@ namespace Cosevi.SIBOAC.Controllers.api
         public string Autoridad { get; set; }
         public string Delegacion { get; set; }
         public string ClasePlaca { get; set; }
-        public string CodigoPlaca { get; set; }
-        public string NumeroPlaca { get; set; }
+        public string CodigoNumeroPlaca { get; set; }
         public string Identificacion { get; set; }
         public string Nombre { get; set; }
         public string Rol { get; set; }
