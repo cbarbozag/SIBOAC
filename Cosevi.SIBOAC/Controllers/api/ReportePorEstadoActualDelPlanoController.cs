@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Controllers.api
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: api/ReportePorEstadoActualDelPlano
-        public IQueryable<DTOReportePorEstadoActualDelPlano> GetReportesPorDelegacion([FromUri] Int16 statusPlano, [FromUri] string[] idDelegaciones, [FromUri] string[] idAutoridades, [FromUri] DateTime desde, [FromUri] DateTime hasta)
+        public IQueryable<DTOReportePorEstadoActualDelPlano> GetReportePorEstadoActualDelPlano([FromUri] int statusPlano, [FromUri] string[] idDelegaciones, [FromUri] string[] idAutoridades, [FromUri] DateTime desde, [FromUri] DateTime hasta)
         {
 
             var reportes = (from bo in db.BOLETA
@@ -27,7 +27,8 @@ namespace Cosevi.SIBOAC.Controllers.api
                             join au in db.AUTORIDAD on new { Id = bo.codigo_autoridad_registra } equals new { Id = (string)au.Id }
                             where
                               po.StatusPlano == statusPlano &&
-                              po.Fecha >= desde && po.Fecha <= hasta &&
+                              po.Fecha >= desde && po.Fecha <= hasta
+                              &&
                               idDelegaciones.Contains(bo.codigo_delegacion) &&
                               idAutoridades.Contains(bo.codigo_autoridad_registra)
                             select new DTOReportePorEstadoActualDelPlano
@@ -39,9 +40,7 @@ namespace Cosevi.SIBOAC.Controllers.api
                                 FechaAccidente = po.Fecha,
                                 FechaDescarga = bo.fecha_descarga,
                                 identificacion = bo.identificacion,
-                                nombre = per.nombre,
-                                apellido1 = per.apellido1,
-                                apellido2 = per.apellido2
+                                nombre = per.nombre + " " + per.apellido1 + " " + per.apellido2
 
                             }).Distinct();
             return reportes;

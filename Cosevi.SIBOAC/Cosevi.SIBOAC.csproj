@@ -213,6 +213,7 @@
     <Compile Include="Controllers\ActividadOficialController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\api\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\api\ReportePorEstadoActualDelPlanoController.cs" />
     <Compile Include="Controllers\api\ReportesPorUsuarioController.cs" />
     <Compile Include="Controllers\api\AutoridadJudicialController.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorUsuarioController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
     <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
@@ -802,6 +804,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\listgroup.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ReportePorDescargaDeBoletas.js" />
     <Content Include="Scripts\ReportePorEstadoActualDelPlano.js" />
     <Content Include="Scripts\reportePorUsuario.js" />
     <Content Include="Scripts\respond.js" />
@@ -1255,9 +1258,11 @@
     <Content Include="Views\SIBOACUsuarios\Edit.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Index.cshtml" />
     <Content Include="Views\ReportePorEstadoActualDelPlano\Index.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeBoletas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
+    <Folder Include="Views\Index\" />
     <Folder Include="Views\Usuarios\" />
   </ItemGroup>
   <ItemGroup>

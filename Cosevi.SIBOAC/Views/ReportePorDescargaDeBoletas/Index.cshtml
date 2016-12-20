@@ -1,0 +1,95 @@
+﻿@model Cosevi.SIBOAC.Models.Boletas
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte corto por descarga de boletas</h2>
+<h4>Filtro</h4>
+<hr />
+
+<div class="form-group">
+    <label class="control-label col-md-2">Seleccionar criterio para el reporte</label>
+    <div class="col-md-10">
+
+        <div class="radio" id="radioButton">
+            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
+            <br>
+            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<div class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input id="desde" type="text" class="input-sm form-control" name="start" />
+            <span class="input-group-addon">to</span>
+            <input id="hasta" type="text" class="input-sm form-control" name="end" />
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar reporte</button>
+</div>
+
+
+<br />
+<br />
+<br />
+<h4>Reporte</h4>
+<hr />
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Número de boleta
+            </div>
+            <div class="col-md-1">
+                Fecha accidente
+            </div>
+            <div class="col-md-1">
+                Autoridad judicial
+            </div>
+            <div class="col-md-1">
+                Delegación
+            </div>
+            <div class="col-md-1">
+                Clase de placa
+            </div>
+            <div class="col-md-1">
+                Código de placa
+            </div>
+            <div class="col-md-1">
+                Número de placa
+            </div>
+            <div class="col-md-1">
+                Id de usuario
+            </div>
+            <div class="col-md-1">
+                Nombre
+            </div>
+        </div>
+    </div>
+    <div id="reporte" class="panel-body">
+        <!-- -->
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorDescargaDeBoletas")
+}

@@ -62,11 +62,11 @@
     function generarReporte() {
         var idDelegaciones = '';
         var idAutoridades = '';
-        var idRadioButton = $('#radio').val();
+        var idRadioButton = $('input[name="radio"]:checked').val();
         var desde = $('#desde').val();
         var hasta = $('#hasta').val();
-        var delegacionesSeleccionadas = $('li.active');
-        var autoridadesSeleccionadas = $('li.active');
+        var delegacionesSeleccionadas = $('#listaDelegaciones li.active');
+        var autoridadesSeleccionadas = $('#listaAutoridades li.active');
         for (var i = 0; i < delegacionesSeleccionadas.length; i++) {
             idDelegaciones += 'idDelegaciones=' + $(delegacionesSeleccionadas[i]).data('id') + '&';
         };
@@ -75,12 +75,11 @@
             idAutoridades += 'idAutoridades=' + $(autoridadesSeleccionadas[i]).data('id') + '&';
         };
         
-
-        
+        limpiar();
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorEstadoActualDelPlano?' + idRadioButton + idDelegaciones + idAutoridades + 'desde=' + desde + '&hasta=' + hasta,
+            url: '/api/ReportePorEstadoActualDelPlano?statusPlano=' + idRadioButton+'&' + idDelegaciones + idAutoridades + '&desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
                 var reporte = $('#reporte');                
                 for (var i = 0; i < results.length; i++) {
