@@ -1,70 +1,78 @@
-﻿//using Cosevi.SIBOAC.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Net;
-//using System.Net.Http;
-//using System.Web.Http;
+﻿using Cosevi.SIBOAC.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
-//namespace Cosevi.SIBOAC.Controllers.api
-//{
-//    public class ReportePorConsultaParteOficialController : ApiController
-//    {
-//        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+namespace Cosevi.SIBOAC.Controllers.api
+{
+    public class ReportePorConsultaParteOficialController : ApiController
+    {
+        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-//        // GET: api/ReportePorConsultaParteOficial
-//        public IQueryable<DTOReportePorConsultaParteOficial> GetReportePorConsultaParteOficial([FromUri] string[] idUsuarios, [FromUri] DateTime desde, [FromUri] DateTime hasta)
-//        {
-//            var reportes = (from bo in db.BOLETA
-//                            join pto in db.PARTEOFICIAL on new { numeroparte = bo.numeroparte } equals new { numeroparte = pto.NumeroParte }
-//                            join su in db.SIBOACUsuarios on new { usuario_entregaPlano = pto.usuario_entregaPlano } equals new { usuario_entregaPlano = su.Id.ToString() }
-//                            where
-//                             idUsuarios.Contains(pto.usuario_entregaPlano) &&
-//                             pto.Fecha >= desde && pto.Fecha <= hasta
-//                            select new DTOReportesPorUsuario
-//                            {
-//                                Usuario = su.Usuario,
-//                                Nombre = su.Nombre,
-//                                Autoridad = bo.codigo_autoridad_registra,
-//                                FechaAccidente = pto.Fecha,
-//                                Serie = bo.serie.ToString(),
-//                                NumeroParte = bo.numeroparte,
-//                                Boletas = bo.numero_boleta,
-//                                FechaDescarga = bo.fecha_descarga,
-//                                ClasePlaca = bo.clase_placa,
-//                                CodigoPlaca = bo.codigo_placa,
-//                                NumeroPlaca = bo.numero_placa,
-//                                EstadoPlano = pto.StatusPlano
-//                            }).OrderBy(x => (x.Usuario + x.Autoridad));
+        // GET: api/ReportePorConsultaParteOficial
+        public IQueryable<DTOReportePorConsultaParteOficial> GetReportePorConsultaParteOficial([FromUri] string serieParte, [FromUri] string numeroParte)
+        {
+            var reportes = (from pto in db.PARTEOFICIAL
+                            join bo in db.BOLETA on new { serie_parteoficial = pto.Serie, numeroparte = pto.NumeroParte }
+                            equals new { bo.serie_parteoficial, bo.numeroparte }
+                            join pe in db.PERSONA on new { bo.tipo_ide, bo.identificacion, bo.numero_boleta, bo.serie }
+                            equals new { pe.tipo_ide, pe.identificacion, numero_boleta = pe.NumeroBoleta, serie = pe.Serie }
+                            join de in db.DELEGACION on new { codigo_delegacion = (string)bo.codigo_delegacion } equals new { codigo_delegacion = de.Id }
+                            join ro in db.ROLPERSONA on new { codrol = (string)bo.codrol } equals new { codrol = ro.Id }
+                            where
+                             pto.Serie == serieParte &&
+                             pto.NumeroParte == numeroParte
+                             
+                            select new DTOReportePorConsultaParteOficial
+                            {
+                                SerieBoleta = bo.serie,
+                                NumeroBoleta = bo.numero_boleta,
+                                FechaAccidente = pto.Fecha,
+                                Autoridad = (((from a in db.AUTORIDAD where bo.codigo_autoridad_registra == a.Id
+                                select new {a.Descripcion}).Distinct()).FirstOrDefault().Descripcion),
+                                Delegacion = de.Descripcion,
+                                ClasePlaca = bo.clase_placa,
+                                CodigoPlaca = bo.codigo_placa,
+                                NumeroPlaca = bo.numero_placa,
+                                Identificacion = pe.identificacion,
+                                Nombre = pe.nombre + pe.apellido1 + pe.apellido2,
+                                Rol = ro.Descripcion,
+                                SerieParte = bo.serie_parteoficial,
+                                NumeroParte = bo.numeroparte
+                            }).OrderBy(x => (x.SerieBoleta + x.NumeroBoleta));
 
-//            return reportes;
-//        }
+            return reportes;
+        }
 
 
 
-//        protected override void Dispose(bool disposing)
-//        {
-//            if (disposing)
-//            {
-//                db.Dispose();
-//            }
-//            base.Dispose(disposing);
-//        }
-//    }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
 
-//    public class DTOReportePorConsultaParteOficial
-//    {
-//        public string Usuario { get; set; }
-//        public string Nombre { get; set; }
-//        public string Autoridad { get; set; }
-//        public DateTime FechaAccidente { get; set; }
-//        public string Serie { get; set; }
-//        public string NumeroParte { get; set; }
-//        public decimal Boletas { get; set; }
-//        public Nullable<DateTime> FechaDescarga { get; set; }
-//        public string NumeroPlaca { get; set; }
-//        public string ClasePlaca { get; set; }
-//        public string CodigoPlaca { get; set; }
-//        public Nullable<int> EstadoPlano { get; set; }
-//    }
-//}
+    public class DTOReportePorConsultaParteOficial
+    {
+        public int SerieBoleta { get; set; }
+        public decimal NumeroBoleta  { get; set; }
+        public DateTime FechaAccidente { get; set; }
+        public string Autoridad { get; set; }
+        public string Delegacion { get; set; }
+        public string ClasePlaca { get; set; }
+        public string CodigoPlaca { get; set; }
+        public string NumeroPlaca { get; set; }
+        public string Identificacion { get; set; }
+        public string Nombre { get; set; }
+        public string Rol { get; set; }
+        public string SerieParte { get; set; }
+        public string NumeroParte { get; set; }
+    }
+}
