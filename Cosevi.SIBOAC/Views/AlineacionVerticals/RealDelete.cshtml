@@ -1,38 +1,32 @@
-﻿@model Cosevi.SIBOAC.Models.RolDePersonaPorTipoDeIdentificacionDeVehiculo
+﻿@model Cosevi.SIBOAC.Models.AlineacionVertical
 
 @{
-    ViewBag.Title = "Inactivar";
+    ViewBag.Title = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.Estado == "A")
-{
-    <h2>Inactivar</h2>
-}
-else
-{
-    <h2>Activar</h2>
-}
+<h2>Eliminar</h2>
 
-<h3>Esta seguro que desea cambiar el estado?</h3>
+<h3>¿Está seguro de eliminar este registro?</h3>
 <div>
-    <h4>Rol de Persona por Tipo de Identificación de Vehículo</h4>
+    <h4>Alineación Vertical</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CodigoDeRol)
+            @Html.DisplayNameFor(model => model.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DescripcionRol)
+            @Html.DisplayFor(model => model.Id)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CodigoDeIdentificacionVehiculo)
+            @Html.DisplayNameFor(model => model.Descripcion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DescripcionTipoVehiculo)
+            @Html.DisplayFor(model => model.Descripcion)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
@@ -63,15 +57,7 @@ else
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            @if (Model.Estado == "A")
-            {
-                <input type="submit" value="Inactivar" class="btn btn-warning" />
-            }
-            else
-            {
-                <input type="submit" value="Activar" class="btn btn-success" />
-            }
-            |
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
             @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }
