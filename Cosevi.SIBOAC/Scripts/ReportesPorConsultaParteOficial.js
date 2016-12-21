@@ -24,6 +24,7 @@
     };
 
     function generarReporte() {
+
         var serieParte = $('#serieParte').val();
         var numeroParte = $('#numeroParte').val();
         var serieBoleta = $('#serieBoleta').val();
@@ -33,6 +34,8 @@
         var numeroPlaca = $('#numeroPlaca').val();
         var codigoPlaca = $('#codigoPlaca').val();
         var clasePlaca = $('#clasePlaca').val();
+
+        limpiar();
 
         $.ajax({
             type: 'GET',
@@ -48,6 +51,11 @@
                 console.log(jqXHR);
             }
         });
+    };
+
+    function limpiar() {
+        var reporte = $('#reporte');
+        reporte.empty();
     };
 
 })();
