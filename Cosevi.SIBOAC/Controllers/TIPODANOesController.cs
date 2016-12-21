@@ -61,6 +61,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                db.TIPODANO.Add(tIPODANO);
                 string mensaje = Verificar(tIPODANO.codigod);
                 if (mensaje == "")
                 {
