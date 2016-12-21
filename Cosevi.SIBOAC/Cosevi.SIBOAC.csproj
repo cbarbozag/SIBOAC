@@ -1262,6 +1262,9 @@
     <Content Include="Views\SIBOACUsuarios\Edit.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Index.cshtml" />
     <Content Include="Views\ReportePorEstadoActualDelPlano\Index.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\RealDelete.cshtml" />
+    <Content Include="Views\AlineacionVerticals\RealDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
