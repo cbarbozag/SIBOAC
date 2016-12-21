@@ -19,10 +19,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+            //ViewBag.ComboRolPersona = TempData["ComboRolPersona"] != null ? TempData["ComboRolPersona"].ToString() : "";
 
             var list =
            (from ro in db.ROLPERSONA_OPCIONFORMULARIO
-            join r in db.ROLPERSONA on ro.CodigoRolPersona.ToString() equals r.Id into r_join
+            join r in db.ROLPERSONA on new { Id = ro.CodigoRolPersona.ToString() } equals new { Id = r.Id } into r_join
             from r in r_join.DefaultIfEmpty()
             join o in db.OPCIONFORMULARIO on new { Id = ro.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
             from o in o_join.DefaultIfEmpty()
@@ -33,8 +34,8 @@ namespace Cosevi.SIBOAC.Controllers
                 Estado = ro.Estado,
                 FechaDeInicio = ro.FechaDeInicio,
                 FechaDeFin = ro.FechaDeFin,
-                DescripcionCodigoOpcionFormulario = r.Descripcion,
-                DescripcionCodigoRolPersona = o.Descripcion
+                DescripcionCodigoOpcionFormulario = o.Descripcion,
+                DescripcionCodigoRolPersona = r.Descripcion
             }).ToList()
 
 
@@ -93,8 +94,8 @@ namespace Cosevi.SIBOAC.Controllers
                 Estado = ro.Estado,
                 FechaDeInicio = ro.FechaDeInicio,
                 FechaDeFin = ro.FechaDeFin,
-                DescripcionCodigoOpcionFormulario = r.Descripcion,
-                DescripcionCodigoRolPersona = o.Descripcion
+                DescripcionCodigoOpcionFormulario = o.Descripcion,
+                DescripcionCodigoRolPersona = r.Descripcion
             }).ToList()
 
 
@@ -125,9 +126,10 @@ namespace Cosevi.SIBOAC.Controllers
             IEnumerable<SelectListItem> itemsRol = db.ROLPERSONA
              .Select(o => new SelectListItem
              {
-                 Value = o.Id.ToString(),
+                 Value = o.Id.Trim(),
                  Text = o.Descripcion
              });
+            //TempData["ComboRolPersona"] = itemsRol;
             ViewBag.ComboRolPersona = itemsRol;
 
             IEnumerable<SelectListItem> itemsOpcionFormulario = db.OPCIONFORMULARIO
@@ -150,6 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 db.ROLPERSONA_OPCIONFORMULARIO.Add(rolPorPersonaOpcionFormulario);
                 string mensaje = Verificar(rolPorPersonaOpcionFormulario.CodigoRolPersona, rolPorPersonaOpcionFormulario.CodigoOpcionFormulario);
                 if (mensaje == "")
@@ -196,8 +199,8 @@ namespace Cosevi.SIBOAC.Controllers
                Estado = ro.Estado,
                FechaDeInicio = ro.FechaDeInicio,
                FechaDeFin = ro.FechaDeFin,
-               DescripcionCodigoOpcionFormulario = r.Descripcion,
-               DescripcionCodigoRolPersona = o.Descripcion
+               DescripcionCodigoOpcionFormulario = o.Descripcion,
+               DescripcionCodigoRolPersona = r.Descripcion
            }).ToList()
 
 
@@ -265,8 +268,8 @@ namespace Cosevi.SIBOAC.Controllers
                 Estado = ro.Estado,
                 FechaDeInicio = ro.FechaDeInicio,
                 FechaDeFin = ro.FechaDeFin,
-                DescripcionCodigoOpcionFormulario = r.Descripcion,
-                DescripcionCodigoRolPersona = o.Descripcion
+                DescripcionCodigoOpcionFormulario = o.Descripcion,
+                DescripcionCodigoRolPersona = r.Descripcion
             }).ToList()
 
 
@@ -306,11 +309,15 @@ namespace Cosevi.SIBOAC.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            try
             {
-                db.Dispose();
+                if (disposing)
+                {
+                    db.Dispose();
+                }
+                base.Dispose(disposing);
             }
-            base.Dispose(disposing);
+            catch (Exception ex){ Console.WriteLine(ex.Message); }
         }
     }
 }
