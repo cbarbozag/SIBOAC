@@ -1,0 +1,35 @@
+﻿@model Cosevi.SIBOAC.Models.TIPODANO
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Tipo de Daño</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.codigod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.codigod }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>
