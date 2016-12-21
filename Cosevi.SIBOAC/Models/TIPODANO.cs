@@ -11,10 +11,19 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class TIPODANO
     {
+        [DisplayName("Código")]
+        [StringLength(2, ErrorMessage = "El código no debe ser mayor a 2 caracteres")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string codigod { get; set; }
+
+        [DisplayName("Descripción")]
+        [StringLength(30, ErrorMessage = "La descripción no debe ser mayor a 30 caracteres")]
+        [Required(ErrorMessage = "La descripción es obligatorio")]
         public string descripcion { get; set; }
     }
 }

@@ -293,6 +293,7 @@
     <Compile Include="Controllers\SIBOACUsuariosController.cs" />
     <Compile Include="Controllers\StatusPlanoController.cs" />
     <Compile Include="Controllers\TiempoesController.cs" />
+    <Compile Include="Controllers\TIPODANOesController.cs" />
     <Compile Include="Controllers\TipoDeAccidentesController.cs" />
     <Compile Include="Controllers\TipoDeCalzadasController.cs" />
     <Compile Include="Controllers\TipoDeDocumentoesController.cs" />
@@ -1262,6 +1263,11 @@
     <Content Include="Views\SIBOACUsuarios\Edit.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Index.cshtml" />
     <Content Include="Views\ReportePorEstadoActualDelPlano\Index.cshtml" />
+    <Content Include="Views\TIPODANOes\Create.cshtml" />
+    <Content Include="Views\TIPODANOes\Delete.cshtml" />
+    <Content Include="Views\TIPODANOes\Details.cshtml" />
+    <Content Include="Views\TIPODANOes\Edit.cshtml" />
+    <Content Include="Views\TIPODANOes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
