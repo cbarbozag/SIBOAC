@@ -18,7 +18,7 @@
 
 
     function generarReporte() {
-        var idRadioButton = $('input[name="radio"]:checked').val();
+        var idRadioButton = $('input[name="opcionRadio"]:checked').val();
         var desde = $('#desde').val();
         var hasta = $('#hasta').val();
 
@@ -26,7 +26,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorDescargaDeBoletas?' + idRadioButton + 'desde=' + desde + '&hasta=' + hasta,
+            url: '/api/ReportePorDescargaDeBoletas?idRadio=' + idRadioButton + '&' + '&desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {

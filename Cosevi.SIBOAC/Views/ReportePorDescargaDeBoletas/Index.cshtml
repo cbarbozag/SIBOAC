@@ -14,25 +14,45 @@
     <div class="col-md-10">
 
         <div class="radio" id="radioButton">
-            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
+            <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
             <br>
-            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
+            <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
         </div>
     </div>
 </div>
 <br />
 <br />
 
+
+
 <div class="form-group">
     <label class="control-label col-md-2">Rango de fechas</label>
     <div class="col-md-10">
         <div class="input-daterange input-group" id="datepicker">
-            <input id="desde" type="text" class="input-sm form-control" name="start" />
+            <input id="desde" type="text" class="input-sm form-control" name="fechaDesde" />
             <span class="input-group-addon">to</span>
-            <input id="hasta" type="text" class="input-sm form-control" name="end" />
+            <input id="hasta" type="text" class="input-sm form-control" name="fechaHasta" />
         </div>
     </div>
 </div>
+<br />
+<br />
+<br />
+<br />
+
+
+
+@*<div id="opc-2" class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input id="infraccionDesde" type="text" class="input-sm form-control" name="fechaInfraccionDesde" />
+            <span class="input-group-addon">to</span>
+            <input id="infraccionHasta" type="text" class="input-sm form-control" name="fechaInfraccionHasta" />
+        </div>
+    </div>
+</div>*@
+
 <br />
 <br />
 <br />
@@ -60,13 +80,16 @@
                 Número de boleta
             </div>
             <div class="col-md-1">
+                Fecha de descarga
+            </div>
+            <div class="col-md-1">
                 Fecha accidente
             </div>
             <div class="col-md-1">
                 Autoridad judicial
             </div>
             <div class="col-md-1">
-                Delegación
+                Código de delegación
             </div>
             <div class="col-md-1">
                 Clase de placa
@@ -78,10 +101,25 @@
                 Número de placa
             </div>
             <div class="col-md-1">
-                Id de usuario
+                Identificación
             </div>
             <div class="col-md-1">
                 Nombre
+            </div>
+            <div class="col-md-1">
+                Código de rol
+            </div>
+            <div class="col-md-1">
+                Serie parte oficial
+            </div>
+            <div class="col-md-1">
+                Número de parte
+            </div>
+            <div class="col-md-1">
+                Descripción autoridad
+            </div>
+            <div class="col-md-1">
+                Descripción delegación
             </div>
         </div>
     </div>
