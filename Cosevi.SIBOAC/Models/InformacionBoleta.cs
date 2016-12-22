@@ -73,7 +73,9 @@ namespace Cosevi.SIBOAC.Models
                 return Total;
             }
         }
+        public string ClasePlaca { get; set; }
 
+        public string CodigoPlaca { get; set; }
         public int TotalPuntos
         {
             get

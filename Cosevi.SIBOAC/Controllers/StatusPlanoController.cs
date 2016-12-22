@@ -16,17 +16,26 @@ namespace Cosevi.SIBOAC.Controllers
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         // GET: StatusPlano
-        public ViewResult Index(string serie, string NumeroParte)
+        public ViewResult Index(string serie, string NumeroParte,string mensaje)
         {
+            ViewBag.EstadoPlano = "";
+            string _mensaje = "";
+            string _tipoMensaje = "";
+            ViewBag.type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+            if (mensaje != null)
+            {
+                _tipoMensaje = "error";
+                _mensaje = "Actualizado correctamente";
+            }
+
             var seriet = serie;
             var NumeroParteT = NumeroParte;
             ViewBag.Valor = null;
-            string _mensaje = "";
-            string _tipoMensaje = "";
+          
             if ((seriet != ""&&seriet!=null) && (NumeroParteT !=""&&NumeroParteT!=null))
             {
-                ViewBag.type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-                ViewBag.message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+             
                 var list =
                   (
                      from p in db.PARTEOFICIAL
@@ -85,7 +94,14 @@ namespace Cosevi.SIBOAC.Controllers
                             _tipoMensaje = "info";
                             _mensaje =  "El Parte Oficial " + seriet + " " + NumeroParteT +
                                 " poseee un plano que ya se elaboró en campo, no podrá su cambiar su estado de entrega.";
-                            
+                            Session["Datos"] = list;
+                            ViewBag.Valor = list;
+                            ViewBag.type = "";
+                            ViewBag.message = "";
+                            ViewBag.type = TempData["Type"] = _tipoMensaje;
+                            ViewBag.message = TempData["Message"] = _mensaje;
+                            ViewBag.EstadoPlano = "1";
+                            return View();
                         }
                         else if (item.EstadoPlano == 2)
                         {
@@ -93,15 +109,25 @@ namespace Cosevi.SIBOAC.Controllers
                             _tipoMensaje = "info";
                             _mensaje = "El Parte Oficial " + seriet + " " + NumeroParteT +
                                 " Se cerró sin intención de entrega posterior, no podrá cambiar su estado de entrega.";
-                            
+                 
+                            Session["Datos"] = list;
+                            ViewBag.Valor = list;
+                            ViewBag.type = "";
+                            ViewBag.message = "";
+                            ViewBag.type = TempData["Type"] = _tipoMensaje;
+                            ViewBag.message = TempData["Message"] = _mensaje;
+                            ViewBag.EstadoPlano = "2";
+                            return View();
+
                         }
                         else
                         {
+                            ViewBag.EstadoPlano = item.EstadoPlano.ToString();
                             ViewBag.type = "";
                             ViewBag.message = "";
                             ViewBag.Valor = list;
                             Session["Datos"] = list;
-                           Session["NumParte"] = NumeroParteT;
+                            Session["NumParte"] = NumeroParteT;
                             Session["SerieParte"] = seriet;
 
                         }
@@ -167,7 +193,7 @@ namespace Cosevi.SIBOAC.Controllers
             string SerieParte = Session["SerieParte"].ToString();
             string NumParte = Session["NumParte"].ToString();
 
-            if (EntregoPlano!=""&& EntregoPlano=="1")
+            if (EntregoPlano!="")
             {
                 var queryStatusPlano =
                      from parteOficial in db.PARTEOFICIAL
@@ -176,14 +202,23 @@ namespace Cosevi.SIBOAC.Controllers
                      select parteOficial;
                 foreach (var parteOficial in queryStatusPlano)
                 {
-                    parteOficial.fecha_entrega = DateTime.Now;
-                    parteOficial.StatusPlano = 1;
+                    if (EntregoPlano == "1")
+                    {
+                        parteOficial.StatusPlano = 4;
+                    }
+                    else
+                    {
+                        parteOficial.StatusPlano = 5;
+                    }
+                    parteOficial.fecha_entrega = DateTime.Now;         
                     parteOficial.usuario_entregaPlano = "UsuarioEntrega";
                 }
                 db.SaveChanges();
-
-                return RedirectToAction("Index");
+   
+                return RedirectToAction("Index", "StatusPlano", new { mensaje = "actualizado", Serie = Session["SerieParte"], NumeroParte = Session["NumParte"] });
+                // return RedirectToAction("Index");
             }
+            
             ViewBag.type = "";
             ViewBag.message = "";
             ViewBag.type = TempData["Type"] = "error";

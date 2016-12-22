@@ -1280,6 +1280,7 @@
     <Content Include="Views\Generales\Inactivar.cshtml" />
     <Content Include="Views\ReportePorDescargaDeBoletas\Index.cshtml" />
     <Content Include="Views\ReportesPorConsultaParteOficial\Index.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\RealDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

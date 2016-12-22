@@ -101,6 +101,8 @@ namespace Cosevi.SIBOAC.Controllers
                     CodigoInspector = BOLETA.codigo_inspector,
                     NombreInspector = INSPECTOR.Nombre,
                     ParteOficial = (BOLETA.fuente_parteoficial + "-" + BOLETA.serie_parteoficial + "-" + BOLETA.numeroparte),
+                    ClasePlaca = BOLETA.clase_placa,
+                    CodigoPlaca = BOLETA.codigo_placa,
                     PiePagina = GENERALES.Piepagina
                 }).ToList().Take(1);
 
@@ -143,7 +145,9 @@ namespace Cosevi.SIBOAC.Controllers
                 infoBoleta.NombreInspector = item.NombreInspector;
                 infoBoleta.CodigoInspector = item.CodigoInspector;
                 infoBoleta.ParteOficial = item.ParteOficial;
-                infoBoleta.PiePagina = item.PiePagina.Replace("@", "<br/>");               
+                infoBoleta.PiePagina = item.PiePagina.Replace("@", "<br/>");
+                infoBoleta.ClasePlaca = item.ClasePlaca;
+                infoBoleta.CodigoPlaca = item.CodigoPlaca;   
             }
           
             //articulos por boleta 

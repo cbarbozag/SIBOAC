@@ -1,4 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.TipoIdDeVehiculo
+﻿@model Cosevi.SIBOAC.Models.VariablesParaBloqueo
 
 @{
     ViewBag.Title = "Eliminar";
@@ -9,15 +9,16 @@
 
 <h3>¿Está seguro de eliminar este registro?</h3>
 <div>
-    <h4>Tipo de Identificación de Vehículo</h4>
+    <h4>Variables para Bloqueo</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Id)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.Id)
         </dd>
 
         <dt>
@@ -50,8 +51,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" />
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
             @Html.ActionLink("Regresar a la lista", "Index")
         </div>
+
     }
 </div>
