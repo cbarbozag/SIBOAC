@@ -147,7 +147,7 @@ namespace Cosevi.SIBOAC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        // GET: AlineacionHorizontals/Delete/5
+        // GET: AlineacionHorizontals/RealDelete/5
         public ActionResult RealDelete(int? id)
         {
             if (id == null)
