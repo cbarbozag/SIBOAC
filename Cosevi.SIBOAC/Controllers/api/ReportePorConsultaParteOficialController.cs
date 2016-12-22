@@ -15,8 +15,8 @@ namespace Cosevi.SIBOAC.Controllers.api
         // GET: api/ReportePorConsultaParteOficial
         public IQueryable<DTOReportePorConsultaParteOficial> GetReportePorConsultaParteOficial([FromUri] string  serieParte , 
             [FromUri] string numeroParte, [FromUri] int ? serieBoleta, [FromUri] decimal ? numeroBoleta, [FromUri] string tipoId, 
-            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
-        {
+            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca){
+
             if (serieParte == null && numeroParte == null && serieBoleta == null && numeroBoleta == null && tipoId == null &&
                 numeroID == null && numeroPlaca == null && codigoPlaca == null && clasePlaca == null)
             {

@@ -1,0 +1,99 @@
+﻿@model Cosevi.SIBOAC.Models.Boletas
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte por Descarga del Inspector</h2>
+<h4>Filtro</h4>
+<hr />
+
+<div class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input id="desde" type="text" class="input-sm form-control" name="start" />
+            <span class="input-group-addon">a</span>
+            <input id="hasta" type="text" class="input-sm form-control" name="end" />
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="form-group">
+        <br>
+        Numero de la Hand Held
+        <br>
+        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br/>
+        Código del Oficial de Transito
+        <br>
+        <input id="codigoInspector" type='text' name='codigoInspector' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br>
+</div>
+
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar Reporte</button>
+</div>
+
+<br />
+<br />
+<br />
+<h4>Reporte</h4>
+<hr />
+<input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+<input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-1">
+                Serie Boleta
+            </div>
+            <div class="col-md-1">
+                N° Boleta
+            </div>
+            <div class="col-md-1">
+                Código Inspector
+            </div>
+            <div class="col-md-1">
+                Nombre Inspector
+            </div>
+            <div class="col-md-1">
+                Fecha de Descarga
+            </div>
+            <div class="col-md-1">
+                Fecha de Infracción
+            </div>
+            <div class="col-md-1">
+                Autoridad Judicial
+            </div>
+            <div class="col-md-1">
+                Delegación
+            </div>
+            <div class="col-md-1">
+                Clase Placa
+            </div>
+            <div class="col-md-1">
+                Codigo y Numero Placa
+            </div>
+            <div class="col-md-1">
+                Numero HH
+            </div>
+            <div class="col-md-1">
+                Serie y Numero Parte Oficial
+            </div>
+        </div>
+    </div>
+    <div id="reporte" class="panel-body">
+        <!-- -->
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorDescargaDeInspector")
+}

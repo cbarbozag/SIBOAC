@@ -216,6 +216,7 @@
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
     <Compile Include="Controllers\api\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\api\ReportePorConsultaParteOficialController.cs" />
+    <Compile Include="Controllers\api\ReportePorDescargaDeInspectorController.cs" />
     <Compile Include="Controllers\api\ReportePorEstadoActualDelPlanoController.cs" />
     <Compile Include="Controllers\api\ReportesPorUsuarioController.cs" />
     <Compile Include="Controllers\api\AutoridadJudicialController.cs" />
@@ -277,6 +278,7 @@
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\ReportePorDescargaDeInspectorController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorUsuarioController.cs" />
     <Compile Include="Controllers\ReportesPorConsultaParteOficialController.cs" />
@@ -811,6 +813,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ReportePorDescargaDeBoletas.js" />
     <Content Include="Scripts\ReportePorEstadoActualDelPlano.js" />
+    <Content Include="Scripts\ReportePorDescargaDeInspector.js" />
     <Content Include="Scripts\ReportesPorConsultaParteOficial.js" />
     <Content Include="Scripts\reportePorUsuario.js" />
     <Content Include="Scripts\respond.js" />
@@ -1281,6 +1284,7 @@
     <Content Include="Views\ReportePorDescargaDeBoletas\Index.cshtml" />
     <Content Include="Views\ReportesPorConsultaParteOficial\Index.cshtml" />
     <Content Include="Views\VariablesParaBloqueos\RealDelete.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeInspector\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
