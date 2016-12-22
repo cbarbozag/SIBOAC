@@ -166,6 +166,13 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsInspectores = db.INSPECTOR
+                    .Select(o => new SelectListItem
+                    {
+                        Value = o.Id.Trim(),
+                        Text = o.Nombre
+                    });
+                    ViewBag.ComboInspectores = itemsInspectores;
                     return View(gENERALES);
                 }
             }
