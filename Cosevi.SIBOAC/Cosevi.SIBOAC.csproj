@@ -253,6 +253,7 @@
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
     <Compile Include="Controllers\ExamenController.cs" />
+    <Compile Include="Controllers\GeneralesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorasLaboralesController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
@@ -1097,11 +1098,11 @@
     <Content Include="Views\Distritoes\Details.cshtml" />
     <Content Include="Views\Distritoes\Edit.cshtml" />
     <Content Include="Views\Distritoes\Index.cshtml" />
-    <Content Include="Views\Examen\Create.cshtml" />
-    <Content Include="Views\Examen\Delete.cshtml" />
-    <Content Include="Views\Examen\Details.cshtml" />
-    <Content Include="Views\Examen\Edit.cshtml" />
-    <Content Include="Views\Examen\Index.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Examen\Create.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Examen\Delete.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Examen\Details.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Examen\Edit.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Examen\Index.cshtml" />
     <Content Include="Views\Direccions\Create.cshtml" />
     <Content Include="Views\Direccions\Delete.cshtml" />
     <Content Include="Views\Direccions\Details.cshtml" />
@@ -1268,6 +1269,12 @@
     <Content Include="Views\TIPODANOes\Details.cshtml" />
     <Content Include="Views\TIPODANOes\Edit.cshtml" />
     <Content Include="Views\TIPODANOes\Index.cshtml" />
+    <Content Include="Views\Generales\Create.cshtml" />
+    <Content Include="Views\Generales\Delete.cshtml" />
+    <Content Include="Views\Generales\Details.cshtml" />
+    <Content Include="Views\Generales\Edit.cshtml" />
+    <Content Include="Views\Generales\Index.cshtml" />
+    <Content Include="Views\Generales\Inactivar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

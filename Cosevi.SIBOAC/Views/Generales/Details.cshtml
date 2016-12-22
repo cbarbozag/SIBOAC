@@ -1,0 +1,130 @@
+﻿@model Cosevi.SIBOAC.Models.GENERALES
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Generales</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Inspector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inspector)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsecutivoBC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsecutivoBC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsecutivoPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsecutivoPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HandHeld)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HandHeld)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Copias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Copias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Piepagina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Piepagina)
+        </dd>      
+        <dt>
+            @Html.DisplayNameFor(model => model.Serie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsecutivoSinDoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsecutivoSinDoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsecutivoNumeroMarco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsecutivoNumeroMarco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordActualizado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordActualizado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Inspector }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

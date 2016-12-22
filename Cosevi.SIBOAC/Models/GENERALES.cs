@@ -11,23 +11,83 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class GENERALES
     {
+        [System.ComponentModel.DisplayName("Inspector")]
+        [Required(ErrorMessage = "El código de inspector es requerido")]
+        [StringLength(4, ErrorMessage = "El código de inspector no debe ser mayor a 4 caracteres")]
         public string Inspector { get; set; }
+
+        [System.ComponentModel.DisplayName("Cons. Boleta Citación")]
+        [Required(ErrorMessage = "El consecutivo de boleta de citación es requerido")]
         public long ConsecutivoBC { get; set; }
+
+        [System.ComponentModel.DisplayName("Cons. Parte Oficial")]
+        [Required(ErrorMessage = "El consecutivo de parte oficial es requerido")]
         public Nullable<long> ConsecutivoPO { get; set; }
+
+        [System.ComponentModel.DisplayName("Hand Held")]
+        [Required(ErrorMessage = "El código de Hand Held es requerido")]
+        [StringLength(20, ErrorMessage = "El código de Hand held no debe ser mayor a 20 caracteres")]
         public string HandHeld { get; set; }
+
+        [System.ComponentModel.DisplayName("Copias")]
+        [Required(ErrorMessage = "El campo copias es requerido")]
         public int Copias { get; set; }
+
+        [System.ComponentModel.DisplayName("Pie de Página")]
+        [Required(ErrorMessage = "El campo pie de pagina es requerido")]
+        [StringLength(2200, ErrorMessage = "El campo pie de página no debe ser mayor a 2200 caracteres")]
         public string Piepagina { get; set; }
+
+
+        [DataType(DataType.Password)]
+        [System.ComponentModel.DisplayName("Clave Inspector")]
+        [Required(ErrorMessage = "La clave inspector es requerida")]
+        [StringLength(20, ErrorMessage = "La clave de inspector no debe ser mayor a 20 caracteres")]
         public string ClaveIns { get; set; }
+
+
+        [DataType(DataType.Password)]
+        [System.ComponentModel.DisplayName("Clave Administrador")]
+        [Required(ErrorMessage = "La clave administrador es requerida")]
+        [StringLength(20, ErrorMessage = "La clave de administrador no debe ser mayor a 20 caracteres")]
         public string ClaveAdmin { get; set; }
+
+        [System.ComponentModel.DisplayName("Serie")]
+        [Required(ErrorMessage = "La serie es requerida")]    
         public Nullable<int> Serie { get; set; }
+
+
+        [System.ComponentModel.DisplayName("Consecutivo sin documento")]
         public Nullable<long> ConsecutivoSinDoc { get; set; }
+
+        [System.ComponentModel.DisplayName("Estado")]
+        [Required(ErrorMessage = "El estado es requerido")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string estado { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de inicio")]
         public Nullable<System.DateTime> fecha_inicio { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de Fin")]
         public Nullable<System.DateTime> fecha_fin { get; set; }
+
+        [System.ComponentModel.DisplayName("Consecutivo número marco")]
+        [Required(ErrorMessage = "El número consecutivo número marco es requerido")]
+        [StringLength(10, ErrorMessage = "El consecutivo número marco  no debe ser mayor a 10 caracter")]
         public string ConsecutivoNumeroMarco { get; set; }
+
+        [System.ComponentModel.DisplayName("Password actualizado")]
         public Nullable<bool> PasswordActualizado { get; set; }
+
+        public string Nombre { get; set; }
     }
 }
