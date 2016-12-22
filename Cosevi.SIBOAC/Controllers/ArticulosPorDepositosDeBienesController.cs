@@ -57,7 +57,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
                  DescripcionArticulo = x.DescripcionArticulo
 
-             });
+             }).OrderBy(x => (x.CodigoDepositosBienes));
 
             return View(list);
         }

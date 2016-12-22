@@ -47,6 +47,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id })
@@ -76,6 +77,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id })
