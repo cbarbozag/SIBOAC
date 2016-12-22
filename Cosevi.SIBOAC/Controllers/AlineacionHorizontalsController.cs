@@ -147,6 +147,31 @@ namespace Cosevi.SIBOAC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        // GET: AlineacionHorizontals/Delete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
+            if (alineacionHorizontal == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alineacionHorizontal);
+        }
+
+        // POST: AlineacionHorizontals/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
+            db.ALINHORI.Remove(alineacionHorizontal);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {

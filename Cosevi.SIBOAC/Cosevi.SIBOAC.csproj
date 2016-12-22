@@ -1264,6 +1264,9 @@
     <Content Include="Views\SIBOACUsuarios\Edit.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Index.cshtml" />
     <Content Include="Views\ReportePorEstadoActualDelPlano\Index.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\RealDelete.cshtml" />
+    <Content Include="Views\AlineacionVerticals\RealDelete.cshtml" />
     <Content Include="Views\TIPODANOes\Create.cshtml" />
     <Content Include="Views\TIPODANOes\Delete.cshtml" />
     <Content Include="Views\TIPODANOes\Details.cshtml" />
@@ -1275,6 +1278,8 @@
     <Content Include="Views\Generales\Edit.cshtml" />
     <Content Include="Views\Generales\Index.cshtml" />
     <Content Include="Views\Generales\Inactivar.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeBoletas\Index.cshtml" />
+    <Content Include="Views\ReportesPorConsultaParteOficial\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

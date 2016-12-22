@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de delegación</h2>
+<h2>Lista de Delegación</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
@@ -33,7 +33,7 @@
 @foreach (var item in Model) {
     if (item.Estado == "I")
     {
-        <tr>
+        <tr  class="warning">
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
@@ -65,7 +65,7 @@
     }
     else
     {
-        <tr class="warning">
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
