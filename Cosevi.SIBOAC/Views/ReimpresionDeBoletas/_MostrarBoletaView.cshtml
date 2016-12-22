@@ -52,7 +52,7 @@
             <br />
             Kilometro: @ViewBag.Datos.Km
             <br />
-            Placa: @ViewBag.Datos.Placa
+            Placa:@(ViewBag.Datos.ClasePlaca == "SC"|| ViewBag.Datos.ClasePlaca == "SCE" ? "" : ViewBag.Datos.ClasePlaca) @(ViewBag.Datos.CodigoPlaca == "SC" || ViewBag.Datos.CodigoPlaca == "SCE" ? "" : ViewBag.Datos.CodigoPlaca)  @ViewBag.Datos.Placa
             <br />
             Tipo automóvil: @ViewBag.Datos.DescripcionTipoAutomovil
             <br />
