@@ -43,18 +43,13 @@ namespace Cosevi.SIBOAC.Controllers.api
                      Boletas = bo.numero_boleta,
                      FechaDescarga = bo.fecha_descarga,
                      FechaAccidente = bo.fecha_hora_boleta,
-                     CodigoAutoridad = bo.codigo_autoridad_registra,
-                     CodigoDelegacion = bo.codigo_delegacion,
-                     ClasePlaca = bo.clase_placa,
-                     CodigoPlaca = bo.codigo_placa,
-                     NumeroPlaca = bo.numero_placa,
+                     CodigoAutoridad = bo.codigo_autoridad_registra+ "-"+ au.Descripcion,
+                     CodigoDelegacion = bo.codigo_delegacion+"-"+ del.Descripcion,
+                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                      Identificacion = bo.identificacion,
                      Nombre = per.nombre + " " + per.apellido1 + " " + per.apellido2,
                      CodRol = bo.codrol,
-                     SerieParteOficial = bo.serie_parteoficial,
-                     NumeroParte = bo.numeroparte,
-                     DescripcionAutoridad = au.Descripcion,
-                     DescripcionDelegacion = del.Descripcion
+                     SerieNumParteOficial = bo.serie_parteoficial + "-" + bo.numeroparte,
 
                  }).Distinct();
 
@@ -78,20 +73,13 @@ namespace Cosevi.SIBOAC.Controllers.api
                      Boletas = bo.numero_boleta,
                      FechaDescarga = bo.fecha_descarga,
                      FechaAccidente = bo.fecha_hora_boleta,
-                     CodigoAutoridad = bo.codigo_autoridad_registra,
-                     CodigoDelegacion = bo.codigo_delegacion,
-                     ClasePlaca = bo.clase_placa,
-                     CodigoPlaca = bo.codigo_placa,
-                     NumeroPlaca = bo.numero_placa,
+                     CodigoAutoridad = bo.codigo_autoridad_registra + "-" + au.Descripcion,
+                     CodigoDelegacion = bo.codigo_delegacion + "-" + del.Descripcion,
+                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                      Identificacion = bo.identificacion,
-                     Nombre = per.nombre,
-                     Apellido1 = per.apellido1,
-                     Apellido2 = per.apellido2,
+                     Nombre = per.nombre + " " + per.apellido1 + " " + per.apellido2,
                      CodRol = bo.codrol,
-                     SerieParteOficial = bo.serie_parteoficial,
-                     NumeroParte = bo.numeroparte,
-                     DescripcionAutoridad = au.Descripcion,
-                     DescripcionDelegacion = del.Descripcion
+                     SerieNumParteOficial = bo.serie_parteoficial + "-" + bo.numeroparte
                  });
 
                 return reportes;
@@ -117,16 +105,11 @@ namespace Cosevi.SIBOAC.Controllers.api
             public Nullable<DateTime> FechaAccidente { get; set; }
             public string CodigoAutoridad { get; set; }
             public string CodigoDelegacion { get; set; }
-            public string ClasePlaca { get; set; }
-            public string CodigoPlaca { get; set; }
-            public string NumeroPlaca { get; set; }
+            public string InfoPlaca { get; set; }
             public string Identificacion { get; set; }
             public string Nombre { get; set; }
-            public string Apellido1 { get; set; }
-            public string Apellido2 { get; set; }
             public string CodRol { get; set; }
-            public string SerieParteOficial { get; set; }
-            public string NumeroParte { get; set; }
+            public string SerieNumParteOficial { get; set; }
             public string DescripcionAutoridad { get; set; }
             public string DescripcionDelegacion { get; set; }
 
