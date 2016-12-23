@@ -43,7 +43,7 @@ namespace Cosevi.SIBOAC.Controllers.api
                      Boletas = bo.numero_boleta,
                      FechaDescarga = bo.fecha_descarga,
                      FechaAccidente = bo.fecha_hora_boleta,
-                     Autoridad = bo.codigo_autoridad_registra,
+                     CodigoAutoridad = bo.codigo_autoridad_registra,
                      CodigoDelegacion = bo.codigo_delegacion,
                      ClasePlaca = bo.clase_placa,
                      CodigoPlaca = bo.codigo_placa,
@@ -69,7 +69,8 @@ namespace Cosevi.SIBOAC.Controllers.api
                  join del in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = del.Id }
                  join au in db.AUTORIDAD on new { Codigo_autoridad_registra = bo.codigo_autoridad_registra } equals new { Codigo_autoridad_registra = au.Id }
                  where
-                 bo.fecha_hora_boleta >= desde && bo.fecha_hora_boleta <= hasta
+                 (bo.fecha_hora_boleta >= desde) && 
+                 (bo.fecha_hora_boleta <= hasta)
 
                  select new DTOReportePorDescargaDeBoletas
                  {
@@ -77,7 +78,7 @@ namespace Cosevi.SIBOAC.Controllers.api
                      Boletas = bo.numero_boleta,
                      FechaDescarga = bo.fecha_descarga,
                      FechaAccidente = bo.fecha_hora_boleta,
-                     Autoridad = bo.codigo_autoridad_registra,
+                     CodigoAutoridad = bo.codigo_autoridad_registra,
                      CodigoDelegacion = bo.codigo_delegacion,
                      ClasePlaca = bo.clase_placa,
                      CodigoPlaca = bo.codigo_placa,
@@ -112,17 +113,15 @@ namespace Cosevi.SIBOAC.Controllers.api
 
             public int Serie { get; set; }
             public decimal Boletas { get; set; }
+            public Nullable<DateTime> FechaDescarga { get; set; }
             public Nullable<DateTime> FechaAccidente { get; set; }
-            public string Autoridad { get; set; }
-            public string Delegacion { get; set; }
+            public string CodigoAutoridad { get; set; }
+            public string CodigoDelegacion { get; set; }
             public string ClasePlaca { get; set; }
             public string CodigoPlaca { get; set; }
             public string NumeroPlaca { get; set; }
-            public string Usuario { get; set; }
-            public string Nombre { get; set; }
-            public Nullable<DateTime> FechaDescarga { get; set; }
-            public string CodigoDelegacion { get; set; }
             public string Identificacion { get; set; }
+            public string Nombre { get; set; }
             public string Apellido1 { get; set; }
             public string Apellido2 { get; set; }
             public string CodRol { get; set; }
