@@ -214,6 +214,7 @@
     <Compile Include="Controllers\ActividadOficialController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\api\ReportePorDescargaDeParteOficialController.cs" />
     <Compile Include="Controllers\api\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\api\ReportePorConsultaParteOficialController.cs" />
     <Compile Include="Controllers\api\ReportePorDescargaDeInspectorController.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\ReportePorDescargaDeParteOficialController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeInspectorController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorUsuarioController.cs" />
@@ -811,6 +813,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\listgroup.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ReportePorDescargaDeParteOficial.js" />
     <Content Include="Scripts\ReportePorDescargaDeBoletas.js" />
     <Content Include="Scripts\ReportePorEstadoActualDelPlano.js" />
     <Content Include="Scripts\ReportePorDescargaDeInspector.js" />
