@@ -252,6 +252,62 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+        // GET: Autoridads/RealDelete/5
+        public ActionResult RealDelete(string codigo, int? codFormulario)
+        {
+            if (codigo == null || codFormulario == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list =
+           (
+              from a in db.AUTORIDAD
+              join o in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = a.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = o.Id } into o_join
+              where a.CodigoOpcionFormulario == codFormulario && a.Id == codigo
+              from o in o_join.DefaultIfEmpty()
+              select new
+              {
+                  Id = a.Id,
+                  Descripcion = a.Descripcion,
+                  CodigoOpcionFormulario = a.CodigoOpcionFormulario,
+                  Estado = a.Estado,
+                  FechaDeInicio = a.FechaDeInicio,
+                  FechaDeFin = a.FechaDeFin,
+                  DescripcionCodigoOpcionFormulario = o.Descripcion
+              }).ToList()
+            .Select(x => new Autoridad
+            {
+                Id = x.Id,
+                Descripcion = x.Descripcion,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario
+            }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: Autoridads/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string codigo, int codFormulario)
+        {
+            Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
+            db.AUTORIDAD.Remove(autoridad);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

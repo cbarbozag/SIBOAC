@@ -154,6 +154,33 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // GET: CatalogoDeArticulos/RealDelete/5
+        public ActionResult RealDelete(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
+        {
+            if (codigo == null || conducta == null || fechaInicio == null || fechaFinal == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
+            if (catalogoDeArticulos == null)
+            {
+                return HttpNotFound();
+            }
+            return View(catalogoDeArticulos);
+        }
+
+        // POST: CatalogoDeArticulos/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
+        {
+            CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
+            db.CATARTICULO.Remove(catalogoDeArticulos);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

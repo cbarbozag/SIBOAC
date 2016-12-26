@@ -143,6 +143,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // GET: Circulacions/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Circulacion circulacion = db.CIRCULACION.Find(id);
+            if (circulacion == null)
+            {
+                return HttpNotFound();
+            }
+            return View(circulacion);
+        }
+
+        // POST: Circulacions/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            Circulacion circulacion = db.CIRCULACION.Find(id);
+            db.CIRCULACION.Remove(circulacion);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

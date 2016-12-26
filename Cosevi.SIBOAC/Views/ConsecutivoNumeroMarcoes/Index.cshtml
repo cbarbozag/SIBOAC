@@ -67,6 +67,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
                 @Html.ActionLink("Detalles", "Details", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
@@ -106,6 +107,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
                 @Html.ActionLink("Detalles", "Details", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id, consecutivoNumeroMarcoAnterior = item.IdAnterior, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
