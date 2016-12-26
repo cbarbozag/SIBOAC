@@ -1,0 +1,119 @@
+﻿@model Cosevi.SIBOAC.Models.Boletas
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte Consulta e Impresión de Boletas</h2>
+<h4>Filtro</h4>
+<hr />
+
+<div class="form-group">
+    <label class="control-label col-md-2">Rango de Fechas</label>
+    <div class="col-md-10">
+
+        <div class="radio" id="radioButton">
+            <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
+            <br>
+            <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-2">Delegación</label>
+            <div class="col-max col-md-10">
+                <ul id="listaDelegaciones" class="list-group" data-toggle="items">
+                    <!-- -->
+                </ul>
+            </div>
+            <br>
+            <button id="todosDelegacion" type="button" class="btn btn-primary">Marcar todos</button>
+            <button id="limpiarDelegacion" type="button" class="btn btn-warning">Limpiar</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label col-md-2">Inspector</label>
+            <div class="col-max col-md-10">
+                <ul id="listaInspectores" class="list-group" data-toggle="items">
+                    <!-- -->
+                </ul>
+            </div>
+            <br>
+            <button id="todosInspector" type="button" class="btn btn-primary">Marcar todos</button>
+            <button id="limpiarInspector" type="button" class="btn btn-warning">Limpiar</button>
+        </div>
+    </div>
+</div>
+
+
+<br />
+<br />
+
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar Reporte</button>
+</div>
+
+
+<br />
+<br />
+<h4>Reporte</h4>
+<hr />
+
+<input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+<input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-2">
+                Delegación
+            </div>
+            <div class="col-md-1">
+                Inspector
+            </div>
+            <div class="col-md-1">
+                Serie
+            </div>
+            <div class="col-md-1">
+                Boleta
+            </div>
+            <div class="col-md-1">
+                Fecha de Infracción
+            </div>
+            <div class="col-md-1">
+                Fecha de Descarga
+            </div>
+            <div class="col-md-1">
+                Artículos
+            </div>
+            <div class="col-md-2">
+                Provincia
+            </div>
+            <div class="col-md-2">
+                Cantón
+            </div>
+            <div class="col-md-2">
+                Distrito
+            </div>
+            <div class="col-md-2">
+                Coordenada X
+            </div>
+            <div class="col-md-2">
+                Coordenada Y
+            </div>
+        </div>
+    </div>
+    <div id="reporte" class="panel-body">
+        <!-- -->
+    </div>
+</div>
+

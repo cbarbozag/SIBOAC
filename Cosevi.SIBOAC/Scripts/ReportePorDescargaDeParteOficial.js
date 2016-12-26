@@ -30,7 +30,7 @@
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {
-                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].Serie + '</div><div class="col-md-1">' + results[i].Boletas + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].CodigoAutoridad + '</div><div class="col-md-1">' + results[i].CodigoDelegacion + '</div><div class="col-md-1">' + results[i].InfoPlaca + '</div><div class="col-md-1">' + results[i].Identificacion + '</div><div class="col-md-1">' + results[i].Nombre + '</div><div class="col-md-1">' + results[i].CodRol + '</div><div class="col-md-1">' + results[i].SerieNumParteOficial +'</div><div class="col-md-1">' + results[i].DescripcionAutoridad + '</div><div class="col-md-1">' + results[i].DescripcionDelegacion);
+                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].Serie + '</div><div class="col-md-1">' + results[i].Boletas + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].Autoridad + '</div><div class="col-md-1">' + results[i].Delegacion + '</div><div class="col-md-1">' + results[i].ClasePlaca + '</div><div class="col-md-1">' + results[i].CodigoPlaca + '</div><div class="col-md-1">' + results[i].NumeroPlaca);
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {
