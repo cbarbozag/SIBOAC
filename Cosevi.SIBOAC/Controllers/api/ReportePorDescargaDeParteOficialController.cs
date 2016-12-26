@@ -16,87 +16,101 @@ namespace Cosevi.SIBOAC.Controllers.api
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: api/ReportePorDescargaDeBoletas
-        public IQueryable<DTOReportePorDescargaDeParteOficial> GetReportePorDescargaDeParteOficial([FromUri] int idRadio, [FromUri] DateTime desde, [FromUri] DateTime hasta)
+        // GET: api/ReportePorDescargaDeParteOficial
+        public IQueryable<DTOReportePorDescargaDeParteOficial> GetReportePorDescargaDeParteOficial([FromUri] int idRadio, [FromUri] string idDelegaciones, [FromUri] string idAutoridades, [FromUri] DateTime desde, [FromUri] DateTime hasta)
         {
-
             if (idRadio == 1)
             {
-                var reportes =
-                //(from bo in db.BOLETA
-                // join po in db.PARTEOFICIAL on new { NumeroParte = bo.numeroparte } equals new { NumeroParte = po.NumeroParte }
-                // join del in db.DELEGACION on new { Id = bo.codigo_delegacion } equals new { Id = (string)del.Id }
-                // join au in db.AUTORIDAD on new { Id = bo.codigo_autoridad_registra } equals new { Id = (string)au.Id }
-                // where
-                // po.fecha_descarga >= desde && po.fecha_descarga <= hasta
-
-                (from bo in db.BOLETA
-                 join per in db.PERSONA on bo.identificacion equals per.identificacion
-                 join del in db.DELEGACION on new { Id = bo.codigo_delegacion } equals new { Id = (string)del.Id }
-                 join au in db.AUTORIDAD on new { Id = bo.codigo_autoridad_registra } equals new { Id = (string)au.Id }
-                 where
-                 (bo.fecha_descarga >= desde) &&
-                 (bo.fecha_descarga <= hasta)
-                 select new DTOReportePorDescargaDeParteOficial
-                 {
-                     Serie = bo.serie,
-                     Boletas = bo.numero_boleta,
-                     FechaDescarga = bo.fecha_descarga,
-                     FechaAccidente = bo.fecha_hora_boleta,
-                     Autoridad = bo.codigo_autoridad_registra,
-                     CodigoDelegacion = bo.codigo_delegacion,
-                     ClasePlaca = bo.clase_placa,
-                     CodigoPlaca = bo.codigo_placa,
-                     NumeroPlaca = bo.numero_placa,
-                     Identificacion = bo.identificacion,
-                     Nombre = per.nombre + " " + per.apellido1 + " " + per.apellido2,
-                     CodRol = bo.codrol,
-                     SerieParteOficial = bo.serie_parteoficial,
-                     NumeroParte = bo.numeroparte,
-                     DescripcionAutoridad = au.Descripcion,
-                     DescripcionDelegacion = del.Descripcion
-
-                 }).Distinct();
+                var reportes = (from pto in db.PARTEOFICIAL
+                                join bo in db.BOLETA on new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte } equals new { SerieParte = bo.numeroSerie, NumeroParte = bo.numeroparte }
+                                join de in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = de.Id }
+                                where
+                                  pto.fecha_descarga >= desde && pto.fecha_descarga <= hasta &&
+                                  bo.codigo_autoridad_registra == idAutoridades &&
+                                  bo.codigo_delegacion == idDelegaciones
+                                select new DTOReportePorDescargaDeParteOficial
+                                {
+                                    SerieParte = pto.Serie,
+                                    NumeroParte = pto.NumeroParte,
+                                    FechaDescarga = pto.fecha_descarga,
+                                    FechaEntrega = pto.fecha_entrega,
+                                    FechaAccidente = pto.Fecha,
+                                    SerieNumeroBoleta = bo.serie + "-" + bo.numero_boleta,
+                                    Autoridad = (((from a in db.AUTORIDAD
+                                                   where bo.codigo_autoridad_registra == a.Id
+                                                   select new { a.Descripcion }).Distinct()).FirstOrDefault().Descripcion),
+                                    Delegacion = de.Descripcion,
+                                    InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
+                                    StatusPlano = pto.StatusPlano,
+                                    PlacaConfiscada = bo.auto_detenido,
+                                    VehDetenido = bo.placa_confiscada
+                                }).Distinct();
 
                 return reportes;
             }
+            else { return null; }
 
+            if(idRadio == 2)
+            {
+                var reportes = (from pto in db.PARTEOFICIAL
+                                join bo in db.BOLETA on new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte } equals new { SerieParte = bo.numeroSerie, NumeroParte = bo.numeroparte }
+                                join de in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = de.Id }
+                                where
+                                  pto.fecha_entrega >= desde && pto.fecha_entrega <= hasta &&
+                                  bo.codigo_autoridad_registra == idAutoridades &&
+                                  bo.codigo_delegacion == idDelegaciones
+                                select new DTOReportePorDescargaDeParteOficial
+                                {
+                                    SerieParte = pto.Serie,
+                                    NumeroParte = pto.NumeroParte,
+                                    FechaDescarga = pto.fecha_descarga,
+                                    FechaEntrega = pto.fecha_entrega,
+                                    FechaAccidente = pto.Fecha,
+                                    SerieNumeroBoleta = bo.serie + "-" + bo.numero_boleta,
+                                    Autoridad = (((from a in db.AUTORIDAD
+                                                   where bo.codigo_autoridad_registra == a.Id
+                                                   select new { a.Descripcion }).Distinct()).FirstOrDefault().Descripcion),
+                                    Delegacion = de.Descripcion,
+                                    InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
+                                    StatusPlano = pto.StatusPlano,
+                                    PlacaConfiscada = bo.auto_detenido,
+                                    VehDetenido = bo.placa_confiscada
+                                }).Distinct();
+
+                return reportes;
+            }
             else
             {
-                 var reportes =
-                (from bo in db.BOLETA
-                 join per in db.PERSONA on bo.identificacion equals per.identificacion
-                 join del in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = del.Id }
-                 join au in db.AUTORIDAD on new { Codigo_autoridad_registra = bo.codigo_autoridad_registra } equals new { Codigo_autoridad_registra = au.Id }
-                 where
-                 bo.fecha_hora_boleta >= desde && bo.fecha_hora_boleta <= hasta
-
-                 select new DTOReportePorDescargaDeParteOficial
-                 {
-                     Serie = bo.serie,
-                     Boletas = bo.numero_boleta,
-                     FechaDescarga = bo.fecha_descarga,
-                     FechaAccidente = bo.fecha_hora_boleta,
-                     Autoridad = bo.codigo_autoridad_registra,
-                     CodigoDelegacion = bo.codigo_delegacion,
-                     ClasePlaca = bo.clase_placa,
-                     CodigoPlaca = bo.codigo_placa,
-                     NumeroPlaca = bo.numero_placa,
-                     Identificacion = bo.identificacion,
-                     Nombre = per.nombre,
-                     Apellido1 = per.apellido1,
-                     Apellido2 = per.apellido2,
-                     CodRol = bo.codrol,
-                     SerieParteOficial = bo.serie_parteoficial,
-                     NumeroParte = bo.numeroparte,
-                     DescripcionAutoridad = au.Descripcion,
-                     DescripcionDelegacion = del.Descripcion
-                 });
+                var reportes = (from pto in db.PARTEOFICIAL
+                                join bo in db.BOLETA on new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte } equals new { SerieParte = bo.numeroSerie, NumeroParte = bo.numeroparte }
+                                join de in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = de.Id }
+                                where
+                                  pto.Fecha >= desde && pto.Fecha <= hasta &&
+                                  bo.codigo_autoridad_registra == idAutoridades &&
+                                  bo.codigo_delegacion == idDelegaciones
+                                select new DTOReportePorDescargaDeParteOficial
+                                {
+                                    SerieParte = pto.Serie,
+                                    NumeroParte = pto.NumeroParte,
+                                    FechaDescarga = pto.fecha_descarga,
+                                    FechaEntrega = pto.fecha_entrega,
+                                    FechaAccidente = pto.Fecha,
+                                    SerieNumeroBoleta = bo.serie + "-" + bo.numero_boleta,
+                                    Autoridad = (((from a in db.AUTORIDAD
+                                                   where bo.codigo_autoridad_registra == a.Id
+                                                   select new { a.Descripcion }).Distinct()).FirstOrDefault().Descripcion),
+                                    Delegacion = de.Descripcion,
+                                    InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
+                                    StatusPlano = pto.StatusPlano,
+                                    PlacaConfiscada = bo.auto_detenido,
+                                    VehDetenido = bo.placa_confiscada
+                                }).Distinct();
 
                 return reportes;
             }
-        }
 
+            
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -106,31 +120,25 @@ namespace Cosevi.SIBOAC.Controllers.api
             }
             base.Dispose(disposing);
         }
-
-        public class DTOReportePorDescargaDeParteOficial
-        {
-
-            public int Serie { get; set; }
-            public decimal Boletas { get; set; }
-            public Nullable<DateTime> FechaAccidente { get; set; }
-            public string Autoridad { get; set; }
-            public string Delegacion { get; set; }
-            public string ClasePlaca { get; set; }
-            public string CodigoPlaca { get; set; }
-            public string NumeroPlaca { get; set; }
-            public string Usuario { get; set; }
-            public string Nombre { get; set; }
-            public Nullable<DateTime> FechaDescarga { get; set; }
-            public string CodigoDelegacion { get; set; }
-            public string Identificacion { get; set; }
-            public string Apellido1 { get; set; }
-            public string Apellido2 { get; set; }
-            public string CodRol { get; set; }
-            public string SerieParteOficial { get; set; }
-            public string NumeroParte { get; set; }
-            public string DescripcionAutoridad { get; set; }
-            public string DescripcionDelegacion { get; set; }
-
-        }
     }
+
+    public class DTOReportePorDescargaDeParteOficial
+    {
+        public string SerieParte { get; set; }
+        public string NumeroParte { get; set; }
+        public Nullable<DateTime> FechaDescarga { get; set; }
+        public Nullable<DateTime> FechaEntrega{ get; set; }
+        public DateTime FechaAccidente { get; set; }
+        public string SerieNumeroBoleta { get; set; }
+        public string Autoridad { get; set; }
+        public string Delegacion { get; set; }
+        public string InfoPlaca { get; set; }
+        public int ? StatusPlano { get; set; }
+        public string PlacaConfiscada { get; set; }
+        public string VehDetenido { get; set; }
+
+
+
+    }
+
 }
