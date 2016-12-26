@@ -78,8 +78,9 @@
                 @Html.DisplayFor(modelItem => item.Totalidad)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin }) |
-                @Html.ActionLink("Detalles", "Details", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin }) |
+                @Html.ActionLink("Editar", "Edit", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin }) 
+                @Html.ActionLink("Detalles", "Details", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin }) 
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin }) 
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin })
@@ -125,8 +126,9 @@
                 @Html.DisplayFor(modelItem => item.Totalidad)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin  /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detalles", "Details", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Editar", "Edit", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin  /* id=item.PrimaryKey */ }) 
+                @Html.ActionLink("Detalles", "Details", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin /* id=item.PrimaryKey */ }) 
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin }) 
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigo = item.Id, conducta = item.Conducta, fechaInicio = item.FechaDeInicio, fechaFinal = item.FechaDeFin })

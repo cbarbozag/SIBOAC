@@ -145,6 +145,32 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: CaracteristicasDeUbicacions/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
+            if (caracteristicasDeUbicacion == null)
+            {
+                return HttpNotFound();
+            }
+            return View(caracteristicasDeUbicacion);
+        }
+
+        // POST: CaracteristicasDeUbicacions/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
+            db.CARACUBI.Remove(caracteristicasDeUbicacion);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

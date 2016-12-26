@@ -153,6 +153,33 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: ConsecutivoNumeroMarcoes/RealDelete/5
+        public ActionResult RealDelete(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (id == null || consecutivoNumeroMarcoAnterior == null || FechaInicio == null || FechaFin == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id, consecutivoNumeroMarcoAnterior, FechaInicio, FechaFin);
+            if (consecutivoNumeroMarco == null)
+            {
+                return HttpNotFound();
+            }
+            return View(consecutivoNumeroMarco);
+        }
+
+        // POST: ConsecutivoNumeroMarcoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
+        {
+            ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id, consecutivoNumeroMarcoAnterior, FechaInicio, FechaFin);
+            db.CONSECUTIVONUMEROMARCO.Remove(consecutivoNumeroMarco);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

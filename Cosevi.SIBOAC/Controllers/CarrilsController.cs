@@ -151,6 +151,35 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // GET: Carrils/RealDelete/5
+        public ActionResult RealDelete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Carril carril = db.CARRIL.Find(id);
+            if (carril == null)
+            {
+                return HttpNotFound();
+            }
+            return View(carril);
+        }
+
+        // POST: Carrils/Delete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id)
+        {
+            Carril carril = db.CARRIL.Find(id);
+            db.CARRIL.Remove(carril);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
