@@ -42,8 +42,8 @@ namespace Cosevi.SIBOAC.Controllers.api
                                     Delegacion = de.Descripcion,
                                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                                     StatusPlano = pto.StatusPlano,
-                                    PlacaConfiscada = bo.auto_detenido,
-                                    VehDetenido = bo.placa_confiscada
+                                    PlacaConfiscada = bo.placa_confiscada,
+                                    VehDetenido = bo.auto_detenido
                                 }).Distinct();
 
                 return reportes;
@@ -72,13 +72,14 @@ namespace Cosevi.SIBOAC.Controllers.api
                                     Delegacion = de.Descripcion,
                                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                                     StatusPlano = pto.StatusPlano,
-                                    PlacaConfiscada = bo.auto_detenido,
-                                    VehDetenido = bo.placa_confiscada
+                                    PlacaConfiscada = bo.placa_confiscada,
+                                    VehDetenido = bo.auto_detenido
                                 }).Distinct();
 
                 return reportes;
             }
-            else
+
+            if (idRadio == 3)
             {
                 var reportes = (from pto in db.PARTEOFICIAL
                                 join bo in db.BOLETA on new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte } equals new { SerieParte = bo.numeroSerie, NumeroParte = bo.numeroparte }
@@ -101,13 +102,14 @@ namespace Cosevi.SIBOAC.Controllers.api
                                     Delegacion = de.Descripcion,
                                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                                     StatusPlano = pto.StatusPlano,
-                                    PlacaConfiscada = bo.auto_detenido,
-                                    VehDetenido = bo.placa_confiscada
+                                    PlacaConfiscada = bo.placa_confiscada,
+                                    VehDetenido = bo.auto_detenido
                                 }).Distinct();
 
                 return reportes;
             }
 
+            return null;
             
         }
 
