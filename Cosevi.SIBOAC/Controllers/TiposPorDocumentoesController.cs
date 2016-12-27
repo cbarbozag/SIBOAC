@@ -275,6 +275,68 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: TiposPorDocumentoes/RealDelete/5
+        public ActionResult RealDelete(string codigod, string codigot)
+        {
+            if (codigod == null || codigot == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
+
+
+            var list =
+                (from td in db.TIPOSXDOCUMENTO
+                 join d in db.TIPODOCUMENTO on new { Id = td.CodigoTipoDocumento } equals new { Id = d.Id } into d_join
+                 where td.CodigoTipoDocumento == codigod
+                 from d in d_join.DefaultIfEmpty()
+                 join i in db.TIPO_IDENTIFICACION on new { Id = td.CodigoTipoDeIdentificacion } equals new { Id = i.Id } into i_join
+                 where td.CodigoTipoDeIdentificacion == codigot
+                 from i in i_join.DefaultIfEmpty()
+                 select new
+                 {
+                     CodigoTipoDocumento = td.CodigoTipoDocumento,
+                     CodigoTipoDeIdentificacion = td.CodigoTipoDeIdentificacion,
+                     Estado = td.Estado,
+                     FechaDeInicio = td.FechaDeInicio,
+                     FechaDeFin = td.FechaDeFin,
+                     DescripcionCodigoTipoDocumento = d.Descripcion,
+                     DescripcionCodigoTipoDeIdentificacion = i.Descripcion
+                 }).ToList()
+
+
+          .Select(x => new TiposPorDocumento
+          {
+              CodigoTipoDocumento = x.CodigoTipoDocumento,
+              CodigoTipoDeIdentificacion = x.CodigoTipoDeIdentificacion,
+              Estado = x.Estado,
+              FechaDeInicio = x.FechaDeInicio,
+              FechaDeFin = x.FechaDeFin,
+              DescripcionCodigoTipoDocumento = x.DescripcionCodigoTipoDocumento,
+              DescripcionCodigoTipoDeIdentificacion = x.DescripcionCodigoTipoDeIdentificacion
+          }).SingleOrDefault();
+
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: TiposPorDocumentoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string codigod, string codigot)
+        {
+            TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
+            db.TIPOSXDOCUMENTO.Remove(tiposPorDocumento);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

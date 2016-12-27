@@ -292,6 +292,64 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: RutasPorDistritos/RealDelete/5
+        public ActionResult RealDelete(int? codigo_distrito, int? codigo_ruta, int? km)
+        {
+            if (codigo_distrito == null || codigo_ruta == null || km == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list =
+           (
+             from rtd in db.RUTASXDISTRITO
+             join di in db.DISTRITO on new { CodigoDistrito = rtd.CodigoDistrito } equals new { CodigoDistrito = di.Id } into di_join
+             where rtd.CodigoDistrito == codigo_distrito && rtd.CodigoRuta == codigo_ruta && rtd.Km == km
+             from di in di_join.DefaultIfEmpty()
+             join ru in db.Ruta on new { CodigoRuta = rtd.CodigoRuta } equals new { CodigoRuta = ru.Id } into ru_join
+             from ru in ru_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDistrito = rtd.CodigoDistrito,
+                 CodigoRuta = rtd.CodigoRuta,
+                 Km = rtd.Km,
+                 Estado = rtd.Estado,
+                 FechaDeInicio = rtd.FechaDeInicio,
+                 FechaDeFin = rtd.FechaDeFin,
+                 DescripcionDistrito = di.Descripcion,
+                 DescripcionRuta = ru.Inicia + " | " + ru.Termina
+             }).ToList()
+            .Select(x => new RutasPorDistritos
+            {
+                CodigoDistrito = x.CodigoDistrito,
+                CodigoRuta = x.CodigoRuta,
+                Km = x.Km,
+                Estado = x.Estado,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                DescripcionDistrito = x.DescripcionDistrito,
+                DescripcionRuta = x.DescripcionRuta
+            }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: RutasPorDistritos/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int? codigo_distrito, int? codigo_ruta, int? km)
+        {
+            RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
+            db.RUTASXDISTRITO.Remove(rutasPorDistritos);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

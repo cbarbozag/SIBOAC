@@ -68,6 +68,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario }) |
                 @Html.ActionLink("Detalle", "Details", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codRol = item.CodigoRolPersona, codFormulario = item.CodigoOpcionFormulario })

@@ -285,6 +285,63 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: TipoDeIdentificacionPorTipoVehiculoes/RealDelete/5
+        public ActionResult RealDelete(string Codigo, int? CodVeh)
+        {
+            if (Codigo == null || CodVeh == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list =
+              (
+                 from t in db.TIPOIDEVEHICULOXTIPOVEH
+                 join ti in db.TIPOIDEVEHICULO on new { Id = t.CodigoTipoIDEVehiculo } equals new { Id = ti.Id } into ti_join
+                 where t.CodigoTipoIDEVehiculo == Codigo && t.CodigoTipoVeh == CodVeh
+                 from ti in ti_join.DefaultIfEmpty()
+                 join tv in db.TIPOVEH on new { Id = t.CodigoTipoVeh } equals new { Id = tv.Id } into tv_join
+                 from tv in tv_join.DefaultIfEmpty()
+                 select new
+                 {
+                     CodigoTipoIDEVehiculo = t.CodigoTipoIDEVehiculo,
+                     CodigoTipoVeh = t.CodigoTipoVeh,
+                     Estado = t.Estado,
+                     FechaDeInicio = t.FechaDeInicio,
+                     FechaDeFin = t.FechaDeFin,
+                     DescripcionCodigoTipoIDEVehiculo = ti.Descripcion,
+                     DescripcionCodigoTipoVeh = tv.Descripcion
+                 }).ToList()
+               .Select(x => new TipoDeIdentificacionPorTipoVehiculo
+               {
+                   CodigoTipoIDEVehiculo = x.CodigoTipoIDEVehiculo,
+                   CodigoTipoVeh = x.CodigoTipoVeh,
+                   Estado = x.Estado,
+                   FechaDeInicio = x.FechaDeInicio,
+                   FechaDeFin = x.FechaDeFin,
+                   DescripcionCodigoTipoIDEVehiculo = x.DescripcionCodigoTipoIDEVehiculo,
+                   DescripcionCodigoTipoVeh = x.DescripcionCodigoTipoVeh
+
+               }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: TipoDeIdentificacionPorTipoVehiculoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string Codigo, int? CodVeh)
+        {
+            TipoDeIdentificacionPorTipoVehiculo tipoDeIdentificacionPorTipoVehiculo = db.TIPOIDEVEHICULOXTIPOVEH.Find(Codigo, CodVeh);
+            db.TIPOIDEVEHICULOXTIPOVEH.Remove(tipoDeIdentificacionPorTipoVehiculo);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
