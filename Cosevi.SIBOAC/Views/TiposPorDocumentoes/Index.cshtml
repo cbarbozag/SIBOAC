@@ -73,6 +73,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalle", "Details", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion })
@@ -118,6 +119,7 @@
             <td >
                 @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalle", "Details", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion })

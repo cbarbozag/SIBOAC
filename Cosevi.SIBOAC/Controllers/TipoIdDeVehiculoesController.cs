@@ -145,8 +145,6 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
-
-
         // GET: TipoIdDeVehiculoes/RealDelete/5
         public ActionResult RealDelete(string id)
         {

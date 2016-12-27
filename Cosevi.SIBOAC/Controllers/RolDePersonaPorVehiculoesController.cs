@@ -254,6 +254,55 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: RolDePersonaPorVehiculoes/RealDelete/5
+        public ActionResult RealDelete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var item =
+             (from r in db.RolDePersonaPorVehiculoes
+              join rp in db.ROLPERSONA on r.Id equals rp.Id
+              where r.Id == id
+              select new
+              {
+                  Id = r.Id,
+                  ActivarVehiculo = r.ActivarVehiculo,
+                  Estado = r.Estado,
+                  FechaDeInicio = r.FechaDeInicio,
+                  FechaDeFin = r.FechaDeFin,
+                  DescripcionRolPersona = rp.Descripcion
+              }).ToList()
+             .Select(x => new RolDePersonaPorVehiculo
+             {
+                 Id = x.Id,
+                 ActivarVehiculo = x.ActivarVehiculo,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 DescripcionRolPersona = x.DescripcionRolPersona
+             }).SingleOrDefault();
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+
+        // POST: RolDePersonaPorVehiculoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id)
+        {
+            RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
+            db.RolDePersonaPorVehiculoes.Remove(rolDePersonaPorVehiculo);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -341,6 +341,71 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: TipoVehiculoPorCodigoPorClases/RealDelete/5
+        public ActionResult RealDelete(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
+        {
+            if (codigoTiposVehiculos == null || codigoClasePlaca == null || codigoCodigoPlaca == null || codigoTipoVeh == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list =
+              (
+                from t in db.TIPOVEHCODIGOCLASE
+                join ts in db.TIPOSVEHICULOS on new { Id = t.CodigoTiposVehiculos } equals new { Id = ts.Id } into ts_join
+                where t.CodigoTiposVehiculos == codigoTiposVehiculos && t.CodigoClasePlaca == codigoClasePlaca && t.CodigoCodigoPlaca == codigoCodigoPlaca && t.CodigoTipoVeh == codigoTipoVeh
+                from ts in ts_join.DefaultIfEmpty()
+                join c in db.CLASE on new { Id = t.CodigoClasePlaca } equals new { Id = c.Id } into c_join
+                from c in c_join.DefaultIfEmpty()
+                join cg in db.CODIGO on new { Id = t.CodigoCodigoPlaca } equals new { Id = cg.Id } into cg_join
+                from cg in cg_join.DefaultIfEmpty()
+                join v in db.TIPOVEH on new { Id = t.CodigoTipoVeh } equals new { Id = v.Id } into v_join
+                from v in v_join.DefaultIfEmpty()
+                select new
+                {
+                    CodigoTiposVehiculos = t.CodigoTiposVehiculos,
+                    CodigoClasePlaca = t.CodigoClasePlaca,
+                    CodigoCodigoPlaca = t.CodigoCodigoPlaca,
+                    CodigoTipoVeh = t.CodigoTipoVeh,
+                    Estado = t.Estado,
+                    FechaDeInicio = t.FechaDeInicio,
+                    FechaDeFin = t.FechaDeFin,
+                    DescripcionCodigoTiposVehiculos = ts.Nombre,
+                    DescripcionCodigoTipoVeh = v.Descripcion
+                }).ToList()
+               .Select(x => new TipoVehiculoPorCodigoPorClase
+               {
+                   CodigoTiposVehiculos = x.CodigoTiposVehiculos,
+                   CodigoClasePlaca = x.CodigoClasePlaca,
+                   CodigoCodigoPlaca = x.CodigoCodigoPlaca,
+                   CodigoTipoVeh = x.CodigoTipoVeh,
+                   Estado = x.Estado,
+                   FechaDeInicio = x.FechaDeInicio,
+                   FechaDeFin = x.FechaDeFin,
+                   DescripcionCodigoTiposVehiculos = x.DescripcionCodigoTiposVehiculos,
+                   DescripcionCodigoTipoVeh = x.DescripcionCodigoTipoVeh
+
+               }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: TipoVehiculoPorCodigoPorClases/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
+        {
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
+            db.TIPOVEHCODIGOCLASE.Remove(tipoVehiculoPorCodigoPorClase);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

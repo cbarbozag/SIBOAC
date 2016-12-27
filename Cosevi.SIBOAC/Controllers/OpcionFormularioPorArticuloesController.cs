@@ -276,27 +276,7 @@ namespace Cosevi.SIBOAC.Controllers
             }
             return View(list);
         }
-
-
-        public string Verificar(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
-        {
-            string mensaje = "";
-            bool exist = db.OPCFORMULARIOXARTICULO.Any(x => x.Id == id
-                                                        &&x.Conducta==conducta
-                                                        &&x.FechaDeInicio==FechaInicio
-                                                        &&x.FechaDeFin== FechaFin
-                                                        &&x.CodigoOpcionFormulario ==codFormulario);
-            if (exist)
-            {
-                mensaje = "El codigo " + id +
-                    ", conducta "+conducta+
-                    ", FechaInicio "+ FechaInicio+
-                    ", Fecha Fin "+ FechaFin+
-                    ", Opción Formulario "+ codFormulario+
-                    " ya esta registrado";
-            }
-            return mensaje;
-        }
+        
         // POST: OpcionFormularioPorArticuloes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -309,6 +289,89 @@ namespace Cosevi.SIBOAC.Controllers
                 opcionFormularioPorArticulo.Estado = "I";
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: OpcionFormularioPorArticuloes/RealDelete/5
+        public ActionResult RealDelete(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
+        {
+            if (id == null || conducta == null || FechaInicio == null || FechaFin == null || codFormulario == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
+
+            var list =
+            (from fxa in db.OPCFORMULARIOXARTICULO
+             join ca in db.CATARTICULO
+             on new { fxa.Id, fxa.Conducta, fxa.FechaDeInicio, fxa.FechaDeFin } equals new { ca.Id, ca.Conducta, ca.FechaDeInicio, ca.FechaDeFin } into ca_join
+             where fxa.Id == id && fxa.Conducta == conducta && fxa.FechaDeInicio == FechaInicio && fxa.FechaDeFin == FechaFin
+             from ca in ca_join.DefaultIfEmpty()
+             join opf in db.OPCIONFORMULARIO on new { CodigoOpcionFormulario = fxa.CodigoOpcionFormulario } equals new { CodigoOpcionFormulario = opf.Id } into opf_join
+             where fxa.CodigoOpcionFormulario == codFormulario
+             from opf in opf_join.DefaultIfEmpty()
+             select new
+             {
+                 Id = fxa.Id,
+                 Conducta = fxa.Conducta,
+                 FechaDeInicio = fxa.FechaDeInicio,
+                 FechaDeFin = fxa.FechaDeFin,
+                 CodigoOpcionFormulario = fxa.CodigoOpcionFormulario,
+                 Estado = fxa.Estado,
+                 DescripcionCodigoOpcionFormulario = ca.Descripcion,
+                 DescripcionCodigoCatArticulo = opf.Descripcion
+             }).Take(50).ToList()
+
+            .Select(x => new OpcionFormularioPorArticulo
+            {
+                Id = x.Id,
+                Conducta = x.Conducta,
+                FechaDeInicio = x.FechaDeInicio,
+                FechaDeFin = x.FechaDeFin,
+                CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                Estado = x.Estado,
+                DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+                DescripcionCodigoCatArticulo = x.DescripcionCodigoCatArticulo
+
+            }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: OpcionFormularioPorArticuloes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
+        {
+            OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
+            db.OPCFORMULARIOXARTICULO.Remove(opcionFormularioPorArticulo);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
+        public string Verificar(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
+        {
+            string mensaje = "";
+            bool exist = db.OPCFORMULARIOXARTICULO.Any(x => x.Id == id
+                                                        && x.Conducta == conducta
+                                                        && x.FechaDeInicio == FechaInicio
+                                                        && x.FechaDeFin == FechaFin
+                                                        && x.CodigoOpcionFormulario == codFormulario);
+            if (exist)
+            {
+                mensaje = "El codigo " + id +
+                    ", conducta " + conducta +
+                    ", FechaInicio " + FechaInicio +
+                    ", Fecha Fin " + FechaFin +
+                    ", Opción Formulario " + codFormulario +
+                    " ya esta registrado";
+            }
+            return mensaje;
         }
 
         protected override void Dispose(bool disposing)

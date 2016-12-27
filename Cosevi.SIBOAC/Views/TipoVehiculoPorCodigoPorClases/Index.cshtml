@@ -77,6 +77,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
                 @Html.ActionLink("Detalles", "Details", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh })
@@ -123,7 +124,7 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
             @Html.ActionLink("Detalles", "Details", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
-
+            @Html.ActionLink("Eliminar", "RealDelete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh }) |
             @if (item.Estado == "I")
             {
                 @Html.ActionLink("Activar", "Delete", new { codigoTiposVehiculos = item.CodigoTiposVehiculos, codigoClasePlaca = item.CodigoClasePlaca, codigoCodigoPlaca = item.CodigoCodigoPlaca, codigoTipoVeh = item.CodigoTipoVeh })

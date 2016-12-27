@@ -143,6 +143,33 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Carrocerias/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Carroceria carroceria = db.CARROCERIA.Find(id);
+            if (carroceria == null)
+            {
+                return HttpNotFound();
+            }
+            return View(carroceria);
+        }
+
+        // POST: Carrocerias/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            Carroceria carroceria = db.CARROCERIA.Find(id);
+            db.CARROCERIA.Remove(carroceria);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

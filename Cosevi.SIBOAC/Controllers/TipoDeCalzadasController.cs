@@ -147,6 +147,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: TipoDeCalzadas/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
+            if (tipoDeCalzada == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tipoDeCalzada);
+        }
+
+        // POST: TipoDeCalzadas/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
+            db.TIPOCALZADA.Remove(tipoDeCalzada);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -144,6 +144,33 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // GET: Cantons/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Canton canton = db.CANTON.Find(id);
+            if (canton == null)
+            {
+                return HttpNotFound();
+            }
+            return View(canton);
+        }
+
+        // POST: Cantons/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            Canton canton = db.CANTON.Find(id);
+            db.CANTON.Remove(canton);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

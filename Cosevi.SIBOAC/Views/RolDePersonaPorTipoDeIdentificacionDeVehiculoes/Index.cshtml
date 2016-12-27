@@ -81,6 +81,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
                 @Html.ActionLink("Detalle", "Details", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo })
@@ -126,6 +127,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
                 @Html.ActionLink("Detalle", "Details", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { CodRol = item.CodigoDeRol, CodVeh = item.CodigoDeIdentificacionVehiculo })

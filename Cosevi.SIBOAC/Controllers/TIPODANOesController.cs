@@ -139,6 +139,32 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: TIPODANOes/RealDelete/5
+        public ActionResult RealDelete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TIPODANO tIPODANO = db.TIPODANO.Find(id);
+            if (tIPODANO == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tIPODANO);
+        }
+
+        // POST: TIPODANOes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id)
+        {
+            TIPODANO tIPODANO = db.TIPODANO.Find(id);
+            db.TIPODANO.Remove(tIPODANO);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

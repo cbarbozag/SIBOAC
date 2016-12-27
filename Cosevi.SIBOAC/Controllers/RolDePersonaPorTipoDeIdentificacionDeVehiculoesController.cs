@@ -291,6 +291,69 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/RealDelete/5
+        public ActionResult RealDelete(string CodRol, string CodVeh)
+        {
+            if (CodRol == null || CodVeh == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(codRol, CodVeh);
+
+
+            var list =
+            (from ro in db.ROLPERSONAXTIPOIDEVEHICULO
+             join r in db.ROLPERSONA on new { Id = ro.CodigoDeRol.Trim() } equals new { Id = r.Id.Trim() } into r_join
+             where ro.CodigoDeRol == CodRol
+             from r in r_join.DefaultIfEmpty()
+             join t in db.TIPOVEH on new { Id = ro.CodigoDeIdentificacionVehiculo.Trim() } equals new { Id = t.Id.ToString() } into t_join
+             where ro.CodigoDeIdentificacionVehiculo == CodVeh
+             from t in t_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDeRol = ro.CodigoDeRol,
+                 CodigoDeIdentificacionVehiculo = ro.CodigoDeIdentificacionVehiculo,
+                 Estado = ro.Estado,
+                 FechaDeInicio = ro.FechaDeInicio,
+                 FechaDeFin = ro.FechaDeFin,
+                 DescripcionRol = r.Descripcion,
+                 DescripcionTipoVehiculo = t.Descripcion
+             }).ToList()
+
+           .Select(x => new RolDePersonaPorTipoDeIdentificacionDeVehiculo
+           {
+               CodigoDeRol = x.CodigoDeRol,
+               CodigoDeIdentificacionVehiculo = x.CodigoDeIdentificacionVehiculo,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionRol = x.DescripcionRol,
+               DescripcionTipoVehiculo = x.DescripcionTipoVehiculo
+           }).SingleOrDefault();
+
+
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(list);
+        }
+
+        // POST: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Delete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string CodRol, string CodVeh)
+        {
+            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(CodRol, CodVeh);
+            db.ROLPERSONAXTIPOIDEVEHICULO.Remove(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         public string Verificar(string codRol, string CodVeh)
         {
             string mensaje = "";

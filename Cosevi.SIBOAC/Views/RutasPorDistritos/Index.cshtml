@@ -74,6 +74,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalles", "Details", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
@@ -116,7 +117,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
                 @Html.ActionLink("Detalles", "Details", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
-
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
