@@ -16,13 +16,13 @@ namespace Cosevi.SIBOAC.Controllers.api
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        // GET: api/SIBOACDelegacions
+        // GET: api/Delegacions
         public IQueryable<Delegacion> GetDELEGACION()
         {
             return db.DELEGACION;
         }
 
-        // GET: api/SIBOACDelegacions/5
+        // GET: api/Delegacions/5
         [ResponseType(typeof(Delegacion))]
         public IHttpActionResult GetDelegacion(string id)
         {
@@ -35,7 +35,7 @@ namespace Cosevi.SIBOAC.Controllers.api
             return Ok(delegacion);
         }
 
-        // PUT: api/SIBOACDelegacions/5
+        // PUT: api/Delegacions/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDelegacion(string id, Delegacion delegacion)
         {
@@ -70,7 +70,7 @@ namespace Cosevi.SIBOAC.Controllers.api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/SIBOACDelegacions
+        // POST: api/Delegacions
         [ResponseType(typeof(Delegacion))]
         public IHttpActionResult PostDelegacion(Delegacion delegacion)
         {
@@ -100,7 +100,7 @@ namespace Cosevi.SIBOAC.Controllers.api
             return CreatedAtRoute("DefaultApi", new { id = delegacion.Id }, delegacion);
         }
 
-        // DELETE: api/SIBOACDelegacions/5
+        // DELETE: api/Delegacions/5
         [ResponseType(typeof(Delegacion))]
         public IHttpActionResult DeleteDelegacion(string id)
         {

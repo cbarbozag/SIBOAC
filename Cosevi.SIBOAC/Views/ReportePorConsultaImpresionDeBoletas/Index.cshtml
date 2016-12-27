@@ -9,20 +9,21 @@
 <h4>Filtro</h4>
 <hr />
 
-<div class="form-group">
-    <label class="control-label col-md-2">Rango de Fechas</label>
-    <div class="col-md-10">
 
-        <div class="radio" id="radioButton">
-            <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
-            <br>
-            <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
+<div class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input id="desde" type="text" class="input-sm form-control" name="fechaDesde" />
+            <span class="input-group-addon">to</span>
+            <input id="hasta" type="text" class="input-sm form-control" name="fechaHasta" />
         </div>
     </div>
 </div>
 <br />
 <br />
-
+<br />
+<br />
 
 <div class="row">
     <div class="col-md-6">
@@ -34,9 +35,11 @@
                 </ul>
             </div>
             <br>
-            <button id="todosDelegacion" type="button" class="btn btn-primary">Marcar todos</button>
-            <button id="limpiarDelegacion" type="button" class="btn btn-warning">Limpiar</button>
         </div>
+        <br /> <br /> <br /> <br /> <br /> <br />
+        <br /> <br /> <br /> <br /> <br /> <br />
+        <button id="todosDelegacion" type="button" class="btn btn-primary">Marcar todos</button>
+        <button id="limpiarDelegacion" type="button" class="btn btn-warning">Limpiar</button>
     </div>
     <div class="col-md-6">
         <div class="form-group">
@@ -47,13 +50,16 @@
                 </ul>
             </div>
             <br>
-            <button id="todosInspector" type="button" class="btn btn-primary">Marcar todos</button>
-            <button id="limpiarInspector" type="button" class="btn btn-warning">Limpiar</button>
         </div>
+        <br /> <br /> <br /> <br /> <br /> <br />
+        <br /> <br /> <br /> <br /> <br /> <br />
+        <button id="todosInspector" type="button" class="btn btn-primary">Marcar todos</button>
+        <button id="limpiarInspector" type="button" class="btn btn-warning">Limpiar</button>
     </div>
 </div>
 
-
+<br />
+<br />
 <br />
 <br />
 
@@ -95,20 +101,14 @@
             <div class="col-md-1">
                 Artículos
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
                 Provincia
             </div>
-            <div class="col-md-2">
-                Cantón
+            <div class="col-md-1">
+                Coordenada-X
             </div>
-            <div class="col-md-2">
-                Distrito
-            </div>
-            <div class="col-md-2">
-                Coordenada X
-            </div>
-            <div class="col-md-2">
-                Coordenada Y
+            <div class="col-md-1">
+                Coordenada-Y
             </div>
         </div>
     </div>
@@ -117,3 +117,6 @@
     </div>
 </div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorConsultaImpresionDeBoletas")
+}

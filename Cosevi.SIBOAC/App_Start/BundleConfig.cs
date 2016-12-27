@@ -51,6 +51,10 @@ namespace Cosevi.SIBOAC
             bundles.Add(new ScriptBundle("~/bundles/ReportePorConsultaParteOficial").Include(
                      "~/Scripts/ReportesPorConsultaParteOficial.js"));
 
+            // Report: ReportePorConsultaImpresionDeBoletas bundles
+            bundles.Add(new ScriptBundle("~/bundles/ReportePorConsultaImpresionDeBoletas").Include(
+                     "~/Scripts/ReportePorConsultaImpresionDeBoletas.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-datepicker.min.css",
