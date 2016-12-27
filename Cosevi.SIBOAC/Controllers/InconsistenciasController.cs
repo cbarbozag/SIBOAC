@@ -116,6 +116,34 @@ namespace Cosevi.SIBOAC.Controllers
             return View(inconsistencia);
         }
 
+        // GET: Obstaculoes/RealDelete/5
+        public ActionResult RealDelete(short? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Inconsistencia inconsistencia = db.INCONSISTENCIA.Find(id);
+            if (inconsistencia == null)
+            {
+                return HttpNotFound();
+            }
+            return View(inconsistencia);
+        }
+
+        // POST: Obstaculoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(short id)
+        {
+            Inconsistencia inconsistencia = db.INCONSISTENCIA.Find(id);
+            db.INCONSISTENCIA.Remove(inconsistencia);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

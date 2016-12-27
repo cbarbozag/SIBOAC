@@ -62,7 +62,7 @@
     function generarReporte() {
         var idDelegaciones = '';
         var idAutoridades = '';
-        var idRadio = $('input[name="radio"]:checked').val();
+        var idRadio = $('input[name="opcionConsulta"]:checked').val();
         var desde = $('#desde').val();
         var hasta = $('#hasta').val();
         var delegacionesSeleccionadas = $('#listaDelegaciones li.active');
@@ -79,11 +79,11 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorDescargaDeParteOficial?statusPlano=' + idRadio + '&' + idDelegaciones + idAutoridades + '&desde=' + desde + '&hasta=' + hasta,
+            url: '/api/ReportePorDescargaDeParteOficial?idRadio=' + idRadio + '&' + idDelegaciones + idAutoridades + '&desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {
-                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].Autoridad + '</div><div class="col-md-1">' + results[i].Serie + '</div><div class="col-md-1">' + results[i].NumeroParte + '</div><div class="col-md-1">' + results[i].Boletas + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].identificacion + '</div><div class="col-md-1">' + results[i].nombre);
+                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].SerieParte + '</div><div class="col-md-1">' + results[i].NumeroParte + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].FechaEntrega + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].SerieNumeroBoleta + '</div><div class="col-md-1">' + results[i].Autoridad + '</div><div class="col-md-1">' + results[i].Delegacion + '</div><div class="col-md-1">' + results[i].InfoPlaca + '</div><div class="col-md-1">' + results[i].StatusPlano + '</div><div class="col-md-1">' + results[i].PlacaConfiscada + '</div><div class="col-md-1">' + results[i].VehDetenido);
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {

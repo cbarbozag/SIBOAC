@@ -1,0 +1,79 @@
+﻿@model Cosevi.SIBOAC.Models.TipoDeIdentificacionPorTipoVehiculo
+
+@{
+    ViewBag.Title = "Inactivar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+
+<h3>¿Está seguro que desea eliminar este registro?</h3>
+<div>
+    <h4>Tipo de Identificación por Tipo de Vehículo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoTipoIDEVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTipoIDEVehiculo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTipoIDEVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTipoIDEVehiculo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoTipoVeh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTipoVeh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTipoVeh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTipoVeh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>

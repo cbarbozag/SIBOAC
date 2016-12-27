@@ -150,6 +150,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: HorasLaborales/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
+            if (horasLaborales == null)
+            {
+                return HttpNotFound();
+            }
+            return View(horasLaborales);
+        }
+
+        // POST: HorasLaborales/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
+            db.HORASLABORALES.Remove(horasLaborales);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

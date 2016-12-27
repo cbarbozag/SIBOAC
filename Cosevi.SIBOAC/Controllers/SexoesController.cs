@@ -142,6 +142,34 @@ namespace Cosevi.SIBOAC.Models
             return RedirectToAction("Index");
         }
 
+        // GET: Sexoes/RealDelete/5
+        public ActionResult RealDelete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Sexo sexo = db.SEXO.Find(id);
+            if (sexo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sexo);
+        }
+
+        // POST: Sexoes/Delete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id)
+        {
+            Sexo sexo = db.SEXO.Find(id);
+            db.SEXO.Remove(sexo);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

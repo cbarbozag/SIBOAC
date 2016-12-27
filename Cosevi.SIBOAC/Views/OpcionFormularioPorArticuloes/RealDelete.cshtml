@@ -1,0 +1,79 @@
+﻿@model Cosevi.SIBOAC.Models.OpcionFormularioPorArticulo
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Eliminar</h2>
+
+
+<h3>¿Está seguro que desea eliminar este registro?</h3>
+<div>
+    <h4>Opción Formulario por Artículo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Conducta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Conducta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoOpcionFormulario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>

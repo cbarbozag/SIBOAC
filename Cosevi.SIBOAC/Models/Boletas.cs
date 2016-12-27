@@ -66,9 +66,9 @@ namespace Cosevi.SIBOAC.Models
         public string x { get; set; }
         public string y { get; set; }
         public string nivel_alcohol { get; set; }
-        public Nullable<int> cod_provincia { get; set; }
-        public Nullable<int> cod_canton { get; set; }
-        public Nullable<int> cod_distrito { get; set; }
+        public int cod_provincia { get; set; }
+        public int cod_canton { get; set; }
+        public int cod_distrito { get; set; }
         public string fuente_libro { get; set; }
         public Nullable<int> periodo_libro { get; set; }
         public Nullable<short> codigo_libro { get; set; }

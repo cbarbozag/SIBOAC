@@ -118,6 +118,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: RolPorPersonas/RealDelete/5
+        public ActionResult RealDelete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RolPorPersona rolPorPersona = db.ROLPERSONA.Find(id);
+            if (rolPorPersona == null)
+            {
+                return HttpNotFound();
+            }
+            return View(rolPorPersona);
+        }
+        
+        // POST: RolPorPersonas/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id)
+        {
+            RolPorPersona rolPorPersona = db.ROLPERSONA.Find(id);
+            db.ROLPERSONA.Remove(rolPorPersona);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -125,6 +153,17 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public string Verificar(string id)
+        {
+            string mensaje = "";
+            bool exist = db.ROLPERSONA.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El código del rol de la persona " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
     }
 }

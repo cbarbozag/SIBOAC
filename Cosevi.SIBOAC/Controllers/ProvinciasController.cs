@@ -143,6 +143,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Provincias/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Provincia provincia = db.PROVINCIA.Find(id);
+            if (provincia == null)
+            {
+                return HttpNotFound();
+            }
+            return View(provincia);
+        }
+
+        // POST: Provincias/Delete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            Provincia provincia = db.PROVINCIA.Find(id);
+            db.PROVINCIA.Remove(provincia);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

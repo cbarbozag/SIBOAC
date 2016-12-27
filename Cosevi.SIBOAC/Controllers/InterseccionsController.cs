@@ -143,6 +143,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Interseccions/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Interseccion interseccion = db.INTERSECCION.Find(id);
+            if (interseccion == null)
+            {
+                return HttpNotFound();
+            }
+            return View(interseccion);
+        }
+
+        // POST: Interseccions/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            Interseccion interseccion = db.INTERSECCION.Find(id);
+            db.INTERSECCION.Remove(interseccion);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

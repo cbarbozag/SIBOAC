@@ -307,6 +307,68 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: RolPorPersonaOpcionFormularios/RealDelete/5
+        public ActionResult RealDelete(int? codRol, int? codFormulario)
+        {
+            if (codRol == null || codFormulario == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
+
+            var list =
+           (from ro in db.ROLPERSONA_OPCIONFORMULARIO
+            join r in db.ROLPERSONA on ro.CodigoRolPersona.ToString() equals r.Id into r_join
+            where ro.CodigoRolPersona == codRol
+            from r in r_join.DefaultIfEmpty()
+            join o in db.OPCIONFORMULARIO on new { Id = ro.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+            where ro.CodigoOpcionFormulario == codFormulario
+            from o in o_join.DefaultIfEmpty()
+            select new
+            {
+                CodigoRolPersona = ro.CodigoRolPersona,
+                CodigoOpcionFormulario = ro.CodigoOpcionFormulario,
+                Estado = ro.Estado,
+                FechaDeInicio = ro.FechaDeInicio,
+                FechaDeFin = ro.FechaDeFin,
+                DescripcionCodigoOpcionFormulario = o.Descripcion,
+                DescripcionCodigoRolPersona = r.Descripcion
+            }).ToList()
+
+
+           .Select(x => new RolPorPersonaOpcionFormulario
+           {
+
+               CodigoRolPersona = x.CodigoRolPersona,
+               CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario,
+               DescripcionCodigoRolPersona = x.DescripcionCodigoRolPersona
+
+           }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: RolPorPersonaOpcionFormularios/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int codRol, int codFormulario)
+        {
+            RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
+            db.ROLPERSONA_OPCIONFORMULARIO.Remove(rolPorPersonaOpcionFormulario);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             try

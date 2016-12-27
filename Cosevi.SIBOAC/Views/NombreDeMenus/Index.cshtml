@@ -43,6 +43,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id=item.Id.Trim() }) |
                 @Html.ActionLink("Detalles", "Details", new { id=item.Id.Trim() }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id.Trim() }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id })
@@ -72,6 +73,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id.Trim() }) |
                 @Html.ActionLink("Detalles", "Details", new { id = item.Id.Trim() }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id.Trim() }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id })

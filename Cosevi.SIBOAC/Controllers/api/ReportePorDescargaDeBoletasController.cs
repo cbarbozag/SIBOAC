@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Controllers.api
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: api/ReportePorDescargaDeBoletas
-        public IQueryable<DTOReportePorDescargaDeBoletas> GetReportePorDescargaDeBoletas([FromUri] int idRadio, [FromUri] DateTime desde, [FromUri] DateTime hasta)
+        public IQueryable<DTOReportePorDescargaDeBoletas> GetReportePorDescargaDeBoletas([FromUri] int idRadio, [FromUri] DateTime? desde, [FromUri] DateTime? hasta)
         {
 
             if (idRadio == 1)
