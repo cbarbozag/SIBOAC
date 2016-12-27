@@ -255,6 +255,65 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: DetallePorTipoSenials/RealDelete/5
+        public ActionResult RealDelete(string codsenex, string codigose)
+        {
+            if (codsenex == null || codigose == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list =
+          (
+               from dts in db.DETALLETIPOSEÑAL
+               join se in db.SEÑALAMIENTO on new { CodigoTipoSenial = dts.CodigoTipoSenial } equals new { CodigoTipoSenial = se.Id.ToString() } into se_join
+               where dts.Id == codigose && dts.CodigoTipoSenial == codsenex
+               from se in se_join.DefaultIfEmpty()
+               join tse in db.TIPOSEÑALEXISTE on dts.Id equals tse.Id into tse_join
+               from tse in tse_join.DefaultIfEmpty()
+               select new
+               {
+                   CodigoTipoSenial = dts.CodigoTipoSenial,
+                   Id = dts.Id,
+                   Descripcion = dts.Descripcion,
+                   Estado = dts.Estado,
+                   FechaDeInicio = dts.FechaDeInicio,
+                   FechaDeFin = dts.FechaDeFin,
+                   DescripcionSenalamiento = se.Descripcion,
+                   DescripcionCodigoTipoSenial = tse.Descripcion
+               }).ToList()
+                .Select(x => new DetallePorTipoSenial
+                {
+                    CodigoTipoSenial = x.CodigoTipoSenial,
+                    Id = x.Id,
+                    Descripcion = x.Descripcion,
+                    Estado = x.Estado,
+                    FechaDeInicio = x.FechaDeInicio,
+                    FechaDeFin = x.FechaDeFin,
+                    DescripcionSenalamiento = x.DescripcionSenalamiento,
+                    DescripcionCodigoTipoSenial = x.DescripcionCodigoTipoSenial
+
+                }).SingleOrDefault();
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(list);
+        }
+
+        // POST: DetallePorTipoSenials/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string codsenex, string codigose)
+        {
+            DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
+            db.DETALLETIPOSEÑAL.Remove(detallePorTipoSenial);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

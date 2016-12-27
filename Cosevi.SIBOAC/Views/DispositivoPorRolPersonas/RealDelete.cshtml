@@ -1,0 +1,25 @@
+﻿@model Cosevi.SIBOAC.Models.DispositivoPorRolPersona
+
+@{
+    ViewBag.Title = "RealDelete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar este registro?</h3>
+<div>
+    <h4>Dispositivo por Rol de Persona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>

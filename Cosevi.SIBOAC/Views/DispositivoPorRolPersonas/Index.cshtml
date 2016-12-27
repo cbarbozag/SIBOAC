@@ -46,6 +46,7 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Detalle", "Details", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo  /* id=item.PrimaryKey */ }) |           
+            @Html.ActionLink("Eliminar", "RealDelete", new { CodRol = item.CodigoRolPersona, CodDisp = item.CodigoDispositivo  /* id=item.PrimaryKey */ }) |
         </td>
     </tr>
 }

@@ -79,6 +79,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
                 @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
@@ -121,7 +122,7 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
             @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
-
+            @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
             @if (item.Estado == "I")
             {
                 @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })

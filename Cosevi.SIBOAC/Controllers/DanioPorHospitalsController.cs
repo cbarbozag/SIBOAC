@@ -282,6 +282,67 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+        // GET: DanioPorHospitals/RealDelete/5
+        public ActionResult RealDelete(string IdHospital, int? IdDanio)
+        {
+            if (IdHospital == null || IdDanio == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
+
+            var list =
+            (from dh in db.DAÑOXHOSPITAL
+             join ho in db.HOSPITAL on new { IdHospital = dh.IdHospital } equals new { IdHospital = ho.Id } into ho_join
+             where dh.IdHospital == IdHospital
+             from ho in ho_join.DefaultIfEmpty()
+             join da in db.DAÑO on new { IdDanio = dh.IdDanio } equals new { IdDanio = da.Id } into da_join
+             where dh.IdDanio == IdDanio
+             from da in da_join.DefaultIfEmpty()
+             select new
+             {
+                 IdHospital = dh.IdHospital,
+                 IdDanio = dh.IdDanio,
+                 Estado = dh.Estado,
+                 FechaDeInicio = dh.FechaDeInicio,
+                 FechaDeFin = dh.FechaDeFin,
+                 DescripcionHospital = ho.Descripcion,
+                 DescripcionDanio = da.Descripcion
+             }).ToList()
+
+           .Select(x => new DanioPorHospital
+           {
+               IdHospital = x.IdHospital,
+               IdDanio = x.IdDanio,
+               Estado = x.Estado,
+               FechaDeInicio = x.FechaDeInicio,
+               FechaDeFin = x.FechaDeFin,
+               DescripcionHospital = x.DescripcionHospital,
+               DescripcionDanio = x.DescripcionDanio
+
+           }).SingleOrDefault();
+
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: DanioPorHospitals/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string IdHospital, int IdDanio)
+        {
+            DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
+            db.DAÑOXHOSPITAL.Remove(danioPorHospital);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

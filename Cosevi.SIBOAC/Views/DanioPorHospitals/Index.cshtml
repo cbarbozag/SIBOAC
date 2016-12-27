@@ -70,6 +70,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
                 @Html.ActionLink("Detalles", "Details", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
@@ -109,7 +110,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
                 @Html.ActionLink("Detalles", "Details", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
-
+                @Html.ActionLink("Eliminar", "RealDelete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })

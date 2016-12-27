@@ -147,6 +147,33 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
 
+        // GET: Dispositivoes/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Dispositivo dispositivo = db.Dispositivoes1.Find(id);
+            if (dispositivo == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dispositivo);
+        }
+
+        // POST: Dispositivoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            Dispositivo dispositivo = db.Dispositivoes1.Find(id);
+            db.Dispositivoes1.Remove(dispositivo);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1304,6 +1304,20 @@
     <Content Include="Views\ReportePorDescargaDeInspector\Index.cshtml" />
     <Content Include="Views\ReportePorConsultaImpresionDeBoletas\Index.cshtml" />
     <Content Include="Views\ReportePorDescargaDeParteOficial\Index.cshtml" />
+    <Content Include="Views\DanioPorHospitals\RealDelete.cshtml" />
+    <Content Include="Views\Danoes\RealDelete.cshtml" />
+    <Content Include="Views\Delegacions\RealDelete.cshtml" />
+    <Content Include="Views\Delitoes\RealDelete.cshtml" />
+    <Content Include="Views\DepositoDePlacas\RealDelete.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\RealDelete.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\RealDelete.cshtml" />
+    <Content Include="Views\Direccions\RealDelete.cshtml" />
+    <Content Include="Views\Dispositivoes\RealDelete.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\RealDelete.cshtml" />
+    <Content Include="Views\DispositivosMoviles\RealDelete.cshtml" />
+    <Content Include="Views\Distritoes\RealDelete.cshtml" />
+    <Content Include="Views\Divisions\RealDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

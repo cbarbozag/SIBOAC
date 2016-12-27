@@ -145,6 +145,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Distritoes/RealDelete/5
+        public ActionResult RealDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Distrito distrito = db.DISTRITO.Find(id);
+            if (distrito == null)
+            {
+                return HttpNotFound();
+            }
+            return View(distrito);
+        }
+
+        // POST: Distritoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int id)
+        {
+            Distrito distrito = db.DISTRITO.Find(id);
+            db.DISTRITO.Remove(distrito);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

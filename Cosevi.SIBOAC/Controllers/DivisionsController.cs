@@ -294,6 +294,63 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+        // GET: Divisions/RealDelete/5
+        public ActionResult RealDelete(int? canton, string OficinaImpugna, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (canton == null || OficinaImpugna == null || FechaInicio == null || FechaFin == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var list =
+          (from d in db.DIVISION
+           join c in db.CANTON on new { IdCanton = d.IdCanton } equals new { IdCanton = c.Id } into c_join
+           where d.IdCanton == canton && d.CodigoOficinaImpugna == OficinaImpugna && d.FechaDeInicio == FechaInicio && d.FechaDeFin == FechaFin
+           from c in c_join.DefaultIfEmpty()
+           join o in db.OficinaParaImpugnars on new { Id = d.CodigoOficinaImpugna } equals new { Id = o.Id } into o_join
+           from o in o_join.DefaultIfEmpty()
+           select new
+           {
+               IdCanton = d.IdCanton,
+               CodigoOficinaImpugna = d.CodigoOficinaImpugna,
+               Estado = d.Estado,
+               FechaDeInicio = d.FechaDeInicio,
+               FechaDeFin = d.FechaDeFin,
+               DescripcionCanton = c.Descripcion,
+               DescripcionOficina = o.Descripcion
+           }).ToList()
+               .Select(x => new Division
+               {
+
+                   IdCanton = x.IdCanton,
+                   CodigoOficinaImpugna = x.CodigoOficinaImpugna,
+                   Estado = x.Estado,
+                   FechaDeInicio = x.FechaDeInicio,
+                   FechaDeFin = x.FechaDeFin,
+                   DescripcionCanton = x.DescripcionCanton,
+                   DescripcionOficina = x.DescripcionOficina
+               }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: Divisions/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int? canton, string OficinaImpugna, DateTime FechaInicio, DateTime FechaFin)
+        {
+            Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
+            db.DIVISION.Remove(division);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

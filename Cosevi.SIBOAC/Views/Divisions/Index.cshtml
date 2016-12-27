@@ -66,6 +66,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalles", "Details", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin/* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin/* id=item.PrimaryKey */ }) |
                 @if (item.Estado == "I")
                 {
                 @Html.ActionLink("Activar", "Delete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
@@ -106,6 +107,7 @@
     <td>
         @Html.ActionLink("Editar", "Edit", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
         @Html.ActionLink("Detalles", "Details", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Eliminar", "RealDelete", new { canton = item.IdCanton, OficinaImpugna = item.CodigoOficinaImpugna, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin/* id=item.PrimaryKey */ }) |
 
         @if (item.Estado == "I")
         {

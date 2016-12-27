@@ -145,6 +145,33 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Delitoes/RealDelete/5
+        public ActionResult RealDelete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Delito delito = db.DELITO.Find(id);
+            if (delito == null)
+            {
+                return HttpNotFound();
+            }
+            return View(delito);
+        }
+
+        // POST: Delitoes/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id)
+        {
+            Delito delito = db.DELITO.Find(id);
+            db.DELITO.Remove(delito);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

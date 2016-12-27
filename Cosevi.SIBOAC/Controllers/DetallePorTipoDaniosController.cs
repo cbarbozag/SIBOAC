@@ -316,6 +316,72 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // GET: DetallePorTipoDanios/RealDelete/5
+        public ActionResult RealDelete(string codigod, string codigotd)
+        {
+            if (codigod == null || codigotd == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+
+
+            var list =
+            (from dtd in db.DETALLETIPODAÑO
+                 //join da in db.DAÑO on new { CodigoDanio = (string)dtd.CodigoDanio } equals new { CodigoDanio = (da.Id.ToString()) } into da_join
+                 //where dtd.CodigoDanio == codigod
+                 //from da in da_join.DefaultIfEmpty()
+             join td in db.TIPODANO on new { CodigoDanio = dtd.CodigoDanio } equals new { CodigoDanio = td.codigod } into td_join
+             where dtd.CodigoDanio == codigod && dtd.CodigoTipoDanio == codigotd
+             from td in td_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoDanio = dtd.CodigoDanio,
+                 CodigoTipoDanio = dtd.CodigoTipoDanio,
+                 Descripcion = dtd.Descripcion,
+                 Estado = dtd.Estado,
+                 FechaDeInicio = dtd.FechaDeInicio,
+                 FechaDeFin = dtd.FechaDeFin,
+                 //DescripcionCodigoDano = da.Descripcion,
+                 DescripcionCodigoDano = td.descripcion
+
+             }).ToList()
+
+
+             .Select(x => new DetallePorTipoDanio
+             {
+                 CodigoDanio = x.CodigoDanio,
+                 CodigoTipoDanio = x.CodigoTipoDanio,
+                 Descripcion = x.Descripcion,
+                 Estado = x.Estado,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 //DescripcionCodigoDano = x.DescripcionCodigoDano,
+                 DescripcionCodigoDano = x.DescripcionCodigoDano
+
+             }).SingleOrDefault();
+
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: DetallePorTipoDanios/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string codigod, string codigotd)
+        {
+            DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+            db.DETALLETIPODAÑO.Remove(detallePorTipoDanio);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
