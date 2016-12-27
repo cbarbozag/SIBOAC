@@ -58,6 +58,7 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new {id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Detalle", "Details", new { id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
             @if (item.Estado == "I")
             {
                 @Html.ActionLink("Activar", "Delete", new { id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
@@ -93,6 +94,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Detalle", "Details", new { id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin /* id=item.PrimaryKey */ }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { id = item.Id, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })

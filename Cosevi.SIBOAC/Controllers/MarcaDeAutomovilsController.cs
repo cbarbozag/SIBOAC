@@ -143,6 +143,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: MarcaDeAutomovils/RealDelete/5
+        public ActionResult RealDelete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MarcaDeAutomovil marcaDeAutomovil = db.MARCA.Find(id);
+            if (marcaDeAutomovil == null)
+            {
+                return HttpNotFound();
+            }
+            return View(marcaDeAutomovil);
+        }
+
+        // POST: MarcaDeAutomovils/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id)
+        {
+            MarcaDeAutomovil marcaDeAutomovil = db.MARCA.Find(id);
+            db.MARCA.Remove(marcaDeAutomovil);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

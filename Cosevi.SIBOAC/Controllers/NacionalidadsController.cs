@@ -149,6 +149,34 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Nacionalidads/RealDelete/5
+        public ActionResult RealDelete(string id, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (id == null || FechaFin == null || FechaFin == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
+            if (nacionalidad == null)
+            {
+                return HttpNotFound();
+            }
+            return View(nacionalidad);
+        }
+
+        // POST: Nacionalidads/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(string id, DateTime FechaInicio, DateTime FechaFin)
+        {
+            Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
+            db.NACIONALIDAD.Remove(nacionalidad);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

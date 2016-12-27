@@ -1,20 +1,15 @@
 ﻿@model Cosevi.SIBOAC.Models.NombreDeMenu
 
 @{
-    ViewBag.Title = "Inactivar";
+    ViewBag.Title = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.Estado == "A")
-{
-    <h2>Inactivar</h2>
-}
-else
-{
-    <h2>Activar</h2>
-}
 
-<h3>¿Está seguro que desea cambiar el estado?</h3>
+<h2>Eliminar</h2>
+
+
+<h3>¿Está seguro que desea eliminar este registro?</h3>
 <div>
     <h4>Nombre de Menú</h4>
     <hr />
@@ -45,19 +40,12 @@ else
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            @if (Model.Estado == "A")
-            {
-                <input type="submit" value="Inactivar" class="btn btn-warning" />
-            }
-            else
-            {
-                <input type="submit" value="Activar" class="btn btn-success" />
-            }
-            |
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
             @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }

@@ -1107,11 +1107,11 @@
     <Content Include="Views\Distritoes\Details.cshtml" />
     <Content Include="Views\Distritoes\Edit.cshtml" />
     <Content Include="Views\Distritoes\Index.cshtml" />
-    <Content Include="Views\EstadoDeLaCalzadas\Examen\Create.cshtml" />
-    <Content Include="Views\EstadoDeLaCalzadas\Examen\Delete.cshtml" />
-    <Content Include="Views\EstadoDeLaCalzadas\Examen\Details.cshtml" />
-    <Content Include="Views\EstadoDeLaCalzadas\Examen\Edit.cshtml" />
-    <Content Include="Views\EstadoDeLaCalzadas\Examen\Index.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\Examen\Delete.cshtml" />
+    <Content Include="Views\Examen\Details.cshtml" />
+    <Content Include="Views\Examen\Edit.cshtml" />
+    <Content Include="Views\Examen\Index.cshtml" />
     <Content Include="Views\Direccions\Create.cshtml" />
     <Content Include="Views\Direccions\Delete.cshtml" />
     <Content Include="Views\Direccions\Details.cshtml" />
@@ -1339,6 +1339,21 @@
     <Content Include="Views\OficinaParaImpugnars\RealDelete.cshtml" />
     <Content Include="Views\Obstaculoes\RealDelete.cshtml" />
     <Content Include="Views\TipoDeIdentificacions\RealDelete.cshtml" />
+    <Content Include="Views\NombreDeMenus\RealDelete.cshtml" />
+    <Content Include="Views\Nacionalidads\RealDelete.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\RealDelete.cshtml" />
+    <Content Include="Views\MarcaDeAutomovils\RealDelete.cshtml" />
+    <Content Include="Views\Maniobras\RealDelete.cshtml" />
+    <Content Include="Views\Interseccions\RealDelete.cshtml" />
+    <Content Include="Views\Inspectors\RealDelete.cshtml" />
+    <Content Include="Views\Inconsistencias\RealDelete.cshtml" />
+    <Content Include="Views\Iluminacions\RealDelete.cshtml" />
+    <Content Include="Views\Hospitals\RealDelete.cshtml" />
+    <Content Include="Views\HorasLaborales\RealDelete.cshtml" />
+    <Content Include="Views\Examen\RealDelete.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\RealDelete.cshtml" />
+    <Content Include="Views\EstadoCivils\RealDelete.cshtml" />
+    <Content Include="Views\Edads\RealDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

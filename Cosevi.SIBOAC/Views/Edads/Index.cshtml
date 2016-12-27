@@ -72,6 +72,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
                 @Html.ActionLink("Detalle", "Details", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento })
@@ -114,6 +115,7 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
                 @Html.ActionLink("Detalles", "Details", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento }) |
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { FechaMinNacimiento = item.FechaMinNacimiento, FechaMaxNacimiento = item.FechaMaxNacimiento })

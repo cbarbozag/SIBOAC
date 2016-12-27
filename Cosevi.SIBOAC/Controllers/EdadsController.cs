@@ -154,6 +154,35 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Edads/RealDelete/5
+        public ActionResult RealDelete(DateTime FechaMinNacimiento, DateTime FechaMaxNacimiento)
+        {
+            if (FechaMinNacimiento == null || FechaMaxNacimiento == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Edad edad = db.EDAD.Find(FechaMinNacimiento, FechaMaxNacimiento);
+            if (edad == null)
+            {
+                return HttpNotFound();
+            }
+            return View(edad);
+        }
+
+        // POST: Edads/RealDelete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(DateTime FechaMinNacimiento, DateTime FechaMaxNacimiento)
+        {
+            Edad edad = db.EDAD.Find(FechaMinNacimiento, FechaMaxNacimiento);
+            db.EDAD.Remove(edad);
+            db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
