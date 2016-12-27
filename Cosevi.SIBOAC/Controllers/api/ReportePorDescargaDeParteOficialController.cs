@@ -48,7 +48,6 @@ namespace Cosevi.SIBOAC.Controllers.api
 
                 return reportes;
             }
-            else { return null; }
 
             if(idRadio == 2)
             {
