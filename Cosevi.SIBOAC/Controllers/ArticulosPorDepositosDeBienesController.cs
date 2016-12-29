@@ -143,13 +143,15 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.ComboOpcionFormulario = itemsOpcionFormularios;
 
 
-            IEnumerable<SelectListItem> itemsCatArticulos = db.CATARTICULO.Where(a => a.Estado == "A")
-            .Select(o => new SelectListItem
-            {
-                Value = o.Id.ToString(),
-                Text = o.Id.ToString() + " | " + o.Conducta + " | " + o.FechaDeInicio.ToString() + " | " + o.FechaDeFin
-            });
-            ViewBag.ComboArticulos = itemsCatArticulos;
+            IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+                                                             where o.Estado == "A"
+                                                             select new  { o.Id }).ToList().Distinct()          
+                                                            .Select(o => new SelectListItem
+                                                            {
+                                                                Value = o.Id.ToString(),
+                                                                Text = o.Id.ToString()
+                                                            });
+                                                            ViewBag.ComboArticulos = itemsCatArticulos;
 
             return View();
         }
@@ -367,6 +369,63 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public JsonResult ObtenerConducta(string CodigoArticulo)
+        {
+            var listaconducta =
+                 (from o in db.CATARTICULO
+                  where o.Id == CodigoArticulo && o.Estado == "A"
+                  select new
+                  {
+
+                      o.Conducta
+                  }).ToList().Distinct()
+            .Select(x => new ClaseConducta
+            {
+               Id = x.Conducta,
+                Nombre = x.Conducta
+            }).Distinct();
+                
+            return Json(listaconducta,JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult ObtenerFechaInicio(string CodigoArticulo,string Conducta)
+        {
+            var listaconducta =
+                 (from o in db.CATARTICULO
+                  where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado=="A"
+                  select new
+                  {
+                      fecha = o.FechaDeInicio.ToString()
+                    
+                  }).ToList().Distinct()
+            .Select(x => new ClaseFechaInicio
+            {
+                Id = x.fecha,
+                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+            }).Distinct();
+
+            return Json(listaconducta, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ObtenerFechaFinal(string CodigoArticulo, string Conducta,string FechaInicio)
+        {
+            var listaconducta =
+                 (from o in db.CATARTICULO
+                  where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio.ToString() ==FechaInicio
+                  select new
+                  {
+                      fecha = o.FechaDeFin.ToString()
+                  }).ToList().Distinct()
+            .Select(x => new ClaseFechaFinal
+            {
+                Id = x.fecha,
+                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+            }).Distinct();
+
+            return Json(listaconducta, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -397,5 +456,27 @@ namespace Cosevi.SIBOAC.Controllers
             }
             return mensaje;
         }
+
+        public class ClaseConducta
+        {
+            public string Id { get; set; }
+            public string Nombre { get; set; }
+         
+        }
+        public class ClaseFechaInicio
+        {
+            public string Id { get; set; }
+            public string Nombre { get; set; }
+
+
+        }
+        public class ClaseFechaFinal
+        {
+            public string Id { get; set; }
+            public string Nombre { get; set; }
+
+
+        }
+
     }
 }
