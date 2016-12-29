@@ -185,10 +185,13 @@ namespace Cosevi.SIBOAC.Controllers
             return View();
         }
 
-        public ActionResult DownloadPartialViewPDF()
+        public ActionResult DownloadPartialViewPDF(string Imprimir,int? serie,decimal? numero_boleta)
         {
+            if (Imprimir != null)
+                return RedirectToAction("Index",new { serie,numero_boleta});
             var model = Session["Datos"];
-            ViewBag.Datos = Session["Datos"];
+            ViewBag.Datos = Session["Datos"];       
+           
             return new Rotativa.PartialViewAsPdf("_MostrarBoletaView",model) { FileName = "Boleta.pdf" };
         }
     }
