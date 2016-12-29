@@ -42,7 +42,7 @@ namespace Cosevi.SIBOAC.Controllers.api
                                 identificacion = bo.identificacion,
                                 nombre = per.nombre + " " + per.apellido1 + " " + per.apellido2
 
-                            }).Distinct();
+                            });
             return reportes;
 
 

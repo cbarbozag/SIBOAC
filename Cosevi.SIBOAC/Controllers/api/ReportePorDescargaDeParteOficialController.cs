@@ -21,8 +21,8 @@ namespace Cosevi.SIBOAC.Controllers.api
         {
             if (idRadio == 1)
             {
-                var reportes = (from pto in db.PARTEOFICIAL
-                                join bo in db.BOLETA on new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte } equals new { SerieParte = bo.numeroSerie, NumeroParte = bo.numeroparte }
+                var reportes = (from bo in db.BOLETA
+                                join pto in db.PARTEOFICIAL on new { SerieParte = bo.serie_parteoficial, NumeroParte = bo.numeroparte } equals new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte }
                                 join de in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = de.Id }
                                 where
                                   pto.fecha_descarga >= desde && pto.fecha_descarga <= hasta &&
@@ -42,18 +42,17 @@ namespace Cosevi.SIBOAC.Controllers.api
                                     Delegacion = de.Descripcion,
                                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                                     StatusPlano = pto.StatusPlano,
-                                    PlacaConfiscada = bo.auto_detenido,
-                                    VehDetenido = bo.placa_confiscada
+                                    PlacaConfiscada = bo.placa_confiscada,
+                                    VehDetenido = bo.auto_detenido
                                 }).Distinct();
 
                 return reportes;
             }
-            else { return null; }
 
             if(idRadio == 2)
             {
-                var reportes = (from pto in db.PARTEOFICIAL
-                                join bo in db.BOLETA on new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte } equals new { SerieParte = bo.numeroSerie, NumeroParte = bo.numeroparte }
+                var reportes = (from bo in db.BOLETA
+                                join pto in db.PARTEOFICIAL on new { SerieParte = bo.serie_parteoficial, NumeroParte = bo.numeroparte } equals new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte}
                                 join de in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = de.Id }
                                 where
                                   pto.fecha_entrega >= desde && pto.fecha_entrega <= hasta &&
@@ -73,16 +72,17 @@ namespace Cosevi.SIBOAC.Controllers.api
                                     Delegacion = de.Descripcion,
                                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                                     StatusPlano = pto.StatusPlano,
-                                    PlacaConfiscada = bo.auto_detenido,
-                                    VehDetenido = bo.placa_confiscada
+                                    PlacaConfiscada = bo.placa_confiscada,
+                                    VehDetenido = bo.auto_detenido
                                 }).Distinct();
 
                 return reportes;
             }
-            else
+
+            if (idRadio == 3)
             {
-                var reportes = (from pto in db.PARTEOFICIAL
-                                join bo in db.BOLETA on new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte } equals new { SerieParte = bo.numeroSerie, NumeroParte = bo.numeroparte }
+                var reportes = (from bo in db.BOLETA
+                                join pto in db.PARTEOFICIAL on new { SerieParte = bo.serie_parteoficial, NumeroParte = bo.numeroparte } equals new { SerieParte = pto.Serie, NumeroParte = pto.NumeroParte }
                                 join de in db.DELEGACION on new { Codigo_delegacion = bo.codigo_delegacion } equals new { Codigo_delegacion = de.Id }
                                 where
                                   pto.Fecha >= desde && pto.Fecha <= hasta &&
@@ -102,13 +102,14 @@ namespace Cosevi.SIBOAC.Controllers.api
                                     Delegacion = de.Descripcion,
                                     InfoPlaca = bo.clase_placa + "-" + bo.codigo_placa + "-" + bo.numero_placa,
                                     StatusPlano = pto.StatusPlano,
-                                    PlacaConfiscada = bo.auto_detenido,
-                                    VehDetenido = bo.placa_confiscada
+                                    PlacaConfiscada = bo.placa_confiscada,
+                                    VehDetenido = bo.auto_detenido
                                 }).Distinct();
 
                 return reportes;
             }
 
+            return null;
             
         }
 
