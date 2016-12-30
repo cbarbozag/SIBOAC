@@ -409,11 +409,11 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         [HttpPost]
-        public JsonResult ObtenerFechaFinal(string CodigoArticulo, string Conducta,string FechaInicio)
+        public JsonResult ObtenerFechaFinal(string CodigoArticulo, string Conducta,string FechaDeInicio)
         {
             var listaconducta =
                  (from o in db.CATARTICULO
-                  where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio.ToString() ==FechaInicio
+                  where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio.ToString() == FechaDeInicio
                   select new
                   {
                       fecha = o.FechaDeFin.ToString()

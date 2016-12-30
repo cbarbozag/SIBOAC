@@ -16,7 +16,7 @@
             if ($("#CodigoArticulo").val() == 0)
             {
                 $("#Departamento").empty();
-                $("#FechaInicio").empty();
+                $("#FechaDeInicio").empty();
                 $("#FechaFin").empty();
                 $("#Departamento").append($("<option/>").val("0").text("Seleccione..."));
                // $("#Localidad").empty();$("#Localidad").append($("<option/>").val("0").text("Seleccione..."));
@@ -32,11 +32,11 @@
                     },
                     success:function(items, responseText)
                     {
-                        $("#Departamento").empty();
-                        $("#Departamento").append($("<option />").val("0").text("Seleccione..."));
+                        $("#Conducta").empty();
+                        $("#Conducta").append($("<option />").val("0").text("Seleccione..."));
                         $.each(items,function(i, item)
                         {
-                            $("#Departamento").append($("<option />").val(item.Id).text(item.Nombre));
+                            $("#Conducta").append($("<option />").val(item.Id).text(item.Nombre));
                         });
                     },
                     error:function()
@@ -45,10 +45,10 @@
                     }
                 });
         });
-        $("#Departamento").change(function () {
-            if ($("#Departamento").val() == 0) {
-                $("#FechaInicio").empty();
-                $("#FechaFin").empty();
+        $("#Conducta").change(function () {
+            if ($("#Conducta").val() == 0) {
+                $("#FechaDeInicio").empty();
+                $("#FechaDeFin").empty();
                 $("#FechaInicio").append($("<option/>").val("0").text("Seleccione..."));
                 return;
             }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
@@ -58,11 +58,11 @@
                     type: "POST",
                     dataType: "json",
                     async: true,
-                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Departamento").val() },
+                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val() },
                     success: function (items, responseText) {
-                        $("#FechaInicio").empty(); $("#FechaInicio").append($("<option/>").val("0").text("Seleccione..."));
+                        $("#FechaDeInicio").empty(); $("#FechaDeInicio").append($("<option/>").val("0").text("Seleccione..."));
                         $.each(items, function (i, item) {
-                            $("#FechaInicio").append($("<option/>").val(item.Id).text(item.Nombre));
+                            $("#FechaDeInicio").append($("<option/>").val(item.Id).text(item.Nombre));
                         });
                     },
                     error: function () {
@@ -70,10 +70,10 @@
                     }
                 });
         });
-        $("#FechaInicio").change(function () {
-            if ($("#FechaInicio").val() == 0) {
-                $("#FechaFin").empty();
-                $("#FechaFin").append($("<option/>").val("0").text("Seleccione..."));
+        $("#FechaDeInicio").change(function () {
+            if ($("#FechaDeInicio").val() == 0) {
+                $("#FechaDeFin").empty();
+                $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
                 return;
             }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
             $.ajax(
@@ -82,11 +82,11 @@
                     type: "POST",
                     dataType: "json",
                     async: true,
-                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Departamento").val(), 'FechaInicio': $("#FechaInicio").val() },
+                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val() },
                     success: function (items, responseText) {
-                        $("#FechaFin").empty(); $("#FechaFin").append($("<option/>").val("0").text("Seleccione..."));
+                        $("#FechaDeFin").empty(); $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
                         $.each(items, function (i, item) {
-                            $("#FechaFin").append($("<option/>").val(item.Id).text(item.Nombre));
+                            $("#FechaDeFin").append($("<option/>").val(item.Id).text(item.Nombre));
                         });
                     },
                     error: function () {
@@ -109,10 +109,10 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DescripcionDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CodigoDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DescripcionDepositosBienes, (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.DescripcionDepositosBienes, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.CodigoDepositosBienes, (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CodigoDepositosBienes, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -135,7 +135,7 @@
            <div class="form-group">
             @Html.LabelFor(model => model.Conducta, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="Departamento"> <option value="0">Seleccione...</option> </select>
+                <select id="Conducta" name="Conducta"> <option value="0">Seleccione...</option> </select>
                 @*@Html.EditorFor(model => model.Conducta, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Conducta, "", new { @class = "text-danger" })*@
             </div>
@@ -144,7 +144,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeInicio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="FechaInicio"> <option value="0">Seleccione...</option> </select>
+                @*<select id="FechaDeInicio"> <option value="0">Seleccione...</option> </select>*@
+                <select id="FechaDeInicio" name="FechaDeInicio"> <option value="0">Seleccione...</option> </select>
+               
                @*@Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaDeInicio, "", new { @class = "text-danger" })*@
             </div>
@@ -153,7 +155,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeFin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="FechaFin"> <option value="0">Seleccione...</option> </select>
+                <select id="FechaDeFin" name="FechaDeFin"> <option value="0">Seleccione...</option> </select>
                 @*@Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaDeFin, "", new { @class = "text-danger" })*@
             </div>
