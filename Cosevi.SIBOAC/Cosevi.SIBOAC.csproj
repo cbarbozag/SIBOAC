@@ -738,6 +738,7 @@
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\btnExcel.png" />
     <Content Include="Content\btnExportarPDF.png" />
+    <Content Include="Content\btnImprimir.png" />
     <Content Include="Content\btnPDF.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PDF.png" />

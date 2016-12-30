@@ -3,6 +3,27 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+    //function imprSelec(nombre) {
+    //    var restorepage = document.body.innerHTML;
+    //    var printcontent = document.getElementById(nombre).innerHTML;
+    //    document.body.innerHTML = printcontent;
+    //    window.print();
+    //    document.body.innerHTML = restorepage;
+    //}
+
+</script>
 
 
 <h2>Reimpresión de Boletas de Campo</h2>
@@ -35,12 +56,17 @@
 <br />
 <br />
 
+
     @if (ViewBag.Datos != null)
     {
-        using (Html.BeginForm("DownloadPartialViewPDF", "ReimpresionDeBoletas", FormMethod.Get))
+        using (Html.BeginForm("DownloadPartialViewPDF", "ReimpresionDeBoletas", FormMethod.Get, new { serie = "serie", numero_boleta = "numero_boleta" }))
         {
+            @Html.HiddenFor(model => model.serie);
+            @Html.HiddenFor(model => model.numero_boleta);
             <div class="panel panel-success">               
-                <div class="panel-heading"><input type="image"  name="submit" value="PDF" src="~/Content/btnPDF.png" /></div>
+                <div class="panel-heading"><input type="image"  name="submit" value="PDF" src="~/Content/btnPDF.png" />
+                    <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
+                </div>
                 <div class="panel-body">
                     @Html.Partial("_MostrarBoletaView")
                 </div>
