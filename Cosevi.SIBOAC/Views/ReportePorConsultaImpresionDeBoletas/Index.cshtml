@@ -77,7 +77,7 @@
 <h4>Reporte</h4>
 <hr />
 
-<input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+<input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
 <input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
 
 
@@ -120,6 +120,7 @@
         <!-- -->
     </div>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/ReportePorConsultaImpresionDeBoletas")
