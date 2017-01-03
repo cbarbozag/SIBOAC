@@ -1,15 +1,15 @@
 ﻿@model Cosevi.SIBOAC.Models.SIBOACUsuarios
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Reset";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Reset Password</h2>
 
-<h3>¿Está seguro que desea resetear el password?</h3>
+<h3>¿Está seguro que desea cambiar el password?</h3>
 <div>
-    <h4>SIBOACUsuarios</h4>
+    <h4>Usuarios</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,13 +28,13 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
-        @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.Contrasena)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Contrasena)
-        </dd>*@
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
