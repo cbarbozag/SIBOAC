@@ -106,8 +106,19 @@ namespace Cosevi.SIBOAC.Controllers
                     //{
                     //    return Redirect(returnUrl);
                     //}
-                   
-                        if(model.Usuario == model.Contrasena)
+
+                    using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
+                    {
+                        var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Usuario)).FirstOrDefault();
+
+                        DateTime oldDate = new DateTime(2017, 01, 01);
+                        DateTime newDate = DateTime.Now;
+
+                        TimeSpan ts = newDate - oldDate;
+                        int diferenciaDias = ts.Days;
+
+
+                        if (model.Usuario == model.Contrasena)
                         {
 
                             return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });
@@ -116,8 +127,8 @@ namespace Cosevi.SIBOAC.Controllers
                         {
                             return RedirectToAction("Index", "Home");
                         }
-                        
-                    
+
+                    }
                 }
             }
             ModelState.Remove("Password");
