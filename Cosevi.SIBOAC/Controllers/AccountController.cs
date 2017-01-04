@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Cosevi.SIBOAC.Models;
 using System.Web.Security;
+using System.Data.Entity;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -304,12 +305,21 @@ namespace Cosevi.SIBOAC.Controllers
                 //string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id.ToString());
                 try
                 {
-                    IdentityResult result = await this.UserManager.ResetPasswordAsync(user.Id.ToString(), model.Code, model.Password);
-                    if (result.Succeeded)
-                    {
+                    //IdentityResult result = await this.UserManager.ResetPasswordAsync(user.Id.ToString(), model.Code, model.Password);
+                    SIBOACUsuarios usuarioModificado = new SIBOACUsuarios();
+                    usuarioModificado.Id = user.Id;
+                    usuarioModificado.Usuario = user.Usuario;
+                    usuarioModificado.Email = user.Email;
+                    usuarioModificado.Contrasena = model.Password;
+                    usuarioModificado.Nombre = user.Nombre;
+
+                    db.Entry(usuarioModificado).State = EntityState.Modified;
+                    db.SaveChanges();
+                    //if ()
+                    //{
                         return RedirectToAction("ResetPasswordConfirmation", "Account");
-                    }
-                    AddErrors(result);
+                    //}
+                    //AddErrors(result);
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
 

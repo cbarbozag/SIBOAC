@@ -83,7 +83,14 @@
             success: function (results) {
                 var reporte = $('#reporte');                
                 for (var i = 0; i < results.length; i++) {
-                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].Autoridad + '</div><div class="col-md-1">' + results[i].Serie + '</div><div class="col-md-1">' + results[i].NumeroParte + '</div><div class="col-md-1">' + results[i].Boletas + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].identificacion + '</div><div class="col-md-1">' + results[i].nombre);
+                    reporte.append('<tr><td>' + results[i].Autoridad + '</td>' +
+                        '<td>' + results[i].Serie + '</td>' +
+                        '<td>' + results[i].NumeroParte + '</td>' +
+                        '<td>' + results[i].Boletas + '</td>' +
+                        '<td>' + results[i].FechaAccidente + '</td>' +
+                        '<td>' + results[i].FechaDescarga + '</td>' +
+                        '<td>' + results[i].identificacion + '</td>' +
+                        '<td>' + results[i].nombre + '</td></tr>');
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {

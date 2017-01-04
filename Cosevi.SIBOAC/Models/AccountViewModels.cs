@@ -95,7 +95,7 @@ namespace Cosevi.SIBOAC.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Las contraseñas no coinciden! Ingr")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

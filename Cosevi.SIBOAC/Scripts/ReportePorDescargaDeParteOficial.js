@@ -83,7 +83,18 @@
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {
-                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].SerieParte + '</div><div class="col-md-1">' + results[i].NumeroParte + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].FechaEntrega + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].SerieNumeroBoleta + '</div><div class="col-md-1">' + results[i].Autoridad + '</div><div class="col-md-1">' + results[i].Delegacion + '</div><div class="col-md-1">' + results[i].InfoPlaca + '</div><div class="col-md-1">' + results[i].StatusPlano + '</div><div class="col-md-1">' + results[i].PlacaConfiscada + '</div><div class="col-md-1">' + results[i].VehDetenido);
+                    reporte.append('<tr><td>' + results[i].SerieParte + '</td>' +
+                        '<td>' + results[i].NumeroParte + '</td>' +
+                        '<td>' + results[i].FechaDescarga + '</td>' +
+                        '<td>' + results[i].FechaEntrega + '</td>' +
+                        '<td>' + results[i].FechaAccidente + '</td>' +
+                        '<td>' + results[i].SerieNumeroBoleta + '</td>' +
+                        '<td>' + results[i].Autoridad + '</td>' +
+                        '<td>' + results[i].Delegacion + '</td>' +
+                        '<td>' + results[i].InfoPlaca + '</td>' +
+                        '<td>' + results[i].StatusPlano + '</td>' +
+                        '<td>' + results[i].PlacaConfiscada + '</td>' +
+                        '<td>' + results[i].VehDetenido + '</td></tr>');
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {
