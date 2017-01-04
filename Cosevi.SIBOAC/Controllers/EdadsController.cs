@@ -105,6 +105,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
+            edad.FechaMinNacimiento =DateTime.Parse(edad.FechaMinNacimiento.ToString("yyyy/MM/dd"));
+            
             return View(edad);
         }
 
