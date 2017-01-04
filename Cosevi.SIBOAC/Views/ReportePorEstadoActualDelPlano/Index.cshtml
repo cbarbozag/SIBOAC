@@ -6,6 +6,24 @@
 }
 
 
+<script src="~/Scripts/tableexport.js"></script>
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+
+</script>
+
+
+
 <h2>Reporte por Estado Actual del Plano o Croquis</h2>
 <h4>Filtro</h4>
 <hr />
@@ -103,40 +121,14 @@
 <h4>Reporte</h4>
 <hr/>
 
-<input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
-<input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
-
-<div class="panel panel-primary">
+<div class="panel panel-success">
     <div class="panel-heading">
-        <div class="row">
-            <div class="col-md-2">
-                Autoridad
-            </div>
-            <div class="col-md-1">
-                Serie
-            </div>
-            <div class="col-md-1">
-                Parte Oficial
-            </div>
-            <div class="col-md-1">
-                Boletas
-            </div>
-            <div class="col-md-1">
-                Fecha Accidente
-            </div>
-            <div class="col-md-1">
-                Fecha Descarga
-            </div>
-            <div class="col-md-1">
-                Identificación
-            </div>
-            <div class="col-md-2">
-                Nombre
-            </div>
-        </div>
+        <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
+        <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+        <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
     </div>
-    <div id="reporte" class="panel-body">
-        <!-- -->
+    <div class="panel-body">
+        @Html.Partial("_MostrarReportePorEstadoActualDelPlano")
     </div>
 </div>
 

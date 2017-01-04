@@ -6,6 +6,23 @@
 }
 
 
+<script src="~/Scripts/tableexport.js"></script>
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+
+</script>
+
+
 <h2>Reporte Consulta e Impresión de Parte Oficial</h2>
 <h4>Filtro</h4>
 <hr />
@@ -105,54 +122,18 @@
 <h4>Reporte</h4>
 <hr/>
 
-<input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
-<input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
 
-<div class="panel panel-primary">
+<div class="panel panel-success">
     <div class="panel-heading">
-        <div class="row">
-            <div class="col-md-1">
-                Serie Boleta
-            </div>
-            <div class="col-md-1">
-                N° Boleta
-            </div>
-            <div class="col-md-1">
-                Fecha Accidente
-            </div>
-            <div class="col-md-1">
-                Autoridad Judicial
-            </div>
-            <div class="col-md-1">
-                Delegación
-            </div>
-            <div class="col-md-1">
-                Clase Placa
-            </div>
-            <div class="col-md-1">
-                Codigo y Numero Placa
-            </div>
-            <div class="col-md-1">
-                ID Usuario
-            </div>
-            <div class="col-md-1">
-                Nombre Usuario
-            </div>
-            <div class="col-md-1">
-                Rol Usuario
-            </div>
-            <div class="col-md-1">
-                Serie Parte Oficial
-            </div>
-            <div class="col-md-1">
-                Numero Parte Oficial
-            </div>
-        </div>
+        <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
+        <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+        <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
     </div>
-    <div id="reporte" class="panel-body">
-        <!-- -->
+    <div class="panel-body">
+        @Html.Partial("_MostrarReportePorConsultaParteOficial")
     </div>
 </div>
+
 
 
 @section Scripts {

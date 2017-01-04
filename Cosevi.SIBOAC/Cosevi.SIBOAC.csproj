@@ -808,9 +808,11 @@
     </Content>
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\FileSaver.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.table2excel.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -826,7 +828,10 @@
     <Content Include="Scripts\reportePorUsuario.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tableexport.js" />
+    <Content Include="Scripts\tableexport.min.js" />
     <Content Include="Scripts\Toastr-2.1.3.min.js" />
+    <Content Include="Scripts\xlsx.core.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1267,7 +1272,7 @@
     <Content Include="Views\ActividadOficial\Index.cshtml" />
     <Content Include="Views\ActividadOficial\_ListaActividad.cshtml" />
     <Content Include="Views\ReportePorUsuario\Index.cshtml" />
-    <Content Include="Views\ReportePorUsuario\_MostrarReporteView.cshtml" />
+    <Content Include="Views\ReportePorUsuario\_MostrarReportePorUsuario.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Create.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Delete.cshtml" />
     <Content Include="Views\SIBOACUsuarios\Details.cshtml" />
@@ -1376,6 +1381,11 @@
     <Content Include="Views\ResetPasswords\Details.cshtml" />
     <Content Include="Views\ResetPasswords\Edit.cshtml" />
     <Content Include="Views\ResetPasswords\Index.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeBoletas\_MostrarReportePorDescargaDeBoletas.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeInspector\_MostrarReportePorDescargaDelnspector.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeParteOficial\_MostrarReportePorDescargaDeParteOficial.cshtml" />
+    <Content Include="Views\ReportePorEstadoActualDelPlano\_MostrarReportePorEstadoActualDelPlano.cshtml" />
+    <Content Include="Views\ReportesPorConsultaParteOficial\_MostrarReportePorConsultaParteOficial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

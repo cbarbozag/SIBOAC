@@ -28,9 +28,19 @@
             type: 'GET',
             url: '/api/ReportePorDescargaDeBoletas?idRadio=' + idRadioButton + '&' + '&desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
-                var reporte = $('#reporte');
+                var reporte = $('#TablaContenido');
                 for (var i = 0; i < results.length; i++) {
-                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].Serie + '</div><div class="col-md-1">' + results[i].Boletas + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].CodigoAutoridad + '</div><div class="col-md-1">' + results[i].CodigoDelegacion + '</div><div class="col-md-1">' + results[i].InfoPlaca + '</div><div class="col-md-1">' + results[i].Identificacion + '</div><div class="col-md-1">' + results[i].Nombre + '</div><div class="col-md-1">' + results[i].CodRol + '</div><div class="col-md-1">' + results[i].SerieNumParteOficial +'</div><div class="col-md-1">' + results[i].DescripcionAutoridad + '</div><div class="col-md-1">' + results[i].DescripcionDelegacion);
+                    reporte.append('<tr><td>' + results[i].Serie + '</td>' +
+                        '<td>' + results[i].Boletas + '</td>' +
+                        '<td>' + results[i].FechaDescarga + '</td>' +
+                        '<td>' + results[i].FechaAccidente + '</td>' +
+                        '<td>' + results[i].CodigoAutoridad + '</td>' +
+                        '<td>' + results[i].CodigoDelegacion + '</td>' +
+                        '<td>' + results[i].InfoPlaca + '</td>' +
+                        '<td>' + results[i].Identificacion + '</td>' +
+                        '<td>' + results[i].Nombre + '</td>' +
+                        '<td>' + results[i].CodRol + '</td>' +
+                        '<td>' + results[i].SerieNumParteOficial + '</td></tr>');
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {
