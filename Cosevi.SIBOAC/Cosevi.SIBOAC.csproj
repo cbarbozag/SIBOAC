@@ -1370,6 +1370,7 @@
     <Content Include="Views\EstadoDeLaCalzadas\RealDelete.cshtml" />
     <Content Include="Views\EstadoCivils\RealDelete.cshtml" />
     <Content Include="Views\Edads\RealDelete.cshtml" />
+    <Content Include="Views\ReportePorConsultaImpresionDeBoletas\_MostrarReporteConsultaImpresionDeBoletas.cshtml" />
     <Content Include="Views\ResetPasswords\Create.cshtml" />
     <Content Include="Views\ResetPasswords\Delete.cshtml" />
     <Content Include="Views\ResetPasswords\Details.cshtml" />
