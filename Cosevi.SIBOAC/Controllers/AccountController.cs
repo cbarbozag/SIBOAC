@@ -16,6 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -100,18 +101,26 @@ namespace Cosevi.SIBOAC.Controllers
                 if (isValidUser)
                 {
                     FormsAuthentication.SetAuthCookie(model.Usuario, model.Recordarme);
-                    if (Url.IsLocalUrl(returnUrl))
-                    {
-                        return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    //if (Url.IsLocalUrl(returnUrl))
+                    //{
+                    //    return Redirect(returnUrl);
+                    //}
+                   
+                        if(model.Usuario == model.Contrasena)
+                        {
+
+                            return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        
+                    
                 }
             }
             ModelState.Remove("Password");
-            ModelState.AddModelError("", "Intento de login fallido.");
+            ModelState.AddModelError("", "Usuario o contraseña invalidos");
             return View();
         }
 
@@ -266,6 +275,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
+            //return View();
         }
 
         //
@@ -275,23 +285,36 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
-            if (user == null)
+            using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
             {
-                // Don't reveal that the user does not exist
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            AddErrors(result);
+                var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Code)).FirstOrDefault();
+                //var user = await UserManager.FindByNameAsync(model.Code);
+
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    //return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    return View();
+                }
+                //string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id.ToString());
+                try
+                {
+                    IdentityResult result = await this.UserManager.ResetPasswordAsync(user.Id.ToString(), model.Code, model.Password);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    }
+                    AddErrors(result);
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+
             return View();
+            }
         }
 
         //
