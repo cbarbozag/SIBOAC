@@ -28,7 +28,18 @@
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {
-                    reporte.append('<div class="row"><div class="col-md-1">' + results[i].SerieBoleta + '</div><div class="col-md-1">' + results[i].NumeroBoleta + '</div><div class="col-md-1">' + results[i].CodigoInspector + '</div><div class="col-md-1">' + results[i].NombreInspector + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].FechaAccidente + '</div><div class="col-md-1">' + results[i].Autoridad + '</div><div class="col-md-1">' + results[i].Delegacion + '</div><div class="col-md-1">' + results[i].ClasePlaca + '</div><div class="col-md-1">' + results[i].CodigoNumeroPlaca + '</div><div class="col-md-1">' + results[i].NumeroHH + '</div><div class="col-md-1">' + results[i].SerieNumParte + '</div></div>');
+                    reporte.append('<tr><td>' + results[i].SerieBoleta + '</td>' +
+                        '<td>' + results[i].NumeroBoleta + '</td>' +
+                        '<td>' + results[i].CodigoInspector + '</td>' +
+                        '<td>' + results[i].NombreInspector + '</td>' +
+                        '<td>' + results[i].FechaDescarga + '</td>' +
+                        '<td>' + results[i].FechaAccidente + '</td>' +
+                        '<td>' + results[i].Autoridad + '</td>' +
+                        '<td>' + results[i].Delegacion + '</td>' +
+                        '<td>' + results[i].ClasePlaca + '</td>' +
+                        '<td>' + results[i].CodigoNumeroPlaca + '</td>' +
+                        '<td>' + results[i].NumeroHH + '</td>' +
+                        '<td>' + results[i].SerieNumParte + '</td></tr>');
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {

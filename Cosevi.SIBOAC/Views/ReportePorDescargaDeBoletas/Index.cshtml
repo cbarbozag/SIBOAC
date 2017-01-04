@@ -5,6 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/tableexport.js"></script>
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+
+</script>
+
+
 <h2>Reporte Corto por Descarga de Boletas</h2>
 <h4>Filtro</h4>
 <hr />
@@ -69,49 +86,18 @@
 <h4>Reporte</h4>
 <hr />
 
-
-<div class="panel panel-primary">
+<div class="panel panel-success">
     <div class="panel-heading">
-        <div class="row">
-            <div class="col-md-2">
-                Serie
-            </div>
-            <div class="col-md-1">
-                Número de boleta
-            </div>
-            <div class="col-md-1">
-                Fecha de descarga
-            </div>
-            <div class="col-md-1">
-                Fecha accidente
-            </div>
-            <div class="col-md-1">
-                Autoridad judicial
-            </div>
-            <div class="col-md-1">
-                Código de delegación
-            </div>
-            <div class="col-md-1">
-                Clase-Codigo-Numero de placa
-            </div>
-            <div class="col-md-1">
-                Identificación
-            </div>
-            <div class="col-md-1">
-                Nombre
-            </div>
-            <div class="col-md-1">
-                Código de rol
-            </div>
-            <div class="col-md-1">
-                Serie-Numero parte oficial
-            </div>
-        </div>
+        <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
+        <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+        <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
     </div>
-    <div id="reporte" class="panel-body">
-        <!-- -->
+    <div class="panel-body">
+        @Html.Partial("_MostrarReportePorDescargaDeBoletas")
     </div>
 </div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/ReportePorDescargaDeBoletas")
