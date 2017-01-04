@@ -57,7 +57,7 @@
         $('#todosInspector').click(marcarTodosInspector);
         $('#limpiarInspector').click(limpiarTodosInspector);
         $('#ExportaExcel').click(descargarExcel);
-
+        $('#ExportarPDF').click(descargarPDF);
     };
 
 
@@ -82,9 +82,18 @@
             type: 'GET',
             url: '/api/ReportePorConsultaImpresionDeBoletas?' + idDelegaciones + idInspectores + 'desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
-                var reporte = $('#reporte');                
+                var reporte = $('#TablaContenido');
                 for (var i = 0; i < results.length; i++) {
-                    reporte.append('<div class="row"><div class="col-md-2">' + results[i].DescripcionDelegacion + '</div><div class="col-md-1">' + results[i].CodigoInspector + '</div><div class="col-md-1">' + results[i].Serie + '</div><div class="col-md-1">' + results[i].Boletas + '</div><div class="col-md-1">' + results[i].FechaInfraccion + '</div><div class="col-md-1">' + results[i].FechaDescarga + '</div><div class="col-md-1">' + results[i].CodigoArticulo + '</div><div class="col-md-1">' + results[i].Provincia + '</div><div class="col-md-1">' + results[i].CoordenadaX + '</div><div class="col-md-1">' + results[i].CoordenadaY);
+                    reporte.append('<tr><td>' + results[i].DescripcionDelegacion + '</td>' +
+                        '<td>' + results[i].CodigoInspector + '</td>' +
+                        '<td>' + results[i].Serie + '</td>'+
+                        '<td>' + results[i].Boletas + '</td>' +
+                        '<td>' + results[i].FechaInfraccion + '</td>' +
+                        '<td>' + results[i].FechaDescarga + '</td>' +
+                        '<td>' + results[i].CodigoArticulo + '</td>' +
+                        '<td>' + results[i].Provincia + '</td>' +
+                        '<td>' + results[i].CoordenadaX + '</td>' +
+                        '<td>' + results[i].CoordenadaY + '</td></tr>');
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -135,20 +144,34 @@
         reporte.empty();
     };
 
-function descargarExcel(){
-    //Creamos un Elemento Temporal en forma de enlace
-    var tmpElemento = document.createElement('a');
-    // obtenemos la información desde el div que lo contiene en el html
-    // Obtenemos la información de la tabla
-    var data_type = 'data:application/vnd.ms-excel';
-    var tabla_div = document.getElementById('reporte');
-    //var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-    tmpElemento.href = data_type + ', ' + tabla_div;
-    //Asignamos el nombre a nuestro EXCEL
-    tmpElemento.download = 'ReportePorConsultaImpresionDeBoletas.xls';
-    // Simulamos el click al elemento creado para descargarlo
-    tmpElemento.click();
-}
-    //descargarExcel();
+    function descargarExcel() {
+        //Creamos un Elemento Temporal en forma de enlace
+        var tmpElemento = document.createElement('a');
+        // obtenemos la información desde el div que lo contiene en el html
+        // Obtenemos la información de la tabla
+        var data_type = 'data:application/vnd.ms-excel';
+        var tabla_div = document.getElementById('reporte');
+        //var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+        tmpElemento.href = data_type + ', ' + tabla_div;
+        //Asignamos el nombre a nuestro EXCEL
+        tmpElemento.download = 'ReportePorConsultaImpresionDeBoletas.xls';
+        // Simulamos el click al elemento creado para descargarlo
+        tmpElemento.click();
+    }
+
+    function descargarPDF() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/ReportePorConsultaImpresionDeBoletas',
+            //data: {},
+            success: function (results) {
+                alert("Hola");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+            }
+        });
+    };
 
 })();
+    

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Cosevi.SIBOAC.Models;
+using System.Web.Mvc;
 
 namespace Cosevi.SIBOAC.Controllers.api
 {
@@ -48,6 +49,11 @@ namespace Cosevi.SIBOAC.Controllers.api
             return reportes;
         }
 
+        public ActionResult DownloadPartialViewPDF(string Imprimir, int? serie, decimal? numero_boleta)
+        {           
+
+            return new Rotativa.PartialViewAsPdf("_MostrarReporteConsultaImpresionDeBoletas") { FileName = "Boleta.pdf" };
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

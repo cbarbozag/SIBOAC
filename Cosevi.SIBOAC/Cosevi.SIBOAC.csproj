@@ -1369,6 +1369,7 @@
     <Content Include="Views\EstadoDeLaCalzadas\RealDelete.cshtml" />
     <Content Include="Views\EstadoCivils\RealDelete.cshtml" />
     <Content Include="Views\Edads\RealDelete.cshtml" />
+    <Content Include="Views\ReportePorConsultaImpresionDeBoletas\_MostrarReporteConsultaImpresionDeBoletas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
