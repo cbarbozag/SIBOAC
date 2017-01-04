@@ -1,0 +1,58 @@
+﻿<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <center>
+                <h4>
+                    Ministerio de Obras Públicas y Transporte
+                </h4>
+               
+            </center>
+            <center>
+                <h4>
+                Dirección General de la Policía de Tránsito
+                    </h4>
+            </center>         
+            <Center>
+            <h4> Reporte Diario</h4></center>
+        </td>
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+           Núm. Boleta
+        </th>
+        <th>
+           Fecha Boleta
+        </th>
+        <th>
+            Núm. Placa
+        </th>
+        <th>
+          Núm. Artículos
+        </th>        
+    </tr>
+
+    @foreach (var item in ViewBag.Datos)
+    {
+
+            <tr>
+                <td>
+                    @item.NumeroBoleta
+                </td>
+                <td>
+                    @item.FechaHoraBoleta
+                </td>
+                <td>
+                    @item.NumeroPlaca
+                </td>
+                <td>
+                    @item.CodigoArticulo
+                </td>   
+                
+            </tr>
+    }
+</table>

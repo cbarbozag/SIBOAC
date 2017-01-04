@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.TiposPorDocumento>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de los Tipos de Documentos</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoTipoDocumento)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoTipoDeIdentificacion)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDocumento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDocumento)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDeIdentificacion)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDeIdentificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Detalle", "Details", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion })
+                }
+            </td>
+        </tr>
+
+    }
+
+    else
+    {
+        <tr >
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDocumento)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDocumento)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoTipoDeIdentificacion)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoTipoDeIdentificacion)
+            </td>
+            <td >
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td >
+            <td >
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td >
+            <td >
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td >
+
+            <td >
+                @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Detalle", "Details", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion /* id=item.PrimaryKey */ }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion })
+                }
+                else
+                {
+                        @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoTipoDocumento, codigot = item.CodigoTipoDeIdentificacion })
+                }
+            </td >
+        </tr >
+    }
+}
+
+</table>

@@ -1,0 +1,143 @@
+﻿@model Cosevi.SIBOAC.Models.ParteOficial
+
+@{
+    ViewBag.Title = "Reporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Información de Plano</h2>
+<br>
+<br>
+<br>
+<br>
+@using (Html.BeginForm("Index", "StatusPlano", FormMethod.Get))
+{
+
+    <table>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.Serie, htmlAttributes: new { @class = "control-label col-md-2" })
+            </th>
+            <td>
+                @Html.EditorFor(model => model.Serie)
+                @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.NumeroParte, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.NumeroParte)
+                @Html.ValidationMessageFor(model => model.NumeroParte, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                <input type="submit" value="Generar Reporte" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
+}
+<br />
+<br />
+
+@if (ViewBag.Valor != null)
+{
+    TempData["Type"] = null;
+    TempData["Message"] = null;
+
+
+    using (Html.BeginForm("Exportar", "StatusPlano", FormMethod.Get))
+    {
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <input input type="image" name="Excel"  value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+                <input input type="image" name="PDF"  value="PDF" src="~/Content/btnPDF.png" />
+            </div>
+                <div class="panel-body">
+                    @Html.Partial("_PlanoView", Model)
+                </div>
+         </div>
+    }
+
+    using (Html.BeginForm("GuardarEstado", "StatusPlano", FormMethod.Get))
+    {
+        if (ViewBag.EstadoPlano != null)
+        {
+            if (ViewBag.EstadoPlano == "1" || ViewBag.EstadoPlano == "2")
+            {
+                return;
+
+            }
+            if (ViewBag.EstadoPlano == "4") // estar chequeado si y no habilitado
+            {
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h3 class="text-center">Entregó Plano</h3>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <input type="radio" name="EntregoPlano" value="1" checked="checked" disabled="disabled" /> Si
+                            <input type="radio" name="EntregoPlano" value="0"  disabled="disabled"> No
+                            <br>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            }
+            if (ViewBag.EstadoPlano == "5") // estar chequeado no y no habilitado
+            {
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h3 class="text-center">Entregó Plano</h3>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <input type="radio" name="EntregoPlano" value="1" disabled="disabled" /> Si
+                            <input type="radio" name="EntregoPlano" value="0" checked="checked" disabled="disabled"> No
+                            <br>
+                           
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            }
+            if (ViewBag.EstadoPlano == "3") // puede actualizarse
+            {
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <h3 class="text-center">Entregó Plano</h3>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <input type="radio" name="EntregoPlano" value="1" /> Si
+                            <input type="radio" name="EntregoPlano" value="0"> No
+                            <br>
+                            <input type="submit" value="Guardar" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+
+            }
+        }
+
+    }
+}
+

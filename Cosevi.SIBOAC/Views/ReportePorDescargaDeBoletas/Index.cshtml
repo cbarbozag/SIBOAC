@@ -1,0 +1,104 @@
+﻿@model Cosevi.SIBOAC.Models.Boletas
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/tableexport.js"></script>
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+
+</script>
+
+
+<h2>Reporte Corto por Descarga de Boletas</h2>
+<h4>Filtro</h4>
+<hr />
+
+<div class="form-group">
+    <label class="control-label col-md-2">Seleccionar criterio para el reporte</label>
+    <div class="col-md-10">
+
+        <div class="radio" id="radioButton">
+            <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
+            <br>
+            <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+
+
+<div class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input id="desde" type="text" class="input-sm form-control" name="fechaDesde" />
+            <span class="input-group-addon">a</span>
+            <input id="hasta" type="text" class="input-sm form-control" name="fechaHasta" />
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+
+
+@*<div id="opc-2" class="form-group">
+    <label class="control-label col-md-2">Rango de fechas</label>
+    <div class="col-md-10">
+        <div class="input-daterange input-group" id="datepicker">
+            <input id="infraccionDesde" type="text" class="input-sm form-control" name="fechaInfraccionDesde" />
+            <span class="input-group-addon">to</span>
+            <input id="infraccionHasta" type="text" class="input-sm form-control" name="fechaInfraccionHasta" />
+        </div>
+    </div>
+</div>*@
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar Reporte</button>
+</div>
+
+
+<br />
+<br />
+<br />
+<h4>Reporte</h4>
+<hr />
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
+        <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+        <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
+    </div>
+    <div class="panel-body">
+        @Html.Partial("_MostrarReportePorDescargaDeBoletas")
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorDescargaDeBoletas")
+}

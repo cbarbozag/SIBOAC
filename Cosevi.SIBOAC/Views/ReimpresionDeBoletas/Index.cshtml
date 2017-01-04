@@ -1,0 +1,72 @@
+﻿@model Cosevi.SIBOAC.Models.Boletas
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+ 
+</script>
+
+
+<h2>Reimpresión de Boletas de Campo</h2>
+<br>
+<br>
+@using (Html.BeginForm("Index", "ReimpresionDeBoletas", FormMethod.Get))
+{
+    <table>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.serie, htmlAttributes: new { @class = "control-label col-md-2" })
+            </th>
+            <td>
+                @Html.EditorFor(model => model.serie)
+                @Html.ValidationMessageFor(model => model.serie, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.numero_boleta, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.numero_boleta)
+                @Html.ValidationMessageFor(model => model.numero_boleta, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                <input type="submit" value="Generar Reporte" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
+}
+<br />
+<br />
+
+
+    @if (ViewBag.Datos != null)
+    {
+        using (Html.BeginForm("DownloadPartialViewPDF", "ReimpresionDeBoletas", FormMethod.Get, new { serie = "serie", numero_boleta = "numero_boleta" }))
+        {
+            @Html.HiddenFor(model => model.serie);
+            @Html.HiddenFor(model => model.numero_boleta);
+            <div class="panel panel-success">               
+                <div class="panel-heading"><input type="image"  name="submit" value="PDF" src="~/Content/btnPDF.png" />
+                    <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("_MostrarBoletaView")
+                </div>
+            </div>           
+        }
+
+        <br />
+        <br />
+      
+    }

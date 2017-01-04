@@ -1,0 +1,187 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.ArticulosPorDepositosDeBienes>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de los Artículos por Depósitos de Bienes</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoDepositosBienes)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoArticulo)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Conducta)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDepositosBienes)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDepositosBienes)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoFormulario)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoArticulo)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionArticulo)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Conducta)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
+                @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
+                
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin})
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
+                }
+
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoDepositosBienes)
+        </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDepositosBienes)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoFormulario)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoArticulo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionArticulo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Conducta)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
+                @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
+                
+
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin })
+                }
+
+            </td>
+        </tr>
+    }
+}
+
+</table>

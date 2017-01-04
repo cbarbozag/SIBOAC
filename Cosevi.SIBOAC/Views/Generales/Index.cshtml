@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.GENERALES>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista Configuración General</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Inspector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsecutivoBC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsecutivoPO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HandHeld)
+        </th>           
+        <th>
+            @Html.DisplayNameFor(model => model.Serie)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_fin)
+        </th>
+      
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.estado == "I")
+        {
+            <tr class="warning">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inspector)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConsecutivoBC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConsecutivoPO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HandHeld)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Serie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_inicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_fin)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Inspector }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Inspector }) |              
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Inspector }) |
+                    @Html.ActionLink("Activar", "Inactivar", new { id = item.Inspector })
+                </td>
+              </tr>
+        }
+       else
+         {
+             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Inspector)
+                </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Nombre)
+                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConsecutivoBC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConsecutivoPO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HandHeld)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Serie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_inicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_fin)
+                </td>
+                 <td>
+                     @Html.ActionLink("Editar", "Edit", new { id = item.Inspector }) |
+                     @Html.ActionLink("Detalles", "Details", new { id = item.Inspector }) |
+                     @Html.ActionLink("Eliminar", "Delete", new { id = item.Inspector }) |
+                     @Html.ActionLink("Inactivar", "Inactivar", new { id = item.Inspector })
+                 </td>
+             </tr>
+         }
+   }
+
+</table>

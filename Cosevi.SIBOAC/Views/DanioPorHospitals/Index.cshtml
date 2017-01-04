@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.DanioPorHospital>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Daños por Hospital</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.IdHospital)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.IdDanio)
+        </th>
+        <td>
+            @Html.Label("Descripción")
+        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDanio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDanio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Detalles", "Details", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
+                }
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDanio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDanio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Detalles", "Details", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { IdHospital = item.IdHospital, IdDanio = item.IdDanio })
+                }
+            </td>
+        </tr>
+    }
+}
+
+</table>

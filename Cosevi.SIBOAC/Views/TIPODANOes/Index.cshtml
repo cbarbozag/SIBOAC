@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.TIPODANO>
+
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Tipos de Daños</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create" ,null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.codigod }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.codigod }) |        
+            @Html.ActionLink("Eliminar", "RealDelete", new { id = item.codigod }) | 
+            @Html.ActionLink("Inactivar", "Delete", new { id=item.codigod })
+        </td>
+    </tr>
+}
+
+</table>

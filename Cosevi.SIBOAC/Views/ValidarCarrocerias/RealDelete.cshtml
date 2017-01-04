@@ -1,0 +1,95 @@
+﻿@model Cosevi.SIBOAC.Models.ValidarCarroceria
+
+@{
+    ViewBag.Title = "Eliminar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar este registro?</h3>
+<div>
+    <h4>Validar Carrocería</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoTipoIdVehiculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTipoIdVehiculo)
+        </dd>
+        <dt>
+            @Html.Label("Descripción ID Vehículo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTipoIdVehiculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoTiposVehiculos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTiposVehiculos)
+        </dd>
+        <dt>
+            @Html.Label("Descripción Tipo Vehículo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTiposVehiculos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoCarroceria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoCarroceria)
+        </dd>
+        <dt>
+            @Html.Label("Descripción Carrocería")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoCarroceria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+
+    </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                @Html.ActionLink("Regresar a la lista", "Index")
+            </div>
+
+        }
+</div>

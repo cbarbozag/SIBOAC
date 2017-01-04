@@ -1,0 +1,194 @@
+﻿@model Cosevi.SIBOAC.Models.ArticulosPorDepositosDeBienes
+
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js " type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Nos suscribimos al evento change de nuestro primer dropsownlist
+        $("#CodigoArticulo").change(function ()
+        {
+            //Limpiamos los otros dropsownlist
+            if ($("#CodigoArticulo").val() == 0)
+            {
+                $("#Departamento").empty();
+                $("#FechaDeInicio").empty();
+                $("#FechaFin").empty();
+                $("#Departamento").append($("<option/>").val("0").text("Seleccione..."));
+               // $("#Localidad").empty();$("#Localidad").append($("<option/>").val("0").text("Seleccione..."));
+                return;
+            }//Ejecutamos el AJAX para llamar a la acción "ObtenerDepartamento"
+            $.ajax(
+                {
+                    url:'@Url.Action("ObtenerConducta")',
+                    type: "POST",
+                    dataType: "json",
+                    async:true,
+                    data: {'CodigoArticulo': $("#CodigoArticulo").val()
+                    },
+                    success:function(items, responseText)
+                    {
+                        $("#Conducta").empty();
+                        $("#Conducta").append($("<option />").val("0").text("Seleccione..."));
+                        $.each(items,function(i, item)
+                        {
+                            $("#Conducta").append($("<option />").val(item.Id).text(item.Nombre));
+                        });
+                    },
+                    error:function()
+                    {
+                        alert('Error...');
+                    }
+                });
+        });
+        $("#Conducta").change(function () {
+            if ($("#Conducta").val() == 0) {
+                $("#FechaDeInicio").empty();
+                $("#FechaDeFin").empty();
+                $("#FechaInicio").append($("<option/>").val("0").text("Seleccione..."));
+                return;
+            }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
+            $.ajax(
+                {
+                    url: '@Url.Action("ObtenerFechaInicio")',
+                    type: "POST",
+                    dataType: "json",
+                    async: true,
+                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val() },
+                    success: function (items, responseText) {
+                        $("#FechaDeInicio").empty(); $("#FechaDeInicio").append($("<option/>").val("0").text("Seleccione..."));
+                        $.each(items, function (i, item) {
+                            $("#FechaDeInicio").append($("<option/>").val(item.Id).text(item.Nombre));
+                        });
+                    },
+                    error: function () {
+                        alert('Error...');
+                    }
+                });
+        });
+        $("#FechaDeInicio").change(function () {
+            if ($("#FechaDeInicio").val() == 0) {
+                $("#FechaDeFin").empty();
+                $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
+                return;
+            }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
+            $.ajax(
+                {
+                    url: '@Url.Action("ObtenerFechaFinal")',
+                    type: "POST",
+                    dataType: "json",
+                    async: true,
+                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val() },
+                    success: function (items, responseText) {
+                        $("#FechaDeFin").empty(); $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
+                        $.each(items, function (i, item) {
+                            $("#FechaDeFin").append($("<option/>").val(item.Id).text(item.Nombre));
+                        });
+                    },
+                    error: function () {
+                        alert('Error...');
+                    }
+                });
+        });
+    });
+    </script>
+<h2>Nuevo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Artículos por Depósitos de Bienes</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CodigoDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CodigoDepositosBienes, (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CodigoDepositosBienes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CodigoOpcionFormulario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CodigoOpcionFormulario, (IEnumerable<SelectListItem>)ViewBag.ComboOpcionFormulario, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CodigoOpcionFormulario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CodigoArticulo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CodigoArticulo", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione")
+
+                @*@Html.DropDownListFor(model => model.CodigoArticulo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new { @class = "form-control", @onchange = "CallChangefunc(this.value)" })
+                @Html.ValidationMessageFor(model => model.CodigoArticulo, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+        @*agregado*@
+           <div class="form-group">
+            @Html.LabelFor(model => model.Conducta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="Conducta" name="Conducta"> <option value="0">Seleccione...</option> </select>
+                @*@Html.EditorFor(model => model.Conducta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Conducta, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaDeInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<select id="FechaDeInicio"> <option value="0">Seleccione...</option> </select>*@
+                <select id="FechaDeInicio" name="FechaDeInicio"> <option value="0">Seleccione...</option> </select>
+               
+               @*@Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaDeInicio, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaDeFin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="FechaDeFin" name="FechaDeFin"> <option value="0">Seleccione...</option> </select>
+                @*@Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaDeFin, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.Estado,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "A" , Text = "Activo" },
+                       new SelectListItem { Value = "I" , Text = "Inactivo" }
+                    },
+                  new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar a la lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

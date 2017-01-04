@@ -1,0 +1,64 @@
+﻿@model Cosevi.SIBOAC.Models.DispositivosMoviles
+
+@{
+    ViewBag.Title = "Inactivar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Activo == true)
+{
+    <h2>Inactivar</h2>
+}
+else
+{
+    <h2>Activar</h2>
+}
+
+<h3>Esta seguro que desea cambiar el estado?</h3>
+<div>
+    <h4>Dispositivo Móvil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IMEI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMEI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if (Model.Activo == true)
+            {
+                <input type="submit" value="Inactivar" class="btn btn-warning" />
+            }
+            else
+            {
+                <input type="submit" value="Activar" class="btn btn-success" />
+            }
+            |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>

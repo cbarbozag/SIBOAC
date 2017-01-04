@@ -1,0 +1,97 @@
+﻿@model Cosevi.SIBOAC.Models.TipoVehiculoPorCodigoPorClase
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Tipo Vehículo por Código por Clase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CodigoTiposVehiculos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTiposVehiculos)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTiposVehiculos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTiposVehiculos)
+        </dd>
+        @*@*<dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTiposVehiculos)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTiposVehiculos)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoClasePlaca)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodigoClasePlaca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoCodigoPlaca)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodigoCodigoPlaca)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CodigoTipoVeh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoTipoVeh)
+        </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTipoVeh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionCodigoTipoVeh)
+        </dd>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.DescripcionCodigoTipoVeh)
+        </dt>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { codigoTiposVehiculos = Model.CodigoTiposVehiculos, codigoClasePlaca = Model.CodigoClasePlaca, codigoCodigoPlaca = Model.CodigoCodigoPlaca, codigoTipoVeh = Model.CodigoTipoVeh }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

@@ -1,0 +1,47 @@
+﻿@model Cosevi.SIBOAC.Models.NombreDeMenu
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Nombre de Menú</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreDeMenuMovil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreDeMenuMovil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id.Trim() }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

@@ -1,0 +1,144 @@
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.RutasPorDistritos>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de las Rutas por Distrito</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CodigoDistrito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DescripcionDistrito)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CodigoRuta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DescripcionRuta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Km)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoDistrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionDistrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoRuta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionRuta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Km)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Detalles", "Details", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km /* id=item.PrimaryKey */ }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
+                }
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionDistrito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoRuta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescripcionRuta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Km)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeFin)
+        </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
+                @Html.ActionLink("Detalles", "Details", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { codigo_distrito = item.CodigoDistrito, codigo_ruta = item.CodigoRuta, km = item.Km })
+                }
+            </td>
+
+        </tr>
+
+    }
+}
+
+</table>
+
+<br />
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+    @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+

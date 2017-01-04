@@ -1,0 +1,141 @@
+﻿@model Cosevi.SIBOAC.Models.ParteOficial
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/Scripts/tableexport.js"></script>
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+
+</script>
+
+
+<h2>Reporte Consulta e Impresión de Parte Oficial</h2>
+<h4>Filtro</h4>
+<hr />
+
+
+<div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Seleccione la opción por la que desea consultar:</label>
+        <div class="col-md-10">
+            <div class="radio" id="radioButton">
+                <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                <br>
+                <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                <br>
+                <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                <br>
+                <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                <br>
+            </div>
+
+        </div>
+    </div>
+    <br/>
+    <br/>
+    @*<style type="text/css">
+        .desc {
+            display: none;
+        }
+    </style>*@
+    <br/>
+    <br />
+    <br />
+    <div id="opc-1" style="display:none">
+        <br>
+        Serie del Parte Oficial
+        <br>
+        <input id="serieParte" type='text' name='serieParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br>
+        N° del Parte Oficial
+        <br>
+        <input id="numeroParte" type='text' name='numeroParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br>
+    </div>
+
+    <div id="opc-2" style="display:none;">
+        <br>
+        Serie de la Boleta de Citación
+        <br>
+        <input id="serieBoleta" type='text' name='serieBoleta' class="input-sm form-control">
+        <br>
+        N° de la Boleta de Citación
+        <br>
+        <input id="numeroBoleta" type='text' name='numeroBoleta' class="input-sm form-control">
+        <br>
+    </div>
+
+    <div id="opc-3" style="display:none;">
+        <br>
+        Tipo de Identificación
+        <br>
+        <input id="tipoId" type='text' name='tipoId' class="input-sm form-control">
+        <br>
+        N° Identificación del Implicado
+        <br>
+        <input id="numeroID" type='text' name='numeroID' class="input-sm form-control">
+        <br>
+    </div>
+
+    <div id="opc-4" style="display:none;">
+        <br>
+        N° de Placa
+        <br>
+        <input id="numeroPlaca" type='text' name='numeroPlaca' class="input-sm form-control">
+        <br>
+        Código de Placa
+        <br>
+        <input id="codigoPlaca" type='text' name='codigoPlaca' class="input-sm form-control">
+        <br>
+        Clase de Placa
+        <br>
+        <input id="clasePlaca" type='text' name='clasePlaca' class="input-sm form-control">
+        <br>
+    </div>
+</div>
+
+<br/>
+
+<div class="pull-right">
+    <button id="generar" type="button" class="btn btn-success">Generar reporte</button>
+    @*<button id="todos" type="button" class="btn btn-primary">Todos</button>*@
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<h4>Reporte</h4>
+<hr/>
+
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
+        <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+        <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
+    </div>
+    <div class="panel-body">
+        @Html.Partial("_MostrarReportePorConsultaParteOficial")
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorConsultaParteOficial")
+}

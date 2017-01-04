@@ -1,0 +1,149 @@
+﻿@model Cosevi.SIBOAC.Models.ParteOficial
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<script src="~/Scripts/tableexport.js"></script>
+<script>
+
+    function imprSelec(nombre)
+    {
+      var ficha = document.getElementById(nombre);
+      var ventimp = window.open(' ', 'Impresion.');
+
+      ventimp.document.write( ficha.innerHTML );
+      ventimp.document.close();
+      ventimp.print( );
+      ventimp.close();
+    }
+
+</script>
+
+
+<h2>Reporte por Descarga de Parte Oficial</h2>
+<h4>Filtro</h4>
+<hr />
+
+<div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Seleccione la fecha por la que desea consultar:</label>
+        <div class="col-md-10">
+            <div class="radio" id="radioButton">
+                <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Fecha de Descarga</label>
+                <br>
+                <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Fecha de Entrega Plano</label>
+                <br>
+                <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Fecha de Accidente</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Rango de fechas</label>
+        <div class="col-md-10">
+            <div class="input-daterange input-group" id="datepicker">
+                <input id="desde" type="text" class="input-sm form-control" name="start" />
+                <span class="input-group-addon">a</span>
+                <input id="hasta" type="text" class="input-sm form-control" name="end" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-2">Delegación</label>
+                <div class="col-max col-md-10">
+                    <ul id="listaDelegaciones" class="list-group" data-toggle="items">
+                        <!-- -->
+                    </ul>
+                </div>
+                <br />
+                <br />
+            </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="btn-group pull-right">
+                    <button id="todosDelegacion" type="button" class="btn btn-primary">Marcar todos</button>
+                    <button id="limpiarDelegacion" type="button" class="btn btn-warning">Limpiar</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Autoridad Judicial</label>
+                    <div class="col-max col-md-10">
+                        <ul id="listaAutoridades" class="list-group" data-toggle="items">
+                            <!-- -->
+                        </ul>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="btn-group pull-right">
+                    <button id="todosAutoridad" type="button" class="btn btn-primary">Marcar todos</button>
+                    <button id="limpiarAutoridad" type="button" class="btn btn-warning">Limpiar</button>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <div class="pull-right">
+            <p style="text-align: center;"><button id="generar" type="button" class="btn btn-success">Generar reporte</button></p>
+            @*<button id="todos" type="button" class="btn btn-primary">Todos</button>*@
+        </div>
+</div>
+
+<br/>
+<h4>Reporte</h4>
+<hr/>
+
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
+        <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+        <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
+    </div>
+    <div class="panel-body">
+        @Html.Partial("_MostrarReportePorDescargaDeParteOficial")
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/ReportePorDescargaDeParteOficial")
+}

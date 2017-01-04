@@ -1,0 +1,163 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.OpcionFormularioPorArticulo>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Opciones del Formulario por Artículo</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Conducta)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeInicio)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeFin)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+        </th>
+
+        <td>
+            @Html.Label("Descripción")
+        </td>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.Estado == "I")
+    {
+        <tr class="warning">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoCatArticulo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Conducta)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario })
+                }
+            </td>
+        </tr>
+    }
+
+    else
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoCatArticulo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Conducta)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeInicio)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaDeFin)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CodigoOpcionFormulario)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionCodigoOpcionFormulario)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario }) |
+                @if (item.Estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id, conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin, codFormulario = item.CodigoOpcionFormulario })
+                }
+            </td>
+        </tr>
+    }
+}
+
+</table>

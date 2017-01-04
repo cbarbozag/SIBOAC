@@ -1,0 +1,1449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BF8189D-DD09-4FC8-826C-4A7E9488FF1F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cosevi.SIBOAC</RootNamespace>
+    <AssemblyName>Cosevi.SIBOAC</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=5.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.3.1\lib\net45\System.Web.Http.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadOficialController.cs" />
+    <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
+    <Compile Include="Controllers\AlineacionVerticalsController.cs" />
+    <Compile Include="Controllers\api\InspectorsController.cs" />
+    <Compile Include="Controllers\api\ReportePorConsultaImpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\api\ReportePorDescargaDeParteOficialController.cs" />
+    <Compile Include="Controllers\api\ReportePorDescargaDeBoletasController.cs" />
+    <Compile Include="Controllers\api\ReportePorConsultaParteOficialController.cs" />
+    <Compile Include="Controllers\api\ReportePorDescargaDeInspectorController.cs" />
+    <Compile Include="Controllers\api\ReportePorEstadoActualDelPlanoController.cs" />
+    <Compile Include="Controllers\api\ReportesPorUsuarioController.cs" />
+    <Compile Include="Controllers\api\AutoridadJudicialController.cs" />
+    <Compile Include="Controllers\api\DelegacionsController.cs" />
+    <Compile Include="Controllers\api\SIBOACUsuariosController.cs" />
+    <Compile Include="Controllers\AutoridadsController.cs" />
+    <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
+    <Compile Include="Controllers\CantonsController.cs" />
+    <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
+    <Compile Include="Controllers\CarrilsController.cs" />
+    <Compile Include="Controllers\CarroceriasController.cs" />
+    <Compile Include="Controllers\CatalogoDeArticulosController.cs" />
+    <Compile Include="Controllers\CirculacionsController.cs" />
+    <Compile Include="Controllers\ClaseDePlacasController.cs" />
+    <Compile Include="Controllers\CodigoDeLaPlacasController.cs" />
+    <Compile Include="Controllers\CondicionDeLaCalzadasController.cs" />
+    <Compile Include="Controllers\CondicionDeLaPersonasController.cs" />
+    <Compile Include="Controllers\ConsecutivoNumeroMarcoesController.cs" />
+    <Compile Include="Controllers\DanioPorHospitalsController.cs" />
+    <Compile Include="Controllers\DanoesController.cs" />
+    <Compile Include="Controllers\DelegacionsController.cs" />
+    <Compile Include="Controllers\DelitoesController.cs" />
+    <Compile Include="Controllers\DepositoDePlacasController.cs" />
+    <Compile Include="Controllers\DepositoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\DetallePorTipoDaniosController.cs" />
+    <Compile Include="Controllers\DetallePorTipoSenialsController.cs" />
+    <Compile Include="Controllers\DireccionsController.cs" />
+    <Compile Include="Controllers\DispositivoesController.cs" />
+    <Compile Include="Controllers\DispositivoPorRolPersonasController.cs" />
+    <Compile Include="Controllers\DispositivosMovilesController.cs" />
+    <Compile Include="Controllers\DistritoesController.cs" />
+    <Compile Include="Controllers\DivisionsController.cs" />
+    <Compile Include="Controllers\EdadsController.cs" />
+    <Compile Include="Controllers\EstadoCivilsController.cs" />
+    <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
+    <Compile Include="Controllers\ExamenController.cs" />
+    <Compile Include="Controllers\GeneralesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorasLaboralesController.cs" />
+    <Compile Include="Controllers\HospitalsController.cs" />
+    <Compile Include="Controllers\IluminacionsController.cs" />
+    <Compile Include="Controllers\InconsistenciasController.cs" />
+    <Compile Include="Controllers\InspectorsController.cs" />
+    <Compile Include="Controllers\InterseccionsController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManiobrasController.cs" />
+    <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
+    <Compile Include="Controllers\NacionalidadsController.cs" />
+    <Compile Include="Controllers\NombreDeMenusController.cs" />
+    <Compile Include="Controllers\OficinaParaImpugnarsController.cs" />
+    <Compile Include="Controllers\MotivoPorNoFirmarsController.cs" />
+    <Compile Include="Controllers\ObstaculoesController.cs" />
+    <Compile Include="Controllers\OpcionDeFormulariosController.cs" />
+    <Compile Include="Controllers\OpcionesDelPlanoesController.cs" />
+    <Compile Include="Controllers\OpcionFormularioPorArticuloesController.cs" />
+    <Compile Include="Controllers\OtroTipoTransportesController.cs" />
+    <Compile Include="Controllers\PeatonsController.cs" />
+    <Compile Include="Controllers\PlantillasController.cs" />
+    <Compile Include="Controllers\ProvinciasController.cs" />
+    <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\ReportePorConsultaImpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\ReportePorDescargaDeInspectorController.cs" />
+    <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
+    <Compile Include="Controllers\ReportePorDescargaDeParteOficialController.cs" />
+    <Compile Include="Controllers\ReportePorUsuarioController.cs" />
+    <Compile Include="Controllers\ReportesPorConsultaParteOficialController.cs" />
+    <Compile Include="Controllers\ResetPasswordsController.cs" />
+    <Compile Include="Controllers\RevisionsController.cs" />
+    <Compile Include="Controllers\RolDePersonaPorTipoDeIdentificacionDeVehiculoesController.cs" />
+    <Compile Include="Controllers\RolDePersonaPorVehiculoesController.cs" />
+    <Compile Include="Controllers\RolPorPersonaOpcionFormulariosController.cs" />
+    <Compile Include="Controllers\RolPorPersonasController.cs" />
+    <Compile Include="Controllers\RutasController.cs" />
+    <Compile Include="Controllers\RutasPorDistritosController.cs" />
+    <Compile Include="Controllers\SenalamientoesController.cs" />
+    <Compile Include="Controllers\SentidoesController.cs" />
+    <Compile Include="Controllers\SexoesController.cs" />
+    <Compile Include="Controllers\ReportePorEstadoActualDelPlanoController.cs" />
+    <Compile Include="Controllers\SIBOACUsuariosController.cs" />
+    <Compile Include="Controllers\StatusPlanoController.cs" />
+    <Compile Include="Controllers\TiempoesController.cs" />
+    <Compile Include="Controllers\TIPODANOesController.cs" />
+    <Compile Include="Controllers\TipoDeAccidentesController.cs" />
+    <Compile Include="Controllers\TipoDeCalzadasController.cs" />
+    <Compile Include="Controllers\TipoDeDocumentoesController.cs" />
+    <Compile Include="Controllers\TipoDeEstructurasController.cs" />
+    <Compile Include="Controllers\TipoDeIdentificacionPorTipoVehiculoesController.cs" />
+    <Compile Include="Controllers\TipoDeIdentificacionsController.cs" />
+    <Compile Include="Controllers\TipoDeLicenciasController.cs" />
+    <Compile Include="Controllers\TipoDeSenalExistentesController.cs" />
+    <Compile Include="Controllers\TipoDeVehiculoesController.cs" />
+    <Compile Include="Controllers\TipoIdDeVehiculoesController.cs" />
+    <Compile Include="Controllers\TiposDeVehiculosController.cs" />
+    <Compile Include="Controllers\TiposPorDocumentoesController.cs" />
+    <Compile Include="Controllers\TipoVehiculoPorCodigoPorClasesController.cs" />
+    <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
+    <Compile Include="Controllers\ValidarCarroceriasController.cs" />
+    <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActividadOficial.cs" />
+    <Compile Include="Models\AlineacionHorizontal.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AlineacionVertical.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ArticulosPorDepositosDeBienes.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ARTICULOXBOLETA.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Autoridad.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BitacoraSIBOAC.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Boletas.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Canton.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CaracteristicasDeUbicacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Carril.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Carroceria.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CatalogoDeArticulos.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Circulacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClaseDePlaca.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CodigoDeLaPlaca.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CondicionDeLaCalzada.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CondicionDeLaPersona.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConsecutivoNumeroMarco.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DanioPorHospital.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dano.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Delegacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Delito.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepositoDePlaca.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepositoDeVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepositosBienes.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetallePorTipoDanio.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DetallePorTipoSenial.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Direccion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dispositivo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DispositivoPorRolPersona.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DispositivosMoviles.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Distrito.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Division.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Edad.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstadoCivil.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EstadoDeLaCalzada.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Examen.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GENERALES.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HorasLaborales.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hospital.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Iluminacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inconsistencia.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InformacionBoleta.cs" />
+    <Compile Include="Models\Inspector.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Interseccion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Maniobra.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarcaDeAutomovil.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MotivoPorNoFirmar.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Nacionalidad.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NombreDeMenu.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Obstaculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OficinaParaImpugnar.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OpcionDeFormulario.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OpcionesDelPlano.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OpcionFormularioPorArticulo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OtroTipoTransporte.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ParteOficial.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PC_HH_AndroidModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PC_HH_AndroidModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PC_HH_AndroidModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PC_HH_AndroidModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Peaton.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PERSONA.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Plantillas.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Provincia.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Revision.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolDePersonaPorTipoDeIdentificacionDeVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolDePersonaPorVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolPorPersona.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RolPorPersonaOpcionFormulario.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ruta.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RutasPorDistritos.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Senalamiento.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sentido.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sexo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIBOACRoles.cs">
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIBOACRolesDeUsuarios.cs">
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIBOACSecurityModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SIBOACSecurityModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIBOACSecurityModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIBOACSecurityModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIBOACUsuarios.cs">
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusPlano.cs" />
+    <Compile Include="Models\Tiempo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPODANO.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeAccidente.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeCalzada.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeDocumento.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeEstructura.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeIdentificacion.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeIdentificacionPorTipoVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeLicencia.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeSenalExistente.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoDeVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoIdDeVehiculo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TiposDeVehiculos.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TiposPorDocumento.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoVehiculoPorCodigoPorClase.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UnidadesDeAlcohol.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USUARIO.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ValidarCarroceria.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VariablesParaBloqueo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VEHICULO.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AccessDeniedAuthorizeAttribute.cs" />
+    <Compile Include="Security\CustomMembershipProvider.cs" />
+    <Compile Include="Security\CustomRoleProvider.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050.mdf" />
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050_log.ldf">
+      <DependentUpon>aspnet-Cosevi.SIBOAC-20161115085050.mdf</DependentUpon>
+    </Content>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\Cosevi.SIBOAC.dll" />
+    <Content Include="bin\Cosevi.SIBOAC.pdb" />
+    <Content Include="bin\de\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\de\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\de\System.Spatial.resources.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\es\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\es\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\es\System.Spatial.resources.dll" />
+    <Content Include="bin\fr\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\fr\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\fr\System.Spatial.resources.dll" />
+    <Content Include="bin\it\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\it\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\it\System.Spatial.resources.dll" />
+    <Content Include="bin\ja\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\ja\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\ja\System.Spatial.resources.dll" />
+    <Content Include="bin\ko\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\ko\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\ko\System.Spatial.resources.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.xml" />
+    <Content Include="bin\Microsoft.Owin.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\ru\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\ru\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\ru\System.Spatial.resources.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="bin\zh-Hans\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\zh-Hans\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\zh-Hans\System.Spatial.resources.dll" />
+    <Content Include="bin\zh-Hant\Microsoft.Data.Edm.resources.dll" />
+    <Content Include="bin\zh-Hant\Microsoft.Data.OData.resources.dll" />
+    <Content Include="bin\zh-Hant\System.Spatial.resources.dll" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\btnExcel.png" />
+    <Content Include="Content\btnExportarPDF.png" />
+    <Content Include="Content\btnImprimir.png" />
+    <Content Include="Content\btnPDF.png" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\PDF.png" />
+    <Content Include="Content\title_bar.png" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cosevi_logo.png" />
+    <Content Include="Content\Toastr-2.1.3.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\PC_HH_AndroidModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
+      <LastGenOutput>PC_HH_AndroidModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PC_HH_AndroidModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
+      <LastGenOutput>PC_HH_AndroidModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SIBOACSecurityModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+      <LastGenOutput>SIBOACSecurityModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SIBOACSecurityModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+      <LastGenOutput>SIBOACSecurityModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="obj\Debug\Cosevi.SIBOAC.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Cosevi.SIBOAC.dll" />
+    <Content Include="obj\Debug\Cosevi.SIBOAC.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.Designer.cs.dll" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\PC_HH_AndroidModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PC_HH_AndroidModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\PC_HH_AndroidModel.edmx.diagram">
+      <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="bin\Cosevi.SIBOAC.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="obj\Debug\Cosevi.SIBOAC.csprojResolveAssemblyReference.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.ssdl" />
+    <Content Include="App_Browsers\qt.browser" />
+    <EntityDeploy Include="Models\SIBOACSecurityModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SIBOACSecurityModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SIBOACSecurityModel.edmx.diagram">
+      <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\FileSaver.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.table2excel.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\listgroup.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ReportePorConsultaImpresionDeBoletas.js" />
+    <Content Include="Scripts\ReportePorDescargaDeBoletas.js" />
+    <Content Include="Scripts\ReportePorDescargaDeParteOficial.js" />
+    <Content Include="Scripts\ReportePorEstadoActualDelPlano.js" />
+    <Content Include="Scripts\ReportePorDescargaDeInspector.js" />
+    <Content Include="Scripts\ReportesPorConsultaParteOficial.js" />
+    <Content Include="Scripts\reportePorUsuario.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tableexport.js" />
+    <Content Include="Scripts\tableexport.min.js" />
+    <Content Include="Scripts\Toastr-2.1.3.min.js" />
+    <Content Include="Scripts\xlsx.core.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Create.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Delete.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Details.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Edit.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\Index.cshtml" />
+    <Content Include="Views\Dispositivoes\Create.cshtml" />
+    <Content Include="Views\Dispositivoes\Delete.cshtml" />
+    <Content Include="Views\Dispositivoes\Details.cshtml" />
+    <Content Include="Views\Dispositivoes\Edit.cshtml" />
+    <Content Include="Views\Dispositivoes\Index.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Create.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Delete.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Details.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Edit.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\Index.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Create.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Delete.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Details.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Edit.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\Index.cshtml" />
+    <Content Include="Views\Obstaculoes\Create.cshtml" />
+    <Content Include="Views\Obstaculoes\Delete.cshtml" />
+    <Content Include="Views\Obstaculoes\Details.cshtml" />
+    <Content Include="Views\Obstaculoes\Edit.cshtml" />
+    <Content Include="Views\Obstaculoes\Index.cshtml" />
+    <Content Include="Views\Iluminacions\Create.cshtml" />
+    <Content Include="Views\Iluminacions\Delete.cshtml" />
+    <Content Include="Views\Iluminacions\Details.cshtml" />
+    <Content Include="Views\Iluminacions\Edit.cshtml" />
+    <Content Include="Views\Iluminacions\Index.cshtml" />
+    <Content Include="Views\Maniobras\Create.cshtml" />
+    <Content Include="Views\Maniobras\Delete.cshtml" />
+    <Content Include="Views\Maniobras\Details.cshtml" />
+    <Content Include="Views\Maniobras\Edit.cshtml" />
+    <Content Include="Views\Maniobras\Index.cshtml" />
+    <Content Include="Views\Hospitals\Create.cshtml" />
+    <Content Include="Views\Hospitals\Delete.cshtml" />
+    <Content Include="Views\Hospitals\Details.cshtml" />
+    <Content Include="Views\Hospitals\Edit.cshtml" />
+    <Content Include="Views\Hospitals\Index.cshtml" />
+    <Content Include="Views\EstadoCivils\Create.cshtml" />
+    <Content Include="Views\EstadoCivils\Delete.cshtml" />
+    <Content Include="Views\EstadoCivils\Details.cshtml" />
+    <Content Include="Views\EstadoCivils\Edit.cshtml" />
+    <Content Include="Views\EstadoCivils\Index.cshtml" />
+    <Content Include="Views\Inconsistencias\Create.cshtml" />
+    <Content Include="Views\Inconsistencias\Details.cshtml" />
+    <Content Include="Views\Inconsistencias\Edit.cshtml" />
+    <Content Include="Views\Inconsistencias\Index.cshtml" />
+    <Content Include="Views\MarcaDeAutomovils\Create.cshtml" />
+    <Content Include="Views\MarcaDeAutomovils\Delete.cshtml" />
+    <Content Include="Views\MarcaDeAutomovils\Details.cshtml" />
+    <Content Include="Views\MarcaDeAutomovils\Edit.cshtml" />
+    <Content Include="Views\MarcaDeAutomovils\Index.cshtml" />
+    <Content Include="Views\OtroTipoTransportes\Create.cshtml" />
+    <Content Include="Views\OtroTipoTransportes\Delete.cshtml" />
+    <Content Include="Views\OtroTipoTransportes\Details.cshtml" />
+    <Content Include="Views\OtroTipoTransportes\Edit.cshtml" />
+    <Content Include="Views\OtroTipoTransportes\Index.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Create.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Delete.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Details.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Edit.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\Index.cshtml" />
+    <Content Include="Views\OpcionesDelPlanoes\Create.cshtml" />
+    <Content Include="Views\OpcionesDelPlanoes\Delete.cshtml" />
+    <Content Include="Views\OpcionesDelPlanoes\Details.cshtml" />
+    <Content Include="Views\OpcionesDelPlanoes\Edit.cshtml" />
+    <Content Include="Views\OpcionesDelPlanoes\Index.cshtml" />
+    <Content Include="Views\TipoDeEstructuras\Create.cshtml" />
+    <Content Include="Views\TipoDeEstructuras\Delete.cshtml" />
+    <Content Include="Views\TipoDeEstructuras\Details.cshtml" />
+    <Content Include="Views\TipoDeEstructuras\Edit.cshtml" />
+    <Content Include="Views\TipoDeEstructuras\Index.cshtml" />
+    <Content Include="Views\OpcionDeFormularios\Create.cshtml" />
+    <Content Include="Views\OpcionDeFormularios\Delete.cshtml" />
+    <Content Include="Views\OpcionDeFormularios\Details.cshtml" />
+    <Content Include="Views\OpcionDeFormularios\Edit.cshtml" />
+    <Content Include="Views\OpcionDeFormularios\Index.cshtml" />
+    <Content Include="Views\TipoDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\TipoDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\TipoDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\TipoDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\TipoDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\TipoDeIdentificacions\Create.cshtml" />
+    <Content Include="Views\TipoDeIdentificacions\Details.cshtml" />
+    <Content Include="Views\TipoDeIdentificacions\Edit.cshtml" />
+    <Content Include="Views\TipoDeIdentificacions\Index.cshtml" />
+    <Content Include="Views\Provincias\Create.cshtml" />
+    <Content Include="Views\Provincias\Delete.cshtml" />
+    <Content Include="Views\Provincias\Details.cshtml" />
+    <Content Include="Views\Provincias\Edit.cshtml" />
+    <Content Include="Views\Provincias\Index.cshtml" />
+    <Content Include="Views\Sentidoes\Create.cshtml" />
+    <Content Include="Views\Sentidoes\Delete.cshtml" />
+    <Content Include="Views\Sentidoes\Details.cshtml" />
+    <Content Include="Views\Sentidoes\Edit.cshtml" />
+    <Content Include="Views\Sentidoes\Index.cshtml" />
+    <Content Include="Views\Senalamientoes\Create.cshtml" />
+    <Content Include="Views\Senalamientoes\Delete.cshtml" />
+    <Content Include="Views\Senalamientoes\Details.cshtml" />
+    <Content Include="Views\Senalamientoes\Edit.cshtml" />
+    <Content Include="Views\Senalamientoes\Index.cshtml" />
+    <Content Include="Views\Sexoes\Create.cshtml" />
+    <Content Include="Views\Sexoes\Delete.cshtml" />
+    <Content Include="Views\Sexoes\Details.cshtml" />
+    <Content Include="Views\Sexoes\Edit.cshtml" />
+    <Content Include="Views\Sexoes\Index.cshtml" />
+    <Content Include="Views\Plantillas\Create.cshtml" />
+    <Content Include="Views\Plantillas\Delete.cshtml" />
+    <Content Include="Views\Plantillas\Details.cshtml" />
+    <Content Include="Views\Plantillas\Edit.cshtml" />
+    <Content Include="Views\Plantillas\Index.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Create.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Delete.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Details.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Edit.cshtml" />
+    <Content Include="Views\TipoDeLicencias\Index.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Create.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Delete.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Details.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Edit.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\Index.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Create.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Delete.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Details.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Edit.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\Index.cshtml" />
+    <Content Include="Views\Revisions\Create.cshtml" />
+    <Content Include="Views\Revisions\Details.cshtml" />
+    <Content Include="Views\Revisions\Edit.cshtml" />
+    <Content Include="Views\Revisions\Index.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\Rutas\Create.cshtml" />
+    <Content Include="Views\Rutas\Delete.cshtml" />
+    <Content Include="Views\Rutas\Details.cshtml" />
+    <Content Include="Views\Rutas\Edit.cshtml" />
+    <Content Include="Views\Rutas\Index.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Create.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Delete.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Details.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Edit.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\Index.cshtml" />
+    <Content Include="Views\RolPorPersonas\Create.cshtml" />
+    <Content Include="Views\RolPorPersonas\Delete.cshtml" />
+    <Content Include="Views\RolPorPersonas\Details.cshtml" />
+    <Content Include="Views\RolPorPersonas\Edit.cshtml" />
+    <Content Include="Views\RolPorPersonas\Index.cshtml" />
+    <Content Include="Views\Peatons\Create.cshtml" />
+    <Content Include="Views\Peatons\Delete.cshtml" />
+    <Content Include="Views\Peatons\Details.cshtml" />
+    <Content Include="Views\Peatons\Edit.cshtml" />
+    <Content Include="Views\Peatons\Index.cshtml" />
+    <Content Include="Views\Tiempoes\Create.cshtml" />
+    <Content Include="Views\Tiempoes\Delete.cshtml" />
+    <Content Include="Views\Tiempoes\Details.cshtml" />
+    <Content Include="Views\Tiempoes\Edit.cshtml" />
+    <Content Include="Views\Tiempoes\Index.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Create.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Delete.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Details.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Edit.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\Index.cshtml" />
+    <Content Include="Views\Delitoes\Create.cshtml" />
+    <Content Include="Views\Delitoes\Delete.cshtml" />
+    <Content Include="Views\Delitoes\Details.cshtml" />
+    <Content Include="Views\Delitoes\Edit.cshtml" />
+    <Content Include="Views\Delitoes\Index.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Create.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Delete.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Details.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Edit.cshtml" />
+    <Content Include="Views\DepositoDePlacas\Index.cshtml" />
+    <Content Include="Views\Delegacions\Create.cshtml" />
+    <Content Include="Views\Delegacions\Delete.cshtml" />
+    <Content Include="Views\Delegacions\Details.cshtml" />
+    <Content Include="Views\Delegacions\Edit.cshtml" />
+    <Content Include="Views\Delegacions\Index.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Create.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Delete.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Details.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Edit.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\Index.cshtml" />
+    <Content Include="Views\Danoes\Create.cshtml" />
+    <Content Include="Views\Danoes\Delete.cshtml" />
+    <Content Include="Views\Danoes\Details.cshtml" />
+    <Content Include="Views\Danoes\Edit.cshtml" />
+    <Content Include="Views\Danoes\Index.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Create.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Delete.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Details.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Edit.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\Index.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Create.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Delete.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Details.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Edit.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\Index.cshtml" />
+    <Content Include="Views\Circulacions\Create.cshtml" />
+    <Content Include="Views\Circulacions\Delete.cshtml" />
+    <Content Include="Views\Circulacions\Details.cshtml" />
+    <Content Include="Views\Circulacions\Edit.cshtml" />
+    <Content Include="Views\Circulacions\Index.cshtml" />
+    <Content Include="Views\Carrocerias\Create.cshtml" />
+    <Content Include="Views\Carrocerias\Delete.cshtml" />
+    <Content Include="Views\Carrocerias\Details.cshtml" />
+    <Content Include="Views\Carrocerias\Edit.cshtml" />
+    <Content Include="Views\Carrocerias\Index.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Create.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Delete.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Details.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Edit.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\Index.cshtml" />
+    <Content Include="Views\Carrils\Create.cshtml" />
+    <Content Include="Views\Carrils\Delete.cshtml" />
+    <Content Include="Views\Carrils\Details.cshtml" />
+    <Content Include="Views\Carrils\Edit.cshtml" />
+    <Content Include="Views\Carrils\Index.cshtml" />
+    <Content Include="Views\Cantons\Create.cshtml" />
+    <Content Include="Views\Cantons\Delete.cshtml" />
+    <Content Include="Views\Cantons\Details.cshtml" />
+    <Content Include="Views\Cantons\Edit.cshtml" />
+    <Content Include="Views\Cantons\Index.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Create.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Delete.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Details.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Edit.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\Index.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Create.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Delete.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Details.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Edit.cshtml" />
+    <Content Include="Views\AlineacionVerticals\Index.cshtml" />
+    <Content Include="Views\Distritoes\Create.cshtml" />
+    <Content Include="Views\Distritoes\Delete.cshtml" />
+    <Content Include="Views\Distritoes\Details.cshtml" />
+    <Content Include="Views\Distritoes\Edit.cshtml" />
+    <Content Include="Views\Distritoes\Index.cshtml" />
+    <Content Include="Views\Examen\Create.cshtml" />
+    <Content Include="Views\Examen\Delete.cshtml" />
+    <Content Include="Views\Examen\Details.cshtml" />
+    <Content Include="Views\Examen\Edit.cshtml" />
+    <Content Include="Views\Examen\Index.cshtml" />
+    <Content Include="Views\Direccions\Create.cshtml" />
+    <Content Include="Views\Direccions\Delete.cshtml" />
+    <Content Include="Views\Direccions\Details.cshtml" />
+    <Content Include="Views\Direccions\Edit.cshtml" />
+    <Content Include="Views\Direccions\Index.cshtml" />
+    <Content Include="Views\Inspectors\Create.cshtml" />
+    <Content Include="Views\Inspectors\Delete.cshtml" />
+    <Content Include="Views\Inspectors\Details.cshtml" />
+    <Content Include="Views\Inspectors\Edit.cshtml" />
+    <Content Include="Views\Inspectors\Index.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Create.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Delete.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Details.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Edit.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\Index.cshtml" />
+    <Content Include="Views\Interseccions\Create.cshtml" />
+    <Content Include="Views\Interseccions\Delete.cshtml" />
+    <Content Include="Views\Interseccions\Details.cshtml" />
+    <Content Include="Views\Interseccions\Edit.cshtml" />
+    <Content Include="Views\Interseccions\Index.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Create.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Delete.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Details.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Edit.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\Index.cshtml" />
+    <Content Include="Views\NombreDeMenus\Create.cshtml" />
+    <Content Include="Views\NombreDeMenus\Delete.cshtml" />
+    <Content Include="Views\NombreDeMenus\Details.cshtml" />
+    <Content Include="Views\NombreDeMenus\Edit.cshtml" />
+    <Content Include="Views\NombreDeMenus\Index.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Create.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Delete.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Details.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Edit.cshtml" />
+    <Content Include="Views\DispositivosMoviles\Index.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Create.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Delete.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Details.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Edit.cshtml" />
+    <Content Include="Views\ClaseDePlacas\Index.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Create.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Delete.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Details.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Edit.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\Index.cshtml" />
+    <Content Include="Views\HorasLaborales\Create.cshtml" />
+    <Content Include="Views\HorasLaborales\Delete.cshtml" />
+    <Content Include="Views\HorasLaborales\Details.cshtml" />
+    <Content Include="Views\HorasLaborales\Edit.cshtml" />
+    <Content Include="Views\HorasLaborales\Index.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Create.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Delete.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Details.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Edit.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\Index.cshtml" />
+    <Content Include="Views\Nacionalidads\Create.cshtml" />
+    <Content Include="Views\Nacionalidads\Delete.cshtml" />
+    <Content Include="Views\Nacionalidads\Details.cshtml" />
+    <Content Include="Views\Nacionalidads\Edit.cshtml" />
+    <Content Include="Views\Nacionalidads\Index.cshtml" />
+    <Content Include="Views\Edads\Create.cshtml" />
+    <Content Include="Views\Edads\Delete.cshtml" />
+    <Content Include="Views\Edads\Details.cshtml" />
+    <Content Include="Views\Edads\Edit.cshtml" />
+    <Content Include="Views\Edads\Index.cshtml" />
+    <Content Include="Views\Divisions\Create.cshtml" />
+    <Content Include="Views\Divisions\Delete.cshtml" />
+    <Content Include="Views\Divisions\Details.cshtml" />
+    <Content Include="Views\Divisions\Edit.cshtml" />
+    <Content Include="Views\Divisions\Index.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Create.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Delete.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Details.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Edit.cshtml" />
+    <Content Include="Views\ArticulosPorDepositosDeBienes\Index.cshtml" />
+    <Content Include="Views\Autoridads\Create.cshtml" />
+    <Content Include="Views\Autoridads\Delete.cshtml" />
+    <Content Include="Views\Autoridads\Details.cshtml" />
+    <Content Include="Views\Autoridads\Edit.cshtml" />
+    <Content Include="Views\Autoridads\Index.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Create.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Delete.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Details.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Edit.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\Index.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Create.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Delete.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Details.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Edit.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\Index.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Create.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Delete.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Details.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Edit.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\Index.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Create.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Delete.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Details.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Edit.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\Index.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Create.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Delete.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Details.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Edit.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\Index.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Create.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Delete.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Details.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Edit.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\Index.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Create.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Delete.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Details.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Edit.cshtml" />
+    <Content Include="Views\DanioPorHospitals\Index.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Create.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Delete.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Details.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Edit.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\Index.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Create.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Details.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Edit.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\Index.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Create.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Delete.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Details.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Edit.cshtml" />
+    <Content Include="Views\RutasPorDistritos\Index.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Create.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Delete.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Details.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Edit.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\Index.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Create.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Delete.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Details.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Edit.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\Index.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Create.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Delete.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Details.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Edit.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\StatusPlano\Index.cshtml" />
+    <Content Include="Views\StatusPlano\_PlanoView.cshtml" />
+    <Content Include="Views\ReimpresionDeBoletas\Index.cshtml" />
+    <Content Include="Views\ReimpresionDeBoletas\_MostrarBoletaView.cshtml" />
+    <Content Include="Views\ActividadOficial\Index.cshtml" />
+    <Content Include="Views\ActividadOficial\_ListaActividad.cshtml" />
+    <Content Include="Views\ReportePorUsuario\Index.cshtml" />
+    <Content Include="Views\ReportePorUsuario\_MostrarReportePorUsuario.cshtml" />
+    <Content Include="Views\SIBOACUsuarios\Create.cshtml" />
+    <Content Include="Views\SIBOACUsuarios\Delete.cshtml" />
+    <Content Include="Views\SIBOACUsuarios\Details.cshtml" />
+    <Content Include="Views\SIBOACUsuarios\Edit.cshtml" />
+    <Content Include="Views\SIBOACUsuarios\Index.cshtml" />
+    <Content Include="Views\ReportePorEstadoActualDelPlano\Index.cshtml" />
+    <Content Include="Views\TipoIdDeVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\AlineacionHorizontals\RealDelete.cshtml" />
+    <Content Include="Views\AlineacionVerticals\RealDelete.cshtml" />
+    <Content Include="Views\TIPODANOes\Create.cshtml" />
+    <Content Include="Views\TIPODANOes\Delete.cshtml" />
+    <Content Include="Views\TIPODANOes\Details.cshtml" />
+    <Content Include="Views\TIPODANOes\Edit.cshtml" />
+    <Content Include="Views\TIPODANOes\Index.cshtml" />
+    <Content Include="Views\Generales\Create.cshtml" />
+    <Content Include="Views\Generales\Delete.cshtml" />
+    <Content Include="Views\Generales\Details.cshtml" />
+    <Content Include="Views\Generales\Edit.cshtml" />
+    <Content Include="Views\Generales\Index.cshtml" />
+    <Content Include="Views\Generales\Inactivar.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeBoletas\Index.cshtml" />
+    <Content Include="Views\ReportesPorConsultaParteOficial\Index.cshtml" />
+    <Content Include="Views\VariablesParaBloqueos\RealDelete.cshtml" />
+    <Content Include="Views\Autoridads\RealDelete.cshtml" />
+    <Content Include="Views\CaracteristicasDeUbicacions\RealDelete.cshtml" />
+    <Content Include="Views\Cantons\RealDelete.cshtml" />
+    <Content Include="Views\Carrils\RealDelete.cshtml" />
+    <Content Include="Views\Carrocerias\RealDelete.cshtml" />
+    <Content Include="Views\CatalogoDeArticulos\RealDelete.cshtml" />
+    <Content Include="Views\Circulacions\RealDelete.cshtml" />
+    <Content Include="Views\ClaseDePlacas\RealDelete.cshtml" />
+    <Content Include="Views\CodigoDeLaPlacas\RealDelete.cshtml" />
+    <Content Include="Views\CondicionDeLaCalzadas\RealDelete.cshtml" />
+    <Content Include="Views\CondicionDeLaPersonas\RealDelete.cshtml" />
+    <Content Include="Views\ConsecutivoNumeroMarcoes\RealDelete.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeInspector\Index.cshtml" />
+    <Content Include="Views\ReportePorConsultaImpresionDeBoletas\Index.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeParteOficial\Index.cshtml" />
+    <Content Include="Views\DanioPorHospitals\RealDelete.cshtml" />
+    <Content Include="Views\Danoes\RealDelete.cshtml" />
+    <Content Include="Views\Delegacions\RealDelete.cshtml" />
+    <Content Include="Views\Delitoes\RealDelete.cshtml" />
+    <Content Include="Views\DepositoDePlacas\RealDelete.cshtml" />
+    <Content Include="Views\DepositoDeVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\DetallePorTipoDanios\RealDelete.cshtml" />
+    <Content Include="Views\DetallePorTipoSenials\RealDelete.cshtml" />
+    <Content Include="Views\Direccions\RealDelete.cshtml" />
+    <Content Include="Views\Dispositivoes\RealDelete.cshtml" />
+    <Content Include="Views\DispositivoPorRolPersonas\RealDelete.cshtml" />
+    <Content Include="Views\DispositivosMoviles\RealDelete.cshtml" />
+    <Content Include="Views\Distritoes\RealDelete.cshtml" />
+    <Content Include="Views\Divisions\RealDelete.cshtml" />
+    <Content Include="Views\UnidadesDeAlcohols\RealDelete.cshtml" />
+    <Content Include="Views\ValidarCarrocerias\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeSenalExistentes\RealDelete.cshtml" />
+    <Content Include="Views\TipoVehiculoPorCodigoPorClases\RealDelete.cshtml" />
+    <Content Include="Views\TiposPorDocumentoes\RealDelete.cshtml" />
+    <Content Include="Views\TiposDeVehiculos\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeLicencias\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeIdentificacionPorTipoVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeEstructuras\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeDocumentoes\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeCalzadas\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeAccidentes\RealDelete.cshtml" />
+    <Content Include="Views\TIPODANOes\RealDelete.cshtml" />
+    <Content Include="Views\Tiempoes\RealDelete.cshtml" />
+    <Content Include="Views\Sexoes\RealDelete.cshtml" />
+    <Content Include="Views\Sentidoes\RealDelete.cshtml" />
+    <Content Include="Views\Senalamientoes\RealDelete.cshtml" />
+    <Content Include="Views\Revisions\RealDelete.cshtml" />
+    <Content Include="Views\RutasPorDistritos\RealDelete.cshtml" />
+    <Content Include="Views\Rutas\RealDelete.cshtml" />
+    <Content Include="Views\RolPorPersonas\RealDelete.cshtml" />
+    <Content Include="Views\RolPorPersonaOpcionFormularios\RealDelete.cshtml" />
+    <Content Include="Views\RolDePersonaPorVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\RolDePersonaPorTipoDeIdentificacionDeVehiculoes\RealDelete.cshtml" />
+    <Content Include="Views\Provincias\RealDelete.cshtml" />
+    <Content Include="Views\Plantillas\RealDelete.cshtml" />
+    <Content Include="Views\Peatons\RealDelete.cshtml" />
+    <Content Include="Views\OtroTipoTransportes\RealDelete.cshtml" />
+    <Content Include="Views\OpcionFormularioPorArticuloes\RealDelete.cshtml" />
+    <Content Include="Views\OpcionesDelPlanoes\RealDelete.cshtml" />
+    <Content Include="Views\OpcionDeFormularios\RealDelete.cshtml" />
+    <Content Include="Views\OficinaParaImpugnars\RealDelete.cshtml" />
+    <Content Include="Views\Obstaculoes\RealDelete.cshtml" />
+    <Content Include="Views\TipoDeIdentificacions\RealDelete.cshtml" />
+    <Content Include="Views\NombreDeMenus\RealDelete.cshtml" />
+    <Content Include="Views\Nacionalidads\RealDelete.cshtml" />
+    <Content Include="Views\MotivoPorNoFirmars\RealDelete.cshtml" />
+    <Content Include="Views\MarcaDeAutomovils\RealDelete.cshtml" />
+    <Content Include="Views\Maniobras\RealDelete.cshtml" />
+    <Content Include="Views\Interseccions\RealDelete.cshtml" />
+    <Content Include="Views\Inspectors\RealDelete.cshtml" />
+    <Content Include="Views\Inconsistencias\RealDelete.cshtml" />
+    <Content Include="Views\Iluminacions\RealDelete.cshtml" />
+    <Content Include="Views\Hospitals\RealDelete.cshtml" />
+    <Content Include="Views\HorasLaborales\RealDelete.cshtml" />
+    <Content Include="Views\Examen\RealDelete.cshtml" />
+    <Content Include="Views\EstadoDeLaCalzadas\RealDelete.cshtml" />
+    <Content Include="Views\EstadoCivils\RealDelete.cshtml" />
+    <Content Include="Views\Edads\RealDelete.cshtml" />
+    <Content Include="Views\ReportePorConsultaImpresionDeBoletas\_MostrarReporteConsultaImpresionDeBoletas.cshtml" />
+    <Content Include="Views\ResetPasswords\Create.cshtml" />
+    <Content Include="Views\ResetPasswords\Delete.cshtml" />
+    <Content Include="Views\ResetPasswords\Details.cshtml" />
+    <Content Include="Views\ResetPasswords\Edit.cshtml" />
+    <Content Include="Views\ResetPasswords\Index.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeBoletas\_MostrarReportePorDescargaDeBoletas.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeInspector\_MostrarReportePorDescargaDelnspector.cshtml" />
+    <Content Include="Views\ReportePorDescargaDeParteOficial\_MostrarReportePorDescargaDeParteOficial.cshtml" />
+    <Content Include="Views\ReportePorEstadoActualDelPlano\_MostrarReportePorEstadoActualDelPlano.cshtml" />
+    <Content Include="Views\ReportesPorConsultaParteOficial\_MostrarReportePorConsultaParteOficial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Release\" />
+    <Folder Include="Views\Index\" />
+    <Folder Include="Views\Usuarios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61645</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61645/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
