@@ -21,10 +21,10 @@ namespace Cosevi.SIBOAC.Models
         }
     
         public int Id { get; set; }
-        public string Usuario { get; set; }
         public string Email { get; set; }
         public string Contrasena { get; set; }
         public string Nombre { get; set; }
+        public string Usuario { get; set; }
         public string codigo { get; set; }
         public Nullable<System.DateTime> FechaDeActualizacionClave { get; set; }
         public Nullable<bool> Activo { get; set; }
