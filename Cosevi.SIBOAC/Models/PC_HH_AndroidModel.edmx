@@ -933,6 +933,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="SIBOACRolesDeUsuarios">
           <Key>
@@ -951,6 +952,9 @@
           <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="Contrasena" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="4" />
+          <Property Name="FechaDeActualizacionClave" Type="datetime" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="TIEMPO">
           <Key>
@@ -2551,6 +2555,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIBOACRolesDeUsuarios" Relationship="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" FromRole="SIBOACRoles" ToRole="SIBOACRolesDeUsuarios" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <EntityType Name="SIBOACRolesDeUsuarios">
           <Key>
@@ -2572,6 +2577,9 @@
           <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIBOACRolesDeUsuarios" Relationship="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" FromRole="SIBOACUsuarios" ToRole="SIBOACRolesDeUsuarios" />
+          <Property Name="codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeActualizacionClave" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles">
           <End Type="PC_HH_AndroidModel.SIBOACRoles" Role="SIBOACRoles" Multiplicity="1" />
@@ -3782,6 +3790,7 @@
           <EntitySetMapping Name="SIBOACRoles">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACRoles">
               <MappingFragment StoreEntitySet="SIBOACRoles">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -3799,6 +3808,9 @@
           <EntitySetMapping Name="SIBOACUsuarios">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACUsuarios">
               <MappingFragment StoreEntitySet="SIBOACUsuarios">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaDeActualizacionClave" ColumnName="FechaDeActualizacionClave" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
