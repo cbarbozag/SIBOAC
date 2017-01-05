@@ -24,6 +24,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
+        <th>
+            @Html.Label("Código")
+        </th>
+        <th>
+            @Html.Label("Última Actualización de la Clave")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +49,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
+        </td>
+        <td>
+            @Html.CheckBoxFor(modelItem => item.Activo, new { @disabled = "disabled" })
         </td>
         <td>            
             @Html.ActionLink("Reset Password", "Delete", new { id=item.Id })
