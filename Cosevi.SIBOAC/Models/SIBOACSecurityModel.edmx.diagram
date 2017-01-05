@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cad8cff743cd4d40b16cbd18194c9e60" Name="Diagram1">
-        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACUsuarios" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACRoles" Width="1.5" PointX="0.875" PointY="3.75" />
-        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACRolesDeUsuarios" Width="1.5" PointX="2.875" PointY="0.75" />
+        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACUsuarios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACRoles" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACRolesDeUsuarios" Width="1.5" PointX="3.25" PointY="0.875" />
         <AssociationConnector Association="SIBOACSecurityModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" />
         <AssociationConnector Association="SIBOACSecurityModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" />
       </Diagram>
