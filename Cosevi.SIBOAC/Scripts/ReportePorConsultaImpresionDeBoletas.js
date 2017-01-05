@@ -1,5 +1,4 @@
-﻿
-(function () {
+﻿(function () {
     $(document).ready(function () {
         prepararCampos();
         cargarDatosDelegacion();
@@ -41,8 +40,7 @@
             success: function (results) {
                 var listI = $('#listaInspectores');
                 for (var i = 0; i < results.length; i++) {
-                    if (results[i].Id != null && results[i].Id.trim().length>0)
-                        listI.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Id + '</li>');
+                    listI.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Id + '</li>');
                 };
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -147,10 +145,18 @@
     };
 
     function descargarExcel() {
-        alert("Hola");
-        $("#TablaContenido").tableExport({
-            bootstrap: false
-        });
+        //Creamos un Elemento Temporal en forma de enlace
+        var tmpElemento = document.createElement('a');
+        // obtenemos la información desde el div que lo contiene en el html
+        // Obtenemos la información de la tabla
+        var data_type = 'data:application/vnd.ms-excel';
+        var tabla_div = document.getElementById('reporte');
+        //var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+        tmpElemento.href = data_type + ', ' + tabla_div;
+        //Asignamos el nombre a nuestro EXCEL
+        tmpElemento.download = 'ReportePorConsultaImpresionDeBoletas.xls';
+        // Simulamos el click al elemento creado para descargarlo
+        tmpElemento.click();
     }
 
     function descargarPDF() {

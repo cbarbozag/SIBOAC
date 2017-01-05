@@ -19,7 +19,7 @@ namespace Cosevi.SIBOAC.Controllers.api
         // GET: api/Inspectors
         public IQueryable<Inspector> GetINSPECTOR()
         {
-            return db.INSPECTOR.Where(a=>a.Id!=null && a.Id.Trim().Length>0);
+            return db.INSPECTOR;
         }
 
         // GET: api/Inspectors/5

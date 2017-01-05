@@ -1,4 +1,5 @@
-﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Carril>
+﻿
+@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Carril>
 @using PagedList.Mvc;
 
 
@@ -119,3 +120,4 @@
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) 
 
 
+
