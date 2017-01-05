@@ -951,6 +951,9 @@
           <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="Contrasena" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="4" />
+          <Property Name="FechaDeActualizacionClave" Type="datetime" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="TIEMPO">
           <Key>
@@ -1170,6 +1173,30 @@
           <Property Name="NumeroBoleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Serie" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_DISPXROLPERSONA_DISPOSITIVO">
+          <End Role="DISPOSITIVO" Type="Self.DISPOSITIVO" Multiplicity="1" />
+          <End Role="DISPXROLPERSONA" Type="Self.DISPXROLPERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISPOSITIVO">
+              <PropertyRef Name="CodDis" />
+            </Principal>
+            <Dependent Role="DISPXROLPERSONA">
+              <PropertyRef Name="CodDisp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DISPXROLPERSONA_ROLPERSONA">
+          <End Role="ROLPERSONA" Type="Self.ROLPERSONA" Multiplicity="1" />
+          <End Role="DISPXROLPERSONA" Type="Self.DISPXROLPERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLPERSONA">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DISPXROLPERSONA">
+              <PropertyRef Name="CodRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles">
           <End Role="SIBOACRoles" Type="Self.SIBOACRoles" Multiplicity="1" />
           <End Role="SIBOACRolesDeUsuarios" Type="Self.SIBOACRolesDeUsuarios" Multiplicity="*" />
@@ -1191,6 +1218,18 @@
             </Principal>
             <Dependent Role="SIBOACRolesDeUsuarios">
               <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIBOACUsuarios_INSPECTOR">
+          <End Role="INSPECTOR" Type="Self.INSPECTOR" Multiplicity="0..1" />
+          <End Role="SIBOACUsuarios" Type="Self.SIBOACUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSPECTOR">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="SIBOACUsuarios">
+              <PropertyRef Name="codigo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1288,6 +1327,14 @@
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DISPXROLPERSONA_DISPOSITIVO" Association="Self.FK_DISPXROLPERSONA_DISPOSITIVO">
+            <End Role="DISPOSITIVO" EntitySet="DISPOSITIVO" />
+            <End Role="DISPXROLPERSONA" EntitySet="DISPXROLPERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DISPXROLPERSONA_ROLPERSONA" Association="Self.FK_DISPXROLPERSONA_ROLPERSONA">
+            <End Role="ROLPERSONA" EntitySet="ROLPERSONA" />
+            <End Role="DISPXROLPERSONA" EntitySet="DISPXROLPERSONA" />
+          </AssociationSet>
           <AssociationSet Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles" Association="Self.FK_SIBOACRolesDeUsuarios_SIBOACRoles">
             <End Role="SIBOACRoles" EntitySet="SIBOACRoles" />
             <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
@@ -1295,6 +1342,10 @@
           <AssociationSet Name="FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" Association="Self.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios">
             <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
             <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIBOACUsuarios_INSPECTOR" Association="Self.FK_SIBOACUsuarios_INSPECTOR">
+            <End Role="INSPECTOR" EntitySet="INSPECTOR" />
+            <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1473,6 +1524,14 @@
             <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
             <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
           </AssociationSet>
+          <AssociationSet Name="FK_SIBOACUsuarios_INSPECTOR" Association="PC_HH_AndroidModel.FK_SIBOACUsuarios_INSPECTOR">
+            <End Role="Inspector" EntitySet="INSPECTOR" />
+            <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="DISPXROLPERSONA1" Association="PC_HH_AndroidModel.DISPXROLPERSONA">
+            <End Role="Dispositivo" EntitySet="Dispositivoes1" />
+            <End Role="RolPorPersona" EntitySet="ROLPERSONA" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1483,6 +1542,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ROLPERSONA" Relationship="PC_HH_AndroidModel.DISPXROLPERSONA" FromRole="Dispositivo" ToRole="RolPorPersona" />
         </EntityType>
         <EntityType Name="Hospital">
           <Key>
@@ -1666,6 +1726,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DISPOSITIVO" Relationship="PC_HH_AndroidModel.DISPXROLPERSONA" FromRole="RolPorPersona" ToRole="Dispositivo" />
         </EntityType>
         <EntityType Name="Ruta">
           <Key>
@@ -1950,6 +2011,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SIBOACUsuarios" Relationship="PC_HH_AndroidModel.FK_SIBOACUsuarios_INSPECTOR" FromRole="Inspector" ToRole="SIBOACUsuarios" />
         </EntityType>
         <EntityType Name="Interseccion">
           <Key>
@@ -2572,6 +2634,10 @@
           <Property Name="Contrasena" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIBOACRolesDeUsuarios" Relationship="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" FromRole="SIBOACUsuarios" ToRole="SIBOACRolesDeUsuarios" />
+          <Property Name="codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDeActualizacionClave" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="INSPECTOR" Relationship="PC_HH_AndroidModel.FK_SIBOACUsuarios_INSPECTOR" FromRole="SIBOACUsuarios" ToRole="Inspector" />
         </EntityType>
         <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles">
           <End Type="PC_HH_AndroidModel.SIBOACRoles" Role="SIBOACRoles" Multiplicity="1" />
@@ -2596,6 +2662,22 @@
               <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIBOACUsuarios_INSPECTOR">
+          <End Type="PC_HH_AndroidModel.Inspector" Role="Inspector" Multiplicity="0..1" />
+          <End Type="PC_HH_AndroidModel.SIBOACUsuarios" Role="SIBOACUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inspector">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIBOACUsuarios">
+              <PropertyRef Name="codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DISPXROLPERSONA">
+          <End Type="PC_HH_AndroidModel.Dispositivo" Role="Dispositivo" Multiplicity="*" />
+          <End Type="PC_HH_AndroidModel.RolPorPersona" Role="RolPorPersona" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -3799,6 +3881,9 @@
           <EntitySetMapping Name="SIBOACUsuarios">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACUsuarios">
               <MappingFragment StoreEntitySet="SIBOACUsuarios">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaDeActualizacionClave" ColumnName="FechaDeActualizacionClave" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -3807,6 +3892,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="DISPXROLPERSONA1" TypeName="PC_HH_AndroidModel.DISPXROLPERSONA" StoreEntitySet="DISPXROLPERSONA">
+            <EndProperty Name="RolPorPersona">
+              <ScalarProperty Name="Id" ColumnName="CodRol" />
+            </EndProperty>
+            <EndProperty Name="Dispositivo">
+              <ScalarProperty Name="Id" ColumnName="CodDisp" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

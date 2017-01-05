@@ -95,11 +95,13 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" Width="1.5" PointX="20.375" PointY="5.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.VEHICULO" Width="1.5" PointX="20.375" PointY="9.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.USUARIO" Width="1.5" PointX="10.375" PointY="22.25" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACRoles" Width="1.5" PointX="20.375" PointY="16.125" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACRolesDeUsuarios" Width="1.5" PointX="22.625" PointY="15.875" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACUsuarios" Width="1.5" PointX="25.125" PointY="15.875" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACRoles" Width="1.5" PointX="20.75" PointY="15.625" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACRolesDeUsuarios" Width="1.5" PointX="23" PointY="15.5" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACUsuarios" Width="1.5" PointX="25.125" PointY="15.5" />
         <AssociationConnector Association="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" />
         <AssociationConnector Association="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_SIBOACUsuarios_INSPECTOR" />
+        <AssociationConnector Association="PC_HH_AndroidModel.DISPXROLPERSONA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
