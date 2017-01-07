@@ -108,6 +108,18 @@ textarea {
     padding-bottom: 15px;
 }
 
+.py-2{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left:15px;
+}
+
+.parentMenu {
+    color: #ffffff;
+    background-color: #A1C4E2;
+    border-radius: 5px;
+}
+
 .my-1{
     margin-top: 15px;
     margin-bottom: 15px;

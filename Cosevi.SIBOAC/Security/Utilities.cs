@@ -14,9 +14,18 @@ namespace Cosevi.SIBOAC.Security
             {
                 var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(userName)).FirstOrDefault();
 
-                int rolID = user.SIBOACRolesDeUsuarios.FirstOrDefault().IdRol;
+                List<int> rolIDs = user.SIBOACRolesDeUsuarios.Select(r => r.IdRol).Distinct().ToList();
 
-                var menuOptions = sdb.SIBOACMenuOpciones.Where(m => m.SIBOACRoles.Any(r => r.Id == rolID) && m.Estado).ToList();
+                var menuOptions = sdb.SIBOACMenuOpciones.Where(m => m.SIBOACRoles.Any(r => rolIDs.Contains(r.Id) && m.Estado)).ToList();
+                return menuOptions;
+            }
+        }
+
+        public static List<SIBOACMenuOpciones> GetMenuParentOptions(List<int> parentIDs)
+        {
+            using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
+            {
+                var menuOptions = sdb.SIBOACMenuOpciones.Where(m => parentIDs.Contains(m.MenuOpcionesID) && m.Estado).ToList();
                 return menuOptions;
             }
         }

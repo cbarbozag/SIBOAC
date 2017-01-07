@@ -1,7 +1,25 @@
 ﻿<ul id="menuoptions" class="py-1 nav nav-pills nav-stacked">
-    @foreach (Cosevi.SIBOAC.Models.SIBOACMenuOpciones item in Cosevi.SIBOAC.Security.Utilities.GetMenuOptions(User.Identity.Name))
-    {        
-        <li><a href="@item.URL">@item.Descripcion</a></li>
-    }    
+    @{
+        List<Cosevi.SIBOAC.Models.SIBOACMenuOpciones> menuOpciones = Cosevi.SIBOAC.Security.Utilities.GetMenuOptions(User.Identity.Name);
+
+        var parents = Cosevi.SIBOAC.Security.Utilities.GetMenuParentOptions(menuOpciones.Select(m => m.ParentID.Value).Distinct().ToList());
+    }
+
+    @foreach (Cosevi.SIBOAC.Models.SIBOACMenuOpciones parent in parents)
+    {
+        <li>
+            <div class="parentMenu py-2">@parent.Descripcion</div>
+            <ul class="py-2 nav nav-pills nav-stacked">
+
+                @{
+                    var childs = menuOpciones.Where(m => m.ParentID == parent.MenuOpcionesID);
+                }
+                @foreach (Cosevi.SIBOAC.Models.SIBOACMenuOpciones item in childs)
+                {
+                    <li><a href="@item.URL">@item.Descripcion</a></li>
+                }
+            </ul>
+        </li>
+    }
 
 </ul>
