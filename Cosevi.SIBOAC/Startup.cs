@@ -8,6 +8,7 @@ namespace Cosevi.SIBOAC
     {
         public void Configuration(IAppBuilder app)
         {
+            System.Web.Helpers.AntiForgeryConfig.SuppressIdentityHeuristicChecks = true;
             ConfigureAuth(app);
         }
     }

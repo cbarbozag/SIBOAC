@@ -66,6 +66,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         //
         // POST: /Account/Login
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -106,22 +107,48 @@ namespace Cosevi.SIBOAC.Controllers
                     //{
                     //    return Redirect(returnUrl);
                     //}
-                   
-                        if(model.Usuario == model.Contrasena)
-                        {
+                    using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
+                    {
+                        var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Usuario)).FirstOrDefault();
 
-                            return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });
+                        DateTime oldDate = user.FechaDeActualizacionClave;
+                        DateTime newDate = DateTime.Now;
+
+                        // Difference in days, hours, and minutes.
+                        TimeSpan ts = newDate - oldDate;
+
+                        // Difference in days.
+                        int diferenciaDias = ts.Days;
+                        if (user.Activo == true)
+                        { 
+                            if (model.Usuario == model.Contrasena)
+                            {                                
+                                    return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });                                                            
+                            }
+                            else
+                            {
+                                if (diferenciaDias >= 30)
+                                {
+                                    return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });
+                                }
+
+                                return RedirectToAction("Index", "Home");
+                            }
+
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Home");
+                            user = null;
+                            ModelState.Remove("Password");
+                            ModelState.AddModelError("", "¡El usuario no esta activo!");
+                           
+                            return View();
                         }
-                        
-                    
+                    }
                 }
             }
             ModelState.Remove("Password");
-            ModelState.AddModelError("", "Usuario o contraseña invalidos");
+            ModelState.AddModelError("", "¡Usuario o contraseña invalidos!");
             return View();
         }
 
@@ -312,6 +339,9 @@ namespace Cosevi.SIBOAC.Controllers
                     usuarioModificado.Email = user.Email;
                     usuarioModificado.Contrasena = model.Password;
                     usuarioModificado.Nombre = user.Nombre;
+                    usuarioModificado.codigo = user.codigo;
+                    usuarioModificado.FechaDeActualizacionClave = DateTime.Now;
+                    usuarioModificado.Activo = user.Activo;
 
                     db.Entry(usuarioModificado).State = EntityState.Modified;
                     db.SaveChanges();
