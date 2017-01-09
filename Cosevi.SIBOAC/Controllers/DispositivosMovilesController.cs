@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DispositivosMovilesController : Controller
+    public class DispositivosMovilesController : BaseController<DispositivosMoviles>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: DispositivosMoviles
         public ActionResult Index()
@@ -54,6 +54,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.DispositivosMoviles.Add(dispositivosMoviles);
                 db.SaveChanges();
+                Bitacora(dispositivosMoviles, "I");
                 return RedirectToAction("Index");
             }
 
@@ -84,8 +85,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var dispositivosMovilesAntes = db.DispositivosMoviles.AsNoTracking().Where(d => d.Id == dispositivosMoviles.Id).FirstOrDefault();
                 db.Entry(dispositivosMoviles).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(dispositivosMoviles, "U", dispositivosMovilesAntes);
                 return RedirectToAction("Index");
             }
             return View(dispositivosMoviles);
@@ -112,11 +115,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
+            DispositivosMoviles dispositivosMovilesAntes = ObtenerCopia(dispositivosMoviles);
             if (dispositivosMoviles.Activo == false)
                 dispositivosMoviles.Activo = true;
             else
                 dispositivosMoviles.Activo = false;
             db.SaveChanges();
+            Bitacora(dispositivosMoviles, "U", dispositivosMovilesAntes);
             return RedirectToAction("Index");
         }
 
@@ -143,6 +148,7 @@ namespace Cosevi.SIBOAC.Controllers
             DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
             db.DispositivosMoviles.Remove(dispositivosMoviles);
             db.SaveChanges();
+            Bitacora(dispositivosMoviles, "D");
             return RedirectToAction("Index");
         }
 

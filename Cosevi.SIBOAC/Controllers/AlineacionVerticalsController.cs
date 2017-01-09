@@ -10,9 +10,8 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class AlineacionVerticalsController : Controller
+    public class AlineacionVerticalsController : BaseController<AlineacionVertical>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: AlineacionVerticals
         public ActionResult Index()
@@ -68,6 +67,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(alineacionVertical, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +109,12 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var alineacionVerticalAntes = db.ALINVERT.AsNoTracking().Where(d => d.Id == alineacionVertical.Id).FirstOrDefault();
+
                 db.Entry(alineacionVertical).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(alineacionVertical, "U", alineacionVerticalAntes);
+
                 return RedirectToAction("Index");
             }
             return View(alineacionVertical);
@@ -137,11 +141,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
+            AlineacionVertical alineacionVerticalAntes = ObtenerCopia(alineacionVertical);
+
             if (alineacionVertical.Estado == "A")
                 alineacionVertical.Estado = "I";
             else
                 alineacionVertical.Estado = "A";
             db.SaveChanges();
+            Bitacora(alineacionVertical, "U", alineacionVerticalAntes);
+
             return RedirectToAction("Index");
         }
 
@@ -169,6 +177,8 @@ namespace Cosevi.SIBOAC.Controllers
             AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
             db.ALINVERT.Remove(alineacionVertical);
             db.SaveChanges();
+            Bitacora(alineacionVertical, "D");
+
             return RedirectToAction("Index");
         }
 

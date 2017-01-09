@@ -11,9 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CantonsController : Controller
+    public class CantonsController : BaseController<Canton>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Cantons
         public ActionResult Index(int? page)
@@ -75,6 +74,8 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(canton, "I");
+
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -114,8 +115,12 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var cantonAntes = db.CANTON.AsNoTracking().Where(d => d.Id == canton.Id).FirstOrDefault();
+
                 db.Entry(canton).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(canton, "U", cantonAntes);
+
                 return RedirectToAction("Index");
             }
             return View(canton);
@@ -142,11 +147,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Canton canton = db.CANTON.Find(id);
+            Canton cantonAntes = ObtenerCopia(canton);
+
             if (canton.Estado == "A")
                 canton.Estado = "I";
             else
                 canton.Estado = "A";
             db.SaveChanges();
+            Bitacora(canton, "U", cantonAntes);
+
             return RedirectToAction("Index");
         }
 
@@ -174,6 +183,8 @@ namespace Cosevi.SIBOAC.Controllers
             Canton canton = db.CANTON.Find(id);
             db.CANTON.Remove(canton);
             db.SaveChanges();
+            Bitacora(canton, "D");
+
             return RedirectToAction("Index");
         }
 

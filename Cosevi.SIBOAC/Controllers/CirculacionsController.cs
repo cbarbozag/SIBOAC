@@ -10,9 +10,8 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CirculacionsController : Controller
+    public class CirculacionsController : BaseController<Circulacion>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Circulacions
         public ActionResult Index()
@@ -68,6 +67,8 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(circulacion, "I");
+
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +108,12 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var circulacionAntes = db.CIRCULACION.AsNoTracking().Where(d => d.Id == circulacion.Id).FirstOrDefault();
+
                 db.Entry(circulacion).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(circulacion, "U", circulacionAntes);
+
                 return RedirectToAction("Index");
             }
             return View(circulacion);
@@ -135,11 +140,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Circulacion circulacion = db.CIRCULACION.Find(id);
+            Circulacion circulacionAntes = ObtenerCopia(circulacion);
+
             if (circulacion.Estado == "A")
                 circulacion.Estado = "I";
             else
                 circulacion.Estado = "A";
             db.SaveChanges();
+            Bitacora(circulacion, "U", circulacionAntes);
+
             return RedirectToAction("Index");
         }
 
@@ -167,6 +176,8 @@ namespace Cosevi.SIBOAC.Controllers
             Circulacion circulacion = db.CIRCULACION.Find(id);
             db.CIRCULACION.Remove(circulacion);
             db.SaveChanges();
+            Bitacora(circulacion, "D");
+
             return RedirectToAction("Index");
         }
 

@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DelitoesController : Controller
+    public class DelitoesController : BaseController<Delito>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Delitoes
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(delito, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var delitoAntes = db.DELITO.AsNoTracking().Where(d => d.Id == delito.Id).FirstOrDefault();
                 db.Entry(delito).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(delito, "U", delitoAntes);
                 return RedirectToAction("Index");
             }
             return View(delito);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Delito delito = db.DELITO.Find(id);
+            Delito delitoAntes = ObtenerCopia(delito);
             if (delito.Estado == "I")
                 delito.Estado = "A";
             else
                 delito.Estado = "I";
             db.SaveChanges();
+            Bitacora(delito, "U", delitoAntes);
             return RedirectToAction("Index");
         }
 
@@ -168,6 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
             Delito delito = db.DELITO.Find(id);
             db.DELITO.Remove(delito);
             db.SaveChanges();
+            Bitacora(delito, "D");
             return RedirectToAction("Index");
         }
 

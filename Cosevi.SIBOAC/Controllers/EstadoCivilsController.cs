@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class EstadoCivilsController : Controller
+    public class EstadoCivilsController : BaseController<EstadoCivil>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: EstadoCivils
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(estadoCivil, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var estadoCivilAntes = db.EstadoCivil.AsNoTracking().Where(d => d.Id == estadoCivil.Id).FirstOrDefault();
                 db.Entry(estadoCivil).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(estadoCivil, "U", estadoCivilAntes);
                 return RedirectToAction("Index");
             }
             return View(estadoCivil);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             EstadoCivil estadoCivil = db.EstadoCivil.Find(id);
+            EstadoCivil estadoCivilAntes = ObtenerCopia(estadoCivil);
             if (estadoCivil.Estado == "I")
                 estadoCivil.Estado = "A";
             else
                 estadoCivil.Estado = "I";
             db.SaveChanges();
+            Bitacora(estadoCivil, "U", estadoCivilAntes);
             return RedirectToAction("Index");
         }
 
@@ -168,6 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
             EstadoCivil estadoCivil = db.EstadoCivil.Find(id);
             db.EstadoCivil.Remove(estadoCivil);
             db.SaveChanges();
+            Bitacora(estadoCivil, "D");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

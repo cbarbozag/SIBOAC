@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DistritoesController : Controller
+    public class DistritoesController : BaseController<Distrito>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+       
 
         // GET: Distritoes
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(distrito, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var distritoAntes = db.DISTRITO.AsNoTracking().Where(d => d.Id == distrito.Id).FirstOrDefault();
                 db.Entry(distrito).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(distrito, "U", distritoAntes);
                 return RedirectToAction("Index");
             }
             return View(distrito);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Distrito distrito = db.DISTRITO.Find(id);
+            Distrito distritoAntes = ObtenerCopia(distrito);
             if (distrito.Estado == "I")
                 distrito.Estado = "A";
             else
                 distrito.Estado = "I";
             db.SaveChanges();
+            Bitacora(distrito, "U", distritoAntes);
             return RedirectToAction("Index");
         }
 
@@ -168,6 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
             Distrito distrito = db.DISTRITO.Find(id);
             db.DISTRITO.Remove(distrito);
             db.SaveChanges();
+            Bitacora(distrito, "D");
             return RedirectToAction("Index");
         }
 

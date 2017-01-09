@@ -11,10 +11,8 @@ using  PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CarrilsController : Controller
+    public class CarrilsController : BaseController<Carril>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
    
         public ViewResult Index(int? page)
         {
@@ -74,6 +72,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(carril, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -115,8 +114,12 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var carrilAntes = db.CARRIL.AsNoTracking().Where(d => d.Id == carril.Id).FirstOrDefault();
+
                 db.Entry(carril).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(carril, "U", carrilAntes);
+
                 return RedirectToAction("Index");
             }
             return View(carril);
@@ -143,11 +146,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Carril carril = db.CARRIL.Find(id);
+            Carril carrilAntes = ObtenerCopia(carril);
+
             if (carril.Estado == "A")
                 carril.Estado = "I";
             else
                 carril.Estado = "A";
             db.SaveChanges();
+            Bitacora(carril, "U", carrilAntes);
+
             return RedirectToAction("Index");
         }
 
@@ -175,6 +182,8 @@ namespace Cosevi.SIBOAC.Controllers
             Carril carril = db.CARRIL.Find(id);
             db.CARRIL.Remove(carril);
             db.SaveChanges();
+            Bitacora(carril, "D");
+
             return RedirectToAction("Index");
         }
 

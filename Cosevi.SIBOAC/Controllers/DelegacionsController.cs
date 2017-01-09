@@ -10,9 +10,8 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DelegacionsController : Controller
+    public class DelegacionsController : BaseController<Delegacion>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Delegacions
         public ActionResult Index()
@@ -68,6 +67,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(delegacion, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +109,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var delegacionAntes = db.DELEGACION.AsNoTracking().Where(d => d.Id == delegacion.Id).FirstOrDefault();
+
                 db.Entry(delegacion).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(delegacion, "U", delegacionAntes);
                 return RedirectToAction("Index");
             }
             return View(delegacion);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Delegacion delegacion = db.DELEGACION.Find(id);
+            Delegacion delegacionAntes = ObtenerCopia(delegacion);
             if (delegacion.Estado == "I")
                 delegacion.Estado = "A";
             else
                 delegacion.Estado = "I";
             db.SaveChanges();
+            Bitacora(delegacion, "U", delegacionAntes);
             return RedirectToAction("Index");
         }
 
@@ -169,6 +174,7 @@ namespace Cosevi.SIBOAC.Controllers
             Delegacion delegacion = db.DELEGACION.Find(id);
             db.DELEGACION.Remove(delegacion);
             db.SaveChanges();
+            Bitacora(delegacion, "D");
             return RedirectToAction("Index");
         }
 

@@ -12,10 +12,8 @@ using Cosevi.SIBOAC.Security;
 namespace Cosevi.SIBOAC.Controllers
 {
     [AccessDeniedAuthorize(Roles = "Administrador")]
-    public class AlineacionHorizontalsController : Controller
+    public class AlineacionHorizontalsController : BaseController<AlineacionHorizontal>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: AlineacionHorizontals
         public ActionResult Index()
         {
@@ -70,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if(mensaje =="")
                 {
                     db.SaveChanges();
+                    Bitacora(alineacionHorizontal, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -112,8 +111,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var alineacionHorizontalAntes = db.ALINHORI.AsNoTracking().Where(d => d.Id == alineacionHorizontal.Id).FirstOrDefault();
                 db.Entry(alineacionHorizontal).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(alineacionHorizontal, "U", alineacionHorizontalAntes);
                 return RedirectToAction("Index");
             }
             return View(alineacionHorizontal);
@@ -140,11 +141,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
-            if(alineacionHorizontal.Estado=="A")
+            AlineacionHorizontal alineacionHorizontalAntes = ObtenerCopia(alineacionHorizontal);
+            if (alineacionHorizontal.Estado=="A")
                 alineacionHorizontal.Estado = "I";
             else
                 alineacionHorizontal.Estado = "A";
             db.SaveChanges();
+            Bitacora(alineacionHorizontal, "U", alineacionHorizontalAntes);
             return RedirectToAction("Index");
         }
         // GET: AlineacionHorizontals/RealDelete/5
@@ -170,6 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
             AlineacionHorizontal alineacionHorizontal = db.ALINHORI.Find(id);
             db.ALINHORI.Remove(alineacionHorizontal);
             db.SaveChanges();
+            Bitacora(alineacionHorizontal, "D");
             return RedirectToAction("Index");
         }
 

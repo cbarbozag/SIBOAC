@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ExamenController : Controller
+    public class ExamenController : BaseController<Examen>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Examen
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(examen, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var examenAntes = db.EXAMEN.AsNoTracking().Where(d => d.Id == examen.Id).FirstOrDefault();
                 db.Entry(examen).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(examen, "U", examenAntes);
                 return RedirectToAction("Index");
             }
             return View(examen);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Examen examen = db.EXAMEN.Find(id);
+            Examen examenAntes = ObtenerCopia(examen);
             if (examen.Estado == "I")
                 examen.Estado = "A";
             else
                 examen.Estado = "I";
             db.SaveChanges();
+            Bitacora(examen, "U", examenAntes);
             return RedirectToAction("Index");
         }
 
@@ -168,6 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
             Examen examen = db.EXAMEN.Find(id);
             db.EXAMEN.Remove(examen);
             db.SaveChanges();
+            Bitacora(examen, "D");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

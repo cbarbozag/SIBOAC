@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DireccionsController : Controller
+    public class DireccionsController : BaseController<Direccion>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Direccions
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(direccion, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var direccionAntes = db.DIRECCION.AsNoTracking().Where(d => d.Id == direccion.Id).FirstOrDefault();
                 db.Entry(direccion).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(direccion, "U", direccionAntes);
                 return RedirectToAction("Index");
             }
             return View(direccion);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Direccion direccion = db.DIRECCION.Find(id);
+            Direccion direccionAntes = ObtenerCopia(direccion);
             if (direccion.Estado == "I")
                 direccion.Estado = "A";
             else
                 direccion.Estado = "I";
             db.SaveChanges();
+            Bitacora(direccion, "U", direccionAntes);
             return RedirectToAction("Index");
         }
 
@@ -169,6 +174,7 @@ namespace Cosevi.SIBOAC.Controllers
             Direccion direccion = db.DIRECCION.Find(id);
             db.DIRECCION.Remove(direccion);
             db.SaveChanges();
+            Bitacora(direccion, "D");
             return RedirectToAction("Index");
         }
 
