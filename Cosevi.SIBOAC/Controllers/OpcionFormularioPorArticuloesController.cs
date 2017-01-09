@@ -160,21 +160,16 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
                    
-                    IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
-                                                                     where o.Estado == "A"
-                                                                     select new { o.Id }).ToList().Distinct()
-                                                          .Select(o => new SelectListItem
-                                                          {
-                                                              Value = o.Id.ToString(),
-                                                              Text = o.Id.ToString()
-                                                             
-                                                          });
-                    ViewBag.ComboArticulos =  new SelectList(db.CATARTICULO.OrderBy(x => x.Id), "Id", "Id", opcionFormularioPorArticulo.Id);
+             
+                    ViewBag.ComboArticulos = null;
+                    ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+                                                             where o.Estado == "A"
+                                                             select new { o.Id }).ToList().Distinct(), "Id", "Id", opcionFormularioPorArticulo.Id);
 
                     ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", opcionFormularioPorArticulo.CodigoOpcionFormulario);
-                   ViewData["Conducta"] = opcionFormularioPorArticulo.Conducta;
-                    ViewData["FechaDeInicio"] = opcionFormularioPorArticulo.FechaDeInicio;
-                    ViewData["FechaDeFin"] = opcionFormularioPorArticulo.FechaDeFin;
+                    ViewData["Conducta"] = opcionFormularioPorArticulo.Conducta;
+                    ViewData["FechaDeInicio"] = opcionFormularioPorArticulo.FechaDeInicio.ToString("dd-MM-yyyy");
+                    ViewData["FechaDeFin"] = opcionFormularioPorArticulo.FechaDeFin.ToString("dd-MM-yyyy");
                     return View(opcionFormularioPorArticulo);
                 }
             }
@@ -442,11 +437,14 @@ namespace Cosevi.SIBOAC.Controllers
         public JsonResult ObtenerFechaFinal(string Id, string Conducta, string FechaDeInicio)
         {
             DateTime fechaDeInicio= DateTime.Now;
-            if (FechaDeInicio!="" && FechaDeInicio!=null)
-                   fechaDeInicio = DateTime.Parse(FechaDeInicio);
+            if (FechaDeInicio != "" && FechaDeInicio != null)
+            {
+                fechaDeInicio = DateTime.Parse(FechaDeInicio);
+                // FechaDeInicio = fechaDeInicio.ToString();
+            }
             var listaconducta =
                  (from o in db.CATARTICULO
-                  where o.Id == Id && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio.ToString() == FechaDeInicio
+                  where o.Id == Id && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio == fechaDeInicio
                   select new
                   {
                       fecha = o.FechaDeFin.ToString()

@@ -214,28 +214,22 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
-                    IEnumerable<SelectListItem> itemsDepositosBienes = db.DEPOSITOBIENES.Select(o => new SelectListItem
-                    {
-                        Value = o.Id.ToString(),
-                        Text = o.Descripcion
-                    });
 
-                    ViewBag.ComboDepositosBienes = itemsDepositosBienes;
+                    ViewBag.ComboArticulos = null;
+                    ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+                                                             where o.Estado == "A"
+                                                             select new { o.Id }).ToList().Distinct(), "Id", "Id", articulosPorDepositosDeBienes.CodigoArticulo);
 
-                    IEnumerable<SelectListItem> itemsOpcionFormularios = db.OPCIONFORMULARIO.Where(a => a.Estado == "A").Select(o => new SelectListItem
-                     {
-                         Value = o.Id.ToString(),
-                         Text = o.Descripcion
-                     });
-                    ViewBag.ComboOpcionFormulario = itemsOpcionFormularios;
+                    ViewBag.ComboDepositosBienes = new SelectList((from o in db.DEPOSITOBIENES
+                                                                   select new { o.Id,o.Descripcion }).ToList().Distinct(), "Id", "Descripcion", articulosPorDepositosDeBienes.CodigoDepositosBienes);
 
-                    IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
-                    where o.Estado == "A" select new { o.Id }).ToList().Distinct().Select(o => new SelectListItem
-                    {
-                        Value = o.Id.ToString(),
-                        Text = o.Id.ToString()
-                    });
-                    ViewBag.ComboArticulos = itemsCatArticulos;
+                    ViewBag.ComboOpcionFormulario = new SelectList((from o in db.OPCIONFORMULARIO
+                                                                    select new { o.Id, o.Descripcion }).ToList().Distinct(), "Id", "Descripcion", articulosPorDepositosDeBienes.CodigoOpcionFormulario);
+
+
+                    ViewData["Conducta"] = articulosPorDepositosDeBienes.Conducta;
+                    ViewData["FechaDeInicio"] = articulosPorDepositosDeBienes.FechaDeInicio.ToString("dd-MM-yyyy");
+                    ViewData["FechaDeFin"] = articulosPorDepositosDeBienes.FechaDeFin.ToString("dd-MM-yyyy");
                     return View(articulosPorDepositosDeBienes);
                 }
             }
@@ -391,7 +385,7 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+    
         public JsonResult ObtenerConducta(string CodigoArticulo)
         {
             var listaconducta =
@@ -410,7 +404,7 @@ namespace Cosevi.SIBOAC.Controllers
                 
             return Json(listaconducta,JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+   
         public JsonResult ObtenerFechaInicio(string CodigoArticulo,string Conducta)
         {
             var listaconducta =
@@ -423,26 +417,32 @@ namespace Cosevi.SIBOAC.Controllers
                   }).ToList().Distinct()
             .Select(x => new ClaseFechaInicio
             {
-                Id = x.fecha,
+                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
                 Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
             }).Distinct();
 
             return Json(listaconducta, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+      
         public JsonResult ObtenerFechaFinal(string CodigoArticulo, string Conducta,string FechaDeInicio)
         {
+            DateTime fechaDeInicio = DateTime.Now;
+            if (FechaDeInicio != "" && FechaDeInicio != null)
+            {
+                fechaDeInicio = DateTime.Parse(FechaDeInicio);
+                // FechaDeInicio = fechaDeInicio.ToString();
+            }
             var listaconducta =
                  (from o in db.CATARTICULO
-                  where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio.ToString() == FechaDeInicio
+                  where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio == fechaDeInicio
                   select new
                   {
                       fecha = o.FechaDeFin.ToString()
                   }).ToList().Distinct()
             .Select(x => new ClaseFechaFinal
             {
-                Id = x.fecha,
+                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
                 Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
             }).Distinct();
 
