@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.Inconsistencia>
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Inconsistencia>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Lista";
@@ -14,10 +17,10 @@
     <tr>
 
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.First().Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.First().Descripcion)
         </th>
         <th></th>
     </tr>
@@ -41,3 +44,14 @@
 }
 
 </table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+
+
+
+
+
