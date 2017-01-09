@@ -28,7 +28,8 @@ namespace Cosevi.SIBOAC.Models
         public string codigo { get; set; }
         public Nullable<System.DateTime> FechaDeActualizacionClave { get; set; }
         public Nullable<bool> Activo { get; set; }
-    
+        public string Roles { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SIBOACRolesDeUsuarios> SIBOACRolesDeUsuarios { get; set; }
     }

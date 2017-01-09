@@ -266,6 +266,7 @@
     <Compile Include="Controllers\InterseccionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
+    <Compile Include="Controllers\MantenimientoUsuariosController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
     <Compile Include="Controllers\NacionalidadsController.cs" />
     <Compile Include="Controllers\NombreDeMenusController.cs" />
@@ -1381,6 +1382,11 @@
     <Content Include="Views\ReportePorDescargaDeParteOficial\_MostrarReportePorDescargaDeParteOficial.cshtml" />
     <Content Include="Views\ReportePorEstadoActualDelPlano\_MostrarReportePorEstadoActualDelPlano.cshtml" />
     <Content Include="Views\ReportesPorConsultaParteOficial\_MostrarReportePorConsultaParteOficial.cshtml" />
+    <Content Include="Views\MantenimientoUsuarios\Create.cshtml" />
+    <Content Include="Views\MantenimientoUsuarios\Delete.cshtml" />
+    <Content Include="Views\MantenimientoUsuarios\Details.cshtml" />
+    <Content Include="Views\MantenimientoUsuarios\Edit.cshtml" />
+    <Content Include="Views\MantenimientoUsuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
