@@ -29,13 +29,7 @@
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                         Inicio
                     </a>                       
-                </li>
-                <li>
-                    <a href="@Url.Action("About", "Home")">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        Administrar
-                    </a>
-                </li>
+                </li>               
             </ul>                
         </div>
     </div>
@@ -43,14 +37,6 @@
         <div id="sidebar" class="sidebar-offcanvas">
             <div class="col-md-12">
                 <input id="menusearch" type="text" class="my-1 form-control" placeholder="Buscar...">
-                <div class="form-inline pull-right">                    
-                    <button id="menuascendantorder" type="button" class="btn btn-primary btn-sm">
-                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-                    </button>
-                    <button id="menudescendantorder" type="button" class="btn btn-primary btn-sm">
-                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-                    </button>
-                </div>
                 <div class="clearfix"></div>
                 @Html.Partial("_MenuPartial")
             </div>

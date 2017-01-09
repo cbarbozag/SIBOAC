@@ -5,6 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SIBOACSecurityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SIBOACMenuOpciones">
+          <Key>
+            <PropertyRef Name="MenuOpcionesID" />
+          </Key>
+          <Property Name="MenuOpcionesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="Orden" Type="int" />
+        </EntityType>
+        <EntityType Name="SIBOACMenuOpcionesRol">
+          <Key>
+            <PropertyRef Name="MenuOpcionesID" />
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="MenuOpcionesID" Type="int" Nullable="false" />
+          <Property Name="RolID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SIBOACRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -34,6 +53,30 @@
           <Property Name="FechaDeActualizacionClave" Type="datetime" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
+        <Association Name="FK_SIBOACMenuOpcionesRol_SIBOACMenuOpciones">
+          <End Role="SIBOACMenuOpciones" Type="Self.SIBOACMenuOpciones" Multiplicity="1" />
+          <End Role="SIBOACMenuOpcionesRol" Type="Self.SIBOACMenuOpcionesRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIBOACMenuOpciones">
+              <PropertyRef Name="MenuOpcionesID" />
+            </Principal>
+            <Dependent Role="SIBOACMenuOpcionesRol">
+              <PropertyRef Name="MenuOpcionesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIBOACMenuOpcionesRol_SIBOACRoles">
+          <End Role="SIBOACRoles" Type="Self.SIBOACRoles" Multiplicity="1" />
+          <End Role="SIBOACMenuOpcionesRol" Type="Self.SIBOACMenuOpcionesRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIBOACRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SIBOACMenuOpcionesRol">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles">
           <End Role="SIBOACRoles" Type="Self.SIBOACRoles" Multiplicity="1" />
           <End Role="SIBOACRolesDeUsuarios" Type="Self.SIBOACRolesDeUsuarios" Multiplicity="*" />
@@ -59,9 +102,19 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SIBOACSecurityModelStoreContainer">
+          <EntitySet Name="SIBOACMenuOpciones" EntityType="Self.SIBOACMenuOpciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIBOACMenuOpcionesRol" EntityType="Self.SIBOACMenuOpcionesRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SIBOACRoles" EntityType="Self.SIBOACRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SIBOACRolesDeUsuarios" EntityType="Self.SIBOACRolesDeUsuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SIBOACUsuarios" EntityType="Self.SIBOACUsuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SIBOACMenuOpcionesRol_SIBOACMenuOpciones" Association="Self.FK_SIBOACMenuOpcionesRol_SIBOACMenuOpciones">
+            <End Role="SIBOACMenuOpciones" EntitySet="SIBOACMenuOpciones" />
+            <End Role="SIBOACMenuOpcionesRol" EntitySet="SIBOACMenuOpcionesRol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIBOACMenuOpcionesRol_SIBOACRoles" Association="Self.FK_SIBOACMenuOpcionesRol_SIBOACRoles">
+            <End Role="SIBOACRoles" EntitySet="SIBOACRoles" />
+            <End Role="SIBOACMenuOpcionesRol" EntitySet="SIBOACMenuOpcionesRol" />
+          </AssociationSet>
           <AssociationSet Name="FK_SIBOACRolesDeUsuarios_SIBOACRoles" Association="Self.FK_SIBOACRolesDeUsuarios_SIBOACRoles">
             <End Role="SIBOACRoles" EntitySet="SIBOACRoles" />
             <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
@@ -101,6 +154,11 @@
             <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
             <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
           </AssociationSet>
+          <EntitySet Name="SIBOACMenuOpciones" EntityType="SIBOACSecurityModel.SIBOACMenuOpciones" />
+          <AssociationSet Name="SIBOACMenuOpcionesRol" Association="SIBOACSecurityModel.SIBOACMenuOpcionesRol">
+            <End Role="SIBOACMenuOpciones" EntitySet="SIBOACMenuOpciones" />
+            <End Role="SIBOACRoles" EntitySet="SIBOACRoles" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="SIBOACRoles">
           <Key>
@@ -110,6 +168,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIBOACRolesDeUsuarios" Relationship="SIBOACSecurityModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" FromRole="SIBOACRoles" ToRole="SIBOACRolesDeUsuarios" />
           <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="SIBOACMenuOpciones" Relationship="SIBOACSecurityModel.SIBOACMenuOpcionesRol" FromRole="SIBOACRoles" ToRole="SIBOACMenuOpciones" />
         </EntityType>
         <EntityType Name="SIBOACRolesDeUsuarios">
           <Key>
@@ -144,6 +203,22 @@
               <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SIBOACMenuOpciones">
+          <Key>
+            <PropertyRef Name="MenuOpcionesID" />
+          </Key>
+          <Property Name="MenuOpcionesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="Orden" Type="Int32" />
+          <NavigationProperty Name="SIBOACRoles" Relationship="SIBOACSecurityModel.SIBOACMenuOpcionesRol" FromRole="SIBOACMenuOpciones" ToRole="SIBOACRoles" />
+        </EntityType>
+        <Association Name="SIBOACMenuOpcionesRol">
+          <End Type="SIBOACSecurityModel.SIBOACMenuOpciones" Role="SIBOACMenuOpciones" Multiplicity="*" />
+          <End Type="SIBOACSecurityModel.SIBOACRoles" Role="SIBOACRoles" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -183,6 +258,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SIBOACMenuOpciones">
+            <EntityTypeMapping TypeName="SIBOACSecurityModel.SIBOACMenuOpciones">
+              <MappingFragment StoreEntitySet="SIBOACMenuOpciones">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="MenuOpcionesID" ColumnName="MenuOpcionesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SIBOACMenuOpcionesRol" TypeName="SIBOACSecurityModel.SIBOACMenuOpcionesRol" StoreEntitySet="SIBOACMenuOpcionesRol">
+            <EndProperty Name="SIBOACRoles">
+              <ScalarProperty Name="Id" ColumnName="RolID" />
+            </EndProperty>
+            <EndProperty Name="SIBOACMenuOpciones">
+              <ScalarProperty Name="MenuOpcionesID" ColumnName="MenuOpcionesID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

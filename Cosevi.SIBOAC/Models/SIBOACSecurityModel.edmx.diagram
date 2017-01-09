@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACRolesDeUsuarios" Width="1.5" PointX="3.25" PointY="0.875" />
         <AssociationConnector Association="SIBOACSecurityModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" />
         <AssociationConnector Association="SIBOACSecurityModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" />
+        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACMenuOpciones" Width="1.5" PointX="0.75" PointY="6.625" />
+        <AssociationConnector Association="SIBOACSecurityModel.SIBOACMenuOpcionesRol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

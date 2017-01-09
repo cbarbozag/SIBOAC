@@ -46,7 +46,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Usuario,Email,Contrasena,Nombre")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Create([Bind(Include = "Id,Usuario,Email,Contrasena,Nombre,codigo,FechaDeActualizacionClave,Activo")] SIBOACUsuarios sIBOACUsuarios)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Usuario,Email,Contrasena,Nombre")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Edit([Bind(Include = "Id,Usuario,Email,Contrasena,Nombrecodigo,FechaDeActualizacionClave,Activo")] SIBOACUsuarios sIBOACUsuarios)
         {
             if (ModelState.IsValid)
             {
@@ -112,6 +112,7 @@ namespace Cosevi.SIBOAC.Controllers
             SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
             var usuario = sIBOACUsuarios.Usuario;
             sIBOACUsuarios.Contrasena = usuario;
+            sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

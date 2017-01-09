@@ -28,5 +28,6 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<SIBOACUsuarios> SIBOACUsuarios { get; set; }
         public virtual DbSet<SIBOACRoles> SIBOACRoles { get; set; }
         public virtual DbSet<SIBOACRolesDeUsuarios> SIBOACRolesDeUsuarios { get; set; }
+        public virtual DbSet<SIBOACMenuOpciones> SIBOACMenuOpciones { get; set; }
     }
 }

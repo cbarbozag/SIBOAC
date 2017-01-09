@@ -7,12 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using Cosevi.SIBOAC.Controllers;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DanoesController : Controller
+    public class DanoesController : BaseController<Dano>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Danoes
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(dano, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,13 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var danoAntes = db.DAÑO.AsNoTracking().Where(d => d.Id == dano.Id).FirstOrDefault();
+
                 db.Entry(dano).State = EntityState.Modified;
+
                 db.SaveChanges();
+                Bitacora(dano, "U", danoAntes);
+
                 return RedirectToAction("Index");
             }
             return View(dano);
@@ -137,11 +143,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Dano dano = db.DAÑO.Find(id);
+            Dano danoAntes = ObtenerCopia(dano);
+
             if (dano.Estado == "I")
                 dano.Estado = "A";
             else
                 dano.Estado = "I";
             db.SaveChanges();
+
+            Bitacora(dano, "U", danoAntes);
             return RedirectToAction("Index");
         }
 
@@ -170,6 +180,7 @@ namespace Cosevi.SIBOAC.Controllers
             Dano dano = db.DAÑO.Find(id);
             db.DAÑO.Remove(dano);
             db.SaveChanges();
+            Bitacora(dano, "D");
             return RedirectToAction("Index");
         }
 

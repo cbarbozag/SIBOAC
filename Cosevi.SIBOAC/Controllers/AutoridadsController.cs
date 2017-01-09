@@ -10,9 +10,8 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class AutoridadsController : Controller
+    public class AutoridadsController : BaseController<Autoridad>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Autoridads
         public ActionResult Index()
@@ -121,6 +120,8 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(autoridad, "I");
+
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -190,8 +191,12 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var autoridadAntes = db.AUTORIDAD.AsNoTracking().Where(d => d.Id == autoridad.Id && d.CodigoOpcionFormulario == autoridad.CodigoOpcionFormulario).FirstOrDefault();
+
                 db.Entry(autoridad).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(autoridad, "U", autoridadAntes);
+
                 return RedirectToAction("Index");
             }
             return View(autoridad);
@@ -244,11 +249,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigo, int codFormulario)
         {
             Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
+            Autoridad autoridadAntes = ObtenerCopia(autoridad);
+
             if (autoridad.Estado == "A")
                 autoridad.Estado = "I";
             else
                 autoridad.Estado = "A";
             db.SaveChanges();
+            Bitacora(autoridad, "U", autoridadAntes);
+
             return RedirectToAction("Index");
         }
 
@@ -303,6 +312,8 @@ namespace Cosevi.SIBOAC.Controllers
             Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
             db.AUTORIDAD.Remove(autoridad);
             db.SaveChanges();
+            Bitacora(autoridad, "D");
+
             return RedirectToAction("Index");
         }
 

@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class HospitalsController : Controller
+    public class HospitalsController : BaseController<Hospital>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Hospitals
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(hospital, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var hospitalAntes = db.HOSPITAL.AsNoTracking().Where(d => d.Id == hospital.Id).FirstOrDefault();
                 db.Entry(hospital).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(hospital, "U", hospitalAntes);
                 return RedirectToAction("Index");
             }
             return View(hospital);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Hospital hospital = db.HOSPITAL.Find(id);
+            Hospital hospitalAntes = ObtenerCopia(hospital);
             if (hospital.Estado == "I")
                 hospital.Estado = "A";
             else
                 hospital.Estado = "I";
             db.SaveChanges();
+            Bitacora(hospital, "U", hospitalAntes);
             return RedirectToAction("Index");
         }
 
@@ -168,6 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
             Hospital hospital = db.HOSPITAL.Find(id);
             db.HOSPITAL.Remove(hospital);
             db.SaveChanges();
+            Bitacora(hospital, "D");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

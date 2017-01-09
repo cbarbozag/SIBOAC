@@ -22,7 +22,7 @@ function initializeMenuSearchEvents() {
     var menusearch = $('#menusearch');
     var menuoptions = $('#menuoptions');
     menusearch.on('keyup change', function () {
-        menuoptions.children('li').each(function () {
+        menuoptions.children('li').children('ul').children('li').each(function () {
             $(this).toggleClass('hide', $(this).children('a').text().toLowerCase().indexOf(menusearch.val().toLowerCase()) < 0);
         });
     });

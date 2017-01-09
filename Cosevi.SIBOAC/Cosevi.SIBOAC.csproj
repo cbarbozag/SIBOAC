@@ -227,6 +227,7 @@
     <Compile Include="Controllers\api\SIBOACUsuariosController.cs" />
     <Compile Include="Controllers\AutoridadsController.cs" />
     <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CantonsController.cs" />
     <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
     <Compile Include="Controllers\CarrilsController.cs" />
@@ -552,6 +553,9 @@
     <Compile Include="Models\Sexo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SIBOACMenuOpciones.cs">
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SIBOACRoles.cs">
       <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
@@ -641,6 +645,7 @@
     <Compile Include="Security\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Security\CustomMembershipProvider.cs" />
     <Compile Include="Security\CustomRoleProvider.cs" />
+    <Compile Include="Security\Utilities.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

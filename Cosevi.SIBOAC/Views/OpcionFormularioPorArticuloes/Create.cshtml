@@ -4,47 +4,245 @@
     ViewBag.Title = "Nuevo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js " type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
 
+
+        //Nos suscribimos al evento change de nuestro primer dropsownlist
+        $("#Id").change(function () {
+
+            //Limpiamos los otros dropsownlist
+            if ($("#Id").val() == 0) {
+                $("#Conducta").empty();
+                $("#FechaDeInicio").empty();
+                $("#FechaFin").empty();
+                $("#Conducta").append($("<option/>").val("0").text("Seleccione..."));
+
+                // $("#Localidad").empty();$("#Localidad").append($("<option/>").val("0").text("Seleccione..."));
+                return;
+            }//Ejecutamos el AJAX para llamar a la acción "ObtenerConducta"
+
+            $.ajax(
+                {
+                    url: '@Url.Action("ObtenerConducta")',
+                    // type: "POST",
+                    dataType: "json",
+                    async: true,
+                    data: {
+                        'Id': $("#Id").val()
+                    },
+                    success: function (items, responseText) {
+                        $("#Conducta").empty();
+                        $("#Conducta").append($("<option />").val("0").text("Seleccione..."));
+                        $.each(items, function (i, item) {
+                            $("#Conducta").append($("<option />").val(item.Id).text(item.Nombre));
+                        });
+                    },
+                    error: function () {
+                        alert('Error...');
+                    }
+                });
+        });
+        $("#Conducta").change(function () {
+
+            if ($("#Conducta").val() == 0) {
+
+                $("#FechaDeInicio").empty();
+                $("#FechaDeFin").empty();
+                $("#FechaInicio").append($("<option/>").val("0").text("Seleccione..."));
+                return;
+            }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
+            $.ajax(
+                {
+                    url: '@Url.Action("ObtenerFechaInicio")',
+                    //  type: "POST",
+                    dataType: "json",
+                    async: true,
+                    data: { 'Id': $("#Id").val(), 'Conducta': $("#Conducta").val() },
+                    success: function (items, responseText) {
+                        $("#FechaDeInicio").empty(); $("#FechaDeInicio").append($("<option/>").val("0").text("Seleccione..."));
+                        $.each(items, function (i, item) {
+                            $("#FechaDeInicio").append($("<option/>").val(item.Id).text(item.Nombre));
+                        });
+                    },
+                    error: function () {
+                        alert('Error...');
+                    }
+                });
+        });
+        $("#FechaDeInicio").change(function () {
+            if ($("#FechaDeInicio").val() == 0) {
+                $("#FechaDeFin").empty();
+                $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
+                return;
+            }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
+
+            $.ajax(
+                {
+
+                    url: '@Url.Action("ObtenerFechaFinal")',
+                   // type: "POST",
+                    dataType: "json",
+                    async: true,
+                    data: { 'Id': $("#Id").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val() },
+                    success: function (items, responseText) {
+                        $("#FechaDeFin").empty(); $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
+                        $.each(items, function (i, item) {
+                            $("#FechaDeFin").append($("<option/>").val(item.Id).text(item.Nombre));
+                        });
+                    },
+                    error: function () {
+                        alert('Error...');
+                    }
+                });
+        });
+    });
+   
+        window.onload = function () {
+            
+            
+           
+                $.ajax(
+                    {
+                        url: '@Url.Action("ObtenerConducta")',
+                        type: "POST",
+                        dataType: "json",
+                        async: true,
+                        data: {
+                            'Id': $("#Id").val()
+                        },
+                        success: function (items, responseText) {
+                            var idArt = $("#Id").val();
+                            var cond = $("#IdConducta").val();
+                            $.each(items, function (i, item) {
+                                $("#Conducta").append($("<option />").val(item.Id).text(item.Nombre));
+                               
+                            });
+                          
+                            $("#Conducta option").each(function () {                              
+                                if ($(this).attr('value') == cond) {                                   
+                                    $(this).attr("selected", "selected");
+                                }                               
+                            });
+                         
+                        },
+                        error: function () {
+                            alert('Error...');
+                        }
+                    });
+                $.ajax(
+                    {
+                        url: '@Url.Action("ObtenerFechaInicio")',
+                         type: "POST",
+                        dataType: "json",
+                        async: true,
+                        data: { 'Id': $("#Id").val(), 'Conducta': $("#IdConducta").val() },
+                        success: function (items, responseText) {
+                            var idArt = $("#Id").val();
+                            var cond = $("#IdConducta").val();
+                            var FechaIni = $("#IdFechaDeInicio").val();
+                            $.each(items, function (i, item) {
+                                $("#FechaDeInicio").append($("<option/>").val(item.Id).text(item.Nombre));
+                            });
+                           
+                            $("#FechaDeInicio option").each(function () {
+                                var date = new Date($(this).attr('value')).getVarDate();
+                                alert(date.toString());                             
+                                if ($(this).attr('text') == FechaIni) {
+                                    $(this).attr("selected", "selected");
+                                }
+                            });
+                          
+                        },
+                        error: function () {
+                            alert('Error...');
+                        }
+                    });
+         
+                $.ajax(
+                    {
+
+                        url: '@Url.Action("ObtenerFechaFinal")',
+                        type: "POST",
+                        dataType: "json",
+                        async: true,
+                        data: { 'Id': $("#Id").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val() },
+                        success: function (items, responseText) {
+                            var idArt = $("#Id").val();
+                            var cond = $("#IdConducta").val();
+                            var FechaIni = $("#IdFechaDeInicio").val();
+                            var FechaFin = $("#IdFechaDeFin").val();
+                              $.each(items, function (i, item) {
+                                $("#FechaDeFin").append($("<option/>").val(item.Id).text(item.Nombre));
+                              });
+                              $("#FechaDeFin option").each(function () {
+                                  if ($(this).attr('value') == FechaFin) {
+                                      $(this).attr("selected", "selected");
+                                  }
+                              });
+                        },
+                        error: function () {
+                            alert('Error...');
+                        }
+                    });
+          
+        
+        }
+    
+
+
+</script>
 <h2>Nuevo</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+ 
     <div class="form-horizontal">
         <h4>Opción Formulario por Artículo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      
         <div class="form-group">
+            <input type="hidden" id="IdConducta" value="@ViewData["Conducta"]" />
+            <input type="hidden" id="IdFechaDeFin" value="@ViewData["FechaDeFin"]" />
+            <input type="hidden" id="IdFechaDeInicio" value="@ViewData["FechaDeInicio"]" />
             @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })*@
+                @Html.DropDownList("Id", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione", new { @class = "form-control" } )
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Conducta, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Conducta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Conducta, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Conducta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Conducta, "", new { @class = "text-danger" })*@
+                <select id="Conducta" name="Conducta" class = "form-control"> <option value="0">Seleccione...</option> </select>
+                
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeInicio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaDeInicio, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaDeInicio, "", new { @class = "text-danger" })*@
+                <select id="FechaDeInicio" name="FechaDeInicio" class = "form-control"> <option value="0">Seleccione...</option> </select>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeFin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaDeFin, "", new { @class = "text-danger" })
+                <select id="FechaDeFin" name="FechaDeFin" class = "form-control"> <option value="0">Seleccione...</option> </select>
+                @*@Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaDeFin, "", new { @class = "text-danger" })*@
             </div>
         </div>
 

@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class HorasLaboralesController : Controller
+    public class HorasLaboralesController : BaseController<HorasLaborales>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: HorasLaborales
         public ActionResult Index()
@@ -72,6 +72,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(horasLaborales, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -114,8 +115,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var horasLaboralesAntes = db.HORASLABORALES.AsNoTracking().Where(d => d.Id == horasLaborales.Id).FirstOrDefault();
                 db.Entry(horasLaborales).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(horasLaborales, "U", horasLaboralesAntes);
                 return RedirectToAction("Index");
             }
             return View(horasLaborales);
@@ -142,11 +145,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
+            HorasLaborales horasLaboralesAntes = ObtenerCopia(horasLaborales);
             if (horasLaborales.Estado == "A")
                 horasLaborales.Estado = "I";
             else
                 horasLaborales.Estado = "A";
             db.SaveChanges();
+            Bitacora(horasLaborales, "U", horasLaboralesAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,6 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
             HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
             db.HORASLABORALES.Remove(horasLaborales);
             db.SaveChanges();
+            Bitacora(horasLaborales, "D");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

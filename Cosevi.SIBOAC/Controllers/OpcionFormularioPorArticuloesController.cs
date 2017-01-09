@@ -109,16 +109,25 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: OpcionFormularioPorArticuloes/Create
-        public ActionResult Create()
+        public ActionResult Create(string Id, string Conducta)
         {
             //se llenan los combos
-            IEnumerable<SelectListItem> itemsOpcionFormulario = db.OPCIONFORMULARIO
+             IEnumerable<SelectListItem> itemsOpcionFormulario = db.OPCIONFORMULARIO
               .Select(o => new SelectListItem
               {
                   Value = o.Id.ToString(),
                   Text = o.Descripcion
               });
             ViewBag.ComboOpcionFormulario = itemsOpcionFormulario;
+            IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+                                                             where o.Estado == "A"
+                                                             select new { o.Id }).ToList().Distinct()
+                                                           .Select(o => new SelectListItem
+                                                           {
+                                                               Value = o.Id.ToString(),
+                                                               Text = o.Id.ToString()
+                                                           });
+            ViewBag.ComboArticulos = itemsCatArticulos;
             return View();
         }
 
@@ -150,6 +159,22 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                   
+                    IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+                                                                     where o.Estado == "A"
+                                                                     select new { o.Id }).ToList().Distinct()
+                                                          .Select(o => new SelectListItem
+                                                          {
+                                                              Value = o.Id.ToString(),
+                                                              Text = o.Id.ToString()
+                                                             
+                                                          });
+                    ViewBag.ComboArticulos =  new SelectList(db.CATARTICULO.OrderBy(x => x.Id), "Id", "Id", opcionFormularioPorArticulo.Id);
+
+                    ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", opcionFormularioPorArticulo.CodigoOpcionFormulario);
+                   ViewData["Conducta"] = opcionFormularioPorArticulo.Conducta;
+                    ViewData["FechaDeInicio"] = opcionFormularioPorArticulo.FechaDeInicio;
+                    ViewData["FechaDeFin"] = opcionFormularioPorArticulo.FechaDeFin;
                     return View(opcionFormularioPorArticulo);
                 }
             }
@@ -373,7 +398,67 @@ namespace Cosevi.SIBOAC.Controllers
             }
             return mensaje;
         }
+        //[HttpPost]
+        public JsonResult ObtenerConducta(string Id)
+        {
+            var listaconducta =
+                 (from o in db.CATARTICULO
+                  where o.Id == Id && o.Estado == "A"
+                  select new
+                  {
 
+                      o.Conducta
+                  }).ToList().Distinct()
+            .Select(x => new ClaseConducta
+            {
+                Id = x.Conducta,
+                Nombre = x.Conducta
+            }).Distinct();
+
+            return Json(listaconducta, JsonRequestBehavior.AllowGet);
+        }
+
+        //[HttpPost]
+        public JsonResult ObtenerFechaInicio(string Id, string Conducta)
+        {
+            var listaconducta =
+                 (from o in db.CATARTICULO
+                  where o.Id == Id && o.Conducta == Conducta && o.Estado == "A"
+                  select new
+                  {
+                      fecha = o.FechaDeInicio.ToString()
+
+                  }).ToList().Distinct()
+            .Select(x => new ClaseFechaInicio
+            {
+                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
+                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+            }).Distinct();
+
+            return Json(listaconducta, JsonRequestBehavior.AllowGet);
+        }
+
+        //[HttpPost]
+        public JsonResult ObtenerFechaFinal(string Id, string Conducta, string FechaDeInicio)
+        {
+            DateTime fechaDeInicio= DateTime.Now;
+            if (FechaDeInicio!="" && FechaDeInicio!=null)
+                   fechaDeInicio = DateTime.Parse(FechaDeInicio);
+            var listaconducta =
+                 (from o in db.CATARTICULO
+                  where o.Id == Id && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio.ToString() == FechaDeInicio
+                  select new
+                  {
+                      fecha = o.FechaDeFin.ToString()
+                  }).ToList().Distinct()
+            .Select(x => new ClaseFechaFinal
+            {
+                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
+                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+            }).Distinct();
+
+            return Json(listaconducta, JsonRequestBehavior.AllowGet);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -381,6 +466,27 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public class ClaseConducta
+        {
+            public string Id { get; set; }
+            public string Nombre { get; set; }
+
+        }
+        public class ClaseFechaInicio
+        {
+            public string Id { get; set; }
+            public string Nombre { get; set; }
+
+
+        }
+        public class ClaseFechaFinal
+        {
+            public string Id { get; set; }
+            public string Nombre { get; set; }
+
+
         }
     }
 }

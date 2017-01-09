@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class EstadoDeLaCalzadasController : Controller
+    public class EstadoDeLaCalzadasController : BaseController<EstadoDeLaCalzada>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: EstadoDeLaCalzadas
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(estadoDeLaCalzada, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +110,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var estadoDeLaCalzadaAntes = db.ESTCALZADA.AsNoTracking().Where(d => d.Id == estadoDeLaCalzada.Id).FirstOrDefault();
                 db.Entry(estadoDeLaCalzada).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(estadoDeLaCalzada, "U", estadoDeLaCalzadaAntes);
                 return RedirectToAction("Index");
             }
             return View(estadoDeLaCalzada);
@@ -137,11 +140,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             EstadoDeLaCalzada estadoDeLaCalzada = db.ESTCALZADA.Find(id);
+            EstadoDeLaCalzada estadoDeLaCalzadaAntes = ObtenerCopia(estadoDeLaCalzada);
             if (estadoDeLaCalzada.Estado == "I")
                 estadoDeLaCalzada.Estado = "A";
             else
                 estadoDeLaCalzada.Estado = "I";
             db.SaveChanges();
+            Bitacora(estadoDeLaCalzada, "U", estadoDeLaCalzadaAntes);
             return RedirectToAction("Index");
         }
 
@@ -168,6 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
             EstadoDeLaCalzada estadoDeLaCalzada = db.ESTCALZADA.Find(id);
             db.ESTCALZADA.Remove(estadoDeLaCalzada);
             db.SaveChanges();
+            Bitacora(estadoDeLaCalzada, "D");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

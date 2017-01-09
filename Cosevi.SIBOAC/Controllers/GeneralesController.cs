@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class GeneralesController : Controller
+    public class GeneralesController : BaseController<GENERALES>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Generales
         public ActionResult Index()
@@ -156,6 +156,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(gENERALES, "I");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -251,8 +252,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var gENERALESAntes = db.GENERALES.AsNoTracking().Where(d => d.Inspector == gENERALES.Inspector).FirstOrDefault();
                 db.Entry(gENERALES).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(gENERALES, "U", gENERALESAntes);
                 return RedirectToAction("Index");
             }
             return View(gENERALES);
@@ -323,8 +326,10 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             GENERALES gENERALES = db.GENERALES.Find(id);
+            
             db.GENERALES.Remove(gENERALES);
             db.SaveChanges();
+            Bitacora(gENERALES, "D");
             return RedirectToAction("Index");
         }
         // GET: Generales/Inactivar/5
@@ -392,6 +397,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult InactivarConfirmed(string id)
         {
             GENERALES gENERALES = db.GENERALES.Find(id);
+            GENERALES gENERALESAntes = ObtenerCopia(gENERALES);
             if (gENERALES.estado == "I")
             {
                 gENERALES.estado = "A";
@@ -401,6 +407,8 @@ namespace Cosevi.SIBOAC.Controllers
                 gENERALES.estado = "I";
             }           
             db.SaveChanges();
+            Bitacora(gENERALES, "U", gENERALESAntes);
+
             return RedirectToAction("Index");
         }
 
