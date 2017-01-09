@@ -214,6 +214,28 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsDepositosBienes = db.DEPOSITOBIENES.Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Descripcion
+                    });
+
+                    ViewBag.ComboDepositosBienes = itemsDepositosBienes;
+
+                    IEnumerable<SelectListItem> itemsOpcionFormularios = db.OPCIONFORMULARIO.Where(a => a.Estado == "A").Select(o => new SelectListItem
+                     {
+                         Value = o.Id.ToString(),
+                         Text = o.Descripcion
+                     });
+                    ViewBag.ComboOpcionFormulario = itemsOpcionFormularios;
+
+                    IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+                    where o.Estado == "A" select new { o.Id }).ToList().Distinct().Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Id.ToString()
+                    });
+                    ViewBag.ComboArticulos = itemsCatArticulos;
                     return View(articulosPorDepositosDeBienes);
                 }
             }
