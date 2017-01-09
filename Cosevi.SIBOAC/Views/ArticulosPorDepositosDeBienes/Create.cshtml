@@ -18,7 +18,7 @@
                 $("#Departamento").empty();
                 $("#FechaDeInicio").empty();
                 $("#FechaFin").empty();
-                $("#Departamento").append($("<option/>").val("0").text("Seleccione..."));
+                $("#Conducta").append($("<option/>").val("0").text("Seleccione..."));
                // $("#Localidad").empty();$("#Localidad").append($("<option/>").val("0").text("Seleccione..."));
                 return;
             }//Ejecutamos el AJAX para llamar a la acción "ObtenerDepartamento"
@@ -95,6 +95,95 @@
                 });
         });
     });
+
+    window.onload = function () {
+
+
+        $.ajax(
+            {
+                url: '@Url.Action("ObtenerConducta")',
+                type: "POST",
+                dataType: "json",
+                async: true,
+                data: {
+                    'CodigoArticulo': $("#CodigoArticulo").val()
+                },
+                success: function (items, responseText) {
+                    var idArt = $("#CodigoArticulo").val();
+                    var cond = $("#IdConducta").val();
+                    $.each(items, function (i, item) {
+                        $("#Conducta").append($("<option />").val(item.Id).text(item.Nombre));
+
+                    });
+
+                    $("#Conducta option").each(function () {
+                        if ($(this).attr('value') == cond) {
+                            $(this).attr("selected", "selected");
+                        }
+                    });
+
+                },
+                error: function () {
+                    alert('Error...');
+                }
+            });
+        $.ajax(
+            {
+                url: '@Url.Action("ObtenerFechaInicio")',
+                type: "POST",
+                dataType: "json",
+                async: true,
+                data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#IdConducta").val() },
+                success: function (items, responseText) {
+                    var idArt = $("#CodigoArticulo").val();
+                    var cond = $("#IdConducta").val();
+                    var FechaIni = $("#IdFechaDeInicio").val();
+                    $.each(items, function (i, item) {
+                        $("#FechaDeInicio").append($("<option/>").val(item.Id).text(item.Nombre));
+                    });
+
+                    $("#FechaDeInicio option").each(function () {
+                        if ($(this).attr('value') == FechaIni) {
+                            $(this).attr("selected", "selected");
+                        }
+                    });
+
+                },
+                error: function () {
+                    alert('Error...');
+                }
+            });
+
+        $.ajax(
+            {
+
+                url: '@Url.Action("ObtenerFechaFinal")',
+                type: "POST",
+                dataType: "json",
+                async: true,
+                data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val() },
+                success: function (items, responseText) {
+                    var idArt = $("#CodigoArticulo").val();
+                    var cond = $("#IdConducta").val();
+                    var FechaIni = $("#IdFechaDeInicio").val();
+                    var FechaFin = $("#IdFechaDeFin").val();
+                    $.each(items, function (i, item) {
+                        $("#FechaDeFin").append($("<option/>").val(item.Id).text(item.Nombre));
+                    });
+                    $("#FechaDeFin option").each(function () {
+                        if ($(this).attr('value') == FechaFin) {
+                            $(this).attr("selected", "selected");
+                        }
+                    });
+                },
+                error: function () {
+                    alert('Error...');
+                }
+            });
+
+
+    }
+
     </script>
 <h2>Nuevo</h2>
 
@@ -109,6 +198,9 @@
 
 
         <div class="form-group">
+            <input type="hidden" id="IdConducta" value="@ViewData["Conducta"]" />
+            <input type="hidden" id="IdFechaDeFin" value="@ViewData["FechaDeFin"]" />
+            <input type="hidden" id="IdFechaDeInicio" value="@ViewData["FechaDeInicio"]" />
             @Html.LabelFor(model => model.CodigoDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CodigoDepositosBienes, (IEnumerable<SelectListItem>)ViewBag.ComboDepositosBienes, new { @class = "form-control" })

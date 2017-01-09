@@ -100,8 +100,7 @@
     });
    
         window.onload = function () {
-            
-            
+          
            
                 $.ajax(
                     {
@@ -146,10 +145,8 @@
                                 $("#FechaDeInicio").append($("<option/>").val(item.Id).text(item.Nombre));
                             });
                            
-                            $("#FechaDeInicio option").each(function () {
-                                var date = new Date($(this).attr('value')).getVarDate();
-                                alert(date.toString());                             
-                                if ($(this).attr('text') == FechaIni) {
+                            $("#FechaDeInicio option").each(function () {                                                             
+                                if ($(this).attr('value') == FechaIni) {
                                     $(this).attr("selected", "selected");
                                 }
                             });
@@ -270,7 +267,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </div>
     </div>
