@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
 using Cosevi.SIBOAC.Security;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
     public class AlineacionHorizontalsController : BaseController<AlineacionHorizontal>
     {
         // GET: AlineacionHorizontals
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.ALINHORI.ToList());
+            var list = db.ALINHORI.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
+
         }
 
         public string Verificar(int id)

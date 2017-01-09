@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -14,11 +15,16 @@ namespace Cosevi.SIBOAC.Controllers
     {
 
         // GET: AlineacionVerticals
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.ALINVERT.ToList());
+            
+            var sCanton = db.ALINVERT.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(sCanton.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
