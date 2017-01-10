@@ -49,11 +49,7 @@ namespace Cosevi.SIBOAC.Controllers.api
             return reportes;
         }
 
-        public ActionResult DownloadPartialViewPDF(string Imprimir, int? serie, decimal? numero_boleta)
-        {           
-
-            return new Rotativa.PartialViewAsPdf("_MostrarReporteConsultaImpresionDeBoletas") { FileName = "Boleta.pdf" };
-        }
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -63,6 +59,7 @@ namespace Cosevi.SIBOAC.Controllers.api
             base.Dispose(disposing);
         }
 
+     
 
         public class DTOReportePorConsultaImpresionDeBoletas
         {
