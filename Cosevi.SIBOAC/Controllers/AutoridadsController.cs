@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -14,7 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
     {
 
         // GET: Autoridads
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -45,7 +46,11 @@ namespace Cosevi.SIBOAC.Controllers
                   DescripcionCodigoOpcionFormulario = x.DescripcionCodigoOpcionFormulario
 
               });
-            return View(list);
+            
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));            
         }
 
         // GET: Autoridads/Details/5
@@ -120,7 +125,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(autoridad, "I");
+                    Bitacora(autoridad, "I", "AUTORIDAD");
 
 
                     TempData["Type"] = "success";
@@ -132,6 +137,14 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsOpcionformulario = db.OPCIONFORMULARIO.Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Descripcion
+
+                    });
+
+                    ViewBag.ComboOpcionformulario = itemsOpcionformulario;
                     return View(autoridad);
                 }
             }
@@ -195,7 +208,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(autoridad).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(autoridad, "U", autoridadAntes);
+                Bitacora(autoridad, "U", "AUTORIDAD", autoridadAntes);
 
                 return RedirectToAction("Index");
             }
@@ -256,7 +269,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 autoridad.Estado = "A";
             db.SaveChanges();
-            Bitacora(autoridad, "U", autoridadAntes);
+            Bitacora(autoridad, "U", "AUTORIDAD", autoridadAntes);
 
             return RedirectToAction("Index");
         }
@@ -312,7 +325,7 @@ namespace Cosevi.SIBOAC.Controllers
             Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
             db.AUTORIDAD.Remove(autoridad);
             db.SaveChanges();
-            Bitacora(autoridad, "D");
+            Bitacora(autoridad, "D", "AUTORIDAD");
 
             return RedirectToAction("Index");
         }
@@ -336,8 +349,8 @@ namespace Cosevi.SIBOAC.Controllers
             if (exist)
             {
                 mensaje = "El registro con los siguientes datos ya se encuentra registrados:"+
-                           " código de Autoridad" + codigo +
-                           ", código formulario" + codFormulario;
+                           " código de Autoridad " + codigo +
+                           ", código formulario " + codFormulario;
 
             }
             return mensaje;

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,17 @@ namespace Cosevi.SIBOAC.Controllers
         
 
         // GET: Delitoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DELITO.ToList());
+           
+            var list = db.DELITO.ToList();           
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
+
         }
 
         public string Verificar(string id)
@@ -68,7 +75,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(delito, "I");
+                    Bitacora(delito, "I", "DELITO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +120,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var delitoAntes = db.DELITO.AsNoTracking().Where(d => d.Id == delito.Id).FirstOrDefault();
                 db.Entry(delito).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(delito, "U", delitoAntes);
+                Bitacora(delito, "U", "DELITO", delitoAntes);
                 return RedirectToAction("Index");
             }
             return View(delito);
@@ -146,7 +153,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 delito.Estado = "I";
             db.SaveChanges();
-            Bitacora(delito, "U", delitoAntes);
+            Bitacora(delito, "U", "DELITO", delitoAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,7 +180,7 @@ namespace Cosevi.SIBOAC.Controllers
             Delito delito = db.DELITO.Find(id);
             db.DELITO.Remove(delito);
             db.SaveChanges();
-            Bitacora(delito, "D");
+            Bitacora(delito, "D", "DELITO");
             return RedirectToAction("Index");
         }
 

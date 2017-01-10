@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,15 @@ namespace Cosevi.SIBOAC.Controllers
        
 
         // GET: Distritoes
-        public ActionResult Index()
+        public ActionResult Index( int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DISTRITO.ToList());
+            var list = db.DISTRITO.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(distrito, "I");
+                    Bitacora(distrito, "I", "DISTRITO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var distritoAntes = db.DISTRITO.AsNoTracking().Where(d => d.Id == distrito.Id).FirstOrDefault();
                 db.Entry(distrito).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(distrito, "U", distritoAntes);
+                Bitacora(distrito, "U", "DISTRITO", distritoAntes);
                 return RedirectToAction("Index");
             }
             return View(distrito);
@@ -146,7 +151,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 distrito.Estado = "I";
             db.SaveChanges();
-            Bitacora(distrito, "U", distritoAntes);
+            Bitacora(distrito, "U", "DISTRITO", distritoAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,7 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
             Distrito distrito = db.DISTRITO.Find(id);
             db.DISTRITO.Remove(distrito);
             db.SaveChanges();
-            Bitacora(distrito, "D");
+            Bitacora(distrito, "D", "DISTRITO");
             return RedirectToAction("Index");
         }
 

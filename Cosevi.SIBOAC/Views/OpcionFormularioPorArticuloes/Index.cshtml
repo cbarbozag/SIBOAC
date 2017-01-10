@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.OpcionFormularioPorArticulo>
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.OpcionFormularioPorArticulo>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Lista";
@@ -6,7 +9,7 @@
 }
 
 <h2>Lista de Opciones del Formulario por Artículo</h2>
-
+s
 <p>
     @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
 </p>
@@ -14,7 +17,7 @@
     <tr>
 
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.First().Id)
         </th>
 
         <td>
@@ -22,20 +25,20 @@
         </td>
 
         <th>
-            @Html.DisplayNameFor(model => model.Conducta)
+            @Html.DisplayNameFor(model => model.First().Conducta)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeInicio)
+            @Html.DisplayNameFor(model => model.First().FechaDeInicio)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeFin)
+            @Html.DisplayNameFor(model => model.First().FechaDeFin)
         </th>
 
 
         <th>
-            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+            @Html.DisplayNameFor(model => model.First().CodigoOpcionFormulario)
         </th>
 
         <td>
@@ -43,7 +46,7 @@
         </td>
 
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.First().Estado)
         </th>
         <th></th>
     </tr>
@@ -161,3 +164,7 @@
 }
 
 </table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

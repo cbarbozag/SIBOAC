@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -14,11 +15,16 @@ namespace Cosevi.SIBOAC.Controllers
     {
 
         // GET: Carrocerias
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.CARROCERIA.ToList());
+                       
+            var list = db.CARROCERIA.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -67,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(carroceria, "I");
+                    Bitacora(carroceria, "I", "CARROCERIA");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -112,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(carroceria).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(carroceria, "U", carroceriaAntes);
+                Bitacora(carroceria, "U", "CARROCERIA", carroceriaAntes);
 
                 return RedirectToAction("Index");
             }
@@ -147,7 +153,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 carroceria.Estado = "A";
             db.SaveChanges();
-            Bitacora(carroceria, "U", carroceriaAntes);
+            Bitacora(carroceria, "U", "CARROCERIA", carroceriaAntes);
 
             return RedirectToAction("Index");
         }
@@ -175,7 +181,7 @@ namespace Cosevi.SIBOAC.Controllers
             Carroceria carroceria = db.CARROCERIA.Find(id);
             db.CARROCERIA.Remove(carroceria);
             db.SaveChanges();
-            Bitacora(carroceria, "D");
+            Bitacora(carroceria, "D", "CARROCERIA");
 
             return RedirectToAction("Index");
         }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,7 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DispositivoPorRolPersonas
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -41,7 +42,10 @@ namespace Cosevi.SIBOAC.Controllers
                    DescripcionDispositivo = x.DescripcionDispositivo
 
                });
-            return View(list);
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));            
         }
 
         // GET: DispositivoPorRolPersonas/Details/5
@@ -128,6 +132,21 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsRol = db.ROLPERSONA
+                    .Select(o => new SelectListItem
+                    {
+                        Value = o.Id,
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboRolPersona = itemsRol;
+
+                    IEnumerable<SelectListItem> itemsDispositivos = db.Dispositivoes1
+                    .Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboDispositivo = itemsDispositivos;
                     return View(dispositivoPorRolPersona);
                 }
             }

@@ -7,19 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ObstaculoesController : Controller
+    public class ObstaculoesController : BaseController<Obstaculo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Obstaculoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.Obstaculo.ToList());
+            
+            var list = db.Obstaculo.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(obstaculo, "I", "OBSTACULO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +114,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var obstaculoAntes = db.Obstaculo.AsNoTracking().Where(d => d.Id == obstaculo.Id).FirstOrDefault();
                 db.Entry(obstaculo).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(obstaculo, "U", "OBSTACULO",  obstaculoAntes);
                 return RedirectToAction("Index");
             }
             return View(obstaculo);
@@ -135,11 +144,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Obstaculo obstaculo = db.Obstaculo.Find(id);
+            Obstaculo obstaculoAntes = ObtenerCopia(obstaculo);
             if (obstaculo.Estado == "I")
                 obstaculo.Estado = "A";
             else
                 obstaculo.Estado = "I";
             db.SaveChanges();
+            Bitacora(obstaculo, "U", "OBSTACULO", obstaculoAntes);
             return RedirectToAction("Index");
         }
 
@@ -166,6 +177,7 @@ namespace Cosevi.SIBOAC.Controllers
             Obstaculo obstaculo = db.Obstaculo.Find(id);
             db.Obstaculo.Remove(obstaculo);
             db.SaveChanges();
+            Bitacora(obstaculo, "D", "OBSTACULO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

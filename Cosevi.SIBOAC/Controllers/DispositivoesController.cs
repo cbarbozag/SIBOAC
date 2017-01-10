@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,15 @@ namespace Cosevi.SIBOAC.Controllers
         
 
         // GET: Dispositivoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.Dispositivoes1.ToList());
+            var list = db.Dispositivoes1.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(dispositivo, "I");
+                    Bitacora(dispositivo, "I", "DISPOSITIVO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var dispositivoAntes = db.Dispositivoes1.AsNoTracking().Where(d => d.Id == dispositivo.Id).FirstOrDefault();
                 db.Entry(dispositivo).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(dispositivo, "U", dispositivoAntes);
+                Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
                 return RedirectToAction("Index");
             }
             return View(dispositivo);
@@ -147,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 dispositivo.Estado = "I";
             db.SaveChanges();
-            Bitacora(dispositivo, "U", dispositivoAntes);
+            Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
             return RedirectToAction("Index");
         }
 
@@ -175,7 +180,7 @@ namespace Cosevi.SIBOAC.Controllers
             Dispositivo dispositivo = db.Dispositivoes1.Find(id);
             db.Dispositivoes1.Remove(dispositivo);
             db.SaveChanges();
-            Bitacora(dispositivo, "D");
+            Bitacora(dispositivo, "D", "DISPOSITIVO");
             return RedirectToAction("Index");
         }
 

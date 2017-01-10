@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.DetallePorTipoDanio>
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.DetallePorTipoDanio>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Lista";
@@ -13,128 +16,134 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CodigoDanio)
+            @Html.DisplayNameFor(model => model.First().CodigoDanio)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.DescripcionCodigoDano)
+            @Html.DisplayNameFor(model => model.First().DescripcionCodigoDano)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.CodigoTipoDanio)
+            @Html.DisplayNameFor(model => model.First().CodigoTipoDanio)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.First().Descripcion)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.First().Estado)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeInicio)
+            @Html.DisplayNameFor(model => model.First().FechaDeInicio)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeFin)
+            @Html.DisplayNameFor(model => model.First().FechaDeFin)
         </th>
 
         <th></th>
     </tr>
 
-@foreach (var item in Model)
-{
-    if (item.Estado == "I")
+    @foreach (var item in Model)
     {
-        <tr class="warning">
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoDanio)
-            </td>
+        if (item.Estado == "I")
+        {
+            <tr class="warning">
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoDanio)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.DescripcionCodigoDano)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionCodigoDano)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoTipoDanio)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoTipoDanio)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaDeInicio)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeInicio)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaDeFin)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeFin)
+                </td>
 
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
-                @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
-                @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
-                @if (item.Estado == "I")
-                {
-                    @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
-                }
-                else
-                {
-                    @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
-                }
-            </td>
-        </tr>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                    @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                    @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                    @if (item.Estado == "I")
+                    {
+                        @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
+                    }
+                </td>
+            </tr>
+        }
+
+
+        else
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoDanio)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescripcionCodigoDano)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodigoTipoDanio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaDeFin)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                    @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                    @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
+                    @if (item.Estado == "I")
+                    {
+                        @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
+                    }
+                </td>
+
+            </tr>
+        }
     }
-
-
-    else
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoDanio)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.DescripcionCodigoDano)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.CodigoTipoDanio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaDeFin)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
-            @Html.ActionLink("Detalles", "Details", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
-            @Html.ActionLink("Eliminar", "RealDelete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio }) |
-            @if (item.Estado == "I")
-            {
-                @Html.ActionLink("Activar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
-            }
-            else
-            {
-                @Html.ActionLink("Inactivar", "Delete", new { codigod = item.CodigoDanio.ToString(), codigotd = item.CodigoTipoDanio })
-            }
-        </td>
-
-    </tr>
-    }
-    }
-
 </table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+
+

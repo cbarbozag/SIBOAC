@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
 using Cosevi.SIBOAC.Controllers;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
     {
 
         // GET: Danoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DAÑO.ToList());
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+
+            var list = db.DAÑO.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(dano, "I");
+                    Bitacora(dano, "I", "DAÑO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -115,7 +121,7 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(dano).State = EntityState.Modified;
 
                 db.SaveChanges();
-                Bitacora(dano, "U", danoAntes);
+                Bitacora(dano, "U", "DAÑO", danoAntes);
 
                 return RedirectToAction("Index");
             }
@@ -151,7 +157,7 @@ namespace Cosevi.SIBOAC.Controllers
                 dano.Estado = "I";
             db.SaveChanges();
 
-            Bitacora(dano, "U", danoAntes);
+            Bitacora(dano, "U", "DAÑO", danoAntes);
             return RedirectToAction("Index");
         }
 
@@ -180,7 +186,7 @@ namespace Cosevi.SIBOAC.Controllers
             Dano dano = db.DAÑO.Find(id);
             db.DAÑO.Remove(dano);
             db.SaveChanges();
-            Bitacora(dano, "D");
+            Bitacora(dano, "D", "DAÑO");
             return RedirectToAction("Index");
         }
 

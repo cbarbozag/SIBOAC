@@ -7,19 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class OpcionesDelPlanoesController : Controller
+    public class OpcionesDelPlanoesController : BaseController<OpcionesDelPlano>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: OpcionesDelPlanoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.OPCIONPLANO.ToList());
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+
+            var list = db.OPCIONPLANO.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(opcionesDelPlano, "I", "OPCIONPLANO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +114,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var opcionesDelPlanoAntes = db.OPCIONPLANO.AsNoTracking().Where(d => d.Id == opcionesDelPlano.Id).FirstOrDefault();
                 db.Entry(opcionesDelPlano).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(opcionesDelPlano, "U", "OPCIONPLANO", opcionesDelPlanoAntes);
                 return RedirectToAction("Index");
             }
             return View(opcionesDelPlano);
@@ -135,11 +144,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(short id)
         {
             OpcionesDelPlano opcionesDelPlano = db.OPCIONPLANO.Find(id);
+            OpcionesDelPlano opcionesDelPlanoAntes = ObtenerCopia(opcionesDelPlano);
             if (opcionesDelPlano.Estado == "I")
                 opcionesDelPlano.Estado = "A";
             else
                 opcionesDelPlano.Estado = "I";
             db.SaveChanges();
+            Bitacora(opcionesDelPlano, "U", "OPCIONPLANO", opcionesDelPlanoAntes);
             return RedirectToAction("Index");
         }
 
@@ -166,6 +177,7 @@ namespace Cosevi.SIBOAC.Controllers
             OpcionesDelPlano opcionesDelPlano = db.OPCIONPLANO.Find(id);
             db.OPCIONPLANO.Remove(opcionesDelPlano);
             db.SaveChanges();
+            Bitacora(opcionesDelPlano, "D", "OPCIONPLANO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
