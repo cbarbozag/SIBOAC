@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.RolPorPersonaOpcionFormulario>
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.RolPorPersonaOpcionFormulario>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Lista";
@@ -14,26 +17,26 @@
     <tr>
 
         <th>
-            @Html.DisplayNameFor(model => model.CodigoRolPersona)
+            @Html.DisplayNameFor(model => model.First().CodigoRolPersona)
         </th>
         <th>
             @Html.Label("Descripción")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
+            @Html.DisplayNameFor(model => model.First().CodigoOpcionFormulario)
         </th>
         <th>
             @Html.Label("Descripción")
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.First().Estado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeInicio)
+            @Html.DisplayNameFor(model => model.First().FechaDeInicio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaDeFin)
+            @Html.DisplayNameFor(model => model.First().FechaDeFin)
         </th>
         <th></th>
     </tr>
@@ -124,3 +127,7 @@
 }
 
 </table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,7 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -48,10 +49,10 @@ namespace Cosevi.SIBOAC.Controllers
                 DescripcionRol = x.DescripcionRol,
                 DescripcionTipoVehiculo = x.DescripcionTipoVehiculo
 
-            });
-
-
-            return View(list);
+            });                    
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));            
         }
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes/Details/5
@@ -150,6 +151,20 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsRol = db.ROLPERSONA
+                    .Select(o => new SelectListItem
+                    {
+                        Value = o.Id,
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboRolPersona = itemsRol;
+                    IEnumerable<SelectListItem> itemsTipoVeh = db.TIPOVEH
+                     .Select(c => new SelectListItem
+                     {
+                         Value = c.Id.ToString(),
+                         Text = c.Descripcion
+                     });
+                    ViewBag.ComboTipoVeh = itemsTipoVeh;
                     return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
                 }
             }

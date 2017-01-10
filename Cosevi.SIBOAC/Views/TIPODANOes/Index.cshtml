@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.TIPODANO>
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.TIPODANO>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Nuevo";
@@ -13,10 +17,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.codigod)
+            @Html.DisplayNameFor(model => model.First().codigod)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion)
+            @Html.DisplayNameFor(model => model.First().descripcion)
         </th>
         <th></th>
     </tr>
@@ -39,3 +43,7 @@
 }
 
 </table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,9 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
         private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
 
         // GET: SIBOACUsuarios
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.SIBOACUsuarios.ToList());
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+
+            var list = db.SIBOACUsuarios.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: SIBOACUsuarios/Details/5
