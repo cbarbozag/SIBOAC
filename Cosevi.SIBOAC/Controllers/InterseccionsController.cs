@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class InterseccionsController : Controller
+    public class InterseccionsController : BaseController<Interseccion>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+       
 
         // GET: Interseccions
         public ActionResult Index(int ? page)
@@ -74,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(interseccion, "I", "INTERSECCION");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -113,8 +114,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var interseccionAntes = db.INTERSECCION.AsNoTracking().Where(d => d.Id == interseccion.Id).FirstOrDefault();
                 db.Entry(interseccion).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(interseccion, "U", "INTERSECCION", interseccionAntes);
                 return RedirectToAction("Index");
             }
             return View(interseccion);
@@ -141,11 +144,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Interseccion interseccion = db.INTERSECCION.Find(id);
+            Interseccion interseccionAntes = ObtenerCopia(interseccion);
             if (interseccion.Estado == "I")
                 interseccion.Estado = "A";
             else
                 interseccion.Estado = "I";
             db.SaveChanges();
+            Bitacora(interseccion, "U", "INTERSECCION", interseccionAntes);
             return RedirectToAction("Index");
         }
 
@@ -172,6 +177,7 @@ namespace Cosevi.SIBOAC.Controllers
             Interseccion interseccion = db.INTERSECCION.Find(id);
             db.INTERSECCION.Remove(interseccion);
             db.SaveChanges();
+            Bitacora(interseccion, "D", "INTERSECCION");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

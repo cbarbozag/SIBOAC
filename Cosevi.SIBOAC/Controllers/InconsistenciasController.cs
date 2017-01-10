@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class InconsistenciasController : Controller
+    public class InconsistenciasController : BaseController<Inconsistencia>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Inconsistencias
         public ActionResult Index(int? page)
@@ -74,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(inconsistencia, "I", "INCONSISTENCIA");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -115,8 +116,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var inconsistenciaAntes = db.INCONSISTENCIA.AsNoTracking().Where(d => d.Id == inconsistencia.Id).FirstOrDefault();
                 db.Entry(inconsistencia).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(inconsistencia, "U", "INCONSISTENCIA", inconsistenciaAntes);
                 return RedirectToAction("Index");
             }
             return View(inconsistencia);
@@ -145,6 +148,7 @@ namespace Cosevi.SIBOAC.Controllers
             Inconsistencia inconsistencia = db.INCONSISTENCIA.Find(id);
             db.INCONSISTENCIA.Remove(inconsistencia);
             db.SaveChanges();
+            Bitacora(inconsistencia, "D", "INCONSISTENCIA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

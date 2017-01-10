@@ -73,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(distrito, "I");
+                    Bitacora(distrito, "I", "DISTRITO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -118,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var distritoAntes = db.DISTRITO.AsNoTracking().Where(d => d.Id == distrito.Id).FirstOrDefault();
                 db.Entry(distrito).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(distrito, "U", distritoAntes);
+                Bitacora(distrito, "U", "DISTRITO", distritoAntes);
                 return RedirectToAction("Index");
             }
             return View(distrito);
@@ -151,7 +151,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 distrito.Estado = "I";
             db.SaveChanges();
-            Bitacora(distrito, "U", distritoAntes);
+            Bitacora(distrito, "U", "DISTRITO", distritoAntes);
             return RedirectToAction("Index");
         }
 
@@ -178,7 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
             Distrito distrito = db.DISTRITO.Find(id);
             db.DISTRITO.Remove(distrito);
             db.SaveChanges();
-            Bitacora(distrito, "D");
+            Bitacora(distrito, "D", "DISTRITO");
             return RedirectToAction("Index");
         }
 

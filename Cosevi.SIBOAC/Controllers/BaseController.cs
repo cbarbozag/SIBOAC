@@ -13,7 +13,7 @@ namespace Cosevi.SIBOAC.Controllers
     {
         public PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
-        public void Bitacora(T entidadNueva, string operacion, T entidadAnterior = null)
+        public void Bitacora(T entidadNueva, string operacion, string nombreTabla, T entidadAnterior = null)
         {
             string nombreUsuario = TempData["nombreUsuario"].ToString();
 
@@ -23,7 +23,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     CodigoUsuario = nombreUsuario,
                     FechaHora = DateTime.Now,
-                    NombreTabla = typeof(T).Name,
+                    NombreTabla = nombreTabla,
                     Operacion = operacion,
                     ValorDespues = GetValues(entidadNueva)
                 });
@@ -34,7 +34,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     CodigoUsuario = nombreUsuario,
                     FechaHora = DateTime.Now,
-                    NombreTabla = typeof(T).Name,
+                    NombreTabla = nombreTabla,
                     Operacion = operacion,
                     ValorAntes = GetValues(entidadAnterior),
                     ValorDespues = GetValues(entidadNueva)

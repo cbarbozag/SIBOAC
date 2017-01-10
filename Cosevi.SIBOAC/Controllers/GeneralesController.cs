@@ -159,7 +159,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(gENERALES, "I");
+                    Bitacora(gENERALES, "I", "GENERALES");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -258,7 +258,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var gENERALESAntes = db.GENERALES.AsNoTracking().Where(d => d.Inspector == gENERALES.Inspector).FirstOrDefault();
                 db.Entry(gENERALES).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(gENERALES, "U", gENERALESAntes);
+                Bitacora(gENERALES, "U", "GENERALES", gENERALESAntes);
                 return RedirectToAction("Index");
             }
             return View(gENERALES);
@@ -332,7 +332,7 @@ namespace Cosevi.SIBOAC.Controllers
             
             db.GENERALES.Remove(gENERALES);
             db.SaveChanges();
-            Bitacora(gENERALES, "D");
+            Bitacora(gENERALES, "D", "GENERALES");
             return RedirectToAction("Index");
         }
         // GET: Generales/Inactivar/5
@@ -410,7 +410,7 @@ namespace Cosevi.SIBOAC.Controllers
                 gENERALES.estado = "I";
             }           
             db.SaveChanges();
-            Bitacora(gENERALES, "U", gENERALESAntes);
+            Bitacora(gENERALES, "U", "GENERALES", gENERALESAntes);
 
             return RedirectToAction("Index");
         }

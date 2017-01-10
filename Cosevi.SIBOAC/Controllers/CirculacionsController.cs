@@ -73,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(circulacion, "I");
+                    Bitacora(circulacion, "I", "CIRCULACION");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -118,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(circulacion).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(circulacion, "U", circulacionAntes);
+                Bitacora(circulacion, "U", "CIRCULACION", circulacionAntes);
 
                 return RedirectToAction("Index");
             }
@@ -153,7 +153,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 circulacion.Estado = "A";
             db.SaveChanges();
-            Bitacora(circulacion, "U", circulacionAntes);
+            Bitacora(circulacion, "U", "CIRCULACION", circulacionAntes);
 
             return RedirectToAction("Index");
         }
@@ -182,7 +182,7 @@ namespace Cosevi.SIBOAC.Controllers
             Circulacion circulacion = db.CIRCULACION.Find(id);
             db.CIRCULACION.Remove(circulacion);
             db.SaveChanges();
-            Bitacora(circulacion, "D");
+            Bitacora(circulacion, "D", "CIRCULACION");
 
             return RedirectToAction("Index");
         }

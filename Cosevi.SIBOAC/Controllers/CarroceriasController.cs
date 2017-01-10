@@ -73,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(carroceria, "I");
+                    Bitacora(carroceria, "I", "CARROCERIA");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -118,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(carroceria).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(carroceria, "U", carroceriaAntes);
+                Bitacora(carroceria, "U", "CARROCERIA", carroceriaAntes);
 
                 return RedirectToAction("Index");
             }
@@ -153,7 +153,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 carroceria.Estado = "A";
             db.SaveChanges();
-            Bitacora(carroceria, "U", carroceriaAntes);
+            Bitacora(carroceria, "U", "CARROCERIA", carroceriaAntes);
 
             return RedirectToAction("Index");
         }
@@ -181,7 +181,7 @@ namespace Cosevi.SIBOAC.Controllers
             Carroceria carroceria = db.CARROCERIA.Find(id);
             db.CARROCERIA.Remove(carroceria);
             db.SaveChanges();
-            Bitacora(carroceria, "D");
+            Bitacora(carroceria, "D", "CARROCERIA");
 
             return RedirectToAction("Index");
         }

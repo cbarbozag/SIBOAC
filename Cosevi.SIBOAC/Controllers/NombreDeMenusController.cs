@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class NombreDeMenusController : Controller
+    public class NombreDeMenusController : BaseController<NombreDeMenu>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: NombreDeMenus
         public ActionResult Index(int? page)
@@ -74,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(nombreDeMenu, "I", "Nombre_Menu");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -113,8 +114,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var nombreDeMenuAntes = db.Nombre_Menu.AsNoTracking().Where(d => d.Id == nombreDeMenu.Id).FirstOrDefault();
                 db.Entry(nombreDeMenu).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(nombreDeMenu, "U", "Nombre_Menu", nombreDeMenuAntes);
                 return RedirectToAction("Index");
             }
             return View(nombreDeMenu);
@@ -141,11 +144,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             NombreDeMenu nombreDeMenu = db.Nombre_Menu.Find(id);
+            NombreDeMenu nombreDeMenuAntes = ObtenerCopia(nombreDeMenu);
             if (nombreDeMenu.Estado == "I")
                 nombreDeMenu.Estado = "A";
             else
                 nombreDeMenu.Estado = "I";
             db.SaveChanges();
+            Bitacora(nombreDeMenu, "U", "Nombre_Menu", nombreDeMenuAntes);
             return RedirectToAction("Index");
         }
 
@@ -172,6 +177,7 @@ namespace Cosevi.SIBOAC.Controllers
             NombreDeMenu nombreDeMenu = db.Nombre_Menu.Find(id);
             db.Nombre_Menu.Remove(nombreDeMenu);
             db.SaveChanges();
+            Bitacora(nombreDeMenu, "D", "Nombre_Menu");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

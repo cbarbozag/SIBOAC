@@ -74,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(hospital, "I");
+                    Bitacora(hospital, "I", "HOSPITAL");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -119,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var hospitalAntes = db.HOSPITAL.AsNoTracking().Where(d => d.Id == hospital.Id).FirstOrDefault();
                 db.Entry(hospital).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(hospital, "U", hospitalAntes);
+                Bitacora(hospital, "U", "HOSPITAL", hospitalAntes);
                 return RedirectToAction("Index");
             }
             return View(hospital);
@@ -152,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 hospital.Estado = "I";
             db.SaveChanges();
-            Bitacora(hospital, "U", hospitalAntes);
+            Bitacora(hospital, "U", "HOSPITAL", hospitalAntes);
             return RedirectToAction("Index");
         }
 
@@ -179,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             Hospital hospital = db.HOSPITAL.Find(id);
             db.HOSPITAL.Remove(hospital);
             db.SaveChanges();
-            Bitacora(hospital, "D");
+            Bitacora(hospital, "D", "HOSPITAL");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

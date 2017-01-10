@@ -73,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(alineacionVertical, "I");
+                    Bitacora(alineacionVertical, "I", "ALINVERT");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -119,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(alineacionVertical).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(alineacionVertical, "U", alineacionVerticalAntes);
+                Bitacora(alineacionVertical, "U", "ALINVERT", alineacionVerticalAntes);
 
                 return RedirectToAction("Index");
             }
@@ -154,7 +154,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 alineacionVertical.Estado = "A";
             db.SaveChanges();
-            Bitacora(alineacionVertical, "U", alineacionVerticalAntes);
+            Bitacora(alineacionVertical, "U", "ALINVERT", alineacionVerticalAntes);
 
             return RedirectToAction("Index");
         }
@@ -183,7 +183,7 @@ namespace Cosevi.SIBOAC.Controllers
             AlineacionVertical alineacionVertical = db.ALINVERT.Find(id);
             db.ALINVERT.Remove(alineacionVertical);
             db.SaveChanges();
-            Bitacora(alineacionVertical, "D");
+            Bitacora(alineacionVertical, "D", "ALINVERT");
 
             return RedirectToAction("Index");
         }
