@@ -72,7 +72,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(carril, "I");
+                    Bitacora(carril, "I", "CARRIL");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -118,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(carril).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(carril, "U", carrilAntes);
+                Bitacora(carril, "U", "CARRIL", carrilAntes);
 
                 return RedirectToAction("Index");
             }
@@ -153,7 +153,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 carril.Estado = "A";
             db.SaveChanges();
-            Bitacora(carril, "U", carrilAntes);
+            Bitacora(carril, "U", "CARRIL", carrilAntes);
 
             return RedirectToAction("Index");
         }
@@ -182,7 +182,7 @@ namespace Cosevi.SIBOAC.Controllers
             Carril carril = db.CARRIL.Find(id);
             db.CARRIL.Remove(carril);
             db.SaveChanges();
-            Bitacora(carril, "D");
+            Bitacora(carril, "D", "CARRIL");
 
             return RedirectToAction("Index");
         }

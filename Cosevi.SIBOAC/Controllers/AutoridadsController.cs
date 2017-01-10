@@ -125,7 +125,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(autoridad, "I");
+                    Bitacora(autoridad, "I", "AUTORIDAD");
 
 
                     TempData["Type"] = "success";
@@ -208,7 +208,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(autoridad).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(autoridad, "U", autoridadAntes);
+                Bitacora(autoridad, "U", "AUTORIDAD", autoridadAntes);
 
                 return RedirectToAction("Index");
             }
@@ -269,7 +269,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 autoridad.Estado = "A";
             db.SaveChanges();
-            Bitacora(autoridad, "U", autoridadAntes);
+            Bitacora(autoridad, "U", "AUTORIDAD", autoridadAntes);
 
             return RedirectToAction("Index");
         }
@@ -325,7 +325,7 @@ namespace Cosevi.SIBOAC.Controllers
             Autoridad autoridad = db.AUTORIDAD.Find(codigo, codFormulario);
             db.AUTORIDAD.Remove(autoridad);
             db.SaveChanges();
-            Bitacora(autoridad, "D");
+            Bitacora(autoridad, "D", "AUTORIDAD");
 
             return RedirectToAction("Index");
         }

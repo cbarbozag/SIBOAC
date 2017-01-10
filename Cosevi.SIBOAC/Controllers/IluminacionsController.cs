@@ -74,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(iluminacion, "I");
+                    Bitacora(iluminacion, "I", "ILUMINACION");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -119,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var iluminacionAntes = db.Iluminacion.AsNoTracking().Where(d => d.Id == iluminacion.Id).FirstOrDefault();
                 db.Entry(iluminacion).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(iluminacion, "U", iluminacionAntes);
+                Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
                 return RedirectToAction("Index");
             }
             return View(iluminacion);
@@ -152,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 iluminacion.Estado = "I";
             db.SaveChanges();
-            Bitacora(iluminacion, "U", iluminacionAntes);
+            Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
             return RedirectToAction("Index");
         }
 
@@ -179,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             Iluminacion iluminacion = db.Iluminacion.Find(id);
             db.Iluminacion.Remove(iluminacion);
             db.SaveChanges();
-            Bitacora(iluminacion, "D");
+            Bitacora(iluminacion, "D", "ILUMINACION");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

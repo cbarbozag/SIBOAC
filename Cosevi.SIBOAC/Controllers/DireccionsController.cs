@@ -73,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(direccion, "I");
+                    Bitacora(direccion, "I", "DIRECCION");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -118,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var direccionAntes = db.DIRECCION.AsNoTracking().Where(d => d.Id == direccion.Id).FirstOrDefault();
                 db.Entry(direccion).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(direccion, "U", direccionAntes);
+                Bitacora(direccion, "U", "DIRECCION", direccionAntes);
                 return RedirectToAction("Index");
             }
             return View(direccion);
@@ -151,7 +151,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 direccion.Estado = "I";
             db.SaveChanges();
-            Bitacora(direccion, "U", direccionAntes);
+            Bitacora(direccion, "U", "DIRECCION", direccionAntes);
             return RedirectToAction("Index");
         }
 
@@ -179,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             Direccion direccion = db.DIRECCION.Find(id);
             db.DIRECCION.Remove(direccion);
             db.SaveChanges();
-            Bitacora(direccion, "D");
+            Bitacora(direccion, "D", "DIRECCION");
             return RedirectToAction("Index");
         }
 

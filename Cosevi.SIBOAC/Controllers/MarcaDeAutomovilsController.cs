@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class MarcaDeAutomovilsController : Controller
+    public class MarcaDeAutomovilsController : BaseController<MarcaDeAutomovil>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: MarcaDeAutomovils
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(marcaDeAutomovil, "I", "MARCA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +108,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var marcaDeAutomovilAntes = db.MARCA.AsNoTracking().Where(d => d.Id == marcaDeAutomovil.Id).FirstOrDefault();
                 db.Entry(marcaDeAutomovil).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(marcaDeAutomovil, "U", "MARCA", marcaDeAutomovilAntes);
                 return RedirectToAction("Index");
             }
             return View(marcaDeAutomovil);
@@ -135,11 +138,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             MarcaDeAutomovil marcaDeAutomovil = db.MARCA.Find(id);
+            MarcaDeAutomovil marcaDeAutomovilAntes = ObtenerCopia(marcaDeAutomovil);
             if (marcaDeAutomovil.Estado == "I")
                 marcaDeAutomovil.Estado = "A";
             else
                 marcaDeAutomovil.Estado = "I";
             db.SaveChanges();
+            Bitacora(marcaDeAutomovil, "U", "MARCA", marcaDeAutomovilAntes);
             return RedirectToAction("Index");
         }
 
@@ -166,6 +171,7 @@ namespace Cosevi.SIBOAC.Controllers
             MarcaDeAutomovil marcaDeAutomovil = db.MARCA.Find(id);
             db.MARCA.Remove(marcaDeAutomovil);
             db.SaveChanges();
+            Bitacora(marcaDeAutomovil, "D", "MARCA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

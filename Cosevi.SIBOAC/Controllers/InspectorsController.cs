@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class InspectorsController : Controller
+    public class InspectorsController : BaseController<Inspector>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Inspectors
         public ActionResult Index(int? page)
@@ -60,6 +60,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.INSPECTOR.Add(inspector);
                 db.SaveChanges();
+                Bitacora(inspector, "I", "INSPECTOR");
                 return RedirectToAction("Index");
             }
 
@@ -90,9 +91,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                var inspectorAntes = db.INSPECTOR.AsNoTracking().Where(d => d.Id == inspector.Id).FirstOrDefault();
                 db.Entry(inspector).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(inspector, "U", "INSPECTOR", inspectorAntes);
                 return RedirectToAction("Index");
             }
             return View(inspector);
@@ -119,11 +121,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Inspector inspector = db.INSPECTOR.Find(id);
+            Inspector inspectorAntes = ObtenerCopia(inspector);
             if (inspector.Estado == "A")
                 inspector.Estado = "I";
             else
                 inspector.Estado = "A";
             db.SaveChanges();
+            Bitacora(inspector, "U", "INSPECTOR", inspectorAntes);
             return RedirectToAction("Index");
         }
 
@@ -150,6 +154,7 @@ namespace Cosevi.SIBOAC.Controllers
             Inspector inspector = db.INSPECTOR.Find(id);
             db.INSPECTOR.Remove(inspector);
             db.SaveChanges();
+            Bitacora(inspector, "D", "INSPECTOR");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

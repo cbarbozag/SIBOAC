@@ -74,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(canton, "I");
+                    Bitacora(canton, "I", "CANTON");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -119,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(canton).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(canton, "U", cantonAntes);
+                Bitacora(canton, "U", "CANTON", cantonAntes);
 
                 return RedirectToAction("Index");
             }
@@ -154,7 +154,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 canton.Estado = "A";
             db.SaveChanges();
-            Bitacora(canton, "U", cantonAntes);
+            Bitacora(canton, "U", "CANTON", cantonAntes);
 
             return RedirectToAction("Index");
         }
@@ -183,7 +183,7 @@ namespace Cosevi.SIBOAC.Controllers
             Canton canton = db.CANTON.Find(id);
             db.CANTON.Remove(canton);
             db.SaveChanges();
-            Bitacora(canton, "D");
+            Bitacora(canton, "D", "CANTON");
 
             return RedirectToAction("Index");
         }

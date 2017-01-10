@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class OficinaParaImpugnarsController : Controller
+    public class OficinaParaImpugnarsController : BaseController<OficinaParaImpugnar>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: OficinaParaImpugnars
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(oficinaParaImpugnar, "I", "OFICINAIMPUGNA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +108,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var oficinaParaImpugnarAntes = db.OficinaParaImpugnars.AsNoTracking().Where(d => d.Id == oficinaParaImpugnar.Id).FirstOrDefault();
                 db.Entry(oficinaParaImpugnar).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(oficinaParaImpugnar, "U", "OFICINAIMPUGNA", oficinaParaImpugnarAntes);
                 return RedirectToAction("Index");
             }
             return View(oficinaParaImpugnar);
@@ -135,11 +138,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             OficinaParaImpugnar oficinaParaImpugnar = db.OficinaParaImpugnars.Find(id);
+            OficinaParaImpugnar oficinaParaImpugnarAntes = ObtenerCopia(oficinaParaImpugnar);
             if (oficinaParaImpugnar.Estado == "I")
                 oficinaParaImpugnar.Estado = "A";
             else
                 oficinaParaImpugnar.Estado = "I";
             db.SaveChanges();
+            Bitacora(oficinaParaImpugnar, "U", "OFICINAIMPUGNA", oficinaParaImpugnarAntes);
             return RedirectToAction("Index");
         }
 
@@ -166,6 +171,7 @@ namespace Cosevi.SIBOAC.Controllers
             OficinaParaImpugnar oficinaParaImpugnar = db.OficinaParaImpugnars.Find(id);
             db.OficinaParaImpugnars.Remove(oficinaParaImpugnar);
             db.SaveChanges();
+            Bitacora(oficinaParaImpugnar, "D", "OFICINAIMPUGNA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

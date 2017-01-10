@@ -74,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(estadoCivil, "I");
+                    Bitacora(estadoCivil, "I", "ESTCIVIL");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -119,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var estadoCivilAntes = db.EstadoCivil.AsNoTracking().Where(d => d.Id == estadoCivil.Id).FirstOrDefault();
                 db.Entry(estadoCivil).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(estadoCivil, "U", estadoCivilAntes);
+                Bitacora(estadoCivil, "U", "ESTCIVIL", estadoCivilAntes);
                 return RedirectToAction("Index");
             }
             return View(estadoCivil);
@@ -152,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 estadoCivil.Estado = "I";
             db.SaveChanges();
-            Bitacora(estadoCivil, "U", estadoCivilAntes);
+            Bitacora(estadoCivil, "U", "ESTCIVIL", estadoCivilAntes);
             return RedirectToAction("Index");
         }
 
@@ -179,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             EstadoCivil estadoCivil = db.EstadoCivil.Find(id);
             db.EstadoCivil.Remove(estadoCivil);
             db.SaveChanges();
-            Bitacora(estadoCivil, "D");
+            Bitacora(estadoCivil, "D", "ESTCIVIL");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

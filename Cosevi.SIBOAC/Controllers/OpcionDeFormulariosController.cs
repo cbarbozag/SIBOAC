@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class OpcionDeFormulariosController : Controller
+    public class OpcionDeFormulariosController : BaseController<OpcionDeFormulario>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: OpcionDeFormularios
         public ActionResult Index()
@@ -68,6 +68,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(opcionDeFormulario, "I", "OPCIONFORMULARIO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +108,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var opcionDeFormularioAntes = db.OPCIONFORMULARIO.AsNoTracking().Where(d => d.Id == opcionDeFormulario.Id).FirstOrDefault();
                 db.Entry(opcionDeFormulario).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(opcionDeFormulario, "U", "OPCIONFORMULARIO", opcionDeFormularioAntes);
                 return RedirectToAction("Index");
             }
             return View(opcionDeFormulario);
@@ -135,11 +138,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             OpcionDeFormulario opcionDeFormulario = db.OPCIONFORMULARIO.Find(id);
+            OpcionDeFormulario opcionDeFormularioAntes = ObtenerCopia(opcionDeFormulario);
             if (opcionDeFormulario.Estado == "I")
                 opcionDeFormulario.Estado = "A";
             else
                 opcionDeFormulario.Estado = "I";
             db.SaveChanges();
+            Bitacora(opcionDeFormulario, "U", "OPCIONFORMULARIO", opcionDeFormularioAntes);
             return RedirectToAction("Index");
         }
 
@@ -166,6 +171,7 @@ namespace Cosevi.SIBOAC.Controllers
             OpcionDeFormulario opcionDeFormulario = db.OPCIONFORMULARIO.Find(id);
             db.OPCIONFORMULARIO.Remove(opcionDeFormulario);
             db.SaveChanges();
+            Bitacora(opcionDeFormulario, "D", "OPCIONFORMULARIO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

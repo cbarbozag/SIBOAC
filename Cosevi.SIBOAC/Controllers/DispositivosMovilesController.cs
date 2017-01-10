@@ -60,7 +60,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.DispositivosMoviles.Add(dispositivosMoviles);
                 db.SaveChanges();
-                Bitacora(dispositivosMoviles, "I");
+                Bitacora(dispositivosMoviles, "I", "DispositivosMoviles");
                 return RedirectToAction("Index");
             }
 
@@ -94,7 +94,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var dispositivosMovilesAntes = db.DispositivosMoviles.AsNoTracking().Where(d => d.Id == dispositivosMoviles.Id).FirstOrDefault();
                 db.Entry(dispositivosMoviles).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(dispositivosMoviles, "U", dispositivosMovilesAntes);
+                Bitacora(dispositivosMoviles, "U", "DispositivosMoviles", dispositivosMovilesAntes);
                 return RedirectToAction("Index");
             }
             return View(dispositivosMoviles);
@@ -127,7 +127,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 dispositivosMoviles.Activo = false;
             db.SaveChanges();
-            Bitacora(dispositivosMoviles, "U", dispositivosMovilesAntes);
+            Bitacora(dispositivosMoviles, "U", "DispositivosMoviles", dispositivosMovilesAntes);
             return RedirectToAction("Index");
         }
 
@@ -154,7 +154,7 @@ namespace Cosevi.SIBOAC.Controllers
             DispositivosMoviles dispositivosMoviles = db.DispositivosMoviles.Find(id);
             db.DispositivosMoviles.Remove(dispositivosMoviles);
             db.SaveChanges();
-            Bitacora(dispositivosMoviles, "D");
+            Bitacora(dispositivosMoviles, "D", "DispositivosMoviles");
             return RedirectToAction("Index");
         }
 

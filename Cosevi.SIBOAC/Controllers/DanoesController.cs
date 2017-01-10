@@ -74,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(dano, "I");
+                    Bitacora(dano, "I", "DAÑO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -121,7 +121,7 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(dano).State = EntityState.Modified;
 
                 db.SaveChanges();
-                Bitacora(dano, "U", danoAntes);
+                Bitacora(dano, "U", "DAÑO", danoAntes);
 
                 return RedirectToAction("Index");
             }
@@ -157,7 +157,7 @@ namespace Cosevi.SIBOAC.Controllers
                 dano.Estado = "I";
             db.SaveChanges();
 
-            Bitacora(dano, "U", danoAntes);
+            Bitacora(dano, "U", "DAÑO", danoAntes);
             return RedirectToAction("Index");
         }
 
@@ -186,7 +186,7 @@ namespace Cosevi.SIBOAC.Controllers
             Dano dano = db.DAÑO.Find(id);
             db.DAÑO.Remove(dano);
             db.SaveChanges();
-            Bitacora(dano, "D");
+            Bitacora(dano, "D", "DAÑO");
             return RedirectToAction("Index");
         }
 

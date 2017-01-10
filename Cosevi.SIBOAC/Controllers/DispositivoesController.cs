@@ -73,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(dispositivo, "I");
+                    Bitacora(dispositivo, "I", "DISPOSITIVO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -118,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var dispositivoAntes = db.Dispositivoes1.AsNoTracking().Where(d => d.Id == dispositivo.Id).FirstOrDefault();
                 db.Entry(dispositivo).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(dispositivo, "U", dispositivoAntes);
+                Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
                 return RedirectToAction("Index");
             }
             return View(dispositivo);
@@ -152,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 dispositivo.Estado = "I";
             db.SaveChanges();
-            Bitacora(dispositivo, "U", dispositivoAntes);
+            Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
             return RedirectToAction("Index");
         }
 
@@ -180,7 +180,7 @@ namespace Cosevi.SIBOAC.Controllers
             Dispositivo dispositivo = db.Dispositivoes1.Find(id);
             db.Dispositivoes1.Remove(dispositivo);
             db.SaveChanges();
-            Bitacora(dispositivo, "D");
+            Bitacora(dispositivo, "D", "DISPOSITIVO");
             return RedirectToAction("Index");
         }
 
