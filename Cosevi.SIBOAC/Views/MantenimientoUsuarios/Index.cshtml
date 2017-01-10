@@ -29,12 +29,16 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Activo)
+            @Html.DisplayNameFor(model => model.FechaDeActualizacionClave)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.Roles)
+            @Html.DisplayNameFor(model => model.Activo)
         </th>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.Roles)
+        </th>*@
 
         <th></th>
     </tr>
@@ -60,13 +64,18 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
 
+            
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Activo)
         </td>
 
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Roles)
-            </td>
+            </td>*@
 
         <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
@@ -107,12 +116,16 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Activo)
+                @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Roles)
+                @Html.DisplayFor(modelItem => item.Activo)
             </td>
+
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Roles)
+            </td>*@
 
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |

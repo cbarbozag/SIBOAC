@@ -267,6 +267,8 @@
     <Compile Include="Controllers\InterseccionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
+    <Compile Include="Controllers\MantenimientoRolesController.cs" />
+    <Compile Include="Controllers\MantenimientoRolesUsuariosController.cs" />
     <Compile Include="Controllers\MantenimientoUsuariosController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
     <Compile Include="Controllers\NacionalidadsController.cs" />
@@ -1392,6 +1394,16 @@
     <Content Include="Views\MantenimientoUsuarios\Details.cshtml" />
     <Content Include="Views\MantenimientoUsuarios\Edit.cshtml" />
     <Content Include="Views\MantenimientoUsuarios\Index.cshtml" />
+    <Content Include="Views\MantenimientoRoles\Create.cshtml" />
+    <Content Include="Views\MantenimientoRoles\Delete.cshtml" />
+    <Content Include="Views\MantenimientoRoles\Details.cshtml" />
+    <Content Include="Views\MantenimientoRoles\Edit.cshtml" />
+    <Content Include="Views\MantenimientoRoles\Index.cshtml" />
+    <Content Include="Views\MantenimientoRolesUsuarios\Create.cshtml" />
+    <Content Include="Views\MantenimientoRolesUsuarios\Delete.cshtml" />
+    <Content Include="Views\MantenimientoRolesUsuarios\Details.cshtml" />
+    <Content Include="Views\MantenimientoRolesUsuarios\Edit.cshtml" />
+    <Content Include="Views\MantenimientoRolesUsuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

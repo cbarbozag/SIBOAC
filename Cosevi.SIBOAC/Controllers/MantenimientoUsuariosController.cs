@@ -19,38 +19,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            var list =
-                (
-            from usu in db.SIBOACUsuarios
-            join rol in db.SIBOACRoles on new { Id = usu.Id } equals new { Id = rol.Id }
-            select new
-            {
-                Id = usu.Id,
-                Nombre = usu.Nombre,
-                Usuario = usu.Usuario,
-                Email = usu.Email,
-                Codigo = usu.codigo,
-                Fecha = usu.FechaDeActualizacionClave,
-                contrasena = usu.Contrasena,
-                Roles = rol.Nombre,
-                activo = rol.Activo
-
-            }).ToList()
-            .Select(x => new SIBOACUsuarios
-            {
-                Id = x.Id,
-                Nombre = x.Nombre,
-                Usuario = x.Usuario,
-                Email = x.Email,
-                codigo = x.Codigo,
-                FechaDeActualizacionClave = x.Fecha,
-                Roles = x.Roles,
-                Contrasena = x.contrasena,
-                Activo = x.activo
-
-            });
-
-            return View(list);
+            return View(db.SIBOACUsuarios.ToList());
         }
 
 
@@ -92,7 +61,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Contrasena, Email, codigo, Activo ")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Contrasena, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios)
         {
             if (ModelState.IsValid)
             {
@@ -100,6 +69,7 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(sIBOACUsuarios.Id);
                 if (mensaje == "")
                 {
+                    sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
                     db.SaveChanges();
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -136,7 +106,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,Contrasena,Nombre,Usuario")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Edit([Bind(Include = "Id, Usuario, Email, Contrasena, Nombre, codigo, FechaDeActualizacionClave, Activo")] SIBOACUsuarios sIBOACUsuarios)
         {
             if (ModelState.IsValid)
             {
@@ -144,6 +114,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.IdUsuario = new SelectList(db.SIBOACUsuarios, "Id", "Nombre", sIBOACUsuarios.Id);
             return View(sIBOACUsuarios);
         }
 
