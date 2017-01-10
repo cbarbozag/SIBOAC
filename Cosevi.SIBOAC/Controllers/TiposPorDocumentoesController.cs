@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,7 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: TiposPorDocumentoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
 
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
@@ -49,8 +50,9 @@ namespace Cosevi.SIBOAC.Controllers
                 DescripcionCodigoTipoDocumento = x.DescripcionCodigoTipoDocumento,
                 DescripcionCodigoTipoDeIdentificacion = x.DescripcionCodigoTipoDeIdentificacion
             });
-
-            return View(list);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));            
         }
 
         // GET: TiposPorDocumentoes/Details/5

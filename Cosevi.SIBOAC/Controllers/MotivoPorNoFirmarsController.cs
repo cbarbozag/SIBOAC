@@ -7,19 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class MotivoPorNoFirmarsController : Controller
+    public class MotivoPorNoFirmarsController : BaseController<MotivoPorNoFirmar>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: MotivoPorNoFirmars
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.MotivoPorNoFirmars.ToList());
+            
+            var list = db.MotivoPorNoFirmars.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(string id)
@@ -68,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(motivoPorNoFirmar, "I", "MOTIVONOFIRMA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +114,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var motivoPorNoFirmarAntes = db.MotivoPorNoFirmars.AsNoTracking().Where(d => d.Id == motivoPorNoFirmar.Id).FirstOrDefault();
                 db.Entry(motivoPorNoFirmar).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(motivoPorNoFirmar, "U", "MOTIVONOFIRMA", motivoPorNoFirmarAntes);
                 return RedirectToAction("Index");
             }
             return View(motivoPorNoFirmar);
@@ -135,11 +144,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             MotivoPorNoFirmar motivoPorNoFirmar = db.MotivoPorNoFirmars.Find(id);
+            MotivoPorNoFirmar motivoPorNoFirmarAntes = ObtenerCopia(motivoPorNoFirmar);
             if (motivoPorNoFirmar.Estado == "I")
                 motivoPorNoFirmar.Estado = "A";
             else
                 motivoPorNoFirmar.Estado = "I";
             db.SaveChanges();
+            Bitacora(motivoPorNoFirmar, "U", "MOTIVONOFIRMA", motivoPorNoFirmarAntes);
             return RedirectToAction("Index");
         }
 
@@ -166,6 +177,7 @@ namespace Cosevi.SIBOAC.Controllers
             MotivoPorNoFirmar motivoPorNoFirmar = db.MotivoPorNoFirmars.Find(id);
             db.MotivoPorNoFirmars.Remove(motivoPorNoFirmar);
             db.SaveChanges();
+            Bitacora(motivoPorNoFirmar, "D", "MOTIVONOFIRMA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

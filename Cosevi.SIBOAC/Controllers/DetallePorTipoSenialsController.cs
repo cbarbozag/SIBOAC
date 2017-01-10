@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,7 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DetallePorTipoSenials
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -45,7 +46,9 @@ namespace Cosevi.SIBOAC.Controllers
                        DescripcionCodigoTipoSenial = x.DescripcionCodigoTipoSenial
 
                    });
-            return View(list);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));            
         }
 
         // GET: DetallePorTipoSenials/Details/5
@@ -128,6 +131,12 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsTipoSenial = db.TIPOSEÑALEXISTE.Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboTipoSenialExiste = itemsTipoSenial;
                     return View(detallePorTipoSenial);
                 }
             }

@@ -7,18 +7,52 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class MantenimientoUsuariosController : Controller
+    public class MantenimientoUsuariosController : BaseController<SIBOACUsuarios>
     {
-        private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
+        
 
         // GET: MantenimientoUsuarios
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+            var list =
+                (
+            from usu in db.SIBOACUsuarios
+            join rol in db.SIBOACRoles on new { Id = usu.Id } equals new { Id = rol.Id }
+            select new
+            {
+                Id = usu.Id,
+                Nombre = usu.Nombre,
+                Usuario = usu.Usuario,
+                Email = usu.Email,
+                Codigo = usu.codigo,
+                Fecha = usu.FechaDeActualizacionClave,
+                contrasena = usu.Contrasena,
+                Roles = rol.Nombre,
+                activo = rol.Activo
+
+            }).ToList()
+            .Select(x => new SIBOACUsuarios
+            {
+                Id = x.Id,
+                Nombre = x.Nombre,
+                Usuario = x.Usuario,
+                Email = x.Email,
+                codigo = x.Codigo,
+                FechaDeActualizacionClave = x.Fecha,
+                Roles = x.Roles,
+                Contrasena = x.contrasena,
+                Activo = x.activo
+
+            });
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));            
             return View(db.SIBOACUsuarios.ToList());
         }
 
@@ -71,6 +105,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
                     db.SaveChanges();
+                    Bitacora(sIBOACUsuarios, "I", "SIBOACUsuarios");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -110,8 +145,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var sIBOACUsuariosAntes = db.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == sIBOACUsuarios.Id).FirstOrDefault();
                 db.Entry(sIBOACUsuarios).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
                 return RedirectToAction("Index");
             }
 
@@ -140,12 +177,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuariosAntes = ObtenerCopia(sIBOACUsuarios);
             if (sIBOACUsuarios.Activo == false)
 
                 sIBOACUsuarios.Activo = true;
             else
                 sIBOACUsuarios.Activo = false;
             db.SaveChanges();
+            Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
             return RedirectToAction("Index");
         }
 

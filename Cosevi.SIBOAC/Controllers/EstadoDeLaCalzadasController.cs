@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
         
 
         // GET: EstadoDeLaCalzadas
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.ESTCALZADA.ToList());
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+
+            var list = db.ESTCALZADA.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(estadoDeLaCalzada, "I");
+                    Bitacora(estadoDeLaCalzada, "I", "ESTCALZADA");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var estadoDeLaCalzadaAntes = db.ESTCALZADA.AsNoTracking().Where(d => d.Id == estadoDeLaCalzada.Id).FirstOrDefault();
                 db.Entry(estadoDeLaCalzada).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(estadoDeLaCalzada, "U", estadoDeLaCalzadaAntes);
+                Bitacora(estadoDeLaCalzada, "U", "ESTCALZADA", estadoDeLaCalzadaAntes);
                 return RedirectToAction("Index");
             }
             return View(estadoDeLaCalzada);
@@ -146,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 estadoDeLaCalzada.Estado = "I";
             db.SaveChanges();
-            Bitacora(estadoDeLaCalzada, "U", estadoDeLaCalzadaAntes);
+            Bitacora(estadoDeLaCalzada, "U", "ESTCALZADA", estadoDeLaCalzadaAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             EstadoDeLaCalzada estadoDeLaCalzada = db.ESTCALZADA.Find(id);
             db.ESTCALZADA.Remove(estadoDeLaCalzada);
             db.SaveChanges();
-            Bitacora(estadoDeLaCalzada, "D");
+            Bitacora(estadoDeLaCalzada, "D", "ESTCALZADA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

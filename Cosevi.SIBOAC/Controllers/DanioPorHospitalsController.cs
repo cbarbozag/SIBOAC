@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,10 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DanioPorHospitals
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+
+            //var sCanton = db.CANTON.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            
 
             var list =
             (from dh in db.DAÑOXHOSPITAL
@@ -48,7 +55,7 @@ namespace Cosevi.SIBOAC.Controllers
                  DescripcionDanio = x.DescripcionDanio
             });
 
-            return View(list);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: DanioPorHospitals/Details/5
@@ -144,6 +151,18 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsHospital = db.HOSPITAL.Select(o => new SelectListItem
+                    {
+                        Value = o.Id,
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboHospital = itemsHospital;
+                    IEnumerable<SelectListItem> itemsDannio = db.DAÑO.Select(c => new SelectListItem
+                     {
+                         Value = c.Id.ToString(),
+                         Text = c.Descripcion
+                     });
+                    ViewBag.ComboDannio = itemsDannio;
                     return View(danioPorHospital);
                 }
             }
@@ -360,8 +379,8 @@ namespace Cosevi.SIBOAC.Controllers
             if (exist)
             {
                 mensaje = "El registro con los siguientes datos ya se encuentra registrado:" +
-                           " código de Hospital" + IdHospital +
-                           ", código Daño" + IdDanio;
+                           " código de Hospital " + IdHospital +
+                           ", código Daño " + IdDanio;
 
             }
             return mensaje;

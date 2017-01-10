@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -14,11 +15,16 @@ namespace Cosevi.SIBOAC.Controllers
     {
 
         // GET: Delegacions
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DELEGACION.ToList());
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+
+            var lsit = db.DELEGACION.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(lsit.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(string id)
@@ -67,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(delegacion, "I");
+                    Bitacora(delegacion, "I", "DELEGACION");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                 db.Entry(delegacion).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(delegacion, "U", delegacionAntes);
+                Bitacora(delegacion, "U", "DELEGACION", delegacionAntes);
                 return RedirectToAction("Index");
             }
             return View(delegacion);
@@ -146,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 delegacion.Estado = "I";
             db.SaveChanges();
-            Bitacora(delegacion, "U", delegacionAntes);
+            Bitacora(delegacion, "U", "DELEGACION", delegacionAntes);
             return RedirectToAction("Index");
         }
 
@@ -174,7 +180,7 @@ namespace Cosevi.SIBOAC.Controllers
             Delegacion delegacion = db.DELEGACION.Find(id);
             db.DELEGACION.Remove(delegacion);
             db.SaveChanges();
-            Bitacora(delegacion, "D");
+            Bitacora(delegacion, "D", "DELEGACION");
             return RedirectToAction("Index");
         }
 

@@ -7,19 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class InconsistenciasController : Controller
+    public class InconsistenciasController : BaseController<Inconsistencia>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Inconsistencias
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.INCONSISTENCIA.ToList());
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+
+            var list = db.INCONSISTENCIA.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(inconsistencia, "I", "INCONSISTENCIA");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -109,8 +116,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var inconsistenciaAntes = db.INCONSISTENCIA.AsNoTracking().Where(d => d.Id == inconsistencia.Id).FirstOrDefault();
                 db.Entry(inconsistencia).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(inconsistencia, "U", "INCONSISTENCIA", inconsistenciaAntes);
                 return RedirectToAction("Index");
             }
             return View(inconsistencia);
@@ -139,6 +148,7 @@ namespace Cosevi.SIBOAC.Controllers
             Inconsistencia inconsistencia = db.INCONSISTENCIA.Find(id);
             db.INCONSISTENCIA.Remove(inconsistencia);
             db.SaveChanges();
+            Bitacora(inconsistencia, "D", "INCONSISTENCIA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

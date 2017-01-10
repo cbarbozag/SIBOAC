@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,7 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: RolDePersonaPorVehiculoes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -40,8 +41,11 @@ namespace Cosevi.SIBOAC.Controllers
                 FechaDeInicio = x.FechaDeInicio,
                 FechaDeFin = x.FechaDeFin,
                 DescripcionRolPersona = x.DescripcionRolPersona
-            });
-            return View(list);
+            });                        
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(string id)
@@ -131,15 +135,15 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
-                    //IEnumerable<SelectListItem> itemsRolPersona = db.ROLPERSONA
-                    //                .Select(o => new SelectListItem
-                    //                {
-                    //                    Value = o.Id,
-                    //                    Text = o.Descripcion
-                    //                });
-                    //TempData["ComboRolPersona"] = itemsRolPersona;
-                    //ViewBag.ComboRolPersona = itemsRolPersona;
-                    
+                    IEnumerable<SelectListItem> itemsRolPersona = db.ROLPERSONA
+                                    .Select(o => new SelectListItem
+                                    {
+                                        Value = o.Id,
+                                        Text = o.Descripcion
+                                    });
+                    TempData["ComboRolPersona"] = itemsRolPersona;
+                    ViewBag.ComboRolPersona = itemsRolPersona;
+
                     return View(rolDePersonaPorVehiculo);
                 }
             }

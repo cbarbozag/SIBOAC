@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,15 @@ namespace Cosevi.SIBOAC.Controllers
         
 
         // GET: Direccions
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.DIRECCION.ToList());
+            var list = db.DIRECCION.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(direccion, "I");
+                    Bitacora(direccion, "I", "DIRECCION");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var direccionAntes = db.DIRECCION.AsNoTracking().Where(d => d.Id == direccion.Id).FirstOrDefault();
                 db.Entry(direccion).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(direccion, "U", direccionAntes);
+                Bitacora(direccion, "U", "DIRECCION", direccionAntes);
                 return RedirectToAction("Index");
             }
             return View(direccion);
@@ -146,7 +151,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 direccion.Estado = "I";
             db.SaveChanges();
-            Bitacora(direccion, "U", direccionAntes);
+            Bitacora(direccion, "U", "DIRECCION", direccionAntes);
             return RedirectToAction("Index");
         }
 
@@ -174,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             Direccion direccion = db.DIRECCION.Find(id);
             db.DIRECCION.Remove(direccion);
             db.SaveChanges();
-            Bitacora(direccion, "D");
+            Bitacora(direccion, "D", "DIRECCION");
             return RedirectToAction("Index");
         }
 

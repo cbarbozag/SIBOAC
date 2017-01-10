@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
         
 
         // GET: EstadoCivils
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.EstadoCivil.ToList());
+                        
+            var list = db.EstadoCivil.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(string id)
@@ -68,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(estadoCivil, "I");
+                    Bitacora(estadoCivil, "I", "ESTCIVIL");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var estadoCivilAntes = db.EstadoCivil.AsNoTracking().Where(d => d.Id == estadoCivil.Id).FirstOrDefault();
                 db.Entry(estadoCivil).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(estadoCivil, "U", estadoCivilAntes);
+                Bitacora(estadoCivil, "U", "ESTCIVIL", estadoCivilAntes);
                 return RedirectToAction("Index");
             }
             return View(estadoCivil);
@@ -146,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 estadoCivil.Estado = "I";
             db.SaveChanges();
-            Bitacora(estadoCivil, "U", estadoCivilAntes);
+            Bitacora(estadoCivil, "U", "ESTCIVIL", estadoCivilAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             EstadoCivil estadoCivil = db.EstadoCivil.Find(id);
             db.EstadoCivil.Remove(estadoCivil);
             db.SaveChanges();
-            Bitacora(estadoCivil, "D");
+            Bitacora(estadoCivil, "D", "ESTCIVIL");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

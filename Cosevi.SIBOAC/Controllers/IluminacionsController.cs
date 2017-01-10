@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
         
 
         // GET: Iluminacions
-        public ActionResult Index()
+        public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.Iluminacion.ToList());
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+
+            var list = db.Iluminacion.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(iluminacion, "I");
+                    Bitacora(iluminacion, "I", "ILUMINACION");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -113,7 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var iluminacionAntes = db.Iluminacion.AsNoTracking().Where(d => d.Id == iluminacion.Id).FirstOrDefault();
                 db.Entry(iluminacion).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(iluminacion, "U", iluminacionAntes);
+                Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
                 return RedirectToAction("Index");
             }
             return View(iluminacion);
@@ -146,7 +152,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 iluminacion.Estado = "I";
             db.SaveChanges();
-            Bitacora(iluminacion, "U", iluminacionAntes);
+            Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,7 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             Iluminacion iluminacion = db.Iluminacion.Find(id);
             db.Iluminacion.Remove(iluminacion);
             db.SaveChanges();
-            Bitacora(iluminacion, "D");
+            Bitacora(iluminacion, "D", "ILUMINACION");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

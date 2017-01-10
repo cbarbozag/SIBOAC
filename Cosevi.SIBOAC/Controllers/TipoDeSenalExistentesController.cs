@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: TipoDeSenalExistentes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.TIPOSEÑALEXISTE.ToList());
+
+            var list = db.TIPOSEÑALEXISTE.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
 

@@ -7,19 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ManiobrasController : Controller
+    public class ManiobrasController : BaseController<Maniobra>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Maniobras
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.Maniobra.ToList());
+            
+            var list = db.Maniobra.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
         public string Verificar(int id)
@@ -68,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(maniobra, "I", "MANIOBRA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -107,8 +114,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var maniobraAntes = db.Maniobra.AsNoTracking().Where(d => d.Id == maniobra.Id).FirstOrDefault();
                 db.Entry(maniobra).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(maniobra, "U", "MANIOBRA", maniobraAntes);
                 return RedirectToAction("Index");
             }
             return View(maniobra);
@@ -135,11 +144,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Maniobra maniobra = db.Maniobra.Find(id);
+            Maniobra maniobraAntes = ObtenerCopia(maniobra);
             if (maniobra.Estado == "I")
                 maniobra.Estado = "A";
             else
                 maniobra.Estado = "I";
             db.SaveChanges();
+            Bitacora(maniobra, "U", "MANIOBRA", maniobraAntes);
             return RedirectToAction("Index");
         }
 
@@ -166,6 +177,7 @@ namespace Cosevi.SIBOAC.Controllers
             Maniobra maniobra = db.Maniobra.Find(id);
             db.Maniobra.Remove(maniobra);
             db.SaveChanges();
+            Bitacora(maniobra, "D", "MANIOBRA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

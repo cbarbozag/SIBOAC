@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -15,11 +16,16 @@ namespace Cosevi.SIBOAC.Controllers
         
 
         // GET: HorasLaborales
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            return View(db.HORASLABORALES.ToList());
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+
+            var list = db.HORASLABORALES.ToList();
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
         }
 
 
@@ -72,7 +78,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(horasLaborales, "I");
+                    Bitacora(horasLaborales, "I", "HORASLABORALES");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -118,7 +124,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var horasLaboralesAntes = db.HORASLABORALES.AsNoTracking().Where(d => d.Id == horasLaborales.Id).FirstOrDefault();
                 db.Entry(horasLaborales).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(horasLaborales, "U", horasLaboralesAntes);
+                Bitacora(horasLaborales, "U", "HORASLABORALES", horasLaboralesAntes);
                 return RedirectToAction("Index");
             }
             return View(horasLaborales);
@@ -151,7 +157,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 horasLaborales.Estado = "A";
             db.SaveChanges();
-            Bitacora(horasLaborales, "U", horasLaboralesAntes);
+            Bitacora(horasLaborales, "U", "HORASLABORALES", horasLaboralesAntes);
             return RedirectToAction("Index");
         }
 
@@ -178,7 +184,7 @@ namespace Cosevi.SIBOAC.Controllers
             HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
             db.HORASLABORALES.Remove(horasLaborales);
             db.SaveChanges();
-            Bitacora(horasLaborales, "D");
+            Bitacora(horasLaborales, "D", "HORASLABORALES");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
