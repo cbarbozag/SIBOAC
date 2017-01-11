@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Editar</h2>
@@ -41,6 +42,33 @@
             </div>
         </div>
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Contrasena, "Contrasena", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Contrasena)
+                @Html.EditorFor(model => model.Contrasena, "Contrasena", new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+
+            </div>
+        </div>
+
+         <div class="form-group">
+            @Html.LabelFor(model => model.codigo, "codigo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.codigo)
+                @Html.EditorFor(model => model.codigo, "codigo", new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Activo, "Activo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Activo)
+                @Html.EditorFor(model => model.Activo, "Activo", new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+
+            </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

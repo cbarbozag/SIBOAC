@@ -53,6 +53,7 @@ namespace Cosevi.SIBOAC.Controllers
             int pageSize = 20;
             int pageNumber = (page ?? 1);
             return View(list.ToPagedList(pageNumber, pageSize));            
+            return View(db.SIBOACUsuarios.ToList());
         }
 
 
@@ -94,7 +95,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Contrasena, Email, codigo, Activo ")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Contrasena, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios)
         {
             if (ModelState.IsValid)
             {
@@ -102,6 +103,7 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(sIBOACUsuarios.Id);
                 if (mensaje == "")
                 {
+                    sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
                     db.SaveChanges();
                     Bitacora(sIBOACUsuarios, "I", "SIBOACUsuarios");
                     TempData["Type"] = "success";
@@ -139,7 +141,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,Contrasena,Nombre,Usuario")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Edit([Bind(Include = "Id, Usuario, Email, Contrasena, Nombre, codigo, FechaDeActualizacionClave, Activo")] SIBOACUsuarios sIBOACUsuarios)
         {
             if (ModelState.IsValid)
             {
@@ -149,6 +151,8 @@ namespace Cosevi.SIBOAC.Controllers
                 Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
                 return RedirectToAction("Index");
             }
+
+            ViewBag.IdUsuario = new SelectList(db.SIBOACUsuarios, "Id", "Nombre", sIBOACUsuarios.Id);
             return View(sIBOACUsuarios);
         }
 
