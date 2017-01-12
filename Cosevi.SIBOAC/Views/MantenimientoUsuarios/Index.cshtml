@@ -8,7 +8,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Usuarios por Rol</h2>
+<h2>Lista de Usuarios</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
@@ -32,12 +32,12 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.First().Activo)
-            @Html.DisplayNameFor(model => model.FechaDeActualizacionClave)
+            @Html.DisplayNameFor(model => model.First().FechaDeActualizacionClave)
         </th>
-
+        
         <th>
-            @Html.DisplayNameFor(model => model.First().Roles)
+            @Html.DisplayNameFor(model => model.First().Activo)
+           
         </th>
 
         <th></th>
@@ -63,19 +63,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
-
-            
+  
         <td>
             @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
         </td>
 
-        <td>
+        <td>        
             @Html.DisplayFor(modelItem => item.Activo)
         </td>
 
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Roles)
-            </td>*@
 
         <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
@@ -122,10 +118,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Activo)
             </td>
-
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Roles)
-            </td>*@
 
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
