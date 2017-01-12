@@ -58,7 +58,7 @@
         $('#limpiarDelegacion').click(limpiarTodosDelegacion);
         $('#todosInspector').click(marcarTodosInspector);
         $('#limpiarInspector').click(limpiarTodosInspector);
-        $('#ExportaExcel').click(descargarExcel);
+       // $('#ExportaExcel').click(descargarExcel);
        // $('#ExportarPDF').click(descargarPDF);
     };
 
