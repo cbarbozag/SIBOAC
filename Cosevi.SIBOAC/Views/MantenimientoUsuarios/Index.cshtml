@@ -23,16 +23,16 @@
             @Html.DisplayNameFor(model => model.First().Usuario)
         </th>
 
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.First().Contrasena)
-        </th>
+        </th>*@
 
         <th>
             @Html.DisplayNameFor(model => model.First().Email)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.First().FechaDeActualizacionClave)
+            @Html.Label("Última actualización")
         </th>
         
         <th>
@@ -56,9 +56,9 @@
             @Html.DisplayFor(modelItem => item.Usuario)
         </td>
 
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Contrasena)
-        </td>
+        </td>*@
 
         <td>
             @Html.DisplayFor(modelItem => item.Email)
@@ -103,9 +103,9 @@
                 @Html.DisplayFor(modelItem => item.Usuario)
             </td>
 
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Contrasena)
-            </td>
+            </td>*@
 
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
