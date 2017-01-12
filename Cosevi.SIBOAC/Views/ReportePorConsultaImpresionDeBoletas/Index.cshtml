@@ -4,9 +4,23 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script type="text/javascript" src="~/Scripts/jspdf.js"></script>
 
-<script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+   
+    function run() {
+        var divContents = $("#seleccion").html();
+        var printWindow = window.open('', '', 'height=400,width=800');
+        printWindow.document.write('<html><head><title>DIV Contents</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(divContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+    };
 
     var tablesToExcel = (function () {
         var uri = 'data:application/vnd.ms-excel;base64,'
@@ -67,24 +81,7 @@
             document.body.removeChild(link);
         }
     })();
-    //]]> 
-
-
-    var doc = new jsPDF();
-    var specialElementHandlers = {
-        '#editor': function (element, renderer) {
-            return true;
-        }
-    };
-
-    function descargarPDF() {
-
-        doc.fromHTML($('#TablaContenido').html(), 15, 15, {
-            'width': 170,
-            'elementHandlers': specialElementHandlers
-        });
-        doc.save('sample-file.pdf');
-    };
+    //]]>
 
     function imprSelec(nombre)
     {
@@ -171,10 +168,9 @@
 <h4>Reporte</h4>
 <hr />
 
-
 <div class="panel panel-success">
     <div class="panel-heading">
-        <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
+        <input type="image" name="PDF" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" onclick="javascript:run()"/>
         <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png"  onclick="tablesToExcel(['TablaContenido'], ['Hoja1'], 'ReportePorConsultaDeImpresionDeBoletas.xls', 'Excel')"/>
         <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
     </div>
@@ -183,7 +179,41 @@
         </div>
     </div>
 
-      
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hello world</title>
+</head>
+<body>
+    <div id="Contenido">
+
+        <h1>Hello world</h1>
+
+    </div>
+    <button id="boton" name="Descargar" onclick="javascript: Descargar()"> Descargar</button>
+    <script type="text/javascript" src="~/Scripts/jspdf.debug.js"></script>
+    <script type="text/javascript">
+        function Descargar() {
+            var pdf = new jsPDF();
+
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+            pdf.fromHTML($('#seleccion').get(0), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+     
+            pdf.save('prueba.pdf');
+        };
+       
+    </script>
+</body>
+</html>
+
  @section Scripts {
    @Scripts.Render("~/bundles/ReportePorConsultaImpresionDeBoletas")
 }
