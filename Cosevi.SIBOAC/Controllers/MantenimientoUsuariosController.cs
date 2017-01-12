@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
 using PagedList;
+using System.Data.Entity.Validation;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -34,7 +35,7 @@ namespace Cosevi.SIBOAC.Controllers
                 Fecha = usu.FechaDeActualizacionClave,
                 contrasena = usu.Contrasena,
                 Roles = rol.Nombre,
-                activo = rol.Activo
+                Activo = usu.Activo
 
             }).ToList()
             .Select(x => new SIBOACUsuarios
@@ -47,13 +48,13 @@ namespace Cosevi.SIBOAC.Controllers
                 FechaDeActualizacionClave = x.Fecha,
                 Roles = x.Roles,
                 Contrasena = x.contrasena,
-                Activo = x.activo
+                Activo = x.Activo
 
             });
             int pageSize = 20;
             int pageNumber = (page ?? 1);
-            return View(list.ToPagedList(pageNumber, pageSize));            
-            return View(db.SIBOACUsuarios.ToList());
+            return View(db.SIBOACUsuarios.ToList().ToPagedList(pageNumber, pageSize));            
+            //return View(db.SIBOACUsuarios.ToList());
         }
 
 
@@ -146,8 +147,33 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 var sIBOACUsuariosAntes = db.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == sIBOACUsuarios.Id).FirstOrDefault();
+                sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
+                sIBOACUsuarios.Contrasena = sIBOACUsuariosAntes.Contrasena;
+                sIBOACUsuarios.Activo = sIBOACUsuariosAntes.Activo;
                 db.Entry(sIBOACUsuarios).State = EntityState.Modified;
-                db.SaveChanges();
+
+                try
+                {
+                    // Your code...
+                    // Could also be before try if you know the exception occurs in SaveChanges
+
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
+               
                 Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
                 return RedirectToAction("Index");
             }

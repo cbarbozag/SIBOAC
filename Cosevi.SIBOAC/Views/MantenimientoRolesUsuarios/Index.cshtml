@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Id)
         </th>
 
         <th>
             @Html.DisplayNameFor(model => model.IdUsuario)
-        </th>
+        </th>*@
 
         <th>
             @Html.DisplayNameFor(model => model.NombreUsuario)
@@ -35,13 +35,13 @@
 @foreach (var item in Model) {
     <tr>
 
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Id)
         </td>
         
         <td>
             @Html.DisplayFor(modelItem => item.IdUsuario)
-        </td>
+        </td>*@
 
         <td>
             @Html.DisplayFor(modelItem => item.NombreUsuario)
@@ -54,7 +54,7 @@
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Quitar Rol", "Delete", new { id=item.Id })
+            @Html.ActionLink("Eliminar Rol", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

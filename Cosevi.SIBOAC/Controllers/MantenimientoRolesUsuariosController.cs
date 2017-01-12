@@ -159,13 +159,14 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: MantenimientoRolesUsuarios/Delete/5
-        public ActionResult Delete(int? IdUsuario, int? IdRol)
+        public ActionResult Delete(int? id)
         {
-            if (IdUsuario == null || IdRol == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACRolesDeUsuarios sIBOACRolesDeUsuarios = db.SIBOACRolesDeUsuarios.Find(IdUsuario, IdRol);
+
+            SIBOACRolesDeUsuarios sIBOACRolesDeUsuarios = db.SIBOACRolesDeUsuarios.Find(id);
             if (sIBOACRolesDeUsuarios == null)
             {
                 return HttpNotFound();
@@ -176,9 +177,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: MantenimientoRolesUsuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int IdUsuario, int IdRol)
+        public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACRolesDeUsuarios sIBOACRolesDeUsuarios = db.SIBOACRolesDeUsuarios.Find(IdUsuario, IdRol);
+            SIBOACRolesDeUsuarios sIBOACRolesDeUsuarios = db.SIBOACRolesDeUsuarios.Find(id);
             db.SIBOACRolesDeUsuarios.Remove(sIBOACRolesDeUsuarios);
             db.SaveChanges();
             return RedirectToAction("Index");
