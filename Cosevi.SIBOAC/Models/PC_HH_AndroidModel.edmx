@@ -1198,6 +1198,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetBitacoraData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="FechaFin" Type="datetime" Mode="In" />
+          <Parameter Name="NombreTabla" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Operacion" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
@@ -1477,6 +1484,13 @@
             <End Role="SIBOACUsuarios" EntitySet="SIBOACUsuarios" />
             <End Role="SIBOACRolesDeUsuarios" EntitySet="SIBOACRolesDeUsuarios" />
           </AssociationSet>
+          <FunctionImport Name="GetBitacoraData" EntitySet="BitacoraSIBOAC" ReturnType="Collection(PC_HH_AndroidModel.BitacoraSIBOAC)">
+            <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="NombreTabla" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Operacion" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3819,6 +3833,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetBitacoraData" FunctionName="PC_HH_AndroidModel.Store.GetBitacoraData">
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

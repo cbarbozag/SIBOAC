@@ -12,6 +12,8 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PC_HH_AndroidEntities : DbContext
     {
@@ -118,5 +120,55 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<SIBOACRoles> SIBOACRoles { get; set; }
         public virtual DbSet<SIBOACRolesDeUsuarios> SIBOACRolesDeUsuarios { get; set; }
         public virtual DbSet<SIBOACUsuarios> SIBOACUsuarios { get; set; }
+    
+        public virtual ObjectResult<BitacoraSIBOAC> GetBitacoraData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string nombreTabla, string usuario, string operacion)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var nombreTablaParameter = nombreTabla != null ?
+                new ObjectParameter("NombreTabla", nombreTabla) :
+                new ObjectParameter("NombreTabla", typeof(string));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var operacionParameter = operacion != null ?
+                new ObjectParameter("Operacion", operacion) :
+                new ObjectParameter("Operacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BitacoraSIBOAC>("GetBitacoraData", fechaInicioParameter, fechaFinParameter, nombreTablaParameter, usuarioParameter, operacionParameter);
+        }
+    
+        public virtual ObjectResult<BitacoraSIBOAC> GetBitacoraData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string nombreTabla, string usuario, string operacion, MergeOption mergeOption)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var nombreTablaParameter = nombreTabla != null ?
+                new ObjectParameter("NombreTabla", nombreTabla) :
+                new ObjectParameter("NombreTabla", typeof(string));
+    
+            var usuarioParameter = usuario != null ?
+                new ObjectParameter("Usuario", usuario) :
+                new ObjectParameter("Usuario", typeof(string));
+    
+            var operacionParameter = operacion != null ?
+                new ObjectParameter("Operacion", operacion) :
+                new ObjectParameter("Operacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BitacoraSIBOAC>("GetBitacoraData", mergeOption, fechaInicioParameter, fechaFinParameter, nombreTablaParameter, usuarioParameter, operacionParameter);
+        }
     }
 }

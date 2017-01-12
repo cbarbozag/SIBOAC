@@ -284,6 +284,7 @@
     <Compile Include="Controllers\PlantillasController.cs" />
     <Compile Include="Controllers\ProvinciasController.cs" />
     <Compile Include="Controllers\ReimpresionDeBoletasController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\ReportePorConsultaImpresionDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeInspectorController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
@@ -1405,6 +1406,8 @@
     <Content Include="Views\MantenimientoRolesUsuarios\Details.cshtml" />
     <Content Include="Views\MantenimientoRolesUsuarios\Edit.cshtml" />
     <Content Include="Views\MantenimientoRolesUsuarios\Index.cshtml" />
+    <Content Include="Views\Reporte\Index.cshtml" />
+    <Content Include="Views\Reporte\_Bitacora.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
