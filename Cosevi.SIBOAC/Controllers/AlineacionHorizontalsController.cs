@@ -12,7 +12,6 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    [AccessDeniedAuthorize(Roles = "Administrador")]
     public class AlineacionHorizontalsController : BaseController<AlineacionHorizontal>
     {
         // GET: AlineacionHorizontals
