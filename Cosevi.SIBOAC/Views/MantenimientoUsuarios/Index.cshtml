@@ -36,8 +36,7 @@
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.First().Activo)
-           
+            @Html.Label("Estado")
         </th>
 
         <th></th>
@@ -69,7 +68,7 @@
         </td>
 
         <td>        
-            @Html.DisplayFor(modelItem => item.Activo)
+            @Html.CheckBoxFor(modelItem => item.Activo.Value, new { @disabled = "disabled" })
         </td>
 
 
@@ -116,8 +115,9 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Activo)
+                @Html.CheckBoxFor(modelItem => item.Activo.Value, new { @disabled = "disabled" })
             </td>
+
 
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
