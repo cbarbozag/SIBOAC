@@ -126,8 +126,8 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: MantenimientoUsuarios/Edit/5
         public ActionResult Edit(int? id)
         {
-            var usuario = User.Identity.Name;
-            string mensaje = "No puede editar el usuario " + usuario;
+            //var usuario = User.Identity.Name;
+            //string mensaje = "No puede editar el usuario " + usuario;
 
                 if (id == null)
             {
@@ -139,18 +139,19 @@ namespace Cosevi.SIBOAC.Controllers
                 return HttpNotFound();
             }
 
-            if (sIBOACUsuarios.Usuario != usuario)
-            {
-                return View(sIBOACUsuarios);
-            }
-            else
-            {
-                //ViewBag.Type = "warning";
-                //ViewBag.Message = mensaje;
-                TempData["Type"] = "warning";
-                TempData["Message"] = mensaje;
-                return RedirectToAction("Index");
-            }
+            //if (sIBOACUsuarios.Usuario != usuario)
+            //{
+            //    return View(sIBOACUsuarios);
+            //}
+            //else
+            //{
+            //    //ViewBag.Type = "warning";
+            //    //ViewBag.Message = mensaje;
+            //    TempData["Type"] = "warning";
+            //    TempData["Message"] = mensaje;
+            //    return RedirectToAction("Index");
+            //}
+            return View(sIBOACUsuarios);
         }
 
         // POST: MantenimientoUsuarios/Edit/5

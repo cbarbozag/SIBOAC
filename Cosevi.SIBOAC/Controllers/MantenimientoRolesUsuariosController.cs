@@ -73,31 +73,32 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult Create()
         {
             ViewBag.IdRol = new SelectList(db.SIBOACRoles, "Id", "Nombre");
+            //ViewBag.Id = new SelectList(db.SIBOACUsuarios, "Id", "Id");
             //ViewBag.IdUsuario = new SelectList(db.SIBOACUsuarios, "Id", "IdUsuario");
 
 
             var list =
                 (from usu in db.SIBOACUsuarios
                  where (from rol in db.SIBOACRolesDeUsuarios
-
-                         select new
-                         { rol.IdUsuario }).Contains(new
-                         { IdUsuario = usu.Id })
-
+                        select new
+                        { rol.IdUsuario }).Contains(new
+                        { IdUsuario = usu.Id })
                  select new
                  {
                      Nombre = usu.Nombre,
-                     Id = usu.Id
-
+                     IdUsu = usu.Id,
+                     //Id = usu.Id
                  }).ToList()
-
-                .Select(x => new SIBOACRolesDeUsuarios
-                {
-                    NombreUsuario = x.Nombre,
-                    IdUsuario = x.Id
-                });
+                 
+                 .Select(x => new SIBOACRolesDeUsuarios
+                 {
+                     NombreUsuario = x.Nombre,
+                     IdUsuario = x.IdUsu,
+                     //Id = x.Id
+                 });
 
             ViewBag.ComboDeUsuariosSinRol = new SelectList(list, "IdUsuario", "NombreUsuario");
+            //ViewBag.Id = new SelectList(list, "Id", "Id");
             return View();
         }
 
@@ -109,11 +110,16 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,IdUsuario,IdRol")] SIBOACRolesDeUsuarios sIBOACRolesDeUsuarios)
         {
-            if (ModelState.IsValid)
+            var sIBOACRolesDeUsuariosAntes = db.SIBOACRolesDeUsuarios.AsNoTracking().Where(d => d.Id == sIBOACRolesDeUsuarios.Id).FirstOrDefault();
+
+            if (sIBOACRolesDeUsuarios.IdRol != sIBOACRolesDeUsuariosAntes.IdRol)
             {
-                db.SIBOACRolesDeUsuarios.Add(sIBOACRolesDeUsuarios);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.SIBOACRolesDeUsuarios.Add(sIBOACRolesDeUsuarios);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.IdRol = new SelectList(db.SIBOACRoles, "Id", "Nombre", sIBOACRolesDeUsuarios.IdRol);
