@@ -560,9 +560,6 @@
     <Compile Include="Models\SIBOACMenuOpciones.cs">
       <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SIBOACMenuOpcionesRol.cs">
-      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SIBOACRoles.cs">
       <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
