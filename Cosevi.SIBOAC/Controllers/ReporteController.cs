@@ -25,17 +25,46 @@ namespace Cosevi.SIBOAC.Controllers
             }
         }
 
-        public ActionResult GetBitacora(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario)
+        public ActionResult GetBitacora(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario, string esReporte)
         {
             var bitacora = GetBitacoraData(fechaInicio, fechaFin, nombreTabla, operacion, usuario);
 
-            return View("_Bitacora", bitacora);
+            if (esReporte == "true")
+            {
+                return ExportToExcel(bitacora);
+            }
+            else
+            {
+                return View("_Bitacora", bitacora);
+            }            
         }
 
         private List<BitacoraSIBOAC> GetBitacoraData(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario)
         {
             var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
             return bitacora;
+        }
+
+        public ActionResult ExportToExcel(object dataToExport)
+        {            
+            string xml = String.Empty;
+            System.Xml.XmlDocument xmlDoc = new System.Xml.XmlDocument();
+
+            System.Xml.Serialization.XmlSerializer xmlSerializer = new System.Xml.Serialization.XmlSerializer(dataToExport.GetType());
+
+            using (System.IO.MemoryStream xmlStream = new System.IO.MemoryStream())
+            {
+                xmlSerializer.Serialize(xmlStream, dataToExport);
+                xmlStream.Position = 0;
+                xmlDoc.Load(xmlStream);
+                xml = xmlDoc.InnerXml;
+            }
+
+            var fName = string.Format("Reporte{0}.xls", DateTime.Now.ToString("s"));
+
+            byte[] fileContents = System.Text.Encoding.UTF8.GetBytes(xml);
+
+            return File(fileContents, "application/vnd.ms-excel", fName);
         }
 
     }

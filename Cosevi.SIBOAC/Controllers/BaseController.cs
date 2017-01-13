@@ -1,6 +1,7 @@
 ﻿using Cosevi.SIBOAC.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -57,6 +58,13 @@ namespace Cosevi.SIBOAC.Controllers
             foreach (PropertyInfo propertyInfo in type.GetProperties())
             {
                 string name = propertyInfo.Name;
+                var isCollection = propertyInfo.PropertyType.GetInterfaces()
+                       .Any(x => x == typeof(IEnumerable))  && propertyInfo.PropertyType != typeof(String);
+
+                if (isCollection)
+                {
+                    continue;
+                }
 
                 object value = propertyInfo.GetValue(entidad, null);
 
@@ -68,7 +76,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         public T ObtenerCopia(T entidad)
         {
-            string cloneString = JsonConvert.SerializeObject(entidad);
+            string cloneString = JsonConvert.SerializeObject(entidad, Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             T clone = JsonConvert.DeserializeObject<T>(cloneString);
             return clone;
         }
