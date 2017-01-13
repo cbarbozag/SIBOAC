@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
 using PagedList;
 using System.Data.Entity.Validation;
+using System.Web.Security;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -58,13 +59,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
 
-        public string Verificar(int id)
+        public string Verificar(String usuario)
         {
             string mensaje = "";
-            bool exist = db.SIBOACUsuarios.Any(x => x.Id == id);
+            bool exist = db.SIBOACUsuarios.Any(x => x.Usuario == usuario);
             if (exist)
             {
-                mensaje = "El codigo " + id + " ya esta registrado";
+                mensaje = "El usuario " + usuario + " ya existe";
             }
             return mensaje;
         }
@@ -101,7 +102,7 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.SIBOACUsuarios.Add(sIBOACUsuarios);
-                string mensaje = Verificar(sIBOACUsuarios.Id);
+                string mensaje = Verificar(sIBOACUsuarios.Usuario.ToString());
                 if (mensaje == "")
                 {
                     sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
@@ -125,7 +126,10 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: MantenimientoUsuarios/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var usuario = User.Identity.Name;
+            string mensaje = "No puede editar el usuario " + usuario;
+
+                if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -134,7 +138,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
-            return View(sIBOACUsuarios);
+
+            if (sIBOACUsuarios.Usuario != usuario)
+            {
+                return View(sIBOACUsuarios);
+            }
+            else
+            {
+                //ViewBag.Type = "warning";
+                //ViewBag.Message = mensaje;
+                TempData["Type"] = "warning";
+                TempData["Message"] = mensaje;
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: MantenimientoUsuarios/Edit/5
@@ -144,39 +160,39 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id, Usuario, Email, Contrasena, Nombre, codigo, FechaDeActualizacionClave, Activo")] SIBOACUsuarios sIBOACUsuarios)
         {
-            if (ModelState.IsValid)
-            {
-                var sIBOACUsuariosAntes = db.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == sIBOACUsuarios.Id).FirstOrDefault();
-                sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
-                sIBOACUsuarios.Contrasena = sIBOACUsuariosAntes.Contrasena;
-                sIBOACUsuarios.Activo = sIBOACUsuariosAntes.Activo;
-                db.Entry(sIBOACUsuarios).State = EntityState.Modified;
-
-                try
+                if (ModelState.IsValid)
                 {
-                    // Your code...
-                    // Could also be before try if you know the exception occurs in SaveChanges
+                    var sIBOACUsuariosAntes = db.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == sIBOACUsuarios.Id).FirstOrDefault();
+                    sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
+                    sIBOACUsuarios.Contrasena = sIBOACUsuariosAntes.Contrasena;
+                    sIBOACUsuarios.Activo = sIBOACUsuariosAntes.Activo;
+                    db.Entry(sIBOACUsuarios).State = EntityState.Modified;
 
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    foreach (var eve in e.EntityValidationErrors)
+                    try
                     {
-                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                        foreach (var ve in eve.ValidationErrors)
-                        {
-                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                ve.PropertyName, ve.ErrorMessage);
-                        }
+                        // Your code...
+                        // Could also be before try if you know the exception occurs in SaveChanges
+
+                        db.SaveChanges();
                     }
-                    throw;
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                    ve.PropertyName, ve.ErrorMessage);
+                            }
+                        }
+                        throw;
+                    }
+
+                    Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
+                    return RedirectToAction("Index");
                 }
-               
-                Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
-                return RedirectToAction("Index");
-            }
 
             ViewBag.IdUsuario = new SelectList(db.SIBOACUsuarios, "Id", "Nombre", sIBOACUsuarios.Id);
             return View(sIBOACUsuarios);

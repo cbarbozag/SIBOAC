@@ -62,7 +62,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Activo)
+            @Html.DisplayFor(model => model.Activo.Value, new { @disabled = "disabled" })
         </dd>
 
     </dl>

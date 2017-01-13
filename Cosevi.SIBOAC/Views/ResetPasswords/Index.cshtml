@@ -57,7 +57,7 @@
             @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
         </td>
         <td>
-            @Html.CheckBoxFor(modelItem => item.Activo, new { @disabled = "disabled" })
+            @Html.CheckBoxFor(modelItem => item.Activo.Value, new { @disabled = "disabled" })
         </td>
         <td>            
             @Html.ActionLink("Reset Password", "Delete", new { id=item.Id })
