@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Models
 {
     public class SexoesController : BaseController<Sexo>
     {
-        
+
 
         // GET: Sexoes
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

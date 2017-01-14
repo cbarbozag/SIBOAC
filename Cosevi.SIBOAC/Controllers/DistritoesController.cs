@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class DistritoesController : BaseController<Distrito>
     {
-       
+
 
         // GET: Distritoes
+        [SessionExpire]
         public ActionResult Index( int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

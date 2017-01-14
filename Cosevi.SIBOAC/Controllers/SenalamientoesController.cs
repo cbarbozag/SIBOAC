@@ -13,9 +13,11 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class SenalamientoesController : BaseController<Senalamiento>
     {
-        
+
 
         // GET: Senalamientoes
+
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

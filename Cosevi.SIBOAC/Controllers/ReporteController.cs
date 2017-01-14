@@ -13,6 +13,7 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Reporte
+        [SessionExpire]
         public ActionResult Index(string id)
         {
             if (String.IsNullOrEmpty(id))

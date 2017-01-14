@@ -12,9 +12,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class ResetPasswordsController : BaseController<SIBOACUsuarios>
     {
-        
+
 
         // GET: ResetPasswords
+        [SessionExpire]
         public ActionResult Index()
         {
             return View(db.SIBOACUsuarios.ToList());

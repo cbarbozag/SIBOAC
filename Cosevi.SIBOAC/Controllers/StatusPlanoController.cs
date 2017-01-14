@@ -16,6 +16,8 @@ namespace Cosevi.SIBOAC.Controllers
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         // GET: StatusPlano
+
+        [SessionExpire]
         public ViewResult Index(string serie, string NumeroParte,string mensaje)
         {
             ViewBag.EstadoPlano = "";

@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class MotivoPorNoFirmarsController : BaseController<MotivoPorNoFirmar>
     {
-        
+
 
         // GET: MotivoPorNoFirmars
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

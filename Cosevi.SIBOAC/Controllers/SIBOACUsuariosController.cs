@@ -16,6 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
         private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
 
         // GET: SIBOACUsuarios
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

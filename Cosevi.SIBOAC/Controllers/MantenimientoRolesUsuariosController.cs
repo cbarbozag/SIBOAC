@@ -15,6 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
         private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
 
         // GET: MantenimientoRolesUsuarios
+        [SessionExpire]
         public ActionResult Index()
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

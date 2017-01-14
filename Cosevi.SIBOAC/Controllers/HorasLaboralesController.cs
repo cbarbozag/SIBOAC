@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class HorasLaboralesController : BaseController<HorasLaborales>
     {
-        
+
 
         // GET: HorasLaborales
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

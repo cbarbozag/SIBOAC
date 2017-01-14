@@ -13,7 +13,7 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class CarrilsController : BaseController<Carril>
     {
-   
+        [SessionExpire]
         public ViewResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

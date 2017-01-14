@@ -21,6 +21,7 @@ namespace Cosevi.SIBOAC.Controllers
         /// <param name="serie"></param>
         /// <param name="numero_boleta"></param>
         /// <returns></returns>
+        [SessionExpire]
         public ViewResult Index(int? serie, decimal? numero_boleta)
         {
             if (serie == null && numero_boleta == null)

@@ -15,9 +15,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class MantenimientoUsuariosController : BaseController<SIBOACUsuarios>
     {
-        
+
 
         // GET: MantenimientoUsuarios
+        [SessionExpire]
         public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
