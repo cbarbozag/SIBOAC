@@ -301,6 +301,7 @@
     <Compile Include="Controllers\RutasPorDistritosController.cs" />
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
+    <Compile Include="Controllers\SessionExpireAttribute.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
     <Compile Include="Controllers\ReportePorEstadoActualDelPlanoController.cs" />
     <Compile Include="Controllers\SIBOACMenuOpciones1Controller.cs" />
