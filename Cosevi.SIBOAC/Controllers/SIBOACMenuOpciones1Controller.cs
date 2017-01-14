@@ -128,7 +128,10 @@ namespace Cosevi.SIBOAC.Controllers
                 if (!ListaCheckbox.Contains(dato))
                     ListaCheckbox.Add(new SelectListItem { Selected = false, Value = item.Id.ToString(), Text = item.Nombre });
             }
+
+
             ViewBag.ListaMostrar = ListaCheckbox;
+
             return View(sIBOACMenuOpciones);
         }
 
@@ -137,22 +140,79 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MenuOpcionesID,Descripcion,URL,Estado,ParentID,Orden")] SIBOACMenuOpciones sIBOACMenuOpciones,[System.Web.Http.FromUri] string[] SIBOACRoles)
+        public ActionResult Edit(int? id, int MenuOpcionesID, string Descripcion, string URL, bool Estado, int ParentID, int Orden, [System.Web.Http.FromUri] string[] SIBOACRoles) //[Bind(Include = "MenuOpcionesID,Descripcion,URL,Estado,ParentID,Orden")] SIBOACMenuOpciones sIBOACMenuOpciones
         {
+            SIBOACMenuOpciones sIBOACMenuOpciones = new SIBOACMenuOpciones();
             if (ModelState.IsValid)
             {
-                //  sIBOACMenuOpciones.SIBOACRoles =ICollection<SIBOACRoles>Request["SIBOACRoles"];
-                var query_where2 = from a in db.SIBOACRoles.Where (t =>SIBOACRoles.Contains(t.Id.ToString()))
-                                   select a;
-                foreach (var i in query_where2)
+                sIBOACMenuOpciones = db.SIBOACMenuOpciones.Find(id);
+                if (sIBOACMenuOpciones == null)
                 {
-                    sIBOACMenuOpciones.SIBOACRoles.Add(i);
+                    return HttpNotFound();
+                }
+                sIBOACMenuOpciones.Estado = Estado;
+                sIBOACMenuOpciones.Descripcion =Descripcion;
+                sIBOACMenuOpciones.URL  = URL;
+                sIBOACMenuOpciones.ParentID  = ParentID;
+                sIBOACMenuOpciones.Orden  = Orden;
+                var rolesTem = sIBOACMenuOpciones.SIBOACRoles;
+
+                 var query_where2 = from a in db.SIBOACRoles.Where (t =>SIBOACRoles.Contains(t.Id.ToString()))
+                                   select a;
+
+
+                //if (query_where2.Count() == 0)
+                //{
+                //    sIBOACMenuOpciones.SIBOACRoles.Clear();
+                //}
+                //if (rolesTem.Count == 0 && query_where2.Count() > 0)
+                //{
+                //    foreach (var j in query_where2)
+                //    {
+                //        sIBOACMenuOpciones.SIBOACRoles.Add(j);
+                //    }
+                //}
+       
+                           
+                    for(int i=0; i<rolesTem.Count; i++)
+                    {
+                    if (query_where2.ToArray().Count() == 0)
+                    {
+                        sIBOACMenuOpciones.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                        i--;
+                    }
+                    else
+                    {
+                        if (query_where2.ToArray().Where(a => a.Id == rolesTem.ElementAt(i).Id).Count() == 0)
+                        {
+                            sIBOACMenuOpciones.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                            i--;
+                        }
+                    }
+                                          
+
+                    }
+                for (int i = 0; i < query_where2.ToArray().Count(); i++)
+                {
+                    if(rolesTem.Count()==0)
+                        sIBOACMenuOpciones.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                    else
+                    {
+                        if (rolesTem.Where(a => a.Id == query_where2.ToArray().ElementAt(i).Id).Count()==0)                        
+                        {
+                            sIBOACMenuOpciones.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                        }
+
+                    }
+                    
                 }
 
-              
-                //db.Entry(sIBOACMenuOpciones).State = EntityState.Modified;
+
+
+                db.Entry(sIBOACMenuOpciones).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
             return View(sIBOACMenuOpciones);
         }
