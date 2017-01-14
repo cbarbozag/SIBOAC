@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ProvinciasController : Controller
+    public class ProvinciasController : BaseController<Provincia>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Provincias
         public ActionResult Index(int? page)
@@ -75,6 +75,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(provincia, "I", "PROVINCIA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -114,8 +115,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var provinciaAntes = db.PROVINCIA.AsNoTracking().Where(d => d.Id == provincia.Id).FirstOrDefault();
                 db.Entry(provincia).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(provincia, "U", "PROVINCIA", provinciaAntes);
                 return RedirectToAction("Index");
             }
             return View(provincia);
@@ -142,11 +145,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Provincia provincia = db.PROVINCIA.Find(id);
+            Provincia provinciaAntes = ObtenerCopia(provincia);
             if (provincia.Estado == "I")
                 provincia.Estado = "A";
             else
                 provincia.Estado = "I";
             db.SaveChanges();
+            Bitacora(provincia, "U", "PROVINCIA", provinciaAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,6 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
             Provincia provincia = db.PROVINCIA.Find(id);
             db.PROVINCIA.Remove(provincia);
             db.SaveChanges();
+            Bitacora(provincia, "D", "PROVINCIA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

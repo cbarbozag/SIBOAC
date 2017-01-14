@@ -1,11 +1,11 @@
 ﻿@model Cosevi.SIBOAC.Models.SIBOACUsuarios
 
 @{
-    ViewBag.Title = "Reset";
+    ViewBag.Title = "Reiniciar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reset Password</h2>
+<h2>Reiniciar Contraseña</h2>
 
 <h3>¿Está seguro que desea cambiar el password?</h3>
 <div>
@@ -71,7 +71,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Reset" class="btn btn-warning" /> |
+            <input type="submit" value="Reiniciar" class="btn btn-warning" /> |
             @Html.ActionLink("Regresar a la lista", "Index")
         </div>
     }

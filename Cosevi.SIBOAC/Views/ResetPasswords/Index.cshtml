@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.SIBOACUsuarios>
 
 @{
-    ViewBag.Title = "Reset Password";
+    ViewBag.Title = "Reiniciar Contraseña";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reset Password</h2>
+<h2>Reiniciar Contraseña</h2>
 
 @*<p>
     @Html.ActionLink("Nuevo Usuario", "Create")
@@ -60,7 +60,7 @@
             @Html.CheckBoxFor(modelItem => item.Activo.Value, new { @disabled = "disabled" })
         </td>
         <td>            
-            @Html.ActionLink("Reset Password", "Delete", new { id=item.Id })
+            @Html.ActionLink("Reiniciar Contraseña", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
