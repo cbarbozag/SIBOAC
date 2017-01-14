@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RolDePersonaPorTipoDeIdentificacionDeVehiculoesController : Controller
+    public class RolDePersonaPorTipoDeIdentificacionDeVehiculoesController : BaseController<RolDePersonaPorTipoDeIdentificacionDeVehiculo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: RolDePersonaPorTipoDeIdentificacionDeVehiculoes
         public ActionResult Index(int? page)
@@ -141,7 +141,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(rolDePersonaPorTipoDeIdentificacionDeVehiculo, "I", "ROLPERSONAXTIPOIDEVEHICULO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -231,9 +231,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
              if (ModelState.IsValid)
              {
-                 db.Entry(rolDePersonaPorTipoDeIdentificacionDeVehiculo).State = EntityState.Modified;
+                var rolDePersonaPorTipoDeIdentificacionDeVehiculoAntes = db.ROLPERSONAXTIPOIDEVEHICULO.AsNoTracking().Where(d => d.CodigoDeIdentificacionVehiculo == rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo && d.CodigoDeRol== rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol).FirstOrDefault();
+                db.Entry(rolDePersonaPorTipoDeIdentificacionDeVehiculo).State = EntityState.Modified;
                  db.SaveChanges();
-                 return RedirectToAction("Index");
+                Bitacora(rolDePersonaPorTipoDeIdentificacionDeVehiculo, "U", "ROLPERSONAXTIPOIDEVEHICULO", rolDePersonaPorTipoDeIdentificacionDeVehiculoAntes);
+                return RedirectToAction("Index");
              }
 
             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
@@ -298,11 +300,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string CodRol, string CodVeh)
         {
             RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(CodRol, CodVeh);
+            RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculoAntes = ObtenerCopia(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
             if (rolDePersonaPorTipoDeIdentificacionDeVehiculo.Estado == "I")
                 rolDePersonaPorTipoDeIdentificacionDeVehiculo.Estado = "A";
             else
                 rolDePersonaPorTipoDeIdentificacionDeVehiculo.Estado = "I";
             db.SaveChanges();
+            Bitacora(rolDePersonaPorTipoDeIdentificacionDeVehiculo, "U", "ROLPERSONAXTIPOIDEVEHICULO", rolDePersonaPorTipoDeIdentificacionDeVehiculoAntes);
             return RedirectToAction("Index");
         }
 
@@ -364,6 +368,7 @@ namespace Cosevi.SIBOAC.Controllers
             RolDePersonaPorTipoDeIdentificacionDeVehiculo rolDePersonaPorTipoDeIdentificacionDeVehiculo = db.ROLPERSONAXTIPOIDEVEHICULO.Find(CodRol, CodVeh);
             db.ROLPERSONAXTIPOIDEVEHICULO.Remove(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
             db.SaveChanges();
+            Bitacora(rolDePersonaPorTipoDeIdentificacionDeVehiculo, "D", "ROLPERSONAXTIPOIDEVEHICULO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

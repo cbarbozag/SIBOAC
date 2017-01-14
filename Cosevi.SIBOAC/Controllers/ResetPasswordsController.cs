@@ -10,9 +10,9 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ResetPasswordsController : Controller
+    public class ResetPasswordsController : BaseController<SIBOACUsuarios>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: ResetPasswords
         public ActionResult Index()
@@ -54,7 +54,6 @@ namespace Cosevi.SIBOAC.Controllers
         //        db.SaveChanges();
         //        return RedirectToAction("Index");
         //    }
-
         //    return View(sIBOACUsuarios);
         //}
 
@@ -110,10 +109,12 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuariosAntes = ObtenerCopia(sIBOACUsuarios);
             var usuario = sIBOACUsuarios.Usuario;
             sIBOACUsuarios.Contrasena = usuario;
             sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
             db.SaveChanges();
+            Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
             return RedirectToAction("Index");
         }
 

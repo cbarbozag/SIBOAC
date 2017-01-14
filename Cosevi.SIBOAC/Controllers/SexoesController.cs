@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Cosevi.SIBOAC.Controllers;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,9 +11,9 @@ using System.Web.Mvc;
 
 namespace Cosevi.SIBOAC.Models
 {
-    public class SexoesController : Controller
+    public class SexoesController : BaseController<Sexo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Sexoes
         public ActionResult Index(int? page)
@@ -73,6 +74,7 @@ namespace Cosevi.SIBOAC.Models
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(sexo, "I", "SEXO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -110,10 +112,12 @@ namespace Cosevi.SIBOAC.Models
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Sexo sexo)
         {
+            var sexoAntes = db.SEXO.AsNoTracking().Where(d => d.Id == sexo.Id).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 db.Entry(sexo).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(sexo, "U", "SEXO", sexoAntes);
                 return RedirectToAction("Index");
             }
             return View(sexo);
@@ -140,11 +144,13 @@ namespace Cosevi.SIBOAC.Models
         public ActionResult DeleteConfirmed(string id)
         {
             Sexo sexo = db.SEXO.Find(id);
+            Sexo sexoAntes = ObtenerCopia(sexo);
             if (sexo.Estado == "I")
                 sexo.Estado = "A";
             else
                 sexo.Estado = "I";
             db.SaveChanges();
+            Bitacora(sexo, "U", "SEXO", sexoAntes);
             return RedirectToAction("Index");
         }
 
@@ -171,6 +177,7 @@ namespace Cosevi.SIBOAC.Models
             Sexo sexo = db.SEXO.Find(id);
             db.SEXO.Remove(sexo);
             db.SaveChanges();
+            Bitacora(sexo, "D", "SEXO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

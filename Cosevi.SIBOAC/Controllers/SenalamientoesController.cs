@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class SenalamientoesController : Controller
+    public class SenalamientoesController : BaseController<Senalamiento>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        
 
         // GET: Senalamientoes
         public ActionResult Index(int? page)
@@ -74,6 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(senalamiento, "I", "SEÑALAMIENTO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -111,10 +112,12 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Senalamiento senalamiento)
         {
+            var senalamientoAntes = db.SEÑALAMIENTO.AsNoTracking().Where(d => d.Id == senalamiento.Id).FirstOrDefault();
             if (ModelState.IsValid)
             {
                 db.Entry(senalamiento).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(senalamiento, "U", "SEÑALAMIENTO", senalamientoAntes);
                 return RedirectToAction("Index");
             }
             return View(senalamiento);
@@ -141,11 +144,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Senalamiento senalamiento = db.SEÑALAMIENTO.Find(id);
+            Senalamiento senalamientoAntes = ObtenerCopia(senalamiento);
             if (senalamiento.Estado == "I")
                 senalamiento.Estado = "A";
             else
                 senalamiento.Estado = "I";
             db.SaveChanges();
+            Bitacora(senalamiento, "U", "SEÑALAMIENTO", senalamientoAntes);
             return RedirectToAction("Index");
         }
 
@@ -172,6 +177,7 @@ namespace Cosevi.SIBOAC.Controllers
             Senalamiento senalamiento = db.SEÑALAMIENTO.Find(id);
             db.SEÑALAMIENTO.Remove(senalamiento);
             db.SaveChanges();
+            Bitacora(senalamiento, "D", "SEÑALAMIENTO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
