@@ -1382,10 +1382,7 @@
     <Content Include="Views\EstadoCivils\RealDelete.cshtml" />
     <Content Include="Views\Edads\RealDelete.cshtml" />
     <Content Include="Views\ReportePorConsultaImpresionDeBoletas\_MostrarReporteConsultaImpresionDeBoletas.cshtml" />
-    <Content Include="Views\ResetPasswords\Create.cshtml" />
     <Content Include="Views\ResetPasswords\Delete.cshtml" />
-    <Content Include="Views\ResetPasswords\Details.cshtml" />
-    <Content Include="Views\ResetPasswords\Edit.cshtml" />
     <Content Include="Views\ResetPasswords\Index.cshtml" />
     <Content Include="Views\ReportePorDescargaDeBoletas\_MostrarReportePorDescargaDeBoletas.cshtml" />
     <Content Include="Views\ReportePorDescargaDeInspector\_MostrarReportePorDescargaDelnspector.cshtml" />

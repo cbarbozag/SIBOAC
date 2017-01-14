@@ -20,74 +20,74 @@ namespace Cosevi.SIBOAC.Controllers
             return View(db.SIBOACUsuarios.ToList());
         }
 
-        // GET: ResetPasswords/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
-            if (sIBOACUsuarios == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sIBOACUsuarios);
-        }
+        //// GET: ResetPasswords/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+        //    if (sIBOACUsuarios == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(sIBOACUsuarios);
+        //}
 
-        // GET: ResetPasswords/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //// GET: ResetPasswords/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: ResetPasswords/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Usuario,Email,Contrasena,Nombre,codigo,FechaDeActualizacionClave,Activo")] SIBOACUsuarios sIBOACUsuarios)
-        {
-            if (ModelState.IsValid)
-            {
-                db.SIBOACUsuarios.Add(sIBOACUsuarios);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: ResetPasswords/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,Usuario,Email,Contrasena,Nombre,codigo,FechaDeActualizacionClave,Activo")] SIBOACUsuarios sIBOACUsuarios)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.SIBOACUsuarios.Add(sIBOACUsuarios);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(sIBOACUsuarios);
-        }
+        //    return View(sIBOACUsuarios);
+        //}
 
-        // GET: ResetPasswords/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
-            if (sIBOACUsuarios == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sIBOACUsuarios);
-        }
+        //// GET: ResetPasswords/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+        //    if (sIBOACUsuarios == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(sIBOACUsuarios);
+        //}
 
-        // POST: ResetPasswords/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Usuario,Email,Contrasena,Nombrecodigo,FechaDeActualizacionClave,Activo")] SIBOACUsuarios sIBOACUsuarios)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(sIBOACUsuarios).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(sIBOACUsuarios);
-        }
+        //// POST: ResetPasswords/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,Usuario,Email,Contrasena,Nombrecodigo,FechaDeActualizacionClave,Activo")] SIBOACUsuarios sIBOACUsuarios)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(sIBOACUsuarios).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(sIBOACUsuarios);
+        //}
 
         // GET: ResetPasswords/Delete/5
         public ActionResult Delete(int? id)
