@@ -68,6 +68,17 @@
         var type = '@ViewBag.type';
         var message = '@ViewBag.message';
     </script>
+    <script>
+        //session end
+        var sessionTimeoutWarning = @Session.Timeout -1;
+        var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+        setTimeout('SessionEnd()', sTimeout);
+
+        function SessionEnd() {
+            window.location = "/Account/Login/";
+        }
+    </script>
+
     @Scripts.Render("~/bundles/app")
 </body>
 </html>

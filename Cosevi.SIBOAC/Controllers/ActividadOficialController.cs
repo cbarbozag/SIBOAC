@@ -15,6 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         // GET: ActividadOficial
+        [SessionExpire]
         public ViewResult Index(string CodigoInspector, DateTime? FechaInicio, DateTime? FechaFin)
         {
             //faltan validaciones de mensajes.

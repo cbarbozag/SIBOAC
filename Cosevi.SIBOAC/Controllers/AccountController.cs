@@ -102,6 +102,8 @@ namespace Cosevi.SIBOAC.Controllers
                 var isValidUser = Membership.ValidateUser(model.Usuario, model.Contrasena);
                 if (isValidUser)
                 {
+                    Session["username"] = model.Usuario;
+
                     FormsAuthentication.SetAuthCookie(model.Usuario, model.Recordarme);
                     //if (Url.IsLocalUrl(returnUrl))
                     //{
