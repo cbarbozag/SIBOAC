@@ -303,6 +303,7 @@
     <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
     <Compile Include="Controllers\ReportePorEstadoActualDelPlanoController.cs" />
+    <Compile Include="Controllers\SIBOACMenuOpciones1Controller.cs" />
     <Compile Include="Controllers\SIBOACMenuOpcionesController.cs" />
     <Compile Include="Controllers\SIBOACUsuariosController.cs" />
     <Compile Include="Controllers\StatusPlanoController.cs" />
@@ -1411,6 +1412,11 @@
     <Content Include="Views\SIBOACMenuOpciones\Details.cshtml" />
     <Content Include="Views\SIBOACMenuOpciones\Edit.cshtml" />
     <Content Include="Views\SIBOACMenuOpciones\Index.cshtml" />
+    <Content Include="Views\SIBOACMenuOpciones1\Create.cshtml" />
+    <Content Include="Views\SIBOACMenuOpciones1\Delete.cshtml" />
+    <Content Include="Views\SIBOACMenuOpciones1\Details.cshtml" />
+    <Content Include="Views\SIBOACMenuOpciones1\Edit.cshtml" />
+    <Content Include="Views\SIBOACMenuOpciones1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />
