@@ -55,7 +55,37 @@
                 @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
             </div>
         </div>
+        <table align="center" width="98%">
+            <tr width="100%">
+                <td width="10%"></td>
+                <td>
+                    <div class="form-group">
+                        <div class="list-group-item tab-pane">
 
+                            @foreach (var i in ViewBag.ListaMostrar)
+                            {
+
+                                if (i.Selected == true)
+                                {
+                                    <input type="checkbox" name="SIBOACRoles" value="@i.Value" checked="checked" />
+                                    <label for="@i.Text">@i.Text</label>
+                                    <br />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="SIBOACRoles" value="@i.Value" />
+                                    <label for="@i.Text">@i.Text</label>
+                                    <br />
+                                }
+
+                            }
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-default" />

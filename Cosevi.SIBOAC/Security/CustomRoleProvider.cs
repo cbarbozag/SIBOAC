@@ -65,10 +65,8 @@ namespace Cosevi.SIBOAC.Security
             string[] roles = new string[] { };
             using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
             {
-                roles = (from a in sdb.SIBOACRoles
-                         join b in sdb.SIBOACRolesDeUsuarios on a.Id equals b.IdRol
-                         join c in sdb.SIBOACUsuarios on b.IdUsuario equals c.Id
-                         where c.Usuario.Equals(username)
+                roles = (from a in sdb.SIBOACUsuarios
+                         where a.Usuario.Equals(username)
                          select a.Nombre).ToArray<string>();
                 if (roles.Count() > 0)
                 {

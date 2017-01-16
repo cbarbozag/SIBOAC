@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SIBOACUsuarios()
         {
-            this.SIBOACRolesDeUsuarios = new HashSet<SIBOACRolesDeUsuarios>();
+            this.SIBOACRoles = new HashSet<SIBOACRoles>();
         }
     
         public int Id { get; set; }
@@ -26,11 +26,10 @@ namespace Cosevi.SIBOAC.Models
         public string Nombre { get; set; }
         public string Usuario { get; set; }
         public string codigo { get; set; }
-        public System.DateTime FechaDeActualizacionClave { get; set; }
-        public bool ? Activo { get; set; }
-        public string Roles { get; set; }
-
+        public DateTime FechaDeActualizacionClave { get; set; }
+        public bool? Activo { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SIBOACRolesDeUsuarios> SIBOACRolesDeUsuarios { get; set; }
+        public virtual ICollection<SIBOACRoles> SIBOACRoles { get; set; }
     }
 }

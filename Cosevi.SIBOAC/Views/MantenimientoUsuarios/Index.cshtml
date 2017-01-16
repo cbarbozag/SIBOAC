@@ -16,6 +16,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.First().Id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.First().Nombre)
         </th>
 
@@ -47,6 +50,9 @@
     if (item.Activo == false)
     {
         <tr class="warning">
+         <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
@@ -94,6 +100,9 @@
     {
 
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>

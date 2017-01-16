@@ -211,6 +211,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadPorOficialController.cs" />
     <Compile Include="Controllers\ActividadOficialController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
@@ -268,7 +269,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MantenimientoRolesController.cs" />
-    <Compile Include="Controllers\MantenimientoRolesUsuariosController.cs" />
+    <Compile Include="Controllers\MantenimientoTablasController.cs" />
     <Compile Include="Controllers\MantenimientoUsuariosController.cs" />
     <Compile Include="Controllers\MarcaDeAutomovilsController.cs" />
     <Compile Include="Controllers\NacionalidadsController.cs" />
@@ -564,9 +565,6 @@
     <Compile Include="Models\SIBOACRoles.cs">
       <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SIBOACRolesDeUsuarios.cs">
-      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SIBOACSecurityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -581,6 +579,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SIBOACTablas.cs">
+      <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SIBOACUsuarios.cs">
       <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
@@ -1420,6 +1421,13 @@
     <Content Include="Views\SIBOACMenuOpciones\Details.cshtml" />
     <Content Include="Views\SIBOACMenuOpciones\Edit.cshtml" />
     <Content Include="Views\SIBOACMenuOpciones\Index.cshtml" />
+    <Content Include="Views\ActividadPorOficial\_ListaActividad.cshtml" />
+    <Content Include="Views\ActividadPorOficial\Index.cshtml" />
+    <Content Include="Views\MantenimientoTablas\Create.cshtml" />
+    <Content Include="Views\MantenimientoTablas\Delete.cshtml" />
+    <Content Include="Views\MantenimientoTablas\Details.cshtml" />
+    <Content Include="Views\MantenimientoTablas\Edit.cshtml" />
+    <Content Include="Views\MantenimientoTablas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Release\" />

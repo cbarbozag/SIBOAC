@@ -15,7 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class MantenimientoUsuariosController : BaseController<SIBOACUsuarios>
     {
-
+        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
 
         // GET: MantenimientoUsuarios
         [SessionExpire]
@@ -23,47 +23,18 @@ namespace Cosevi.SIBOAC.Controllers
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            var list =
-                (
-            from usu in db.SIBOACUsuarios
-            join rol in db.SIBOACRoles on new { Id = usu.Id } equals new { Id = rol.Id }
-            select new
-            {
-                Id = usu.Id,
-                Nombre = usu.Nombre,
-                Usuario = usu.Usuario,
-                Email = usu.Email,
-                Codigo = usu.codigo,
-                Fecha = usu.FechaDeActualizacionClave,
-                contrasena = usu.Contrasena,
-                Roles = rol.Nombre,
-                Activo = usu.Activo
-
-            }).ToList()
-            .Select(x => new SIBOACUsuarios
-            {
-                Id = x.Id,
-                Nombre = x.Nombre,
-                Usuario = x.Usuario,
-                Email = x.Email,
-                codigo = x.Codigo,
-                FechaDeActualizacionClave = x.Fecha,
-                Roles = x.Roles,
-                Contrasena = x.contrasena,
-                Activo = x.Activo
-
-            });
+           
             int pageSize = 20;
             int pageNumber = (page ?? 1);
-            return View(db.SIBOACUsuarios.ToList().ToPagedList(pageNumber, pageSize));            
-            //return View(db.SIBOACUsuarios.ToList());
+            return View(dbs.SIBOACUsuarios.ToList().ToPagedList(pageNumber, pageSize));            
+          
         }
 
 
         public string Verificar(String usuario)
         {
             string mensaje = "";
-            bool exist = db.SIBOACUsuarios.Any(x => x.Usuario == usuario);
+            bool exist = dbs.SIBOACUsuarios.Any(x => x.Usuario == usuario);
             if (exist)
             {
                 mensaje = "El usuario " + usuario + " ya existe";
@@ -79,17 +50,47 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             if (sIBOACUsuarios == null)
             {
                 return HttpNotFound();
             }
+
+            var listaRoles = (from r in dbs.SIBOACRoles select new { r.Id, r.Nombre });
+            var ListaRolesActuales = sIBOACUsuarios.SIBOACRoles.Select(a => new { a.Id, a.Nombre });
+            List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
+            foreach (var item in listaRoles)
+            {
+                SelectListItem dato = new SelectListItem();
+                foreach (var i in ListaRolesActuales)
+                {
+                    if (item.Id == i.Id)
+                    {
+                        dato.Selected = true;
+                        dato.Value = i.Id.ToString();
+                        dato.Text = i.Nombre;
+                        ListaCheckbox.Add(dato);
+                    }
+
+                }
+
+                if (!ListaCheckbox.Contains(dato))
+                    ListaCheckbox.Add(new SelectListItem { Selected = false, Value = item.Id.ToString(), Text = item.Nombre });
+            }
+            ViewBag.ListaMostrar = ListaCheckbox;
             return View(sIBOACUsuarios);
         }
 
         // GET: MantenimientoUsuarios/Create
         public ActionResult Create()
         {
+            var listaRoles = (from r in dbs.SIBOACRoles select new { r.Id, r.Nombre });
+            List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
+            foreach (var item in listaRoles)
+            {
+                ListaCheckbox.Add(new SelectListItem { Selected = false, Value = item.Id.ToString(), Text = item.Nombre });
+            }
+            ViewBag.ListaMostrar = ListaCheckbox;
             return View();
         }
 
@@ -98,16 +99,23 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Contrasena, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Contrasena, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios, [System.Web.Http.FromUri] string[] SIBOACRoles)
         {
             if (ModelState.IsValid)
             {
-                db.SIBOACUsuarios.Add(sIBOACUsuarios);
+                var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
+                                   select a;
+                foreach (var i in query_where2)
+                {
+                    sIBOACUsuarios.SIBOACRoles.Add(i);
+                }
+
+                dbs.SIBOACUsuarios.Add(sIBOACUsuarios);
                 string mensaje = Verificar(sIBOACUsuarios.Usuario.ToString());
                 if (mensaje == "")
                 {
                     sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
-                    db.SaveChanges();
+                    dbs.SaveChanges();
                     Bitacora(sIBOACUsuarios, "I", "SIBOACUsuarios");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
@@ -117,6 +125,13 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    var listaRoles = (from r in dbs.SIBOACRoles select new { r.Id, r.Nombre });
+                    List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
+                    foreach (var item in listaRoles)
+                    {
+                        ListaCheckbox.Add(new SelectListItem { Selected = false, Value = item.Id.ToString(), Text = item.Nombre });
+                    }
+                    ViewBag.ListaMostrar = ListaCheckbox;
                     return View(sIBOACUsuarios);
                 }
             }
@@ -134,24 +149,37 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             if (sIBOACUsuarios == null)
             {
                 return HttpNotFound();
             }
 
-            //if (sIBOACUsuarios.Usuario != usuario)
-            //{
-            //    return View(sIBOACUsuarios);
-            //}
-            //else
-            //{
-            //    //ViewBag.Type = "warning";
-            //    //ViewBag.Message = mensaje;
-            //    TempData["Type"] = "warning";
-            //    TempData["Message"] = mensaje;
-            //    return RedirectToAction("Index");
-            //}
+            var listaRoles = (from r in dbs.SIBOACRoles select new { r.Id, r.Nombre });
+            var ListaRolesActuales = sIBOACUsuarios.SIBOACRoles.Select(a => new { a.Id, a.Nombre });
+            List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
+            foreach (var item in listaRoles)
+            {
+                SelectListItem dato = new SelectListItem();
+                foreach (var i in ListaRolesActuales)
+                {
+                    if (item.Id == i.Id)
+                    {
+                        dato.Selected = true;
+                        dato.Value = i.Id.ToString();
+                        dato.Text = i.Nombre;
+                        ListaCheckbox.Add(dato);
+                    }
+
+                }
+
+                if (!ListaCheckbox.Contains(dato))
+                    ListaCheckbox.Add(new SelectListItem { Selected = false, Value = item.Id.ToString(), Text = item.Nombre });
+            }
+
+
+            ViewBag.ListaMostrar = ListaCheckbox;
+
             return View(sIBOACUsuarios);
         }
 
@@ -160,22 +188,69 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, Usuario, Email, Contrasena, Nombre, codigo, FechaDeActualizacionClave, Activo")] SIBOACUsuarios sIBOACUsuarios)
+        public ActionResult Edit( int Id, string Usuario,string Email,string Contrasena,string Nombre,string codigo, string FechaDeActualizacionClave, string Activo, [System.Web.Http.FromUri] string[] SIBOACRoles)
         {
-                if (ModelState.IsValid)
+            SIBOACUsuarios sIBOACUsuarios = new SIBOACUsuarios();
+            if (ModelState.IsValid)
                 {
-                    var sIBOACUsuariosAntes = db.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == sIBOACUsuarios.Id).FirstOrDefault();
+                    var sIBOACUsuariosAntes = dbs.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == Id).FirstOrDefault();
+
+                    sIBOACUsuarios = dbs.SIBOACUsuarios.Find(Id);               
+                    sIBOACUsuarios.Usuario= Usuario;
+                    sIBOACUsuarios.Email = Email;
+                    sIBOACUsuarios.Nombre = Nombre;
+                    sIBOACUsuarios.codigo = codigo ==null?null:codigo;
                     sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
                     sIBOACUsuarios.Contrasena = sIBOACUsuariosAntes.Contrasena;
                     sIBOACUsuarios.Activo = sIBOACUsuariosAntes.Activo;
-                    db.Entry(sIBOACUsuarios).State = EntityState.Modified;
+                    var rolesTem = sIBOACUsuarios.SIBOACRoles;
+
+                    var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
+                                       select a;
+
+                    for (int i = 0; i < rolesTem.Count; i++)
+                    {
+                        if (query_where2.ToArray().Count() == 0)
+                        {
+                             sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                            i--;
+                      
+                        }
+                        else
+                        {
+                            if (query_where2.ToArray().Where(a => a.Id == rolesTem.ElementAt(i).Id).Count() == 0)
+                            {
+                                sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                                i--;
+                          
+                        }
+                     }
+
+
+                    }
+                    for (int i = 0; i < query_where2.ToArray().Count(); i++)
+                    {
+                        if (rolesTem.Count() == 0)
+                               sIBOACUsuarios.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                        else
+                        {
+                            if (rolesTem.Where(a => a.Id == query_where2.ToArray().ElementAt(i).Id).Count() == 0)
+                            {
+                                 sIBOACUsuarios.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                            }
+
+                        }
+
+                    }
+
+                dbs.Entry(sIBOACUsuarios).State = EntityState.Modified;
 
                     try
                     {
                         // Your code...
                         // Could also be before try if you know the exception occurs in SaveChanges
 
-                        db.SaveChanges();
+                        dbs.SaveChanges();
                     }
                     catch (DbEntityValidationException e)
                     {
@@ -196,7 +271,7 @@ namespace Cosevi.SIBOAC.Controllers
                     return RedirectToAction("Index");
                 }
 
-            ViewBag.IdUsuario = new SelectList(db.SIBOACUsuarios, "Id", "Nombre", sIBOACUsuarios.Id);
+            ViewBag.IdUsuario = new SelectList(dbs.SIBOACUsuarios, "Id", "Nombre", sIBOACUsuarios.Id);
             return View(sIBOACUsuarios);
         }
 
@@ -207,11 +282,37 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             if (sIBOACUsuarios == null)
             {
                 return HttpNotFound();
             }
+
+            var listaRoles = (from r in dbs.SIBOACRoles select new { r.Id, r.Nombre });
+            var ListaRolesActuales = sIBOACUsuarios.SIBOACRoles.Select(a => new { a.Id, a.Nombre });
+            List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
+            foreach (var item in listaRoles)
+            {
+                SelectListItem dato = new SelectListItem();
+                foreach (var i in ListaRolesActuales)
+                {
+                    if (item.Id == i.Id)
+                    {
+                        dato.Selected = true;
+                        dato.Value = i.Id.ToString();
+                        dato.Text = i.Nombre;
+                        ListaCheckbox.Add(dato);
+                    }
+
+                }
+
+                if (!ListaCheckbox.Contains(dato))
+                    ListaCheckbox.Add(new SelectListItem { Selected = false, Value = item.Id.ToString(), Text = item.Nombre });
+            }
+
+
+            ViewBag.ListaMostrar = ListaCheckbox;
+
             return View(sIBOACUsuarios);
         }
 
@@ -220,14 +321,14 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             SIBOACUsuarios sIBOACUsuariosAntes = ObtenerCopia(sIBOACUsuarios);
             if (sIBOACUsuarios.Activo == false)
 
                 sIBOACUsuarios.Activo = true;
             else
                 sIBOACUsuarios.Activo = false;
-            db.SaveChanges();
+            dbs.SaveChanges();
             Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
             return RedirectToAction("Index");
         }
