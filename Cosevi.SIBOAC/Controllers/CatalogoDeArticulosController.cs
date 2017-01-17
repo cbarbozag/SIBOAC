@@ -29,7 +29,8 @@ namespace Cosevi.SIBOAC.Controllers
                 list = list.Where(s => s.Id.Contains(searchString)
                                         || s.Conducta.Contains(searchString)
                                         || s.Descripcion.Contains(searchString)
-                                        || s.Estado.Contains(searchString));
+                                        || s.Estado.Contains(searchString)
+                                        || s.Multa.ToString().Contains(searchString));
             }
 
             int pageSize = 20;
