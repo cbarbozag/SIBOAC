@@ -20,10 +20,10 @@
       ventimp.close();
     }
 
-    function reporteBitacora() {
-        document.getElementById("EsReporte").value = "true";
+    function reporteBitacora(tipoReporte) {
+        document.getElementById("TipoReporte").value = tipoReporte;
         $("#reporte").click();
-        document.getElementById("EsReporte").value = "false";
+        document.getElementById("TipoReporte").value = "false";
     }
 
 </script>
@@ -31,16 +31,38 @@
 <h2>Reporte Bitácora</h2>
 <h4>Filtro</h4>
 <hr />
+@{ 
+    List<SelectListItem> operacionItems = new List<SelectListItem>();
+    List<SelectListItem> tablaItems = new List<SelectListItem>();
+    List<SelectListItem> usuarioItems = new List<SelectListItem>();
+
+
+    operacionItems.Add(new SelectListItem { Text = "Todas", Value = "T" });
+    operacionItems.Add(new SelectListItem { Text = "Eliminar", Value = "D" });
+    operacionItems.Add(new SelectListItem { Text = "Inserción", Value = "I" });
+    operacionItems.Add(new SelectListItem { Text = "Actualizacion", Value = "U" });
+
+    foreach (var item in ViewBag.Tablas)
+    {
+        tablaItems.Add(new SelectListItem { Text = item.Descripcion, Value = item.Descripcion });
+    }
+
+    foreach (var item in ViewBag.Usuarios)
+    {
+        usuarioItems.Add(new SelectListItem { Text = item.Usuario, Value = item.Usuario });
+    }
+
+}
 @using (Html.BeginForm("GetBitacora", "Reporte", FormMethod.Get))
 {
-    <input type="hidden" name="EsReporte" id="EsReporte" value="false" />
+    <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
     <table border="0">
         <tr>
             <td>
                 Nombre Tabla:
             </td>
             <td>
-                <input type="text" name="NombreTabla" value="@Request.Params["NombreTabla"]" />
+                @Html.DropDownList("NombreTabla", new SelectList(tablaItems, "Value", "Text"))
             </td>
         </tr>
         <tr>
@@ -48,7 +70,7 @@
                 Operación:
             </td>
             <td>
-                <input type="text" name="Operacion" value="@Request.Params["Operacion"]" />
+                @Html.DropDownList("Operacion", new SelectList(operacionItems, "Value", "Text"))
             </td>
         </tr>
         <tr>
@@ -56,7 +78,7 @@
                 Usuario:
             </td>
             <td>
-                <input type="text" name="Usuario" value="@Request.Params["Usuario"]" />
+                @Html.DropDownList("Usuario", new SelectList(usuarioItems, "Value", "Text"))
             </td>
         </tr>
         <tr>
@@ -85,8 +107,8 @@
 
     <div class="panel panel-success">
         <div class="panel-heading">
-            <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" />
-            <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="reporteBitacora();" />
+            <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" onclick="reporteBitacora('pdf');" />
+            <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="reporteBitacora('xls');" />
             <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
         </div>
         <div class="panel-body">

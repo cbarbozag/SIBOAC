@@ -11,15 +11,15 @@ using System.Data.Entity.Validation;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class SIBOACMenuOpcionesController : Controller
+    public class SIBOACMenuOpcionesController : BaseController<SIBOACMenuOpciones>
     {
-        private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
+        private SIBOACSecurityEntities dbSecurity = new SIBOACSecurityEntities();
 
         // GET: SIBOACMenuOpciones
         [SessionExpire]
         public ActionResult Index()
         {
-            return View(db.SIBOACMenuOpciones.OrderBy(a=> new { a.ParentID, a.Orden, a.Descripcion}).ToList());
+            return View(dbSecurity.SIBOACMenuOpciones.OrderBy(a=> new { a.ParentID, a.Orden, a.Descripcion}).ToList());
         }
 
         // GET: SIBOACMenuOpciones1/Details/5
@@ -29,7 +29,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACMenuOpciones sIBOACMenuOpciones = db.SIBOACMenuOpciones.Find(id);
+            SIBOACMenuOpciones sIBOACMenuOpciones = dbSecurity.SIBOACMenuOpciones.Find(id);
             if (sIBOACMenuOpciones == null)
             {
                 return HttpNotFound();
@@ -88,8 +88,9 @@ namespace Cosevi.SIBOAC.Controllers
                     sIBOACMenuOpciones.SIBOACRoles.Add(i);
                 }
 
-                db.SIBOACMenuOpciones.Add(sIBOACMenuOpciones);
-                db.SaveChanges();
+                dbSecurity.SIBOACMenuOpciones.Add(sIBOACMenuOpciones);
+                dbSecurity.SaveChanges();
+                Bitacora(sIBOACMenuOpciones, "I", "SIBOACMenuOpciones");
                 return RedirectToAction("Index");
             }
 
@@ -103,7 +104,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACMenuOpciones sIBOACMenuOpciones = db.SIBOACMenuOpciones.Find(id);
+            SIBOACMenuOpciones sIBOACMenuOpciones = dbSecurity.SIBOACMenuOpciones.Find(id);
             if (sIBOACMenuOpciones == null)
             {
                 return HttpNotFound();
@@ -146,7 +147,7 @@ namespace Cosevi.SIBOAC.Controllers
             SIBOACMenuOpciones sIBOACMenuOpciones = new SIBOACMenuOpciones();
             if (ModelState.IsValid)
             {
-                sIBOACMenuOpciones = db.SIBOACMenuOpciones.Find(id);
+                sIBOACMenuOpciones = dbSecurity.SIBOACMenuOpciones.Find(id);
                 if (sIBOACMenuOpciones == null)
                 {
                     return HttpNotFound();
@@ -194,10 +195,11 @@ namespace Cosevi.SIBOAC.Controllers
 
                 }
 
+                var sIBOACMenuOpcionesAntes = dbSecurity.SIBOACMenuOpciones.AsNoTracking().Where(d => d.MenuOpcionesID == sIBOACMenuOpciones.MenuOpcionesID).FirstOrDefault();
+                dbSecurity.Entry(sIBOACMenuOpciones).State = EntityState.Modified;
+                dbSecurity.SaveChanges();
+                Bitacora(sIBOACMenuOpciones, "U", "SIBOACMenuOpciones", sIBOACMenuOpcionesAntes);
 
-
-                db.Entry(sIBOACMenuOpciones).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
 
             }
@@ -211,7 +213,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACMenuOpciones sIBOACMenuOpciones = db.SIBOACMenuOpciones.Find(id);
+            SIBOACMenuOpciones sIBOACMenuOpciones = dbSecurity.SIBOACMenuOpciones.Find(id);
             if (sIBOACMenuOpciones == null)
             {
                 return HttpNotFound();
@@ -250,12 +252,14 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACMenuOpciones sIBOACMenuOpciones = db.SIBOACMenuOpciones.Find(id);
-            
-            db.SIBOACMenuOpciones.Remove(sIBOACMenuOpciones);
+            SIBOACMenuOpciones sIBOACMenuOpciones = dbSecurity.SIBOACMenuOpciones.Find(id);
+
+            dbSecurity.SIBOACMenuOpciones.Remove(sIBOACMenuOpciones);
             try
-            { 
-                 db.SaveChanges();
+            {
+                dbSecurity.SaveChanges();
+                Bitacora(sIBOACMenuOpciones, "D", "SIBOACMenuOpciones");
+
             }
             catch (DbEntityValidationException e)
             {
@@ -271,13 +275,14 @@ namespace Cosevi.SIBOAC.Controllers
                 }
                 throw;
             }
+
             return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                dbSecurity.Dispose();
             }
             base.Dispose(disposing);
         }
