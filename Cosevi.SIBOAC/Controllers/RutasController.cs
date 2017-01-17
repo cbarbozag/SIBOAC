@@ -17,12 +17,20 @@ namespace Cosevi.SIBOAC.Controllers
 
         // GET: Rutas
         [SessionExpire]
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
-            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+            var list = from s in db.Ruta.ToList() select s;            
 
-            var list = db.Ruta.ToList();
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(s => s.Id.ToString().Contains(searchString)
+                                        || s.DescripcionRuta.Contains(searchString)
+                                        || s.Inicia.Contains(searchString)
+                                        || s.Termina.Contains(searchString)
+                                        || s.Estado.Contains(searchString));
+            }
 
             int pageSize = 20;
             int pageNumber = (page ?? 1);

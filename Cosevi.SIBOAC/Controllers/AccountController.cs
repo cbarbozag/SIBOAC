@@ -337,8 +337,14 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     //IdentityResult result = await this.UserManager.ResetPasswordAsync(user.Id.ToString(), model.Code, model.Password);
                     //  SIBOACUsuarios usuarioModificado = new SIBOACUsuarios();
-                    if (model.Password != user.Contrasena || model.Code != user.Contrasena)
+                    if (model.Password != user.Contrasena)
                     {
+                        if(model.Code == model.Password)
+                        {
+                            ModelState.AddModelError("", "¡La contraseña no puede ser igual a la anterior o igual al usuario!");
+                            return View();
+                        }
+
                         user.Id = user.Id;
                         user.Usuario = user.Usuario;
                         user.Email = user.Email;
@@ -354,8 +360,9 @@ namespace Cosevi.SIBOAC.Controllers
                         return RedirectToAction("ResetPasswordConfirmation", "Account");
                     }
                     else
-                    {
-                        ModelState.AddModelError("", "¡La contraseña no puede ser igual a la anterior!");
+                    {                       
+
+                        ModelState.AddModelError("", "¡La contraseña no puede ser igual a la anterior o igual al usuario!");
                         return View();
                     }
                     

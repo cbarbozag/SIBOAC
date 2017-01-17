@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class EdadsController : Controller
+    public class EdadsController : BaseController<Edad>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Edads
         [SessionExpire]
@@ -111,9 +111,8 @@ namespace Cosevi.SIBOAC.Controllers
             if (edad == null)
             {
                 return HttpNotFound();
-            }
-            edad.FechaMinNacimiento =DateTime.Parse(edad.FechaMinNacimiento.ToString("yyyy/MM/dd"));
-            
+            }            
+
             return View(edad);
         }
 
@@ -126,7 +125,12 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(edad).State = EntityState.Modified;
+                Edad edadTem = db.EDAD.Find(edad.FechaMinNacimiento, edad.FechaMaxNacimiento);
+                edadTem.FechaPorDefecto = edad.FechaPorDefecto;
+                edadTem.Estado = edad.Estado;
+                edadTem.FechaDeInicio = edad.FechaDeInicio;
+                edadTem.FechaDeFin = edad.FechaDeFin;
+                db.Entry(edadTem).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

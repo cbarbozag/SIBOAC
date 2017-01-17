@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CatalogoDeArticulosController : Controller
+    public class CatalogoDeArticulosController : BaseController<CatalogoDeArticulos>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: CatalogoDeArticulos
         [SessionExpire]
@@ -94,7 +94,7 @@ namespace Cosevi.SIBOAC.Controllers
                                             catalogoDeArticulos.FechaDeFin);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    db.SaveChanges();                    
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");

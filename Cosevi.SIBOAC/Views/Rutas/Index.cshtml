@@ -13,6 +13,14 @@
 <p>
     @Html.ActionLink("Nuevo", "Create",null,new { @class= "btn btn-success" })
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Búsqueda: @Html.TextBox("SearchString")
+        <input type="submit" value="Buscar" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
