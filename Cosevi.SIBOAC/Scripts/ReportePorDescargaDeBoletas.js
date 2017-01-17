@@ -53,5 +53,5 @@
     function limpiar() {
         var reporte = $('#reporte');
         reporte.empty();
-    };
+    };    
 })();
