@@ -131,6 +131,7 @@ namespace Cosevi.SIBOAC.Controllers
                             {
                                 if (diferenciaDias >= 30)
                                 {
+                                    
                                     return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });
                                 }
 
@@ -335,23 +336,36 @@ namespace Cosevi.SIBOAC.Controllers
                 try
                 {
                     //IdentityResult result = await this.UserManager.ResetPasswordAsync(user.Id.ToString(), model.Code, model.Password);
-                  //  SIBOACUsuarios usuarioModificado = new SIBOACUsuarios();
-                    user.Id = user.Id;
-                    user.Usuario = user.Usuario;
-                    user.Email = user.Email;
-                    user.Contrasena = model.Password;
-                    user.Nombre = user.Nombre;
-                    user.codigo = user.codigo;
-                    user.FechaDeActualizacionClave = DateTime.Now;
-                    user.Activo = user.Activo;
+                    //  SIBOACUsuarios usuarioModificado = new SIBOACUsuarios();
+                    if (model.Password != user.Contrasena)
+                    {
+                        if(model.Code == model.Password)
+                        {
+                            ModelState.AddModelError("", "¡La contraseña no puede ser igual a la anterior o igual al usuario!");
+                            return View();
+                        }
 
-                    sdb.Entry(user).State = EntityState.Modified;
-                    sdb.SaveChanges();
-                    //if ()
-                    //{
+                        user.Id = user.Id;
+                        user.Usuario = user.Usuario;
+                        user.Email = user.Email;
+                        user.Contrasena = model.Password;
+                        user.Nombre = user.Nombre;
+                        user.codigo = user.codigo;
+                        user.FechaDeActualizacionClave = DateTime.Now;
+                        user.Activo = user.Activo;
+
+                        sdb.Entry(user).State = EntityState.Modified;
+                        sdb.SaveChanges();
+
                         return RedirectToAction("ResetPasswordConfirmation", "Account");
-                    //}
-                    //AddErrors(result);
+                    }
+                    else
+                    {                       
+
+                        ModelState.AddModelError("", "¡La contraseña no puede ser igual a la anterior o igual al usuario!");
+                        return View();
+                    }
+                    
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
 

@@ -13,21 +13,20 @@ namespace Cosevi.SIBOAC.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class Edad
-    {
-
+    {    
         [DisplayName("Fecha de nacimiento mínima")]
         [Required(ErrorMessage = "La fecha de nacimiento mínima es obligatoria")]
         [DataType(DataType.Date)]
-      //  [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]        
         public System.DateTime FechaMinNacimiento { get; set; }
-
-
+       
         [DisplayName("Fecha de nacimiento máxima")]
         [Required(ErrorMessage = "La fecha de nacimiento máxima es obligatoria")]
-        [DataType(DataType.Date)]
-      //  [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]        
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]        
         public System.DateTime FechaMaxNacimiento { get; set; }
 
 
