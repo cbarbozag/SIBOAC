@@ -763,11 +763,14 @@
     <Content Include="Content\btnExportarPDF.png" />
     <Content Include="Content\btnImprimir.png" />
     <Content Include="Content\btnPDF.png" />
+    <Content Include="Content\Candado.png" />
     <Content Include="Content\fondocontenido.png" />
     <Content Include="Content\imagen_1.png" />
     <Content Include="Content\imagen_2.png" />
     <Content Include="Content\imagen_3.png" />
     <Content Include="Content\imagen_4.png" />
+    <Content Include="Content\lock.png" />
+    <Content Include="Content\login.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PDF.png" />
     <Content Include="Content\title_bar.png" />
