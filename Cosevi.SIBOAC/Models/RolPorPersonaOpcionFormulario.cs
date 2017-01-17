@@ -18,8 +18,7 @@ namespace Cosevi.SIBOAC.Models
     {
 
         [DisplayName("Código del rol de la persona")]
-        [Required(ErrorMessage = "El código es obligatorio")]
-        [StringLength(2, ErrorMessage = "El codigo no debe ser mayor a 2 caracteres.")]
+        [Required(ErrorMessage = "El código es obligatorio")]        
         public int CodigoRolPersona { get; set; }
 
         [DisplayName("Código del formulario")]

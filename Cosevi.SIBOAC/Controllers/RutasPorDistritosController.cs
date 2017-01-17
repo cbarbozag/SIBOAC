@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: RutasPorDistritos
-        public ViewResult Index(int? page)
+        public ViewResult Index(int? page, string searchString)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -50,7 +50,18 @@ namespace Cosevi.SIBOAC.Controllers
                   DescripcionDistrito = x.DescripcionDistrito,
                   DescripcionRuta = x.DescripcionRuta
 
-              });
+              });            
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(s => s.CodigoDistrito.ToString().Contains(searchString)
+                                        || s.DescripcionDistrito.ToUpper().Contains(searchString.ToUpper())
+                                        || s.CodigoRuta.ToString().Contains(searchString)
+                                        || s.DescripcionRuta.ToUpper().Contains(searchString.ToUpper())
+                                        || s.Km.ToString().Contains(searchString)
+                                        || s.Estado.ToUpper().Contains(searchString.ToUpper()));
+            }
+
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(list.ToPagedList(pageNumber, pageSize));

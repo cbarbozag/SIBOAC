@@ -10,11 +10,6 @@
 
 <script type="text/javascript">
 
-    
-    
-
-
-   
     $("#btnExportar").on("click", function run() {
         var divContents = $("#seleccion").html;
         var printWindow = window.open('', '', 'height=400,width=800');
@@ -98,7 +93,34 @@
       ventimp.close();
     }
 
-    
+    function doSearch() {
+        var tableReg = document.getElementById('TablaContenido');
+        var searchText = document.getElementById('searchTerm').value.toLowerCase();
+        var cellsOfRow = "";
+        var found = false;
+        var compareWith = "";
+
+        // Recorremos todas las filas con contenido de la tabla
+        for (var i = 1; i < tableReg.rows.length; i++) {
+            cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+            found = false;
+            // Recorremos todas las celdas
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                // Buscamos el texto en el contenido de la celda
+                if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tableReg.rows[i].style.display = '';
+            } else {
+                // si no ha encontrado ninguna coincidencia, esconde la
+                // fila de la tabla
+                tableReg.rows[i].style.display = 'none';
+            }
+        }
+    }
 
 </script>
 
@@ -173,7 +195,8 @@
 <br />
 <h4>Reporte</h4>
 <hr />
-<label for="buscador">Buscar:</label> <input type="text" class="texto-gris" id="buscador" value="Agrega la palabra que deseas buscar" />
+<input id="searchTerm" type="text" onkeyup="doSearch()" />
+
 <div class="panel panel-success">
     <div class="panel-heading">
         <input type="image" name="PDF" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" onclick="javascript: Descargar()"/>
@@ -185,7 +208,7 @@
         </div>
     </div>
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -224,7 +247,7 @@
        
     </script>
 </body>
-</html>
+</html>*@
 
  @section Scripts {
    @Scripts.Render("~/bundles/ReportePorConsultaImpresionDeBoletas")

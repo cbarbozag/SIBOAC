@@ -16,11 +16,20 @@ namespace Cosevi.SIBOAC.Controllers
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: CatalogoDeArticulos
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string searchString)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
-            var list = db.CATARTICULO.ToList();
+            var list = from s in db.CATARTICULO.ToList() select s;
+            
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(s => s.Id.Contains(searchString)
+                                        || s.Conducta.Contains(searchString)
+                                        || s.Descripcion.Contains(searchString)
+                                        || s.Estado.Contains(searchString));
+            }
 
             int pageSize = 20;
             int pageNumber = (page ?? 1);
@@ -127,7 +136,7 @@ namespace Cosevi.SIBOAC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(catalogoDeArticulos);
+            return View();
         }
 
         // GET: CatalogoDeArticulos/Delete/5

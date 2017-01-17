@@ -80,6 +80,34 @@
       ventimp.close();
     }
 
+    function doSearch() {
+        var tableReg = document.getElementById('TablaContenido');
+        var searchText = document.getElementById('searchTerm').value.toLowerCase();
+        var cellsOfRow = "";
+        var found = false;
+        var compareWith = "";
+
+        // Recorremos todas las filas con contenido de la tabla
+        for (var i = 1; i < tableReg.rows.length; i++) {
+            cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+            found = false;
+            // Recorremos todas las celdas
+            for (var j = 0; j < cellsOfRow.length && !found; j++) {
+                compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+                // Buscamos el texto en el contenido de la celda
+                if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1)) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tableReg.rows[i].style.display = '';
+            } else {
+                // si no ha encontrado ninguna coincidencia, esconde la
+                // fila de la tabla
+                tableReg.rows[i].style.display = 'none';
+            }
+        }
+    }
 </script>
 
 
@@ -100,9 +128,7 @@
 </div>
 <br />
 <br />
-
-
-
+<br />
 <div class="form-group">
     <label class="control-label col-md-2">Rango de fechas</label>
     <div class="col-md-10">
@@ -116,21 +142,6 @@
 <br />
 <br />
 <br />
-<br />
-
-
-
-@*<div id="opc-2" class="form-group">
-    <label class="control-label col-md-2">Rango de fechas</label>
-    <div class="col-md-10">
-        <div class="input-daterange input-group" id="datepicker">
-            <input id="infraccionDesde" type="text" class="input-sm form-control" name="fechaInfraccionDesde" />
-            <span class="input-group-addon">to</span>
-            <input id="infraccionHasta" type="text" class="input-sm form-control" name="fechaInfraccionHasta" />
-        </div>
-    </div>
-</div>*@
-
 <br />
 <br />
 <br />
@@ -146,6 +157,8 @@
 <br />
 <h4>Reporte</h4>
 <hr />
+
+<input id="searchTerm" type="text" onkeyup="doSearch()" />
 
 <div class="panel panel-success">
     <div class="panel-heading">
