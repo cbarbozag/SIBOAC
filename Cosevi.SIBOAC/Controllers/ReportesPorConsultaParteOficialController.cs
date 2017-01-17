@@ -8,6 +8,7 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class ReportesPorConsultaParteOficialController : Controller
     {
+        [SessionExpire]
         // GET: ReportesPorConsultaParteOficial
         public ActionResult Index()
         {

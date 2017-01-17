@@ -15,6 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
     {
 
         // GET: Circulacions
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

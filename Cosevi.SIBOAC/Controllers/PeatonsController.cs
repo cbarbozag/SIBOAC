@@ -11,11 +11,12 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class PeatonsController : Controller
+    public class PeatonsController : BaseController<Peaton>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+
 
         // GET: Peatons
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
@@ -75,6 +76,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(peaton, "I", "PEATON");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -114,8 +116,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var peatonAntes = db.Peaton.AsNoTracking().Where(d => d.Id == peaton.Id).FirstOrDefault();
                 db.Entry(peaton).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(peaton, "U", "PEATON", peatonAntes);
                 return RedirectToAction("Index");
             }
             return View(peaton);
@@ -142,11 +146,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Peaton peaton = db.Peaton.Find(id);
+            Peaton peatonAntes = ObtenerCopia(peaton);
             if (peaton.Estado == "I")
                 peaton.Estado = "A";
             else
                 peaton.Estado = "I";
             db.SaveChanges();
+            Bitacora(peaton, "U", "PEATON", peatonAntes);
             return RedirectToAction("Index");
         }
 
@@ -173,6 +179,7 @@ namespace Cosevi.SIBOAC.Controllers
             Peaton peaton = db.Peaton.Find(id);
             db.Peaton.Remove(peaton);
             db.SaveChanges();
+            Bitacora(peaton, "D", "PEATON");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

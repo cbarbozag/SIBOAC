@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class ManiobrasController : BaseController<Maniobra>
     {
-        
+
 
         // GET: Maniobras
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

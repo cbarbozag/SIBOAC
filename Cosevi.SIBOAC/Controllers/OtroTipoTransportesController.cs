@@ -11,11 +11,12 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class OtroTipoTransportesController : Controller
+    public class OtroTipoTransportesController : BaseController<OtroTipoTransporte>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+
 
         // GET: OtroTipoTransportes
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
@@ -74,6 +75,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(otroTipoTransporte, "I", "OTROTIPOTRANSPORTE");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -113,8 +115,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var otroTipoTransporteAntes = db.OTROTIPOTRANSPORTE.AsNoTracking().Where(d => d.Id == otroTipoTransporte.Id).FirstOrDefault();
                 db.Entry(otroTipoTransporte).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(otroTipoTransporte, "U", "OTROTIPOTRANSPORTE", otroTipoTransporteAntes);
                 return RedirectToAction("Index");
             }
             return View(otroTipoTransporte);
@@ -141,11 +145,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             OtroTipoTransporte otroTipoTransporte = db.OTROTIPOTRANSPORTE.Find(id);
+            OtroTipoTransporte otroTipoTransporteAntes = ObtenerCopia(otroTipoTransporte);
             if (otroTipoTransporte.Estado == "I")
                 otroTipoTransporte.Estado = "A";
             else
                 otroTipoTransporte.Estado = "I";
             db.SaveChanges();
+            Bitacora(otroTipoTransporte, "U", "OTROTIPOTRANSPORTE", otroTipoTransporteAntes);
             return RedirectToAction("Index");
         }
 
@@ -172,6 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
             OtroTipoTransporte otroTipoTransporte = db.OTROTIPOTRANSPORTE.Find(id);
             db.OTROTIPOTRANSPORTE.Remove(otroTipoTransporte);
             db.SaveChanges();
+            Bitacora(otroTipoTransporte, "D", "OTROTIPOTRANSPORTE");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

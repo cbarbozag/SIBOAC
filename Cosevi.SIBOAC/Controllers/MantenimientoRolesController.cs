@@ -15,6 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
         private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
 
         // GET: MantenimientoRoles
+        [SessionExpire]
         public ActionResult Index()
         {
             return View(db.SIBOACRoles.ToList());

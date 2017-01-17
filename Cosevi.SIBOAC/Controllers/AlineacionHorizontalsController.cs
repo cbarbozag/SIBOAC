@@ -15,6 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
     public class AlineacionHorizontalsController : BaseController<AlineacionHorizontal>
     {
         // GET: AlineacionHorizontals
+        [SessionExpire]
         public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

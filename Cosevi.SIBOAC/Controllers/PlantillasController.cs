@@ -11,11 +11,12 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class PlantillasController : Controller
+    public class PlantillasController : BaseController<Plantillas>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+
 
         // GET: Plantillas
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
@@ -74,6 +75,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(plantillas, "I", "PLANTILLAS");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -113,8 +115,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var plantillasAntes = db.PLANTILLAS.AsNoTracking().Where(d => d.Id == plantillas.Id).FirstOrDefault();
                 db.Entry(plantillas).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(plantillas, "U", "PLANTILLAS", plantillasAntes);
                 return RedirectToAction("Index");
             }
             return View(plantillas);
@@ -141,11 +145,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             Plantillas plantillas = db.PLANTILLAS.Find(id);
+            Plantillas plantillasAntes = ObtenerCopia(plantillas);
             if (plantillas.Estado == "I")
                 plantillas.Estado = "A";
             else
                 plantillas.Estado = "I";
             db.SaveChanges();
+            Bitacora(plantillas, "U", "PLANTILLAS", plantillasAntes);
             return RedirectToAction("Index");
         }
 
@@ -172,6 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
             Plantillas plantillas = db.PLANTILLAS.Find(id);
             db.PLANTILLAS.Remove(plantillas);
             db.SaveChanges();
+            Bitacora(plantillas, "D", "PLANTILLAS");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

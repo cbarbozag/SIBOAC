@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class IluminacionsController : BaseController<Iluminacion>
     {
-        
+
 
         // GET: Iluminacions
+        [SessionExpire]
         public ActionResult Index(int ? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

@@ -8,6 +8,7 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class ReportePorDescargaDeInspectorController : Controller
     {
+        [SessionExpire]
         public ActionResult Index()
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

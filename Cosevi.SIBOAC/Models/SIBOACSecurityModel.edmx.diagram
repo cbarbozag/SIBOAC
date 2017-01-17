@@ -7,11 +7,10 @@
       <Diagram DiagramId="cad8cff743cd4d40b16cbd18194c9e60" Name="Diagram1">
         <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACUsuarios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACRoles" Width="1.5" PointX="0.75" PointY="3.875" />
-        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACRolesDeUsuarios" Width="1.5" PointX="3.25" PointY="0.875" />
-        <AssociationConnector Association="SIBOACSecurityModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" />
-        <AssociationConnector Association="SIBOACSecurityModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" />
         <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACMenuOpciones" Width="1.5" PointX="0.75" PointY="6.625" />
         <AssociationConnector Association="SIBOACSecurityModel.SIBOACMenuOpcionesRol" />
+        <EntityTypeShape EntityType="SIBOACSecurityModel.SIBOACTablas" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="SIBOACSecurityModel.SIBOACRolesDeUsuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

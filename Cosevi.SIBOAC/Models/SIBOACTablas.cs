@@ -12,15 +12,9 @@ namespace Cosevi.SIBOAC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SIBOACRolesDeUsuarios
+    public partial class SIBOACTablas
     {
         public int Id { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdRol { get; set; }
-        public string Roles { get; set; }
-        public string NombreUsuario { get; set; }
-
-        public virtual SIBOACRoles SIBOACRoles { get; set; }
-        public virtual SIBOACUsuarios SIBOACUsuarios { get; set; }
+        public string Descripcion { get; set; }
     }
 }

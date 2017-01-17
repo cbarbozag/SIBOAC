@@ -60,6 +60,41 @@
         <dd>
             @Html.DisplayFor(model => model.Orden)
         </dd>
+        <dt>
+            @Html.Label("Roles")
+        </dt>
+
+        <dd>
+            <table align="center" width="98%">
+                <tr width="100%">
+                    <td width="1%"></td>
+                    <td>
+
+
+                        @foreach (var i in ViewBag.ListaMostrar)
+                        {
+
+                            if (i.Selected == true)
+                            {
+                                <input type="checkbox" name="SIBOACRoles" value="@i.Value" checked="checked" disabled="disabled" />
+                                        <label for="@i.Text">@i.Text</label>
+                                        <br />
+                            }
+                            else
+                            {
+                                <input type="checkbox" name="SIBOACRoles" value="@i.Value" disabled="disabled" />
+                                        <label for="@i.Text">@i.Text</label>
+                                        <br />
+                            }
+
+                        }
+
+
+                    </td>
+                </tr>
+
+            </table>
+        </dd>
 
     </dl>
 

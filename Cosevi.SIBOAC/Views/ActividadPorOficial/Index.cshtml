@@ -1,0 +1,64 @@
+﻿@model Cosevi.SIBOAC.Models.Boletas
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte Diario Oficial</h2>
+@using (Html.BeginForm("Index", "ActividadPorOficial", FormMethod.Get))
+{
+    <table border="0">
+        <tr>
+            <td>
+               Inspector:
+            </td>
+            <td>
+              <input type="text" name="CodigoInspector" value="@ViewBag.Inspector"  disabled="disabled"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Fecha Inicio:
+            </td>
+            <td>
+                <input type="date" name="FechaInicio" value="@Request.Params["FechaInicio"]"/>
+            </td>
+            <td>
+               Fecha Fin:
+            </td>
+            <td>
+                <input type="date" name="FechaFin" value="@Request.Params["FechaFin"]" />
+            </td>
+            <td>
+                <input type="submit" value="Generar Reporte" class="btn btn-success" />
+            </td>
+       </tr>
+    </table>
+}
+<br />
+<br />
+
+@if (ViewBag.Datos != null)
+{
+    TempData["Type"] = null;
+    TempData["Message"] = null;
+
+
+    using (Html.BeginForm("Exportar", "ActividadPorOficial", FormMethod.Get))
+    {
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <input input type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="document.getElementsByName('Excel').submit();" />
+                <input input type="image" name="PDF" value="PDF" src="~/Content/btnPDF.png" />
+            </div>
+            <div class="panel-body">
+                @Html.Partial("_ListaActividad",Model)
+            </div>
+        </div>
+    }
+
+   
+}
+
+
+

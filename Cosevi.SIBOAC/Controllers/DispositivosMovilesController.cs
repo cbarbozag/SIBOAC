@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class DispositivosMovilesController : BaseController<DispositivosMoviles>
     {
-        
+
 
         // GET: DispositivosMoviles
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

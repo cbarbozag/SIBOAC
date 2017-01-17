@@ -16,6 +16,7 @@ namespace Cosevi.SIBOAC.Controllers
     {
 
         // GET: Danoes
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

@@ -13,9 +13,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class ObstaculoesController : BaseController<Obstaculo>
     {
-        
+
 
         // GET: Obstaculoes
+        [SessionExpire]
         public ActionResult Index(int? page)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";

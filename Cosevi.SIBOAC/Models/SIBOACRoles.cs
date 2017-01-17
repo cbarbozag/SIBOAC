@@ -17,8 +17,8 @@ namespace Cosevi.SIBOAC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SIBOACRoles()
         {
-            this.SIBOACRolesDeUsuarios = new HashSet<SIBOACRolesDeUsuarios>();
             this.SIBOACMenuOpciones = new HashSet<SIBOACMenuOpciones>();
+            this.SIBOACUsuarios = new HashSet<SIBOACUsuarios>();
         }
     
         public int Id { get; set; }
@@ -26,8 +26,8 @@ namespace Cosevi.SIBOAC.Models
         public bool Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SIBOACRolesDeUsuarios> SIBOACRolesDeUsuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SIBOACMenuOpciones> SIBOACMenuOpciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SIBOACUsuarios> SIBOACUsuarios { get; set; }
     }
 }
