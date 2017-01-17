@@ -205,16 +205,26 @@ namespace Cosevi.SIBOAC.Controllers
                     sIBOACUsuarios.Activo = sIBOACUsuariosAntes.Activo;
                     var rolesTem = sIBOACUsuarios.SIBOACRoles;
 
+                   if (SIBOACRoles == null)
+                    {
+                        for (int i = 0; i < rolesTem.Count; i++)
+                        {                           
+                                sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                                i--;                            
+                        }
+                    }
+                else
+                {
                     var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
                                        select a;
 
                     for (int i = 0; i < rolesTem.Count; i++)
                     {
-                        if (query_where2.ToArray().Count() == 0)
+                        if (query_where2 == null || query_where2.ToArray().Count() == 0)
                         {
-                             sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                            sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
                             i--;
-                      
+
                         }
                         else
                         {
@@ -222,26 +232,30 @@ namespace Cosevi.SIBOAC.Controllers
                             {
                                 sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
                                 i--;
-                          
+
+                            }
                         }
-                     }
 
 
                     }
                     for (int i = 0; i < query_where2.ToArray().Count(); i++)
                     {
                         if (rolesTem.Count() == 0)
-                               sIBOACUsuarios.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                            sIBOACUsuarios.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
                         else
                         {
                             if (rolesTem.Where(a => a.Id == query_where2.ToArray().ElementAt(i).Id).Count() == 0)
                             {
-                                 sIBOACUsuarios.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                                sIBOACUsuarios.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
                             }
 
                         }
 
                     }
+
+
+                }
+
 
                 dbs.Entry(sIBOACUsuarios).State = EntityState.Modified;
 

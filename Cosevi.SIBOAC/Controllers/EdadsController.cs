@@ -112,8 +112,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
-            edad.FechaMinNacimiento =DateTime.Parse(edad.FechaMinNacimiento.ToString("yyyy/MM/dd"));
-            
+            ViewBag.FechaMinNacimiento =DateTime.Parse(edad.FechaMinNacimiento.ToString()).ToString("dd/MM/yyyy");
+            ViewBag.FechaMaxNacimiento = DateTime.Parse(edad.FechaMaxNacimiento.ToString()).ToString("dd/MM/yyyy");
             return View(edad);
         }
 

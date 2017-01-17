@@ -158,42 +158,54 @@ namespace Cosevi.SIBOAC.Controllers
                 sIBOACMenuOpciones.ParentID = ParentID;
                 sIBOACMenuOpciones.Orden = Orden;
                 var rolesTem = sIBOACMenuOpciones.SIBOACRoles;
-
-                var query_where2 = from a in dbSecurity.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
-                                   select a;
-
-                for (int i = 0; i < rolesTem.Count; i++)
+                if (SIBOACRoles == null)
                 {
-                    if (query_where2.ToArray().Count() == 0)
-                    {
-                        sIBOACMenuOpciones.SIBOACRoles.Remove(rolesTem.ElementAt(i));
-                        i--;
+                    for (int i = 0; i < rolesTem.Count; i++)
+                    {                      
+                            sIBOACMenuOpciones.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                            i--;                        
                     }
-                    else
+                }
+                else
+                {
+                    var query_where2 = from a in dbSecurity.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
+                                       select a;
+
+                    for (int i = 0; i < rolesTem.Count; i++)
                     {
-                        if (query_where2.ToArray().Where(a => a.Id == rolesTem.ElementAt(i).Id).Count() == 0)
+                        if (query_where2.ToArray().Count() == 0)
                         {
                             sIBOACMenuOpciones.SIBOACRoles.Remove(rolesTem.ElementAt(i));
                             i--;
                         }
-                    }
-
-
-                }
-                for (int i = 0; i < query_where2.ToArray().Count(); i++)
-                {
-                    if (rolesTem.Count() == 0)
-                        sIBOACMenuOpciones.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
-                    else
-                    {
-                        if (rolesTem.Where(a => a.Id == query_where2.ToArray().ElementAt(i).Id).Count() == 0)
+                        else
                         {
+                            if (query_where2.ToArray().Where(a => a.Id == rolesTem.ElementAt(i).Id).Count() == 0)
+                            {
+                                sIBOACMenuOpciones.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                                i--;
+                            }
+                        }
+
+
+                    }
+                    for (int i = 0; i < query_where2.ToArray().Count(); i++)
+                    {
+                        if (rolesTem.Count() == 0)
                             sIBOACMenuOpciones.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                        else
+                        {
+                            if (rolesTem.Where(a => a.Id == query_where2.ToArray().ElementAt(i).Id).Count() == 0)
+                            {
+                                sIBOACMenuOpciones.SIBOACRoles.Add(query_where2.ToArray().ElementAt(i));
+                            }
+
                         }
 
                     }
 
                 }
+               
 
                 var sIBOACMenuOpcionesAntes = dbSecurity.SIBOACMenuOpciones.AsNoTracking().Where(d => d.MenuOpcionesID == sIBOACMenuOpciones.MenuOpcionesID).FirstOrDefault();
                 dbSecurity.Entry(sIBOACMenuOpciones).State = EntityState.Modified;

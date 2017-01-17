@@ -22,7 +22,7 @@ namespace Cosevi.SIBOAC.Controllers
             //faltan validaciones de mensajes.
 
            var Inspector = (dbs.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.codigo).ToList());
-            CodigoInspector = Inspector.ToArray().FirstOrDefault().ToString();
+            CodigoInspector = Inspector.ToArray().FirstOrDefault()==null?null: Inspector.ToArray().FirstOrDefault().ToString();
             if (CodigoInspector == null || FechaInicio == null || FechaFin == null)
             {
                 ViewBag.Inspector = CodigoInspector;

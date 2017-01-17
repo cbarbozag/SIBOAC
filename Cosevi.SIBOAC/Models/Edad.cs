@@ -20,14 +20,14 @@ namespace Cosevi.SIBOAC.Models
         [DisplayName("Fecha de nacimiento mínima")]
         [Required(ErrorMessage = "La fecha de nacimiento mínima es obligatoria")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+      //  [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FechaMinNacimiento { get; set; }
 
 
         [DisplayName("Fecha de nacimiento máxima")]
         [Required(ErrorMessage = "La fecha de nacimiento máxima es obligatoria")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+      //  [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FechaMaxNacimiento { get; set; }
 
 
