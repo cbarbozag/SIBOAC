@@ -12,13 +12,14 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class ResetPasswordsController : BaseController<SIBOACUsuarios>
     {
+        private SIBOACSecurityEntities dbSecurity = new SIBOACSecurityEntities();
 
 
         // GET: ResetPasswords
         [SessionExpire]
         public ActionResult Index()
         {
-            return View(db.SIBOACUsuarios.ToList());
+            return View(dbSecurity.SIBOACUsuarios.ToList());
         }
 
         //// GET: ResetPasswords/Details/5
@@ -96,7 +97,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbSecurity.SIBOACUsuarios.Find(id);
             if (sIBOACUsuarios == null)
             {
                 return HttpNotFound();
@@ -109,12 +110,12 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbSecurity.SIBOACUsuarios.Find(id);
             SIBOACUsuarios sIBOACUsuariosAntes = ObtenerCopia(sIBOACUsuarios);
             var usuario = sIBOACUsuarios.Usuario;
             sIBOACUsuarios.Contrasena = usuario;
             sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
-            db.SaveChanges();
+            dbSecurity.SaveChanges();
             Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
             return RedirectToAction("Index");
         }

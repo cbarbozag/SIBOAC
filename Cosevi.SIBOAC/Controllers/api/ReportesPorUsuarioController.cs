@@ -15,13 +15,14 @@ namespace Cosevi.SIBOAC.Controllers.api
     public class ReportesPorUsuarioController : ApiController
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        private SIBOACSecurityEntities dbSecurity = new SIBOACSecurityEntities();
 
         // GET: api/ReportesPorUsuario
         public IQueryable<DTOReportesPorUsuario> GetReportesPorUsuario([FromUri] string[] idUsuarios, [FromUri] DateTime desde, [FromUri] DateTime hasta)
         {
             var reportes = (from bo in db.BOLETA
                             join pto in db.PARTEOFICIAL on new { numeroparte = bo.numeroparte } equals new { numeroparte = pto.NumeroParte }
-                            join su in db.SIBOACUsuarios on new { usuario_entregaPlano = pto.usuario_entregaPlano } equals new { usuario_entregaPlano = su.Id.ToString() }
+                            join su in dbSecurity.SIBOACUsuarios on new { usuario_entregaPlano = pto.usuario_entregaPlano } equals new { usuario_entregaPlano = su.Id.ToString() }
                             where
                              idUsuarios.Contains(pto.usuario_entregaPlano) &&
                              pto.Fecha >= desde && pto.Fecha <= hasta

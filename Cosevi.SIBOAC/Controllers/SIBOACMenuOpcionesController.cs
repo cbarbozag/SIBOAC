@@ -34,7 +34,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
-            var listaRoles = (from r in db.SIBOACRoles select new { r.Id, r.Nombre });
+            var listaRoles = (from r in dbSecurity.SIBOACRoles select new { r.Id, r.Nombre });
             var ListaRolesActuales = sIBOACMenuOpciones.SIBOACRoles.Select(a => new { a.Id, a.Nombre });
             List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
             foreach (var item in listaRoles)
@@ -62,7 +62,7 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: SIBOACMenuOpciones1/Create
         public ActionResult Create()
         {
-            var listaRoles = (from r in db.SIBOACRoles select new { r.Id, r.Nombre });
+            var listaRoles = (from r in dbSecurity.SIBOACRoles select new { r.Id, r.Nombre });
             List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
             foreach (var item in listaRoles)
             {
@@ -81,7 +81,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var query_where2 = from a in db.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
+                var query_where2 = from a in dbSecurity.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
                                    select a;
                 foreach (var i in query_where2)
                 {
@@ -109,7 +109,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
-            var listaRoles = (from r in db.SIBOACRoles select new { r.Id, r.Nombre });
+            var listaRoles = (from r in dbSecurity.SIBOACRoles select new { r.Id, r.Nombre });
             var ListaRolesActuales = sIBOACMenuOpciones.SIBOACRoles.Select(a => new { a.Id, a.Nombre });
             List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
             foreach (var item in listaRoles)
@@ -159,7 +159,7 @@ namespace Cosevi.SIBOAC.Controllers
                 sIBOACMenuOpciones.Orden = Orden;
                 var rolesTem = sIBOACMenuOpciones.SIBOACRoles;
 
-                var query_where2 = from a in db.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
+                var query_where2 = from a in dbSecurity.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
                                    select a;
 
                 for (int i = 0; i < rolesTem.Count; i++)
@@ -218,7 +218,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return HttpNotFound();
             }
-            var listaRoles = (from r in db.SIBOACRoles select new { r.Id, r.Nombre });
+            var listaRoles = (from r in dbSecurity.SIBOACRoles select new { r.Id, r.Nombre });
             var ListaRolesActuales = sIBOACMenuOpciones.SIBOACRoles.Select(a => new { a.Id, a.Nombre });
             List<SelectListItem> ListaCheckbox = new List<SelectListItem>();
             foreach (var item in listaRoles)

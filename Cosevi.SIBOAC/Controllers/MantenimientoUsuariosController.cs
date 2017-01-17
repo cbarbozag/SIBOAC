@@ -99,7 +99,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Contrasena, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios, [System.Web.Http.FromUri] string[] SIBOACRoles)
+        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios, [System.Web.Http.FromUri] string[] SIBOACRoles)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     sIBOACUsuarios.SIBOACRoles.Add(i);
                 }
-
+                sIBOACUsuarios.Contrasena = sIBOACUsuarios.Usuario;
                 dbs.SIBOACUsuarios.Add(sIBOACUsuarios);
                 string mensaje = Verificar(sIBOACUsuarios.Usuario.ToString());
                 if (mensaje == "")

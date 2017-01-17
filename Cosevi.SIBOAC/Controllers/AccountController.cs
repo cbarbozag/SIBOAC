@@ -335,18 +335,18 @@ namespace Cosevi.SIBOAC.Controllers
                 try
                 {
                     //IdentityResult result = await this.UserManager.ResetPasswordAsync(user.Id.ToString(), model.Code, model.Password);
-                    SIBOACUsuarios usuarioModificado = new SIBOACUsuarios();
-                    usuarioModificado.Id = user.Id;
-                    usuarioModificado.Usuario = user.Usuario;
-                    usuarioModificado.Email = user.Email;
-                    usuarioModificado.Contrasena = model.Password;
-                    usuarioModificado.Nombre = user.Nombre;
-                    usuarioModificado.codigo = user.codigo;
-                    usuarioModificado.FechaDeActualizacionClave = DateTime.Now;
-                    usuarioModificado.Activo = user.Activo;
+                  //  SIBOACUsuarios usuarioModificado = new SIBOACUsuarios();
+                    user.Id = user.Id;
+                    user.Usuario = user.Usuario;
+                    user.Email = user.Email;
+                    user.Contrasena = model.Password;
+                    user.Nombre = user.Nombre;
+                    user.codigo = user.codigo;
+                    user.FechaDeActualizacionClave = DateTime.Now;
+                    user.Activo = user.Activo;
 
-                    db.Entry(usuarioModificado).State = EntityState.Modified;
-                    db.SaveChanges();
+                    sdb.Entry(user).State = EntityState.Modified;
+                    sdb.SaveChanges();
                     //if ()
                     //{
                         return RedirectToAction("ResetPasswordConfirmation", "Account");

@@ -30,11 +30,7 @@
                             @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control", placeholder = ViewData.ModelMetadata.Watermark })
                             @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
                         </div>
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.Recordarme)
-                            @Html.LabelFor(m => m.Recordarme)
-                            @Html.ValidationMessageFor(m => m.Recordarme)
-                        </div>
+                      
                         <input class="btn btn-lg btn-success btn-block" type="submit" value="Ingresar">
                     </fieldset>
                 }

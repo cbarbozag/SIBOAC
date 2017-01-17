@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2009d6fc668b4bbb971bddc97612a570" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="2009d6fc668b4bbb971bddc97612a570" Name="Diagram1" ZoomLevel="61">
         <EntityTypeShape EntityType="PC_HH_AndroidModel.EstadoCivil" Width="1.5" PointX="6.625" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.Iluminacion" Width="1.5" PointX="0.625" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.Maniobra" Width="1.5" PointX="2.625" PointY="3.25" IsExpanded="true" />
@@ -95,11 +95,6 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" Width="1.5" PointX="20.375" PointY="5.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.VEHICULO" Width="1.5" PointX="20.375" PointY="9.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.USUARIO" Width="1.5" PointX="10.375" PointY="22.25" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACRoles" Width="1.5" PointX="20.375" PointY="16.125" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACRolesDeUsuarios" Width="1.5" PointX="22.625" PointY="15.875" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACUsuarios" Width="1.5" PointX="25.125" PointY="15.875" />
-        <AssociationConnector Association="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACRoles" />
-        <AssociationConnector Association="PC_HH_AndroidModel.FK_SIBOACRolesDeUsuarios_SIBOACUsuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
