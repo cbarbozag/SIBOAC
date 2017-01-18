@@ -33,10 +33,12 @@
         <th>
             @Html.DisplayNameFor(model => model.First().Email)
         </th>
-
+        <th>
+            @Html.Label("Codigo")
+        </th>
         <th>
             @Html.Label("Última actualización")
-        </th>
+        </th>     
         
         <th>
             @Html.Label("Estado")
@@ -68,7 +70,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
-  
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
         </td>
@@ -118,7 +122,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
             </td>
