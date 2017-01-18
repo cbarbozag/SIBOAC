@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RolDePersonaPorVehiculoesController : Controller
+    public class RolDePersonaPorVehiculoesController : BaseController<RolDePersonaPorVehiculo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: RolDePersonaPorVehiculoes
         [SessionExpire]
@@ -126,7 +126,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(rolDePersonaPorVehiculo, "I", "RolDePersonaPorVehiculoes");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -202,8 +202,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var rolDePersonaPorVehiculoAntes = db.RolDePersonaPorVehiculoes.AsNoTracking().Where(d => d.Id == rolDePersonaPorVehiculo.Id).FirstOrDefault();
                 db.Entry(rolDePersonaPorVehiculo).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(rolDePersonaPorVehiculo, "U", "RolDePersonaPorVehiculoes", rolDePersonaPorVehiculoAntes);
                 return RedirectToAction("Index");
             }
             return View(rolDePersonaPorVehiculo);
@@ -251,11 +253,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
+            RolDePersonaPorVehiculo rolDePersonaPorVehiculoAntes = ObtenerCopia(rolDePersonaPorVehiculo);
             if (rolDePersonaPorVehiculo.Estado == "I")
                 rolDePersonaPorVehiculo.Estado = "A";
             else
                 rolDePersonaPorVehiculo.Estado = "I";
             db.SaveChanges();
+            Bitacora(rolDePersonaPorVehiculo, "U", "RolDePersonaPorVehiculoes", rolDePersonaPorVehiculoAntes);
             return RedirectToAction("Index");
         }
 
@@ -303,6 +307,7 @@ namespace Cosevi.SIBOAC.Controllers
             RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
             db.RolDePersonaPorVehiculoes.Remove(rolDePersonaPorVehiculo);
             db.SaveChanges();
+            Bitacora(rolDePersonaPorVehiculo, "D", "RolDePersonaPorVehiculoes");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
