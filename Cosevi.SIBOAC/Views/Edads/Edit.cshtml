@@ -16,9 +16,9 @@
         <h4>Edad</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.FechaMinNacimiento)
+        @*@Html.HiddenFor(model => model.FechaMinNacimiento)
 
-        @Html.HiddenFor(model => model.FechaMaxNacimiento)
+        @Html.HiddenFor(model => model.FechaMaxNacimiento)*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.FechaMinNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })

@@ -15,6 +15,7 @@ namespace Cosevi.SIBOAC.Controllers
     public class StatusPlanoController : Controller
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
         // GET: StatusPlano
 
         [SessionExpire]
@@ -212,8 +213,13 @@ namespace Cosevi.SIBOAC.Controllers
                     {
                         parteOficial.StatusPlano = 5;
                     }
-                    parteOficial.fecha_entrega = DateTime.Now;         
-                    parteOficial.usuario_entregaPlano = "UsuarioEntrega";
+                    parteOficial.fecha_entrega = DateTime.Now;
+                    var Inspector = (dbs.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.Id).ToList());
+                    var codigo = User.Identity.Name;
+                     codigo = Inspector.ToArray().FirstOrDefault() == null ? null : Inspector.ToArray().FirstOrDefault().ToString();
+                    parteOficial.usuario_entregaPlano = codigo;
+
+                        
                 }
                 db.SaveChanges();
    
