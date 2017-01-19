@@ -24,7 +24,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorDescargaDeInspector?numeroHH=' + numeroHH + '&codigoInspector=' + codigoInspector + '&desde=' + desde + '&hasta=' + hasta,
+            url: 'api/ReportePorDescargaDeInspector?numeroHH=' + numeroHH + '&codigoInspector=' + codigoInspector + '&desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {

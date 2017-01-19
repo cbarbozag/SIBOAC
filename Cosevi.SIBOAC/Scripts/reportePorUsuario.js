@@ -16,7 +16,7 @@
     function cargarDatos() {
         $.ajax({
             type: 'GET',
-            url: '/api/SIBOACUsuarios',
+            url: 'api/SIBOACUsuarios',
             //data: {},
             success: function (results) {
                 var list = $('#list');
@@ -49,7 +49,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportesPorUsuario?' + idUsuarios + 'desde='+ desde +'&hasta='+ hasta,
+            url: 'api/ReportesPorUsuario?' + idUsuarios + 'desde='+ desde +'&hasta='+ hasta,
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {

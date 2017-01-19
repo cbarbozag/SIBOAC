@@ -39,7 +39,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorConsultaParteOficial?serieParte=' + serieParte + '&numeroParte=' + numeroParte + '&serieBoleta=' + serieBoleta + '&numeroBoleta=' + numeroBoleta +
+            url: 'api/ReportePorConsultaParteOficial?serieParte=' + serieParte + '&numeroParte=' + numeroParte + '&serieBoleta=' + serieBoleta + '&numeroBoleta=' + numeroBoleta +
                 '&tipoId=' + tipoId + '&numeroID=' + numeroID + '&numeroPlaca=' + numeroPlaca + '&codigoPlaca=' + codigoPlaca + '&clasePlaca=' + clasePlaca,
             success: function (results) {
                 var reporte = $('#reporte');
