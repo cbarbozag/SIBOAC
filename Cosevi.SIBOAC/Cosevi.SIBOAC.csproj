@@ -758,13 +758,10 @@
     <Content Include="bin\zh-Hant\System.Spatial.resources.dll" />
     <Content Include="Content\Bitacoras.png" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
-    <Content Include="Content\botonestado.png" />
-    <Content Include="Content\botonreportes.png" />
     <Content Include="Content\btnExcel.png" />
     <Content Include="Content\btnExportarPDF.png" />
     <Content Include="Content\btnImprimir.png" />
     <Content Include="Content\btnPDF.png" />
-    <Content Include="Content\Candado.png" />
     <Content Include="Content\cosevi1.jpg" />
     <Content Include="Content\cosevi2.jpg" />
     <Content Include="Content\cosevi3.jpg" />
@@ -777,7 +774,6 @@
     <Content Include="Content\imagen_2.png" />
     <Content Include="Content\imagen_3.png" />
     <Content Include="Content\imagen_4.png" />
-    <Content Include="Content\lock.png" />
     <Content Include="Content\login.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\PDF.png" />
@@ -812,11 +808,6 @@
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
       <LastGenOutput>SIBOACSecurityModel.cs</LastGenOutput>
     </Content>
-    <Content Include="obj\Debug\Cosevi.SIBOAC.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Cosevi.SIBOAC.dll" />
-    <Content Include="obj\Debug\Cosevi.SIBOAC.pdb" />
-    <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.cs.dll" />
-    <Content Include="obj\Debug\TempPE\Models.PC_HH_AndroidModel.Designer.cs.dll" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -829,15 +820,6 @@
     <Content Include="Models\PC_HH_AndroidModel.edmx.diagram">
       <DependentUpon>PC_HH_AndroidModel.edmx</DependentUpon>
     </Content>
-    <Content Include="bin\Cosevi.SIBOAC.dll.config" />
-    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
-    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
-    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
-    <Content Include="obj\Debug\Cosevi.SIBOAC.csprojResolveAssemblyReference.cache" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.csdl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.msl" />
-    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PC_HH_AndroidModel.ssdl" />
     <Content Include="App_Browsers\qt.browser" />
     <EntityDeploy Include="Models\SIBOACSecurityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -855,7 +837,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jspdf.js" />
+    <Content Include="Scripts\jspdf.debug.js" />
     <Content Include="Scripts\listgroup.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ReportePorConsultaImpresionDeBoletas.js" />
@@ -1450,7 +1432,6 @@
     <Content Include="Views\MantenimientoTablas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="obj\Release\" />
     <Folder Include="Views\Index\" />
     <Folder Include="Views\Usuarios\" />
   </ItemGroup>

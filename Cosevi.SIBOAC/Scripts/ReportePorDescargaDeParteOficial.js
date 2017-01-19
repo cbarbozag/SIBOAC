@@ -16,7 +16,7 @@
     function cargarDatosDelegacion() {
         $.ajax({
             type: 'GET',
-            url: '/api/Delegacions',
+            url: 'api/Delegacions',
             //data: {},
             success: function (results) {
                 var listD = $('#listaDelegaciones');
@@ -34,7 +34,7 @@
     function cargarDatosAutoridad() {
         $.ajax({
             type: 'GET',
-            url: '/api/AutoridadJudicial',
+            url: 'api/AutoridadJudicial',
             //data: {},
             success: function (results) {
                 var listA = $('#listaAutoridades');
@@ -79,7 +79,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorDescargaDeParteOficial?idRadio=' + idRadio + '&' + idDelegaciones + idAutoridades + '&desde=' + desde + '&hasta=' + hasta,
+            url: 'api/ReportePorDescargaDeParteOficial?idRadio=' + idRadio + '&' + idDelegaciones + idAutoridades + '&desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
                 var reporte = $('#reporte');
                 for (var i = 0; i < results.length; i++) {

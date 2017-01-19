@@ -17,7 +17,7 @@
     function cargarDatosDelegacion() {
         $.ajax({
             type: 'GET',
-            url: '/api/Delegacions',
+            url: 'api/Delegacions',
             //data: {},
             success: function (results) {
                 var listD = $('#listaDelegaciones');
@@ -36,7 +36,7 @@
     function cargarDatosInspector() {
         $.ajax({
             type: 'GET',
-            url: '/api/Inspectors',
+            url: 'api/Inspectors',
             //data: {},
             success: function (results) {
                 var listI = $('#listaInspectores');
@@ -82,7 +82,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorConsultaImpresionDeBoletas?' + idDelegaciones + idInspectores + 'desde=' + desde + '&hasta=' + hasta,
+            url: 'api/ReportePorConsultaImpresionDeBoletas?' + idDelegaciones + idInspectores + 'desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
                 var reporte = $('#TablaContenido');
                 for (var i = 0; i < results.length; i++) {

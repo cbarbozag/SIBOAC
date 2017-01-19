@@ -51,7 +51,7 @@
                     <br />
                     Lugar de los hechos: @ViewBag.Datos.LugarHechos
                     <br />
-                    Kilometro: @ViewBag.Datos.Km
+                    Kilometro: @(ViewBag.Datos.Km == 8888 ? "": ViewBag.Datos.Km)
                     <br />
                     Placa:@(ViewBag.Datos.ClasePlaca == "SC" || ViewBag.Datos.ClasePlaca == "SCE" ? "" : ViewBag.Datos.ClasePlaca) @(ViewBag.Datos.CodigoPlaca == "SC" || ViewBag.Datos.CodigoPlaca == "SCE" ? "" : ViewBag.Datos.CodigoPlaca)  @ViewBag.Datos.Placa
                     <br />
