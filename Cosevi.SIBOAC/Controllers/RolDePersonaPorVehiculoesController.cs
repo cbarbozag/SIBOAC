@@ -126,7 +126,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-                    Bitacora(rolDePersonaPorVehiculo, "I", "RolDePersonaPorVehiculoes");
+                    Bitacora(rolDePersonaPorVehiculo, "I", "ROLPERSONA_VEHICULO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -205,7 +205,7 @@ namespace Cosevi.SIBOAC.Controllers
                 var rolDePersonaPorVehiculoAntes = db.RolDePersonaPorVehiculoes.AsNoTracking().Where(d => d.Id == rolDePersonaPorVehiculo.Id).FirstOrDefault();
                 db.Entry(rolDePersonaPorVehiculo).State = EntityState.Modified;
                 db.SaveChanges();
-                Bitacora(rolDePersonaPorVehiculo, "U", "RolDePersonaPorVehiculoes", rolDePersonaPorVehiculoAntes);
+                Bitacora(rolDePersonaPorVehiculo, "U", "ROLPERSONA_VEHICULO", rolDePersonaPorVehiculoAntes);
                 return RedirectToAction("Index");
             }
             return View(rolDePersonaPorVehiculo);
@@ -259,7 +259,7 @@ namespace Cosevi.SIBOAC.Controllers
             else
                 rolDePersonaPorVehiculo.Estado = "I";
             db.SaveChanges();
-            Bitacora(rolDePersonaPorVehiculo, "U", "RolDePersonaPorVehiculoes", rolDePersonaPorVehiculoAntes);
+            Bitacora(rolDePersonaPorVehiculo, "U", "ROLPERSONA_VEHICULO", rolDePersonaPorVehiculoAntes);
             return RedirectToAction("Index");
         }
 
@@ -307,7 +307,7 @@ namespace Cosevi.SIBOAC.Controllers
             RolDePersonaPorVehiculo rolDePersonaPorVehiculo = db.RolDePersonaPorVehiculoes.Find(id);
             db.RolDePersonaPorVehiculoes.Remove(rolDePersonaPorVehiculo);
             db.SaveChanges();
-            Bitacora(rolDePersonaPorVehiculo, "D", "RolDePersonaPorVehiculoes");
+            Bitacora(rolDePersonaPorVehiculo, "D", "ROLPERSONA_VEHICULO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
