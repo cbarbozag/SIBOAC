@@ -26,7 +26,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/api/ReportePorDescargaDeBoletas?idRadio=' + idRadioButton + '&' + '&desde=' + desde + '&hasta=' + hasta,
+            url: 'api/ReportePorDescargaDeBoletas?idRadio=' + idRadioButton + '&' + '&desde=' + desde + '&hasta=' + hasta,
             success: function (results) {
                 var reporte = $('#TablaContenido');
                 for (var i = 0; i < results.length; i++) {

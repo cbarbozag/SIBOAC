@@ -23,6 +23,13 @@
         </div>
         <div class="navbar-collapse collapse">
             @Html.Partial("_LoginPartial")
+            <ul class="nav navbar-nav navbar-left">
+                <li>    
+                    <a>
+                        @System.Configuration.ConfigurationManager.AppSettings["SystemName"]
+                    </a>
+                </li>
+            </ul> 
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="@Url.Action("Index", "Home")">
@@ -75,7 +82,7 @@
         setTimeout('SessionEnd()', sTimeout);
 
         function SessionEnd() {
-            window.location = "/Account/Login/";
+            window.location = "@System.Configuration.ConfigurationManager.AppSettings["VirtualDirectory"]Account/Login/";
         }
     </script>
 
