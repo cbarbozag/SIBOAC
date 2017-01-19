@@ -274,6 +274,7 @@
     <Compile Include="Controllers\InconsistenciasController.cs" />
     <Compile Include="Controllers\InspectorsController.cs" />
     <Compile Include="Controllers\InterseccionsController.cs" />
+    <Compile Include="Controllers\LeyendaPorAutoridadController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MantenimientoRolesController.cs" />
@@ -1338,6 +1339,12 @@
     <Content Include="Views\MantenimientoTablas\Details.cshtml" />
     <Content Include="Views\MantenimientoTablas\Edit.cshtml" />
     <Content Include="Views\MantenimientoTablas\Index.cshtml" />
+    <Content Include="Views\LeyendaPorAutoridad\Create.cshtml" />
+    <Content Include="Views\LeyendaPorAutoridad\Delete.cshtml" />
+    <Content Include="Views\LeyendaPorAutoridad\Details.cshtml" />
+    <Content Include="Views\LeyendaPorAutoridad\Edit.cshtml" />
+    <Content Include="Views\LeyendaPorAutoridad\Index.cshtml" />
+    <Content Include="Views\LeyendaPorAutoridad\Inactivar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
