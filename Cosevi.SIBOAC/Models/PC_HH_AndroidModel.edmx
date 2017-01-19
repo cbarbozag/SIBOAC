@@ -80,7 +80,7 @@
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FechaHora" Type="datetime" Nullable="false" />
           <Property Name="NombreTabla" Type="varchar" MaxLength="64" Nullable="false" />
-          <Property Name="CodigoUsuario" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="CodigoUsuario" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Operacion" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="ValorAntes" Type="varchar(max)" />
           <Property Name="ValorDespues" Type="varchar(max)" />
@@ -586,6 +586,16 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LEYENDAPORAUTORIDAD">
+          <Key>
+            <PropertyRef Name="IdAutoridad" />
+          </Key>
+          <Property Name="IdAutoridad" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PiePagina" Type="nvarchar" MaxLength="2200" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Fecha_Inicio" Type="datetime" Nullable="false" />
+          <Property Name="Fecha_Fin" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MANIOBRA">
           <Key>
@@ -1198,6 +1208,7 @@
           <EntitySet Name="INCONSISTENCIA" EntityType="Self.INCONSISTENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INSPECTOR" EntityType="Self.INSPECTOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INTERSECCION" EntityType="Self.INTERSECCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LEYENDAPORAUTORIDAD" EntityType="Self.LEYENDAPORAUTORIDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MANIOBRA" EntityType="Self.MANIOBRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOTIVONOFIRMA" EntityType="Self.MOTIVONOFIRMA" Schema="dbo" store:Type="Tables" />
@@ -1243,7 +1254,7 @@
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
-          </EntityContainer>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1416,6 +1427,7 @@
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="Operacion" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="LEYENDAPORAUTORIDAD" EntityType="PC_HH_AndroidModel.LEYENDAPORAUTORIDAD" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2220,7 +2232,7 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NombreTabla" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="CodigoUsuario" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Operacion" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="ValorAntes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ValorDespues" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -2486,6 +2498,16 @@
           <Property Name="Reportes" Type="Boolean" />
           <Property Name="Modifica" Type="Boolean" />
           <Property Name="Imprimeparte" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="LEYENDAPORAUTORIDAD">
+          <Key>
+            <PropertyRef Name="IdAutoridad" />
+          </Key>
+          <Property Name="IdAutoridad" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PiePagina" Type="String" Nullable="false" MaxLength="2200" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fecha_Fin" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3671,6 +3693,17 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetBitacoraData" FunctionName="PC_HH_AndroidModel.Store.GetBitacoraData">
           </FunctionImportMapping>
+          <EntitySetMapping Name="LEYENDAPORAUTORIDAD">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.LEYENDAPORAUTORIDAD">
+              <MappingFragment StoreEntitySet="LEYENDAPORAUTORIDAD">
+                <ScalarProperty Name="Fecha_Fin" ColumnName="Fecha_Fin" />
+                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="PiePagina" ColumnName="PiePagina" />
+                <ScalarProperty Name="IdAutoridad" ColumnName="IdAutoridad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
