@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ArticulosPorDepositosDeBienesController : Controller
+    public class ArticulosPorDepositosDeBienesController : BaseController<ArticulosPorDepositosDeBienes>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: ArticulosPorDepositosDeBienes
         [SessionExpire]
@@ -124,7 +124,6 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ArticulosPorDepositosDeBienes/Create
-
         public ActionResult Create()
         {
             //se llenan los combos
@@ -160,12 +159,8 @@ namespace Cosevi.SIBOAC.Controllers
             return View();
         }
 
-
-
         public List<CatalogoDeArticulos> ListCatalogoArticulos()
         {
-
-
             var list =
               (from c in db.CATARTICULO
                where c.Estado == "A"
@@ -189,6 +184,7 @@ namespace Cosevi.SIBOAC.Controllers
 
             return list.ToList();
         }
+
         // POST: ArticulosPorDepositosDeBienes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -208,7 +204,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(articulosPorDepositosDeBienes, "I", "ARTICULOSXDEPOSITOSBIENES");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -311,9 +307,16 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult Edit([Bind(Include = "CodigoDepositosBienes,CodigoOpcionFormulario,CodigoArticulo,Conducta,FechaDeInicio,FechaDeFin,Estado")] ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes)
         {
             if (ModelState.IsValid)
-            {
+            {                
+                var articulosPorDepositosDeBienesAntes = db.ARTICULOSXDEPOSITOSBIENES.AsNoTracking().Where(d => d.CodigoDepositosBienes == articulosPorDepositosDeBienes.CodigoDepositosBienes &&
+                                                                                        d.CodigoOpcionFormulario == articulosPorDepositosDeBienes.CodigoOpcionFormulario &&
+                                                                                        d.CodigoArticulo == articulosPorDepositosDeBienes.CodigoArticulo &&
+                                                                                        d.Conducta == articulosPorDepositosDeBienes.Conducta &&
+                                                                                        d.FechaDeInicio == articulosPorDepositosDeBienes.FechaDeInicio &&
+                                                                                        d.FechaDeFin == articulosPorDepositosDeBienes.FechaDeFin).FirstOrDefault();
                 db.Entry(articulosPorDepositosDeBienes).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(articulosPorDepositosDeBienes, "U", "ARTICULOSXDEPOSITOSBIENES", articulosPorDepositosDeBienesAntes);
                 return RedirectToAction("Index");
             }
             return View(articulosPorDepositosDeBienes);
@@ -381,11 +384,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
             ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
+            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienesAntes = ObtenerCopia(articulosPorDepositosDeBienes);
             if (articulosPorDepositosDeBienes.Estado == "A")
                 articulosPorDepositosDeBienes.Estado = "I";
             else
                 articulosPorDepositosDeBienes.Estado = "A";
-            db.SaveChanges();
+                db.SaveChanges();
+                Bitacora(articulosPorDepositosDeBienes, "U", "CATARTICULO", articulosPorDepositosDeBienesAntes);
             return RedirectToAction("Index");
         }
 

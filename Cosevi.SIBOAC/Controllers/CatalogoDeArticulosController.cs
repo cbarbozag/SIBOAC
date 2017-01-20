@@ -94,7 +94,8 @@ namespace Cosevi.SIBOAC.Controllers
                                             catalogoDeArticulos.FechaDeFin);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();                    
+                    db.SaveChanges();
+                    Bitacora(catalogoDeArticulos, "I", "CATARTICULO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -134,8 +135,14 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var catalogoDeArticulosAntes = db.CATARTICULO.AsNoTracking().Where(d => d.Id == catalogoDeArticulos.Id && 
+                                                                                        d.Conducta == catalogoDeArticulos.Conducta &&
+                                                                                        d.FechaDeInicio == catalogoDeArticulos.FechaDeInicio &&
+                                                                                        d.FechaDeFin == catalogoDeArticulos.FechaDeFin).FirstOrDefault();
+
                 db.Entry(catalogoDeArticulos).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
                 return RedirectToAction("Index");
             }
             return View();
@@ -162,11 +169,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigo, string conducta, DateTime fechaInicio, DateTime fechaFinal)
         {
             CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
+            CatalogoDeArticulos catalogoDeArticulosAntes = ObtenerCopia(catalogoDeArticulos);
             if (catalogoDeArticulos.Estado == "A")
                 catalogoDeArticulos.Estado = "I";
             else
                 catalogoDeArticulos.Estado = "A";
-            db.SaveChanges();
+                db.SaveChanges();
+                Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
             return RedirectToAction("Index");
         }
 
@@ -194,6 +203,7 @@ namespace Cosevi.SIBOAC.Controllers
             CatalogoDeArticulos catalogoDeArticulos = db.CATARTICULO.Find(codigo, conducta, fechaInicio, fechaFinal);
             db.CATARTICULO.Remove(catalogoDeArticulos);
             db.SaveChanges();
+            Bitacora(catalogoDeArticulos, "D", "CATARTICULO");
             return RedirectToAction("Index");
         }
 
