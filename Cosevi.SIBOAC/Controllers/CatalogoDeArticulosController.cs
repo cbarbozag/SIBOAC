@@ -102,11 +102,22 @@ namespace Cosevi.SIBOAC.Controllers
                                             catalogoDeArticulos.FechaDeFin);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(catalogoDeArticulos, "I", "CATARTICULO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(catalogoDeArticulos.FechaDeInicio, catalogoDeArticulos.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(catalogoDeArticulos, "I", "CATARTICULO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(catalogoDeArticulos);
+                    }
                 }
                 else
                 {
@@ -149,9 +160,21 @@ namespace Cosevi.SIBOAC.Controllers
                                                                                         d.FechaDeFin == catalogoDeArticulos.FechaDeFin).FirstOrDefault();
 
                 db.Entry(catalogoDeArticulos).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(catalogoDeArticulos.FechaDeInicio, catalogoDeArticulos.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(catalogoDeArticulos);
+                }
             }
             return View();
         }

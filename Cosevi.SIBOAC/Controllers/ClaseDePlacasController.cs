@@ -83,11 +83,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(claseDePlaca.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(claseDePlaca.FechaDeInicio, claseDePlaca.FechaDeFin);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(claseDePlaca);
+                    }
 
                 }
                 else
@@ -126,8 +137,19 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(claseDePlaca).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+               string  mensaje = ValidarFechas(claseDePlaca.FechaDeInicio, claseDePlaca.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(claseDePlaca);
+                }
             }
             return View(claseDePlaca);
         }

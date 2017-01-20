@@ -80,12 +80,23 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(circulacion.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(circulacion, "I", "CIRCULACION");
+                    mensaje = ValidarFechas(circulacion.FechaDeInicio, circulacion.FechaDeFin);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(circulacion, "I", "CIRCULACION");
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(circulacion);
+                    }
                 }
                 else
                 {
@@ -125,10 +136,22 @@ namespace Cosevi.SIBOAC.Controllers
                 var circulacionAntes = db.CIRCULACION.AsNoTracking().Where(d => d.Id == circulacion.Id).FirstOrDefault();
 
                 db.Entry(circulacion).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(circulacion, "U", "CIRCULACION", circulacionAntes);
+                string mensaje = ValidarFechas(circulacion.FechaDeInicio, circulacion.FechaDeFin);
 
-                return RedirectToAction("Index");
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(circulacion, "U", "CIRCULACION", circulacionAntes);
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(circulacion);
+                }
+
             }
             return View(circulacion);
         }
