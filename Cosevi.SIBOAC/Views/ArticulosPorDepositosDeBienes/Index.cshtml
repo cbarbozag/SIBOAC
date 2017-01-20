@@ -110,7 +110,8 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
                 @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
-                
+                @Html.ActionLink("Eliminar", "RealDelete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
+
                 @if (item.Estado == "I")
                 {
                     @Html.ActionLink("Activar", "Delete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin})
@@ -171,7 +172,8 @@
             <td>
                 @Html.ActionLink("Editar", "Edit", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
                 @Html.ActionLink("Detalles", "Details", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin}) |
-                
+                @Html.ActionLink("Eliminar", "RealDelete", new { CodDepositoBienes = item.CodigoDepositosBienes, CodFormulario = item.CodigoOpcionFormulario, CodArticulo = item.CodigoArticulo, Conducta = item.Conducta, FechaInicio = item.FechaDeInicio, FechaFin = item.FechaDeFin }) |
+
 
                 @if (item.Estado == "I")
                 {
