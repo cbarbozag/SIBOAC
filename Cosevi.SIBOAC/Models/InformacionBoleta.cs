@@ -89,6 +89,7 @@ namespace Cosevi.SIBOAC.Models
                 return Total;
             }
         }
+        public string PiePaginaAutoridad { get; set; }
     }
 }  
 

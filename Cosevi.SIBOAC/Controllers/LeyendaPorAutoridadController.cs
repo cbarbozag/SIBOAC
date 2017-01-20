@@ -34,7 +34,7 @@ namespace Cosevi.SIBOAC.Controllers
                 Estado = la.Estado,
                 FechaDeInicio = la.Fecha_Inicio,
                 FechaDeFin = la.Fecha_Fin               
-            }).ToList()
+            }).ToList().Distinct()
            .Select(x => new LEYENDAPORAUTORIDAD
            {
                IdAutoridad = x.IdAutoridad,
@@ -66,7 +66,7 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeInicio = la.Fecha_Inicio,
                  FechaDeFin = la.Fecha_Fin,
                  Descripcion = a.Descripcion
-             }).ToList()
+             }).ToList().Take(1)
             .Select(x => new LEYENDAPORAUTORIDAD
             {
                 IdAutoridad = x.IdAutoridad,
@@ -156,7 +156,7 @@ namespace Cosevi.SIBOAC.Controllers
                  Estado = la.Estado,
                  FechaDeInicio = la.Fecha_Inicio,
                  FechaDeFin = la.Fecha_Fin
-             }).ToList()
+             }).ToList().Take(1)
             .Select(x => new LEYENDAPORAUTORIDAD
             {
                 IdAutoridad = x.IdAutoridad,
@@ -215,7 +215,7 @@ namespace Cosevi.SIBOAC.Controllers
                FechaDeInicio = la.Fecha_Inicio,
                FechaDeFin = la.Fecha_Fin,
                Descripcion = a.Descripcion
-           }).ToList()
+           }).ToList().Take(1)
           .Select(x => new LEYENDAPORAUTORIDAD
           {
               IdAutoridad = x.IdAutoridad,
@@ -276,7 +276,7 @@ namespace Cosevi.SIBOAC.Controllers
                FechaDeInicio = la.Fecha_Inicio,
                FechaDeFin = la.Fecha_Fin,
                Descripcion = a.Descripcion
-           }).ToList()
+           }).ToList().Take(1)
           .Select(x => new LEYENDAPORAUTORIDAD
           {
               IdAutoridad = x.IdAutoridad,
