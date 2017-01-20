@@ -339,7 +339,14 @@ namespace Cosevi.SIBOAC.Controllers
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
-
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

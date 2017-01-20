@@ -45,7 +45,14 @@ namespace Cosevi.SIBOAC.Controllers
 
         }
 
-
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
 
         // GET: Edads/Details/5
         public ActionResult Details(DateTime FechaMinNacimiento, DateTime FechaMaxNacimiento)

@@ -29,7 +29,14 @@ namespace Cosevi.SIBOAC.Controllers
             return View(list.ToPagedList(pageNumber, pageSize));
         }
 
-
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         public string Verificar(string id)
         {
             string mensaje = "";

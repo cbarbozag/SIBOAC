@@ -121,18 +121,32 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.AUTORIDAD.Add(autoridad);
-                string mensaje = Verificar(autoridad.Id,
-                                             autoridad.CodigoOpcionFormulario);
+                string mensaje = Verificar(autoridad.Id, autoridad.CodigoOpcionFormulario);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(autoridad, "I", "AUTORIDAD");
+                    mensaje = ValidarFechas(autoridad.FechaDeInicio, autoridad.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(autoridad, "I", "AUTORIDAD");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        IEnumerable<SelectListItem> itemsOpcionformulario = db.OPCIONFORMULARIO.Select(o => new SelectListItem
+                                                                                                        {
+                                                                                                            Value = o.Id.ToString(),
+                                                                                                            Text = o.Descripcion
 
+                                                                                                        });
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
-
+                        ViewBag.ComboOpcionformulario = itemsOpcionformulario;
+                        return View(autoridad);
+                    }  
                 }
                 else
                 {
@@ -208,10 +222,28 @@ namespace Cosevi.SIBOAC.Controllers
                 var autoridadAntes = db.AUTORIDAD.AsNoTracking().Where(d => d.Id == autoridad.Id && d.CodigoOpcionFormulario == autoridad.CodigoOpcionFormulario).FirstOrDefault();
 
                 db.Entry(autoridad).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(autoridad, "U", "AUTORIDAD", autoridadAntes);
+                string mensaje = ValidarFechas(autoridad.FechaDeInicio, autoridad.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(autoridad, "U", "AUTORIDAD", autoridadAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsOpcionformulario = db.OPCIONFORMULARIO.Select(o => new SelectListItem
+                                                                                                    {
+                                                                                                        Value = o.Id.ToString(),
+                                                                                                        Text = o.Descripcion
 
-                return RedirectToAction("Index");
+                                                                                                    });
+
+                    ViewBag.ComboOpcionformulario = itemsOpcionformulario;
+                    return View(autoridad);
+                }
+                    
             }
             return View(autoridad);
         }
@@ -355,6 +387,15 @@ namespace Cosevi.SIBOAC.Controllers
 
             }
             return mensaje;
+        }
+
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
         }
     }
 }

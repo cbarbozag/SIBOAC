@@ -38,7 +38,14 @@ namespace Cosevi.SIBOAC.Controllers
             }
             return mensaje;
         }
-
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         // GET: AlineacionVerticals/Details/5
         public ActionResult Details(int? id)
         {
@@ -73,12 +80,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(alineacionVertical.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(alineacionVertical, "I", "ALINVERT");
+                    mensaje = ValidarFechas(alineacionVertical.FechaDeInicio, alineacionVertical.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(alineacionVertical, "I", "ALINVERT");
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(alineacionVertical);
+                    }                 
 
                 }
                 else
@@ -119,10 +136,20 @@ namespace Cosevi.SIBOAC.Controllers
                 var alineacionVerticalAntes = db.ALINVERT.AsNoTracking().Where(d => d.Id == alineacionVertical.Id).FirstOrDefault();
 
                 db.Entry(alineacionVertical).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(alineacionVertical, "U", "ALINVERT", alineacionVerticalAntes);
-
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(alineacionVertical.FechaDeInicio, alineacionVertical.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(alineacionVertical, "U", "ALINVERT", alineacionVerticalAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(alineacionVertical);
+                }
+               
             }
             return View(alineacionVertical);
         }

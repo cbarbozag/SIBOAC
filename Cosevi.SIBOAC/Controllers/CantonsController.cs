@@ -39,7 +39,14 @@ namespace Cosevi.SIBOAC.Controllers
             return mensaje;
         }
 
-
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         // GET: Cantons/Details/5
         public ActionResult Details(int? id)
         {
@@ -74,12 +81,23 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(canton.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(canton, "I", "CANTON");
+                    mensaje = ValidarFechas(canton.FechaDeInicio, canton.FechaDeFin);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(canton, "I", "CANTON");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(canton);
+                    }
+                       
                 }
                 else
                 {
@@ -119,10 +137,20 @@ namespace Cosevi.SIBOAC.Controllers
                 var cantonAntes = db.CANTON.AsNoTracking().Where(d => d.Id == canton.Id).FirstOrDefault();
 
                 db.Entry(canton).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(canton, "U", "CANTON", cantonAntes);
-
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(canton.FechaDeInicio, canton.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(canton, "U", "CANTON", cantonAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(canton);
+                }
+                   
             }
             return View(canton);
         }
