@@ -27,6 +27,8 @@ namespace Cosevi.SIBOAC
             config.Formatters.JsonFormatter
                 .SerializerSettings
                 .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            log4net.Config.XmlConfigurator.Configure();
         }
     }
 }

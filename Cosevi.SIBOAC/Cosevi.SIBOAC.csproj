@@ -53,6 +53,10 @@
       <HintPath>..\packages\itextsharp.xmlworker.5.5.4\lib\itextsharp.xmlworker.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -263,6 +267,7 @@
     <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\DivisionsController.cs" />
     <Compile Include="Controllers\EdadsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
     <Compile Include="Controllers\ExamenController.cs" />
@@ -667,10 +672,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050.mdf" />
-    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050_log.ldf">
-      <DependentUpon>aspnet-Cosevi.SIBOAC-20161115085050.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\Bitacoras.png" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\btnExcel.png" />
@@ -1350,6 +1351,7 @@
     <Content Include="Views\LeyendaPorAutoridad\Index.cshtml" />
     <Content Include="Views\LeyendaPorAutoridad\Inactivar.cshtml" />
     <Content Include="Views\ArticulosPorDepositosDeBienes\RealDelete.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
