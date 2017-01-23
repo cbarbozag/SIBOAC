@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ClaseDePlacasController : Controller
+    public class ClaseDePlacasController : BaseController<ClaseDePlaca>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: ClaseDePlacas
         [SessionExpire]
@@ -75,7 +75,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(claseDePlaca, "I", "CLASE");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -116,8 +116,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var claseDePlacaAntes = db.CLASE.AsNoTracking().Where(d => d.Id == claseDePlaca.Id).FirstOrDefault();
+
                 db.Entry(claseDePlaca).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
                 return RedirectToAction("Index");
             }
             return View(claseDePlaca);
@@ -144,11 +147,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             ClaseDePlaca claseDePlaca = db.CLASE.Find(id);
+            ClaseDePlaca claseDePlacaAntes = ObtenerCopia(claseDePlaca);
+
             if (claseDePlaca.Estado == "A")
                 claseDePlaca.Estado = "I";
             else
                 claseDePlaca.Estado = "A";
-            db.SaveChanges();
+                db.SaveChanges();
+                Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
             return RedirectToAction("Index");
         }
 
@@ -176,6 +182,7 @@ namespace Cosevi.SIBOAC.Controllers
             ClaseDePlaca claseDePlaca = db.CLASE.Find(id);
             db.CLASE.Remove(claseDePlaca);
             db.SaveChanges();
+            Bitacora(claseDePlaca, "D", "CLASE");
             return RedirectToAction("Index");
         }
 

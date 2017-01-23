@@ -1430,6 +1430,8 @@
     <Content Include="Views\MantenimientoTablas\Details.cshtml" />
     <Content Include="Views\MantenimientoTablas\Edit.cshtml" />
     <Content Include="Views\MantenimientoTablas\Index.cshtml" />
+    <Content Include="Views\Home\OPCatalogos.cshtml" />
+    <Content Include="Views\Reportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />

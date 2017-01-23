@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ConsecutivoNumeroMarcoesController : Controller
+    public class ConsecutivoNumeroMarcoesController : BaseController<ConsecutivoNumeroMarco>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: ConsecutivoNumeroMarcoes
         [SessionExpire]
@@ -83,7 +83,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(consecutivoNumeroMarco, "I", "CONSECUTIVONUMEROMARCO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -124,8 +124,14 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var consecutivoNumeroMarcoAntes = db.CONSECUTIVONUMEROMARCO.AsNoTracking().Where(d => d.Id == consecutivoNumeroMarco.Id &&
+                                                                                                        d.IdAnterior == consecutivoNumeroMarco.IdAnterior &&
+                                                                                                        d.FechaDeInicio == consecutivoNumeroMarco.FechaDeInicio &&
+                                                                                                        d.FechaDeFin == consecutivoNumeroMarco.FechaDeFin).FirstOrDefault();
+
                 db.Entry(consecutivoNumeroMarco).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(consecutivoNumeroMarco, "U", "CONSECUTIVONUMEROMARCO", consecutivoNumeroMarcoAntes);
                 return RedirectToAction("Index");
             }
             return View(consecutivoNumeroMarco);
@@ -152,11 +158,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? id, int? consecutivoNumeroMarcoAnterior, DateTime FechaInicio, DateTime FechaFin)
         {
             ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id, consecutivoNumeroMarcoAnterior, FechaInicio, FechaFin);
+            ConsecutivoNumeroMarco consecutivoNumeroMarcoAntes = ObtenerCopia(consecutivoNumeroMarco);
             if (consecutivoNumeroMarco.Estado == "A")
                 consecutivoNumeroMarco.Estado = "I";
             else
                 consecutivoNumeroMarco.Estado = "A";
             db.SaveChanges();
+            Bitacora(consecutivoNumeroMarco, "U", "CONSECUTIVONUMEROMARCO", consecutivoNumeroMarcoAntes);
             return RedirectToAction("Index");
         }
 
@@ -183,6 +191,7 @@ namespace Cosevi.SIBOAC.Controllers
             ConsecutivoNumeroMarco consecutivoNumeroMarco = db.CONSECUTIVONUMEROMARCO.Find(id, consecutivoNumeroMarcoAnterior, FechaInicio, FechaFin);
             db.CONSECUTIVONUMEROMARCO.Remove(consecutivoNumeroMarco);
             db.SaveChanges();
+            Bitacora(consecutivoNumeroMarco, "D", "CONSECUTIVONUMEROMARCO");
             return RedirectToAction("Index");
         }
 
