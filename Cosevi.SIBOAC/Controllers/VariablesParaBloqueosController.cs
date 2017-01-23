@@ -11,11 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class VariablesParaBloqueosController : Controller
+    public class VariablesParaBloqueosController : BaseController <VariablesParaBloqueo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
-        // GET: VariablesParaBloqueos
+         // GET: VariablesParaBloqueos
         [SessionExpire]
         public ActionResult Index(int? page)
         {
@@ -84,12 +82,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(variablesParaBloqueo.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio, variablesParaBloqueo.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(variablesParaBloqueo, "I", "VARIABLESBLOQUEO");
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
-
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(variablesParaBloqueo);
+                    }
                 }
                 else
                 {
@@ -126,9 +134,23 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var variablesParaBloqueoAntes = db.VARIABLESBLOQUEO.AsNoTracking().Where(d => d.Id == variablesParaBloqueo.Id).FirstOrDefault();
+
                 db.Entry(variablesParaBloqueo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio, variablesParaBloqueo.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(variablesParaBloqueo, "U", "VARIABLESBLOQUEO", variablesParaBloqueoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(variablesParaBloqueo);
+                }
+                
             }
             return View(variablesParaBloqueo);
         }
@@ -154,11 +176,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
+            VariablesParaBloqueo variablesParaBloqueoAntes = ObtenerCopia(variablesParaBloqueo);
             if (variablesParaBloqueo.Estado == "I")
                 variablesParaBloqueo.Estado = "A";
             else
                 variablesParaBloqueo.Estado = "I";
             db.SaveChanges();
+            Bitacora(variablesParaBloqueo, "U", "VARIABLESBLOQUEO", variablesParaBloqueoAntes);
             return RedirectToAction("Index");
         }
 
@@ -185,6 +209,7 @@ namespace Cosevi.SIBOAC.Controllers
             VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
             db.VARIABLESBLOQUEO.Remove(variablesParaBloqueo);
             db.SaveChanges();
+            Bitacora(variablesParaBloqueo, "D", "VARIABLESBLOQUEO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

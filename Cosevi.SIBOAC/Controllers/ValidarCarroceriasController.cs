@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ValidarCarroceriasController : Controller
+    public class ValidarCarroceriasController : BaseController<ValidarCarroceria>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: ValidarCarrocerias
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -187,10 +185,23 @@ namespace Cosevi.SIBOAC.Controllers
                                             validarCarroceria.CodigoCarroceria);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(validarCarroceria.FechaDeInicio, validarCarroceria.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(validarCarroceria, "I", "VALIDARCORROCERIA");
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(validarCarroceria);
+                    }
+                 
                 }
                 else
                 {
@@ -272,9 +283,24 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var validarCorroceriaAntes = db.VALIDARCARROCERIA.AsNoTracking().Where(d => d.CodigoTipoIdVehiculo == validarCarroceria.CodigoTipoIdVehiculo
+                                          && d.CodigoTiposVehiculos == validarCarroceria.CodigoTiposVehiculos
+                                          && d.CodigoCarroceria == validarCarroceria.CodigoCarroceria).FirstOrDefault();
+
                 db.Entry(validarCarroceria).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(validarCarroceria.FechaDeInicio, validarCarroceria.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(validarCarroceria, "U", "VALIDARCARROCERIA", validarCorroceriaAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(validarCorroceriaAntes);
+                }
             }
             return View(validarCarroceria);
         }
@@ -344,11 +370,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string CodigoTipoIdentificacion, int CodigoTipoVehiculo, int CodigoCarroceria)
         {
             ValidarCarroceria validarCarroceria = db.VALIDARCARROCERIA.Find(CodigoTipoIdentificacion, CodigoTipoVehiculo, CodigoCarroceria);
+            ValidarCarroceria validarCarroceriaAntes = ObtenerCopia(validarCarroceria);
             if (validarCarroceria.Estado == "I")
                 validarCarroceria.Estado = "A";
             else
                 validarCarroceria.Estado = "I";
             db.SaveChanges();
+            Bitacora(validarCarroceria, "U", "VALIDARCARROCERIA", validarCarroceriaAntes);
             return RedirectToAction("Index");
         }
 
@@ -415,6 +443,7 @@ namespace Cosevi.SIBOAC.Controllers
             ValidarCarroceria validarCarroceria = db.VALIDARCARROCERIA.Find(CodigoTipoIdentificacion, CodigoTipoVehiculo, CodigoCarroceria);
             db.VALIDARCARROCERIA.Remove(validarCarroceria);
             db.SaveChanges();
+            Bitacora(validarCarroceria, "D", "VALIDARCARROCERIA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

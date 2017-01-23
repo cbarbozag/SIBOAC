@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeSenalExistentesController : Controller
+    public class TipoDeSenalExistentesController : BaseController<TipoDeSenalExistente>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TipoDeSenalExistentes
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -84,11 +82,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(tipoDeSenalExistente.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(tipoDeSenalExistente.FechaDeInicio,tipoDeSenalExistente.FechaDeFin);
+                    if(mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoDeSenalExistente, "I", "TIPOSEÑALEXISTE");
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(tipoDeSenalExistente);
+                    }                 
 
                 }
                 else
@@ -126,9 +135,22 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoDeSenalExistenteAntes = db.TIPOSEÑALEXISTE.AsNoTracking().Where(d => d.Id == tipoDeSenalExistente.Id).FirstOrDefault();
+
                 db.Entry(tipoDeSenalExistente).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(tipoDeSenalExistente.FechaDeInicio, tipoDeSenalExistente.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoDeSenalExistente, "U", "TIPOSEÑALEXISTE", tipoDeSenalExistenteAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeSenalExistente);
+                }
             }
             return View(tipoDeSenalExistente);
         }
@@ -154,11 +176,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             TipoDeSenalExistente tipoDeSenalExistente = db.TIPOSEÑALEXISTE.Find(id);
+            TipoDeSenalExistente tipoDeSenalExistenteAntes = ObtenerCopia(tipoDeSenalExistente);
             if (tipoDeSenalExistente.Estado == "I")
                 tipoDeSenalExistente.Estado = "A";
             else
                 tipoDeSenalExistente.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeSenalExistente, "U", "TIPOSEÑALEXISTE", tipoDeSenalExistenteAntes);
             return RedirectToAction("Index");
         }
 
@@ -185,6 +209,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeSenalExistente tipoDeSenalExistente = db.TIPOSEÑALEXISTE.Find(id);
             db.TIPOSEÑALEXISTE.Remove(tipoDeSenalExistente);
             db.SaveChanges();
+            Bitacora(tipoDeSenalExistente, "D", "TIPOSEÑALEXISTE");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

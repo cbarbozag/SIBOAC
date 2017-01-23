@@ -11,10 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class UnidadesDeAlcoholsController : Controller
+    public class UnidadesDeAlcoholsController : BaseController<UnidadesDeAlcohol>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
+        
         // GET: UnidadesDeAlcohols
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -83,11 +82,23 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(unidadesDeAlcohol.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(unidadesDeAlcohol.FechaDeInicio,unidadesDeAlcohol.FechaDeFin);
+                    if (mensaje == "")
+                    {
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                        db.SaveChanges();
+                        Bitacora(unidadesDeAlcohol, "I", "UNIDADES_ALCOHOL");
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(unidadesDeAlcohol);
+                    }
 
                 }
                 else
@@ -125,9 +136,22 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var unidadesDeAlcoholAntes = db.UNIDADES_ALCOHOL.AsNoTracking().Where(d => d.Id == unidadesDeAlcohol.Id).FirstOrDefault();
+
                 db.Entry(unidadesDeAlcohol).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(unidadesDeAlcohol.FechaDeInicio, unidadesDeAlcohol.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(unidadesDeAlcohol, "U", "UNIDADES_ALCOHOL", unidadesDeAlcoholAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(unidadesDeAlcohol);
+                }
             }
             return View(unidadesDeAlcohol);
         }
@@ -153,11 +177,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
+            UnidadesDeAlcohol unidadesDeAlcoholAntes = ObtenerCopia(unidadesDeAlcohol);
             if (unidadesDeAlcohol.Estado == "I")
                 unidadesDeAlcohol.Estado = "A";
             else
                 unidadesDeAlcohol.Estado = "I";
             db.SaveChanges();
+            Bitacora(unidadesDeAlcohol, "U", "UNIDADES_ALCOHOL", unidadesDeAlcoholAntes);
             return RedirectToAction("Index");
         }
 
@@ -184,6 +210,7 @@ namespace Cosevi.SIBOAC.Controllers
             UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
             db.UNIDADES_ALCOHOL.Remove(unidadesDeAlcohol);
             db.SaveChanges();
+            Bitacora(unidadesDeAlcohol, "D", "UNIDADES_ALCOHOL");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
