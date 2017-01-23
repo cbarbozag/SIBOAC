@@ -40,6 +40,15 @@ namespace Cosevi.SIBOAC.Controllers
             return mensaje;
         }
 
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
+
         // GET: ClaseDePlacas/Details/5
         public ActionResult Details(string id)
         {
@@ -74,6 +83,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(claseDePlaca.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(claseDePlaca.FechaDeInicio, claseDePlaca.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(claseDePlaca);
+                    }
                     db.SaveChanges();
                     Bitacora(claseDePlaca, "I", "CLASE");
                     TempData["Type"] = "success";
@@ -112,13 +137,27 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Clasedeplaca,estado,fecha_inicio,fecha_fin")] ClaseDePlaca claseDePlaca)
+        public ActionResult Edit([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] ClaseDePlaca claseDePlaca)
         {
             if (ModelState.IsValid)
             {
                 var claseDePlacaAntes = db.CLASE.AsNoTracking().Where(d => d.Id == claseDePlaca.Id).FirstOrDefault();
 
                 db.Entry(claseDePlaca).State = EntityState.Modified;
+               string  mensaje = ValidarFechas(claseDePlaca.FechaDeInicio, claseDePlaca.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(claseDePlaca);
+                }
+            }
                 db.SaveChanges();
                 Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
                 return RedirectToAction("Index");

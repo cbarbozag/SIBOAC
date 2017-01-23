@@ -47,10 +47,22 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "El monto es obligatorio")]
         //[Range(0.01, 999999999.99, ErrorMessage = "El precio solo puede tener 2 decimales 0.00")]
         //[DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
-        [RegularExpression(@"^[0-9]+(\,[0-9]{1,2})?$", ErrorMessage = "El precio solo puede tener 2 decimales 0.00")]
+        [RegularExpression(@"^[0-9]+(\,[0-9]{1,2})?$", ErrorMessage = "La multa solo puede tener 2 decimales 0.00")]
         //[Range(0, 9999999999999999.99)]
         //[DataType(DataType.Currency, ErrorMessage = "El valor ingresado no es un monto valido")]
-        public decimal Multa { get; set; }
+        public decimal Multa
+        {
+            get
+            {
+                multa = decimal.Round(multa, 2);
+                return multa;
+            }
+            set
+            {
+                multa = value;
+            }
+        }
+        private decimal multa { get; set; }
 
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         [DisplayName("Estado")]

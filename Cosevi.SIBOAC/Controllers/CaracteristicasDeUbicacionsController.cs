@@ -40,6 +40,15 @@ namespace Cosevi.SIBOAC.Controllers
             return mensaje;
         }
 
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
+
         // GET: CaracteristicasDeUbicacions/Details/5
         public ActionResult Details(int? id)
         {
@@ -74,11 +83,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(caracteristicasDeUbicacion.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(caracteristicasDeUbicacion.FechaDeInicio, caracteristicasDeUbicacion.FechaDeFin);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(caracteristicasDeUbicacion);
+                    }
 
                 }
                 else
@@ -117,8 +137,20 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(caracteristicasDeUbicacion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+               string  mensaje = ValidarFechas(caracteristicasDeUbicacion.FechaDeInicio, caracteristicasDeUbicacion.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(caracteristicasDeUbicacion);
+                }
+                
             }
             return View(caracteristicasDeUbicacion);
         }

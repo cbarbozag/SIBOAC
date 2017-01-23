@@ -13,6 +13,7 @@ namespace Cosevi.SIBOAC.Controllers
     public class BaseController<T> : Controller where T : class
     {
         public PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        private log4net.ILog logger;
 
         public void Bitacora(T entidadNueva, string operacion, string nombreTabla, T entidadAnterior = null)
         {
@@ -79,6 +80,25 @@ namespace Cosevi.SIBOAC.Controllers
             string cloneString = JsonConvert.SerializeObject(entidad, Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             T clone = JsonConvert.DeserializeObject<T>(cloneString);
             return clone;
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            //Log error
+            logger = log4net.LogManager.GetLogger(filterContext.Controller.ToString());
+            logger.Error(filterContext.Exception.Message, filterContext.Exception);
+
+            Exception ex = filterContext.Exception;
+
+            var controllerName = filterContext.RouteData.Values["controller"].ToString();
+            var actionName = filterContext.RouteData.Values["action"].ToString();
+
+            var model = new HandleErrorInfo(ex, controllerName, actionName);
+            TempData["ExceptionHandleErrorInfo"] = model;
+
+            filterContext.ExceptionHandled = true;
+            filterContext.Result = this.RedirectToAction("Index", "Error");
+            base.OnException(filterContext);
         }
     }
 }

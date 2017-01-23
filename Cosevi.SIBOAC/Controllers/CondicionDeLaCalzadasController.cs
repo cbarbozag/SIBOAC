@@ -32,7 +32,7 @@ namespace Cosevi.SIBOAC.Controllers
         public string Verificar(int id)
         {
             string mensaje = "";
-            bool exist = db.CARROCERIA.Any(x => x.Id == id);
+            bool exist = db.CONDCALZADA.Any(x => x.Id == id);
             if (exist)
             {
                 mensaje = "El codigo " + id + " ya esta registrado";
@@ -40,6 +40,14 @@ namespace Cosevi.SIBOAC.Controllers
             return mensaje;
         }
 
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         // GET: CondicionDeLaCalzadas/Details/5
         public ActionResult Details(int? id)
         {

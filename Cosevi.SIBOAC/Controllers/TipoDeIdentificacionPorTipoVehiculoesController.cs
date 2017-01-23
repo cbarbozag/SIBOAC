@@ -146,6 +146,20 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsTipoIdVehiculo = db.TIPOIDEVEHICULO
+                                                                        .Select(o => new SelectListItem
+                                                                        {
+                                                                            Value = o.Id,
+                                                                            Text = o.Descripcion
+                                                                        });
+                    ViewBag.ComboTipoIdVehiculo = itemsTipoIdVehiculo;
+                    IEnumerable<SelectListItem> itemsTipoVeh = db.TIPOVEH
+                                                                 .Select(c => new SelectListItem
+                                                                 {
+                                                                     Value = c.Id.ToString(),
+                                                                     Text = c.Descripcion
+                                                                 });
+                    ViewBag.ComboCodVeh = itemsTipoVeh;
                     return View(tipoDeIdentificacionPorTipoVehiculo);
                 }
             }
@@ -167,7 +181,14 @@ namespace Cosevi.SIBOAC.Controllers
             }
             return mensaje;
         }
-
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         // GET: TipoDeIdentificacionPorTipoVehiculoes/Edit/5
         public ActionResult Edit(string Codigo, int? CodVeh)
         {

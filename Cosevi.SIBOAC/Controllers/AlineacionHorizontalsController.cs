@@ -36,6 +36,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 mensaje = "El codigo " + id + " ya esta registrado";
             }
+           
             return mensaje;
         }
 
@@ -73,12 +74,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(alineacionHorizontal.Id);
                 if(mensaje =="")
                 {
-                    db.SaveChanges();
-                    Bitacora(alineacionHorizontal, "I", "ALINHORI");
+                    mensaje = ValidarFechas(alineacionHorizontal.FechaDeInicio, alineacionHorizontal.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(alineacionHorizontal, "I", "ALINHORI");
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(alineacionHorizontal);
+                    }                   
 
                 }
                 else
@@ -93,6 +104,14 @@ namespace Cosevi.SIBOAC.Controllers
             return View(alineacionHorizontal);
         }
 
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         // GET: AlineacionHorizontals/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -118,10 +137,21 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 var alineacionHorizontalAntes = db.ALINHORI.AsNoTracking().Where(d => d.Id == alineacionHorizontal.Id).FirstOrDefault();
+
                 db.Entry(alineacionHorizontal).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(alineacionHorizontal, "U", "ALINHORI", alineacionHorizontalAntes);
-                return RedirectToAction("Index");
+                string  mensaje = ValidarFechas(alineacionHorizontal.FechaDeInicio, alineacionHorizontal.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(alineacionHorizontal, "U", "ALINHORI", alineacionHorizontalAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(alineacionHorizontal);
+                }              
             }
             return View(alineacionHorizontal);
         }

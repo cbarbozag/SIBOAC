@@ -39,6 +39,15 @@ namespace Cosevi.SIBOAC.Controllers
             return mensaje;
         }
 
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
+
         // GET: Carrocerias/Details/5
         public ActionResult Details(int? id)
         {
@@ -73,12 +82,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(carroceria.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(carroceria, "I", "CARROCERIA");
+                    mensaje = ValidarFechas(carroceria.FechaDeInicio, carroceria.FechaDeFin);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(carroceria, "I", "CARROCERIA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(carroceria);
+                    }
                 }
                 else
                 {
@@ -118,10 +137,21 @@ namespace Cosevi.SIBOAC.Controllers
                 var carroceriaAntes = db.CARROCERIA.AsNoTracking().Where(d => d.Id == carroceria.Id).FirstOrDefault();
 
                 db.Entry(carroceria).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(carroceria, "U", "CARROCERIA", carroceriaAntes);
+                string mensaje = ValidarFechas(carroceria.FechaDeInicio, carroceria.FechaDeFin);
 
-                return RedirectToAction("Index");
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(carroceria, "U", "CARROCERIA", carroceriaAntes);
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(carroceria);
+                }
             }
             return View(carroceria);
         }

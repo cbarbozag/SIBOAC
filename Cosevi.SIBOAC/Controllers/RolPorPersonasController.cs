@@ -60,13 +60,26 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ROLPERSONA.Add(rolPorPersona);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = Verificar(rolPorPersona.Id);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();                  
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolPorPersona);
+                }
+             
             }
 
             return View(rolPorPersona);
         }
-
+     
         // GET: RolPorPersonas/Edit/5
         public ActionResult Edit(string id)
         {
@@ -173,6 +186,14 @@ namespace Cosevi.SIBOAC.Controllers
                 mensaje = "El código del rol de la persona " + id + " ya esta registrado";
             }
             return mensaje;
+        }
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
 using PagedList;
+using System.Data.Entity.Validation;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -77,6 +78,14 @@ namespace Cosevi.SIBOAC.Controllers
             }
             return mensaje;
         }
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
 
         // POST: CatalogoDeArticulos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -94,11 +103,22 @@ namespace Cosevi.SIBOAC.Controllers
                                             catalogoDeArticulos.FechaDeFin);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(catalogoDeArticulos, "I", "CATARTICULO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(catalogoDeArticulos.FechaDeInicio, catalogoDeArticulos.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(catalogoDeArticulos, "I", "CATARTICULO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(catalogoDeArticulos);
+                    }
                 }
                 else
                 {
@@ -141,9 +161,21 @@ namespace Cosevi.SIBOAC.Controllers
                                                                                         d.FechaDeFin == catalogoDeArticulos.FechaDeFin).FirstOrDefault();
 
                 db.Entry(catalogoDeArticulos).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(catalogoDeArticulos.FechaDeInicio, catalogoDeArticulos.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(catalogoDeArticulos);
+                }
             }
             return View();
         }
@@ -174,8 +206,27 @@ namespace Cosevi.SIBOAC.Controllers
                 catalogoDeArticulos.Estado = "I";
             else
                 catalogoDeArticulos.Estado = "A";
+            try
+            {
                 db.SaveChanges();
-                Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
+            }
+             
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+
+            Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
             return RedirectToAction("Index");
         }
 

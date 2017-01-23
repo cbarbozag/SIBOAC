@@ -58,7 +58,7 @@ namespace Cosevi.SIBOAC.Controllers
                 from OficinaParaImpugnars in OficinaParaImpugnars_join.DefaultIfEmpty()
                 join INSPECTOR in db.INSPECTOR on new { Id = BOLETA.codigo_inspector } equals new { Id = INSPECTOR.Id }
                 join GENERALES in db.GENERALES on new { Inspector = BOLETA.codigo_inspector } equals new { Inspector = GENERALES.Inspector } into GENERALES_join
-                from GENERALES in GENERALES_join.DefaultIfEmpty()
+                from GENERALES in GENERALES_join.DefaultIfEmpty()              
                 select new
                 {
                     BOLETA.fuente,
@@ -104,7 +104,15 @@ namespace Cosevi.SIBOAC.Controllers
                     ParteOficial = (BOLETA.fuente_parteoficial + "-" + BOLETA.serie_parteoficial + "-" + BOLETA.numeroparte),
                     ClasePlaca = BOLETA.clase_placa,
                     CodigoPlaca = BOLETA.codigo_placa,
-                    PiePagina = GENERALES.Piepagina
+                    PiePagina = GENERALES.Piepagina,
+                    PiePaginaAutoridad = (((from AUTORIDAD in db.AUTORIDAD 
+                                            join la in db.LEYENDAPORAUTORIDAD on new { id = AUTORIDAD.Id } equals new { id = la.IdAutoridad }                                                                                        
+                                              where
+                                                AUTORIDAD.Id == BOLETA.codigo_autoridad_registra
+                                              select new
+                                              {
+                                                  la.PiePagina
+                                              }).Distinct()).FirstOrDefault().PiePagina),
                 }).ToList().Take(1);
 
             if (boleta.Count() == 0 || boleta.FirstOrDefault() == null)
@@ -146,9 +154,10 @@ namespace Cosevi.SIBOAC.Controllers
                 infoBoleta.NombreInspector = item.NombreInspector;
                 infoBoleta.CodigoInspector = item.CodigoInspector;
                 infoBoleta.ParteOficial = item.ParteOficial;
-                infoBoleta.PiePagina = item.PiePagina.Replace("@", "<br/>");
+                infoBoleta.PiePagina = item.PiePagina == null ? "" : item.PiePagina.Replace("@", "<br/>");
                 infoBoleta.ClasePlaca = item.ClasePlaca;
                 infoBoleta.CodigoPlaca = item.CodigoPlaca;   
+                infoBoleta.PiePaginaAutoridad = item.PiePaginaAutoridad == null ? "" : item.PiePaginaAutoridad.Replace("@", "<br/>");
             }
           
             //articulos por boleta 

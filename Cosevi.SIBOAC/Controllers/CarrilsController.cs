@@ -29,7 +29,7 @@ namespace Cosevi.SIBOAC.Controllers
         public string Verificar(string id)
         {
             string mensaje = "";
-            bool exist = db.CARRIL.Any(x => x.Id == id);
+            bool exist = db.CARRIL.Any(x => x.Id.Trim() == id.Trim());
             if (exist)
             {
                 mensaje = "El codigo " + id + " ya esta registrado";
@@ -37,6 +37,14 @@ namespace Cosevi.SIBOAC.Controllers
             return mensaje;
         }
 
+        public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
+        {
+            if (FechaIni.CompareTo(FechaFin) == 1)
+            {
+                return "La fecha de inicio no puede ser mayor que la fecha fin";
+            }
+            return "";
+        }
         // GET: Carrils/Details/5
         public ActionResult Details(string id)
         {
@@ -44,7 +52,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             if (carril == null)
             {
                 return HttpNotFound();
@@ -71,13 +79,23 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(carril.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(carril, "I", "CARRIL");
+                    mensaje = ValidarFechas(carril.FechaDeInicio, carril.FechaDeFin);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(carril, "I", "CARRIL");
 
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(carril);
+                    }
                 }
                 else
                 {
@@ -97,7 +115,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             if (carril == null)
             {
                 return HttpNotFound();
@@ -114,13 +132,23 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var carrilAntes = db.CARRIL.AsNoTracking().Where(d => d.Id == carril.Id).FirstOrDefault();
+                var carrilAntes = db.CARRIL.AsNoTracking().Where(d => d.Id.Trim() == carril.Id.Trim()).FirstOrDefault();
 
                 db.Entry(carril).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(carril, "U", "CARRIL", carrilAntes);
+                string  mensaje = ValidarFechas(carril.FechaDeInicio, carril.FechaDeFin);
 
-                return RedirectToAction("Index");
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(carril, "U", "CARRIL", carrilAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(carril);
+                }
             }
             return View(carril);
         }
@@ -145,7 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             Carril carrilAntes = ObtenerCopia(carril);
 
             if (carril.Estado == "A")
@@ -166,7 +194,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             if (carril == null)
             {
                 return HttpNotFound();
@@ -179,7 +207,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RealDeleteConfirmed(string id)
         {
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             db.CARRIL.Remove(carril);
             db.SaveChanges();
             Bitacora(carril, "D", "CARRIL");

@@ -69,7 +69,7 @@ namespace Cosevi.SIBOAC.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             // Metodo simple, funcionando bien pero Custom Membership es mejor (No borrar)
