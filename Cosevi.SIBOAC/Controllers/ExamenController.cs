@@ -83,13 +83,28 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(examen.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(examen.FechaDeInicio, examen.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(examen, "I", "EXAMEN");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(examen);
+                    }
+
                     db.SaveChanges();
                     Bitacora(examen, "I", "EXAMEN");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -128,9 +143,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var examenAntes = db.EXAMEN.AsNoTracking().Where(d => d.Id == examen.Id).FirstOrDefault();
                 db.Entry(examen).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(examen, "U", "EXAMEN", examenAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(examen.FechaDeInicio, examen.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(examen, "U", "EXAMEN", examenAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(examen);
+                }                
             }
             return View(examen);
         }

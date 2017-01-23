@@ -83,6 +83,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(interseccion.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(interseccion.FechaDeInicio, interseccion.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(interseccion, "I", "INTERSECCION");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(interseccion);
+                    }
                     db.SaveChanges();
                     Bitacora(interseccion, "I", "INTERSECCION");
                     TempData["Type"] = "success";
@@ -126,9 +142,20 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var interseccionAntes = db.INTERSECCION.AsNoTracking().Where(d => d.Id == interseccion.Id).FirstOrDefault();
                 db.Entry(interseccion).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(interseccion, "U", "INTERSECCION", interseccionAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(interseccion.FechaDeInicio, interseccion.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(interseccion, "U", "INTERSECCION", interseccionAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(interseccion);
+                }
+               
             }
             return View(interseccion);
         }

@@ -81,13 +81,27 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(iluminacion.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(iluminacion.FechaDeInicio, iluminacion.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(iluminacion, "I", "ILUMINACION");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(iluminacion);
+                    }
                     db.SaveChanges();
                     Bitacora(iluminacion, "I", "ILUMINACION");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -126,9 +140,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var iluminacionAntes = db.Iluminacion.AsNoTracking().Where(d => d.Id == iluminacion.Id).FirstOrDefault();
                 db.Entry(iluminacion).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(iluminacion.FechaDeInicio, iluminacion.FechaDeFin);
+                if (mensaje == "")
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(iluminacion);
+                }
+                else
+                {
+                    db.SaveChanges();
+                    Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
+                    return RedirectToAction("Index");
+                }                
             }
             return View(iluminacion);
         }

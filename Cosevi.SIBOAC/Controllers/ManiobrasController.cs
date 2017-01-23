@@ -81,6 +81,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(maniobra.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(maniobra.FechaDeInicio, maniobra.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(maniobra, "I", "MANIOBRA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(maniobra);
+                    }
                     db.SaveChanges();
                     Bitacora(maniobra, "I", "MANIOBRA");
                     TempData["Type"] = "success";
@@ -124,9 +140,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var maniobraAntes = db.Maniobra.AsNoTracking().Where(d => d.Id == maniobra.Id).FirstOrDefault();
                 db.Entry(maniobra).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(maniobra, "U", "MANIOBRA", maniobraAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(maniobra.FechaDeInicio, maniobra.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(maniobra, "U", "MANIOBRA", maniobraAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(maniobra);
+                }                
             }
             return View(maniobra);
         }

@@ -81,13 +81,28 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(distrito.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(distrito.FechaDeInicio, distrito.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(distrito, "I", "DISTRITO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(distrito);
+                    }
                     db.SaveChanges();
                     Bitacora(distrito, "I", "DISTRITO");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -126,9 +141,21 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var distritoAntes = db.DISTRITO.AsNoTracking().Where(d => d.Id == distrito.Id).FirstOrDefault();
                 db.Entry(distrito).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(distrito, "U", "DISTRITO", distritoAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(distrito.FechaDeInicio, distrito.FechaDeFin);
+
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(distrito, "U", "DISTRITO", distritoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(distrito);
+                }
+                
             }
             return View(distrito);
         }

@@ -149,6 +149,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
                     return RedirectToAction("Index");
                 }
                 else
@@ -157,10 +158,7 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Message = mensaje;
                     return View(claseDePlaca);
                 }
-            }
-                db.SaveChanges();
-                Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
-                return RedirectToAction("Index");
+            
             }
             return View(claseDePlaca);
         }
@@ -188,12 +186,14 @@ namespace Cosevi.SIBOAC.Controllers
             ClaseDePlaca claseDePlaca = db.CLASE.Find(id);
             ClaseDePlaca claseDePlacaAntes = ObtenerCopia(claseDePlaca);
 
-            if (claseDePlaca.Estado == "A")
-                claseDePlaca.Estado = "I";
-            else
-                claseDePlaca.Estado = "A";
-                db.SaveChanges();
-                Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
+        if (claseDePlaca.Estado == "A")
+        {
+            claseDePlaca.Estado = "I";
+        }
+        else
+            claseDePlaca.Estado = "A";
+            db.SaveChanges();
+            Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
             return RedirectToAction("Index");
         }
 

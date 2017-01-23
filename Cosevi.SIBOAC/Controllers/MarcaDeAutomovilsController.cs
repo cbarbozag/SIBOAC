@@ -81,6 +81,21 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(marcaDeAutomovil.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(marcaDeAutomovil.FechaDeInicio, marcaDeAutomovil.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(marcaDeAutomovil, "I", "MARCA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(marcaDeAutomovil);
+                    }
                     db.SaveChanges();
                     Bitacora(marcaDeAutomovil, "I", "MARCA");
                     TempData["Type"] = "success";
@@ -124,9 +139,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var marcaDeAutomovilAntes = db.MARCA.AsNoTracking().Where(d => d.Id == marcaDeAutomovil.Id).FirstOrDefault();
                 db.Entry(marcaDeAutomovil).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(marcaDeAutomovil, "U", "MARCA", marcaDeAutomovilAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(marcaDeAutomovil.FechaDeInicio, marcaDeAutomovil.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(marcaDeAutomovil, "U", "MARCA", marcaDeAutomovilAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(marcaDeAutomovil);
+                }                
             }
             return View(marcaDeAutomovil);
         }

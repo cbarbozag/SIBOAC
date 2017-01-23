@@ -82,13 +82,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(direccion.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(direccion.FechaDeInicio, direccion.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(direccion, "I", "DIRECCION");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(direccion);
+                    }
+
                     db.SaveChanges();
                     Bitacora(direccion, "I", "DIRECCION");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -124,12 +140,24 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Direccion direccion)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 var direccionAntes = db.DIRECCION.AsNoTracking().Where(d => d.Id == direccion.Id).FirstOrDefault();
                 db.Entry(direccion).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(direccion, "U", "DIRECCION", direccionAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(direccion.FechaDeInicio, direccion.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(direccion, "U", "DIRECCION", direccionAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(direccion);
+                }
+                
             }
             return View(direccion);
         }
@@ -156,6 +184,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             Direccion direccion = db.DIRECCION.Find(id);
             Direccion direccionAntes = ObtenerCopia(direccion);
+
             if (direccion.Estado == "I")
                 direccion.Estado = "A";
             else

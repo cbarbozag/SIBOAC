@@ -83,6 +83,21 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(motivoPorNoFirmar.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(motivoPorNoFirmar.FechaDeInicio, motivoPorNoFirmar.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(motivoPorNoFirmar, "I", "MOTIVONOFIRMA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(motivoPorNoFirmar);
+                    }
                     db.SaveChanges();
                     Bitacora(motivoPorNoFirmar, "I", "MOTIVONOFIRMA");
                     TempData["Type"] = "success";
@@ -126,9 +141,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var motivoPorNoFirmarAntes = db.MotivoPorNoFirmars.AsNoTracking().Where(d => d.Id == motivoPorNoFirmar.Id).FirstOrDefault();
                 db.Entry(motivoPorNoFirmar).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(motivoPorNoFirmar, "U", "MOTIVONOFIRMA", motivoPorNoFirmarAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(motivoPorNoFirmar.FechaDeInicio, motivoPorNoFirmar.FechaDeFin);
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(motivoPorNoFirmar, "U", "MOTIVONOFIRMA", motivoPorNoFirmarAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(motivoPorNoFirmar);
+                }                
             }
             return View(motivoPorNoFirmar);
         }

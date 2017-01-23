@@ -82,13 +82,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(estadoCivil.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(estadoCivil.FechaDeInicio, estadoCivil.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(estadoCivil, "I", "ESTCIVIL");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(estadoCivil);
+                    }
+
                     db.SaveChanges();
                     Bitacora(estadoCivil, "I", "ESTCIVIL");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -127,9 +143,20 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var estadoCivilAntes = db.EstadoCivil.AsNoTracking().Where(d => d.Id == estadoCivil.Id).FirstOrDefault();
                 db.Entry(estadoCivil).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(estadoCivil, "U", "ESTCIVIL", estadoCivilAntes);
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(estadoCivil.FechaDeInicio, estadoCivil.FechaDeFin);
+                if (mensaje == "")
+                {                               
+                    db.SaveChanges();
+                    Bitacora(estadoCivil, "U", "ESTCIVIL", estadoCivilAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(estadoCivil);
+                }
             }
             return View(estadoCivil);
         }
