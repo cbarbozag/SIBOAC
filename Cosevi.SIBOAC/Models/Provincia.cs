@@ -18,7 +18,6 @@ namespace Cosevi.SIBOAC.Models
     {
         [DisplayName("Código")]
         [Required(ErrorMessage = "El código es obligatorio")]
-        [StringLength(5, ErrorMessage = "El codigo no debe ser mayor a 5 caracteres.")]
         public int Id { get; set; }
 
         [DisplayName("Descripción")]

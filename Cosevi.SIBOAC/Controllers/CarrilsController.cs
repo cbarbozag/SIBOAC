@@ -29,7 +29,7 @@ namespace Cosevi.SIBOAC.Controllers
         public string Verificar(string id)
         {
             string mensaje = "";
-            bool exist = db.CARRIL.Any(x => x.Id == id);
+            bool exist = db.CARRIL.Any(x => x.Id.Trim() == id.Trim());
             if (exist)
             {
                 mensaje = "El codigo " + id + " ya esta registrado";
@@ -52,7 +52,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             if (carril == null)
             {
                 return HttpNotFound();
@@ -115,7 +115,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             if (carril == null)
             {
                 return HttpNotFound();
@@ -132,7 +132,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var carrilAntes = db.CARRIL.AsNoTracking().Where(d => d.Id == carril.Id).FirstOrDefault();
+                var carrilAntes = db.CARRIL.AsNoTracking().Where(d => d.Id.Trim() == carril.Id.Trim()).FirstOrDefault();
 
                 db.Entry(carril).State = EntityState.Modified;
                 string  mensaje = ValidarFechas(carril.FechaDeInicio, carril.FechaDeFin);
@@ -173,7 +173,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             Carril carrilAntes = ObtenerCopia(carril);
 
             if (carril.Estado == "A")
@@ -194,7 +194,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             if (carril == null)
             {
                 return HttpNotFound();
@@ -207,7 +207,7 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RealDeleteConfirmed(string id)
         {
-            Carril carril = db.CARRIL.Find(id);
+            Carril carril = db.CARRIL.Find(id.Trim());
             db.CARRIL.Remove(carril);
             db.SaveChanges();
             Bitacora(carril, "D", "CARRIL");

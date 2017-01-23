@@ -132,7 +132,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Clasedeplaca,estado,fecha_inicio,fecha_fin")] ClaseDePlaca claseDePlaca)
+        public ActionResult Edit([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] ClaseDePlaca claseDePlaca)
         {
             if (ModelState.IsValid)
             {

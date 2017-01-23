@@ -146,6 +146,20 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsTipoIdVehiculo = db.TIPOIDEVEHICULO
+                                                                        .Select(o => new SelectListItem
+                                                                        {
+                                                                            Value = o.Id,
+                                                                            Text = o.Descripcion
+                                                                        });
+                    ViewBag.ComboTipoIdVehiculo = itemsTipoIdVehiculo;
+                    IEnumerable<SelectListItem> itemsTipoVeh = db.TIPOVEH
+                                                                 .Select(c => new SelectListItem
+                                                                 {
+                                                                     Value = c.Id.ToString(),
+                                                                     Text = c.Descripcion
+                                                                 });
+                    ViewBag.ComboCodVeh = itemsTipoVeh;
                     return View(tipoDeIdentificacionPorTipoVehiculo);
                 }
             }
