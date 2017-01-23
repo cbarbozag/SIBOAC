@@ -81,13 +81,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(hospital.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(hospital.FechaDeInicio, hospital.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(hospital, "I", "HOSPITAL");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(hospital);
+                    }
+
                     db.SaveChanges();
                     Bitacora(hospital, "I", "HOSPITAL");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -126,9 +142,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var hospitalAntes = db.HOSPITAL.AsNoTracking().Where(d => d.Id == hospital.Id).FirstOrDefault();
                 db.Entry(hospital).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(hospital, "U", "HOSPITAL", hospitalAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(hospital.FechaDeInicio, hospital.FechaDeFin);
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(hospital, "U", "HOSPITAL", hospitalAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(hospital);
+                }                
             }
             return View(hospital);
         }

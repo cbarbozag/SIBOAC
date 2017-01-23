@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CondicionDeLaCalzadasController : Controller
+    public class CondicionDeLaCalzadasController : BaseController<CondicionDeLaCalzada>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: CondicionDeLaCalzadas
         [SessionExpire]
@@ -83,7 +83,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(condicionDeLaCalzada, "I", "CONDCALZADA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -124,8 +124,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var condicionDeLaCalzadaAntes = db.CONDCALZADA.AsNoTracking().Where(d => d.Id == condicionDeLaCalzada.Id).FirstOrDefault();
+
                 db.Entry(condicionDeLaCalzada).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(condicionDeLaCalzada, "U", "CONDCALZADA", condicionDeLaCalzadaAntes);
                 return RedirectToAction("Index");
             }
             return View(condicionDeLaCalzada);
@@ -152,11 +155,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CondicionDeLaCalzada condicionDeLaCalzada = db.CONDCALZADA.Find(id);
+            CondicionDeLaCalzada condicionDeLaCalzadaAntes = ObtenerCopia(condicionDeLaCalzada);
+
             if (condicionDeLaCalzada.Estado == "A")
                 condicionDeLaCalzada.Estado = "I";
             else
                 condicionDeLaCalzada.Estado = "A";
             db.SaveChanges();
+            Bitacora(condicionDeLaCalzada, "U", "CONDCALZADA", condicionDeLaCalzadaAntes);
             return RedirectToAction("Index");
         }
 
@@ -183,6 +189,7 @@ namespace Cosevi.SIBOAC.Controllers
             CondicionDeLaCalzada condicionDeLaCalzada = db.CONDCALZADA.Find(id);
             db.CONDCALZADA.Remove(condicionDeLaCalzada);
             db.SaveChanges();
+            Bitacora(condicionDeLaCalzada, "D", "CONDCALZADA");
             return RedirectToAction("Index");
         }
 

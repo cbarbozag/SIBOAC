@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CodigoDeLaPlacasController : Controller
+    public class CodigoDeLaPlacasController : BaseController<CodigoDeLaPlaca>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: CodigoDeLaPlacas
         [SessionExpire]
@@ -84,7 +84,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(codigoDeLaPlaca, "I", "CODIGO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -125,8 +125,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var codigoDeLaPlacaAntes = db.CODIGO.AsNoTracking().Where(d => d.Id == codigoDeLaPlaca.Id).FirstOrDefault();
+
                 db.Entry(codigoDeLaPlaca).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(codigoDeLaPlaca, "U", "CODIGO", codigoDeLaPlacaAntes);
                 return RedirectToAction("Index");
             }
             return View(codigoDeLaPlaca);
@@ -153,11 +156,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             CodigoDeLaPlaca codigoDeLaPlaca = db.CODIGO.Find(id);
+            CodigoDeLaPlaca codigoDeLaPlacaAntes = ObtenerCopia(codigoDeLaPlaca);
+
             if (codigoDeLaPlaca.Estado == "A")
                 codigoDeLaPlaca.Estado = "I";
             else
                 codigoDeLaPlaca.Estado = "A";
             db.SaveChanges();
+            Bitacora(codigoDeLaPlaca, "U", "CODIGO", codigoDeLaPlacaAntes);
             return RedirectToAction("Index");
         }
 
@@ -185,6 +191,7 @@ namespace Cosevi.SIBOAC.Controllers
             CodigoDeLaPlaca codigoDeLaPlaca = db.CODIGO.Find(id);
             db.CODIGO.Remove(codigoDeLaPlaca);
             db.SaveChanges();
+            Bitacora(codigoDeLaPlaca, "D", "CODIGO");
             return RedirectToAction("Index");
         }
 

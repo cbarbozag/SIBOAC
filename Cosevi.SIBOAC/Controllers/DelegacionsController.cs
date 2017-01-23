@@ -78,15 +78,32 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.DELEGACION.Add(delegacion);
                 string mensaje = Verificar(delegacion.Id);
+
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(delegacion.FechaDeInicio, delegacion.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(delegacion, "I", "DELEGACION");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(delegacion);
+                    }
+
                     db.SaveChanges();
                     Bitacora(delegacion, "I", "DELEGACION");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -124,11 +141,20 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 var delegacionAntes = db.DELEGACION.AsNoTracking().Where(d => d.Id == delegacion.Id).FirstOrDefault();
-
-                db.Entry(delegacion).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(delegacion, "U", "DELEGACION", delegacionAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(delegacionAntes.FechaDeInicio, delegacionAntes.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.Entry(delegacion).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Bitacora(delegacion, "U", "DELEGACION", delegacionAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(delegacion);
+                }
             }
             return View(delegacion);
         }

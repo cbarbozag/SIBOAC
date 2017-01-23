@@ -88,12 +88,28 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(edad.FechaMinNacimiento, edad.FechaMaxNacimiento);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(edad.FechaDeInicio, edad.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(edad, "I", "EDAD");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(edad);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(edad, "I", "EDAD");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -133,14 +149,29 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var edadAntes = db.EDAD.AsNoTracking().Where(d => d.FechaMinNacimiento == edad.FechaMinNacimiento &&
+                                                                                    d.FechaMaxNacimiento == edad.FechaMaxNacimiento).FirstOrDefault();
+
+                string mensaje = ValidarFechas(edad.FechaDeInicio, edad.FechaDeFin);
                 Edad edadTem = db.EDAD.Find(edad.FechaMinNacimiento, edad.FechaMaxNacimiento);
                 edadTem.FechaPorDefecto = edad.FechaPorDefecto;
                 edadTem.Estado = edad.Estado;
                 edadTem.FechaDeInicio = edad.FechaDeInicio;
                 edadTem.FechaDeFin = edad.FechaDeFin;
                 db.Entry(edadTem).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(edad,"U","EDAD", edadAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(edad);
+                }                               
             }
             return View(edad);
         }
@@ -167,11 +198,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(DateTime FechaMinNacimiento, DateTime FechaMaxNacimiento)
         {
             Edad edad = db.EDAD.Find(FechaMinNacimiento, FechaMaxNacimiento);
+            Edad edadAntes = ObtenerCopia(edad);
             if (edad.Estado == "I")
                 edad.Estado = "A";
             else
                 edad.Estado = "I";
             db.SaveChanges();
+            Bitacora(edad, "U", "EDAD", edadAntes);
             return RedirectToAction("Index");
         }
 
@@ -199,6 +232,7 @@ namespace Cosevi.SIBOAC.Controllers
             Edad edad = db.EDAD.Find(FechaMinNacimiento, FechaMaxNacimiento);
             db.EDAD.Remove(edad);
             db.SaveChanges();
+            Bitacora(edad, "D", "EDAD");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

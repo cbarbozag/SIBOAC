@@ -82,13 +82,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(delito.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(delito.FechaDeInicio, delito.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(delito, "I", "DELITO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(delito);
+                    }
+
                     db.SaveChanges();
                     Bitacora(delito, "I", "DELITO");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -97,7 +113,6 @@ namespace Cosevi.SIBOAC.Controllers
                     return View(delito);
                 }
             }
-
             return View(delito);
         }
 
@@ -127,9 +142,22 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var delitoAntes = db.DELITO.AsNoTracking().Where(d => d.Id == delito.Id).FirstOrDefault();
                 db.Entry(delito).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(delito, "U", "DELITO", delitoAntes);
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(delito.FechaDeInicio, delito.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(delito, "U", "DELITO", delitoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(delito);
+                }
+              
             }
             return View(delito);
         }
@@ -160,9 +188,9 @@ namespace Cosevi.SIBOAC.Controllers
                 delito.Estado = "A";
             else
                 delito.Estado = "I";
-            db.SaveChanges();
-            Bitacora(delito, "U", "DELITO", delitoAntes);
-            return RedirectToAction("Index");
+                db.SaveChanges();
+                Bitacora(delito, "U", "DELITO", delitoAntes);
+                return RedirectToAction("Index");
         }
 
         // GET: Delitoes/RealDelete/5

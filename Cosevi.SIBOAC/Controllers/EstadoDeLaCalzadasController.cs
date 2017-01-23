@@ -81,13 +81,28 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(estadoDeLaCalzada.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(estadoDeLaCalzada.FechaDeInicio, estadoDeLaCalzada.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(estadoDeLaCalzada, "I", "ESTCALZADA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(estadoDeLaCalzada);
+                    }
+
                     db.SaveChanges();
                     Bitacora(estadoDeLaCalzada, "I", "ESTCALZADA");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -123,12 +138,22 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] EstadoDeLaCalzada estadoDeLaCalzada)
         {
             if (ModelState.IsValid)
-            {
+            {            
                 var estadoDeLaCalzadaAntes = db.ESTCALZADA.AsNoTracking().Where(d => d.Id == estadoDeLaCalzada.Id).FirstOrDefault();
                 db.Entry(estadoDeLaCalzada).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(estadoDeLaCalzada, "U", "ESTCALZADA", estadoDeLaCalzadaAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(estadoDeLaCalzada.FechaDeInicio, estadoDeLaCalzada.FechaDeFin);
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(estadoDeLaCalzada, "U", "ESTCALZADA", estadoDeLaCalzadaAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(estadoDeLaCalzada);
+                }                            
             }
             return View(estadoDeLaCalzada);
         }

@@ -10,14 +10,14 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class MantenimientoTablasController : Controller
+    public class MantenimientoTablasController : BaseController<SIBOACTablas>
     {
-        private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
+        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
 
         // GET: MantenimientoTablas
         public ActionResult Index()
         {
-            return View(db.SIBOACTablas.ToList());
+            return View(dbs.SIBOACTablas.ToList());
         }
 
         // GET: MantenimientoTablas/Details/5
@@ -27,7 +27,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACTablas sIBOACTablas = db.SIBOACTablas.Find(id);
+            SIBOACTablas sIBOACTablas = dbs.SIBOACTablas.Find(id);
             if (sIBOACTablas == null)
             {
                 return HttpNotFound();
@@ -50,8 +50,9 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SIBOACTablas.Add(sIBOACTablas);
-                db.SaveChanges();
+                dbs.SIBOACTablas.Add(sIBOACTablas);
+                dbs.SaveChanges();
+                Bitacora(sIBOACTablas, "I", "SIBOACTablas");
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +66,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACTablas sIBOACTablas = db.SIBOACTablas.Find(id);
+            SIBOACTablas sIBOACTablas = dbs.SIBOACTablas.Find(id);
             if (sIBOACTablas == null)
             {
                 return HttpNotFound();
@@ -82,8 +83,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sIBOACTablas).State = EntityState.Modified;
-                db.SaveChanges();
+                var sIBOACTablasAntes = dbs.SIBOACTablas.AsNoTracking().Where(d => d.Id == sIBOACTablas.Id).FirstOrDefault();
+                dbs.Entry(sIBOACTablas).State = EntityState.Modified;
+                dbs.SaveChanges();
+                Bitacora(sIBOACTablas, "U", "SIBOACTablas", sIBOACTablasAntes);
                 return RedirectToAction("Index");
             }
             return View(sIBOACTablas);
@@ -96,7 +99,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACTablas sIBOACTablas = db.SIBOACTablas.Find(id);
+            SIBOACTablas sIBOACTablas = dbs.SIBOACTablas.Find(id);
             if (sIBOACTablas == null)
             {
                 return HttpNotFound();
@@ -109,9 +112,11 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACTablas sIBOACTablas = db.SIBOACTablas.Find(id);
-            db.SIBOACTablas.Remove(sIBOACTablas);
+            SIBOACTablas sIBOACTablas = dbs.SIBOACTablas.Find(id);
+            SIBOACTablas sIBOACTablasAntes = ObtenerCopia(sIBOACTablas);
+            dbs.SIBOACTablas.Remove(sIBOACTablas);
             db.SaveChanges();
+            Bitacora(sIBOACTablas, "U", "SIBOACTablas", sIBOACTablasAntes);
             return RedirectToAction("Index");
         }
 
@@ -119,7 +124,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                dbs.Dispose();
             }
             base.Dispose(disposing);
         }
