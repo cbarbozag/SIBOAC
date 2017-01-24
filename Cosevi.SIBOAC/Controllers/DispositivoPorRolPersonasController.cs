@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DispositivoPorRolPersonasController : Controller
+    public class DispositivoPorRolPersonasController : BaseController<DispositivoPorRolPersona>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DispositivoPorRolPersonas
         [SessionExpire]
@@ -123,7 +123,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(dispositivoPorRolPersona, "I", "DISPXROLPERSONA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -200,9 +200,13 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var dispositivoPorRolPersonaAntes = db.DISPXROLPERSONA.AsNoTracking().Where(d => d.CodigoRolPersona == dispositivoPorRolPersona.CodigoRolPersona &&
+                                                                                   d.CodigoDispositivo == dispositivoPorRolPersona.CodigoDispositivo).FirstOrDefault();
+
                 dispositivoPorRolPersona.CodigoRolPersona = dispositivoPorRolPersona.CodigoRolPersona.Trim();
                 db.Entry(dispositivoPorRolPersona).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(dispositivoPorRolPersona, "U", "DISPXROLPERSONA", dispositivoPorRolPersonaAntes);
                 return RedirectToAction("Index");
             }
             return View(dispositivoPorRolPersona);
@@ -230,8 +234,11 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult RealDeleteConfirmed(string CodRol, int? CodDisp)
         {
             DispositivoPorRolPersona dispositivo = db.DISPXROLPERSONA.Find(CodRol, CodDisp);
+            DispositivoPorRolPersona dispositivoAntes = ObtenerCopia(dispositivo);
+
             db.DISPXROLPERSONA.Remove(dispositivo);
             db.SaveChanges();
+            Bitacora(dispositivo, "U", "DISPXROLPERSONA", dispositivoAntes);
             return RedirectToAction("Index");
         }
 

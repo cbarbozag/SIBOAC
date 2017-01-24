@@ -1,5 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.TipoIdDeVehiculo
-
+﻿@model Cosevi.SIBOAC.Models.ArticulosPorDepositosDeBienes
 @{
     ViewBag.Title = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,26 +7,32 @@
 <h2>Eliminar</h2>
 
 <h3>¿Está seguro de eliminar este registro?</h3>
+
 <div>
-    <h4>Tipo de Identificación de Vehículo</h4>
+    <h4>Artículos por Depósitos de Bienes</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.CodigoDepositosBienes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
+            @Html.DisplayFor(model => model.DescripcionDepositosBienes)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.Estado)
+            @Html.DisplayNameFor(model => model.CodigoOpcionFormulario)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Estado)
+            @Html.DisplayFor(model => model.DescripcionCodigoFormulario)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conducta)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Conducta)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.FechaDeInicio)
         </dt>
@@ -35,13 +40,19 @@
         <dd>
             @Html.DisplayFor(model => model.FechaDeInicio)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.FechaDeFin)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.FechaDeFin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
         </dd>
 
     </dl>

@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DetallePorTipoDaniosController : Controller
+    public class DetallePorTipoDaniosController : BaseController<DetallePorTipoDanio>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DetallePorTipoDanios
         [SessionExpire]
@@ -168,12 +168,34 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(detallePorTipoDanio.CodigoDanio, detallePorTipoDanio.CodigoTipoDanio);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(detallePorTipoDanio.FechaDeInicio, detallePorTipoDanio.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(detallePorTipoDanio, "I", "DETALLETIPODAÑO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        IEnumerable<SelectListItem> itemsTipoDanio = db.TIPODANO.Select(o => new SelectListItem
+                        {
+                            Value = o.codigod,
+                            Text = o.descripcion
+                        });
+                        ViewBag.ComboTipoDanio = itemsTipoDanio;
+                        return View(detallePorTipoDanio);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(detallePorTipoDanio, "I", "DETALLETIPODAÑO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -258,9 +280,30 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var detallePorTipoDanioAntes = db.DETALLETIPODAÑO.AsNoTracking().Where(d => d.CodigoDanio == detallePorTipoDanio.CodigoDanio &&
+                                                                                    d.CodigoTipoDanio == detallePorTipoDanio.CodigoTipoDanio).FirstOrDefault();
                 db.Entry(detallePorTipoDanio).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(detallePorTipoDanio.FechaDeInicio, detallePorTipoDanio.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(detallePorTipoDanio, "U", "DETALLETIPODAÑO", detallePorTipoDanioAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsTipoDanio = db.TIPODANO.Select(o => new SelectListItem
+                    {
+                        Value = o.codigod,
+                        Text = o.descripcion
+                    });
+                    ViewBag.ComboTipoDanio = itemsTipoDanio;
+                    return View(detallePorTipoDanio);
+                }
+               
             }
             return View(detallePorTipoDanio);
         }
@@ -324,12 +367,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigod, string codigotd)
         {
             DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
+            DetallePorTipoDanio detallePorTipoDanioAntes = ObtenerCopia(detallePorTipoDanio);
+
             if (detallePorTipoDanio.Estado == "A")
                 detallePorTipoDanio.Estado = "I";
             else
                 detallePorTipoDanio.Estado = "A";
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.SaveChanges();
+                Bitacora(detallePorTipoDanio, "U", "DETALLETIPODAÑO", detallePorTipoDanioAntes);
+                return RedirectToAction("Index");
         }
 
 
@@ -394,6 +440,7 @@ namespace Cosevi.SIBOAC.Controllers
             DetallePorTipoDanio detallePorTipoDanio = db.DETALLETIPODAÑO.Find(codigod, codigotd);
             db.DETALLETIPODAÑO.Remove(detallePorTipoDanio);
             db.SaveChanges();
+            Bitacora(detallePorTipoDanio, "D", "DETALLETIPODAÑO");
             return RedirectToAction("Index");
         }
 

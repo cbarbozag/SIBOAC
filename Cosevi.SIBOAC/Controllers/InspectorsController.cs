@@ -60,9 +60,39 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.INSPECTOR.Add(inspector);
-                db.SaveChanges();
-                Bitacora(inspector, "I", "INSPECTOR");
-                return RedirectToAction("Index");
+                string mensaje = Verificar(inspector.Id);
+                if (mensaje == "")
+                {
+                    mensaje = ValidarFechas(inspector.FechaDeInicio, inspector.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(inspector, "I", "INSPECTOR");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;                       
+                        return View(inspector);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(inspector, "I", "INSPECTOR");
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(inspector);
+                }
+                    
             }
 
             return View(inspector);
@@ -94,9 +124,20 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var inspectorAntes = db.INSPECTOR.AsNoTracking().Where(d => d.Id == inspector.Id).FirstOrDefault();
                 db.Entry(inspector).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(inspector, "U", "INSPECTOR", inspectorAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(inspector.FechaDeInicio, inspector.FechaDeFin);
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(inspector, "U", "INSPECTOR", inspectorAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(inspector);
+                }
+                
             }
             return View(inspector);
         }
@@ -159,6 +200,19 @@ namespace Cosevi.SIBOAC.Controllers
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
+        }
+
+        public string Verificar(string Id)
+        {
+            string mensaje = "";
+            bool exist = db.INSPECTOR.Any(x => x.Id == Id);
+            if (exist)
+            {
+                mensaje = "El registro con los siguientes datos ya se encuentra registrado:" +
+                           " código de Inspector " + Id;
+
+            }
+            return mensaje;
         }
 
         public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)

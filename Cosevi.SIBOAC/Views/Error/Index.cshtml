@@ -1,0 +1,30 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="list-header clearfix">
+    <h2><span>@System.Configuration.ConfigurationManager.AppSettings["DefaultErrorTitle"]</span></h2>
+</div>
+<div class="list-sfs-holder">
+    <div class="alert alert-error">
+        @System.Configuration.ConfigurationManager.AppSettings["DefaultErrorMessage"]
+    </div>
+    @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+    {
+        <div>
+            <p>
+                <b>Mensaje:</b> @Model.Exception.Message<br />
+                <b>Controlador:</b> @Model.ControllerName<br />
+                <b>Acción:</b> @Model.ActionName
+            </p>
+            <div style="overflow:scroll">
+                <span><b>Detalle:</b></span>
+                <pre>
+                    @Model.Exception.StackTrace
+                </pre>
+            </div>
+        </div>
+    }
+</div>

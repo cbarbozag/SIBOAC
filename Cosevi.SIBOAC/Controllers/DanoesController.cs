@@ -81,13 +81,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(dano.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(dano.FechaDeInicio, dano.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(dano, "I", "DAÑO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(dano);
+                    }
+
                     db.SaveChanges();
                     Bitacora(dano, "I", "DAÑO");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -125,13 +141,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 var danoAntes = db.DAÑO.AsNoTracking().Where(d => d.Id == dano.Id).FirstOrDefault();
-
                 db.Entry(dano).State = EntityState.Modified;
+                string mensaje = ValidarFechas(dano.FechaDeInicio, dano.FechaDeFin);
 
-                db.SaveChanges();
-                Bitacora(dano, "U", "DAÑO", danoAntes);
-
-                return RedirectToAction("Index");
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(dano, "U", "DAÑO", danoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(dano);
+                }
+                
             }
             return View(dano);
         }
@@ -163,10 +188,9 @@ namespace Cosevi.SIBOAC.Controllers
                 dano.Estado = "A";
             else
                 dano.Estado = "I";
-            db.SaveChanges();
-
-            Bitacora(dano, "U", "DAÑO", danoAntes);
-            return RedirectToAction("Index");
+                db.SaveChanges();
+                Bitacora(dano, "U", "DAÑO", danoAntes);
+                return RedirectToAction("Index");
         }
 
 

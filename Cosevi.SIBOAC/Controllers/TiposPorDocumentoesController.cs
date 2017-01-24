@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TiposPorDocumentoesController : Controller
+    public class TiposPorDocumentoesController : BaseController<TiposPorDocumento>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TiposPorDocumentoes
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -39,8 +37,6 @@ namespace Cosevi.SIBOAC.Controllers
                 DescripcionCodigoTipoDocumento = d.Descripcion,
                 DescripcionCodigoTipoDeIdentificacion = i.Descripcion
             }).ToList()
-
-
             .Select(x => new TiposPorDocumento
             {
                 CodigoTipoDocumento = x.CodigoTipoDocumento,
@@ -97,7 +93,6 @@ namespace Cosevi.SIBOAC.Controllers
                DescripcionCodigoTipoDeIdentificacion = x.DescripcionCodigoTipoDeIdentificacion
            }).SingleOrDefault();
 
-
             if (list == null)
             {
                 return HttpNotFound();
@@ -138,9 +133,62 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.TIPOSXDOCUMENTO.Add(tiposPorDocumento);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                string mensaje = Verificar(tiposPorDocumento.CodigoTipoDocumento,tiposPorDocumento.CodigoTipoDeIdentificacion);
+                if (mensaje == "")
+                {
+                    mensaje = ValidarFechas(tiposPorDocumento.FechaDeInicio, tiposPorDocumento.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tiposPorDocumento, "I", "TIPOSXDOCUMENTO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        IEnumerable<SelectListItem> itemsTipoDocumento = db.TIPODOCUMENTO
+                            .Select(o => new SelectListItem
+                            {
+                                Value = o.Id,
+                                Text = o.Descripcion
+                            });
+                        ViewBag.ComboTipoDocumento = itemsTipoDocumento;
+
+                        IEnumerable<SelectListItem> itemsTipoIdentificacion = db.TIPO_IDENTIFICACION
+                         .Select(c => new SelectListItem
+                         {
+                             Value = c.Id.ToString(),
+                             Text = c.Descripcion
+                         });
+                        ViewBag.ComboTipoIdentificacion = itemsTipoIdentificacion;
+                        return View(tiposPorDocumento);
+                    }
+                }            
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsTipoDocumento = db.TIPODOCUMENTO
+                    .Select(o => new SelectListItem
+                    {
+                        Value = o.Id,
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboTipoDocumento = itemsTipoDocumento;
+
+                    IEnumerable<SelectListItem> itemsTipoIdentificacion = db.TIPO_IDENTIFICACION
+                     .Select(c => new SelectListItem
+                     {
+                         Value = c.Id.ToString(),
+                         Text = c.Descripcion
+                     });
+                    ViewBag.ComboTipoIdentificacion = itemsTipoIdentificacion;
+                    return View(tiposPorDocumento);
+                }
+           }
 
             return View(tiposPorDocumento);
         }
@@ -208,9 +256,27 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tiposPorDocumentoAntes = db.TIPOSXDOCUMENTO.AsNoTracking().Where(d => d.CodigoTipoDocumento == tiposPorDocumento.CodigoTipoDocumento 
+                                                                                   && d.CodigoTipoDeIdentificacion== tiposPorDocumento.CodigoTipoDeIdentificacion).FirstOrDefault();
+
                 db.Entry(tiposPorDocumento).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(tiposPorDocumento.FechaDeInicio, tiposPorDocumento.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tiposPorDocumento, "U", "TIPOSXDOCUMENTO", tiposPorDocumentoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    ViewBag.ComboTipoDocumento = new SelectList(db.TIPODOCUMENTO.OrderBy(x => x.Descripcion), "Id", "Descripcion", tiposPorDocumento.CodigoTipoDocumento);
+                    ViewBag.ComboTipoIdentificacion = new SelectList(db.TIPO_IDENTIFICACION.OrderBy(x => x.Descripcion), "Id", "Descripcion", tiposPorDocumento.CodigoTipoDeIdentificacion);
+
+
+                    return View(tiposPorDocumento);
+                }
             }
             return View(tiposPorDocumento);
         }
@@ -270,11 +336,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codigod, string codigot)
         {
             TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
+            TiposPorDocumento tiposPorDocumentoAntes = ObtenerCopia(tiposPorDocumento);
             if (tiposPorDocumento.Estado == "A")
                 tiposPorDocumento.Estado = "I";
             else
                 tiposPorDocumento.Estado = "A";
             db.SaveChanges();
+            Bitacora(tiposPorDocumento, "U", "TIPOSXDOCUMENTO", tiposPorDocumentoAntes);
             return RedirectToAction("Index");
         }
 
@@ -335,6 +403,7 @@ namespace Cosevi.SIBOAC.Controllers
             TiposPorDocumento tiposPorDocumento = db.TIPOSXDOCUMENTO.Find(codigod, codigot);
             db.TIPOSXDOCUMENTO.Remove(tiposPorDocumento);
             db.SaveChanges();
+            Bitacora(tiposPorDocumento, "D", "TIPOSXDOCUMENTO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
@@ -346,6 +415,17 @@ namespace Cosevi.SIBOAC.Controllers
                 return "La fecha de inicio no puede ser mayor que la fecha fin";
             }
             return "";
+        }
+        public string Verificar(string codigod,string codigot)
+        {
+            string mensaje = "";
+            bool exist = db.TIPOSXDOCUMENTO.Any(x => x.CodigoTipoDeIdentificacion == codigot && x.CodigoTipoDocumento == codigod);
+            if (exist)
+            {
+                mensaje = "El codigo tipo de identificación " + codigot + ", codigo tipo documento ="+ codigod+" ya esta registrado";
+            }
+
+            return mensaje;
         }
         protected override void Dispose(bool disposing)
         {

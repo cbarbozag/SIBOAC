@@ -11,7 +11,7 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoVehiculoPorCodigoPorClasesController : Controller
+    public class TipoVehiculoPorCodigoPorClasesController : BaseController<TipoVehiculoPorCodigoPorClase>
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
@@ -197,17 +197,37 @@ namespace Cosevi.SIBOAC.Controllers
                                               tipoVehiculoPorCodigoPorClase.CodigoTipoVeh);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(tipoVehiculoPorCodigoPorClase.FechaDeInicio, tipoVehiculoPorCodigoPorClase.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoVehiculoPorCodigoPorClase, "I", "TIPOVEHCODIGOCLASE");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", tipoVehiculoPorCodigoPorClase.CodigoTiposVehiculos);
+                        ViewBag.ComboClasePlaca = new SelectList(db.CLASE.OrderBy(x => x.Id), "Id", "Id", tipoVehiculoPorCodigoPorClase.CodigoClasePlaca);
+                        ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", tipoVehiculoPorCodigoPorClase.CodigoCodigoPlaca);
+                        ViewBag.ComboCodigoVehiculo = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id".ToString(), "Descripcion", tipoVehiculoPorCodigoPorClase.CodigoTipoVeh);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                        return View(tipoVehiculoPorCodigoPorClase);
+                    }
 
                 }
                 else
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
+                    ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", tipoVehiculoPorCodigoPorClase.CodigoTiposVehiculos);
+                    ViewBag.ComboClasePlaca = new SelectList(db.CLASE.OrderBy(x => x.Id), "Id", "Id", tipoVehiculoPorCodigoPorClase.CodigoClasePlaca);
+                    ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", tipoVehiculoPorCodigoPorClase.CodigoCodigoPlaca);
+                    ViewBag.ComboCodigoVehiculo = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id".ToString(), "Descripcion", tipoVehiculoPorCodigoPorClase.CodigoTipoVeh);
+
                     return View(tipoVehiculoPorCodigoPorClase);
                 }
             }
@@ -281,9 +301,30 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoVehiculoPorCodigoPorClaseAntes = db.TIPOVEHCODIGOCLASE.AsNoTracking().Where(d => d.CodigoTiposVehiculos == tipoVehiculoPorCodigoPorClase.CodigoTiposVehiculos
+                                                    && d.CodigoClasePlaca == tipoVehiculoPorCodigoPorClase.CodigoClasePlaca
+                                                    && d.CodigoCodigoPlaca == tipoVehiculoPorCodigoPorClase.CodigoCodigoPlaca
+                                                    && d.CodigoTipoVeh == tipoVehiculoPorCodigoPorClase.CodigoTipoVeh).FirstOrDefault();
+
                 db.Entry(tipoVehiculoPorCodigoPorClase).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(tipoVehiculoPorCodigoPorClase.FechaDeInicio, tipoVehiculoPorCodigoPorClase.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoVehiculoPorCodigoPorClase, "U", "TIPOVEHCODIGOCLASE", tipoVehiculoPorCodigoPorClaseAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    ViewBag.ComboTiposVehiculos = new SelectList(db.TIPOSVEHICULOS.OrderBy(x => x.Nombre), "Id", "Nombre", tipoVehiculoPorCodigoPorClase.CodigoTiposVehiculos);
+                    ViewBag.ComboClasePlaca = new SelectList(db.CLASE.OrderBy(x => x.Id), "Id", "Id", tipoVehiculoPorCodigoPorClase.CodigoClasePlaca);
+                    ViewBag.ComboCodigoPlaca = new SelectList(db.CODIGO.OrderBy(x => x.Id), "Id", "Id", tipoVehiculoPorCodigoPorClase.CodigoCodigoPlaca);
+                    ViewBag.ComboCodigoVehiculo = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id".ToString(), "Descripcion", tipoVehiculoPorCodigoPorClase.CodigoTipoVeh);
+
+                    return View(tipoVehiculoPorCodigoPorClase);
+                }
             }
             return View(tipoVehiculoPorCodigoPorClase);
         }
@@ -346,11 +387,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? codigoTiposVehiculos, string codigoClasePlaca, string codigoCodigoPlaca, int? codigoTipoVeh)
         {
             TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
+            TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClaseAntes = ObtenerCopia(tipoVehiculoPorCodigoPorClase);
             if (tipoVehiculoPorCodigoPorClase.Estado == "A")
                 tipoVehiculoPorCodigoPorClase.Estado = "I";
             else
                 tipoVehiculoPorCodigoPorClase.Estado = "A";
             db.SaveChanges();
+            Bitacora(tipoVehiculoPorCodigoPorClase, "U", "TIPOVEHCODIGOCLASE", tipoVehiculoPorCodigoPorClaseAntes);
             return RedirectToAction("Index");
         }
 
@@ -414,6 +457,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoVehiculoPorCodigoPorClase tipoVehiculoPorCodigoPorClase = db.TIPOVEHCODIGOCLASE.Find(codigoTiposVehiculos, codigoClasePlaca, codigoCodigoPlaca, codigoTipoVeh);
             db.TIPOVEHCODIGOCLASE.Remove(tipoVehiculoPorCodigoPorClase);
             db.SaveChanges();
+            Bitacora(tipoVehiculoPorCodigoPorClase, "D", "TIPOVEHCODIGOCLASE");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

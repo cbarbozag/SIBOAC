@@ -394,7 +394,77 @@ namespace Cosevi.SIBOAC.Controllers
             return RedirectToAction("Index");
         }
 
-    
+        // GET: ArticulosPorDepositosDeBienes/Delete/5
+        public ActionResult RealDelete(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (CodDepositoBienes == null || CodFormulario == null || CodArticulo == null || Conducta == null || FechaInicio == null || FechaFin == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
+
+            var list =
+            (from a in db.ARTICULOSXDEPOSITOSBIENES
+             join d in db.DEPOSITOBIENES on new { CodigoDepositosBienes = a.CodigoDepositosBienes } equals new { CodigoDepositosBienes = d.Id } into d_join
+             where a.CodigoDepositosBienes == CodDepositoBienes
+             from d in d_join.DefaultIfEmpty()
+             join o in db.OPCIONFORMULARIO on new { Id = a.CodigoOpcionFormulario } equals new { Id = o.Id } into o_join
+             where a.CodigoOpcionFormulario == CodFormulario
+             from o in o_join.DefaultIfEmpty()
+             join c in db.CATARTICULO on new { a.CodigoArticulo, a.Conducta, a.FechaDeInicio, a.FechaDeFin } equals new { CodigoArticulo = c.Id, c.Conducta, c.FechaDeInicio, c.FechaDeFin } into c_join
+             where a.CodigoArticulo == CodArticulo && a.Conducta == Conducta && a.FechaDeInicio == FechaInicio && a.FechaDeFin == FechaFin
+             from c in c_join.DefaultIfEmpty()
+             select new
+             {
+                 a.CodigoDepositosBienes,
+                 a.CodigoOpcionFormulario,
+                 a.CodigoArticulo,
+                 a.Conducta,
+                 a.FechaDeInicio,
+                 a.FechaDeFin,
+                 a.Estado,
+                 DescripcionDepositosBienes = d.Descripcion,
+                 DescripcionCodigoFormulario = o.Descripcion,
+                 DescripcionArticulo = c.Descripcion
+             }).ToList()
+
+             .Select(x => new ArticulosPorDepositosDeBienes
+             {
+                 CodigoDepositosBienes = x.CodigoDepositosBienes,
+                 CodigoOpcionFormulario = x.CodigoOpcionFormulario,
+                 CodigoArticulo = x.CodigoArticulo,
+                 Conducta = x.Conducta,
+                 FechaDeInicio = x.FechaDeInicio,
+                 FechaDeFin = x.FechaDeFin,
+                 Estado = x.Estado,
+                 DescripcionDepositosBienes = x.DescripcionDepositosBienes,
+                 DescripcionCodigoFormulario = x.DescripcionCodigoFormulario,
+                 DescripcionArticulo = x.DescripcionArticulo
+
+             }).SingleOrDefault();
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+            return View(list);
+        }
+
+        // POST: ArticulosPorDepositosDeBienes/Delete/5
+        [HttpPost, ActionName("RealDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult RealDeleteConfirmed(int? CodDepositoBienes, int? CodFormulario, string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
+        {
+            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienes = db.ARTICULOSXDEPOSITOSBIENES.Find(CodDepositoBienes, CodFormulario, CodArticulo, Conducta, FechaInicio, FechaFin);
+            ArticulosPorDepositosDeBienes articulosPorDepositosDeBienesAntes = ObtenerCopia(articulosPorDepositosDeBienes);
+            db.ARTICULOSXDEPOSITOSBIENES.Remove(articulosPorDepositosDeBienes);
+            db.SaveChanges();
+            Bitacora(articulosPorDepositosDeBienes, "D", "CATARTICULO", articulosPorDepositosDeBienesAntes);
+            return RedirectToAction("Index");
+        }
+
+
+
         public JsonResult ObtenerConducta(string CodigoArticulo)
         {
             var listaconducta =

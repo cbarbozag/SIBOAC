@@ -11,9 +11,10 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DanioPorHospitalsController : Controller
+    public class DanioPorHospitalsController : BaseController<DanioPorHospital>
+
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DanioPorHospitals
         [SessionExpire]
@@ -141,12 +142,41 @@ namespace Cosevi.SIBOAC.Controllers
                                                danioPorHospital.IdDanio);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(danioPorHospital.FechaDeInicio, danioPorHospital.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(danioPorHospital, "I", "DAÑOXHOSPITAL");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        IEnumerable<SelectListItem> itemsHospital = db.HOSPITAL.Select(o => new SelectListItem
+                        {
+                            Value = o.Id,
+                            Text = o.Descripcion
+                        });
+                        ViewBag.ComboHospital = itemsHospital;
+                        IEnumerable<SelectListItem> itemsDannio = db.DAÑO.Select(c => new SelectListItem
+                        {
+                            Value = c.Id.ToString(),
+                            Text = c.Descripcion
+                        });
+                        ViewBag.ComboDannio = itemsDannio;
+                        return View(danioPorHospital);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(danioPorHospital, "I", "DAÑOXHOSPITAL");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -159,10 +189,10 @@ namespace Cosevi.SIBOAC.Controllers
                     });
                     ViewBag.ComboHospital = itemsHospital;
                     IEnumerable<SelectListItem> itemsDannio = db.DAÑO.Select(c => new SelectListItem
-                     {
-                         Value = c.Id.ToString(),
-                         Text = c.Descripcion
-                     });
+                    {
+                        Value = c.Id.ToString(),
+                        Text = c.Descripcion
+                    });
                     ViewBag.ComboDannio = itemsDannio;
                     return View(danioPorHospital);
                 }
@@ -233,9 +263,36 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var danioPorHospitalAntes = db.DAÑOXHOSPITAL.AsNoTracking().Where(d => d.IdHospital == danioPorHospital.IdHospital &&
+                                                                                    d.IdDanio == danioPorHospital.IdDanio).FirstOrDefault();
+
                 db.Entry(danioPorHospital).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(danioPorHospital.FechaDeInicio, danioPorHospital.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(danioPorHospital, "U", "DAÑOXHOSPITAL", danioPorHospitalAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsHospital = db.HOSPITAL.Select(o => new SelectListItem
+                    {
+                        Value = o.Id,
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboHospital = itemsHospital;
+                    IEnumerable<SelectListItem> itemsDannio = db.DAÑO.Select(c => new SelectListItem
+                    {
+                        Value = c.Id.ToString(),
+                        Text = c.Descripcion
+                    });
+                    ViewBag.ComboDannio = itemsDannio;
+                    return View(danioPorHospital);
+                }
             }
             return View(danioPorHospital);
         }
@@ -294,12 +351,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string IdHospital, int IdDanio)
         {
             DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital,IdDanio);
+            DanioPorHospital danioPorHospitalAntes = ObtenerCopia(danioPorHospital);
+
             if (danioPorHospital.Estado == "A")
                 danioPorHospital.Estado = "I";
             else
                 danioPorHospital.Estado = "A";
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.SaveChanges();
+                Bitacora(danioPorHospital, "U", "DAÑOXHOSPITAL", danioPorHospitalAntes);
+                return RedirectToAction("Index");
         }
 
 
@@ -360,6 +420,7 @@ namespace Cosevi.SIBOAC.Controllers
             DanioPorHospital danioPorHospital = db.DAÑOXHOSPITAL.Find(IdHospital, IdDanio);
             db.DAÑOXHOSPITAL.Remove(danioPorHospital);
             db.SaveChanges();
+            Bitacora(danioPorHospital, "D", "DAÑOXHOSPITAL");
             return RedirectToAction("Index");
         }
 
@@ -386,6 +447,7 @@ namespace Cosevi.SIBOAC.Controllers
             }
             return mensaje;
         }
+
         public string ValidarFechas(DateTime FechaIni, DateTime FechaFin)
         {
             if (FechaIni.CompareTo(FechaFin) == 1)

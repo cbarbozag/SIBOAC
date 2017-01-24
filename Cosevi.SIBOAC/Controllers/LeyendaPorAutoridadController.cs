@@ -112,12 +112,34 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(lEYENDAPORAUTORIDAD.IdAutoridad);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(lEYENDAPORAUTORIDAD.Fecha_Inicio, lEYENDAPORAUTORIDAD.Fecha_Fin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(lEYENDAPORAUTORIDAD, "I", "LEYENDAPORAUTORIDAD");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+
+                        ViewBag.ComboAutoridad = null;
+                        ViewBag.ComboAutoridad = new SelectList((from o in db.AUTORIDAD
+                                                                 where o.Estado == "A"
+                                                                 select new { o.Id, o.Descripcion }).ToList().Distinct(), "Id", "Descripcion", lEYENDAPORAUTORIDAD.IdAutoridad);
+                        return View(lEYENDAPORAUTORIDAD);
+                    }
+
                     db.SaveChanges();
                     Bitacora(lEYENDAPORAUTORIDAD, "I", "LEYENDAPORAUTORIDAD");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -125,12 +147,9 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Message = mensaje;
 
                     ViewBag.ComboAutoridad = null;
-                    ViewBag.ComboAutoridad= new SelectList((from o in db.AUTORIDAD
+                    ViewBag.ComboAutoridad = new SelectList((from o in db.AUTORIDAD
                                                              where o.Estado == "A"
-                                                             select new { o.Id,o.Descripcion }).ToList().Distinct(), "Id", "Descripcion", lEYENDAPORAUTORIDAD.IdAutoridad);
-
-             
-
+                                                             select new { o.Id, o.Descripcion }).ToList().Distinct(), "Id", "Descripcion", lEYENDAPORAUTORIDAD.IdAutoridad);
                     return View(lEYENDAPORAUTORIDAD);
                 }
             }
@@ -189,9 +208,25 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var lEYENDAPORAUTORIDADAntes = db.LEYENDAPORAUTORIDAD.AsNoTracking().Where(d => d.IdAutoridad == lEYENDAPORAUTORIDAD.IdAutoridad).FirstOrDefault();
                 db.Entry(lEYENDAPORAUTORIDAD).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(lEYENDAPORAUTORIDAD, "U", "LEYENDAPORAUTORIDAD", lEYENDAPORAUTORIDADAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(lEYENDAPORAUTORIDAD.Fecha_Inicio, lEYENDAPORAUTORIDAD.Fecha_Fin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(lEYENDAPORAUTORIDAD, "U", "LEYENDAPORAUTORIDAD", lEYENDAPORAUTORIDADAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+
+                    ViewBag.ComboAutoridad = null;
+                    ViewBag.ComboAutoridad = new SelectList((from o in db.AUTORIDAD
+                                                             where o.Estado == "A"
+                                                             select new { o.Id, o.Descripcion }).ToList().Distinct(), "Id", "Descripcion", lEYENDAPORAUTORIDAD.IdAutoridad);
+                    return View(lEYENDAPORAUTORIDAD);
+                }
+                
             }
             return View(lEYENDAPORAUTORIDAD);
         }

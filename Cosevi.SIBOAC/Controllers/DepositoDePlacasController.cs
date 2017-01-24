@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DepositoDePlacasController : Controller
+    public class DepositoDePlacasController : BaseController<DepositoDePlaca>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DepositoDePlacas
         [SessionExpire]
@@ -81,14 +81,32 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.DEPOSITOPLACA.Add(depositoDePlaca);
                 string mensaje = Verificar(depositoDePlaca.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(depositoDePlaca.FechaDeInicio, depositoDePlaca.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(depositoDePlaca, "I", "DEPOSITOPLACA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(depositoDePlaca);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(depositoDePlaca, "I", "DEPOSITOPLACA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -125,9 +143,22 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var depositoDePlacaAntes = db.DEPOSITOPLACA.AsNoTracking().Where(d => d.Id == depositoDePlaca.Id).FirstOrDefault();
                 db.Entry(depositoDePlaca).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(depositoDePlaca.FechaDeInicio, depositoDePlaca.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(depositoDePlaca, "U", "DAÑOXHOSPITAL", depositoDePlacaAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(depositoDePlaca);
+                }
             }
             return View(depositoDePlaca);
         }
@@ -153,12 +184,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             DepositoDePlaca depositoDePlaca = db.DEPOSITOPLACA.Find(id);
+            DepositoDePlaca depositoDePlacaAntes = ObtenerCopia(depositoDePlaca);
+
             if (depositoDePlaca.Estado == "I")
                 depositoDePlaca.Estado = "A";
             else
                 depositoDePlaca.Estado = "I";
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.SaveChanges();
+                Bitacora(depositoDePlaca, "U", "DEPOSITOPLACA", depositoDePlacaAntes);
+                return RedirectToAction("Index");
         }
 
 
@@ -185,6 +219,7 @@ namespace Cosevi.SIBOAC.Controllers
             DepositoDePlaca depositoDePlaca = db.DEPOSITOPLACA.Find(id);
             db.DEPOSITOPLACA.Remove(depositoDePlaca);
             db.SaveChanges();
+            Bitacora(depositoDePlaca, "D", "DEPOSITOPLACA");
             return RedirectToAction("Index");
         }
 

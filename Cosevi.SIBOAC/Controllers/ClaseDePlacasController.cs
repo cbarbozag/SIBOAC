@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ClaseDePlacasController : Controller
+    public class ClaseDePlacasController : BaseController<ClaseDePlaca>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: ClaseDePlacas
         [SessionExpire]
@@ -83,8 +83,24 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(claseDePlaca.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(claseDePlaca.FechaDeInicio, claseDePlaca.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(claseDePlaca);
+                    }
+                    db.SaveChanges();
+                    Bitacora(claseDePlaca, "I", "CLASE");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -121,13 +137,28 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Clasedeplaca,estado,fecha_inicio,fecha_fin")] ClaseDePlaca claseDePlaca)
+        public ActionResult Edit([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] ClaseDePlaca claseDePlaca)
         {
             if (ModelState.IsValid)
             {
+                var claseDePlacaAntes = db.CLASE.AsNoTracking().Where(d => d.Id == claseDePlaca.Id).FirstOrDefault();
+
                 db.Entry(claseDePlaca).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+               string  mensaje = ValidarFechas(claseDePlaca.FechaDeInicio, claseDePlaca.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(claseDePlaca);
+                }
+            
             }
             return View(claseDePlaca);
         }
@@ -153,11 +184,16 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             ClaseDePlaca claseDePlaca = db.CLASE.Find(id);
-            if (claseDePlaca.Estado == "A")
-                claseDePlaca.Estado = "I";
-            else
-                claseDePlaca.Estado = "A";
+            ClaseDePlaca claseDePlacaAntes = ObtenerCopia(claseDePlaca);
+
+        if (claseDePlaca.Estado == "A")
+        {
+            claseDePlaca.Estado = "I";
+        }
+        else
+            claseDePlaca.Estado = "A";
             db.SaveChanges();
+            Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
             return RedirectToAction("Index");
         }
 
@@ -185,6 +221,7 @@ namespace Cosevi.SIBOAC.Controllers
             ClaseDePlaca claseDePlaca = db.CLASE.Find(id);
             db.CLASE.Remove(claseDePlaca);
             db.SaveChanges();
+            Bitacora(claseDePlaca, "D", "CLASE");
             return RedirectToAction("Index");
         }
 

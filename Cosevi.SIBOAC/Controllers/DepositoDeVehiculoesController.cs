@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DepositoDeVehiculoesController : Controller
+    public class DepositoDeVehiculoesController : BaseController<DepositoDeVehiculo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DepositoDeVehiculoes
         [SessionExpire]
@@ -81,12 +81,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(depositoDeVehiculo.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(depositoDeVehiculo.FechaDeInicio, depositoDeVehiculo.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(depositoDeVehiculo, "I", "DEPOSITOVEHICULO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(depositoDeVehiculo);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(depositoDeVehiculo, "I", "DEPOSITOVEHICULO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -123,9 +140,22 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var depositoDeVehiculoAntes = db.DEPOSITOVEHICULO.AsNoTracking().Where(d => d.Id == depositoDeVehiculo.Id).FirstOrDefault();
                 db.Entry(depositoDeVehiculo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(depositoDeVehiculo.FechaDeInicio, depositoDeVehiculo.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(depositoDeVehiculo, "U", "DEPOSITOVEHICULO", depositoDeVehiculoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(depositoDeVehiculo);
+                }
             }
             return View(depositoDeVehiculo);
         }
@@ -151,12 +181,15 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             DepositoDeVehiculo depositoDeVehiculo = db.DEPOSITOVEHICULO.Find(id);
+            DepositoDeVehiculo depositoDeVehiculoAntes = ObtenerCopia(depositoDeVehiculo);
+
             if (depositoDeVehiculo.Estado == "I")
                 depositoDeVehiculo.Estado = "A";
             else
                 depositoDeVehiculo.Estado = "I";
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.SaveChanges();
+                Bitacora(depositoDeVehiculo, "U", "DEPOSITOVEHICULO", depositoDeVehiculoAntes);
+                return RedirectToAction("Index");
         }
 
         // GET: DepositoDeVehiculoes/RealDelete/5
@@ -182,6 +215,7 @@ namespace Cosevi.SIBOAC.Controllers
             DepositoDeVehiculo depositoDeVehiculo = db.DEPOSITOVEHICULO.Find(id);
             db.DEPOSITOVEHICULO.Remove(depositoDeVehiculo);
             db.SaveChanges();
+            Bitacora(depositoDeVehiculo, "D", "DEPOSITOVEHICULO");
             return RedirectToAction("Index");
         }
 

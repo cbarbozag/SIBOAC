@@ -11,11 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class VariablesParaBloqueosController : Controller
+    public class VariablesParaBloqueosController : BaseController <VariablesParaBloqueo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
-        // GET: VariablesParaBloqueos
+         // GET: VariablesParaBloqueos
         [SessionExpire]
         public ActionResult Index(int? page)
         {
@@ -84,18 +82,16 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(variablesParaBloqueo.Id);
                 if (mensaje == "")
                 {
-
-                    mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio.Value, variablesParaBloqueo.FechaDeFin.Value);
-
+                    mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio, variablesParaBloqueo.FechaDeFin);
                     if (mensaje == "")
                     {
                         db.SaveChanges();
+                        Bitacora(variablesParaBloqueo, "I", "VARIABLESBLOQUEO");
 
                         TempData["Type"] = "success";
                         TempData["Message"] = "El registro se realizó correctamente";
                         return RedirectToAction("Index");
                     }
-
                     else
                     {
                         ViewBag.Type = "warning";
@@ -109,7 +105,7 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Message = mensaje;
                     return View(variablesParaBloqueo);
                 }
-                }
+            }
 
                 return View(variablesParaBloqueo);
         }
@@ -138,12 +134,15 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(variablesParaBloqueo).State = EntityState.Modified;
+                var variablesParaBloqueoAntes = db.VARIABLESBLOQUEO.AsNoTracking().Where(d => d.Id == variablesParaBloqueo.Id).FirstOrDefault();
 
-                string mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio.Value, variablesParaBloqueo.FechaDeFin.Value);
+                db.Entry(variablesParaBloqueo).State = EntityState.Modified;
+                string mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio, variablesParaBloqueo.FechaDeFin);
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(variablesParaBloqueo, "U", "VARIABLESBLOQUEO", variablesParaBloqueoAntes);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -151,7 +150,7 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Message = mensaje;
                     return View(variablesParaBloqueo);
                 }
-                return RedirectToAction("Index");
+                
             }
             return View(variablesParaBloqueo);
         }
@@ -177,11 +176,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
+            VariablesParaBloqueo variablesParaBloqueoAntes = ObtenerCopia(variablesParaBloqueo);
             if (variablesParaBloqueo.Estado == "I")
                 variablesParaBloqueo.Estado = "A";
             else
                 variablesParaBloqueo.Estado = "I";
             db.SaveChanges();
+            Bitacora(variablesParaBloqueo, "U", "VARIABLESBLOQUEO", variablesParaBloqueoAntes);
             return RedirectToAction("Index");
         }
 
@@ -208,6 +209,7 @@ namespace Cosevi.SIBOAC.Controllers
             VariablesParaBloqueo variablesParaBloqueo = db.VARIABLESBLOQUEO.Find(id);
             db.VARIABLESBLOQUEO.Remove(variablesParaBloqueo);
             db.SaveChanges();
+            Bitacora(variablesParaBloqueo, "D", "VARIABLESBLOQUEO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

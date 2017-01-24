@@ -80,13 +80,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(dispositivo.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(dispositivo.FechaDeInicio, dispositivo.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(dispositivo, "I", "DISPOSITIVO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(dispositivo);
+                    }
+
                     db.SaveChanges();
                     Bitacora(dispositivo, "I", "DISPOSITIVO");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -125,9 +141,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var dispositivoAntes = db.Dispositivoes1.AsNoTracking().Where(d => d.Id == dispositivo.Id).FirstOrDefault();
                 db.Entry(dispositivo).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(dispositivo.FechaDeInicio, dispositivo.FechaDeFin);
+
+                if (mensaje == "") { 
+                    db.SaveChanges();
+                    Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(dispositivo);
+                }
             }
             return View(dispositivo);
         }
@@ -155,6 +181,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             Dispositivo dispositivo = db.Dispositivoes1.Find(id);
             Dispositivo dispositivoAntes = ObtenerCopia(dispositivo);
+
             if (dispositivo.Estado == "I")
                 dispositivo.Estado = "A";
             else

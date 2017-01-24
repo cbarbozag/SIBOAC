@@ -210,6 +210,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.ALINHORI.Remove(alineacionHorizontal);
             db.SaveChanges();
             Bitacora(alineacionHorizontal, "D", "ALINHORI");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

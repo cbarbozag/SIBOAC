@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DivisionsController : Controller
+    public class DivisionsController : BaseController<Division>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Divisions
         [SessionExpire]
@@ -164,12 +164,45 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(division.IdCanton, division.CodigoOficinaImpugna, division.FechaDeInicio, division.FechaDeFin);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(division.FechaDeInicio, division.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(division, "I", "DIVISION");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        IEnumerable<SelectListItem> itemsCanton = db.CANTON
+                        .Select(o => new SelectListItem
+                        {
+                            Value = o.Id.ToString(),
+                            Text = o.Descripcion
+
+                        });
+                        ViewBag.ComboCanton = itemsCanton;
+
+                        IEnumerable<SelectListItem> itemsOficina = db.OficinaParaImpugnars
+                        .Select(o => new SelectListItem
+                        {
+                            Value = o.Id.ToString(),
+                            Text = o.Descripcion
+
+                        });
+                        ViewBag.ComboOficina = itemsOficina;
+                        return View(division);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(division, "I", "DIVISION");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -191,7 +224,6 @@ namespace Cosevi.SIBOAC.Controllers
                         Text = o.Descripcion
 
                     });
-
                     ViewBag.ComboOficina = itemsOficina;
                     return View(division);
                 }
@@ -259,9 +291,40 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var divisionAntes = db.DIVISION.AsNoTracking().Where(d => d.IdCanton == division.IdCanton &&
+                                                                                    d.CodigoOficinaImpugna == division.CodigoOficinaImpugna).FirstOrDefault();
                 db.Entry(division).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(division.FechaDeInicio, division.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(division, "U", "DIVISION", divisionAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsCanton = db.CANTON
+                    .Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Descripcion
+
+                    });
+                    ViewBag.ComboCanton = itemsCanton;
+
+                    IEnumerable<SelectListItem> itemsOficina = db.OficinaParaImpugnars
+                    .Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Descripcion
+
+                    });
+                    ViewBag.ComboOficina = itemsOficina;
+                    return View(division);
+                }
             }
             return View(division);
         }
@@ -315,11 +378,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? canton, string OficinaImpugna, DateTime FechaInicio, DateTime FechaFin)
         {
             Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
-            if(division.Estado =="A")
+            Division divisionAntes = ObtenerCopia(division);
+
+            if (division.Estado =="A")
                 division.Estado = "I";
             else
                 division.Estado = "A";
-            db.SaveChanges();        
+            db.SaveChanges();
+            Bitacora(division, "U", "DIVISION", divisionAntes);    
             return RedirectToAction("Index");
         }
 
@@ -376,6 +442,7 @@ namespace Cosevi.SIBOAC.Controllers
             Division division = db.DIVISION.Find(canton, OficinaImpugna, FechaInicio, FechaFin);
             db.DIVISION.Remove(division);
             db.SaveChanges();
+            Bitacora(division, "U", "DIVISION");
             return RedirectToAction("Index");
         }
 

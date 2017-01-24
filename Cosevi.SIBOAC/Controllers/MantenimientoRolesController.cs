@@ -10,15 +10,15 @@ using Cosevi.SIBOAC.Models;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class MantenimientoRolesController : Controller
+    public class MantenimientoRolesController : BaseController<SIBOACRoles>
     {
-        private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
+        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
 
         // GET: MantenimientoRoles
         [SessionExpire]
         public ActionResult Index()
         {
-            return View(db.SIBOACRoles.ToList());
+            return View(dbs.SIBOACRoles.ToList());
         }
 
         // GET: MantenimientoRoles/Details/5
@@ -28,7 +28,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACRoles sIBOACRoles = db.SIBOACRoles.Find(id);
+            SIBOACRoles sIBOACRoles = dbs.SIBOACRoles.Find(id);
             if (sIBOACRoles == null)
             {
                 return HttpNotFound();
@@ -51,8 +51,9 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SIBOACRoles.Add(sIBOACRoles);
-                db.SaveChanges();
+                dbs.SIBOACRoles.Add(sIBOACRoles);
+                dbs.SaveChanges();
+                Bitacora(sIBOACRoles, "I", "SIBOACRoles");
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +67,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACRoles sIBOACRoles = db.SIBOACRoles.Find(id);
+            SIBOACRoles sIBOACRoles = dbs.SIBOACRoles.Find(id);
             if (sIBOACRoles == null)
             {
                 return HttpNotFound();
@@ -80,11 +81,13 @@ namespace Cosevi.SIBOAC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nombre,Activo")] SIBOACRoles sIBOACRoles)
-        {
+        {            
             if (ModelState.IsValid)
             {
-                db.Entry(sIBOACRoles).State = EntityState.Modified;
-                db.SaveChanges();
+                var sIBOACRolesAntes = dbs.SIBOACRoles.AsNoTracking().Where(d => d.Id == sIBOACRoles.Id).FirstOrDefault();
+                dbs.Entry(sIBOACRoles).State = EntityState.Modified;                
+                dbs.SaveChanges();
+                Bitacora(sIBOACRoles, "U", "SIBOACRoles", sIBOACRolesAntes);
                 return RedirectToAction("Index");
             }
             return View(sIBOACRoles);
@@ -97,7 +100,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACRoles sIBOACRoles = db.SIBOACRoles.Find(id);
+            SIBOACRoles sIBOACRoles = dbs.SIBOACRoles.Find(id);
             if (sIBOACRoles == null)
             {
                 return HttpNotFound();
@@ -110,13 +113,16 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACRoles sIBOACRoles = db.SIBOACRoles.Find(id);
+            SIBOACRoles sIBOACRoles = dbs.SIBOACRoles.Find(id);
+            SIBOACRoles sIBOACRolesAntes = ObtenerCopia(sIBOACRoles);
+
             if (sIBOACRoles.Activo == false)
 
                 sIBOACRoles.Activo = true;
             else
                 sIBOACRoles.Activo = false;
-            db.SaveChanges();
+            dbs.SaveChanges();
+            Bitacora(sIBOACRoles,"U", "SIBOACRoles", sIBOACRolesAntes);
             return RedirectToAction("Index");
         }
 
@@ -124,7 +130,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                dbs.Dispose();
             }
             base.Dispose(disposing);
         }

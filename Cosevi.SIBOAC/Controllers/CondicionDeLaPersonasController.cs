@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CondicionDeLaPersonasController : Controller
+    public class CondicionDeLaPersonasController : BaseController<CondicionDeLaPersona>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: CondicionDeLaPersonas
         [SessionExpire]
@@ -82,7 +82,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     db.SaveChanges();
-
+                    Bitacora(condicionDeLaPersona, "I", "CONDPERSONA");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
@@ -123,8 +123,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var condicionDeLaPersonaAntes = db.CONDPERSONA.AsNoTracking().Where(d => d.Id == condicionDeLaPersona.Id).FirstOrDefault();
+
                 db.Entry(condicionDeLaPersona).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(condicionDeLaPersona, "U", "CIRCULACION", condicionDeLaPersonaAntes);
                 return RedirectToAction("Index");
             }
             return View(condicionDeLaPersona);
@@ -151,11 +154,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CondicionDeLaPersona condicionDeLaPersona = db.CONDPERSONA.Find(id);
+            CondicionDeLaPersona condicionDeLaPersonaAntes = ObtenerCopia(condicionDeLaPersona);
             if (condicionDeLaPersona.Estado == "A")
                 condicionDeLaPersona.Estado = "I";
             else
                 condicionDeLaPersona.Estado = "A";
             db.SaveChanges();
+            Bitacora(condicionDeLaPersona, "U", "CIRCULACION", condicionDeLaPersonaAntes);
             return RedirectToAction("Index");
         }
 
@@ -183,6 +188,7 @@ namespace Cosevi.SIBOAC.Controllers
             CondicionDeLaPersona condicionDeLaPersona = db.CONDPERSONA.Find(id);
             db.CONDPERSONA.Remove(condicionDeLaPersona);
             db.SaveChanges();
+            Bitacora(condicionDeLaPersona, "D", "CONDPERSONA");
             return RedirectToAction("Index");
         }
 

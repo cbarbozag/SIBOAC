@@ -85,13 +85,29 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(horasLaborales.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(horasLaborales.FechaDeInicio, horasLaborales.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(horasLaborales, "I", "HORASLABORALES");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(horasLaborales);
+                    }
+
                     db.SaveChanges();
                     Bitacora(horasLaborales, "I", "HORASLABORALES");
-
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -131,9 +147,21 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var horasLaboralesAntes = db.HORASLABORALES.AsNoTracking().Where(d => d.Id == horasLaborales.Id).FirstOrDefault();
                 db.Entry(horasLaborales).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(horasLaborales, "U", "HORASLABORALES", horasLaboralesAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(horasLaborales.FechaDeInicio, horasLaborales.FechaDeFin);
+
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(horasLaborales, "U", "HORASLABORALES", horasLaboralesAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(horasLaborales);
+                }
+                
             }
             return View(horasLaborales);
         }
@@ -160,6 +188,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             HorasLaborales horasLaborales = db.HORASLABORALES.Find(id);
             HorasLaborales horasLaboralesAntes = ObtenerCopia(horasLaborales);
+
             if (horasLaborales.Estado == "A")
                 horasLaborales.Estado = "I";
             else

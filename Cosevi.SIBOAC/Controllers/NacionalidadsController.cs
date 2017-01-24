@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class NacionalidadsController : Controller
+    public class NacionalidadsController : BaseController<Nacionalidad>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: Nacionalidads
         [SessionExpire]
@@ -85,12 +85,28 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(nacionalidad.Id, nacionalidad.FechaDeInicio, nacionalidad.FechaDeFin);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(nacionalidad.FechaDeInicio, nacionalidad.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(nacionalidad, "I", "NACIONALIDAD");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(nacionalidad);
+                    }
+                    db.SaveChanges();
+                    Bitacora(nacionalidad, "I", "NACIONALIDAD");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -127,9 +143,22 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var nacionalidadAntes = db.NACIONALIDAD.AsNoTracking().Where(d => d.Id == nacionalidad.Id).FirstOrDefault();
                 db.Entry(nacionalidad).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje=ValidarFechas(nacionalidad.FechaDeInicio, nacionalidad.FechaDeFin);
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(nacionalidad, "U", "NACIONALIDAD", nacionalidadAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(nacionalidad);
+                }
+                
             }
             return View(nacionalidad);
         }
@@ -155,11 +184,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id, DateTime FechaInicio, DateTime FechaFin)
         {
             Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
+            Nacionalidad nacionalidadAntes = ObtenerCopia(nacionalidad);
             if (nacionalidad.Estado == "A")
                 nacionalidad.Estado = "I";
             else
                 nacionalidad.Estado = "A";
             db.SaveChanges();
+            Bitacora(nacionalidad, "U", "NACIONALIDAD", nacionalidadAntes);
             return RedirectToAction("Index");
         }
 
@@ -186,6 +217,7 @@ namespace Cosevi.SIBOAC.Controllers
             Nacionalidad nacionalidad = db.NACIONALIDAD.Find(id, FechaInicio, FechaFin);
             db.NACIONALIDAD.Remove(nacionalidad);
             db.SaveChanges();
+            Bitacora(nacionalidad, "D", "NACIONALIDAD");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

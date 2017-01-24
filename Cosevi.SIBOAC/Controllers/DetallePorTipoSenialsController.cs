@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class DetallePorTipoSenialsController : Controller
+    public class DetallePorTipoSenialsController : BaseController<DetallePorTipoSenial>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: DetallePorTipoSenials
         [SessionExpire]
@@ -121,12 +121,35 @@ namespace Cosevi.SIBOAC.Controllers
                                           detallePorTipoSenial.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(detallePorTipoSenial.FechaDeInicio, detallePorTipoSenial.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(detallePorTipoSenial, "I", "DETALLETIPOSEÑAL");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        IEnumerable<SelectListItem> itemsTipoSenial = db.TIPOSEÑALEXISTE.Select(o => new SelectListItem
+                        {
+                            Value = o.Id.ToString(),
+                            Text = o.Descripcion
+                        });
+                        ViewBag.ComboTipoSenialExiste = itemsTipoSenial;
+                        return View(detallePorTipoSenial);
+                    }
+
+                    db.SaveChanges();
+                    Bitacora(detallePorTipoSenial, "I", "DETALLETIPOSEÑAL");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -198,9 +221,29 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(detallePorTipoSenial).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var detallePorTipoSenialAntes = db.DETALLETIPOSEÑAL.AsNoTracking().Where(d => d.CodigoTipoSenial == detallePorTipoSenial.CodigoTipoSenial &&
+                                                                                    d.Id == detallePorTipoSenial.Id).FirstOrDefault();
+                string mensaje = ValidarFechas(detallePorTipoSenial.FechaDeInicio, detallePorTipoSenial.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.Entry(detallePorTipoSenial).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Bitacora(detallePorTipoSenial, "U", "DETALLETIPOSEÑAL", detallePorTipoSenialAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    IEnumerable<SelectListItem> itemsTipoSenial = db.TIPOSEÑALEXISTE.Select(o => new SelectListItem
+                    {
+                        Value = o.Id.ToString(),
+                        Text = o.Descripcion
+                    });
+                    ViewBag.ComboTipoSenialExiste = itemsTipoSenial;
+                    return View(detallePorTipoSenial);
+                }
             }
             return View(detallePorTipoSenial);
         }
@@ -257,11 +300,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string codsenex, string codigose)
         {
             DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
+            DetallePorTipoSenial detallePorTipoSenialAntes = ObtenerCopia(detallePorTipoSenial);
+
             if (detallePorTipoSenial.Estado == "A")
                 detallePorTipoSenial.Estado = "I";
             else
                 detallePorTipoSenial.Estado = "A";
             db.SaveChanges();
+            Bitacora(detallePorTipoSenial, "U", "DETALLETIPOSEÑAL", detallePorTipoSenialAntes);
             return RedirectToAction("Index");
         }
 
@@ -319,6 +365,7 @@ namespace Cosevi.SIBOAC.Controllers
             DetallePorTipoSenial detallePorTipoSenial = db.DETALLETIPOSEÑAL.Find(codsenex, codigose);
             db.DETALLETIPOSEÑAL.Remove(detallePorTipoSenial);
             db.SaveChanges();
+            Bitacora(detallePorTipoSenial, "D", "DETALLETIPOSEÑAL");
             return RedirectToAction("Index");
         }
 
