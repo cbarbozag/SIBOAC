@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeAccidentesController : Controller
+    public class TipoDeAccidentesController : BaseController<TipoDeAccidente>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TipoDeAccidentes
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -83,12 +81,24 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(tipoDeAccidente.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(tipoDeAccidente.FechaDeInicio.Value, tipoDeAccidente.FechaDeFin.Value);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoDeAccidente, "I", "TIPOACCIDENTE");
 
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(tipoDeAccidente);
+                    }
                 }
                 else
                 {
@@ -96,7 +106,7 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Message = mensaje;
                     return View(tipoDeAccidente);
                 }
-            }
+                }
 
             return View(tipoDeAccidente);
         }
@@ -125,11 +135,26 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoDeAccidenteAntes = db.TIPOACCIDENTE.AsNoTracking().Where(d => d.Id == tipoDeAccidente.Id).FirstOrDefault();
+
                 db.Entry(tipoDeAccidente).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(tipoDeAccidente.FechaDeInicio.Value, tipoDeAccidente.FechaDeFin.Value);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoDeAccidente, "U", "TIPOACCIDENTE", tipoDeAccidenteAntes);
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeAccidente);
+                }
             }
-            return View(tipoDeAccidente);
+                return View(tipoDeAccidente);
         }
 
         // GET: TipoDeAccidentes/Delete/5
@@ -153,11 +178,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TipoDeAccidente tipoDeAccidente = db.TIPOACCIDENTE.Find(id);
+            TipoDeAccidente tipoDeAccidenteAntes = ObtenerCopia(tipoDeAccidente);
+
             if (tipoDeAccidente.Estado == "I")
                 tipoDeAccidente.Estado = "A";
             else
                 tipoDeAccidente.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeAccidente, "U", "TIPOACCIDENTE", tipoDeAccidenteAntes);
             return RedirectToAction("Index");
         }
 
@@ -184,6 +212,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeAccidente tipoDeAccidente = db.TIPOACCIDENTE.Find(id);
             db.TIPOACCIDENTE.Remove(tipoDeAccidente);
             db.SaveChanges();
+            Bitacora(tipoDeAccidente, "D", "TIPOACCIDENTE");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

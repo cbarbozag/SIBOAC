@@ -11,11 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeLicenciasController : Controller
+    public class TipoDeLicenciasController : BaseController<TipoDeLicencia> 
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
-        // GET: TipoDeLicencias
         [SessionExpire]
         public ActionResult Index(int? page)
         {
@@ -83,20 +80,27 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.TIPO_LICENCIA.Add(tipoDeLicencia);
                 string mensaje = Verificar(tipoDeLicencia.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(tipoDeLicencia.FechaDeInicio.Value, tipoDeLicencia.FechaDeFin.Value);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoDeLicencia, "I", "TIPO_LICENCIA");
 
-                }
-                else
-                {
-                    ViewBag.Type = "warning";
-                    ViewBag.Message = mensaje;
-                    return View(tipoDeLicencia);
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(tipoDeLicencia);
+                    }
                 }
             }
 
@@ -127,9 +131,25 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoDeLicenciaAntes = db.TIPO_LICENCIA.AsNoTracking().Where(d => d.Id == tipoDeLicencia.Id).FirstOrDefault();
+
                 db.Entry(tipoDeLicencia).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(tipoDeLicencia.FechaDeInicio.Value, tipoDeLicencia.FechaDeFin.Value);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoDeLicencia, "U", "TIPO_LICENCIA", tipoDeLicenciaAntes);
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeLicencia);
+                }
+
             }
             return View(tipoDeLicencia);
         }
@@ -155,11 +175,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             TipoDeLicencia tipoDeLicencia = db.TIPO_LICENCIA.Find(id);
+            TipoDeLicencia tipoDeLicenciaAntes = ObtenerCopia(tipoDeLicencia);
             if (tipoDeLicencia.Estado == "I")
                 tipoDeLicencia.Estado = "A";
             else
                 tipoDeLicencia.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeLicencia, "U", "TIPO_LICENCIA", tipoDeLicenciaAntes);
             return RedirectToAction("Index");
         }
 
@@ -186,6 +208,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeLicencia tipoDeLicencia = db.TIPO_LICENCIA.Find(id);
             db.TIPO_LICENCIA.Remove(tipoDeLicencia);
             db.SaveChanges();
+            Bitacora(tipoDeLicencia, "D", "TIPO_LICENCIA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
