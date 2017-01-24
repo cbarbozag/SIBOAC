@@ -87,7 +87,12 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.Ruta.Add(ruta);
                 string mensaje = Verificar(ruta.Id);
+
                 if (mensaje == "")
+                {
+                    mensaje = ValidarFechas(ruta.FechaDeInicio, ruta.FechaDeFin);
+
+                    if (mensaje == "")
                 {
                     db.SaveChanges();
                     Bitacora(ruta, "I", "RUTA");
@@ -95,6 +100,15 @@ namespace Cosevi.SIBOAC.Controllers
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(ruta);
+                }
+
+                }
+
                 else
                 {
                     ViewBag.Type = "warning";
@@ -132,11 +146,23 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var rutaAntes = db.Ruta.AsNoTracking().Where(d => d.Id == ruta.Id).FirstOrDefault();
                 db.Entry(ruta).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(ruta, "U", "RUTA", rutaAntes);
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(ruta.FechaDeInicio, ruta.FechaDeFin);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(ruta, "U", "RUTA", rutaAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(ruta);
+                }
             }
-            return View(ruta);
+                return View(ruta);
         }
 
         // GET: Rutas/Delete/5

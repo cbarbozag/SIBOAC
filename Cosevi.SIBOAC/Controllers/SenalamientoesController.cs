@@ -81,21 +81,34 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.SEÑALAMIENTO.Add(senalamiento);
                 string mensaje = Verificar(senalamiento.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(senalamiento, "I", "SEÑALAMIENTO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(senalamiento.FechaDeInicio, senalamiento.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(senalamiento, "I", "SEÑALAMIENTO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(senalamiento);
+                    }
                 }
+
                 else
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
                     return View(senalamiento);
                 }
-            }
+                }
 
             return View(senalamiento);
         }
@@ -126,9 +139,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(senalamiento).State = EntityState.Modified;
-                db.SaveChanges();
+
+                string mensaje = ValidarFechas(senalamiento.FechaDeInicio, senalamiento.FechaDeFin);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
                 Bitacora(senalamiento, "U", "SEÑALAMIENTO", senalamientoAntes);
                 return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(senalamiento);
+                }
             }
             return View(senalamiento);
         }
