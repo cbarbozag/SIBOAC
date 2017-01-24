@@ -81,6 +81,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(plantillas.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(plantillas.FechaDeInicio, plantillas.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(plantillas, "I", "PLANTILLAS");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(plantillas);
+                    }
                     db.SaveChanges();
                     Bitacora(plantillas, "I", "PLANTILLAS");
                     TempData["Type"] = "success";
@@ -124,9 +140,20 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var plantillasAntes = db.PLANTILLAS.AsNoTracking().Where(d => d.Id == plantillas.Id).FirstOrDefault();
                 db.Entry(plantillas).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(plantillas, "U", "PLANTILLAS", plantillasAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(plantillas.FechaDeInicio, plantillas.FechaDeFin);
+                if(mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(plantillas, "U", "PLANTILLAS", plantillasAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(plantillas);
+                }
+               
             }
             return View(plantillas);
         }

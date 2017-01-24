@@ -14,7 +14,6 @@ namespace Cosevi.SIBOAC.Controllers
     public class PeatonsController : BaseController<Peaton>
     {
 
-
         // GET: Peatons
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -82,6 +81,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(peaton.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(peaton.FechaDeInicio, peaton.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(peaton, "I", "PEATON");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(peaton);
+                    }
                     db.SaveChanges();
                     Bitacora(peaton, "I", "PEATON");
                     TempData["Type"] = "success";
@@ -125,9 +140,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var peatonAntes = db.Peaton.AsNoTracking().Where(d => d.Id == peaton.Id).FirstOrDefault();
                 db.Entry(peaton).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(peaton, "U", "PEATON", peatonAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(peaton.FechaDeInicio, peaton.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(peaton, "U", "PEATON", peatonAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(peaton);
+                }
             }
             return View(peaton);
         }
