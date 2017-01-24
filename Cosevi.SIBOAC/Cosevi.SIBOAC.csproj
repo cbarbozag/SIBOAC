@@ -1270,7 +1270,6 @@
     <Content Include="Views\TipoDeDocumentoes\RealDelete.cshtml" />
     <Content Include="Views\TipoDeCalzadas\RealDelete.cshtml" />
     <Content Include="Views\TipoDeAccidentes\RealDelete.cshtml" />
-    <Content Include="Views\TIPODANOes\RealDelete.cshtml" />
     <Content Include="Views\Tiempoes\RealDelete.cshtml" />
     <Content Include="Views\Sexoes\RealDelete.cshtml" />
     <Content Include="Views\Sentidoes\RealDelete.cshtml" />

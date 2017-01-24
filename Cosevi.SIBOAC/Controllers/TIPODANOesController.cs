@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TIPODANOesController : Controller
+    public class TIPODANOesController : BaseController<TIPODANO>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TIPODANOes
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -80,9 +78,10 @@ namespace Cosevi.SIBOAC.Controllers
                 db.TIPODANO.Add(tIPODANO);
                 string mensaje = Verificar(tIPODANO.codigod);
                 if (mensaje == "")
-                {
+                {                   
                     int i=db.SaveChanges();
-                    
+                    Bitacora(tIPODANO, "I", "TIPODANO");
+
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente"+ i;
                     return RedirectToAction("Index");
@@ -122,8 +121,11 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tIPODANOAntes = db.TIPODANO.AsNoTracking().Where(d => d.codigod == tIPODANO.codigod).FirstOrDefault();
+
                 db.Entry(tIPODANO).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(tIPODANO, "U", "TIPODANO", tIPODANOAntes);
                 return RedirectToAction("Index");
             }
             return View(tIPODANO);
@@ -149,38 +151,14 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            TIPODANO tIPODANO = db.TIPODANO.Find(id);
+            TIPODANO tIPODANO = db.TIPODANO.Find(id);           
             db.TIPODANO.Remove(tIPODANO);
             db.SaveChanges();
+            Bitacora(tIPODANO, "D", "TIPODANO");
             return RedirectToAction("Index");
         }
 
-        // GET: TIPODANOes/RealDelete/5
-        public ActionResult RealDelete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TIPODANO tIPODANO = db.TIPODANO.Find(id);
-            if (tIPODANO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tIPODANO);
-        }
-
-        // POST: TIPODANOes/RealDelete/5
-        [HttpPost, ActionName("RealDelete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult RealDeleteConfirmed(string id)
-        {
-            TIPODANO tIPODANO = db.TIPODANO.Find(id);
-            db.TIPODANO.Remove(tIPODANO);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

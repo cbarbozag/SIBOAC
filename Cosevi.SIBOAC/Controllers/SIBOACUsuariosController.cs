@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class SIBOACUsuariosController : Controller
+    public class SIBOACUsuariosController : BaseController<SIBOACUsuarios>
     {
-        private SIBOACSecurityEntities db = new SIBOACSecurityEntities();
+        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
 
         // GET: SIBOACUsuarios
         [SessionExpire]
@@ -22,7 +22,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
 
-            var list = db.SIBOACUsuarios.ToList();
+            var list = dbs.SIBOACUsuarios.ToList();
 
             int pageSize = 20;
             int pageNumber = (page ?? 1);
@@ -36,7 +36,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             if (sIBOACUsuarios == null)
             {
                 return HttpNotFound();
@@ -59,8 +59,8 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SIBOACUsuarios.Add(sIBOACUsuarios);
-                db.SaveChanges();
+                dbs.SIBOACUsuarios.Add(sIBOACUsuarios);
+                dbs.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             if (sIBOACUsuarios == null)
             {
                 return HttpNotFound();
@@ -91,8 +91,8 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sIBOACUsuarios).State = EntityState.Modified;
-                db.SaveChanges();
+                dbs.Entry(sIBOACUsuarios).State = EntityState.Modified;
+                dbs.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(sIBOACUsuarios);
@@ -105,7 +105,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             if (sIBOACUsuarios == null)
             {
                 return HttpNotFound();
@@ -118,9 +118,9 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACUsuarios sIBOACUsuarios = db.SIBOACUsuarios.Find(id);
-            db.SIBOACUsuarios.Remove(sIBOACUsuarios);
-            db.SaveChanges();
+            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
+            dbs.SIBOACUsuarios.Remove(sIBOACUsuarios);
+            dbs.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -128,7 +128,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                dbs.Dispose();
             }
             base.Dispose(disposing);
         }

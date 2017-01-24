@@ -11,11 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeVehiculoesController : Controller
+    public class TipoDeVehiculoesController : BaseController<TipoDeVehiculo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
-        // GET: TipoDeVehiculoes
+         // GET: TipoDeVehiculoes
         [SessionExpire]
         public ActionResult Index(int? page)
         {
@@ -85,11 +83,21 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(tipoDeVehiculo.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(tipoDeVehiculo.FechaDeInicio,tipoDeVehiculo.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoDeVehiculo, "I", "TIPOVEH");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(tipoDeVehiculo);
+                    }
 
                 }
                 else
@@ -127,9 +135,22 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoDeVehiculoAntes = db.TIPOVEH.AsNoTracking().Where(d => d.Id == tipoDeVehiculo.Id).FirstOrDefault();
+
                 db.Entry(tipoDeVehiculo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(tipoDeVehiculo.FechaDeInicio, tipoDeVehiculo.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoDeVehiculo, "U", "TIPOVEH", tipoDeVehiculoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {                
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeVehiculo);                    
+                }
             }
             return View(tipoDeVehiculo);
         }
@@ -155,11 +176,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TipoDeVehiculo tipoDeVehiculo = db.TIPOVEH.Find(id);
+            TipoDeVehiculo tipoDeVehiculoAntes = ObtenerCopia(tipoDeVehiculo);
             if (tipoDeVehiculo.Estado == "I")
                 tipoDeVehiculo.Estado = "A";
             else
                 tipoDeVehiculo.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeVehiculo, "U", "TIPOVEH", tipoDeVehiculoAntes);
             return RedirectToAction("Index");
         }
 
@@ -186,6 +209,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeVehiculo tipoDeVehiculo = db.TIPOVEH.Find(id);
             db.TIPOVEH.Remove(tipoDeVehiculo);
             db.SaveChanges();
+            Bitacora(tipoDeVehiculo, "D", "TIPOVEH");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

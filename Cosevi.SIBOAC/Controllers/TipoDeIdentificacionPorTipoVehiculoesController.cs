@@ -11,10 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeIdentificacionPorTipoVehiculoesController : Controller
+    public class TipoDeIdentificacionPorTipoVehiculoesController : BaseController<TipoDeIdentificacionPorTipoVehiculo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
+      
         // GET: TipoDeIdentificacionPorTipoVehiculoes
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -135,11 +134,35 @@ namespace Cosevi.SIBOAC.Controllers
                                               tipoDeIdentificacionPorTipoVehiculo.CodigoTipoVeh);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(tipoDeIdentificacionPorTipoVehiculo.FechaDeInicio, tipoDeIdentificacionPorTipoVehiculo.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoDeIdentificacionPorTipoVehiculo, "I", "TIPOIDEVEHICULOXTIPOVEH");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        IEnumerable<SelectListItem> itemsTipoIdVehiculo = db.TIPOIDEVEHICULO
+                                                                        .Select(o => new SelectListItem
+                                                                        {
+                                                                            Value = o.Id,
+                                                                            Text = o.Descripcion
+                                                                        });
+                        ViewBag.ComboTipoIdVehiculo = itemsTipoIdVehiculo;
+                        IEnumerable<SelectListItem> itemsTipoVeh = db.TIPOVEH
+                                                                     .Select(c => new SelectListItem
+                                                                     {
+                                                                         Value = c.Id.ToString(),
+                                                                         Text = c.Descripcion
+                                                                     });
+                        ViewBag.ComboCodVeh = itemsTipoVeh;
+                        return View(tipoDeIdentificacionPorTipoVehiculo);
+                    }
 
                 }
                 else
@@ -246,9 +269,26 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoDeIdentificacionPorTipoVehiculoAntes = db.TIPOIDEVEHICULOXTIPOVEH.AsNoTracking().Where(d => d.CodigoTipoIDEVehiculo == tipoDeIdentificacionPorTipoVehiculo.CodigoTipoIDEVehiculo
+                                                                                                               && d.CodigoTipoVeh == tipoDeIdentificacionPorTipoVehiculo.CodigoTipoVeh).FirstOrDefault();
+
                 db.Entry(tipoDeIdentificacionPorTipoVehiculo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(tipoDeIdentificacionPorTipoVehiculo.FechaDeInicio, tipoDeIdentificacionPorTipoVehiculo.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoDeIdentificacionPorTipoVehiculo, "U", "TIPOIDEVEHICULOXTIPOVEH", tipoDeIdentificacionPorTipoVehiculoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    ViewBag.ComboTipoIdVehiculo = new SelectList(db.TIPOIDEVEHICULO.OrderBy(x => x.Descripcion), "Id", "Descripcion", tipoDeIdentificacionPorTipoVehiculo.CodigoTipoIDEVehiculo);
+                    ViewBag.ComboCodVeh = new SelectList(db.TIPOVEH.OrderBy(x => x.Descripcion), "Id".ToString(), "Descripcion", tipoDeIdentificacionPorTipoVehiculo.CodigoTipoVeh);
+
+                    return View(tipoDeIdentificacionPorTipoVehiculo);
+                }
             }
             return View(tipoDeIdentificacionPorTipoVehiculo);
         }
@@ -303,11 +343,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string Codigo, int? CodVeh)
         {
             TipoDeIdentificacionPorTipoVehiculo tipoDeIdentificacionPorTipoVehiculo = db.TIPOIDEVEHICULOXTIPOVEH.Find(Codigo,CodVeh);
+            TipoDeIdentificacionPorTipoVehiculo ttipoDeIdentificacionPorTipoVehiculoAntes = ObtenerCopia(tipoDeIdentificacionPorTipoVehiculo);
             if (tipoDeIdentificacionPorTipoVehiculo.Estado == "I")
                 tipoDeIdentificacionPorTipoVehiculo.Estado = "A";
             else
                 tipoDeIdentificacionPorTipoVehiculo.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeIdentificacionPorTipoVehiculo, "U", "TIPOIDEVEHICULOXTIPOVEH", ttipoDeIdentificacionPorTipoVehiculoAntes);
             return RedirectToAction("Index");
         }
 
@@ -363,6 +405,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeIdentificacionPorTipoVehiculo tipoDeIdentificacionPorTipoVehiculo = db.TIPOIDEVEHICULOXTIPOVEH.Find(Codigo, CodVeh);
             db.TIPOIDEVEHICULOXTIPOVEH.Remove(tipoDeIdentificacionPorTipoVehiculo);
             db.SaveChanges();
+            Bitacora(tipoDeIdentificacionPorTipoVehiculo, "D", "TIPOIDEVEHICULOXTIPOVEH");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

@@ -12,9 +12,9 @@ using Rotativa;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class StatusPlanoController : Controller
+    public class StatusPlanoController : BaseController<StatusPlano>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+      //  private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
         // GET: StatusPlano
 

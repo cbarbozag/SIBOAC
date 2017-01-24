@@ -111,7 +111,7 @@ namespace Cosevi.SIBOAC.Controllers
                     //}
                     using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
                     {
-                        var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Usuario)).FirstOrDefault();
+                        var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.ToLower().Equals(model.Usuario.ToLower())).FirstOrDefault();
 
                         DateTime oldDate = user.FechaDeActualizacionClave;
                         DateTime newDate = DateTime.Now;
