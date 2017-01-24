@@ -58,11 +58,11 @@
                 @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id.Trim() }) |
                 @if (item.Estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id.Trim() })
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id.Trim() })
                 }
             </td>
         </tr>
@@ -91,11 +91,11 @@
                 @Html.ActionLink("Eliminar", "RealDelete", new { id = item.Id.Trim() }) |
                 @if (item.Estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Activar", "Delete", new { id = item.Id.Trim() })
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id.Trim() })
                 }
             </td>
         </tr>

@@ -340,6 +340,11 @@
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
     <Compile Include="Controllers\ValidarCarroceriasController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
+    <Compile Include="DSBoleta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSBoleta.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -664,6 +669,11 @@
     <Compile Include="Models\VEHICULO.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PC_HH_AndroidDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AccessDeniedAuthorizeAttribute.cs" />
     <Compile Include="Security\CustomMembershipProvider.cs" />
@@ -741,6 +751,28 @@
     </EntityDeploy>
     <Content Include="Models\SIBOACSecurityModel.edmx.diagram">
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DSBoleta.xsc">
+      <DependentUpon>DSBoleta.xsd</DependentUpon>
+    </Content>
+    <None Include="DSBoleta.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSBoleta.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DSBoleta.xss">
+      <DependentUpon>DSBoleta.xsd</DependentUpon>
+    </Content>
+    <Content Include="PC_HH_AndroidDataSet.xsc">
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="PC_HH_AndroidDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PC_HH_AndroidDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="PC_HH_AndroidDataSet.xss">
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1270,7 +1302,6 @@
     <Content Include="Views\TipoDeDocumentoes\RealDelete.cshtml" />
     <Content Include="Views\TipoDeCalzadas\RealDelete.cshtml" />
     <Content Include="Views\TipoDeAccidentes\RealDelete.cshtml" />
-    <Content Include="Views\TIPODANOes\RealDelete.cshtml" />
     <Content Include="Views\Tiempoes\RealDelete.cshtml" />
     <Content Include="Views\Sexoes\RealDelete.cshtml" />
     <Content Include="Views\Sentidoes\RealDelete.cshtml" />
@@ -1371,6 +1402,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReportePrueba.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

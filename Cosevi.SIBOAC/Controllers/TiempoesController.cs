@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TiempoesController : Controller
+    public class TiempoesController : BaseController<Tiempo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: Tiempoes
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -81,10 +79,23 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(tiempo.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(tiempo.FechaDeInicio, tiempo.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tiempo, "I", "Tiempo");
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(tiempo);
+
+                    }
                 }
                 else
                 {
@@ -121,9 +132,22 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tiempoAntes = db.Tiempo.AsNoTracking().Where(d => d.Id == tiempo.Id).FirstOrDefault();
+
                 db.Entry(tiempo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(tiempo.FechaDeInicio, tiempo.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tiempo, "U", "Tiempo", tiempoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tiempo);
+                }
             }
             return View(tiempo);
         }
@@ -149,11 +173,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Tiempo tiempo = db.Tiempo.Find(id);
+            Tiempo tiempoAntes = ObtenerCopia(tiempo);
             if (tiempo.Estado == "I")
                 tiempo.Estado = "A";
             else
                 tiempo.Estado = "I";
             db.SaveChanges();
+            Bitacora(tiempo, "U", "Tiempo", tiempoAntes);
             return RedirectToAction("Index");
         }
 
@@ -180,6 +206,7 @@ namespace Cosevi.SIBOAC.Controllers
             Tiempo tiempo = db.Tiempo.Find(id);
             db.Tiempo.Remove(tiempo);
             db.SaveChanges();
+            Bitacora(tiempo, "D", "Tiempo");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
