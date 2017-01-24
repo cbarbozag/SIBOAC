@@ -107,7 +107,7 @@ namespace Cosevi.SIBOAC.Controllers
                 }
             }
 
-            return View(variablesParaBloqueo);
+                return View(variablesParaBloqueo);
         }
 
         // GET: VariablesParaBloqueos/Edit/5
