@@ -81,6 +81,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(obstaculo.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(obstaculo.FechaDeInicio, obstaculo.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(obstaculo, "I", "OBSTACULO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(obstaculo);
+                    }
                     db.SaveChanges();
                     Bitacora(obstaculo, "I", "OBSTACULO");
                     TempData["Type"] = "success";
@@ -124,9 +140,21 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var obstaculoAntes = db.Obstaculo.AsNoTracking().Where(d => d.Id == obstaculo.Id).FirstOrDefault();
                 db.Entry(obstaculo).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(obstaculo, "U", "OBSTACULO",  obstaculoAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(obstaculo.FechaDeInicio, obstaculo.FechaDeFin);
+
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(obstaculo, "U", "OBSTACULO", obstaculoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(obstaculo);
+                }
+                
             }
             return View(obstaculo);
         }

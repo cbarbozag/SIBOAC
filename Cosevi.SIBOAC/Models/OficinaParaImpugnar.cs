@@ -35,12 +35,12 @@ namespace Cosevi.SIBOAC.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha Inicio")]
-        public Nullable<System.DateTime> FechaDeInicio { get; set; }
+        public System.DateTime FechaDeInicio { get; set; }
 
         [Required(ErrorMessage = "La fecha de Fin es requerida.")] //alerta de que el usuario debe llenar el espacio
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha Fin")]
-        public Nullable<System.DateTime> FechaDeFin { get; set; }
+        public System.DateTime FechaDeFin { get; set; }
     }
 }

@@ -81,6 +81,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(opcionesDelPlano.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(opcionesDelPlano.FechaDeInicio, opcionesDelPlano.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(opcionesDelPlano, "I", "OPCIONPLANO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(opcionesDelPlano);
+                    }
                     db.SaveChanges();
                     Bitacora(opcionesDelPlano, "I", "OPCIONPLANO");
                     TempData["Type"] = "success";
@@ -124,9 +140,20 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var opcionesDelPlanoAntes = db.OPCIONPLANO.AsNoTracking().Where(d => d.Id == opcionesDelPlano.Id).FirstOrDefault();
                 db.Entry(opcionesDelPlano).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(opcionesDelPlano, "U", "OPCIONPLANO", opcionesDelPlanoAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(opcionesDelPlano.FechaDeInicio, opcionesDelPlano.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(opcionesDelPlano, "U", "OPCIONPLANO", opcionesDelPlanoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(opcionesDelPlano);
+                }
+               
             }
             return View(opcionesDelPlano);
         }

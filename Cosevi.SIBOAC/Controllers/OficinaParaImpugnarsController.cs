@@ -81,6 +81,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(oficinaParaImpugnar.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(oficinaParaImpugnar.FechaDeInicio, oficinaParaImpugnar.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(oficinaParaImpugnar, "I", "OFICINAIMPUGNA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(oficinaParaImpugnar);
+                    }
                     db.SaveChanges();
                     Bitacora(oficinaParaImpugnar, "I", "OFICINAIMPUGNA");
                     TempData["Type"] = "success";
@@ -124,9 +140,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var oficinaParaImpugnarAntes = db.OficinaParaImpugnars.AsNoTracking().Where(d => d.Id == oficinaParaImpugnar.Id).FirstOrDefault();
                 db.Entry(oficinaParaImpugnar).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(oficinaParaImpugnar, "U", "OFICINAIMPUGNA", oficinaParaImpugnarAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(oficinaParaImpugnar.FechaDeInicio, oficinaParaImpugnar.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(oficinaParaImpugnar, "U", "OFICINAIMPUGNA", oficinaParaImpugnarAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(oficinaParaImpugnar);
+                }
             }
             return View(oficinaParaImpugnar);
         }

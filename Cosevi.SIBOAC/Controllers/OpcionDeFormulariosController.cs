@@ -83,6 +83,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(opcionDeFormulario.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(opcionDeFormulario.FechaDeInicio, opcionDeFormulario.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(opcionDeFormulario, "I", "OPCIONFORMULARIO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(opcionDeFormulario);
+                    }
                     db.SaveChanges();
                     Bitacora(opcionDeFormulario, "I", "OPCIONFORMULARIO");
                     TempData["Type"] = "success";
@@ -126,9 +142,20 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var opcionDeFormularioAntes = db.OPCIONFORMULARIO.AsNoTracking().Where(d => d.Id == opcionDeFormulario.Id).FirstOrDefault();
                 db.Entry(opcionDeFormulario).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(opcionDeFormulario, "U", "OPCIONFORMULARIO", opcionDeFormularioAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(opcionDeFormulario.FechaDeInicio, opcionDeFormulario.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(opcionDeFormulario, "U", "OPCIONFORMULARIO", opcionDeFormularioAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(opcionDeFormulario);
+                }
+                
             }
             return View(opcionDeFormulario);
         }
