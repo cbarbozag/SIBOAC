@@ -84,12 +84,24 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(variablesParaBloqueo.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio.Value, variablesParaBloqueo.FechaDeFin.Value);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(variablesParaBloqueo);
+                    }
                 }
                 else
                 {
@@ -97,9 +109,9 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Message = mensaje;
                     return View(variablesParaBloqueo);
                 }
-            }
+                }
 
-            return View(variablesParaBloqueo);
+                return View(variablesParaBloqueo);
         }
 
         // GET: VariablesParaBloqueos/Edit/5
@@ -127,7 +139,18 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(variablesParaBloqueo).State = EntityState.Modified;
-                db.SaveChanges();
+
+                string mensaje = ValidarFechas(variablesParaBloqueo.FechaDeInicio.Value, variablesParaBloqueo.FechaDeFin.Value);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(variablesParaBloqueo);
+                }
                 return RedirectToAction("Index");
             }
             return View(variablesParaBloqueo);

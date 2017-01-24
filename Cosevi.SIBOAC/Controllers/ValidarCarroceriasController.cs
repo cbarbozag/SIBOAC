@@ -187,10 +187,21 @@ namespace Cosevi.SIBOAC.Controllers
                                             validarCarroceria.CodigoCarroceria);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(validarCarroceria.FechaDeInicio.Value, validarCarroceria.FechaDeFin.Value);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(validarCarroceria);
+                    }
                 }
                 else
                 {
@@ -273,9 +284,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(validarCarroceria).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+
+                string mensaje = ValidarFechas(validarCarroceria.FechaDeInicio.Value, validarCarroceria.FechaDeFin.Value);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(validarCarroceria);
+                }
+                }
             return View(validarCarroceria);
         }
 
