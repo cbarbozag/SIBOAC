@@ -82,6 +82,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(provincia.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(provincia.FechaDeInicio, provincia.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(provincia, "I", "PROVINCIA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(provincia);
+                    }
                     db.SaveChanges();
                     Bitacora(provincia, "I", "PROVINCIA");
                     TempData["Type"] = "success";
@@ -125,9 +141,20 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var provinciaAntes = db.PROVINCIA.AsNoTracking().Where(d => d.Id == provincia.Id).FirstOrDefault();
                 db.Entry(provincia).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(provincia, "U", "PROVINCIA", provinciaAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(provincia.FechaDeInicio, provincia.FechaDeFin);
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(provincia, "U", "PROVINCIA", provinciaAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(provincia);
+                }
+                
             }
             return View(provincia);
         }
