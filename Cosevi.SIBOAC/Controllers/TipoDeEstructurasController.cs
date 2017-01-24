@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeEstructurasController : Controller
+    public class TipoDeEstructurasController : BaseController<TipoDeEstructura>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TipoDeEstructuras
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -80,22 +78,35 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.ESTRUCTURA.Add(tipoDeEstructura);
                 string mensaje = Verificar(tipoDeEstructura.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(tipoDeEstructura.FechaDeInicio.Value, tipoDeEstructura.FechaDeFin.Value);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoDeEstructura, "I", "ESTRUCTURA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
 
-                }
                 else
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
                     return View(tipoDeEstructura);
                 }
+
             }
+            else
+            {
+                ViewBag.Type = "warning";
+                ViewBag.Message = mensaje;
+                return View(tipoDeEstructura);
+            }
+        }
 
             return View(tipoDeEstructura);
         }
@@ -124,9 +135,24 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoDeEstructuraAntes = db.ESTRUCTURA.AsNoTracking().Where(d => d.Id == tipoDeEstructura.Id).FirstOrDefault();
+
                 db.Entry(tipoDeEstructura).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(tipoDeEstructura.FechaDeInicio.Value, tipoDeEstructura.FechaDeFin.Value);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoDeEstructura, "U", "ESTRUCTURA", tipoDeEstructuraAntes);
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeEstructura);
+                }
             }
             return View(tipoDeEstructura);
         }
@@ -152,11 +178,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TipoDeEstructura tipoDeEstructura = db.ESTRUCTURA.Find(id);
+            TipoDeEstructura tipoDeEstructuraAntes = ObtenerCopia(tipoDeEstructura);
+
             if (tipoDeEstructura.Estado == "I")
                 tipoDeEstructura.Estado = "A";
             else
                 tipoDeEstructura.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeEstructura, "U", "ESTRUCTURA", tipoDeEstructuraAntes);
             return RedirectToAction("Index");
         }
 
@@ -183,6 +212,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeEstructura tipoDeEstructura = db.ESTRUCTURA.Find(id);
             db.ESTRUCTURA.Remove(tipoDeEstructura);
             db.SaveChanges();
+            Bitacora(tipoDeEstructura, "D", "ESTRUCTURA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

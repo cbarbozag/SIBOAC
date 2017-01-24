@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeIdentificacionsController : Controller
+    public class TipoDeIdentificacionsController : BaseController<TipoDeIdentificacion>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TipoDeIdentificacions
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -81,15 +79,30 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.TIPO_IDENTIFICACION.Add(tipoDeIdentificacion);
                 string mensaje = Verificar(tipoDeIdentificacion.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(tipoDeIdentificacion.FechaDeInicio.Value, tipoDeIdentificacion.FechaDeFin.Value);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
 
+                        Bitacora(tipoDeIdentificacion, "I", "TIPO_IDENTIFICACION");
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(tipoDeIdentificacion);
+                    }
                 }
+
                 else
                 {
                     ViewBag.Type = "warning";
@@ -125,10 +138,28 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var tipoDeIdentificacionAntes = db.TIPO_IDENTIFICACION.AsNoTracking().Where(d => d.Id == tipoDeIdentificacion.Id).FirstOrDefault();
+
                 db.Entry(tipoDeIdentificacion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+
+                string mensaje = ValidarFechas(tipoDeIdentificacion.FechaDeInicio.Value, tipoDeIdentificacion.FechaDeFin.Value);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(tipoDeIdentificacion, "U", "TIPO_IDENTIFICACION", tipoDeIdentificacionAntes);
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeIdentificacion);
+                }
+                }
+
             return View(tipoDeIdentificacion);
         }
 
@@ -155,6 +186,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeIdentificacion tipoDeIdentificacion = db.TIPO_IDENTIFICACION.Find(id);
             db.TIPO_IDENTIFICACION.Remove(tipoDeIdentificacion);
             db.SaveChanges();
+            Bitacora(tipoDeIdentificacion, "D", "TIPO_IDENTIFICACION");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
