@@ -64,5 +64,19 @@ namespace Cosevi.SIBOAC.Controllers
             var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
             return bitacora;
         }
+
+        public ActionResult GetDescargaBoleta(int TipoFecha, DateTime fechaInicio, DateTime fechaFin)
+        {
+            string reporteID = "_DescargaBoleta";
+            string nombreReporte = "rptDescargaBolea";
+            string parametros = String.Format("{0},{1},{2}",TipoFecha, fechaInicio.ToString("yyyy-MM-dd"), fechaFin.ToString("yyyy-MM-dd"));
+
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData();
+
+            return View("_DescargaBoleta");
+        }
     }
 }
