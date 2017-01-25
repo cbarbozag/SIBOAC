@@ -362,6 +362,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetDescargaBoletaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetDescargaInspectorDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -804,6 +809,17 @@
     </Content>
     <Content Include="GetDescargaInspectorDataSet.xsc">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetDescargaBoletaDataSet.xsc">
+      <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetDescargaBoletaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetDescargaBoletaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetDescargaBoletaDataSet.xss">
+      <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetDescargaInspectorDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1427,6 +1443,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\OPCatalogos.cshtml" />
     <Content Include="Views\Reportes.cshtml" />
+    <Content Include="Views\Reporte\_DescargaBoleta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1446,6 +1463,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\DescargaBoleta.rdlc" />
     <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "_DescargaBoleta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte Corto por Descarga de Boletas</h2>
+<h4>Filtro</h4>
+<hr />
+
+@using (Html.BeginForm("GetDescargaBoleta", "Reporte", FormMethod.Get))
+{
+    <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
+    <table border="0">        
+        <div class="form-group">
+            <label class="control-label col-md-2">Seleccionar criterio para el reporte</label>
+            <div class="col-md-10">
+
+                <div class="radio" id="radioButton">
+                    <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
+                    <br>
+                    <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="form-group">
+            <label class="control-label col-md-2">Rango de fechas</label>
+            <div class="col-md-10">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="desde" type="text" class="input-sm form-control" name="fechaDesde" />
+                    <span class="input-group-addon">a</span>
+                    <input id="hasta" type="text" class="input-sm form-control" name="fechaHasta" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="pull-right">
+            <button id="generar" type="button" class="btn btn-success">Generar Reporte</button>
+        </div>
+    </table>
+}
+<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+@section scripts
+    {
+    <script>
+        $(document).ready(
+        function () {
+            ReportCall();
+        });
+    </script>
+
+    <script>
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }
+    </script>
+}
