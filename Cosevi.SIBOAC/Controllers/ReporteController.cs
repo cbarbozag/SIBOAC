@@ -37,6 +37,9 @@ namespace Cosevi.SIBOAC.Controllers
 
                    
                     break;
+                case "_DescargaBoleta":
+
+                    break;
                 default:
                     break;
             }
@@ -74,6 +77,12 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_Bitacora");
         }
 
+        private List<BitacoraSIBOAC> GetBitacoraData(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario)
+        {
+            var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
+            return bitacora;
+        }
+
         public ActionResult GetReporteDescargaInspector(DateTime hasta, DateTime desde, string numeroHH, string codigoInspector)
         {
             string reporteID = "_DescargaInspector";
@@ -92,13 +101,7 @@ namespace Cosevi.SIBOAC.Controllers
             var  lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, codigoInspector).ToList();
 
             return lista;
-        }
-
-        private List<BitacoraSIBOAC> GetBitacoraData(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario)
-        {
-            var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
-            return bitacora;
-        }
+        }        
 
         public ActionResult GetDescargaBoleta(int idRadio, DateTime desde, DateTime hasta)
         {
