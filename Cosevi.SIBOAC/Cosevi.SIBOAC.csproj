@@ -357,11 +357,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="GetBitacoraDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GetDescargaBoletaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -371,11 +366,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="GetDescargaParteOficial1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -836,17 +826,6 @@
     </Content>
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="GetDescargaParteOficial.xsc">
-      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
-    </Content>
-    <None Include="GetDescargaParteOficial.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GetDescargaParteOficial1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="GetDescargaParteOficial.xss">
-      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
