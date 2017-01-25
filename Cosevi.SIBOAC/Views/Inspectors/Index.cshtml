@@ -75,7 +75,7 @@
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id.Trim() })
                 }
                
             </td>
@@ -115,7 +115,7 @@
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.Id.Trim() })
                 }
             </td>
         </tr>
