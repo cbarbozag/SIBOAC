@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class OpcionFormularioPorArticuloesController : Controller
+    public class OpcionFormularioPorArticuloesController : BaseController<OpcionFormularioPorArticulo>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: OpcionFormularioPorArticuloes
         [SessionExpire]
@@ -151,19 +151,46 @@ namespace Cosevi.SIBOAC.Controllers
                                             opcionFormularioPorArticulo.CodigoOpcionFormulario);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(opcionFormularioPorArticulo.FechaDeInicio, opcionFormularioPorArticulo.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(opcionFormularioPorArticulo, "I", "OPCFORMULARIOXARTICULO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+
+
+                        ViewBag.ComboArticulos = null;
+                        ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+                                                                 where o.Estado == "A"
+                                                                 select new { o.Id }).ToList().Distinct(), "Id", "Id", opcionFormularioPorArticulo.Id);
+
+                        ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", opcionFormularioPorArticulo.CodigoOpcionFormulario);
+                        ViewData["Conducta"] = opcionFormularioPorArticulo.Conducta;
+                        ViewData["FechaDeInicio"] = opcionFormularioPorArticulo.FechaDeInicio.ToString("dd-MM-yyyy");
+                        ViewData["FechaDeFin"] = opcionFormularioPorArticulo.FechaDeFin.ToString("dd-MM-yyyy");
+                        return View(opcionFormularioPorArticulo);
+                    }
+                    db.SaveChanges();
+                    Bitacora(opcionFormularioPorArticulo, "I", "OPCFORMULARIOXARTICULO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
                     ViewBag.Type = "warning";
                     ViewBag.Message = mensaje;
-                   
-             
+
+
                     ViewBag.ComboArticulos = null;
                     ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
                                                              where o.Estado == "A"
@@ -243,9 +270,37 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var opcionFormularioPorArticuloAntes = db.OPCFORMULARIOXARTICULO.AsNoTracking().Where(d => d.Id == opcionFormularioPorArticulo.Id &&
+                                                                                                        d.Conducta == opcionFormularioPorArticulo.Conducta &&
+                                                                                                        d.FechaDeInicio == opcionFormularioPorArticulo.FechaDeInicio &&
+                                                                                                        d.FechaDeFin == opcionFormularioPorArticulo.FechaDeFin &&
+                                                                                                        d.CodigoOpcionFormulario == opcionFormularioPorArticulo.CodigoOpcionFormulario).FirstOrDefault();
                 db.Entry(opcionFormularioPorArticulo).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(opcionFormularioPorArticulo.FechaDeInicio, opcionFormularioPorArticulo.FechaDeFin);
+                if (mensaje=="")
+                {
+                    db.SaveChanges();
+                    Bitacora(opcionFormularioPorArticulo, "U", "OPCFORMULARIOXARTICULO", opcionFormularioPorArticuloAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+
+
+                    ViewBag.ComboArticulos = null;
+                    ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+                                                             where o.Estado == "A"
+                                                             select new { o.Id }).ToList().Distinct(), "Id", "Id", opcionFormularioPorArticulo.Id);
+
+                    ViewBag.ComboOpcionFormulario = new SelectList(db.OPCIONFORMULARIO.OrderBy(x => x.Descripcion), "Id", "Descripcion", opcionFormularioPorArticulo.CodigoOpcionFormulario);
+                    ViewData["Conducta"] = opcionFormularioPorArticulo.Conducta;
+                    ViewData["FechaDeInicio"] = opcionFormularioPorArticulo.FechaDeInicio.ToString("dd-MM-yyyy");
+                    ViewData["FechaDeFin"] = opcionFormularioPorArticulo.FechaDeFin.ToString("dd-MM-yyyy");
+                    return View(opcionFormularioPorArticulo);
+                }
+                
             }
             return View(opcionFormularioPorArticulo);
         }
@@ -306,11 +361,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id, string conducta, DateTime FechaInicio, DateTime FechaFin, int? codFormulario)
         {
             OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
+            OpcionFormularioPorArticulo opcionFormularioPorArticuloAntes = ObtenerCopia(opcionFormularioPorArticulo);
             if (opcionFormularioPorArticulo.Estado == "I")
                 opcionFormularioPorArticulo.Estado = "A";
             else
                 opcionFormularioPorArticulo.Estado = "I";
             db.SaveChanges();
+            Bitacora(opcionFormularioPorArticulo, "U", "OPCFORMULARIOXARTICULO", opcionFormularioPorArticuloAntes);
             return RedirectToAction("Index");
         }
 
@@ -372,6 +429,7 @@ namespace Cosevi.SIBOAC.Controllers
             OpcionFormularioPorArticulo opcionFormularioPorArticulo = db.OPCFORMULARIOXARTICULO.Find(id, conducta, FechaInicio, FechaFin, codFormulario);
             db.OPCFORMULARIOXARTICULO.Remove(opcionFormularioPorArticulo);
             db.SaveChanges();
+            Bitacora(opcionFormularioPorArticulo, "D", "OPCFORMULARIOXARTICULO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

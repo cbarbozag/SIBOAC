@@ -1,0 +1,69 @@
+﻿using Cosevi.SIBOAC.Models;
+using Microsoft.Reporting.WebForms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Cosevi.SIBOAC.Reports
+{
+    public partial class ViewerPage : System.Web.UI.Page
+    {
+        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                string reporteID = Request.QueryString["reporteID"];
+                string nombreReporte = Request.QueryString["nombreReporte"];
+                string parametros = Request.QueryString["parametros"];
+
+                if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
+                {
+                    return;
+                }
+
+                ReportViewer1.Reset();
+                ReportViewer1.LocalReport.ReportPath = Server.MapPath(String.Format("~/Reports/{0}.rdlc", nombreReporte));
+                ReportDataSource RDS = new ReportDataSource("DataSet1", GetData(reporteID, parametros));
+                ReportViewer1.LocalReport.DataSources.Add(RDS);
+                ReportViewer1.LocalReport.Refresh();
+
+            }
+        }
+
+        private object GetData(string reporteID, string parametros)
+        {
+            object result = null;
+
+            switch (reporteID)
+            {
+                case "_Bitacora":
+                    result = GetBitacoraData(parametros);
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
+        #region Datos
+        private List<BitacoraSIBOAC> GetBitacoraData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            DateTime fechaInicio = Convert.ToDateTime(param[0]);
+            DateTime fechaFin = Convert.ToDateTime(param[1]);
+            string nombreTabla = param[2];
+            string operacion = param[3];
+            string usuario = param[4];
+
+            var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
+            return bitacora;
+        }
+        #endregion
+    }
+}

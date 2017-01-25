@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeDocumentoesController : Controller
+    public class TipoDeDocumentoesController : BaseController<TipoDeDocumento>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TipoDeDocumentoes
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -82,11 +80,25 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(tipoDeDocumento.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(tipoDeDocumento.FechaDeInicio.Value, tipoDeDocumento.FechaDeFin.Value);
+                    if (mensaje == "")
+                    {
+
+                        db.SaveChanges();
+                        Bitacora(tipoDeDocumento, "I", "TIPODOCUMENTO");
+
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(tipoDeDocumento);
+                    }
 
                 }
                 else
@@ -124,11 +136,26 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var tipoDeDocumentoAntes = db.TIPODOCUMENTO.AsNoTracking().Where(d => d.Id == tipoDeDocumento.Id).FirstOrDefault();
+
                 db.Entry(tipoDeDocumento).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(tipoDeDocumento.FechaDeInicio.Value, tipoDeDocumento.FechaDeFin.Value);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(tipoDeDocumento, "U", "TIPODOCUMENTO", tipoDeDocumentoAntes);
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeDocumento);
+                }
             }
-            return View(tipoDeDocumento);
+                return View(tipoDeDocumento);
         }
 
         // GET: TipoDeDocumentoes/Delete/5
@@ -152,11 +179,13 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
+            TipoDeDocumento tipoDeDocumentoAntes = ObtenerCopia(tipoDeDocumento);
             if (tipoDeDocumento.Estado == "I")
                 tipoDeDocumento.Estado = "A";
             else
                 tipoDeDocumento.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeDocumento, "U", "TIPODOCUMENTO", tipoDeDocumentoAntes);
             return RedirectToAction("Index");
         }
 
@@ -183,6 +212,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeDocumento tipoDeDocumento = db.TIPODOCUMENTO.Find(id);
             db.TIPODOCUMENTO.Remove(tipoDeDocumento);
             db.SaveChanges();
+            Bitacora(tipoDeDocumento, "D", "TIPODOCUMENTO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

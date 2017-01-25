@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class TipoDeCalzadasController : Controller
+    public class TipoDeCalzadasController : BaseController<TipoDeCalzada>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: TipoDeCalzadas
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -81,14 +79,27 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.TIPOCALZADA.Add(tipoDeCalzada);
                 string mensaje = Verificar(tipoDeCalzada.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
+                    mensaje = ValidarFechas(tipoDeCalzada.FechaDeInicio.Value, tipoDeCalzada.FechaDeFin.Value);
 
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(tipoDeCalzada, "I", "TIPOCALZADA");
 
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeCalzada);
+                }
                 }
                 else
                 {
@@ -125,11 +136,29 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var tipoDeCalzadaAntes = db.TIPOCALZADA.AsNoTracking().Where(d => d.Id == tipoDeCalzada.Id).FirstOrDefault();
+
                 db.Entry(tipoDeCalzada).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+
+                string mensaje = ValidarFechas(tipoDeCalzada.FechaDeInicio.Value, tipoDeCalzada.FechaDeFin.Value);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(tipoDeCalzada, "U", "TIPOCALZADA", tipoDeCalzadaAntes);
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(tipoDeCalzada);
+                }
             }
-            return View(tipoDeCalzada);
+                return View(tipoDeCalzada);
         }
 
         // GET: TipoDeCalzadas/Delete/5
@@ -153,11 +182,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
+            TipoDeCalzada tipoDeCalzadaAntes = ObtenerCopia(tipoDeCalzada);
+
             if (tipoDeCalzada.Estado == "I")
                 tipoDeCalzada.Estado = "A";
             else
                 tipoDeCalzada.Estado = "I";
             db.SaveChanges();
+            Bitacora(tipoDeCalzada, "U", "TIPOCALZADA", tipoDeCalzadaAntes);
             return RedirectToAction("Index");
         }
 
@@ -184,6 +216,7 @@ namespace Cosevi.SIBOAC.Controllers
             TipoDeCalzada tipoDeCalzada = db.TIPOCALZADA.Find(id);
             db.TIPOCALZADA.Remove(tipoDeCalzada);
             db.SaveChanges();
+            Bitacora(tipoDeCalzada, "D", "TIPOCALZADA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

@@ -81,6 +81,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(otroTipoTransporte.Id);
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(otroTipoTransporte.FechaDeInicio, otroTipoTransporte.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(otroTipoTransporte, "I", "OTROTIPOTRANSPORTE");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(otroTipoTransporte);
+                    }
                     db.SaveChanges();
                     Bitacora(otroTipoTransporte, "I", "OTROTIPOTRANSPORTE");
                     TempData["Type"] = "success";
@@ -124,9 +140,19 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var otroTipoTransporteAntes = db.OTROTIPOTRANSPORTE.AsNoTracking().Where(d => d.Id == otroTipoTransporte.Id).FirstOrDefault();
                 db.Entry(otroTipoTransporte).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(otroTipoTransporte, "U", "OTROTIPOTRANSPORTE", otroTipoTransporteAntes);
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(otroTipoTransporte.FechaDeInicio, otroTipoTransporte.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(otroTipoTransporte, "U", "OTROTIPOTRANSPORTE", otroTipoTransporteAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(otroTipoTransporte);
+                }                
             }
             return View(otroTipoTransporte);
         }

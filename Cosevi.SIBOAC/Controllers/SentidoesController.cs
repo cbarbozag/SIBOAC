@@ -79,13 +79,25 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.SENTIDO.Add(sentido);
                 string mensaje = Verificar(sentido.Id);
+
                 if (mensaje == "")
+                {
+                    mensaje = ValidarFechas(sentido.FechaDeInicio, sentido.FechaDeFin);
+
+                    if (mensaje == "")
                 {
                     db.SaveChanges();
                     Bitacora(sentido, "I", "SENTIDO");
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(sentido);
+                }
                 }
                 else
                 {
@@ -124,11 +136,25 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var sentidoAntes = db.SENTIDO.AsNoTracking().Where(d => d.Id == sentido.Id).FirstOrDefault();
                 db.Entry(sentido).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(sentido, "U", "SENTIDO", sentidoAntes);
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(sentido.FechaDeInicio, sentido.FechaDeFin);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(sentido, "U", "SENTIDO", sentidoAntes);
+                    return RedirectToAction("Index");
+                }
+
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(sentido);
+                }
             }
-            return View(sentido);
+
+                return View(sentido);
         }
 
         // GET: Sentidoes/Delete/5
