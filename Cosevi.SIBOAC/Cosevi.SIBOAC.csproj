@@ -367,6 +367,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetDescargaParteOficial1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -705,11 +710,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="PC_HH_AndroidDataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\ViewerPage.aspx.cs">
       <DependentUpon>ViewerPage.aspx</DependentUpon>
@@ -820,6 +820,17 @@
     </Content>
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetDescargaParteOficial.xsc">
+      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
+    </Content>
+    <None Include="GetDescargaParteOficial.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetDescargaParteOficial1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetDescargaParteOficial.xss">
+      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1442,6 +1453,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\OPCatalogos.cshtml" />
     <Content Include="Views\Reportes.cshtml" />
+    <Content Include="Views\Reporte\_DescargaInspector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
