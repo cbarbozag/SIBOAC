@@ -705,6 +705,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PC_HH_AndroidDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\ViewerPage.aspx.cs">
       <DependentUpon>ViewerPage.aspx</DependentUpon>
@@ -812,6 +817,16 @@
     </None>
     <Content Include="GetDescargaInspectorDataSet.xss">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="PC_HH_AndroidDataSet.xsc">
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="PC_HH_AndroidDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PC_HH_AndroidDataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="PC_HH_AndroidDataSet.xss">
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <Content Include="Reports\rptBitacora.rdlc">
