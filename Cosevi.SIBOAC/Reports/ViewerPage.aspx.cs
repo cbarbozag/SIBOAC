@@ -47,6 +47,9 @@ namespace Cosevi.SIBOAC.Reports
                 case "_DescargaInspector":
                     result = GetDescargaInspectorData(parametros);
                     break;
+                case "_DescargaBoleta":
+                    result = GetDescargaBoletaData(parametros);
+                    break;
                 default:
                     break;
             }
@@ -77,6 +80,18 @@ namespace Cosevi.SIBOAC.Reports
             string codigoOficial = param[3];
           
             var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, numeroHandHeld, codigoOficial).ToList();
+            return lista;
+        }
+
+        private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            int TipoFecha = Convert.ToInt32(param[0]);
+            DateTime fechaInicio = Convert.ToDateTime(param[1]);
+            DateTime fechaFin = Convert.ToDateTime(param[2]);
+  
+
+            var lista = db.GetDescargaBoletaData(TipoFecha,fechaInicio, fechaFin).ToList();
             return lista;
         }
         #endregion

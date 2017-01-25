@@ -37,6 +37,9 @@ namespace Cosevi.SIBOAC.Controllers
 
                    
                     break;
+                case "_DescargaBoleta":
+
+                    break;
                 default:
                     break;
             }
@@ -74,6 +77,12 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_Bitacora");
         }
 
+        private List<BitacoraSIBOAC> GetBitacoraData(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario)
+        {
+            var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
+            return bitacora;
+        }
+
         public ActionResult GetReporteDescargaInspector(DateTime hasta, DateTime desde, string numeroHH, string codigoInspector)
         {
             string reporteID = "_DescargaInspector";
@@ -92,19 +101,13 @@ namespace Cosevi.SIBOAC.Controllers
             var  lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, codigoInspector).ToList();
 
             return lista;
-        }
+        }        
 
-        private List<BitacoraSIBOAC> GetBitacoraData(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario)
-        {
-            var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
-            return bitacora;
-        }
-
-        public ActionResult GetDescargaBoleta(int TipoFecha, DateTime fechaInicio, DateTime fechaFin)
+        public ActionResult GetDescargaBoleta(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
         {
             string reporteID = "_DescargaBoleta";
-            string nombreReporte = "rptDescargaBolea";
-            string parametros = String.Format("{0},{1},{2}",TipoFecha, fechaInicio.ToString("yyyy-MM-dd"), fechaFin.ToString("yyyy-MM-dd"));
+            string nombreReporte = "DescargaBoleta";
+            string parametros = String.Format("{0},{1},{2}", opcionRadio, fechaDesde.ToString("yyyy-MM-dd"), fechaHasta.ToString("yyyy-MM-dd"));
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -112,6 +115,12 @@ namespace Cosevi.SIBOAC.Controllers
             GetData(reporteID);
 
             return View("_DescargaBoleta");
+        }
+
+        private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            var lista = db.GetDescargaBoletaData(opcionRadio, fechaDesde, fechaHasta).ToList();
+            return lista;
         }
     }
 }
