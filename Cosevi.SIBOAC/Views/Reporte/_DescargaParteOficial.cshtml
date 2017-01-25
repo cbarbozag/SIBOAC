@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.ParteOficial>
+
+@{
+    ViewBag.Title = "_DescargaParteOficial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte Descarga de Parte Oficial </h2>
+<h4>Filtro</h4>
+<hr />
+
+
+
+@using (Html.BeginForm("GetBitacora", "Reporte", FormMethod.Get))
+{
+    <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
+    <table border="0">
+
+        <tr>
+            <td>
+                Fecha Inicio:
+            </td>
+            <td>
+                <input type="date" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
+            </td>
+            <td>
+                Fecha Fin:
+            </td>
+            <td>
+                <input type="date" name="FechaFin" value="@Request.Params["FechaFin"]" />
+            </td>
+            <td>
+                <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+            </td>
+        </tr>
+    </table>
+
+}
+
+    <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+    @section scripts
+    {
+        <script>
+        $(document).ready(
+        function () {
+            ReportCall();
+        });
+        </script>
+
+        <script>
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }
+        </script>
