@@ -357,10 +357,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="GetBitacoraDataSet1.Designer.cs">
+    <Compile Include="GetDescargaBoletaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+      <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="GetDescargaInspectorDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -806,38 +806,48 @@
     <Content Include="Models\SIBOACSecurityModel.edmx.diagram">
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
     </Content>
-    <Content Include="GetDescargaParteOficial.xsc">
-      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
+    <Content Include="GetBitacoraDataSet.xsc">
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetBitacoraDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetBitacoraDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetBitacoraDataSet.xss">
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="GetDescargaInspectorDataSet.xsc">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="GetDescargaBoletaDataSet.xsc">
+      <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetDescargaBoletaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetDescargaBoletaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetDescargaBoletaDataSet.xss">
+      <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="GetDescargaInspectorDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GetDescargaInspectorDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>GetDescargaInspectorDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <Content Include="GetDescargaInspectorDataSet.xss">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Content>
-    <None Include="GetDescargaParteOficial.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GetDescargaParteOficial.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="GetDescargaParteOficial.xss">
-      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
+    <Content Include="PC_HH_AndroidDataSet.xsc">
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="GetDescargaParteOficialDataSet.xsc">
-      <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="GetDescargaParteOficialDataSet.xsd">
+    <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GetDescargaParteOficialDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+      <LastGenOutput>PC_HH_AndroidDataSet2.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="GetDescargaParteOficialDataSet.xss">
-      <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
+    <Content Include="PC_HH_AndroidDataSet.xss">
+      <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <Content Include="Reports\rptBitacora.rdlc">
@@ -1453,6 +1463,8 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\OPCatalogos.cshtml" />
     <Content Include="Views\Reportes.cshtml" />
+    <Content Include="Views\Reporte\_DescargaBoleta.cshtml" />
+    <Content Include="Views\Reporte\_DescargaInspector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1472,6 +1484,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\DescargaBoleta.rdlc" />
     <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
   </ItemGroup>
   <PropertyGroup>

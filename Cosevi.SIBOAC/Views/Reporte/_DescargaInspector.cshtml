@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "_DescargaInspector";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Reporte por Descarga del Inspector</h2>
+<h4>Filtro</h4>
+<hr />
+@using (Html.BeginForm("GetBitacora", "Reporte", FormMethod.Get))
+{
+    <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
+    <div class="form-group">
+        <label class="control-label col-md-2">Rango de fechas</label>
+        <div class="col-md-10">
+            <div class="input-daterange input-group" id="datepicker">
+                <input id="desde" type="text" class="input-sm form-control" name="start" />
+                <span class="input-group-addon">a</span>
+                <input id="hasta" type="text" class="input-sm form-control" name="end" />
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="form-group">
+        <br>
+        Numero de la Hand Held
+        <br>
+        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br />
+        Código del Oficial de Transito
+        <br>
+        <input id="codigoInspector" type='text' name='codigoInspector' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <br>
+    </div>
+
+    <div class="pull-right">
+        <button id="generar" type="button" class="btn btn-success">Generar Reporte</button>
+    </div>
+
+}
+
+<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+@section scripts
+    {
+    <script>
+        $(document).ready(
+        function () {
+            ReportCall();
+        });
+    </script>
+
+    <script>
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }
+    </script>
+}
