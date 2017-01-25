@@ -1,30 +1,9 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.BitacoraSIBOAC>
 
-
 @{
     ViewBag.Title = "Bitácora";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<script>
-    function imprSelec(nombre)
-    {
-      var ficha = document.getElementById(nombre);
-      var ventimp = window.open(' ', 'Impresion.');
-
-      ventimp.document.write( ficha.innerHTML );
-      ventimp.document.close();
-      ventimp.print( );
-      ventimp.close();
-    }
-
-    function reporteBitacora(tipoReporte) {
-        document.getElementById("TipoReporte").value = tipoReporte;
-        $("#reporte").click();
-        document.getElementById("TipoReporte").value = "false";
-    }
-
-</script>
 
 <h2>Reporte Bitácora</h2>
 <h4>Filtro</h4>
@@ -97,93 +76,36 @@
             </td>
         </tr>
     </table>
-
 }
-@if (Model != null)
-{
-    <br />
+<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+@section scripts
+    {
+    <script>
+        $(document).ready(
+        function () {
+            ReportCall();
+        });
+    </script>
 
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <input type="image" name="submit" value="PDF" id="ExportarPDF" src="~/Content/btnPDF.png" onclick="reporteBitacora('pdf');" />
-            <input input id="ExportaExcel" type="image" name="Excel" value="Excel" src="~/Content/btnExcel.png" onclick="reporteBitacora('xls');" />
-            <input title="Botón Imprimir" type="image" name="Imprimir" value="Imprimir" onClick="javascript:imprSelec('seleccion')" src="~/Content/btnImprimir.png">
-        </div>
-        <div class="panel-body">
-            <table class="table" id="TablaContenido">
-                <tr>
-                    <th>
-                        Fecha
-                    </th>
-                    <th>
-                        Tabla
-                    </th>
-                    <th>
-                        Usuario
-                    </th>
-                    <th>
-                        Operación
-                    </th>
-                    <th>
-                        Antes
-                    </th>
-                    <th>
-                        Después
-                    </th>
-                    <th></th>
-                </tr>
+    <script>
+        function ReportCall() {
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaHora)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NombreTabla)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CodigoUsuario)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Operacion)
-                        </td>
-                        <td>
-                            @if (!String.IsNullOrEmpty(item.ValorAntes))
-                    {
-                                <table>
-                                    @foreach (var itemAntes in item.ValorAntes.Split(','))
-                                    {
-                                        <tr>
-                                            <td>
-                                                @itemAntes
-                                            </td>
-                                        </tr>
-                                    }
-                                </table>
-                            }
-                        </td>
-                        <td>
-                            @if (!String.IsNullOrEmpty(item.ValorDespues))
-                    {
-                                <table>
-                                    @foreach (var itemDespues in item.ValorDespues.Split(','))
-                                    {
-                                        <tr>
-                                            <td>
-                                                @itemDespues
-                                            </td>
-                                        </tr>
-                                    }
-                                </table>
-                            }
-                        </td>
-                    </tr>
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
                 }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
 
-            </table>
-        </div>
-    </div>
-    
-
+            return false;
+        }
+    </script>
 }
