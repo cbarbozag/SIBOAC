@@ -367,16 +367,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="GetDescargaInspectorDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="GetDescargaParteOficial.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GetDescargaParteOficialDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -841,6 +831,17 @@
     </Content>
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetDescargaParteOficialDataSet.xsc">
+      <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetDescargaParteOficialDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetDescargaParteOficialDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetDescargaParteOficialDataSet.xss">
+      <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1465,6 +1466,7 @@
     <Content Include="Views\Reportes.cshtml" />
     <Content Include="Views\Reporte\_DescargaBoleta.cshtml" />
     <Content Include="Views\Reporte\_DescargaInspector.cshtml" />
+    <Content Include="Views\Reporte\_DescargaParteOficial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1486,6 +1488,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Reports\DescargaBoleta.rdlc" />
     <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
+    <EmbeddedResource Include="Reports\DescargaParteOficial.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
