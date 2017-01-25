@@ -103,11 +103,11 @@ namespace Cosevi.SIBOAC.Controllers
             return lista;
         }        
 
-        public ActionResult GetDescargaBoleta(int idRadio, DateTime desde, DateTime hasta)
+        public ActionResult GetDescargaBoleta(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
         {
             string reporteID = "_DescargaBoleta";
-            string nombreReporte = "rptDescargaBolea";
-            string parametros = String.Format("{0},{1},{2}", idRadio, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"));
+            string nombreReporte = "DescargaBoleta";
+            string parametros = String.Format("{0},{1},{2}", opcionRadio, fechaDesde.ToString("yyyy-MM-dd"), fechaHasta.ToString("yyyy-MM-dd"));
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -117,9 +117,9 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_DescargaBoleta");
         }
 
-        private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(int idRadio, DateTime desde, DateTime hasta)
+        private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
         {
-            var lista = db.GetDescargaBoletaData(idRadio, desde, hasta).ToList();
+            var lista = db.GetDescargaBoletaData(opcionRadio, fechaDesde, fechaHasta).ToList();
             return lista;
         }
     }
