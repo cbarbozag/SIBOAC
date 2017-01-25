@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.GetDescargaInspectorData_Result>
 @{
     ViewBag.Title = "_DescargaInspector";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,16 +8,16 @@
 <h2>Reporte por Descarga del Inspector</h2>
 <h4>Filtro</h4>
 <hr />
-@using (Html.BeginForm("GetBitacora", "Reporte", FormMethod.Get))
+@using (Html.BeginForm("GetReporteDescargaInspector", "Reporte", FormMethod.Get))
 {
     <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
     <div class="form-group">
         <label class="control-label col-md-2">Rango de fechas</label>
         <div class="col-md-10">
             <div class="input-daterange input-group" id="datepicker">
-                <input id="desde" type="text" class="input-sm form-control" name="start" />
+                <input id="desde" type="text" class="input-sm form-control" name="hasta" />
                 <span class="input-group-addon">a</span>
-                <input id="hasta" type="text" class="input-sm form-control" name="end" />
+                <input id="hasta" type="text" class="input-sm form-control" name="desde" />
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="pull-right">
-        <button id="generar" type="button" class="btn btn-success">Generar Reporte</button>
+        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
     </div>
 
 }
