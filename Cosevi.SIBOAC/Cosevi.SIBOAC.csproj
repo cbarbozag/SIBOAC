@@ -357,6 +357,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetBitacoraDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GetDescargaInspectorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -474,6 +484,15 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GENERALES.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDescargaBoletaData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDescargaInspectorData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HorasLaborales.cs">
@@ -771,6 +790,28 @@
     </EntityDeploy>
     <Content Include="Models\SIBOACSecurityModel.edmx.diagram">
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="GetBitacoraDataSet.xsc">
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetBitacoraDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetBitacoraDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetBitacoraDataSet.xss">
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetDescargaInspectorDataSet.xsc">
+      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetDescargaInspectorDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetDescargaInspectorDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetDescargaInspectorDataSet.xss">
+      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <Content Include="Reports\rptBitacora.rdlc">
@@ -1403,6 +1444,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

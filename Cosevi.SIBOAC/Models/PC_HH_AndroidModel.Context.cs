@@ -168,5 +168,68 @@ namespace Cosevi.SIBOAC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BitacoraSIBOAC>("GetBitacoraData", mergeOption, fechaInicioParameter, fechaFinParameter, nombreTablaParameter, usuarioParameter, operacionParameter);
         }
+    
+        public virtual ObjectResult<GetDescargaBoletaData_Result> GetDescargaBoletaData(Nullable<int> tipoFecha, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal)
+        {
+            var tipoFechaParameter = tipoFecha.HasValue ?
+                new ObjectParameter("TipoFecha", tipoFecha) :
+                new ObjectParameter("TipoFecha", typeof(int));
+    
+            var fechaInicialParameter = fechaInicial.HasValue ?
+                new ObjectParameter("FechaInicial", fechaInicial) :
+                new ObjectParameter("FechaInicial", typeof(System.DateTime));
+    
+            var fechaFinalParameter = fechaFinal.HasValue ?
+                new ObjectParameter("FechaFinal", fechaFinal) :
+                new ObjectParameter("FechaFinal", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaBoletaData_Result>("GetDescargaBoletaData", tipoFechaParameter, fechaInicialParameter, fechaFinalParameter);
+        }
+    
+        public virtual ObjectResult<GetDescargaInspectorData_Result> GetDescargaInspectorData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string numeroHandHeld, string codigoOficial)
+        {
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var numeroHandHeldParameter = numeroHandHeld != null ?
+                new ObjectParameter("NumeroHandHeld", numeroHandHeld) :
+                new ObjectParameter("NumeroHandHeld", typeof(string));
+    
+            var codigoOficialParameter = codigoOficial != null ?
+                new ObjectParameter("CodigoOficial", codigoOficial) :
+                new ObjectParameter("CodigoOficial", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaInspectorData_Result>("GetDescargaInspectorData", fechaInicioParameter, fechaFinParameter, numeroHandHeldParameter, codigoOficialParameter);
+        }
+    
+        public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
+        {
+            var fechaDesdeParameter = fechaDesde.HasValue ?
+                new ObjectParameter("FechaDesde", fechaDesde) :
+                new ObjectParameter("FechaDesde", typeof(System.DateTime));
+    
+            var fechaHastaParameter = fechaHasta.HasValue ?
+                new ObjectParameter("FechaHasta", fechaHasta) :
+                new ObjectParameter("FechaHasta", typeof(System.DateTime));
+    
+            var valorParameter = valor.HasValue ?
+                new ObjectParameter("Valor", valor) :
+                new ObjectParameter("Valor", typeof(int));
+    
+            var idAutoridadesParameter = idAutoridades != null ?
+                new ObjectParameter("idAutoridades", idAutoridades) :
+                new ObjectParameter("idAutoridades", typeof(string));
+    
+            var idDelegacionesParameter = idDelegaciones != null ?
+                new ObjectParameter("idDelegaciones", idDelegaciones) :
+                new ObjectParameter("idDelegaciones", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
+        }
     }
 }
