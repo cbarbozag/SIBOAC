@@ -79,13 +79,26 @@ namespace Cosevi.SIBOAC.Models
             {
                 db.SEXO.Add(sexo);
                 string mensaje = Verificar(sexo.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(sexo, "I", "SEXO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(sexo.FechaDeInicio, sexo.FechaDeFin);
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(sexo, "I", "SEXO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(sexo);
+
+                    }
                 }
                 else
                 {
@@ -93,7 +106,7 @@ namespace Cosevi.SIBOAC.Models
                     ViewBag.Message = mensaje;
                     return View(sexo);
                 }
-            }
+                }
 
             return View(sexo);
         }
@@ -124,11 +137,23 @@ namespace Cosevi.SIBOAC.Models
             if (ModelState.IsValid)
             {
                 db.Entry(sexo).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(sexo, "U", "SEXO", sexoAntes);
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(sexo.FechaDeInicio, sexo.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(sexo, "U", "SEXO", sexoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(sexo);
+                }
             }
-            return View(sexo);
+
+                return View(sexo);
         }
 
         // GET: Sexoes/Delete/5

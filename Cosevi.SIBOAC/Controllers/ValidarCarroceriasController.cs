@@ -189,7 +189,7 @@ namespace Cosevi.SIBOAC.Controllers
                     if (mensaje == "")
                     {
                         db.SaveChanges();
-                        Bitacora(validarCarroceria, "I", "VALIDARCORROCERIA");
+                        Bitacora(validarCarroceria, "I", "VALIDARCARROCERIA");
 
                         TempData["Type"] = "success";
                         TempData["Message"] = "El registro se realizó correctamente";

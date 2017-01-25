@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RutasPorDistritosController : Controller
+    public class RutasPorDistritosController : BaseController<RutasPorDistritos>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: RutasPorDistritos
         [SessionExpire]
         public ViewResult Index(int? page, string searchString)
@@ -171,13 +169,28 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.RUTASXDISTRITO.Add(rutasPorDistritos);
                 string mensaje = Verificar(rutasPorDistritos.CodigoDistrito, rutasPorDistritos.CodigoRuta, rutasPorDistritos.Km);
+
+
                 if (mensaje == "")
                 {
+                    mensaje = ValidarFechas(rutasPorDistritos.FechaDeInicio, rutasPorDistritos.FechaDeFin);
+
+                    if (mensaje == "")
+                {
                     db.SaveChanges();
+                    Bitacora(rutasPorDistritos, "I", "RUTASXDISTRITO");
 
                     TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rutasPorDistritos);
+                }
 
                 }
                 else
@@ -245,13 +258,30 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CodigoDistrito,CodigoRuta,Km,Estado,FechaDeInicio,FechaDeFin")] RutasPorDistritos rutasPorDistritos)
         {
+            var rutasPorDistritosAntes = db.RUTASXDISTRITO.AsNoTracking().Where(d => d.CodigoRuta == rutasPorDistritos.CodigoRuta &&
+                                                                                        d.CodigoDistrito == rutasPorDistritos.CodigoDistrito &&
+                                                                                        d.Km == rutasPorDistritos.Km).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
                 db.Entry(rutasPorDistritos).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(rutasPorDistritos.FechaDeInicio, rutasPorDistritos.FechaDeFin);
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(rutasPorDistritos, "U", "RUTASXDISTRITO", rutasPorDistritosAntes);
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rutasPorDistritos);
+                }
             }
-            return View(rutasPorDistritos);
+                return View(rutasPorDistritos);
         }
 
         // GET: RutasPorDistritos/Delete/5
@@ -305,11 +335,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int? codigo_distrito, int? codigo_ruta, int? km)
         {
             RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
+            RutasPorDistritos rutasPorDistritosAntes = ObtenerCopia(rutasPorDistritos);
+
             if (rutasPorDistritos.Estado == "A")
                 rutasPorDistritos.Estado = "I";
             else
                 rutasPorDistritos.Estado = "A";
             db.SaveChanges();
+            Bitacora(rutasPorDistritos, "U", "RUTASXDISTRITO", rutasPorDistritosAntes);
             return RedirectToAction("Index");
         }
 
@@ -364,8 +397,11 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult RealDeleteConfirmed(int? codigo_distrito, int? codigo_ruta, int? km)
         {
             RutasPorDistritos rutasPorDistritos = db.RUTASXDISTRITO.Find(codigo_distrito, codigo_ruta, km);
+            //RutasPorDistritos rutasPorDistritosAntes = ObtenerCopia(rutasPorDistritos);
+
             db.RUTASXDISTRITO.Remove(rutasPorDistritos);
             db.SaveChanges();
+            Bitacora(rutasPorDistritos, "D", "RUTASXDISTRITO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");

@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RolPorPersonasController : Controller
+    public class RolPorPersonasController : BaseController<RolPorPersona>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: RolPorPersonas
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -61,12 +59,18 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.ROLPERSONA.Add(rolPorPersona);
                 string mensaje = Verificar(rolPorPersona.Id);
+
                 if (mensaje == "")
                 {
-                    db.SaveChanges();                  
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(rolPorPersona.FechaDeInicio, rolPorPersona.FechaDeFin);
+
+                    if (mensaje == "")
+                {
+                        db.SaveChanges();
+                        Bitacora(rolPorPersona, "I", "ROLPERSONA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
                 }
                 else
                 {
@@ -74,7 +78,16 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Message = mensaje;
                     return View(rolPorPersona);
                 }
-             
+
+                }
+
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolPorPersona);
+                }
+
             }
 
             return View(rolPorPersona);
@@ -104,10 +117,25 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var rolPorPersonaAntes = db.ROLPERSONA.AsNoTracking().Where(d => d.Id == rolPorPersona.Id).FirstOrDefault();
+
                 db.Entry(rolPorPersona).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+
+                string mensaje = ValidarFechas(rolPorPersona.FechaDeInicio, rolPorPersona.FechaDeFin);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(rolPorPersona, "U", "ROLPERSONA", rolPorPersonaAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolPorPersona);
+                }
+                }
             return View(rolPorPersona);
         }
 
@@ -132,11 +160,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             RolPorPersona rolPorPersona = db.ROLPERSONA.Find(id);
+            RolPorPersona rolPorPersonaAntes = ObtenerCopia(rolPorPersona);
+
             if (rolPorPersona.Estado == "I")
                 rolPorPersona.Estado = "A";
             else
                 rolPorPersona.Estado = "I";
             db.SaveChanges();
+            Bitacora(rolPorPersona, "U", "ROLPERSONA", rolPorPersonaAntes);
             return RedirectToAction("Index");
         }
 
@@ -163,6 +194,7 @@ namespace Cosevi.SIBOAC.Controllers
             RolPorPersona rolPorPersona = db.ROLPERSONA.Find(id);
             db.ROLPERSONA.Remove(rolPorPersona);
             db.SaveChanges();
+            Bitacora(rolPorPersona, "D", "ROLPERSONA");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
