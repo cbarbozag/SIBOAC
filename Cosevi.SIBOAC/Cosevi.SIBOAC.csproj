@@ -357,6 +357,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetBitacoraDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GetDescargaParteOficial.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -771,6 +781,28 @@
     </EntityDeploy>
     <Content Include="Models\SIBOACSecurityModel.edmx.diagram">
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="GetBitacoraDataSet.xsc">
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetBitacoraDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetBitacoraDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetBitacoraDataSet.xss">
+      <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetDescargaParteOficial.xsc">
+      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
+    </Content>
+    <None Include="GetDescargaParteOficial.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetDescargaParteOficial.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetDescargaParteOficial.xss">
+      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <Content Include="Reports\rptBitacora.rdlc">
