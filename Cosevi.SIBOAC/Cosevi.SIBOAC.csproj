@@ -70,6 +70,7 @@
       <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -266,6 +267,11 @@
     <Compile Include="Controllers\DispositivosMovilesController.cs" />
     <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\DivisionsController.cs" />
+    <Compile Include="Content\dsPrueba.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPrueba.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\EdadsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
@@ -305,6 +311,7 @@
     <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeParteOficialController.cs" />
     <Compile Include="Controllers\ReportePorUsuarioController.cs" />
+    <Compile Include="Controllers\ReportePruebaController.cs" />
     <Compile Include="Controllers\ReportesPorConsultaParteOficialController.cs" />
     <Compile Include="Controllers\ResetPasswordsController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
@@ -741,6 +748,17 @@
     </EntityDeploy>
     <Content Include="Models\SIBOACSecurityModel.edmx.diagram">
       <DependentUpon>SIBOACSecurityModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Content\dsPrueba.xsc">
+      <DependentUpon>dsPrueba.xsd</DependentUpon>
+    </Content>
+    <None Include="Content\dsPrueba.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPrueba.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\dsPrueba.xss">
+      <DependentUpon>dsPrueba.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -1353,6 +1371,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\OPCatalogos.cshtml" />
     <Content Include="Views\Reportes.cshtml" />
+    <Content Include="Views\ReportePrueba\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1370,6 +1389,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\ReporteConsultaeImpresionDeBoletas.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
