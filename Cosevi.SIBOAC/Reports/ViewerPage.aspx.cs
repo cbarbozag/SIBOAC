@@ -44,6 +44,9 @@ namespace Cosevi.SIBOAC.Reports
                 case "_Bitacora":
                     result = GetBitacoraData(parametros);
                     break;
+                case "_DescargaBoleta":
+                    result = GetDescargaBoletaData(parametros);
+                    break;
                 default:
                     break;
             }
@@ -63,6 +66,18 @@ namespace Cosevi.SIBOAC.Reports
 
             var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
             return bitacora;
+        }
+
+        private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            int TipoFecha = Convert.ToInt32(param[0]);
+            DateTime fechaInicio = Convert.ToDateTime(param[1]);
+            DateTime fechaFin = Convert.ToDateTime(param[2]);
+  
+
+            var lista = db.GetDescargaBoletaData(TipoFecha,fechaInicio, fechaFin).ToList();
+            return lista;
         }
         #endregion
     }
