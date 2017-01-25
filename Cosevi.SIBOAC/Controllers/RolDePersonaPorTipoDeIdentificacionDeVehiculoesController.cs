@@ -139,7 +139,12 @@ namespace Cosevi.SIBOAC.Controllers
                 db.ROLPERSONAXTIPOIDEVEHICULO.Add(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
                 string mensaje = Verificar(rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol,
                                          rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo);
+
                 if (mensaje == "")
+                {
+                    mensaje = ValidarFechas(rolDePersonaPorTipoDeIdentificacionDeVehiculo.FechaDeInicio, rolDePersonaPorTipoDeIdentificacionDeVehiculo.FechaDeFin);
+
+                    if (mensaje == "")
                 {
                     db.SaveChanges();
                     Bitacora(rolDePersonaPorTipoDeIdentificacionDeVehiculo, "I", "ROLPERSONAXTIPOIDEVEHICULO");
@@ -166,6 +171,14 @@ namespace Cosevi.SIBOAC.Controllers
                          Text = c.Descripcion
                      });
                     ViewBag.ComboTipoVeh = itemsTipoVeh;
+                    return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+                }
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
                     return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
                 }
             }
@@ -234,10 +247,23 @@ namespace Cosevi.SIBOAC.Controllers
              {
                 var rolDePersonaPorTipoDeIdentificacionDeVehiculoAntes = db.ROLPERSONAXTIPOIDEVEHICULO.AsNoTracking().Where(d => d.CodigoDeIdentificacionVehiculo == rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeIdentificacionVehiculo && d.CodigoDeRol== rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol).FirstOrDefault();
                 db.Entry(rolDePersonaPorTipoDeIdentificacionDeVehiculo).State = EntityState.Modified;
-                 db.SaveChanges();
-                Bitacora(rolDePersonaPorTipoDeIdentificacionDeVehiculo, "U", "ROLPERSONAXTIPOIDEVEHICULO", rolDePersonaPorTipoDeIdentificacionDeVehiculoAntes);
-                return RedirectToAction("Index");
-             }
+
+                string mensaje = ValidarFechas(rolDePersonaPorTipoDeIdentificacionDeVehiculo.FechaDeInicio, rolDePersonaPorTipoDeIdentificacionDeVehiculo.FechaDeFin);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(rolDePersonaPorTipoDeIdentificacionDeVehiculo, "U", "ROLPERSONAXTIPOIDEVEHICULO", rolDePersonaPorTipoDeIdentificacionDeVehiculoAntes);
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
+                }
+            }
 
             return View(rolDePersonaPorTipoDeIdentificacionDeVehiculo);
             ViewBag.CodRol = new SelectList(db.ROLPERSONA, "Id", "Descripcion", rolDePersonaPorTipoDeIdentificacionDeVehiculo.CodigoDeRol);

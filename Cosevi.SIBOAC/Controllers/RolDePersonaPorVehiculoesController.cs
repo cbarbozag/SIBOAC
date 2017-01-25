@@ -130,7 +130,12 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 db.RolDePersonaPorVehiculoes.Add(rolDePersonaPorVehiculo);
                 string mensaje = Verificar(rolDePersonaPorVehiculo.Id);
+
                 if (mensaje == "")
+                {
+                    mensaje = ValidarFechas(rolDePersonaPorVehiculo.FechaDeInicio, rolDePersonaPorVehiculo.FechaDeFin);
+
+                    if (mensaje == "")
                 {
                     db.SaveChanges();
                     Bitacora(rolDePersonaPorVehiculo, "I", "ROLPERSONA_VEHICULO");
@@ -152,6 +157,13 @@ namespace Cosevi.SIBOAC.Controllers
                     TempData["ComboRolPersona"] = itemsRolPersona;
                     ViewBag.ComboRolPersona = itemsRolPersona;
 
+                    return View(rolDePersonaPorVehiculo);
+                }
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
                     return View(rolDePersonaPorVehiculo);
                 }
             }
@@ -211,11 +223,23 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var rolDePersonaPorVehiculoAntes = db.RolDePersonaPorVehiculoes.AsNoTracking().Where(d => d.Id == rolDePersonaPorVehiculo.Id).FirstOrDefault();
                 db.Entry(rolDePersonaPorVehiculo).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(rolDePersonaPorVehiculo, "U", "ROLPERSONA_VEHICULO", rolDePersonaPorVehiculoAntes);
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(rolDePersonaPorVehiculo.FechaDeInicio, rolDePersonaPorVehiculo.FechaDeFin);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(rolDePersonaPorVehiculo, "U", "ROLPERSONA_VEHICULO", rolDePersonaPorVehiculoAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolDePersonaPorVehiculo);
+                }
             }
-            return View(rolDePersonaPorVehiculo);
+                return View(rolDePersonaPorVehiculo);
         }
 
         // GET: RolDePersonaPorVehiculoes/Delete/5
