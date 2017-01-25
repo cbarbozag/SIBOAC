@@ -317,7 +317,6 @@
     <Compile Include="Controllers\ReportePorDescargaDeBoletasController.cs" />
     <Compile Include="Controllers\ReportePorDescargaDeParteOficialController.cs" />
     <Compile Include="Controllers\ReportePorUsuarioController.cs" />
-    <Compile Include="Controllers\ReportePruebaController.cs" />
     <Compile Include="Controllers\ReportesPorConsultaParteOficialController.cs" />
     <Compile Include="Controllers\ResetPasswordsController.cs" />
     <Compile Include="Controllers\RevisionsController.cs" />
@@ -1387,7 +1386,6 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Home\OPCatalogos.cshtml" />
     <Content Include="Views\Reportes.cshtml" />
-    <Content Include="Views\ReportePrueba\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
