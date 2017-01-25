@@ -20,17 +20,17 @@ namespace Cosevi.SIBOAC {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("GetBitacoraDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("PC_HH_AndroidDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class GetBitacoraDataSet : global::System.Data.DataSet {
+    public partial class PC_HH_AndroidDataSet : global::System.Data.DataSet {
         
-        private GetBitacoraDataDataTable tableGetBitacoraData;
+        private DAÑODataTable tableDAÑO;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public GetBitacoraDataSet() {
+        public PC_HH_AndroidDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Cosevi.SIBOAC {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected GetBitacoraDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected PC_HH_AndroidDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Cosevi.SIBOAC {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["GetBitacoraData"] != null)) {
-                    base.Tables.Add(new GetBitacoraDataDataTable(ds.Tables["GetBitacoraData"]));
+                if ((ds.Tables["DAÑO"] != null)) {
+                    base.Tables.Add(new DAÑODataTable(ds.Tables["DAÑO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Cosevi.SIBOAC {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public GetBitacoraDataDataTable GetBitacoraData {
+        public DAÑODataTable DAÑO {
             get {
-                return this.tableGetBitacoraData;
+                return this.tableDAÑO;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Cosevi.SIBOAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            GetBitacoraDataSet cln = ((GetBitacoraDataSet)(base.Clone()));
+            PC_HH_AndroidDataSet cln = ((PC_HH_AndroidDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Cosevi.SIBOAC {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["GetBitacoraData"] != null)) {
-                    base.Tables.Add(new GetBitacoraDataDataTable(ds.Tables["GetBitacoraData"]));
+                if ((ds.Tables["DAÑO"] != null)) {
+                    base.Tables.Add(new DAÑODataTable(ds.Tables["DAÑO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Cosevi.SIBOAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableGetBitacoraData = ((GetBitacoraDataDataTable)(base.Tables["GetBitacoraData"]));
+            this.tableDAÑO = ((DAÑODataTable)(base.Tables["DAÑO"]));
             if ((initTable == true)) {
-                if ((this.tableGetBitacoraData != null)) {
-                    this.tableGetBitacoraData.InitVars();
+                if ((this.tableDAÑO != null)) {
+                    this.tableDAÑO.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Cosevi.SIBOAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "GetBitacoraDataSet";
+            this.DataSetName = "PC_HH_AndroidDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/GetBitacoraDataSet.xsd";
+            this.Namespace = "http://tempuri.org/PC_HH_AndroidDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableGetBitacoraData = new GetBitacoraDataDataTable();
-            base.Tables.Add(this.tableGetBitacoraData);
+            this.tableDAÑO = new DAÑODataTable();
+            base.Tables.Add(this.tableDAÑO);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeGetBitacoraData() {
+        private bool ShouldSerializeDAÑO() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Cosevi.SIBOAC {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            GetBitacoraDataSet ds = new GetBitacoraDataSet();
+            PC_HH_AndroidDataSet ds = new PC_HH_AndroidDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,33 +270,29 @@ namespace Cosevi.SIBOAC {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void GetBitacoraDataRowChangeEventHandler(object sender, GetBitacoraDataRowChangeEvent e);
+        public delegate void DAÑORowChangeEventHandler(object sender, DAÑORowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class GetBitacoraDataDataTable : global::System.Data.TypedTableBase<GetBitacoraDataRow> {
+        public partial class DAÑODataTable : global::System.Data.TypedTableBase<DAÑORow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnCodDaño;
             
-            private global::System.Data.DataColumn columnFechaHora;
+            private global::System.Data.DataColumn columnDescripcion;
             
-            private global::System.Data.DataColumn columnNombreTabla;
+            private global::System.Data.DataColumn columnestado;
             
-            private global::System.Data.DataColumn columnCodigoUsuario;
+            private global::System.Data.DataColumn columnfecha_inicio;
             
-            private global::System.Data.DataColumn columnOperacion;
-            
-            private global::System.Data.DataColumn columnValorAntes;
-            
-            private global::System.Data.DataColumn columnValorDespues;
+            private global::System.Data.DataColumn columnfecha_fin;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetBitacoraDataDataTable() {
-                this.TableName = "GetBitacoraData";
+            public DAÑODataTable() {
+                this.TableName = "DAÑO";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -304,7 +300,7 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal GetBitacoraDataDataTable(global::System.Data.DataTable table) {
+            internal DAÑODataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -321,64 +317,48 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected GetBitacoraDataDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DAÑODataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn CodDañoColumn {
                 get {
-                    return this.columnId;
+                    return this.columnCodDaño;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FechaHoraColumn {
+            public global::System.Data.DataColumn DescripcionColumn {
                 get {
-                    return this.columnFechaHora;
+                    return this.columnDescripcion;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NombreTablaColumn {
+            public global::System.Data.DataColumn estadoColumn {
                 get {
-                    return this.columnNombreTabla;
+                    return this.columnestado;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CodigoUsuarioColumn {
+            public global::System.Data.DataColumn fecha_inicioColumn {
                 get {
-                    return this.columnCodigoUsuario;
+                    return this.columnfecha_inicio;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OperacionColumn {
+            public global::System.Data.DataColumn fecha_finColumn {
                 get {
-                    return this.columnOperacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ValorAntesColumn {
-                get {
-                    return this.columnValorAntes;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ValorDespuesColumn {
-                get {
-                    return this.columnValorDespues;
+                    return this.columnfecha_fin;
                 }
             }
             
@@ -393,58 +373,56 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetBitacoraDataRow this[int index] {
+            public DAÑORow this[int index] {
                 get {
-                    return ((GetBitacoraDataRow)(this.Rows[index]));
+                    return ((DAÑORow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GetBitacoraDataRowChangeEventHandler GetBitacoraDataRowChanging;
+            public event DAÑORowChangeEventHandler DAÑORowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GetBitacoraDataRowChangeEventHandler GetBitacoraDataRowChanged;
+            public event DAÑORowChangeEventHandler DAÑORowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GetBitacoraDataRowChangeEventHandler GetBitacoraDataRowDeleting;
+            public event DAÑORowChangeEventHandler DAÑORowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GetBitacoraDataRowChangeEventHandler GetBitacoraDataRowDeleted;
+            public event DAÑORowChangeEventHandler DAÑORowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddGetBitacoraDataRow(GetBitacoraDataRow row) {
+            public void AddDAÑORow(DAÑORow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetBitacoraDataRow AddGetBitacoraDataRow(System.DateTime FechaHora, string NombreTabla, string CodigoUsuario, string Operacion, string ValorAntes, string ValorDespues) {
-                GetBitacoraDataRow rowGetBitacoraDataRow = ((GetBitacoraDataRow)(this.NewRow()));
+            public DAÑORow AddDAÑORow(int CodDaño, string Descripcion, string estado, System.DateTime fecha_inicio, System.DateTime fecha_fin) {
+                DAÑORow rowDAÑORow = ((DAÑORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        FechaHora,
-                        NombreTabla,
-                        CodigoUsuario,
-                        Operacion,
-                        ValorAntes,
-                        ValorDespues};
-                rowGetBitacoraDataRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowGetBitacoraDataRow);
-                return rowGetBitacoraDataRow;
+                        CodDaño,
+                        Descripcion,
+                        estado,
+                        fecha_inicio,
+                        fecha_fin};
+                rowDAÑORow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDAÑORow);
+                return rowDAÑORow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetBitacoraDataRow FindById(long Id) {
-                return ((GetBitacoraDataRow)(this.Rows.Find(new object[] {
-                            Id})));
+            public DAÑORow FindByCodDaño(int CodDaño) {
+                return ((DAÑORow)(this.Rows.Find(new object[] {
+                            CodDaño})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                GetBitacoraDataDataTable cln = ((GetBitacoraDataDataTable)(base.Clone()));
+                DAÑODataTable cln = ((DAÑODataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -452,79 +430,65 @@ namespace Cosevi.SIBOAC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new GetBitacoraDataDataTable();
+                return new DAÑODataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
-                this.columnFechaHora = base.Columns["FechaHora"];
-                this.columnNombreTabla = base.Columns["NombreTabla"];
-                this.columnCodigoUsuario = base.Columns["CodigoUsuario"];
-                this.columnOperacion = base.Columns["Operacion"];
-                this.columnValorAntes = base.Columns["ValorAntes"];
-                this.columnValorDespues = base.Columns["ValorDespues"];
+                this.columnCodDaño = base.Columns["CodDaño"];
+                this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnestado = base.Columns["estado"];
+                this.columnfecha_inicio = base.Columns["fecha_inicio"];
+                this.columnfecha_fin = base.Columns["fecha_fin"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
-                this.columnFechaHora = new global::System.Data.DataColumn("FechaHora", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFechaHora);
-                this.columnNombreTabla = new global::System.Data.DataColumn("NombreTabla", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNombreTabla);
-                this.columnCodigoUsuario = new global::System.Data.DataColumn("CodigoUsuario", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCodigoUsuario);
-                this.columnOperacion = new global::System.Data.DataColumn("Operacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOperacion);
-                this.columnValorAntes = new global::System.Data.DataColumn("ValorAntes", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnValorAntes);
-                this.columnValorDespues = new global::System.Data.DataColumn("ValorDespues", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnValorDespues);
+                this.columnCodDaño = new global::System.Data.DataColumn("CodDaño", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodDaño);
+                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcion);
+                this.columnestado = new global::System.Data.DataColumn("estado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnestado);
+                this.columnfecha_inicio = new global::System.Data.DataColumn("fecha_inicio", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfecha_inicio);
+                this.columnfecha_fin = new global::System.Data.DataColumn("fecha_fin", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfecha_fin);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
-                this.columnId.AutoIncrement = true;
-                this.columnId.AllowDBNull = false;
-                this.columnId.ReadOnly = true;
-                this.columnId.Unique = true;
-                this.columnFechaHora.AllowDBNull = false;
-                this.columnNombreTabla.AllowDBNull = false;
-                this.columnNombreTabla.MaxLength = 64;
-                this.columnCodigoUsuario.AllowDBNull = false;
-                this.columnCodigoUsuario.MaxLength = 16;
-                this.columnOperacion.AllowDBNull = false;
-                this.columnOperacion.MaxLength = 1;
-                this.columnValorAntes.MaxLength = 2147483647;
-                this.columnValorDespues.MaxLength = 2147483647;
+                                this.columnCodDaño}, true));
+                this.columnCodDaño.AllowDBNull = false;
+                this.columnCodDaño.Unique = true;
+                this.columnDescripcion.AllowDBNull = false;
+                this.columnDescripcion.MaxLength = 50;
+                this.columnestado.MaxLength = 1;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetBitacoraDataRow NewGetBitacoraDataRow() {
-                return ((GetBitacoraDataRow)(this.NewRow()));
+            public DAÑORow NewDAÑORow() {
+                return ((DAÑORow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new GetBitacoraDataRow(builder);
+                return new DAÑORow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(GetBitacoraDataRow);
+                return typeof(DAÑORow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.GetBitacoraDataRowChanged != null)) {
-                    this.GetBitacoraDataRowChanged(this, new GetBitacoraDataRowChangeEvent(((GetBitacoraDataRow)(e.Row)), e.Action));
+                if ((this.DAÑORowChanged != null)) {
+                    this.DAÑORowChanged(this, new DAÑORowChangeEvent(((DAÑORow)(e.Row)), e.Action));
                 }
             }
             
@@ -532,8 +496,8 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.GetBitacoraDataRowChanging != null)) {
-                    this.GetBitacoraDataRowChanging(this, new GetBitacoraDataRowChangeEvent(((GetBitacoraDataRow)(e.Row)), e.Action));
+                if ((this.DAÑORowChanging != null)) {
+                    this.DAÑORowChanging(this, new DAÑORowChangeEvent(((DAÑORow)(e.Row)), e.Action));
                 }
             }
             
@@ -541,8 +505,8 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.GetBitacoraDataRowDeleted != null)) {
-                    this.GetBitacoraDataRowDeleted(this, new GetBitacoraDataRowChangeEvent(((GetBitacoraDataRow)(e.Row)), e.Action));
+                if ((this.DAÑORowDeleted != null)) {
+                    this.DAÑORowDeleted(this, new DAÑORowChangeEvent(((DAÑORow)(e.Row)), e.Action));
                 }
             }
             
@@ -550,14 +514,14 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.GetBitacoraDataRowDeleting != null)) {
-                    this.GetBitacoraDataRowDeleting(this, new GetBitacoraDataRowChangeEvent(((GetBitacoraDataRow)(e.Row)), e.Action));
+                if ((this.DAÑORowDeleting != null)) {
+                    this.DAÑORowDeleting(this, new DAÑORowChangeEvent(((DAÑORow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveGetBitacoraDataRow(GetBitacoraDataRow row) {
+            public void RemoveDAÑORow(DAÑORow row) {
                 this.Rows.Remove(row);
             }
             
@@ -566,7 +530,7 @@ namespace Cosevi.SIBOAC {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                GetBitacoraDataSet ds = new GetBitacoraDataSet();
+                PC_HH_AndroidDataSet ds = new PC_HH_AndroidDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -584,7 +548,7 @@ namespace Cosevi.SIBOAC {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "GetBitacoraDataDataTable";
+                attribute2.FixedValue = "DAÑODataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -628,126 +592,121 @@ namespace Cosevi.SIBOAC {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class GetBitacoraDataRow : global::System.Data.DataRow {
+        public partial class DAÑORow : global::System.Data.DataRow {
             
-            private GetBitacoraDataDataTable tableGetBitacoraData;
+            private DAÑODataTable tableDAÑO;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal GetBitacoraDataRow(global::System.Data.DataRowBuilder rb) : 
+            internal DAÑORow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableGetBitacoraData = ((GetBitacoraDataDataTable)(this.Table));
+                this.tableDAÑO = ((DAÑODataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public long Id {
+            public int CodDaño {
                 get {
-                    return ((long)(this[this.tableGetBitacoraData.IdColumn]));
+                    return ((int)(this[this.tableDAÑO.CodDañoColumn]));
                 }
                 set {
-                    this[this.tableGetBitacoraData.IdColumn] = value;
+                    this[this.tableDAÑO.CodDañoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FechaHora {
+            public string Descripcion {
                 get {
-                    return ((global::System.DateTime)(this[this.tableGetBitacoraData.FechaHoraColumn]));
+                    return ((string)(this[this.tableDAÑO.DescripcionColumn]));
                 }
                 set {
-                    this[this.tableGetBitacoraData.FechaHoraColumn] = value;
+                    this[this.tableDAÑO.DescripcionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string NombreTabla {
-                get {
-                    return ((string)(this[this.tableGetBitacoraData.NombreTablaColumn]));
-                }
-                set {
-                    this[this.tableGetBitacoraData.NombreTablaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CodigoUsuario {
-                get {
-                    return ((string)(this[this.tableGetBitacoraData.CodigoUsuarioColumn]));
-                }
-                set {
-                    this[this.tableGetBitacoraData.CodigoUsuarioColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Operacion {
-                get {
-                    return ((string)(this[this.tableGetBitacoraData.OperacionColumn]));
-                }
-                set {
-                    this[this.tableGetBitacoraData.OperacionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ValorAntes {
+            public string estado {
                 get {
                     try {
-                        return ((string)(this[this.tableGetBitacoraData.ValorAntesColumn]));
+                        return ((string)(this[this.tableDAÑO.estadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ValorAntes\' in table \'GetBitacoraData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'estado\' in table \'DAÑO\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetBitacoraData.ValorAntesColumn] = value;
+                    this[this.tableDAÑO.estadoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ValorDespues {
+            public System.DateTime fecha_inicio {
                 get {
                     try {
-                        return ((string)(this[this.tableGetBitacoraData.ValorDespuesColumn]));
+                        return ((global::System.DateTime)(this[this.tableDAÑO.fecha_inicioColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ValorDespues\' in table \'GetBitacoraData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'fecha_inicio\' in table \'DAÑO\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetBitacoraData.ValorDespuesColumn] = value;
+                    this[this.tableDAÑO.fecha_inicioColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsValorAntesNull() {
-                return this.IsNull(this.tableGetBitacoraData.ValorAntesColumn);
+            public System.DateTime fecha_fin {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDAÑO.fecha_finColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fecha_fin\' in table \'DAÑO\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDAÑO.fecha_finColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetValorAntesNull() {
-                this[this.tableGetBitacoraData.ValorAntesColumn] = global::System.Convert.DBNull;
+            public bool IsestadoNull() {
+                return this.IsNull(this.tableDAÑO.estadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsValorDespuesNull() {
-                return this.IsNull(this.tableGetBitacoraData.ValorDespuesColumn);
+            public void SetestadoNull() {
+                this[this.tableDAÑO.estadoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetValorDespuesNull() {
-                this[this.tableGetBitacoraData.ValorDespuesColumn] = global::System.Convert.DBNull;
+            public bool Isfecha_inicioNull() {
+                return this.IsNull(this.tableDAÑO.fecha_inicioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfecha_inicioNull() {
+                this[this.tableDAÑO.fecha_inicioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isfecha_finNull() {
+                return this.IsNull(this.tableDAÑO.fecha_finColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfecha_finNull() {
+                this[this.tableDAÑO.fecha_finColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -755,22 +714,22 @@ namespace Cosevi.SIBOAC {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class GetBitacoraDataRowChangeEvent : global::System.EventArgs {
+        public class DAÑORowChangeEvent : global::System.EventArgs {
             
-            private GetBitacoraDataRow eventRow;
+            private DAÑORow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetBitacoraDataRowChangeEvent(GetBitacoraDataRow row, global::System.Data.DataRowAction action) {
+            public DAÑORowChangeEvent(DAÑORow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetBitacoraDataRow Row {
+            public DAÑORow Row {
                 get {
                     return this.eventRow;
                 }
@@ -786,7 +745,7 @@ namespace Cosevi.SIBOAC {
         }
     }
 }
-namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
+namespace Cosevi.SIBOAC.PC_HH_AndroidDataSetTableAdapters {
     
     
     /// <summary>
@@ -798,7 +757,7 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class GetBitacoraDataTableAdapter : global::System.ComponentModel.Component {
+    public partial class DAÑOTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -812,7 +771,7 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public GetBitacoraDataTableAdapter() {
+        public DAÑOTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -909,15 +868,40 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "GetBitacoraData";
-            tableMapping.ColumnMappings.Add("Id", "Id");
-            tableMapping.ColumnMappings.Add("FechaHora", "FechaHora");
-            tableMapping.ColumnMappings.Add("NombreTabla", "NombreTabla");
-            tableMapping.ColumnMappings.Add("CodigoUsuario", "CodigoUsuario");
-            tableMapping.ColumnMappings.Add("Operacion", "Operacion");
-            tableMapping.ColumnMappings.Add("ValorAntes", "ValorAntes");
-            tableMapping.ColumnMappings.Add("ValorDespues", "ValorDespues");
+            tableMapping.DataSetTable = "DAÑO";
+            tableMapping.ColumnMappings.Add("CodDaño", "CodDaño");
+            tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
+            tableMapping.ColumnMappings.Add("estado", "estado");
+            tableMapping.ColumnMappings.Add("fecha_inicio", "fecha_inicio");
+            tableMapping.ColumnMappings.Add("fecha_fin", "fecha_fin");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[DAÑO] WHERE (([CodDaño] = @Original_CodDaño))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CodDaño", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodDaño", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[DAÑO] ([CodDaño], [Descripcion], [estado], [fecha_inicio], [fe" +
+                "cha_fin]) VALUES (@CodDaño, @Descripcion, @estado, @fecha_inicio, @fecha_fin)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CodDaño", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodDaño", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha_inicio", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_inicio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha_fin", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_fin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[DAÑO] SET [CodDaño] = @CodDaño, [Descripcion] = @Descripcion, [esta" +
+                "do] = @estado, [fecha_inicio] = @fecha_inicio, [fecha_fin] = @fecha_fin WHERE ((" +
+                "[CodDaño] = @Original_CodDaño))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CodDaño", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodDaño", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Descripcion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Descripcion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estado", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "estado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha_inicio", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_inicio", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fecha_fin", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "fecha_fin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CodDaño", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CodDaño", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -933,52 +917,16 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.GetBitacoraData";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicio", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFin", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NombreTabla", global::System.Data.SqlDbType.VarChar, 64, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Usuario", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Operacion", global::System.Data.SqlDbType.VarChar, 1, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = "SELECT CodDaño, Descripcion, estado, fecha_inicio, fecha_fin FROM dbo.DAÑO";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GetBitacoraDataSet.GetBitacoraDataDataTable dataTable, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFin, string NombreTabla, string Usuario, string Operacion) {
+        public virtual int Fill(PC_HH_AndroidDataSet.DAÑODataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((FechaInicio.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaInicio.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((FechaFin.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaFin.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((NombreTabla == null)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(NombreTabla));
-            }
-            if ((Usuario == null)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(Usuario));
-            }
-            if ((Operacion == null)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(Operacion));
-            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -990,41 +938,163 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GetBitacoraDataSet.GetBitacoraDataDataTable GetData(global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFin, string NombreTabla, string Usuario, string Operacion) {
+        public virtual PC_HH_AndroidDataSet.DAÑODataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((FechaInicio.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaInicio.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((FechaFin.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FechaFin.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((NombreTabla == null)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(NombreTabla));
-            }
-            if ((Usuario == null)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(Usuario));
-            }
-            if ((Operacion == null)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(Operacion));
-            }
-            GetBitacoraDataSet.GetBitacoraDataDataTable dataTable = new GetBitacoraDataSet.GetBitacoraDataDataTable();
+            PC_HH_AndroidDataSet.DAÑODataTable dataTable = new PC_HH_AndroidDataSet.DAÑODataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PC_HH_AndroidDataSet.DAÑODataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(PC_HH_AndroidDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "DAÑO");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_CodDaño) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_CodDaño));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int CodDaño, string Descripcion, string estado, global::System.Nullable<global::System.DateTime> fecha_inicio, global::System.Nullable<global::System.DateTime> fecha_fin) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(CodDaño));
+            if ((Descripcion == null)) {
+                throw new global::System.ArgumentNullException("Descripcion");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Descripcion));
+            }
+            if ((estado == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(estado));
+            }
+            if ((fecha_inicio.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(fecha_inicio.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((fecha_fin.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(fecha_fin.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int CodDaño, string Descripcion, string estado, global::System.Nullable<global::System.DateTime> fecha_inicio, global::System.Nullable<global::System.DateTime> fecha_fin, int Original_CodDaño) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(CodDaño));
+            if ((Descripcion == null)) {
+                throw new global::System.ArgumentNullException("Descripcion");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Descripcion));
+            }
+            if ((estado == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(estado));
+            }
+            if ((fecha_inicio.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(fecha_inicio.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((fecha_fin.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(fecha_fin.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_CodDaño));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string Descripcion, string estado, global::System.Nullable<global::System.DateTime> fecha_inicio, global::System.Nullable<global::System.DateTime> fecha_fin, int Original_CodDaño) {
+            return this.Update(Original_CodDaño, Descripcion, estado, fecha_inicio, fecha_fin, Original_CodDaño);
         }
     }
     
@@ -1040,6 +1110,8 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
+        private DAÑOTableAdapter _dAÑOTableAdapter;
+        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -1052,6 +1124,20 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
             }
             set {
                 this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public DAÑOTableAdapter DAÑOTableAdapter {
+            get {
+                return this._dAÑOTableAdapter;
+            }
+            set {
+                this._dAÑOTableAdapter = value;
             }
         }
         
@@ -1074,6 +1160,10 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
+                if (((this._dAÑOTableAdapter != null) 
+                            && (this._dAÑOTableAdapter.Connection != null))) {
+                    return this._dAÑOTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -1087,6 +1177,9 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
+                if ((this._dAÑOTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -1096,8 +1189,17 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(GetBitacoraDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(PC_HH_AndroidDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._dAÑOTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.DAÑO.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._dAÑOTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -1106,8 +1208,16 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(GetBitacoraDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(PC_HH_AndroidDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._dAÑOTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.DAÑO.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._dAÑOTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -1116,8 +1226,16 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(GetBitacoraDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(PC_HH_AndroidDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._dAÑOTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.DAÑO.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._dAÑOTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             return result;
         }
         
@@ -1150,12 +1268,17 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(GetBitacoraDataSet dataSet) {
+        public virtual int UpdateAll(PC_HH_AndroidDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
+            }
+            if (((this._dAÑOTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._dAÑOTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
@@ -1189,6 +1312,15 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
+                if ((this._dAÑOTableAdapter != null)) {
+                    revertConnections.Add(this._dAÑOTableAdapter, this._dAÑOTableAdapter.Connection);
+                    this._dAÑOTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._dAÑOTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._dAÑOTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._dAÑOTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._dAÑOTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -1246,6 +1378,10 @@ namespace Cosevi.SIBOAC.GetBitacoraDataSetTableAdapters {
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
+                }
+                if ((this._dAÑOTableAdapter != null)) {
+                    this._dAÑOTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._dAÑOTableAdapter]));
+                    this._dAÑOTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
