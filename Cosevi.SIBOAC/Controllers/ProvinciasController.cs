@@ -33,7 +33,7 @@ namespace Cosevi.SIBOAC.Controllers
         public string Verificar(int id)
         {
             string mensaje = "";
-            bool exist = db.CARROCERIA.Any(x => x.Id == id);
+            bool exist = db.PROVINCIA.Any(x => x.Id == id);
             if (exist)
             {
                 mensaje = "El codigo " + id + " ya esta registrado";

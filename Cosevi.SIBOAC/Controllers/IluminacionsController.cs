@@ -12,9 +12,7 @@ using PagedList;
 namespace Cosevi.SIBOAC.Controllers
 {
     public class IluminacionsController : BaseController<Iluminacion>
-    {
-
-
+    {        
         // GET: Iluminacions
         [SessionExpire]
         public ActionResult Index(int ? page)
@@ -136,10 +134,13 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Descripcion,Estado,FechaDeInicio,FechaDeFin")] Iluminacion iluminacion)
         {
+            
+
             if (ModelState.IsValid)
             {
                 var iluminacionAntes = db.Iluminacion.AsNoTracking().Where(d => d.Id == iluminacion.Id).FirstOrDefault();
                 db.Entry(iluminacion).State = EntityState.Modified;
+
                 string mensaje = ValidarFechas(iluminacion.FechaDeInicio, iluminacion.FechaDeFin);
                 if (mensaje == "")
                 {

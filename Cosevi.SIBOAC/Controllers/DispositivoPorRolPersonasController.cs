@@ -238,7 +238,7 @@ namespace Cosevi.SIBOAC.Controllers
 
             db.DISPXROLPERSONA.Remove(dispositivo);
             db.SaveChanges();
-            Bitacora(dispositivo, "U", "DISPXROLPERSONA", dispositivoAntes);
+            Bitacora(dispositivo, "D", "DISPXROLPERSONA", dispositivoAntes);
             return RedirectToAction("Index");
         }
 
