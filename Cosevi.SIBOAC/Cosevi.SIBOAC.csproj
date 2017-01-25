@@ -278,11 +278,6 @@
     <Compile Include="Controllers\DispositivosMovilesController.cs" />
     <Compile Include="Controllers\DistritoesController.cs" />
     <Compile Include="Controllers\DivisionsController.cs" />
-    <Compile Include="Content\dsPrueba.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsPrueba.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\EdadsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
@@ -1410,11 +1405,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Content\ReporteConsultaeImpresionDeBoletas.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
