@@ -11,10 +11,8 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class RolPorPersonaOpcionFormulariosController : Controller
+    public class RolPorPersonaOpcionFormulariosController : BaseController<RolPorPersonaOpcionFormulario>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
         // GET: RolPorPersonaOpcionFormularios
         [SessionExpire]
         public ActionResult Index(int? page)
@@ -165,11 +163,17 @@ namespace Cosevi.SIBOAC.Controllers
                
                 db.ROLPERSONA_OPCIONFORMULARIO.Add(rolPorPersonaOpcionFormulario);
                 string mensaje = Verificar(rolPorPersonaOpcionFormulario.CodigoRolPersona, rolPorPersonaOpcionFormulario.CodigoOpcionFormulario);
+
                 if (mensaje == "")
+                {
+                    mensaje = ValidarFechas(rolPorPersonaOpcionFormulario.FechaDeInicio, rolPorPersonaOpcionFormulario.FechaDeFin);
+
+                    if (mensaje == "")
                 {
                     db.SaveChanges();
 
-                    TempData["Type"] = "success";
+                        Bitacora(rolPorPersonaOpcionFormulario, "I", "ROLPERSONA_OPCIONFORMULARIO");
+                        TempData["Type"] = "success";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
 
@@ -194,6 +198,14 @@ namespace Cosevi.SIBOAC.Controllers
                         Text = o.Descripcion
                     });
                     ViewBag.ComboOpcionFormulario = itemsOpcionFormulario;
+                    return View(rolPorPersonaOpcionFormulario);
+                }
+
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
                     return View(rolPorPersonaOpcionFormulario);
                 }
             }
@@ -263,11 +275,28 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var rolPorPersonaOpcionFormularioAntes = db.ROLPERSONA_OPCIONFORMULARIO.AsNoTracking().Where(d => d.CodigoRolPersona == rolPorPersonaOpcionFormulario.CodigoRolPersona &&
+                                                                                                             d.CodigoOpcionFormulario == rolPorPersonaOpcionFormulario.CodigoOpcionFormulario).FirstOrDefault();
+
                 db.Entry(rolPorPersonaOpcionFormulario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(rolPorPersonaOpcionFormulario.FechaDeInicio, rolPorPersonaOpcionFormulario.FechaDeFin);
+                if (mensaje == "")
+                {
+
+                    db.SaveChanges();
+                    Bitacora(rolPorPersonaOpcionFormulario, "U", "ROLPERSONA_OPCIONFORMULARIO", rolPorPersonaOpcionFormularioAntes);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(rolPorPersonaOpcionFormulario);
+                }
             }
-            return View(rolPorPersonaOpcionFormulario);
+                return View(rolPorPersonaOpcionFormulario);
         }
 
         // GET: RolPorPersonaOpcionFormularios/Delete/5
@@ -325,11 +354,14 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult DeleteConfirmed(int codRol, int codFormulario)
         {
             RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
+            RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormularioAntes = ObtenerCopia(rolPorPersonaOpcionFormulario);
+
             if (rolPorPersonaOpcionFormulario.Estado == "I")
                 rolPorPersonaOpcionFormulario.Estado = "A";
             else
                 rolPorPersonaOpcionFormulario.Estado = "I";
             db.SaveChanges();
+            Bitacora(rolPorPersonaOpcionFormulario, "U", "ROLPERSONA_OPCIONFORMULARIO", rolPorPersonaOpcionFormularioAntes);
             return RedirectToAction("Index");
         }
 
@@ -390,6 +422,7 @@ namespace Cosevi.SIBOAC.Controllers
             RolPorPersonaOpcionFormulario rolPorPersonaOpcionFormulario = db.ROLPERSONA_OPCIONFORMULARIO.Find(codRol, codFormulario);
             db.ROLPERSONA_OPCIONFORMULARIO.Remove(rolPorPersonaOpcionFormulario);
             db.SaveChanges();
+            Bitacora(rolPorPersonaOpcionFormulario, "D", "ROLPERSONA_OPCIONFORMULARIO");
             TempData["Type"] = "error";
             TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
