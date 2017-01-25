@@ -367,16 +367,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="GetDescargaInspectorDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="GetDescargaParteOficial.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetDescargaParteOficial.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GetDescargaParteOficialDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

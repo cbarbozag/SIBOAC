@@ -10,10 +10,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
 </head>
-<body>
+<body style="width:auto">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <rsweb:ReportViewer ID="ReportViewer1" Height="800px" Width="99%" runat="server"></rsweb:ReportViewer>
+        <rsweb:ReportViewer ID="ReportViewer1" Height="800px" Width="99%" runat="server" ZoomMode="FullPage"></rsweb:ReportViewer>
     </form>
 </body>
 </html>
