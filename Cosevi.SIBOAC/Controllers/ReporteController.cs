@@ -208,7 +208,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.Parametros = parametros;
             GetData(reporteID);
 
-            return View("_DescargaInspector");
+            return View("_DescargaParteOficial");
         }
         private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones)
         {
