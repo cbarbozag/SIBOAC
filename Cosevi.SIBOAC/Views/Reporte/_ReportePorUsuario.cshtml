@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable <Cosevi.SIBOAC.Models.SIBOACUsuarios>
 @{
     ViewBag.Title = "_ReportePorUsuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,52 +9,61 @@
 <hr />
 @using (Html.BeginForm("GetReportePorUsuario", "Reporte", FormMethod.Get))
 {
-    <div class="form-group">
-        <label class="control-label col-md-2">Rango de fechas</label>
-        <div class="col-md-10">
-            <div class="input-daterange input-group" id="datepicker">
-                <input id="desde" type="text" class="input-sm form-control" name="desde" />
-                <span class="input-group-addon">a</span>
-                <input id="hasta" type="text" class="input-sm form-control" name="hasta" />
+    <table border="0">
+        <div class="form-group">
+            <label class="control-label col-md-2">Rango de fechas</label>
+            <div class="col-md-10">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" />
+                    <span class="input-group-addon">a</span>
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" />
+                </div>
             </div>
         </div>
-    </div>
-    <br />
-    <br />
-    <br />
-    <div class="form-group">
-        <label class="control-label col-md-2">Usuarios</label>
-        <div class="col-max col-md-10">
-            <ul id="list" name="list" class="list-group" data-toggle="items">
-                <!-- -->
-            </ul>
+        <br />
+        <br />
+        <br />
+        <div>
+            <div class="row">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Usuarios</label>
+                    <div class="col-max col-md-10">
+                        <ul id="list" name="list" class="list-group" data-toggle="items">
+                            <!-- -->
+                        </ul>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <br />
+                <br />
+                <div class="btn-group pull-right">
+                    @*<button id="todos" type="button" class="btn btn-primary">Marcar todos</button>
+                    <button id="limpiar" type="button" class="btn btn-warning">Limpiar</button>*@
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="pull-right">
+                <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+            </div>
         </div>
-    </div>
-
-    <div class="pull-right">
-        <button id="todos" type="button" class="btn btn-primary">Marcar todos</button>
-        <button id="limpiar" type="button" class="btn btn-warning">Limpiar</button>
-    </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <div class="pull-right">
-        <button id="generar" type="button" class="btn btn-success">Generar Reporte</button>
-    </div>
+    </table>
 }
 
 <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
-@section scripts{
-
-    @Scripts.Render("~/bundles/reportePorUsuario")
+@section scripts{    
 
     <script>
         $(document).ready(
         function () {
             ReportCall();
+            prepararCampos();
+            cargarDatos();
         });
     </script>
 
@@ -79,4 +88,31 @@
             return false;
         }
     </script>
+
+<script>
+             function prepararCampos() {
+        $('.input-daterange').datepicker({
+            startView: 2
+        });
+             };
+</script>
+
+<script>
+        function cargarDatos() {
+            $.ajax({
+                type: 'GET',
+                url: 'api/SIBOACUsuarios',
+                //data: {},
+                success: function (results) {
+                    var list = $('#list');
+                    for (var i = 0; i < results.length; i++) {
+                        list.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Usuario + ' - ' + results[i].Nombre + '</li>');
+                    };
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                }
+            });
+        };
+</script>
 }

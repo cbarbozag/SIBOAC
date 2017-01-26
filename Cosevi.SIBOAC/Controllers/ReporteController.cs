@@ -106,6 +106,14 @@ namespace Cosevi.SIBOAC.Controllers
 
             return View("_DescargaInspector");
         }
+
+        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, string numeroHH, string codigoInspector)
+        {
+            var lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, codigoInspector).ToList();
+
+            return lista;
+        }
+
         private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionParteOficialData( int idRadio,  string serieParte,
              string numeroParte,  int? serieBoleta,  decimal? numeroBoleta,  string tipoId,
              string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca)
@@ -170,13 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
             GetData(reporteID);
 
             return View("_ConsultaeImpresionDeParteOficial");
-        }
-        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, string numeroHH, string codigoInspector)
-        {
-            var lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, codigoInspector).ToList();
-
-            return lista;
-        }
+        }       
 
         public ActionResult GetDescargaBoleta(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
         {
@@ -219,11 +221,11 @@ namespace Cosevi.SIBOAC.Controllers
             return lista;
         }
 
-        public ActionResult GetReportePorUsuario(string list, DateTime desde, DateTime hasta)
+        public ActionResult GetReportePorUsuario([FromUri] string IdUsuario, DateTime desde, DateTime hasta)
         {
             string reporteID = "_ReportePorUsuario";
             string nombreReporte = "ReportePorUsuario";
-            string parametros = String.Format("{0},{1},{2}", list, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"));
+            string parametros = String.Format("{0},{1},{2}", IdUsuario, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"));
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -233,9 +235,9 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_ReportePorUsuario");
         }
 
-        private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string list, DateTime desde, DateTime hasta)
+        private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData([FromUri]  string IdUsuario, DateTime desde, DateTime hasta)
         {
-            var lista = db.GetReportePorUsuarioData(list, desde, hasta).ToList();
+            var lista = db.GetReportePorUsuarioData(IdUsuario, desde, hasta).ToList();
             return lista;
         }
     }
