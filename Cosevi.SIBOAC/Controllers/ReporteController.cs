@@ -201,11 +201,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
 
-        public ActionResult GetReporteDescargaParteOficial(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones)
+        public ActionResult GetReporteDescargaParteOficial(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones, [FromUri] string TipoReporte)
         {
 
             string reporteID = "_DescargaParteOficial";
             string nombreReporte = "DescargaParteOficial";
+            idAutoridades = "1";
+            idDelegaciones = "1";
             string parametros = String.Format("{0}, {1}, {2}, {3}, {4}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), radio, idAutoridades, idDelegaciones);
 
             ViewBag.ReporteID = reporteID;
@@ -213,12 +215,13 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.Parametros = parametros;
             GetData(reporteID);
 
-            return View("_DescargaInspector");
+            return View("_DescargaParteOficial");
         }
-        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones)
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, [FromUri] string[] idAutoridades, [FromUri] string[] idDelegaciones)
         {
-            var lista = db.GetDescargaParteOficialData(desde, hasta, radio, idAutoridades, idDelegaciones).ToList();
-            return lista;
+            //var lista = db.GetDescargaParteOficialData(desde, hasta, radio, idAutoridades, idDelegaciones).ToList();
+            // return lista;
+            return null;
         }
 
         public ActionResult GetReportePorUsuario([FromUri] string IdUsuario, DateTime desde, DateTime hasta)
