@@ -11,12 +11,14 @@ namespace Cosevi.SIBOAC.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        public ActionResult Index(string catalogo)
+        public ActionResult Index(string tipo)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-            if (catalogo != null) 
-               ViewBag.opcion = "Catalogo";
+            if (tipo != null)               
+                ViewBag.opcion = tipo;
+            else
+                ViewBag.opcion = null;
             ViewBag.HomeImagePath = ConfigurationManager.AppSettings["HomeImagePath"].ToString();
             return View();
         }

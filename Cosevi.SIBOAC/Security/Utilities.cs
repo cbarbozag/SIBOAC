@@ -29,5 +29,13 @@ namespace Cosevi.SIBOAC.Security
                 return menuOptions;
             }
         }
+        public static List<SIBOACMenuOpciones> GetMenuParentOptions(List<int> parentIDs,string tipo)
+        {
+            using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
+            {
+                var menuOptions = sdb.SIBOACMenuOpciones.Where(m => parentIDs.Contains(m.MenuOpcionesID) && m.Estado && m.Descripcion.Contains(tipo)).OrderBy(a => new { a.Orden, a.Descripcion }).ToList();
+                return menuOptions;
+            }
+        }
     }
 }
