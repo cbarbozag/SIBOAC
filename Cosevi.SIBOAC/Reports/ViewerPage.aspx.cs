@@ -50,6 +50,9 @@ namespace Cosevi.SIBOAC.Reports
                 case "_DescargaBoleta":
                     result = GetDescargaBoletaData(parametros);
                     break;
+                case "_DescargaParteOficial":
+                    result = GetDescargaParteOficialData(parametros);
+                    break;
                 case "_ConsultaeImpresionDeParteOficial":
                     result = GetConsultaeImpresionDeParteOficialData(parametros);
                     break;
@@ -97,6 +100,22 @@ namespace Cosevi.SIBOAC.Reports
             var lista = db.GetDescargaBoletaData(TipoFecha,fechaInicio, fechaFin).ToList();
             return lista;
         }
+
+
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            DateTime FechaDesde = Convert.ToDateTime(param[0]);
+            DateTime FechaHasta = Convert.ToDateTime(param[1]);
+            int Valor = Convert.ToInt32(param[2]);
+            string idAutoridades = param[3];
+            string idDelegaciones = param[4];
+
+            var lista = db.GetDescargaParteOficialData(FechaDesde, FechaHasta, Valor, idAutoridades, idDelegaciones).ToList();
+            return lista;
+        }
+
+
 
         private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(string parametros)
         {
