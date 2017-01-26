@@ -10,14 +10,14 @@
 <hr />
 @using (Html.BeginForm("GetReporteDescargaInspector", "Reporte", FormMethod.Get))
 {
-    <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
+  
     <div class="form-group">
         <label class="control-label col-md-2">Rango de fechas</label>
         <div class="col-md-10">
             <div class="input-daterange input-group" id="datepicker">
-                <input id="desde" type="text" class="input-sm form-control" name="hasta" />
+                <input id="desde" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["desde"]" />
                 <span class="input-group-addon">a</span>
-                <input id="hasta" type="text" class="input-sm form-control" name="desde" />
+                <input id="hasta" type="text" class="input-sm form-control" name="desde" value="@Request.Params["hasta"]" />
             </div>
         </div>
     </div>
@@ -30,11 +30,11 @@
         <br>
         Numero de la Hand Held
         <br>
-        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" value="@Request.Params["numeroHH"]"  @*size='30' maxLength='60'*@>
         <br />
         Código del Oficial de Transito
         <br>
-        <input id="codigoInspector" type='text' name='codigoInspector' class="input-sm form-control" @*size='30' maxLength='60'*@>
+        <input id="codigoInspector" type='text' name='codigoInspector' class="input-sm form-control" value="@Request.Params["codigoInspector"]"  @*size='30' maxLength='60'*@>
         <br>
     </div>
 
@@ -50,11 +50,18 @@
     <script>
         $(document).ready(
         function () {
+            Calendario();
             ReportCall();
         });
     </script>
 
     <script>
+        function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2
+            });
+        };
+
         function ReportCall() {
 
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
