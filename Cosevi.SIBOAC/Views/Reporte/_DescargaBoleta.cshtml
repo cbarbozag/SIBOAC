@@ -49,8 +49,10 @@
     </table>
 }
 <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
-@section scripts
-    {
+@section scripts{
+    
+    @Scripts.Render("~/bundles/ReportePorDescargaDeBoletas")
+
     <script>
         $(document).ready(
         function () {

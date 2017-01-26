@@ -31,46 +31,46 @@
     };
 
     function prepararEventos() {
-        $('#generar').click(generarReporte);
+        //$('#generar').click(generarReporte);
         $('#todos').click(marcarTodos);
         $('#limpiar').click(limpiarTodos);
     };
 
-    function generarReporte() {
-        var idUsuarios = '';
-        var desde = $('#desde').val();
-        var hasta = $('#hasta').val();
-        var usuariosSeleccionados = $('li.active');
-        for (var i = 0; i < usuariosSeleccionados.length; i++) {
-            idUsuarios += 'idUsuarios=' + $(usuariosSeleccionados[i]).data('id') + '&';
-        };
+    //function generarReporte() {
+    //    var idUsuarios = '';
+    //    var desde = $('#desde').val();
+    //    var hasta = $('#hasta').val();
+    //    var usuariosSeleccionados = $('li.active');
+    //    for (var i = 0; i < usuariosSeleccionados.length; i++) {
+    //        idUsuarios += 'idUsuarios=' + $(usuariosSeleccionados[i]).data('id') + '&';
+    //    };
 
-        limpiar();
+    //    //limpiar();
 
-        $.ajax({
-            type: 'GET',
-            url: 'api/ReportesPorUsuario?' + idUsuarios + 'desde='+ desde +'&hasta='+ hasta,
-            success: function (results) {
-                var reporte = $('#reporte');
-                for (var i = 0; i < results.length; i++) {
-                    reporte.append('<tr><td>' + results[i].Usuario + '</td>' +
-                        '<td>' + results[i].Autoridad + '</td>' +
-                        '<td>' + results[i].FechaAccidente + '</td>' +
-                        '<td>' + results[i].Serie + '</td>' +
-                        '<td>' + results[i].NumeroParte + '</td>' +
-                        '<td>' + results[i].Boletas + '</td>' +
-                        '<td>' + results[i].FechaDescarga + '</td>' +
-                        '<td>' + results[i].ClasePlaca + '</td>' +
-                        '<td>' + results[i].CodigoPlaca + '</td>' +
-                        '<td>' + results[i].NumeroPlaca + '</td>' +
-                        '<td>' + results[i].EstadoPlano + '</td></tr>');
-                };
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            }
-        });
-    };
+    //    $.ajax({
+    //        type: 'GET',
+    //        url: 'api/ReportesPorUsuario?' + idUsuarios + 'desde='+ desde +'&hasta='+ hasta,
+    //        success: function (results) {
+    //            var reporte = $('#reporte');
+    //            for (var i = 0; i < results.length; i++) {
+    //                reporte.append('<tr><td>' + results[i].Usuario + '</td>' +
+    //                    '<td>' + results[i].Autoridad + '</td>' +
+    //                    '<td>' + results[i].FechaAccidente + '</td>' +
+    //                    '<td>' + results[i].Serie + '</td>' +
+    //                    '<td>' + results[i].NumeroParte + '</td>' +
+    //                    '<td>' + results[i].Boletas + '</td>' +
+    //                    '<td>' + results[i].FechaDescarga + '</td>' +
+    //                    '<td>' + results[i].ClasePlaca + '</td>' +
+    //                    '<td>' + results[i].CodigoPlaca + '</td>' +
+    //                    '<td>' + results[i].NumeroPlaca + '</td>' +
+    //                    '<td>' + results[i].EstadoPlano + '</td></tr>');
+    //            };
+    //        },
+    //        error: function (jqXHR, textStatus, errorThrown) {
+    //            console.log(jqXHR);
+    //        }
+    //    });
+    //};
 
     function marcarTodos() {
         var items = $('li.list-group-item');
@@ -86,11 +86,11 @@
         for (var i = 0; i < items.length; i++) {
             $(items[i]).removeClass('active');
         }
-        limpiar();
+        //limpiar();
     };
 
-    function limpiar() {
-        var reporte = $('#reporte');
-        reporte.empty();
-    };
+    //function limpiar() {
+    //    var reporte = $('#reporte');
+    //    reporte.empty();
+    //};
 })();

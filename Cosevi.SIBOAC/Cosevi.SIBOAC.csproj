@@ -377,6 +377,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetReportePorUsuarioDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -861,6 +866,17 @@
     </None>
     <Content Include="GetDescargaParteOficialDataSet.xss">
       <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReportePorUsuarioDataSet.xsc">
+      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReportePorUsuarioDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReportePorUsuarioDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetReportePorUsuarioDataSet.xss">
+      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1487,6 +1503,7 @@
     <Content Include="Views\Reporte\_DescargaInspector.cshtml" />
     <Content Include="Views\Reporte\_DescargaParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
+    <Content Include="Views\Reporte\_ReportePorUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1510,6 +1527,7 @@
     <EmbeddedResource Include="Reports\DescargaBoleta.rdlc" />
     <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
     <EmbeddedResource Include="Reports\DescargaParteOficial.rdlc" />
+    <EmbeddedResource Include="Reports\ReportePorUsuario.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
