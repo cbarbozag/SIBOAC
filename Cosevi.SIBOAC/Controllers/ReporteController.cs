@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -38,6 +39,9 @@ namespace Cosevi.SIBOAC.Controllers
                    
                     break;
                 case "_DescargaBoleta":
+
+                    break;
+                case "_DescargaParteOficial":
 
                     break;
                 default:
@@ -120,6 +124,27 @@ namespace Cosevi.SIBOAC.Controllers
         private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(int idRadio, DateTime desde, DateTime hasta)
         {
             var lista = db.GetDescargaBoletaData(idRadio, desde, hasta).ToList();
+            return lista;
+        }
+
+
+        public ActionResult GetReporteDescargaParteOficial(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones)
+        {
+
+            string reporteID = "_DescargaParteOficial";
+            string nombreReporte = "DescargaParteOficial";
+            string parametros = String.Format("{0}, {1}, {2}, {3}, {4}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), radio, idAutoridades, idDelegaciones);
+
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
+
+            return View("_DescargaInspector");
+        }
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones)
+        {
+            var lista = db.GetDescargaParteOficialData(desde, hasta, radio, idAutoridades, idDelegaciones).ToList();
             return lista;
         }
     }
