@@ -128,7 +128,7 @@ namespace Cosevi.SIBOAC.Controllers
             return null;
         }
 
-        public ActionResult GetConsultaeImpresionParteOficial([FromUri] int idRadio, [FromUri] string serieParte,
+        public ActionResult GetConsultaeImpresionParteOficial([FromUri] int opcionConsulta, [FromUri] string serieParte,
             [FromUri] string numeroParte, [FromUri] int? serieBoleta, [FromUri] decimal? numeroBoleta, [FromUri] string tipoId,
             [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
         {
@@ -136,24 +136,23 @@ namespace Cosevi.SIBOAC.Controllers
             string reporteID = "_ConsultaeImpresionDeParteOficial";
             string nombreReporte = "ConsultaeImpresionDeParteOficial";
             string parametros = "";
-            if (idRadio == 1)
+            if (opcionConsulta == 1)
             {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null");
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieParte, numeroParte, "null");
+            }
+            if(opcionConsulta == 2)
+            {
+               
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null");
+            }
+            if (opcionConsulta == 3)
+            {
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), tipoId, numeroID, "null");
 
             }
-            if(idRadio ==2)
+            if (opcionConsulta == 4)
             {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), serieParte, numeroParte, "null");
-
-            }
-            if (idRadio == 3)
-            {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), tipoId, numeroID, "null");
-
-            }
-            if (idRadio == 4)
-            {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), numeroPlaca, codigoPlaca, clasePlaca);
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), numeroPlaca, codigoPlaca, clasePlaca);
 
 
             }
