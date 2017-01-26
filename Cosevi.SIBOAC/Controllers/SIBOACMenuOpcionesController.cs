@@ -19,7 +19,7 @@ namespace Cosevi.SIBOAC.Controllers
         [SessionExpire]
         public ActionResult Index()
         {
-            return View(dbSecurity.SIBOACMenuOpciones.OrderBy(a=> new { a.ParentID, a.Orden, a.Descripcion}).ToList());
+            return View(dbSecurity.SIBOACMenuOpciones.OrderBy(a=> new { a.ParentID, a.Orden,  a.Descripcion}).ToList());
         }
 
         // GET: SIBOACMenuOpciones1/Details/5
