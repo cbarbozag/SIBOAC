@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "_ConsultaeImpresionDeParteOficial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Reporte Consulta e Impresión de Boletas</h2>
+<h4>Filtro</h4>
+<hr />
+
+@using (Html.BeginForm("GetConsultaeImpresionParteOficial", "Reporte", FormMethod.Get))
+{
+    <div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Seleccione la opción por la que desea consultar:</label>
+            <div class="col-md-10">
+                <div class="radio" id="radioButton">
+                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                    <br>
+                    <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                    <br>
+                    <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                    <br>
+                    <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <br />       
+        <br />
+        <br />
+        <br />
+        <div id="opc-1" style="display:none">
+            <br>
+            Serie del Parte Oficial
+            <br>
+            <input id="serieParte" type='text' name='serieParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+            <br>
+            N° del Parte Oficial
+            <br>
+            <input id="numeroParte" type='text' name='numeroParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+            <br>
+        </div>
+
+        <div id="opc-2" style="display:none;">
+            <br>
+            Serie de la Boleta de Citación
+            <br>
+            <input id="serieBoleta" type='text' name='serieBoleta' class="input-sm form-control">
+            <br>
+            N° de la Boleta de Citación
+            <br>
+            <input id="numeroBoleta" type='text' name='numeroBoleta' class="input-sm form-control">
+            <br>
+        </div>
+
+        <div id="opc-3" style="display:none;">
+            <br>
+            Tipo de Identificación
+            <br>
+            <input id="tipoId" type='text' name='tipoId' class="input-sm form-control">
+            <br>
+            N° Identificación del Implicado
+            <br>
+            <input id="numeroID" type='text' name='numeroID' class="input-sm form-control">
+            <br>
+        </div>
+
+        <div id="opc-4" style="display:none;">
+            <br>
+            N° de Placa
+            <br>
+            <input id="numeroPlaca" type='text' name='numeroPlaca' class="input-sm form-control">
+            <br>
+            Código de Placa
+            <br>
+            <input id="codigoPlaca" type='text' name='codigoPlaca' class="input-sm form-control">
+            <br>
+            Clase de Placa
+            <br>
+            <input id="clasePlaca" type='text' name='clasePlaca' class="input-sm form-control">
+            <br>
+        </div>
+    </div>
+
+    <br />
+    <div class="pull-right">
+        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+    </div>
+}
+
+<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+@section scripts
+{
+    <script>
+        $(document).ready(
+        function () {
+            Calendario();
+            ReportCall();
+        });
+    </script>
+
+    <script>
+        function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2
+            });
+        };
+
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }
+    </script>
+}
