@@ -1162,6 +1162,12 @@
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
           <Parameter Name="Operacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetConsultaeImpresionDeBoletasData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
+          <Parameter Name="FechaHasta" Type="datetime" Mode="In" />
+          <Parameter Name="idDelegaciones" Type="varchar" Mode="In" />
+          <Parameter Name="idInspectores" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetConsultaeImpresionDeParteOficialData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TipoConsulta" Type="int" Mode="In" />
           <Parameter Name="Parametro1" Type="varchar" Mode="In" />
@@ -1183,8 +1189,8 @@
           <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
           <Parameter Name="FechaHasta" Type="datetime" Mode="In" />
           <Parameter Name="Valor" Type="int" Mode="In" />
-          <Parameter Name="idAutoridades" Type="varchar" Mode="In" />
-          <Parameter Name="idDelegaciones" Type="varchar" Mode="In" />
+          <Parameter Name="idAutoridades" Type="varchar(max)" Mode="In" />
+          <Parameter Name="idDelegaciones" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="GetReportePorUsuarioData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="varchar" Mode="In" />
@@ -1485,6 +1491,12 @@
             <Parameter Name="IdUsuario" Mode="In" Type="String" />
             <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetConsultaeImpresionDeBoletasData" ReturnType="Collection(PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result)">
+            <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
+            <Parameter Name="idDelegaciones" Mode="In" Type="String" />
+            <Parameter Name="idInspectores" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
@@ -2641,6 +2653,18 @@
           <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
           <Property Type="String" Name="Placa" Nullable="true" MaxLength="32" />
           <Property Type="Int16" Name="Status_Plano" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetConsultaeImpresionDeBoletasData_Result">
+          <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="codigo_inspector" Nullable="true" MaxLength="4" />
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="fecha_hora_boleta" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
+          <Property Type="String" Name="articuloPorBoleta" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="Provincia" Nullable="false" MaxLength="72" />
+          <Property Type="String" Name="x" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="y" Nullable="true" MaxLength="25" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3929,6 +3953,22 @@
                 <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
                 <ScalarProperty Name="Placa" ColumnName="Placa" />
                 <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetConsultaeImpresionDeBoletasData" FunctionName="PC_HH_AndroidModel.Store.GetConsultaeImpresionDeBoletasData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result">
+                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
+                <ScalarProperty Name="codigo_inspector" ColumnName="codigo_inspector" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="fecha_hora_boleta" ColumnName="fecha_hora_boleta" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="articuloPorBoleta" ColumnName="articuloPorBoleta" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="y" ColumnName="y" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

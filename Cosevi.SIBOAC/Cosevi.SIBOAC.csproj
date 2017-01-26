@@ -501,6 +501,9 @@
     <Compile Include="Models\GENERALES.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetConsultaeImpresionDeBoletasData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetConsultaeImpresionDeParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -556,6 +559,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OficinaParaImpugnar.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OpcionDeFormulario.cs">
@@ -1523,6 +1529,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\ConsultaeImpresionDeBoletas.rdlc" />
     <EmbeddedResource Include="Reports\ConsultaeImpresionDeParteOficial.rdlc" />
     <EmbeddedResource Include="Reports\DescargaBoleta.rdlc" />
     <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
