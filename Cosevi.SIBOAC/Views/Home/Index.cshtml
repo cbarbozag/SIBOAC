@@ -16,38 +16,41 @@
     <br/>
     <br />
     <br />
-@using (Html.BeginForm())
-{
+
     <div class="col-xs-6 col-sm-3 text-center img-responsive img-center">
-        <a href="@Url.Action("Index", "Home")"> <img name="catalogo" class="img-center" src="~/Content/Catalogos.png" alt="cosevi" width="100" height="100"></a>
+        <a href="@Url.Action("Index", "Home",new { tipo = "Catálogos"})"> 
+        <img name="catalogo" id="catalogo" class="img-center" src="~/Content/Catalogos.png" alt="cosevi" width="100" height="100"></a>
         <h3>
             @*@Html.ActionLink(*@
             Catálogos
             @*<small>Job Title</small>*@
         </h3>        
     </div>
-}
+
        <div class="col-xs-6 col-sm-3 text-center  img-responsive img-center">
-        <img class="img-center" src="~/Content/Reporte.png" alt="cosevi" width="100" height="100">
-        <h3>
-            Reportes
-            @*<small>Job Title</small>*@
-        </h3>        
-    </div>
+           <a href="@Url.Action("Index", "Home",new { tipo = "Reportes y Consultas"})">
+               <img class="img-center" src="~/Content/Reporte.png" alt="cosevi" width="100" height="100"></a>
+               <h3>
+                   Reportes
+                   @*<small>Job Title</small>*@
+               </h3>
+</div>
     <div class="col-xs-6 col-sm-3 text-center  img-responsive img-center">
-        <img class="img-center" src="~/Content/Bitacoras.png" alt="cosevi" width="100" height="100">
-        <h3>
-            Bitácoras
-            @*<small>Job Title</small>*@
-        </h3>        
-    </div>
+        <a href="@Url.Action("Index", "Home",new { tipo = "Bitácoras"})">
+            <img class="img-center" src="~/Content/Bitacoras.png" alt="cosevi" width="100" height="100"></a>
+            <h3>
+                Bitácoras
+                @*<small>Job Title</small>*@
+            </h3>
+</div>
     <div class="col-xs-6 col-sm-3 text-center img-responsive img-center">
-        <img class="img-center" src="~/Content/Mantenimiento.png" alt="cosevi" width="100" height="100">
-        <h3>
-            Administración
-            @*<small>Job Title</small>*@
-        </h3>        
-    </div>
+        <a href="@Url.Action("Index", "Home",new { tipo = "Administración"})">
+            <img class="img-center" src="~/Content/Mantenimiento.png" alt="cosevi" width="100" height="100"></a>
+            <h3>
+                Administración
+                @*<small>Job Title</small>*@
+            </h3>
+</div>
 </div>
 <br/>
 <br />
