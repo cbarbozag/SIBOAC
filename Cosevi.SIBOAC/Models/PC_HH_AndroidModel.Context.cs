@@ -32,7 +32,7 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<Maniobra> Maniobra { get; set; }
         public virtual DbSet<MotivoPorNoFirmar> MotivoPorNoFirmars { get; set; }
         public virtual DbSet<Obstaculo> Obstaculo { get; set; }
-        public virtual DbSet<GetDescargaParteOficialData_Result> OficinaParaImpugnars { get; set; }
+        public virtual DbSet<OficinaParaImpugnar> OficinaParaImpugnars { get; set; }
         public virtual DbSet<RolDePersonaPorVehiculo> RolDePersonaPorVehiculoes { get; set; }
         public virtual DbSet<Dispositivo> Dispositivoes1 { get; set; }
         public virtual DbSet<Hospital> HOSPITAL { get; set; }
