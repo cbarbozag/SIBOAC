@@ -21,6 +21,7 @@ namespace Cosevi.SIBOAC.Models
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public string IdHospital { get; set; }
 
+
         [DisplayName("Codigo de daño")]
         [Required(ErrorMessage = "El codigo es obligatorio")]
         public int IdDanio { get; set; }

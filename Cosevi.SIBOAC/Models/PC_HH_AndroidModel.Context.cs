@@ -231,5 +231,43 @@ namespace Cosevi.SIBOAC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
         }
+    
+        public virtual ObjectResult<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3)
+        {
+            var tipoConsultaParameter = tipoConsulta.HasValue ?
+                new ObjectParameter("TipoConsulta", tipoConsulta) :
+                new ObjectParameter("TipoConsulta", typeof(int));
+    
+            var parametro1Parameter = parametro1 != null ?
+                new ObjectParameter("Parametro1", parametro1) :
+                new ObjectParameter("Parametro1", typeof(string));
+    
+            var parametro2Parameter = parametro2 != null ?
+                new ObjectParameter("Parametro2", parametro2) :
+                new ObjectParameter("Parametro2", typeof(string));
+    
+            var parametro3Parameter = parametro3 != null ?
+                new ObjectParameter("Parametro3", parametro3) :
+                new ObjectParameter("Parametro3", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeParteOficialData_Result>("GetConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter);
+        }
+    
+        public virtual ObjectResult<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string idUsuario, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal)
+        {
+            var idUsuarioParameter = idUsuario != null ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(string));
+    
+            var fechaInicialParameter = fechaInicial.HasValue ?
+                new ObjectParameter("FechaInicial", fechaInicial) :
+                new ObjectParameter("FechaInicial", typeof(System.DateTime));
+    
+            var fechaFinalParameter = fechaFinal.HasValue ?
+                new ObjectParameter("FechaFinal", fechaFinal) :
+                new ObjectParameter("FechaFinal", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter);
+        }
     }
 }

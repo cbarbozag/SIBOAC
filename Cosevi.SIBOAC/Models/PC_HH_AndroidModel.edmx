@@ -1162,6 +1162,12 @@
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
           <Parameter Name="Operacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetConsultaeImpresionDeParteOficialData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TipoConsulta" Type="int" Mode="In" />
+          <Parameter Name="Parametro1" Type="varchar" Mode="In" />
+          <Parameter Name="Parametro2" Type="varchar" Mode="In" />
+          <Parameter Name="Parametro3" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetDescargaBoletaData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TipoFecha" Type="int" Mode="In" />
           <Parameter Name="FechaInicial" Type="datetime" Mode="In" />
@@ -1179,6 +1185,11 @@
           <Parameter Name="Valor" Type="int" Mode="In" />
           <Parameter Name="idAutoridades" Type="varchar" Mode="In" />
           <Parameter Name="idDelegaciones" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetReportePorUsuarioData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInicial" Type="datetime" Mode="In" />
+          <Parameter Name="FechaFinal" Type="datetime" Mode="In" />
         </Function>
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
@@ -1463,6 +1474,17 @@
             <Parameter Name="Valor" Mode="In" Type="Int32" />
             <Parameter Name="idAutoridades" Mode="In" Type="String" />
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetConsultaeImpresionDeParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetConsultaeImpresionDeParteOficialData_Result)">
+            <Parameter Name="TipoConsulta" Mode="In" Type="Int32" />
+            <Parameter Name="Parametro1" Mode="In" Type="String" />
+            <Parameter Name="Parametro2" Mode="In" Type="String" />
+            <Parameter Name="Parametro3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetReportePorUsuarioData" ReturnType="Collection(PC_HH_AndroidModel.GetReportePorUsuarioData_Result)">
+            <Parameter Name="IdUsuario" Mode="In" Type="String" />
+            <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
@@ -2589,6 +2611,36 @@
           <Property Type="Int16" Name="Status_Plano" Nullable="true" />
           <Property Type="String" Name="placa_confiscada" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="auto_detenido" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="GetConsultaeImpresionDeParteOficialData_Result">
+          <Property Type="String" Name="Reporte" Nullable="false" MaxLength="21" />
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="fecha_registro" Nullable="true" Precision="23" />
+          <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="codigo_delegacion" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="clase_placa" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="codigo_placa" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="numero_placa" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Identificacion" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="72" />
+          <Property Type="String" Name="codrol" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="DescripcionRol" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="serie_parteoficial" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="GetReportePorUsuarioData_Result">
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Placa" Nullable="true" MaxLength="32" />
+          <Property Type="Int16" Name="Status_Plano" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3839,6 +3891,44 @@
                 <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
                 <ScalarProperty Name="placa_confiscada" ColumnName="placa_confiscada" />
                 <ScalarProperty Name="auto_detenido" ColumnName="auto_detenido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetConsultaeImpresionDeParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetConsultaeImpresionDeParteOficialData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetConsultaeImpresionDeParteOficialData_Result">
+                <ScalarProperty Name="Reporte" ColumnName="Reporte" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
+                <ScalarProperty Name="codigo_delegacion" ColumnName="codigo_delegacion" />
+                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
+                <ScalarProperty Name="clase_placa" ColumnName="clase_placa" />
+                <ScalarProperty Name="codigo_placa" ColumnName="codigo_placa" />
+                <ScalarProperty Name="numero_placa" ColumnName="numero_placa" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="codrol" ColumnName="codrol" />
+                <ScalarProperty Name="DescripcionRol" ColumnName="DescripcionRol" />
+                <ScalarProperty Name="serie_parteoficial" ColumnName="serie_parteoficial" />
+                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetReportePorUsuarioData" FunctionName="PC_HH_AndroidModel.Store.GetReportePorUsuarioData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReportePorUsuarioData_Result">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
+                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

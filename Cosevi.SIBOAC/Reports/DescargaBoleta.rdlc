@@ -6,43 +6,43 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.60042cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.55292cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.4563cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.20896cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.6323cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.42063cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.70625cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.60042cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.26188cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.8175cm</Width>
+              <Width>2.43417cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.67979cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.8175cm</Width>
+              <Width>3.00271cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -868,7 +868,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Left>0.42016cm</Left>
         <Height>1.2cm</Height>
-        <Width>33.135cm</Width>
+        <Width>29.05675cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -879,13 +879,25 @@
     <Height>2.55208in</Height>
     <Style />
   </Body>
-  <Width>13.47917in</Width>
+  <Width>11.91758in</Width>
   <Page>
     <PageHeader>
       <Height>3.56016cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
+        <Image Name="Cosevi">
+          <Source>Embedded</Source>
+          <Value>cosevi</Value>
+          <Sizing>FitProportional</Sizing>
+          <Height>1.94979cm</Height>
+          <Width>7.02979cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
         <Textbox Name="ReportName">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -907,7 +919,8 @@
           <rd:DefaultName>ReportName</rd:DefaultName>
           <Top>0.63224cm</Top>
           <Height>1.71125cm</Height>
-          <Width>34.23708cm</Width>
+          <Width>30.27066cm</Width>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -921,28 +934,14 @@
         <Line Name="Line1">
           <Top>2.96016cm</Top>
           <Height>0cm</Height>
-          <Width>34.23708cm</Width>
-          <ZIndex>1</ZIndex>
+          <Width>30.27066cm</Width>
+          <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
             </Border>
           </Style>
         </Line>
-        <Image Name="Cosevi">
-          <Source>Embedded</Source>
-          <Value>cosevi</Value>
-          <Sizing>FitProportional</Sizing>
-          <Top>0.63224cm</Top>
-          <Height>1.94979cm</Height>
-          <Width>7.02979cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
       </ReportItems>
       <Style>
         <Border>

@@ -53,6 +53,9 @@ namespace Cosevi.SIBOAC.Reports
                 case "_DescargaParteOficial":
                     result = GetDescargaParteOficialData(parametros);
                     break;
+                case "_ConsultaeImpresionDeParteOficial":
+                    result = GetConsultaeImpresionDeParteOficialData(parametros);
+                    break;
                 default:
                     break;
             }
@@ -113,6 +116,18 @@ namespace Cosevi.SIBOAC.Reports
         }
 
 
+
+        private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            int TipoConsulta = Convert.ToInt32(param[0]);
+            string  Parametro1 =param[1];
+            string Parametro2 = param[2];
+            string Parametro3 = param[3];
+
+            var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3).ToList();
+            return lista;
+        }
         #endregion
     }
 }

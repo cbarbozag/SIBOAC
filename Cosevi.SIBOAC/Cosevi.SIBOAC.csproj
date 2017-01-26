@@ -357,6 +357,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetConsultaeImpresionDeParteOficialDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetDescargaBoletaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -491,6 +496,9 @@
     <Compile Include="Models\GENERALES.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetConsultaeImpresionDeParteOficialData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetDescargaBoletaData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -498,6 +506,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetReportePorUsuarioData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HorasLaborales.cs">
@@ -812,6 +823,17 @@
     </Content>
     <Content Include="GetDescargaBoletaDataSet.xsc">
       <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xsc">
+      <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetConsultaeImpresionDeParteOficialDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetConsultaeImpresionDeParteOficialDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xss">
+      <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetDescargaBoletaDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1467,6 +1489,7 @@
     <Content Include="Views\Reporte\_DescargaBoleta.cshtml" />
     <Content Include="Views\Reporte\_DescargaInspector.cshtml" />
     <Content Include="Views\Reporte\_DescargaParteOficial.cshtml" />
+    <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1486,6 +1509,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\ConsultaeImpresionDeParteOficial.rdlc" />
     <EmbeddedResource Include="Reports\DescargaBoleta.rdlc" />
     <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
     <EmbeddedResource Include="Reports\DescargaParteOficial.rdlc" />
