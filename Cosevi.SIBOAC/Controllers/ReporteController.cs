@@ -41,6 +41,9 @@ namespace Cosevi.SIBOAC.Controllers
                 case "_DescargaBoleta":
 
                     break;
+                case "_DescargaParteOficial":
+
+                    break;
                 case "_ConsultaeImpresionDeParteOficial":
 
                     break;
@@ -131,7 +134,7 @@ namespace Cosevi.SIBOAC.Controllers
             return null;
         }
 
-        public ActionResult GetConsultaeImpresionParteOficial([FromUri] int idRadio, [FromUri] string serieParte,
+        public ActionResult GetConsultaeImpresionParteOficial([FromUri] int opcionConsulta, [FromUri] string serieParte,
             [FromUri] string numeroParte, [FromUri] int? serieBoleta, [FromUri] decimal? numeroBoleta, [FromUri] string tipoId,
             [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
         {
@@ -139,24 +142,23 @@ namespace Cosevi.SIBOAC.Controllers
             string reporteID = "_ConsultaeImpresionDeParteOficial";
             string nombreReporte = "ConsultaeImpresionDeParteOficial";
             string parametros = "";
-            if (idRadio == 1)
+            if (opcionConsulta == 1)
             {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null");
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieParte, numeroParte, "null");
+            }
+            if(opcionConsulta == 2)
+            {
+               
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null");
+            }
+            if (opcionConsulta == 3)
+            {
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), tipoId, numeroID, "null");
 
             }
-            if(idRadio ==2)
+            if (opcionConsulta == 4)
             {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), serieParte, numeroParte, "null");
-
-            }
-            if (idRadio == 3)
-            {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), tipoId, numeroID, "null");
-
-            }
-            if (idRadio == 4)
-            {
-                parametros = String.Format("{0},{1},{2},{3}", idRadio.ToString(), numeroPlaca, codigoPlaca, clasePlaca);
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), numeroPlaca, codigoPlaca, clasePlaca);
 
 
             }
@@ -193,6 +195,27 @@ namespace Cosevi.SIBOAC.Controllers
         private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
         {
             var lista = db.GetDescargaBoletaData(opcionRadio, fechaDesde, fechaHasta).ToList();
+            return lista;
+        }
+
+
+        public ActionResult GetReporteDescargaParteOficial(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones)
+        {
+
+            string reporteID = "_DescargaParteOficial";
+            string nombreReporte = "DescargaParteOficial";
+            string parametros = String.Format("{0}, {1}, {2}, {3}, {4}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), radio, idAutoridades, idDelegaciones);
+
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
+
+            return View("_DescargaInspector");
+        }
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, [FromUri] string idAutoridades, [FromUri] string idDelegaciones)
+        {
+            var lista = db.GetDescargaParteOficialData(desde, hasta, radio, idAutoridades, idDelegaciones).ToList();
             return lista;
         }
 

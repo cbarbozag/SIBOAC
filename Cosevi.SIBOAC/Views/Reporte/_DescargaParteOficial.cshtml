@@ -9,62 +9,206 @@
 <h4>Filtro</h4>
 <hr />
 
-
-
-@using (Html.BeginForm("GetBitacora", "Reporte", FormMethod.Get))
+@using (Html.BeginForm("GetReporteDescargaParteOficial", "Reporte", FormMethod.Get))
 {
     <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
-    <table border="0">
 
-        <tr>
-            <td>
-                Fecha Inicio:
-            </td>
-            <td>
-                <input type="date" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
-            </td>
-            <td>
-                Fecha Fin:
-            </td>
-            <td>
-                <input type="date" name="FechaFin" value="@Request.Params["FechaFin"]" />
-            </td>
-            <td>
-                <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
-            </td>
-        </tr>
+
+
+    <table border="0">
+        <div class="form-group">
+            <label class="control-label col-md-2">Seleccione una opción para las fechas</label>
+            <div class="col-md-10">
+
+                <div class="radio" id="radioButton">
+                    <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
+                    <br>
+                    <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
+                    <br>
+                    <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Rango de fechas</label>
+            <div class="col-md-10">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="desde" type="text" class="input-sm form-control" name="hasta" />
+                    <span class="input-group-addon">a</span>
+                    <input id="hasta" type="text" class="input-sm form-control" name="desde" />
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Delegación</label>
+                        <div class="col-max col-md-10">
+                            <ul id="idDelegaciones" name="idDelegaciones" class="list-group" data-toggle="items">
+                                <!-- -->
+                            </ul>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="btn-group pull-right">
+                        @*<button id="todosDelegacion" type="button" class="btn btn-primary">Marcar todos</button>
+                            <button id="limpiarDelegacion" type="button" class="btn btn-warning">Limpiar</button>*@
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Autoridad Judicial</label>
+                        <div class="col-max col-md-10">
+                            <ul id="idAutoridades" name="idAutoridades" class="list-group" data-toggle="items">
+                                <!-- -->
+                            </ul>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />
+                    <div class="btn-group pull-right">
+                        @*<button id="todosAutoridad" type="button" class="btn btn-primary">Marcar todos</button>
+                            <button id="limpiarAutoridad" type="button" class="btn btn-warning">Limpiar</button>*@
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <br />
+
+        </div>
+
+        <div class="pull-right">
+            <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        </div>
     </table>
 
 }
-
-    <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
-    @section scripts
+        <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+        @section scripts
     {
-        <script>
-        $(document).ready(
-        function () {
-            ReportCall();
-        });
-        </script>
+            <script>
+                $(document).ready(
+                function () {
+                    ReportCall();
+                    prepararCampos();
+                    cargarDatosDelegacion();
+                    cargarDatosAutoridad();
+                    obtenerId();
+                });
+            </script>
 
-        <script>
-        function ReportCall() {
 
-            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+            <script>
+                function ReportCall() {
 
-            var myFrame = document.getElementById('ifrmReportViewer');
-            if (myFrame !== null) {
-                if (myFrame.src) {
-                    myFrame.src = url;
+                    var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+                    var myFrame = document.getElementById('ifrmReportViewer');
+                    if (myFrame !== null) {
+                        if (myFrame.src) {
+                            myFrame.src = url;
+                        }
+                        else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                            myFrame.contentWindow.location = url;
+                        }
+                        else {
+                            myFrame.setAttribute('src', url);
+                        }
+                    }
+
+                    return false;
                 }
-                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
-                    myFrame.contentWindow.location = url;
-                }
-                else {
-                    myFrame.setAttribute('src', url);
-                }
+            </script>
+
+
+
+<script>
+    function cargarDatosDelegacion() {
+        $.ajax({
+            type: 'GET',
+            url: 'api/Delegacions',
+            //data: {},
+            success: function (results) {
+                var listD = $('#idDelegaciones');
+                for (var i = 0; i < results.length; i++) {
+                    listD.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Descripcion + '</li>');
+                };
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
             }
+        });
+            };
+</script>
 
-            return false;
-        }
-        </script>
+
+
+<script>
+            function cargarDatosAutoridad() {
+        $.ajax({
+            type: 'GET',
+            url: 'api/AutoridadJudicial',
+            //data: {},
+            success: function (results) {
+                var listA = $('#idAutoridades');
+                for (var i = 0; i < results.length; i++) {
+                    listA.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Descripcion + '</li>');
+                };
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+            }
+        });
+            };
+
+</script>
+
+<script>
+             function prepararCampos() {
+        $('.input-daterange').datepicker({
+            startView: 2
+        });
+             };
+</script>
+
+
+            <script>
+                function obtenerId()
+                {
+                    var idDelegaciones = '';
+                    var idAutoridades = '';
+                    var delegacionesSeleccionadas = $('#listaDelegaciones li.active');
+                    var autoridadesSeleccionadas = $('#listaAutoridades li.active');
+                    for (var i = 0; i < delegacionesSeleccionadas.length; i++) {
+                        idDelegaciones += 'idDelegaciones=' + $(delegacionesSeleccionadas[i]).data('id') + '&';
+                    };
+
+                    for (var i = 0; i < autoridadesSeleccionadas.length; i++) {
+                        idAutoridades += 'idAutoridades=' + $(autoridadesSeleccionadas[i]).data('id') + '&';
+                    };
+                }
+
+            </script>
+
+}
