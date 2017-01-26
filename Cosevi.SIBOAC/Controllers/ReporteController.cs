@@ -44,6 +44,9 @@ namespace Cosevi.SIBOAC.Controllers
                 case "_ConsultaeImpresionDeParteOficial":
 
                     break;
+                case "_ReportePorUsuario":
+
+                    break;
                 default:
                     break;
             }
@@ -190,6 +193,26 @@ namespace Cosevi.SIBOAC.Controllers
         private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
         {
             var lista = db.GetDescargaBoletaData(opcionRadio, fechaDesde, fechaHasta).ToList();
+            return lista;
+        }
+
+        public ActionResult GetReportePorUsuario(string list, DateTime desde, DateTime hasta)
+        {
+            string reporteID = "_ReportePorUsuario";
+            string nombreReporte = "ReportePorUsuario";
+            string parametros = String.Format("{0},{1},{2}", list, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"));
+
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
+
+            return View("_ReportePorUsuario");
+        }
+
+        private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string list, DateTime desde, DateTime hasta)
+        {
+            var lista = db.GetReportePorUsuarioData(list, desde, hasta).ToList();
             return lista;
         }
     }
