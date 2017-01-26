@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.ParteOficial>
-
+﻿
 @{
     ViewBag.Title = "_DescargaParteOficial";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,11 +10,7 @@
 
 @using (Html.BeginForm("GetReporteDescargaParteOficial", "Reporte", FormMethod.Get))
 {
-    <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
-
-
-
-    <table border="0">
+    <input type="hidden" name="TipoReporte" id="TipoReporte"/>
         <div class="form-group">
             <label class="control-label col-md-2">Seleccione una opción para las fechas</label>
             <div class="col-md-10">
@@ -41,10 +36,6 @@
             </div>
         </div>
 
-        <br />
-        <br />
-        <br />
-        <br />
         <br />
         <br />
         <br />
@@ -101,17 +92,25 @@
         <div class="pull-right">
             <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
         </div>
-    </table>
 
 }
-        <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
-        @section scripts
+
+ <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+   @section scripts
     {
             <script>
                 $(document).ready(
                 function () {
+                    Calendario();
+                    cargarDatosDelegacion();
+                    cargarDatosAutoridad();
+                    obtenerId();
                     ReportCall();
-                    prepararCampos();
+             
+                });
+                $(window).load(function () {
+                    alert("window load occurred!");
+                    Calendario();
                     cargarDatosDelegacion();
                     cargarDatosAutoridad();
                     obtenerId();
@@ -139,58 +138,45 @@
 
                     return false;
                 }
-            </script>
+               function cargarDatosDelegacion() {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'api/Delegacions',
+                        //data: {},
+                        success: function (results) {
+                            var listD = $('#idDelegaciones');
+                            for (var i = 0; i < results.length; i++) {
+                                listD.append('<li name="idDelegaciones" data-id='+ results[i].Id + ' class="list-group-item">' + results[i].Descripcion  + '</li>');
+                            };
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                        }
+                    });
+              };
+               function cargarDatosAutoridad() {
+                $.ajax({
+                    type: 'GET',
+                    url: 'api/AutoridadJudicial',
+                    //data: {},
+                    success: function (results) {
+                        var listA = $('#idAutoridades');
+                        for (var i = 0; i < results.length; i++) {
+                            listA.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Descripcion + '</li>');
+                        };
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                    }
+                });
+              };
 
-
-
-<script>
-    function cargarDatosDelegacion() {
-        $.ajax({
-            type: 'GET',
-            url: 'api/Delegacions',
-            //data: {},
-            success: function (results) {
-                var listD = $('#idDelegaciones');
-                for (var i = 0; i < results.length; i++) {
-                    listD.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Descripcion + '</li>');
-                };
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            }
-        });
-            };
-</script>
-
-
-
-<script>
-            function cargarDatosAutoridad() {
-        $.ajax({
-            type: 'GET',
-            url: 'api/AutoridadJudicial',
-            //data: {},
-            success: function (results) {
-                var listA = $('#idAutoridades');
-                for (var i = 0; i < results.length; i++) {
-                    listA.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Descripcion + '</li>');
-                };
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-            }
-        });
-            };
-
-</script>
-
-<script>
-             function prepararCampos() {
-        $('.input-daterange').datepicker({
-            startView: 2
-        });
-             };
-</script>
+             function Calendario() {
+                $('.input-daterange').datepicker({
+                    startView: 2
+                });
+                     };
+       </script>
 
 
             <script>
@@ -198,8 +184,8 @@
                 {
                     var idDelegaciones = '';
                     var idAutoridades = '';
-                    var delegacionesSeleccionadas = $('#listaDelegaciones li.active');
-                    var autoridadesSeleccionadas = $('#listaAutoridades li.active');
+                    var delegacionesSeleccionadas = $('#idDelegaciones li.active');
+                    var autoridadesSeleccionadas = $('#idAutoridades li.active');
                     for (var i = 0; i < delegacionesSeleccionadas.length; i++) {
                         idDelegaciones += 'idDelegaciones=' + $(delegacionesSeleccionadas[i]).data('id') + '&';
                     };
@@ -207,6 +193,7 @@
                     for (var i = 0; i < autoridadesSeleccionadas.length; i++) {
                         idAutoridades += 'idAutoridades=' + $(autoridadesSeleccionadas[i]).data('id') + '&';
                     };
+                    document.getElementById("TipoReporte").value = idAutoridades;
                 }
 
             </script>
