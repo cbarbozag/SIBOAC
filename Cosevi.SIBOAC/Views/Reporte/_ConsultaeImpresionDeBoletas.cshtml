@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.GetConsultaeImpresionDeBoletasData_Result>
+@{
+    ViewBag.Title = "_ConsultaeImpresionDeBoletas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte por Consulta e Impresión de Boletas</h2>
+<h4>Filtro</h4>
+<hr />
+
+@using (Html.BeginForm("GetConsultaeImpresionDeBoletas", "Reporte", FormMethod.Get))
+{
+    <input type="hidden" name="TipoReporte" id="TipoReporte" />
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Rango de fechas</label>
+            <div class="col-md-10">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="desde" type="text" class="input-sm form-control" name="hasta" />
+                    <span class="input-group-addon">a</span>
+                    <input id="hasta" type="text" class="input-sm form-control" name="desde" />
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Delegación</label>
+                        <div class="col-max col-md-10">
+                            <ul id="idDelegaciones" name="idDelegaciones" class="list-group" data-toggle="items">
+                                <!-- -->
+                            </ul>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="btn-group pull-right">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Inspector</label>
+                        <div class="col-max col-md-10">
+                            <ul id="idInspectores" name="idInspectores" class="list-group" data-toggle="items">
+                                <!-- -->
+                            </ul>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />
+                    <div class="btn-group pull-right">
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <br />
+
+        </div>
+
+        <div class="pull-right">
+            <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        </div>
+
+}
+
+
+<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+@section scripts
+    {
+    <script>
+                $(document).ready(
+                function () {
+                    Calendario();
+                    cargarDatosInspector();
+                    cargarDatosDelegacion();
+                    ReportCall();
+
+                });
+    </script>
+
+
+    <script>
+                    function ReportCall() {
+                    var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+                    var myFrame = document.getElementById('ifrmReportViewer');
+                    if (myFrame !== null) {
+                        if (myFrame.src) {
+                            myFrame.src = url;
+                        }
+                        else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                            myFrame.contentWindow.location = url;
+                        }
+                        else {
+                            myFrame.setAttribute('src', url);
+                        }
+                    }
+
+                    return false;
+                }
+
+               function cargarDatosDelegacion() {
+                    $.ajax({
+                        type: 'GET',
+                        url: 'api/Delegacions',
+                        //data: {},
+                        success: function (results) {
+                            var listD = $('#idDelegaciones');
+                            for (var i = 0; i < results.length; i++) {
+                                listD.append('<li name="idDelegaciones" data-id='+ results[i].Id + ' class="list-group-item">' + results[i].Descripcion  + '</li>');
+                            };
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                        }
+                    });
+               };
+
+               function cargarDatosInspector() {
+                   $.ajax({
+                       type: 'GET',
+                       url: 'api/Inspectors',
+                       //data: {},
+                       success: function (results) {
+                           var listI = $('#idInspectores');
+                           for (var i = 0; i < results.length; i++) {
+                               if (results[i].Id != null && results[i].Id.trim().length > 0)
+                                   listI.append('<li  name="idInspectores" data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Id + '</li>');
+                           };
+                       },
+                       error: function (jqXHR, textStatus, errorThrown) {
+                           console.log(jqXHR);
+                       }
+                   });
+               };
+
+
+             function Calendario() {
+                $('.input-daterange').datepicker({
+                    startView: 2
+                });
+             };
+    </script>
+}

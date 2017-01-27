@@ -290,5 +290,18 @@ namespace Cosevi.SIBOAC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeBoletasData_Result>("GetConsultaeImpresionDeBoletasData", fechaDesdeParameter, fechaHastaParameter, idDelegacionesParameter, idInspectoresParameter);
         }
+    
+        public virtual ObjectResult<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(Nullable<int> serieBoleta, Nullable<int> numeroBoleta)
+        {
+            var serieBoletaParameter = serieBoleta.HasValue ?
+                new ObjectParameter("serieBoleta", serieBoleta) :
+                new ObjectParameter("serieBoleta", typeof(int));
+    
+            var numeroBoletaParameter = numeroBoleta.HasValue ?
+                new ObjectParameter("numeroBoleta", numeroBoleta) :
+                new ObjectParameter("numeroBoleta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter);
+        }
     }
 }
