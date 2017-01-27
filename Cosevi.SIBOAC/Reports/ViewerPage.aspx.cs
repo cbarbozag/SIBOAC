@@ -59,7 +59,11 @@ namespace Cosevi.SIBOAC.Reports
                 case "_ReportePorUsuario":
                     result = GetReportePorUsuarioData(parametros);
                     break;
-                    
+
+                case "_ConsultaeImpresionDeBoletas":
+                    result = GetConsultaeImpresionDeBoletasData(parametros);
+                    break;
+
                 default:
                     break;
             }
@@ -144,6 +148,23 @@ namespace Cosevi.SIBOAC.Reports
             var lista = db.GetReportePorUsuarioData(IdUsuario, fechaInicio, fechaFin).ToList();
             return lista;
         }
+
+
+
+        private List<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            DateTime FechaDesde = Convert.ToDateTime(param[0]);
+            DateTime FechaHasta = Convert.ToDateTime(param[1]);
+            string idDelegaciones = param[2];
+            string idInspectores = param[3];
+
+            var lista = db.GetConsultaeImpresionDeBoletasData(FechaDesde, FechaHasta, idDelegaciones, idInspectores).ToList();
+            return lista;
+        }
+
+
+
         #endregion
     }
 }

@@ -357,6 +357,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetConsultaeImpresiondeBoletasDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetConsultaeImpresiondeBoletasDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetConsultaeImpresionDeParteOficialDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -834,6 +839,17 @@
     </Content>
     <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xsc">
       <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetConsultaeImpresiondeBoletasDataSet.xsc">
+      <DependentUpon>GetConsultaeImpresiondeBoletasDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetConsultaeImpresiondeBoletasDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetConsultaeImpresiondeBoletasDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetConsultaeImpresiondeBoletasDataSet.xss">
+      <DependentUpon>GetConsultaeImpresiondeBoletasDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetConsultaeImpresionDeParteOficialDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1510,6 +1526,7 @@
     <Content Include="Views\Reporte\_DescargaParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ReportePorUsuario.cshtml" />
+    <Content Include="Views\Reporte\_ConsultaeImpresionDeBoletas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
