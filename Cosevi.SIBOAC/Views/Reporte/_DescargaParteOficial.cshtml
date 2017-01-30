@@ -10,17 +10,48 @@
 
 @using (Html.BeginForm("GetReporteDescargaParteOficial", "Reporte", FormMethod.Get))
 {
-    <input type="hidden" name="TipoReporte" id="TipoReporte"/>
+
         <div class="form-group">
             <label class="control-label col-md-2">Seleccione una opción para las fechas</label>
             <div class="col-md-10">
 
                 <div class="radio" id="radioButton">
-                    <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
-                    <br>
-                    <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
-                    <br>
-                    <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                    @{
+                        if (Request.Params["radio"] == "1")
+                        {
+                            <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de descarga</label>
+                            <br>
+                            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
+                            <br>
+                            <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                        }
+
+                        if (Request.Params["radio"] == "2")
+                        {
+                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
+                            <br>
+                            <label><input id="radio2" type="radio" name="radio" value="2" checked>Fecha de infracción</label>
+                            <br>
+                            <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                        }
+                        if (Request.Params["radio"] == "3")
+                        {
+                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
+                            <br>
+                            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
+                                <br>
+                            <label><input id="radio3" type="radio" name="radio" value="3" checked>Fecha del accidente</label>
+                        }
+                        if (Request.Params["radio"] == null)
+                        {
+                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
+                                <br>
+                                <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
+                                <br>
+                                <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                        }
+                    }
+               
                 </div>
             </div>
         </div>
@@ -29,9 +60,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="hasta" />
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="desde" />
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" />
                 </div>
             </div>
         </div>
@@ -48,9 +79,14 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Delegación</label>
                         <div class="col-max col-md-10">
-                            <ul id="idDelegaciones" name="idDelegaciones" class="list-group" data-toggle="items">
-                                <!-- -->
-                            </ul>
+                         
+                            <select name="listaDelegaciones" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
+                                @foreach (var item in ViewBag.Delegaciones)
+                                {
+                                    <option value="@item.Id">@item.Descripcion</option>
+                                }                              
+                            </select>
+                          
                         </div>
                         <br />
                         <br />
@@ -67,9 +103,13 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Autoridad Judicial</label>
                         <div class="col-max col-md-10">
-                            <ul id="idAutoridades" name="idAutoridades" class="list-group" data-toggle="items">
-                                <!-- -->
-                            </ul>
+
+                            <select name="listaAutoridades" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
+                                @foreach (var item in ViewBag.Autoridades)
+                                {
+                                    <option value="@item.Id">@item.Descripcion</option>
+                                }
+                            </select>
                         </div>
                         <br />
                         <br />
@@ -83,9 +123,9 @@
                 </div>
             </div>
 
-            <br />
-            <br />
-            <br />
+        <br />
+        <br />
+        <br />
 
         </div>
 
@@ -99,26 +139,39 @@
    @section scripts
     {
             <script>
-                $(document).ready(
-                function () {
-                    Calendario();
-                    cargarDatosDelegacion();
-                    cargarDatosAutoridad();
-                    obtenerId();
+                $(document).ready(                 
+                function () {                  
+                    Calendario();                   
                     ReportCall();
-             
+                
                 });
-                $(window).load(function () {
-                    alert("window load occurred!");
-                    Calendario();
-                    cargarDatosDelegacion();
-                    cargarDatosAutoridad();
-                    obtenerId();
+                $(window).load(function () {                
+                    
                 });
             </script>
-
-
             <script>
+                $("#listaDelegaciones").change(function () {
+                    var id = $(this).attr('name');
+                    var str2 = "";
+                    $("#listaDelegaciones option:selected").each(function () {
+
+                        str2 += "&" + id + "=" + $(this).attr('value');
+                    });
+                    $("div").text(str2);
+                })
+                 .trigger('change');
+
+                $("#listaAutoridades").change(function () {
+                    var id = $(this).attr('name');
+                    var str2 = "";
+                    $("#listaAutoridades option:selected").each(function () {
+
+                        str2 += "&" + id + "=" + $(this).attr('value');
+                    });
+                    $("div").text(str2);
+                })
+                .trigger('change');
+
                 function ReportCall() {
 
                     var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
@@ -137,65 +190,12 @@
                     }
 
                     return false;
-                }
-               function cargarDatosDelegacion() {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'api/Delegacions',
-                        //data: {},
-                        success: function (results) {
-                            var listD = $('#idDelegaciones');
-                            for (var i = 0; i < results.length; i++) {
-                                listD.append('<li name="idDelegaciones" data-id='+ results[i].Id + ' class="list-group-item">' + results[i].Descripcion  + '</li>');
-                            };
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log(jqXHR);
-                        }
-                    });
-              };
-               function cargarDatosAutoridad() {
-                $.ajax({
-                    type: 'GET',
-                    url: 'api/AutoridadJudicial',
-                    //data: {},
-                    success: function (results) {
-                        var listA = $('#idAutoridades');
-                        for (var i = 0; i < results.length; i++) {
-                            listA.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Descripcion + '</li>');
-                        };
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR);
-                    }
-                });
-              };
-
+                }                               
+              
              function Calendario() {
                 $('.input-daterange').datepicker({
                     startView: 2
                 });
                      };
        </script>
-
-
-            <script>
-                function obtenerId()
-                {
-                    var idDelegaciones = '';
-                    var idAutoridades = '';
-                    var delegacionesSeleccionadas = $('#idDelegaciones li.active');
-                    var autoridadesSeleccionadas = $('#idAutoridades li.active');
-                    for (var i = 0; i < delegacionesSeleccionadas.length; i++) {
-                        idDelegaciones += 'idDelegaciones=' + $(delegacionesSeleccionadas[i]).data('id') + '&';
-                    };
-
-                    for (var i = 0; i < autoridadesSeleccionadas.length; i++) {
-                        idAutoridades += 'idAutoridades=' + $(autoridadesSeleccionadas[i]).data('id') + '&';
-                    };
-                    document.getElementById("TipoReporte").value = idAutoridades;
-                }
-
-            </script>
-
-}
+    }

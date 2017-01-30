@@ -207,31 +207,6 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaInspectorData_Result>("GetDescargaInspectorData", fechaInicioParameter, fechaFinParameter, numeroHandHeldParameter, codigoOficialParameter);
         }
     
-        public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
-        {
-            var fechaDesdeParameter = fechaDesde.HasValue ?
-                new ObjectParameter("FechaDesde", fechaDesde) :
-                new ObjectParameter("FechaDesde", typeof(System.DateTime));
-    
-            var fechaHastaParameter = fechaHasta.HasValue ?
-                new ObjectParameter("FechaHasta", fechaHasta) :
-                new ObjectParameter("FechaHasta", typeof(System.DateTime));
-    
-            var valorParameter = valor.HasValue ?
-                new ObjectParameter("Valor", valor) :
-                new ObjectParameter("Valor", typeof(int));
-    
-            var idAutoridadesParameter = idAutoridades != null ?
-                new ObjectParameter("idAutoridades", idAutoridades) :
-                new ObjectParameter("idAutoridades", typeof(string));
-    
-            var idDelegacionesParameter = idDelegaciones != null ?
-                new ObjectParameter("idDelegaciones", idDelegaciones) :
-                new ObjectParameter("idDelegaciones", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
-        }
-    
         public virtual ObjectResult<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3)
         {
             var tipoConsultaParameter = tipoConsulta.HasValue ?
@@ -268,6 +243,31 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("FechaFinal", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter);
+        }
+    
+        public virtual ObjectResult<GetDescargaParteOficialData_Result1> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
+        {
+            var fechaDesdeParameter = fechaDesde.HasValue ?
+                new ObjectParameter("FechaDesde", fechaDesde) :
+                new ObjectParameter("FechaDesde", typeof(System.DateTime));
+    
+            var fechaHastaParameter = fechaHasta.HasValue ?
+                new ObjectParameter("FechaHasta", fechaHasta) :
+                new ObjectParameter("FechaHasta", typeof(System.DateTime));
+    
+            var valorParameter = valor.HasValue ?
+                new ObjectParameter("Valor", valor) :
+                new ObjectParameter("Valor", typeof(int));
+    
+            var idAutoridadesParameter = idAutoridades != null ?
+                new ObjectParameter("idAutoridades", idAutoridades) :
+                new ObjectParameter("idAutoridades", typeof(string));
+    
+            var idDelegacionesParameter = idDelegaciones != null ?
+                new ObjectParameter("idDelegaciones", idDelegaciones) :
+                new ObjectParameter("idDelegaciones", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result1>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
         }
     }
 }

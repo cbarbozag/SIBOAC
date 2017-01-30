@@ -1468,13 +1468,6 @@
             <Parameter Name="NumeroHandHeld" Mode="In" Type="String" />
             <Parameter Name="CodigoOficial" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result)">
-            <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
-            <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
-            <Parameter Name="Valor" Mode="In" Type="Int32" />
-            <Parameter Name="idAutoridades" Mode="In" Type="String" />
-            <Parameter Name="idDelegaciones" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="GetConsultaeImpresionDeParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetConsultaeImpresionDeParteOficialData_Result)">
             <Parameter Name="TipoConsulta" Mode="In" Type="Int32" />
             <Parameter Name="Parametro1" Mode="In" Type="String" />
@@ -1485,6 +1478,13 @@
             <Parameter Name="IdUsuario" Mode="In" Type="String" />
             <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result1)">
+            <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor" Mode="In" Type="Int32" />
+            <Parameter Name="idAutoridades" Mode="In" Type="String" />
+            <Parameter Name="idDelegaciones" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
@@ -2641,6 +2641,20 @@
           <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
           <Property Type="String" Name="Placa" Nullable="true" MaxLength="32" />
           <Property Type="Int16" Name="Status_Plano" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetDescargaParteOficialData_Result1">
+          <Property Type="String" Name="Serie" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="NumeroParte" Nullable="false" MaxLength="15" />
+          <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fecha_entrega" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="SerieNumeroBoleta" Nullable="true" Precision="19" Scale="0" />
+          <Property Type="String" Name="DescripcionAutoridad" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="InfoPlaca" Nullable="true" MaxLength="28" />
+          <Property Type="Int16" Name="Status_Plano" Nullable="true" />
+          <Property Type="String" Name="placa_confiscada" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="auto_detenido" Nullable="false" MaxLength="1" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3876,24 +3890,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetDescargaParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetDescargaParteOficialData">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaParteOficialData_Result">
-                <ScalarProperty Name="Serie" ColumnName="Serie" />
-                <ScalarProperty Name="NumeroParte" ColumnName="NumeroParte" />
-                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
-                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="SerieNumeroBoleta" ColumnName="SerieNumeroBoleta" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Descripcion1" ColumnName="Descripcion1" />
-                <ScalarProperty Name="InfoPlaca" ColumnName="InfoPlaca" />
-                <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
-                <ScalarProperty Name="placa_confiscada" ColumnName="placa_confiscada" />
-                <ScalarProperty Name="auto_detenido" ColumnName="auto_detenido" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetConsultaeImpresionDeParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetConsultaeImpresionDeParteOficialData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetConsultaeImpresionDeParteOficialData_Result">
@@ -3929,6 +3925,24 @@
                 <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
                 <ScalarProperty Name="Placa" ColumnName="Placa" />
                 <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDescargaParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetDescargaParteOficialData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaParteOficialData_Result1">
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="NumeroParte" ColumnName="NumeroParte" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="SerieNumeroBoleta" ColumnName="SerieNumeroBoleta" />
+                <ScalarProperty Name="DescripcionAutoridad" ColumnName="DescripcionAutoridad" />
+                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
+                <ScalarProperty Name="InfoPlaca" ColumnName="InfoPlaca" />
+                <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
+                <ScalarProperty Name="placa_confiscada" ColumnName="placa_confiscada" />
+                <ScalarProperty Name="auto_detenido" ColumnName="auto_detenido" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -510,6 +510,12 @@
     <Compile Include="Models\GetDescargaInspectorData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetDescargaParteOficialData_Result1.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetReportePorUsuarioData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -553,9 +559,6 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Obstaculo.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OficinaParaImpugnar.cs">
@@ -815,6 +818,7 @@
     <Content Include="GetBitacoraDataSet.xsc">
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="GetBitacoraDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GetBitacoraDataSet1.Designer.cs</LastGenOutput>
@@ -859,6 +863,9 @@
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="GetReportePorUsuarioDataSet.xsc">
+      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Content>
     <Content Include="GetDescargaParteOficialDataSet.xsc">
       <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
     </Content>
@@ -869,9 +876,6 @@
     </None>
     <Content Include="GetDescargaParteOficialDataSet.xss">
       <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="GetReportePorUsuarioDataSet.xsc">
-      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReportePorUsuarioDataSet.xsd">
       <SubType>Designer</SubType>
