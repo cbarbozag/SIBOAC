@@ -97,12 +97,7 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Type = "warning";
                         ViewBag.Message = mensaje;
                         return View(motivoPorNoFirmar);
-                    }
-                    db.SaveChanges();
-                    Bitacora(motivoPorNoFirmar, "I", "MOTIVONOFIRMA");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    } 
                 }
                 else
                 {

@@ -190,12 +190,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.ComboTipoDanio = itemsTipoDanio;
                         return View(detallePorTipoDanio);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(detallePorTipoDanio, "I", "DETALLETIPODAÑO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

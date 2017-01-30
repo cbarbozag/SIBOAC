@@ -97,12 +97,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;
                         return View(estadoDeLaCalzada);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(estadoDeLaCalzada, "I", "ESTCALZADA");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

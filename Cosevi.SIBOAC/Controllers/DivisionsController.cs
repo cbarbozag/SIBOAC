@@ -197,12 +197,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.ComboOficina = itemsOficina;
                         return View(division);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(division, "I", "DIVISION");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

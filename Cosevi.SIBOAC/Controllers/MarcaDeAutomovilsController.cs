@@ -96,11 +96,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;
                         return View(marcaDeAutomovil);
                     }
-                    db.SaveChanges();
-                    Bitacora(marcaDeAutomovil, "I", "MARCA");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

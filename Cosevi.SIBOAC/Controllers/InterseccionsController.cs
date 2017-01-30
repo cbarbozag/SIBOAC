@@ -99,11 +99,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;
                         return View(interseccion);
                     }
-                    db.SaveChanges();
-                    Bitacora(interseccion, "I", "INTERSECCION");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

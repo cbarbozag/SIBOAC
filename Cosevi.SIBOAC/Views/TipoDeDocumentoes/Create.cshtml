@@ -37,8 +37,12 @@
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
-                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Estado,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "A" , Text = "Activo" },
+                       new SelectListItem { Value = "I" , Text = "Inactivo" }
+                    },
+                  new { @class = "form-control" })
             </div>
         </div>
 

@@ -97,11 +97,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;
                         return View(opcionesDelPlano);
                     }
-                    db.SaveChanges();
-                    Bitacora(opcionesDelPlano, "I", "OPCIONPLANO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

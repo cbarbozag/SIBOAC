@@ -178,12 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewData["FechaDeInicio"] = opcionFormularioPorArticulo.FechaDeInicio.ToString("dd-MM-yyyy");
                         ViewData["FechaDeFin"] = opcionFormularioPorArticulo.FechaDeFin.ToString("dd-MM-yyyy");
                         return View(opcionFormularioPorArticulo);
-                    }
-                    db.SaveChanges();
-                    Bitacora(opcionFormularioPorArticulo, "I", "OPCFORMULARIOXARTICULO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    }                  
                 }
                 else
                 {

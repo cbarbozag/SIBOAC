@@ -79,12 +79,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;                       
                         return View(inspector);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(inspector, "I", "INSPECTOR");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

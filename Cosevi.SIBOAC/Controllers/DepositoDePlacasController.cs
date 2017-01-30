@@ -101,12 +101,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;
                         return View(depositoDePlaca);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(depositoDePlaca, "I", "DEPOSITOPLACA");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

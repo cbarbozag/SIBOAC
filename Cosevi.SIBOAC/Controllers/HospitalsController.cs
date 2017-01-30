@@ -97,13 +97,7 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Type = "warning";
                         ViewBag.Message = mensaje;
                         return View(hospital);
-                    }
-
-                    db.SaveChanges();
-                    Bitacora(hospital, "I", "HOSPITAL");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    }      
                 }
                 else
                 {

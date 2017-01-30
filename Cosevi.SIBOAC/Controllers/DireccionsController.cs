@@ -99,12 +99,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;
                         return View(direccion);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(direccion, "I", "DIRECCION");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

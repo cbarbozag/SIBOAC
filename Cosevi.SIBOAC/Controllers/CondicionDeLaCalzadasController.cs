@@ -82,12 +82,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(condicionDeLaCalzada.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(condicionDeLaCalzada, "I", "CONDCALZADA");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(condicionDeLaCalzada.FechaDeInicio, condicionDeLaCalzada.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(condicionDeLaCalzada, "I", "CONDCALZADA");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
 
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(condicionDeLaCalzada);
+                    }
                 }
                 else
                 {

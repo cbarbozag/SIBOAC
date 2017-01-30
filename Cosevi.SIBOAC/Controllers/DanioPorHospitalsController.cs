@@ -171,12 +171,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.ComboDannio = itemsDannio;
                         return View(danioPorHospital);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(danioPorHospital, "I", "DAÑOXHOSPITAL");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

@@ -83,12 +83,22 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(codigoDeLaPlaca.Id);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(codigoDeLaPlaca, "I", "CODIGO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(codigoDeLaPlaca.FechaDeInicio, codigoDeLaPlaca.FechaDeFin);
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(codigoDeLaPlaca, "I", "CODIGO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
 
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(codigoDeLaPlaca);
+                    }
                 }
                 else
                 {
