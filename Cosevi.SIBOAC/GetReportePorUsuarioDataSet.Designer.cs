@@ -297,7 +297,7 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnPlaca;
             
-            private global::System.Data.DataColumn columnStatus_Plano;
+            private global::System.Data.DataColumn columnStatusPlano;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -406,9 +406,9 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Status_PlanoColumn {
+            public global::System.Data.DataColumn StatusPlanoColumn {
                 get {
-                    return this.columnStatus_Plano;
+                    return this.columnStatusPlano;
                 }
             }
             
@@ -449,7 +449,7 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetReportePorUsuarioDataRow AddGetReportePorUsuarioDataRow(string Usuario, string Nombre, string codigo_autoridad_registra, System.DateTime Fecha, int serie, string numeroparte, decimal numero_boleta, System.DateTime fecha_descarga, string Placa, short Status_Plano) {
+            public GetReportePorUsuarioDataRow AddGetReportePorUsuarioDataRow(string Usuario, string Nombre, string codigo_autoridad_registra, System.DateTime Fecha, int serie, string numeroparte, decimal numero_boleta, System.DateTime fecha_descarga, string Placa, string StatusPlano) {
                 GetReportePorUsuarioDataRow rowGetReportePorUsuarioDataRow = ((GetReportePorUsuarioDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Usuario,
@@ -461,7 +461,7 @@ namespace Cosevi.SIBOAC {
                         numero_boleta,
                         fecha_descarga,
                         Placa,
-                        Status_Plano};
+                        StatusPlano};
                 rowGetReportePorUsuarioDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReportePorUsuarioDataRow);
                 return rowGetReportePorUsuarioDataRow;
@@ -493,7 +493,7 @@ namespace Cosevi.SIBOAC {
                 this.columnnumero_boleta = base.Columns["numero_boleta"];
                 this.columnfecha_descarga = base.Columns["fecha_descarga"];
                 this.columnPlaca = base.Columns["Placa"];
-                this.columnStatus_Plano = base.Columns["Status_Plano"];
+                this.columnStatusPlano = base.Columns["StatusPlano"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -517,8 +517,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnfecha_descarga);
                 this.columnPlaca = new global::System.Data.DataColumn("Placa", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPlaca);
-                this.columnStatus_Plano = new global::System.Data.DataColumn("Status_Plano", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus_Plano);
+                this.columnStatusPlano = new global::System.Data.DataColumn("StatusPlano", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatusPlano);
                 this.columnUsuario.AllowDBNull = false;
                 this.columnUsuario.MaxLength = 100;
                 this.columnNombre.AllowDBNull = false;
@@ -530,6 +530,8 @@ namespace Cosevi.SIBOAC {
                 this.columnnumero_boleta.AllowDBNull = false;
                 this.columnPlaca.ReadOnly = true;
                 this.columnPlaca.MaxLength = 32;
+                this.columnStatusPlano.ReadOnly = true;
+                this.columnStatusPlano.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -794,18 +796,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Status_Plano {
+            public string StatusPlano {
                 get {
                     try {
-                        return ((short)(this[this.tableGetReportePorUsuarioData.Status_PlanoColumn]));
+                        return ((string)(this[this.tableGetReportePorUsuarioData.StatusPlanoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Status_Plano\' in table \'GetReportePorUsuarioData\' is DBNull" +
-                                ".", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StatusPlano\' in table \'GetReportePorUsuarioData\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableGetReportePorUsuarioData.Status_PlanoColumn] = value;
+                    this[this.tableGetReportePorUsuarioData.StatusPlanoColumn] = value;
                 }
             }
             
@@ -859,14 +861,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStatus_PlanoNull() {
-                return this.IsNull(this.tableGetReportePorUsuarioData.Status_PlanoColumn);
+            public bool IsStatusPlanoNull() {
+                return this.IsNull(this.tableGetReportePorUsuarioData.StatusPlanoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStatus_PlanoNull() {
-                this[this.tableGetReportePorUsuarioData.Status_PlanoColumn] = global::System.Convert.DBNull;
+            public void SetStatusPlanoNull() {
+                this[this.tableGetReportePorUsuarioData.StatusPlanoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1038,7 +1040,7 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("numero_boleta", "numero_boleta");
             tableMapping.ColumnMappings.Add("fecha_descarga", "fecha_descarga");
             tableMapping.ColumnMappings.Add("Placa", "Placa");
-            tableMapping.ColumnMappings.Add("Status_Plano", "Status_Plano");
+            tableMapping.ColumnMappings.Add("StatusPlano", "StatusPlano");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1058,7 +1060,7 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
             this._commandCollection[0].CommandText = "dbo.GetReportePorUsuarioData";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdUsuario", global::System.Data.SqlDbType.VarChar, 1, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdUsuario", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicial", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
