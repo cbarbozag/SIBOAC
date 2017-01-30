@@ -1193,11 +1193,11 @@
           <Parameter Name="idDelegaciones" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="GetReimpresionDeBoletasDeCampoData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="serieBoleta" Type="int" Mode="In" />
-          <Parameter Name="numeroBoleta" Type="int" Mode="In" />
+          <Parameter Name="serieBoleta" Type="varchar" Mode="In" />
+          <Parameter Name="numeroBoleta" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetReportePorUsuarioData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="IdUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="varchar(max)" Mode="In" />
           <Parameter Name="FechaInicial" Type="datetime" Mode="In" />
           <Parameter Name="FechaFinal" Type="datetime" Mode="In" />
         </Function>
@@ -1484,11 +1484,6 @@
             <Parameter Name="Parametro2" Mode="In" Type="String" />
             <Parameter Name="Parametro3" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetReportePorUsuarioData" ReturnType="Collection(PC_HH_AndroidModel.GetReportePorUsuarioData_Result)">
-            <Parameter Name="IdUsuario" Mode="In" Type="String" />
-            <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
-            <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
-          </FunctionImport>
           <FunctionImport Name="GetConsultaeImpresionDeBoletasData" ReturnType="Collection(PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
@@ -1496,8 +1491,8 @@
             <Parameter Name="idInspectores" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetReimpresionDeBoletasDeCampoData" ReturnType="Collection(PC_HH_AndroidModel.GetReimpresionDeBoletasDeCampoData_Result)">
-            <Parameter Name="serieBoleta" Mode="In" Type="Int32" />
-            <Parameter Name="numeroBoleta" Mode="In" Type="Int32" />
+            <Parameter Name="serieBoleta" Mode="In" Type="String" />
+            <Parameter Name="numeroBoleta" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result1)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
@@ -1505,6 +1500,11 @@
             <Parameter Name="Valor" Mode="In" Type="Int32" />
             <Parameter Name="idAutoridades" Mode="In" Type="String" />
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetReportePorUsuarioData" ReturnType="Collection(PC_HH_AndroidModel.GetReportePorUsuarioData_Result1)">
+            <Parameter Name="IdUsuario" Mode="In" Type="String" />
+            <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
@@ -2730,6 +2730,18 @@
           <Property Type="String" Name="Oficina" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Parte_Oficial" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="Piepagina" Nullable="true" MaxLength="2200" />
+        </ComplexType>
+        <ComplexType Name="GetReportePorUsuarioData_Result1">
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
+          <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Placa" Nullable="true" MaxLength="32" />
+          <Property Type="String" Name="StatusPlano" Nullable="false" MaxLength="20" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3987,22 +3999,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetReportePorUsuarioData" FunctionName="PC_HH_AndroidModel.Store.GetReportePorUsuarioData">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReportePorUsuarioData_Result">
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="serie" ColumnName="serie" />
-                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
-                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
-                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
-                <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDescargaParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetDescargaParteOficialData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaParteOficialData_Result1">
@@ -4081,6 +4077,22 @@
                 <ScalarProperty Name="Oficina" ColumnName="Oficina" />
                 <ScalarProperty Name="Parte_Oficial" ColumnName="Parte_Oficial" />
                 <ScalarProperty Name="Piepagina" ColumnName="Piepagina" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetReportePorUsuarioData" FunctionName="PC_HH_AndroidModel.Store.GetReportePorUsuarioData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReportePorUsuarioData_Result1">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
+                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="Placa" ColumnName="Placa" />
+                <ScalarProperty Name="StatusPlano" ColumnName="StatusPlano" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

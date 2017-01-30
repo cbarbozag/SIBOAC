@@ -140,7 +140,7 @@ namespace Cosevi.SIBOAC.Reports
         private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string parametros)
         {
             string[] param = parametros.Split(',');
-            string IdUsuario = param[0];
+            string IdUsuario = param[0].Replace("|",",").Replace("-","").Trim();
             DateTime fechaInicio = Convert.ToDateTime(param[1]);
             DateTime fechaFin = Convert.ToDateTime(param[2]);
 

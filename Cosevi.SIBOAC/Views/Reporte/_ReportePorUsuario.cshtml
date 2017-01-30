@@ -28,9 +28,13 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Usuarios</label>
                     <div class="col-max col-md-10">
-                        <ul id="list" name="list" class="list-group" data-toggle="items">
-                            <!-- -->
-                        </ul>
+                        <select name="listaUsuarios" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
+                            @foreach (var item in ViewBag.Usuarios)
+                            {
+                                <option value="@item.Id">@item.Usuario</option>
+                            }
+                            
+                        </select>
                     </div>
                     <br />
                     <br />
@@ -60,14 +64,24 @@
 
     <script>
         $(document).ready(
-        function () {
+        function () {            
+            Calendario();
             ReportCall();
-            prepararCampos();
-            cargarDatos();
+            //cargarDatos();
         });
     </script>
 
     <script>
+        $("#listaUsuarios").change(function () {
+            var id = $(this).attr('name');
+            var str2 = "";
+            $("#listaUsuarios option:selected").each(function () {
+
+                str2 += "&" + id + "=" + $(this).attr('value');
+            });
+            $("div").text(str2);
+        }).trigger('change');
+
         function ReportCall() {
 
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
@@ -87,17 +101,15 @@
 
             return false;
         }
-    </script>
 
-<script>
-             function prepararCampos() {
+             function Calendario() {
         $('.input-daterange').datepicker({
             startView: 2
         });
              };
-</script>
+    </script>
 
-<script>
+@*<script>
         function cargarDatos() {
             $.ajax({
                 type: 'GET',
@@ -114,5 +126,5 @@
                 }
             });
         };
-</script>
+</script>*@
 }
