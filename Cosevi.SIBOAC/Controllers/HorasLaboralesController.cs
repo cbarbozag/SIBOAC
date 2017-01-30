@@ -102,12 +102,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;
                         return View(horasLaborales);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(horasLaborales, "I", "HORASLABORALES");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

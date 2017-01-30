@@ -99,7 +99,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios, [System.Web.Http.FromUri] string[] SIBOACRoles)
+        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Identificacion, LugarTrabajo, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios, [System.Web.Http.FromUri] string[] SIBOACRoles)
         {
             if (ModelState.IsValid)
             {
@@ -188,7 +188,7 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int Id, string Usuario,string Email,string Contrasena,string Nombre,string codigo, string FechaDeActualizacionClave, string Activo, [System.Web.Http.FromUri] string[] SIBOACRoles)
+        public ActionResult Edit( int Id, string Usuario, string Identificacion, string LugarTrabajo, string Email,string Contrasena,string Nombre,string codigo, string FechaDeActualizacionClave, string Activo, [System.Web.Http.FromUri] string[] SIBOACRoles)
         {
             SIBOACUsuarios sIBOACUsuarios = new SIBOACUsuarios();
             if (ModelState.IsValid)
@@ -196,7 +196,9 @@ namespace Cosevi.SIBOAC.Controllers
                     var sIBOACUsuariosAntes = dbs.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == Id).FirstOrDefault();
 
                     sIBOACUsuarios = dbs.SIBOACUsuarios.Find(Id);               
-                    sIBOACUsuarios.Usuario= Usuario;
+                    sIBOACUsuarios.Usuario = Usuario;
+                    sIBOACUsuarios.Identificacion = Identificacion;
+                    sIBOACUsuarios.LugarTrabajo = LugarTrabajo;
                     sIBOACUsuarios.Email = Email;
                     sIBOACUsuarios.Nombre = Nombre;
                     sIBOACUsuarios.codigo = codigo ==null?null:codigo;

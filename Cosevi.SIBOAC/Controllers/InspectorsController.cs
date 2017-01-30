@@ -63,7 +63,7 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(inspector.Id);
                 if (mensaje == "")
                 {
-                    mensaje = ValidarFechas(inspector.FechaDeInicio, inspector.FechaDeFin);
+                    mensaje = ValidarFechas(inspector.FechaDeInicio.Value, inspector.FechaDeFin.Value);
 
                     if (mensaje == "")
                     {
@@ -79,12 +79,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Message = mensaje;                       
                         return View(inspector);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(inspector, "I", "INSPECTOR");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {
@@ -124,7 +118,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 var inspectorAntes = db.INSPECTOR.AsNoTracking().Where(d => d.Id == inspector.Id).FirstOrDefault();
                 db.Entry(inspector).State = EntityState.Modified;
-                string mensaje = ValidarFechas(inspector.FechaDeInicio, inspector.FechaDeFin);
+                string mensaje = ValidarFechas(inspector.FechaDeInicio.Value, inspector.FechaDeFin.Value);
                 if (mensaje=="")
                 {
                     db.SaveChanges();

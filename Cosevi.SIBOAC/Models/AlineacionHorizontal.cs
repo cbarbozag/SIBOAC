@@ -17,14 +17,14 @@ namespace Cosevi.SIBOAC.Models
     public partial class AlineacionHorizontal
     {
 
-        [DisplayName("Código")]
-        [Required(ErrorMessage = "El código es obligatorio")]
+        [DisplayName("CÃ³digo")]
+        [Required(ErrorMessage = "El cï¿½digo es obligatorio")]
         public int Id { get; set; }
 
 
-        [DisplayName("Descripción")]
-        [StringLength(30, ErrorMessage = "La descripción no debe ser mayor a 30 caracteres")]
-        [Required(ErrorMessage = "La descripción es obligatoria")]
+        [DisplayName("DescripciÃ³n")]
+        [StringLength(30, ErrorMessage = "La descripciï¿½n no debe ser mayor a 30 caracteres")]
+        [Required(ErrorMessage = "La descripciï¿½n es obligatoria")]
         public string Descripcion { get; set; }
 
         [DisplayName("Estado")]

@@ -94,12 +94,7 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Type = "warning";
                         ViewBag.Message = mensaje;
                         return View(iluminacion);
-                    }
-                    db.SaveChanges();
-                    Bitacora(iluminacion, "I", "ILUMINACION");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    }                    
                 }
                 else
                 {

@@ -25,7 +25,12 @@
         <th>
             @Html.DisplayNameFor(model => model.First().Usuario)
         </th>
-
+        <th>
+            @Html.Label("Identificación")
+        </th>
+        <th>
+            @Html.Label("Lugar de trabajo")
+        </th>
         @*<th>
             @Html.DisplayNameFor(model => model.First().Contrasena)
         </th>*@
@@ -34,7 +39,7 @@
             @Html.DisplayNameFor(model => model.First().Email)
         </th>
         <th>
-            @Html.Label("Codigo")
+            @Html.Label("Código")
         </th>
         <th>
             @Html.Label("Última actualización")
@@ -61,6 +66,12 @@
 
         <td>
             @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+           @Html.DisplayFor(modelItem => item.Identificacion)
+        </td>
+        <td>
+           @Html.DisplayFor(modelItem => item.LugarTrabajo)
         </td>
 
         @*<td>
@@ -113,6 +124,12 @@
 
             <td>
                 @Html.DisplayFor(modelItem => item.Usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LugarTrabajo)
             </td>
 
             @*<td>

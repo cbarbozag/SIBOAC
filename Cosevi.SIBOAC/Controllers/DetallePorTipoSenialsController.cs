@@ -144,12 +144,6 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.ComboTipoSenialExiste = itemsTipoSenial;
                         return View(detallePorTipoSenial);
                     }
-
-                    db.SaveChanges();
-                    Bitacora(detallePorTipoSenial, "I", "DETALLETIPOSEÑAL");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
                 }
                 else
                 {

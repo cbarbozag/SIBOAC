@@ -1162,6 +1162,12 @@
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
           <Parameter Name="Operacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetConsultaeImpresionDeBoletasData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
+          <Parameter Name="FechaHasta" Type="datetime" Mode="In" />
+          <Parameter Name="idDelegaciones" Type="varchar(max)" Mode="In" />
+          <Parameter Name="idInspectores" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="GetConsultaeImpresionDeParteOficialData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TipoConsulta" Type="int" Mode="In" />
           <Parameter Name="Parametro1" Type="varchar" Mode="In" />
@@ -1185,6 +1191,10 @@
           <Parameter Name="Valor" Type="int" Mode="In" />
           <Parameter Name="idAutoridades" Type="varchar(max)" Mode="In" />
           <Parameter Name="idDelegaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetReimpresionDeBoletasDeCampoData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serieBoleta" Type="int" Mode="In" />
+          <Parameter Name="numeroBoleta" Type="int" Mode="In" />
         </Function>
         <Function Name="GetReportePorUsuarioData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="varchar" Mode="In" />
@@ -1478,6 +1488,16 @@
             <Parameter Name="IdUsuario" Mode="In" Type="String" />
             <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetConsultaeImpresionDeBoletasData" ReturnType="Collection(PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result)">
+            <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
+            <Parameter Name="idDelegaciones" Mode="In" Type="String" />
+            <Parameter Name="idInspectores" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetReimpresionDeBoletasDeCampoData" ReturnType="Collection(PC_HH_AndroidModel.GetReimpresionDeBoletasDeCampoData_Result)">
+            <Parameter Name="serieBoleta" Mode="In" Type="Int32" />
+            <Parameter Name="numeroBoleta" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result1)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
@@ -2655,6 +2675,61 @@
           <Property Type="Int16" Name="Status_Plano" Nullable="true" />
           <Property Type="String" Name="placa_confiscada" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="auto_detenido" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="GetConsultaeImpresionDeBoletasData_Result">
+          <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="codigo_inspector" Nullable="true" MaxLength="4" />
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="fecha_hora_boleta" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
+          <Property Type="String" Name="articuloPorBoleta" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="Provincia" Nullable="false" MaxLength="72" />
+          <Property Type="String" Name="x" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="y" Nullable="true" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="GetReimpresionDeBoletasDeCampoData_Result">
+          <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="codigo_delegacion" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="DescripcionAutoridad" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="codrol" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="descripcion1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="tipo_ide" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="Descripcion2" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="identificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="tipo_lic" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="apellido1" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="apellido2" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="sexo" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="senasDireccion" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="fecha_hora_boleta" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fecha_registro" Nullable="true" Precision="23" />
+          <Property Type="String" Name="lugar_hechos" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="kilometro" Nullable="true" />
+          <Property Type="String" Name="clase_placa" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="codigo_placa" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="numero_placa" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="codveh" Nullable="true" />
+          <Property Type="String" Name="descripcion3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="marca" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="descripcion4" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="tipo_carroceria" Nullable="true" />
+          <Property Type="String" Name="Descripcion5" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Rev_Tecnica" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="codigo_inspector" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="Nombre_Inspector" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="multa" Nullable="true" Precision="19" />
+          <Property Type="String" Name="humo" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="velocidad" Nullable="true" />
+          <Property Type="String" Name="codOficinaImpugnacion" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="Oficina" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Parte_Oficial" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="Piepagina" Nullable="true" MaxLength="2200" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -3943,6 +4018,69 @@
                 <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
                 <ScalarProperty Name="placa_confiscada" ColumnName="placa_confiscada" />
                 <ScalarProperty Name="auto_detenido" ColumnName="auto_detenido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetConsultaeImpresionDeBoletasData" FunctionName="PC_HH_AndroidModel.Store.GetConsultaeImpresionDeBoletasData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result">
+                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
+                <ScalarProperty Name="codigo_inspector" ColumnName="codigo_inspector" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="fecha_hora_boleta" ColumnName="fecha_hora_boleta" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="articuloPorBoleta" ColumnName="articuloPorBoleta" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="y" ColumnName="y" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetReimpresionDeBoletasDeCampoData" FunctionName="PC_HH_AndroidModel.Store.GetReimpresionDeBoletasDeCampoData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReimpresionDeBoletasDeCampoData_Result">
+                <ScalarProperty Name="fuente" ColumnName="fuente" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="codigo_delegacion" ColumnName="codigo_delegacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
+                <ScalarProperty Name="DescripcionAutoridad" ColumnName="DescripcionAutoridad" />
+                <ScalarProperty Name="codrol" ColumnName="codrol" />
+                <ScalarProperty Name="descripcion1" ColumnName="descripcion1" />
+                <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+                <ScalarProperty Name="Descripcion2" ColumnName="Descripcion2" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipo_lic" ColumnName="tipo_lic" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="senasDireccion" ColumnName="senasDireccion" />
+                <ScalarProperty Name="fecha_hora_boleta" ColumnName="fecha_hora_boleta" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="lugar_hechos" ColumnName="lugar_hechos" />
+                <ScalarProperty Name="kilometro" ColumnName="kilometro" />
+                <ScalarProperty Name="clase_placa" ColumnName="clase_placa" />
+                <ScalarProperty Name="codigo_placa" ColumnName="codigo_placa" />
+                <ScalarProperty Name="numero_placa" ColumnName="numero_placa" />
+                <ScalarProperty Name="codveh" ColumnName="codveh" />
+                <ScalarProperty Name="descripcion3" ColumnName="descripcion3" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="descripcion4" ColumnName="descripcion4" />
+                <ScalarProperty Name="tipo_carroceria" ColumnName="tipo_carroceria" />
+                <ScalarProperty Name="Descripcion5" ColumnName="Descripcion5" />
+                <ScalarProperty Name="Rev_Tecnica" ColumnName="Rev_Tecnica" />
+                <ScalarProperty Name="codigo_inspector" ColumnName="codigo_inspector" />
+                <ScalarProperty Name="Nombre_Inspector" ColumnName="Nombre_Inspector" />
+                <ScalarProperty Name="multa" ColumnName="multa" />
+                <ScalarProperty Name="humo" ColumnName="humo" />
+                <ScalarProperty Name="velocidad" ColumnName="velocidad" />
+                <ScalarProperty Name="codOficinaImpugnacion" ColumnName="codOficinaImpugnacion" />
+                <ScalarProperty Name="Oficina" ColumnName="Oficina" />
+                <ScalarProperty Name="Parte_Oficial" ColumnName="Parte_Oficial" />
+                <ScalarProperty Name="Piepagina" ColumnName="Piepagina" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

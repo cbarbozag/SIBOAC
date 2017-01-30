@@ -89,12 +89,23 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = Verificar(consecutivoNumeroMarco.Id, consecutivoNumeroMarco.IdAnterior, consecutivoNumeroMarco.FechaDeInicio, consecutivoNumeroMarco.FechaDeFin);
                 if (mensaje == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(consecutivoNumeroMarco, "I", "CONSECUTIVONUMEROMARCO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
+                    mensaje = ValidarFechas(consecutivoNumeroMarco.FechaDeInicio, consecutivoNumeroMarco.FechaDeFin);
 
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(consecutivoNumeroMarco, "I", "CONSECUTIVONUMEROMARCO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+                        return View(consecutivoNumeroMarco);
+                    }
                 }
                 else
                 {
