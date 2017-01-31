@@ -333,6 +333,7 @@
     <Compile Include="Controllers\ReportePorEstadoActualDelPlanoController.cs" />
     <Compile Include="Controllers\SIBOACMenuOpcionesController.cs" />
     <Compile Include="Controllers\SIBOACUsuariosController.cs" />
+    <Compile Include="Controllers\AdjuntarArchivosController.cs" />
     <Compile Include="Controllers\StatusPlanoController.cs" />
     <Compile Include="Controllers\TiempoesController.cs" />
     <Compile Include="Controllers\TIPODANOesController.cs" />
@@ -1562,6 +1563,8 @@
     <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ReportePorUsuario.cshtml" />
     <Content Include="Views\Reporte\_ConsultaeImpresionDeBoletas.cshtml" />
+    <Content Include="Views\AdjuntarArchivos\_AdjuntarView.cshtml" />
+    <Content Include="Views\AdjuntarArchivos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />

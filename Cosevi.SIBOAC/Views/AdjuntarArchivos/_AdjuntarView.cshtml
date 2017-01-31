@@ -1,0 +1,76 @@
+﻿<br />
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <h1>Parte Oficial</h1>
+        </td>
+    </tr>
+</table>
+<br />
+<br />
+
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td >Autoridad Detalle</td>
+            <td>Fecha Accidente</td>
+            <td>Fecha Descarga</td>
+        </tr>
+     </thead>
+    
+
+       @foreach (var item in ViewBag.Valor)
+        {
+        <tr>
+            <td>                
+                @item.DescripcionAutoridad
+            </td>
+            <td>
+                @item.FechaAccidente
+            </td>
+            <td>
+                @item.FechaDescarga
+            </td>
+        </tr>
+           break;
+       }
+</table>
+<br />
+<br />
+
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td>Número de Boleta</td>
+            <td>Rol de Persona</td>
+            <td>Clase de Placa</td>
+            <td>Código de Placa</td>
+            <td>Número de Placa</td>
+        </tr>
+    </thead>
+    
+    @foreach (var item in ViewBag.Valor)
+    {
+        
+        <tr>
+            <td>
+                @item.NumeroBoleta
+            </td>
+            <td>
+                @item.DescripcionRol
+            </td>
+            <td>
+                @item.ClasePlaca
+            </td>
+            <td>
+                @item.CodigoPlaca
+            </td>
+            <td>
+                @item.NumeroPlaca
+            </td>
+        </tr>
+    }
+</table>
+    
