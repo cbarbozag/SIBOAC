@@ -11,17 +11,14 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     
-    public partial class GetConsultaeImpresionDeBoletasData_Result
+    public partial class GetReporteStatusActualPlanoData_Result
     {
-        public string DescripcionDelegacion { get; set; }
-        public string codigo_inspector { get; set; }
-        public int serie { get; set; }
-        public decimal numero_boleta { get; set; }
-        public Nullable<System.DateTime> fecha_hora_boleta { get; set; }
+        public string codigo_autoridad_registra { get; set; }
+        public string serie_parteoficial { get; set; }
+        public string numeroparte { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<System.DateTime> fecha_descarga { get; set; }
-        public string articuloPorBoleta { get; set; }
-        public string Provincia { get; set; }
-        public string x { get; set; }
-        public string y { get; set; }
+        public string identificacion { get; set; }
+        public string Nombre { get; set; }
     }
 }

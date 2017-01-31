@@ -402,7 +402,7 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_ReportePorUsuario");
         }
 
-        private List<GetReportePorUsuarioData_Result1> GetReportePorUsuarioData(string listaUsuarios, DateTime desde, DateTime hasta)
+        private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string listaUsuarios, DateTime desde, DateTime hasta)
         {
             string idUsuarios = "";
             foreach (var i in listaUsuarios)

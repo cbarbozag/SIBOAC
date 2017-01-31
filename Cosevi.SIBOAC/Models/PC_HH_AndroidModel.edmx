@@ -25,21 +25,6 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
-        <EntityType Name="ARTICULO_ESPECIFICO">
-          <Key>
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="conducta" />
-            <PropertyRef Name="fecha_inicio" />
-            <PropertyRef Name="fecha_final" />
-          </Key>
-          <Property Name="codigo" Type="varchar" MaxLength="6" Nullable="false" />
-          <Property Name="conducta" Type="char" MaxLength="2" Nullable="false" />
-          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
-          <Property Name="fecha_final" Type="datetime" Nullable="false" />
-          <Property Name="codigo_retiro_temporal" Type="varchar" MaxLength="6" />
-          <Property Name="codigo_inmovilizacion" Type="varchar" MaxLength="6" />
-          <Property Name="observacion_noaplicacion" Type="varchar(max)" />
-        </EntityType>
         <EntityType Name="ARTICULOSXDEPOSITOSBIENES">
           <Key>
             <PropertyRef Name="CodDepositoBienes" />
@@ -1170,42 +1155,6 @@
           <Property Name="NumeroBoleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Serie" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_INM">
-          <End Role="CATARTICULO" Type="Self.CATARTICULO" Multiplicity="0..1" />
-          <End Role="ARTICULO_ESPECIFICO" Type="Self.ARTICULO_ESPECIFICO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATARTICULO">
-              <PropertyRef Name="codigo" />
-              <PropertyRef Name="conducta" />
-              <PropertyRef Name="fecha_inicio" />
-              <PropertyRef Name="fecha_final" />
-            </Principal>
-            <Dependent Role="ARTICULO_ESPECIFICO">
-              <PropertyRef Name="codigo_inmovilizacion" />
-              <PropertyRef Name="conducta" />
-              <PropertyRef Name="fecha_inicio" />
-              <PropertyRef Name="fecha_final" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_RET">
-          <End Role="CATARTICULO" Type="Self.CATARTICULO" Multiplicity="0..1" />
-          <End Role="ARTICULO_ESPECIFICO" Type="Self.ARTICULO_ESPECIFICO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATARTICULO">
-              <PropertyRef Name="codigo" />
-              <PropertyRef Name="conducta" />
-              <PropertyRef Name="fecha_inicio" />
-              <PropertyRef Name="fecha_final" />
-            </Principal>
-            <Dependent Role="ARTICULO_ESPECIFICO">
-              <PropertyRef Name="codigo_retiro_temporal" />
-              <PropertyRef Name="conducta" />
-              <PropertyRef Name="fecha_inicio" />
-              <PropertyRef Name="fecha_final" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="GetBitacoraData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
           <Parameter Name="FechaFin" Type="datetime" Mode="In" />
@@ -1252,10 +1201,16 @@
           <Parameter Name="FechaInicial" Type="datetime" Mode="In" />
           <Parameter Name="FechaFinal" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="GetReporteStatusActualPlanoData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StatusPlano" Type="int" Mode="In" />
+          <Parameter Name="FechaInicial" Type="datetime" Mode="In" />
+          <Parameter Name="FechaFinal" Type="datetime" Mode="In" />
+          <Parameter Name="Delegacion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Autoridad" Type="varchar(max)" Mode="In" />
+        </Function>
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ARTICULO_ESPECIFICO" EntityType="Self.ARTICULO_ESPECIFICO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="Self.ARTICULOSXDEPOSITOSBIENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOXBOLETA" EntityType="Self.ARTICULOXBOLETA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AUTORIDAD" EntityType="Self.AUTORIDAD" Schema="dbo" store:Type="Tables" />
@@ -1345,14 +1300,6 @@
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_INM" Association="Self.FK_ARTICULO_ESPECIFICO_CATARTICULO_INM">
-            <End Role="CATARTICULO" EntitySet="CATARTICULO" />
-            <End Role="ARTICULO_ESPECIFICO" EntitySet="ARTICULO_ESPECIFICO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_RET" Association="Self.FK_ARTICULO_ESPECIFICO_CATARTICULO_RET">
-            <End Role="CATARTICULO" EntitySet="CATARTICULO" />
-            <End Role="ARTICULO_ESPECIFICO" EntitySet="ARTICULO_ESPECIFICO" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1554,32 +1501,25 @@
             <Parameter Name="serieBoleta" Mode="In" Type="String" />
             <Parameter Name="numeroBoleta" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetReportePorUsuarioData" ReturnType="Collection(PC_HH_AndroidModel.GetReportePorUsuarioData_Result1)">
+          <FunctionImport Name="GetReportePorUsuarioData" ReturnType="Collection(PC_HH_AndroidModel.GetReportePorUsuarioData_Result)">
             <Parameter Name="IdUsuario" Mode="In" Type="String" />
             <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result3)">
+          <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
             <Parameter Name="Valor" Mode="In" Type="Int32" />
             <Parameter Name="idAutoridades" Mode="In" Type="String" />
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetReportePorUsuarioData" ReturnType="Collection(PC_HH_AndroidModel.GetReportePorUsuarioData_Result1)">
-            <Parameter Name="IdUsuario" Mode="In" Type="String" />
+          <FunctionImport Name="GetReporteStatusActualPlanoData" ReturnType="Collection(PC_HH_AndroidModel.GetReporteStatusActualPlanoData_Result)">
+            <Parameter Name="StatusPlano" Mode="In" Type="Int32" />
             <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
             <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
+            <Parameter Name="Delegacion" Mode="In" Type="String" />
+            <Parameter Name="Autoridad" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="ARTICULO_ESPECIFICO" EntityType="PC_HH_AndroidModel.ARTICULO_ESPECIFICO" />
-          <AssociationSet Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_INM" Association="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_INM">
-            <End Role="CatalogoDeArticulos" EntitySet="CATARTICULO" />
-            <End Role="ARTICULO_ESPECIFICO" EntitySet="ARTICULO_ESPECIFICO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_RET" Association="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_RET">
-            <End Role="CatalogoDeArticulos" EntitySet="CATARTICULO" />
-            <End Role="ARTICULO_ESPECIFICO" EntitySet="ARTICULO_ESPECIFICO" />
-          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2204,9 +2144,7 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Puntos" Type="Int32" Nullable="false" />
           <Property Name="Totalidad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ARTICULO_ESPECIFICO" Relationship="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_INM" FromRole="CatalogoDeArticulos" ToRole="ARTICULO_ESPECIFICO" />
-          <NavigationProperty Name="ARTICULO_ESPECIFICO1" Relationship="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_RET" FromRole="CatalogoDeArticulos" ToRole="ARTICULO_ESPECIFICO" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="DanioPorHospital">
           <Key>
             <PropertyRef Name="IdHospital" />
@@ -2701,12 +2639,12 @@
           <Property Type="DateTime" Name="fecha_entrega" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
           <Property Type="Decimal" Name="SerieNumeroBoleta" Nullable="true" Precision="19" Scale="0" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="35" />
-          <Property Type="String" Name="Descripcion1" Nullable="true" MaxLength="35" />
           <Property Type="String" Name="InfoPlaca" Nullable="true" MaxLength="28" />
-          <Property Type="Int16" Name="Status_Plano" Nullable="true" />
           <Property Type="String" Name="placa_confiscada" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="auto_detenido" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="DescripcionAutoridad" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="plano_generado" Nullable="false" MaxLength="1" />
         </ComplexType>
         <ComplexType Name="GetConsultaeImpresionDeParteOficialData_Result">
           <Property Type="String" Name="Reporte" Nullable="false" MaxLength="21" />
@@ -2819,59 +2757,15 @@
           <Property Type="String" Name="Placa" Nullable="true" MaxLength="32" />
           <Property Type="String" Name="StatusPlano" Nullable="false" MaxLength="20" />
         </ComplexType>
-        <EntityType Name="ARTICULO_ESPECIFICO">
-          <Key>
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="conducta" />
-            <PropertyRef Name="fecha_inicio" />
-            <PropertyRef Name="fecha_final" />
-          </Key>
-          <Property Name="codigo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fecha_final" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="codigo_retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="codigo_inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="observacion_noaplicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CATARTICULO" Relationship="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_INM" FromRole="ARTICULO_ESPECIFICO" ToRole="CatalogoDeArticulos" />
-          <NavigationProperty Name="CATARTICULO1" Relationship="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_RET" FromRole="ARTICULO_ESPECIFICO" ToRole="CatalogoDeArticulos" />
-        </EntityType>
-        <Association Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_INM">
-          <End Type="PC_HH_AndroidModel.CatalogoDeArticulos" Role="CatalogoDeArticulos" Multiplicity="0..1" />
-          <End Type="PC_HH_AndroidModel.ARTICULO_ESPECIFICO" Role="ARTICULO_ESPECIFICO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CatalogoDeArticulos">
-              <PropertyRef Name="Id" />
-              <PropertyRef Name="Conducta" />
-              <PropertyRef Name="FechaDeInicio" />
-              <PropertyRef Name="FechaDeFin" />
-            </Principal>
-            <Dependent Role="ARTICULO_ESPECIFICO">
-              <PropertyRef Name="codigo_inmovilizacion" />
-              <PropertyRef Name="conducta" />
-              <PropertyRef Name="fecha_inicio" />
-              <PropertyRef Name="fecha_final" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ARTICULO_ESPECIFICO_CATARTICULO_RET">
-          <End Type="PC_HH_AndroidModel.CatalogoDeArticulos" Role="CatalogoDeArticulos" Multiplicity="0..1" />
-          <End Type="PC_HH_AndroidModel.ARTICULO_ESPECIFICO" Role="ARTICULO_ESPECIFICO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CatalogoDeArticulos">
-              <PropertyRef Name="Id" />
-              <PropertyRef Name="Conducta" />
-              <PropertyRef Name="FechaDeInicio" />
-              <PropertyRef Name="FechaDeFin" />
-            </Principal>
-            <Dependent Role="ARTICULO_ESPECIFICO">
-              <PropertyRef Name="codigo_retiro_temporal" />
-              <PropertyRef Name="conducta" />
-              <PropertyRef Name="fecha_inicio" />
-              <PropertyRef Name="fecha_final" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <ComplexType Name="GetReporteStatusActualPlanoData_Result">
+          <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="serie_parteoficial" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
+          <Property Type="String" Name="identificacion" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="72" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4193,7 +4087,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetReportePorUsuarioData" FunctionName="PC_HH_AndroidModel.Store.GetReportePorUsuarioData">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReportePorUsuarioData_Result1">
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReportePorUsuarioData_Result">
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
@@ -4203,41 +4097,40 @@
                 <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
                 <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
                 <ScalarProperty Name="Placa" ColumnName="Placa" />
-                <ScalarProperty Name="StatusPlano" ColumnName="StatusPlano" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDescargaParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetDescargaParteOficialData">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaParteOficialData_Result3">
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaParteOficialData_Result">
                 <ScalarProperty Name="Serie" ColumnName="Serie" />
                 <ScalarProperty Name="NumeroParte" ColumnName="NumeroParte" />
                 <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
                 <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="SerieNumeroBoleta" ColumnName="SerieNumeroBoleta" />
-                <ScalarProperty Name="DescripcionAutoridad" ColumnName="DescripcionAutoridad" />
-                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
                 <ScalarProperty Name="InfoPlaca" ColumnName="InfoPlaca" />
-                <ScalarProperty Name="plano_generado" ColumnName="plano_generado" />
                 <ScalarProperty Name="placa_confiscada" ColumnName="placa_confiscada" />
                 <ScalarProperty Name="auto_detenido" ColumnName="auto_detenido" />
+                <ScalarProperty Name="DescripcionAutoridad" ColumnName="DescripcionAutoridad" />
+                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
+                <ScalarProperty Name="plano_generado" ColumnName="plano_generado" />
+                </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetReporteStatusActualPlanoData" FunctionName="PC_HH_AndroidModel.Store.GetReporteStatusActualPlanoData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReporteStatusActualPlanoData_Result">
+                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
+                <ScalarProperty Name="serie_parteoficial" ColumnName="serie_parteoficial" />
+                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="ARTICULO_ESPECIFICO">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ARTICULO_ESPECIFICO">
-              <MappingFragment StoreEntitySet="ARTICULO_ESPECIFICO">
-                <ScalarProperty Name="observacion_noaplicacion" ColumnName="observacion_noaplicacion" />
-                <ScalarProperty Name="codigo_inmovilizacion" ColumnName="codigo_inmovilizacion" />
-                <ScalarProperty Name="codigo_retiro_temporal" ColumnName="codigo_retiro_temporal" />
-                <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="conducta" ColumnName="conducta" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

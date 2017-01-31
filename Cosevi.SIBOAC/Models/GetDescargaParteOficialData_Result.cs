@@ -10,7 +10,7 @@
 namespace Cosevi.SIBOAC.Models
 {
     using System;
-
+    
     public partial class GetDescargaParteOficialData_Result
     {
         public string Serie { get; set; }
@@ -19,11 +19,11 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> fecha_entrega { get; set; }
         public System.DateTime Fecha { get; set; }
         public Nullable<decimal> SerieNumeroBoleta { get; set; }
-        public string DescripcionAutoridad { get; set; }
-        public string DescripcionDelegacion { get; set; }
         public string InfoPlaca { get; set; }
-        public string plano_generado { get; set; }
         public string placa_confiscada { get; set; }
         public string auto_detenido { get; set; }
+        public string DescripcionAutoridad { get; set; }
+        public string DescripcionDelegacion { get; set; }
+        public string plano_generado { get; set; }
     }
 }
