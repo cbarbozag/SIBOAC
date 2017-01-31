@@ -20,5 +20,6 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> fecha_descarga { get; set; }
         public string identificacion { get; set; }
         public string Nombre { get; set; }
+        public decimal numero_boleta { get; set; }
     }
 }

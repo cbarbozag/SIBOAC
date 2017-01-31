@@ -91,6 +91,27 @@
 
 
             <script>
+
+                $("#listaDelegacion").change(function () {
+                    var id = $(this).attr('name');
+                    var str2 = "";
+                    $("#listaDelegacion option:selected").each(function () {
+
+                        str2 += "&" + id + "=" + $(this).attr('value');
+                    });
+                    $("div").text(str2);
+                }).trigger('change');
+
+                $("#listaInspector").change(function () {
+                    var id = $(this).attr('name');
+                    var str2 = "";
+                    $("#listaInspector option:selected").each(function () {
+
+                        str2 += "&" + id + "=" + $(this).attr('value');
+                    });
+                    $("div").text(str2);
+                }).trigger('change');
+
                 function ReportCall() {
                     var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
 
@@ -109,42 +130,6 @@
 
                     return false;
                 }
-
-                function cargarDatosDelegacion() {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'api/Delegacions',
-                        //data: {},
-                        success: function (results) {
-                            var listD = $('#idDelegaciones');
-                            for (var i = 0; i < results.length; i++) {
-                                listD.append('<li name="idDelegaciones" data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Descripcion + '</li>');
-                            };
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log(jqXHR);
-                        }
-                    });
-                };
-
-                function cargarDatosInspector() {
-                    $.ajax({
-                        type: 'GET',
-                        url: 'api/Inspectors',
-                        //data: {},
-                        success: function (results) {
-                            var listI = $('#idInspectores');
-                            for (var i = 0; i < results.length; i++) {
-                                if (results[i].Id != null && results[i].Id.trim().length > 0)
-                                    listI.append('<li  name="idInspectores" data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Id + '</li>');
-                            };
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log(jqXHR);
-                        }
-                    });
-                };
-
 
                 function Calendario() {
                     $('.input-daterange').datepicker({

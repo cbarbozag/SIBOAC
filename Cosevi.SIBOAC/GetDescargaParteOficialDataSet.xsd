@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=.\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security Info=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Application Name=EntityFramework" IsAppSettingsProperty="false" Modifier="Assembly" Name="PC_HH_AndroidEntities (Cosevi.SIBOAC)" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetDescargaParteOficialDataTableAdapter" GeneratorDataComponentClassName="GetDescargaParteOficialDataTableAdapter" Name="GetDescargaParteOficialData" UserDataComponentName="GetDescargaParteOficialDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="PC_HH_AndroidEntities (Cosevi.SIBOAC)" DbObjectName="PC_HH_Android.dbo.GetDescargaParteOficialData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="PC_HH_AndroidConnectionString (Web.config)" DbObjectName="PC_HH_Android.dbo.GetDescargaParteOficialData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.GetDescargaParteOficialData</CommandText>
@@ -35,7 +35,7 @@
               <Mapping SourceColumn="DescripcionAutoridad" DataSetColumn="DescripcionAutoridad" />
               <Mapping SourceColumn="DescripcionDelegacion" DataSetColumn="DescripcionDelegacion" />
               <Mapping SourceColumn="InfoPlaca" DataSetColumn="InfoPlaca" />
-              <Mapping SourceColumn="Status_Plano" DataSetColumn="Status_Plano" />
+              <Mapping SourceColumn="plano_generado" DataSetColumn="plano_generado" />
               <Mapping SourceColumn="placa_confiscada" DataSetColumn="placa_confiscada" />
               <Mapping SourceColumn="auto_detenido" DataSetColumn="auto_detenido" />
             </Mappings>
@@ -70,7 +70,7 @@
               <xs:element name="fecha_entrega" msprop:Generator_ColumnVarNameInTable="columnfecha_entrega" msprop:Generator_ColumnPropNameInRow="fecha_entrega" msprop:Generator_ColumnPropNameInTable="fecha_entregaColumn" msprop:Generator_UserColumnName="fecha_entrega" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" />
               <xs:element name="SerieNumeroBoleta" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSerieNumeroBoleta" msprop:Generator_ColumnPropNameInRow="SerieNumeroBoleta" msprop:Generator_ColumnPropNameInTable="SerieNumeroBoletaColumn" msprop:Generator_UserColumnName="SerieNumeroBoleta" type="xs:decimal" minOccurs="0" />
-              <xs:element name="DescripcionAutoridad" msprop:Generator_ColumnVarNameInTable="columnDescripcionAutoridad" msprop:Generator_ColumnPropNameInRow="DescripcionAutoridad" msprop:Generator_ColumnPropNameInTable="DescripcionAutoridadColumn" msprop:Generator_UserColumnName="DescripcionAutoridad" minOccurs="0">
+              <xs:element name="DescripcionAutoridad" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDescripcionAutoridad" msprop:Generator_ColumnPropNameInRow="DescripcionAutoridad" msprop:Generator_ColumnPropNameInTable="DescripcionAutoridadColumn" msprop:Generator_UserColumnName="DescripcionAutoridad" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
@@ -91,15 +91,21 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Status_Plano" msprop:Generator_ColumnVarNameInTable="columnStatus_Plano" msprop:Generator_ColumnPropNameInRow="Status_Plano" msprop:Generator_ColumnPropNameInTable="Status_PlanoColumn" msprop:Generator_UserColumnName="Status_Plano" type="xs:short" minOccurs="0" />
-              <xs:element name="placa_confiscada" msprop:Generator_ColumnVarNameInTable="columnplaca_confiscada" msprop:Generator_ColumnPropNameInRow="placa_confiscada" msprop:Generator_ColumnPropNameInTable="placa_confiscadaColumn" msprop:Generator_UserColumnName="placa_confiscada" minOccurs="0">
+              <xs:element name="plano_generado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnplano_generado" msprop:Generator_ColumnPropNameInRow="plano_generado" msprop:Generator_ColumnPropNameInTable="plano_generadoColumn" msprop:Generator_UserColumnName="plano_generado" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="auto_detenido" msprop:Generator_ColumnVarNameInTable="columnauto_detenido" msprop:Generator_ColumnPropNameInRow="auto_detenido" msprop:Generator_ColumnPropNameInTable="auto_detenidoColumn" msprop:Generator_UserColumnName="auto_detenido">
+              <xs:element name="placa_confiscada" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnplaca_confiscada" msprop:Generator_ColumnPropNameInRow="placa_confiscada" msprop:Generator_ColumnPropNameInTable="placa_confiscadaColumn" msprop:Generator_UserColumnName="placa_confiscada" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="auto_detenido" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnauto_detenido" msprop:Generator_ColumnPropNameInRow="auto_detenido" msprop:Generator_ColumnPropNameInTable="auto_detenidoColumn" msprop:Generator_UserColumnName="auto_detenido" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
