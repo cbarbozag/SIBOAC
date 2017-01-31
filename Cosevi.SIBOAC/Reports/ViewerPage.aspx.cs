@@ -156,10 +156,10 @@ namespace Cosevi.SIBOAC.Reports
             string[] param = parametros.Split(',');
             DateTime FechaDesde = Convert.ToDateTime(param[0]);
             DateTime FechaHasta = Convert.ToDateTime(param[1]);
-            string idDelegaciones = param[2];
-            string idInspectores = param[3];
+            string idDelegacion = param[2].Replace("|", ",").Replace("-", "").Trim();
+            string idInspector = param[3].Replace("|", ",").Replace("-", "").Trim(); 
 
-            var lista = db.GetConsultaeImpresionDeBoletasData(FechaDesde, FechaHasta, idDelegaciones, idInspectores).ToList();
+            var lista = db.GetConsultaeImpresionDeBoletasData(FechaDesde, FechaHasta, idDelegacion, idInspector).ToList();
             return lista;
         }
 
