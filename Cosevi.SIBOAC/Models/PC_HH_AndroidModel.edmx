@@ -1293,7 +1293,7 @@
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
-        </EntityContainer>
+          </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1494,7 +1494,12 @@
             <Parameter Name="serieBoleta" Mode="In" Type="String" />
             <Parameter Name="numeroBoleta" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result1)">
+          <FunctionImport Name="GetReportePorUsuarioData" ReturnType="Collection(PC_HH_AndroidModel.GetReportePorUsuarioData_Result1)">
+            <Parameter Name="IdUsuario" Mode="In" Type="String" />
+            <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetDescargaParteOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaParteOficialData_Result3)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
             <Parameter Name="Valor" Mode="In" Type="Int32" />
@@ -2130,7 +2135,7 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Puntos" Type="Int32" Nullable="false" />
           <Property Name="Totalidad" Type="Int32" Nullable="false" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="DanioPorHospital">
           <Key>
             <PropertyRef Name="IdHospital" />
@@ -3999,24 +4004,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetDescargaParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetDescargaParteOficialData">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaParteOficialData_Result1">
-                <ScalarProperty Name="Serie" ColumnName="Serie" />
-                <ScalarProperty Name="NumeroParte" ColumnName="NumeroParte" />
-                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
-                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="SerieNumeroBoleta" ColumnName="SerieNumeroBoleta" />
-                <ScalarProperty Name="DescripcionAutoridad" ColumnName="DescripcionAutoridad" />
-                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
-                <ScalarProperty Name="InfoPlaca" ColumnName="InfoPlaca" />
-                <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
-                <ScalarProperty Name="placa_confiscada" ColumnName="placa_confiscada" />
-                <ScalarProperty Name="auto_detenido" ColumnName="auto_detenido" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetConsultaeImpresionDeBoletasData" FunctionName="PC_HH_AndroidModel.Store.GetConsultaeImpresionDeBoletasData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result">
@@ -4093,6 +4080,24 @@
                 <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
                 <ScalarProperty Name="Placa" ColumnName="Placa" />
                 <ScalarProperty Name="StatusPlano" ColumnName="StatusPlano" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDescargaParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetDescargaParteOficialData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaParteOficialData_Result3">
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="NumeroParte" ColumnName="NumeroParte" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="SerieNumeroBoleta" ColumnName="SerieNumeroBoleta" />
+                <ScalarProperty Name="DescripcionAutoridad" ColumnName="DescripcionAutoridad" />
+                <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
+                <ScalarProperty Name="InfoPlaca" ColumnName="InfoPlaca" />
+                <ScalarProperty Name="plano_generado" ColumnName="plano_generado" />
+                <ScalarProperty Name="placa_confiscada" ColumnName="placa_confiscada" />
+                <ScalarProperty Name="auto_detenido" ColumnName="auto_detenido" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

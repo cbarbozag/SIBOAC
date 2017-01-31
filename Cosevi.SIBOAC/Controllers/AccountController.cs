@@ -72,30 +72,7 @@ namespace Cosevi.SIBOAC.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
-            // Metodo simple, funcionando bien pero Custom Membership es mejor (No borrar)
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(model);
-            //}
-            //using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
-            //{
-            //    var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Usuario) && a.Contrasena.Equals(model.Contrasena)).FirstOrDefault();
-            //    if (user != null)
-            //    {
-            //        FormsAuthentication.SetAuthCookie(user.Usuario, model.Recordarme);
-            //        if (Url.IsLocalUrl(returnUrl))
-            //        {
-            //            return RedirectToLocal(returnUrl);
-            //        }
-            //        else
-            //        {
-            //            return RedirectToAction("Profile", "Home");
-            //        }
-            //    }
-            //}            
-            //ModelState.Remove("Password");
-            //ModelState.AddModelError("", "Intento de login fallido.");
-            //return View();            
+                   
 
             if (ModelState.IsValid)
             {

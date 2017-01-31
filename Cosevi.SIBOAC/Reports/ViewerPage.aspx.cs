@@ -110,13 +110,13 @@ namespace Cosevi.SIBOAC.Reports
         }
 
 
-        private List<GetDescargaParteOficialData_Result1> GetDescargaParteOficialData(string parametros)
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(string parametros)
         {
             string[] param = parametros.Split(',');
             DateTime FechaDesde = Convert.ToDateTime(param[0]);
             DateTime FechaHasta = Convert.ToDateTime(param[1]);
             int Valor = Convert.ToInt32(param[2]);
-            string idAutoridades =param[3].Trim();
+            string idAutoridades =param[3].Replace("|", ",").Replace("-", "").Trim();
             string idDelegaciones = param[4].Replace("|",",").Replace("-","").Trim();
 
             var lista = db.GetDescargaParteOficialData(FechaDesde, FechaHasta, Valor, idAutoridades, idDelegaciones).ToList();

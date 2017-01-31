@@ -43,28 +43,74 @@ namespace Cosevi.SIBOAC.Controllers
                     break;
                 case "_DescargaParteOficial":
 
-                  
+                    var listaSeleccionadosDelegacion = ViewBag.DelegacionesSeleccionadas;
+                    var listaSeleccionadosAutoridad = ViewBag.AutoridadesSeleccionadas;
+
                     var listaDelegaciones = (from r in db.DELEGACION
                                  select new {
                                      r.Id,
                                      r.Descripcion }).ToList().Distinct()
                                  .Select(x => new item
                                  { Id= x.Id,
-                                   Descripcion = x.Descripcion}
+                                   Descripcion = x.Descripcion,
+                                  Seleccionado =false
+                                 }
                                  );
+
+
+
+                    if (listaSeleccionadosDelegacion != null)
+                    {
+                        List<item> _list = new List<item>();
+                        _list = (List<item>)listaSeleccionadosDelegacion;
+                        List<item> _listDelegaciones = listaDelegaciones.ToList();
+                        List<item> _temp = new List<item>();
+
+                        for (int i = 0; i < _listDelegaciones.Count(); i++)
+                        {
+                          if(_list.ToArray().Any(a=>a.Id==_listDelegaciones.ElementAt(i).Id))
+                            {
+                                _listDelegaciones.ElementAt(i).Seleccionado = true;
+                            }
+                       
+                        }
+                       listaDelegaciones = _listDelegaciones;
+                    }
+                   
                     ViewBag.Delegaciones = listaDelegaciones;
+                    
+              
                     var listaAutoridades = (from r in db.AUTORIDAD
-                                 select new
-                                 {
-                                     r.Id,
-                                     r.Descripcion
-                                 }).ToList().Distinct()
+                                            select new
+                                            {
+                                                r.Id,
+                                                r.Descripcion
+                                            }).ToList().Distinct()
                              .Select(x => new item
                              {
                                  Id = x.Id,
-                                 Descripcion = x.Descripcion
+                                 Descripcion = x.Descripcion ,                                 
+                                 Seleccionado = false
                              }
                              );
+                    if (listaSeleccionadosAutoridad != null)
+                    {
+                        List<item> _list = new List<item>();
+                        _list = (List<item>)listaSeleccionadosAutoridad;
+                        List<item> _listAutoridad = listaAutoridades.ToList();
+                        List<item> _temp = new List<item>();
+
+                        for (int i = 0; i < _listAutoridad.Count(); i++)
+                        {
+                            if (_list.ToArray().Any(a => a.Id == _listAutoridad.ElementAt(i).Id))
+                            {
+                                _listAutoridad.ElementAt(i).Seleccionado = true;
+                            }
+
+                        }
+                        listaAutoridades = _listAutoridad;
+                    }
+
                     ViewBag.Autoridades = listaAutoridades;
                     break;
                 case "_ConsultaeImpresionDeParteOficial":
@@ -127,6 +173,8 @@ namespace Cosevi.SIBOAC.Controllers
             public string Descripcion { get; set; }
             public string Nombre { get; set; }
             public string Usuario { get; set; }
+
+            public bool Seleccionado { get; set; }
         }
         // GET: Reporte
         [SessionExpire]
@@ -271,12 +319,15 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public ActionResult GetReporteDescargaParteOficial(DateTime desde, DateTime hasta, int radio, string  listaAutoridades,[FromUri] string [] listaDelegaciones)
+        public ActionResult GetReporteDescargaParteOficial(DateTime desde, DateTime hasta, int radio, [FromUri] string[]  listaAutoridades,[FromUri] string [] listaDelegaciones)
         {
 
             string reporteID = "_DescargaParteOficial";
             string nombreReporte = "DescargaParteOficial";
             string idDelegaciones = "";
+            string idAutoridades = "";
+            Session["ListaDelegaciones"] = listaDelegaciones;
+            Session["ListaAutoridades"] = listaAutoridades;
             foreach (var i in listaDelegaciones)
             {
                 idDelegaciones += "-"+i+"-|";
@@ -286,7 +337,47 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 idDelegaciones = idDelegaciones.Substring(0, idDelegaciones.Length - 1);
             }
-            string parametros = String.Format("{0}, {1}, {2}, {3}, {4}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), radio,"321", idDelegaciones);
+            foreach (var i in listaAutoridades)
+            {
+                idAutoridades += "-" + i + "-|";
+
+            }
+            if (idAutoridades.Length > 0)
+            {
+                idAutoridades = idAutoridades.Substring(0, idAutoridades.Length - 1);
+            }
+            var lstDelegacionesSeleccionadas = (from r in db.DELEGACION
+                                                where listaDelegaciones.Contains(r.Id)
+                                                select new
+                                                {
+                                                    r.Id,
+                                                    r.Descripcion
+                                                }).ToList().Distinct()
+                                                 .Select(x => new item
+                                                 {
+                                                     Id = x.Id,
+                                                     Descripcion = x.Descripcion,
+                                                     Seleccionado = true
+                                                 }
+                                               );
+            ViewBag.DelegacionesSeleccionadas = lstDelegacionesSeleccionadas.ToList();
+
+            var lstAutoridadesSeleccionadas = (from r in db.AUTORIDAD
+                                               where listaAutoridades.Contains(r.Id)
+                                               select new
+                                               {
+                                                   r.Id,
+                                                   r.Descripcion
+                                               }).ToList().Distinct()
+                                        .Select(x => new item
+                                        {
+                                            Id = x.Id,
+                                            Descripcion = x.Descripcion,
+                                            Seleccionado = true
+                                        }
+                                      );
+            ViewBag.AutoridadesSeleccionadas = lstAutoridadesSeleccionadas.ToList();
+            string parametros = String.Format("{0}, {1}, {2}, {3}, {4}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), radio, idAutoridades, idDelegaciones);
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -295,7 +386,7 @@ namespace Cosevi.SIBOAC.Controllers
 
             return View("_DescargaParteOficial");
         }
-        private List<GetDescargaParteOficialData_Result1> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, string idAutoridades, string listaDelegaciones)
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, string idAutoridades, string listaDelegaciones)
         {
             string idDelegaciones = "";
             foreach (var i in listaDelegaciones)
