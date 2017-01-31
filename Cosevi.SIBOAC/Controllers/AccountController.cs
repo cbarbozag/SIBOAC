@@ -134,6 +134,10 @@ namespace Cosevi.SIBOAC.Controllers
                                     
                                     return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });
                                 }
+                                // Actualizar campo de ultimo acceso al sistema
+                                user.UltimoIngreso = DateTime.Now;
+                                sdb.Entry(user).State = EntityState.Modified;
+                                sdb.SaveChanges();
 
                                 return RedirectToAction("Index", "Home");
                             }
@@ -352,6 +356,7 @@ namespace Cosevi.SIBOAC.Controllers
                         user.Nombre = user.Nombre;
                         user.codigo = user.codigo;
                         user.FechaDeActualizacionClave = DateTime.Now;
+                        user.UltimoIngreso = DateTime.Now;
                         user.Activo = user.Activo;
 
                         sdb.Entry(user).State = EntityState.Modified;

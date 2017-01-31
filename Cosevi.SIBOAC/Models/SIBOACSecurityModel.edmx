@@ -61,6 +61,7 @@
           <Property Name="Activo" Type="bit" />
           <Property Name="Identificacion" Type="varchar" MaxLength="100" />
           <Property Name="LugarTrabajo" Type="varchar" MaxLength="100" />
+          <Property Name="UltimoIngreso" Type="datetime" />
         </EntityType>
         <Association Name="FK_SIBOACMenuOpcionesRol_SIBOACMenuOpciones">
           <End Role="SIBOACMenuOpciones" Type="Self.SIBOACMenuOpciones" Multiplicity="1" />
@@ -148,11 +149,12 @@
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Usuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="codigo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="FechaDeActualizacionClave" Type="DateTime" Precision="3" />
+          <Property Name="FechaDeActualizacionClave" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="SIBOACRoles" Relationship="SIBOACSecurityModel.SIBOACRolesDeUsuarios" FromRole="SIBOACUsuarios" ToRole="SIBOACRoles" />
           <Property Name="Identificacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LugarTrabajo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UltimoIngreso" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityContainer Name="SIBOACSecurityEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="SIBOACUsuarios" EntityType="Self.SIBOACUsuarios" />
@@ -214,6 +216,7 @@
           <EntitySetMapping Name="SIBOACUsuarios">
             <EntityTypeMapping TypeName="SIBOACSecurityModel.SIBOACUsuarios">
               <MappingFragment StoreEntitySet="SIBOACUsuarios">
+                <ScalarProperty Name="UltimoIngreso" ColumnName="UltimoIngreso" />
                 <ScalarProperty Name="LugarTrabajo" ColumnName="LugarTrabajo" />
                 <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />

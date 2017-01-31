@@ -13,7 +13,7 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class TipoVehiculoPorCodigoPorClasesController : BaseController<TipoVehiculoPorCodigoPorClase>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: TipoVehiculoPorCodigoPorClases
         [SessionExpire]

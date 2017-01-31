@@ -44,6 +44,9 @@
         <th>
             @Html.Label("Última actualización")
         </th>     
+        <th>
+            @Html.Label("Último ingreso")
+        </th>
         
         <th>
             @Html.Label("Estado")
@@ -86,6 +89,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UltimoIngreso)
         </td>
 
         <td>        
@@ -144,6 +150,10 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaDeActualizacionClave)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.UltimoIngreso)
             </td>
 
             <td>
