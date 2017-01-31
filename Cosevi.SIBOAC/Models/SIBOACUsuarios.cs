@@ -30,6 +30,7 @@ namespace Cosevi.SIBOAC.Models
         public bool? Activo { get; set; }
         public string Identificacion { get; set; }
         public string LugarTrabajo { get; set; }
+        public System.DateTime UltimoIngreso { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SIBOACRoles> SIBOACRoles { get; set; }
