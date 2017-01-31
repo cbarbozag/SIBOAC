@@ -361,7 +361,7 @@ namespace Cosevi.SIBOAC.Controllers
 
             return View("_DescargaParteOficial");
         }
-        private List<GetDescargaParteOficialData_Result1> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, string idAutoridades, string listaDelegaciones)
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(DateTime desde, DateTime hasta, int radio, string idAutoridades, string listaDelegaciones)
         {
             string idDelegaciones = "";
             foreach (var i in listaDelegaciones)

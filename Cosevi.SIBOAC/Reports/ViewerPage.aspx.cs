@@ -110,7 +110,7 @@ namespace Cosevi.SIBOAC.Reports
         }
 
 
-        private List<GetDescargaParteOficialData_Result1> GetDescargaParteOficialData(string parametros)
+        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(string parametros)
         {
             string[] param = parametros.Split(',');
             DateTime FechaDesde = Convert.ToDateTime(param[0]);

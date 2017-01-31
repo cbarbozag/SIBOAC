@@ -262,7 +262,24 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter);
         }
     
-        public virtual ObjectResult<GetDescargaParteOficialData_Result1> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
+        public virtual ObjectResult<GetReportePorUsuarioData_Result1> GetReportePorUsuarioData(string idUsuario, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal)
+        {
+            var idUsuarioParameter = idUsuario != null ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(string));
+    
+            var fechaInicialParameter = fechaInicial.HasValue ?
+                new ObjectParameter("FechaInicial", fechaInicial) :
+                new ObjectParameter("FechaInicial", typeof(System.DateTime));
+    
+            var fechaFinalParameter = fechaFinal.HasValue ?
+                new ObjectParameter("FechaFinal", fechaFinal) :
+                new ObjectParameter("FechaFinal", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result1>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter);
+        }
+    
+        public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
         {
             var fechaDesdeParameter = fechaDesde.HasValue ?
                 new ObjectParameter("FechaDesde", fechaDesde) :
@@ -284,24 +301,7 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("idDelegaciones", idDelegaciones) :
                 new ObjectParameter("idDelegaciones", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result1>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
-        }
-    
-        public virtual ObjectResult<GetReportePorUsuarioData_Result1> GetReportePorUsuarioData(string idUsuario, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal)
-        {
-            var idUsuarioParameter = idUsuario != null ?
-                new ObjectParameter("IdUsuario", idUsuario) :
-                new ObjectParameter("IdUsuario", typeof(string));
-    
-            var fechaInicialParameter = fechaInicial.HasValue ?
-                new ObjectParameter("FechaInicial", fechaInicial) :
-                new ObjectParameter("FechaInicial", typeof(System.DateTime));
-    
-            var fechaFinalParameter = fechaFinal.HasValue ?
-                new ObjectParameter("FechaFinal", fechaFinal) :
-                new ObjectParameter("FechaFinal", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result1>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
         }
     }
 }

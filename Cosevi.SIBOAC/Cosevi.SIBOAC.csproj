@@ -526,10 +526,10 @@
     <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetDescargaParteOficialData_Result1.cs">
+    <Compile Include="Models\GetReimpresionDeBoletasDeCampoData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetReimpresionDeBoletasDeCampoData_Result.cs">
+    <Compile Include="Models\GetDescargaParteOficialData_Result1.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReportePorUsuarioData_Result1.cs">
