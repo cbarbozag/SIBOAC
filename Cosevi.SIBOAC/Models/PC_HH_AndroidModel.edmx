@@ -25,6 +25,22 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="ARTICULO_ESPECIFICO">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="conducta" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_final" />
+          </Key>
+          <Property Name="codigo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="conducta" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_final" Type="datetime" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="codigo_retiro_temporal" Type="varchar" MaxLength="6" />
+          <Property Name="codigo_inmovilizacion" Type="varchar" MaxLength="6" />
+          <Property Name="observacion_noaplicacion" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="ARTICULOSXDEPOSITOSBIENES">
           <Key>
             <PropertyRef Name="CodDepositoBienes" />
@@ -1211,6 +1227,7 @@
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ARTICULO_ESPECIFICO" EntityType="Self.ARTICULO_ESPECIFICO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="Self.ARTICULOSXDEPOSITOSBIENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOXBOLETA" EntityType="Self.ARTICULOXBOLETA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AUTORIDAD" EntityType="Self.AUTORIDAD" Schema="dbo" store:Type="Tables" />
@@ -1520,6 +1537,7 @@
             <Parameter Name="Delegacion" Mode="In" Type="String" />
             <Parameter Name="Autoridad" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="ARTICULO_ESPECIFICO" EntityType="PC_HH_AndroidModel.ARTICULO_ESPECIFICO" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2766,6 +2784,22 @@
           <Property Type="String" Name="identificacion" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="72" />
         </ComplexType>
+        <EntityType Name="ARTICULO_ESPECIFICO">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="conducta" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_final" />
+          </Key>
+          <Property Name="codigo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_final" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="codigo_retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="observacion_noaplicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4131,6 +4165,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ARTICULO_ESPECIFICO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ARTICULO_ESPECIFICO">
+              <MappingFragment StoreEntitySet="ARTICULO_ESPECIFICO">
+                <ScalarProperty Name="observacion_noaplicacion" ColumnName="observacion_noaplicacion" />
+                <ScalarProperty Name="codigo_inmovilizacion" ColumnName="codigo_inmovilizacion" />
+                <ScalarProperty Name="codigo_retiro_temporal" ColumnName="codigo_retiro_temporal" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="conducta" ColumnName="conducta" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
