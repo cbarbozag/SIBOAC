@@ -96,6 +96,9 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.VEHICULO" Width="1.5" PointX="20.375" PointY="9.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.USUARIO" Width="1.5" PointX="10.375" PointY="22.25" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.LEYENDAPORAUTORIDAD" Width="1.5" PointX="10.375" PointY="15.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.ARTICULO_ESPECIFICO" Width="1.5" PointX="12.625" PointY="16" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_INM" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULO_ESPECIFICO_CATARTICULO_RET" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
