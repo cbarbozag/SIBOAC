@@ -392,6 +392,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetReporteStatusActualPlanoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -934,6 +939,17 @@
     </None>
     <Content Include="GetReportePorUsuarioDataSet.xss">
       <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReporteStatusActualPlanoDataSet.xsc">
+      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReporteStatusActualPlanoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReporteStatusActualPlanoDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetReporteStatusActualPlanoDataSet.xss">
+      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1562,6 +1578,7 @@
     <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ReportePorUsuario.cshtml" />
     <Content Include="Views\Reporte\_ConsultaeImpresionDeBoletas.cshtml" />
+    <Content Include="Views\Reporte\_ReporteStatusActualPlano.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1588,6 +1605,7 @@
     <EmbeddedResource Include="Reports\DescargaParteOficial.rdlc" />
     <EmbeddedResource Include="Reports\ReimpresionDeBoletasDeCampo.rdlc" />
     <EmbeddedResource Include="Reports\ReportePorUsuario.rdlc" />
+    <EmbeddedResource Include="Reports\ReporteStatusActualPlano.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

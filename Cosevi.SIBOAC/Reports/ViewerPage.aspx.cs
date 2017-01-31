@@ -64,6 +64,10 @@ namespace Cosevi.SIBOAC.Reports
                     result = GetConsultaeImpresionDeBoletasData(parametros);
                     break;
 
+                case "_ReporteStatusActualPlano":
+                    result = GetReporteStatusActualPlanoData(parametros);
+                    break;
+
                 default:
                     break;
             }
@@ -163,7 +167,20 @@ namespace Cosevi.SIBOAC.Reports
             return lista;
         }
 
+        private List<GetReporteStatusActualPlanoData_Result> GetReporteStatusActualPlanoData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            int statusPlano = Convert.ToInt32(param[0]);
+            DateTime FechaDesde = Convert.ToDateTime(param[1]);
+            DateTime FechaHasta = Convert.ToDateTime(param[2]);
+            string idDelegaciones = param[3].Replace("|", ",").Replace("-", "").Trim();
+            string idAutoridades = param[4].Replace("|", ",").Replace("-", "").Trim();
+            
 
+            var lista = db.GetReporteStatusActualPlanoData(statusPlano, FechaDesde, FechaHasta, idAutoridades, idDelegaciones).ToList();
+            return lista;
+        }
+        
 
         #endregion
     }
