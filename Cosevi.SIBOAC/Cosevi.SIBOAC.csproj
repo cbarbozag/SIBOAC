@@ -902,6 +902,12 @@
     <Content Include="GetReportePorUsuarioDataSet.xsc">
       <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="GetReportePorUsuarioDataSet.xsc">
+      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
+      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
+    </Content>
     <Content Include="GetDescargaParteOficialDataSet.xsc">
       <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
     </Content>
@@ -912,12 +918,6 @@
     </None>
     <Content Include="GetDescargaParteOficialDataSet.xss">
       <DependentUpon>GetDescargaParteOficialDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="GetReportePorUsuarioDataSet.xsc">
-      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
-      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReimpresionDeBoletasDeCampoDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>

@@ -297,7 +297,7 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnInfoPlaca;
             
-            private global::System.Data.DataColumn columnStatus_Plano;
+            private global::System.Data.DataColumn columnplano_generado;
             
             private global::System.Data.DataColumn columnplaca_confiscada;
             
@@ -410,9 +410,9 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Status_PlanoColumn {
+            public global::System.Data.DataColumn plano_generadoColumn {
                 get {
-                    return this.columnStatus_Plano;
+                    return this.columnplano_generado;
                 }
             }
             
@@ -469,7 +469,7 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetDescargaParteOficialDataRow AddGetDescargaParteOficialDataRow(string Serie, string NumeroParte, System.DateTime fecha_descarga, System.DateTime fecha_entrega, System.DateTime Fecha, decimal SerieNumeroBoleta, string DescripcionAutoridad, string DescripcionDelegacion, string InfoPlaca, short Status_Plano, string placa_confiscada, string auto_detenido) {
+            public GetDescargaParteOficialDataRow AddGetDescargaParteOficialDataRow(string Serie, string NumeroParte, System.DateTime fecha_descarga, System.DateTime fecha_entrega, System.DateTime Fecha, decimal SerieNumeroBoleta, string DescripcionAutoridad, string DescripcionDelegacion, string InfoPlaca, string plano_generado, string placa_confiscada, string auto_detenido) {
                 GetDescargaParteOficialDataRow rowGetDescargaParteOficialDataRow = ((GetDescargaParteOficialDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Serie,
@@ -481,7 +481,7 @@ namespace Cosevi.SIBOAC {
                         DescripcionAutoridad,
                         DescripcionDelegacion,
                         InfoPlaca,
-                        Status_Plano,
+                        plano_generado,
                         placa_confiscada,
                         auto_detenido};
                 rowGetDescargaParteOficialDataRow.ItemArray = columnValuesArray;
@@ -515,7 +515,7 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionAutoridad = base.Columns["DescripcionAutoridad"];
                 this.columnDescripcionDelegacion = base.Columns["DescripcionDelegacion"];
                 this.columnInfoPlaca = base.Columns["InfoPlaca"];
-                this.columnStatus_Plano = base.Columns["Status_Plano"];
+                this.columnplano_generado = base.Columns["plano_generado"];
                 this.columnplaca_confiscada = base.Columns["placa_confiscada"];
                 this.columnauto_detenido = base.Columns["auto_detenido"];
             }
@@ -541,8 +541,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnDescripcionDelegacion);
                 this.columnInfoPlaca = new global::System.Data.DataColumn("InfoPlaca", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInfoPlaca);
-                this.columnStatus_Plano = new global::System.Data.DataColumn("Status_Plano", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus_Plano);
+                this.columnplano_generado = new global::System.Data.DataColumn("plano_generado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnplano_generado);
                 this.columnplaca_confiscada = new global::System.Data.DataColumn("placa_confiscada", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnplaca_confiscada);
                 this.columnauto_detenido = new global::System.Data.DataColumn("auto_detenido", typeof(string), null, global::System.Data.MappingType.Element);
@@ -553,12 +553,16 @@ namespace Cosevi.SIBOAC {
                 this.columnNumeroParte.MaxLength = 15;
                 this.columnFecha.AllowDBNull = false;
                 this.columnSerieNumeroBoleta.ReadOnly = true;
+                this.columnDescripcionAutoridad.ReadOnly = true;
                 this.columnDescripcionAutoridad.MaxLength = 35;
                 this.columnDescripcionDelegacion.MaxLength = 35;
                 this.columnInfoPlaca.ReadOnly = true;
                 this.columnInfoPlaca.MaxLength = 28;
+                this.columnplano_generado.ReadOnly = true;
+                this.columnplano_generado.MaxLength = 1;
+                this.columnplaca_confiscada.ReadOnly = true;
                 this.columnplaca_confiscada.MaxLength = 1;
-                this.columnauto_detenido.AllowDBNull = false;
+                this.columnauto_detenido.ReadOnly = true;
                 this.columnauto_detenido.MaxLength = 1;
             }
             
@@ -837,18 +841,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Status_Plano {
+            public string plano_generado {
                 get {
                     try {
-                        return ((short)(this[this.tableGetDescargaParteOficialData.Status_PlanoColumn]));
+                        return ((string)(this[this.tableGetDescargaParteOficialData.plano_generadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Status_Plano\' in table \'GetDescargaParteOficialData\' is DBN" +
-                                "ull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'plano_generado\' in table \'GetDescargaParteOficialData\' is D" +
+                                "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetDescargaParteOficialData.Status_PlanoColumn] = value;
+                    this[this.tableGetDescargaParteOficialData.plano_generadoColumn] = value;
                 }
             }
             
@@ -873,7 +877,13 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string auto_detenido {
                 get {
-                    return ((string)(this[this.tableGetDescargaParteOficialData.auto_detenidoColumn]));
+                    try {
+                        return ((string)(this[this.tableGetDescargaParteOficialData.auto_detenidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'auto_detenido\' in table \'GetDescargaParteOficialData\' is DB" +
+                                "Null.", e);
+                    }
                 }
                 set {
                     this[this.tableGetDescargaParteOficialData.auto_detenidoColumn] = value;
@@ -954,14 +964,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStatus_PlanoNull() {
-                return this.IsNull(this.tableGetDescargaParteOficialData.Status_PlanoColumn);
+            public bool Isplano_generadoNull() {
+                return this.IsNull(this.tableGetDescargaParteOficialData.plano_generadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStatus_PlanoNull() {
-                this[this.tableGetDescargaParteOficialData.Status_PlanoColumn] = global::System.Convert.DBNull;
+            public void Setplano_generadoNull() {
+                this[this.tableGetDescargaParteOficialData.plano_generadoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -974,6 +984,18 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setplaca_confiscadaNull() {
                 this[this.tableGetDescargaParteOficialData.placa_confiscadaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isauto_detenidoNull() {
+                return this.IsNull(this.tableGetDescargaParteOficialData.auto_detenidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setauto_detenidoNull() {
+                this[this.tableGetDescargaParteOficialData.auto_detenidoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1145,7 +1167,7 @@ namespace Cosevi.SIBOAC.GetDescargaParteOficialDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("DescripcionAutoridad", "DescripcionAutoridad");
             tableMapping.ColumnMappings.Add("DescripcionDelegacion", "DescripcionDelegacion");
             tableMapping.ColumnMappings.Add("InfoPlaca", "InfoPlaca");
-            tableMapping.ColumnMappings.Add("Status_Plano", "Status_Plano");
+            tableMapping.ColumnMappings.Add("plano_generado", "plano_generado");
             tableMapping.ColumnMappings.Add("placa_confiscada", "placa_confiscada");
             tableMapping.ColumnMappings.Add("auto_detenido", "auto_detenido");
             this._adapter.TableMappings.Add(tableMapping);
@@ -1155,9 +1177,7 @@ namespace Cosevi.SIBOAC.GetDescargaParteOficialDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security Info=True" +
-                ";User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Application Name=" +
-                "EntityFramework";
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PC_HH_AndroidConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

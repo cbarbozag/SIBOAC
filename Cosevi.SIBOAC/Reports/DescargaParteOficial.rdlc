@@ -12,34 +12,34 @@
               <Width>2.27069cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.97843cm</Width>
+              <Width>1.76135cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.45049cm</Width>
+              <Width>1.60924cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.5034cm</Width>
+              <Width>1.63569cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.14382cm</Width>
+              <Width>3.4084cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.27069cm</Width>
+              <Width>2.90569cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.27069cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.79444cm</Width>
+              <Width>2.87923cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.79444cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.95319cm</Width>
+              <Width>2.35006cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.27069cm</Width>
+              <Width>1.66215cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.90027cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -352,7 +352,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Status Plano</Value>
+                              <Value>Croquis/Plano</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -719,21 +719,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Status_Plano">
+                    <Textbox Name="plano_generado">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Status_Plano.Value</Value>
+                              <Value>=Fields!plano_generado.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Status_Plano</rd:DefaultName>
+                      <rd:DefaultName>plano_generado</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -839,9 +839,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>1.84891cm</Top>
-        <Left>0.07938cm</Left>
+        <Left>0.35534cm</Left>
         <Height>1.2cm</Height>
-        <Width>24.93978cm</Width>
+        <Width>25.41603cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -852,7 +852,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>10.99852in</Width>
+  <Width>11in</Width>
   <Page>
     <PageHeader>
       <Height>1in</Height>
@@ -877,6 +877,19 @@
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style>
+                    <FontSize>14pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
             <Paragraph>
               <TextRuns>
                 <TextRun>
@@ -906,9 +919,9 @@
           </Paragraphs>
           <rd:DefaultName>ReportName</rd:DefaultName>
           <Top>0.28153cm</Top>
-          <Left>8.83708cm</Left>
+          <Left>7.54062cm</Left>
           <Height>2.08208cm</Height>
-          <Width>8.95805cm</Width>
+          <Width>12.97972cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -929,10 +942,6 @@
     </PageHeader>
     <PageHeight>8.5in</PageHeight>
     <PageWidth>11in</PageWidth>
-    <LeftMargin>0.7874in</LeftMargin>
-    <RightMargin>0.7874in</RightMargin>
-    <TopMargin>0.7874in</TopMargin>
-    <BottomMargin>0.7874in</BottomMargin>
     <ColumnSpacing>0.05118in</ColumnSpacing>
     <Style />
   </Page>
@@ -943,7 +952,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>b80fd1e9-8101-424c-b541-5f90db6144d8</rd:DataSourceID>
+      <rd:DataSourceID>d8f899fb-ead8-44e8-b042-9e397033a63b</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -989,9 +998,9 @@
           <DataField>InfoPlaca</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Status_Plano">
-          <DataField>Status_Plano</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+        <Field Name="plano_generado">
+          <DataField>plano_generado</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="placa_confiscada">
           <DataField>placa_confiscada</DataField>
