@@ -87,7 +87,32 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Usuarios = listaUsuarios;
                     break;
                 case "_ConsultaeImpresionDeBoletas":
-
+                    var listaDelegacion = (from r in db.DELEGACION
+                                             select new
+                                             {
+                                                 r.Id,
+                                                 r.Descripcion
+                                             }).ToList().Distinct()
+                                 .Select(x => new item
+                                 {
+                                     Id = x.Id,
+                                     Descripcion = x.Descripcion
+                                 }
+                                 );
+                    ViewBag.Delegacion = listaDelegacion;
+                    var listaInspector = (from r in db.INSPECTOR
+                                            select new
+                                            {
+                                                r.Id,
+                                                r.Nombre
+                                            }).ToList().Distinct()
+                             .Select(x => new item
+                             {
+                                 Id = x.Id,
+                                 Descripcion = x.Id+ " - "+x.Nombre
+                             }
+                             );
+                    ViewBag.Inspector = listaInspector;
                     break;
                 default:
                     break;
@@ -330,11 +355,31 @@ namespace Cosevi.SIBOAC.Controllers
 
 
 
-        public ActionResult GetConsultaeImpresionDeBoletas([FromUri] DateTime desde, DateTime hasta, [FromUri] string idDelegaciones, [FromUri] string idInspectores)
+        public ActionResult GetConsultaeImpresionDeBoletas([FromUri] DateTime desde, DateTime hasta, [FromUri] string [] listaDelegacion, [FromUri] string [] listaInspector)
         {
             string reporteID = "_ConsultaeImpresionDeBoletas";
             string nombreReporte = "ConsultaeImpresionDeBoletas";
-            string parametros = String.Format(" {0}, {1}, {2}, {3} ", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), idDelegaciones, idInspectores);
+            string idDelegacion = "";
+            string idInspector = "";
+            foreach (var i in listaDelegacion)
+            {
+                idDelegacion += "-" + i + "-|";
+
+            }
+            if (idDelegacion.Length > 0)
+            {
+                idDelegacion = idDelegacion.Substring(0, idDelegacion.Length - 1);
+            }
+            foreach (var i in listaInspector)
+            {
+                idInspector += "-" + i + "-|";
+
+            }
+            if (idInspector.Length > 0)
+            {
+                idInspector = idInspector.Substring(0, idInspector.Length - 1);
+            }
+            string parametros = String.Format(" {0}, {1}, {2}, {3} ", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), idDelegacion, idInspector);
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -344,9 +389,29 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_ConsultaeImpresionDeBoletas");
         }
 
-        private List<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(DateTime desde, DateTime hasta, [FromUri] string idDelegaciones, [FromUri] string idInspectores)
+        private List<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(DateTime desde, DateTime hasta, string listaDelegacion, string listaInspector)
         {
-            var lista = db.GetConsultaeImpresionDeBoletasData(desde, hasta, idDelegaciones, idInspectores).ToList();
+            string idDelegacion = "";
+            string idInspector = "";
+            foreach (var i in listaDelegacion)
+            {
+                idDelegacion += "-" + i + "-|";
+
+            }
+            if (idDelegacion.Length > 0)
+            {
+                idDelegacion = idDelegacion.Substring(0, idDelegacion.Length - 1);
+            }
+            foreach (var i in listaInspector)
+            {
+                idInspector += "-" + i + "-|";
+
+            }
+            if (idInspector.Length > 0)
+            {
+                idInspector = idInspector.Substring(0, idInspector.Length - 1);
+            }
+            var lista = db.GetConsultaeImpresionDeBoletasData(desde, hasta, idDelegacion, idInspector).ToList();
             return lista;
         }
     }
