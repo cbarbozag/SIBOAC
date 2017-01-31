@@ -11,7 +11,7 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     
-    public partial class GetReportePorUsuarioData_Result
+    public partial class GetReportePorUsuarioData_Result1
     {
         public string Usuario { get; set; }
         public string Nombre { get; set; }
@@ -22,6 +22,6 @@ namespace Cosevi.SIBOAC.Models
         public decimal numero_boleta { get; set; }
         public Nullable<System.DateTime> fecha_descarga { get; set; }
         public string Placa { get; set; }
-        public Nullable<short> Status_Plano { get; set; }
+        public string StatusPlano { get; set; }
     }
 }

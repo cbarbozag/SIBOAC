@@ -71,7 +71,20 @@ namespace Cosevi.SIBOAC.Controllers
                   
                     break;
                 case "_ReportePorUsuario":
-
+                    var listaUsuarios = (from r in dbSecurity.SIBOACUsuarios
+                                         select new
+                                             {
+                                                 r.Id,
+                                                 r.Usuario,
+                                                 r.Nombre
+                                             }).ToList().Distinct()
+                                 .Select(x => new item
+                                 {
+                                     Id = x.Id.ToString(),
+                                     Usuario = x.Usuario+" - "+x.Nombre,                                     
+                                 }
+                                 );
+                    ViewBag.Usuarios = listaUsuarios;
                     break;
                 case "_ConsultaeImpresionDeBoletas":
 
@@ -87,6 +100,8 @@ namespace Cosevi.SIBOAC.Controllers
         {
             public string Id { get; set; }
             public string Descripcion { get; set; }
+            public string Nombre { get; set; }
+            public string Usuario { get; set; }
         }
         // GET: Reporte
         [SessionExpire]
@@ -272,11 +287,21 @@ namespace Cosevi.SIBOAC.Controllers
             return lista;
         }
 
-        public ActionResult GetReportePorUsuario([FromUri] string IdUsuario, DateTime desde, DateTime hasta)
+        public ActionResult GetReportePorUsuario([FromUri] string [] listaUsuarios, DateTime desde, DateTime hasta)
         {
             string reporteID = "_ReportePorUsuario";
             string nombreReporte = "ReportePorUsuario";
-            string parametros = String.Format("{0},{1},{2}", IdUsuario, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"));
+            string idUsuarios = "";
+            foreach (var i in listaUsuarios)
+            {
+                idUsuarios += "-" + i + "-|";
+
+            }
+            if (idUsuarios.Length > 0)
+            {
+                idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
+            }
+            string parametros = String.Format("{0},{1},{2}", idUsuarios, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"));
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -286,9 +311,19 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_ReportePorUsuario");
         }
 
-        private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData([FromUri]  string IdUsuario, DateTime desde, DateTime hasta)
+        private List<GetReportePorUsuarioData_Result1> GetReportePorUsuarioData(string listaUsuarios, DateTime desde, DateTime hasta)
         {
-            var lista = db.GetReportePorUsuarioData(IdUsuario, desde, hasta).ToList();
+            string idUsuarios = "";
+            foreach (var i in listaUsuarios)
+            {
+                idUsuarios += "-" + i + "-|";
+
+            }
+            if (idUsuarios.Length > 0)
+            {
+                idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
+            }
+            var lista = db.GetReportePorUsuarioData(idUsuarios, desde, hasta).ToList();
             return lista;
         }
 
