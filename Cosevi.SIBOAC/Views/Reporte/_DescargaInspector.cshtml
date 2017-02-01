@@ -15,9 +15,9 @@
         <label class="control-label col-md-2">Rango de fechas</label>
         <div class="col-md-10">
             <div class="input-daterange input-group" id="datepicker">
-                <input id="desde" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["desde"]" />
+                <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
                 <span class="input-group-addon">a</span>
-                <input id="hasta" type="text" class="input-sm form-control" name="desde" value="@Request.Params["hasta"]" />
+                <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" />
             </div>
         </div>
     </div>
@@ -35,13 +35,11 @@
        
         <br>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <div class="form-group">
-                    <label class="control-label col-md-10"> Código del Oficial de Transito</label>
-                    <div class="col-max col-md-10">
-                        <select name="listaInspectores" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
-
-
+                    <label class="control-label col-md-2"> Oficial de Transito</label>
+                    <div class="col-max col-md-8">
+                        <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items">
                             @foreach (var item in ViewBag.Inspectores)
                             {
 
@@ -61,15 +59,13 @@
                     </div>
                 </div>
             </div>
+          <br>
+        </div>
+             <div class="pull-right">
+            <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        </div>
 
-                        <br>
-                    </div>
-
-                    <div class="pull-right">
-                        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
-                    </div>
-
-                    }
+    }
 
                     <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
                     @section scripts
@@ -121,3 +117,4 @@
                                    .trigger('change');
                         </script>
                     }
+

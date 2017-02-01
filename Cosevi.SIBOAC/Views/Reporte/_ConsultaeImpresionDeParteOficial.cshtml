@@ -16,20 +16,80 @@
             <label class="control-label col-md-2">Seleccione la opción por la que desea consultar:</label>
             <div class="col-md-10">
                 <div class="radio" id="radioButton">
-                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
-                    <br>
-                    <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
-                    <br>
-                    <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
-                    <br>
-                    <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
-                    <br>
+                    @if (Request.Params["opcionConsulta"] == "1")
+                    {
+                        <label><input id="radio01" type="radio" name="opcionConsulta" value="1" checked="checked">Parte Oficial</label>
+                        <br>
+                        <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                        <br>
+                        <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                        <br>
+                        <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                        <br>
+                    }
+                    else
+                    {
+                        if (Request.Params["opcionConsulta"] == "2")
+                        {
+                            <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                            <br>
+                            <label><input id="radio02" type="radio" name="opcionConsulta" value="2" checked="checked">Boleta de Citación</label>
+                            <br>
+                            <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                            <br>
+                            <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                            <br>
+                        }
+                        else
+                        {
+                            if (Request.Params["opcionConsulta"] == "3")
+                            {
+                                <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                                <br>
+                                <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                                <br>
+                                <label><input id="radio03" type="radio" name="opcionConsulta" value="3" checked="checked">Identifiación del Implicado</label>
+                                <br>
+                                <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                                <br>
+                            }
+                            else
+                            {
+                                if (Request.Params["opcionConsulta"] == "4")
+                                {
+
+                                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                                    <br>
+                                    <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                                    <br>
+                                    <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                                    <br>
+                                    <label><input id="radio04" type="radio" name="opcionConsulta" value="4" checked="checked">Placa</label>
+                                    <br>
+                                }
+                                else
+                                {
+
+                                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                                    <br>
+                                    <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                                    <br>
+                                    <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                                    <br>
+                                    <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                                    <br>
+
+                                }
+                            }
+                        }
+                    }
+
                 </div>
 
             </div>
         </div>
         <br />
-        <br />       
+        <br />
         <br />
         <br />
         <br />
@@ -37,11 +97,11 @@
             <br>
             Serie del Parte Oficial
             <br>
-            <input id="serieParte" type='text' name='serieParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+            <input id="serieParte" type='text' name='serieParte' class="input-sm form-control" value="@Request.Params["serieParte"]" @*size='30' maxLength='60'*@>
             <br>
             N° del Parte Oficial
             <br>
-            <input id="numeroParte" type='text' name='numeroParte' class="input-sm form-control" @*size='30' maxLength='60'*@>
+            <input id="numeroParte" type='text' name='numeroParte' class="input-sm form-control" value="@Request.Params["numeroParte"]" @*size='30' maxLength='60'*@>
             <br>
         </div>
 
@@ -49,11 +109,11 @@
             <br>
             Serie de la Boleta de Citación
             <br>
-            <input id="serieBoleta" type='text' name='serieBoleta' class="input-sm form-control">
+            <input id="serieBoleta" type='text' name='serieBoleta' class="input-sm form-control"  value="@Request.Params["serieBoleta"]">
             <br>
             N° de la Boleta de Citación
             <br>
-            <input id="numeroBoleta" type='text' name='numeroBoleta' class="input-sm form-control">
+            <input id="numeroBoleta" type='text' name='numeroBoleta' class="input-sm form-control"  value="@Request.Params["numeroBoleta"]">
             <br>
         </div>
 
@@ -61,11 +121,11 @@
             <br>
             Tipo de Identificación
             <br>
-            <input id="tipoId" type='text' name='tipoId' class="input-sm form-control">
+            <input id="tipoId" type='text' name='tipoId' class="input-sm form-control"  value="@Request.Params["tipoId"]">
             <br>
             N° Identificación del Implicado
             <br>
-            <input id="numeroID" type='text' name='numeroID' class="input-sm form-control">
+            <input id="numeroID" type='text' name='numeroID' class="input-sm form-control"  value="@Request.Params["numeroID"]">
             <br>
         </div>
 
@@ -73,15 +133,15 @@
             <br>
             N° de Placa
             <br>
-            <input id="numeroPlaca" type='text' name='numeroPlaca' class="input-sm form-control">
+            <input id="numeroPlaca" type='text' name='numeroPlaca' class="input-sm form-control"  value="@Request.Params["numeroPlaca"]">
             <br>
             Código de Placa
             <br>
-            <input id="codigoPlaca" type='text' name='codigoPlaca' class="input-sm form-control">
+            <input id="codigoPlaca" type='text' name='codigoPlaca' class="input-sm form-control"  value="@Request.Params["codigoPlaca"]">
             <br>
             Clase de Placa
             <br>
-            <input id="clasePlaca" type='text' name='clasePlaca' class="input-sm form-control">
+            <input id="clasePlaca" type='text' name='clasePlaca' class="input-sm form-control"  value="@Request.Params["clasePlaca"]">
             <br>
         </div>
     </div>
@@ -103,6 +163,22 @@
     <script>
         $(document).ready(
         function () {
+            if ($('#radio01').prop("checked")) {
+                 var checkedRadio = '#opc-1';
+                $(checkedRadio).show();
+            }
+            if ($('#radio02').prop("checked")) {
+                var checkedRadio = '#opc-2';
+                $(checkedRadio).show();
+            }
+            if ($('#radio03').prop("checked")) {
+                 var checkedRadio = '#opc-3';
+                $(checkedRadio).show();
+            }
+            if ($('#radio04').prop("checked")) {
+                 var checkedRadio = '#opc-4';
+                $(checkedRadio).show();
+            }
             prepararCampos();
             ReportCall();
         });

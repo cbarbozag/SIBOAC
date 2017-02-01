@@ -38,6 +38,7 @@ namespace Cosevi.SIBOAC.Controllers
                     var listaSeleccionadosInspector = ViewBag.InspectoresSeleccionados;
 
                     var listaInspectores = (from r in db.INSPECTOR
+                                            where r.Id.Trim() !="" 
                                              select new
                                              {
                                                  r.Id,
@@ -325,7 +326,7 @@ namespace Cosevi.SIBOAC.Controllers
             return bitacora;
         }
 
-        public ActionResult GetReporteDescargaInspector(DateTime hasta, DateTime desde, string numeroHH, [FromUri] string [] listaInspectores)
+        public ActionResult GetReporteDescargaInspector(DateTime desde, DateTime hasta, string numeroHH, [FromUri] string [] listaInspectores)
         {
             string reporteID = "_DescargaInspector";
             string nombreReporte = "DescargaInspector";
@@ -356,7 +357,7 @@ namespace Cosevi.SIBOAC.Controllers
                                               }
                                             );
             ViewBag.InspectoresSeleccionados = lstInspectoresSeleccionados.ToList();
-            string parametros = String.Format("{0},{1},{2},{3}", hasta.ToString("yyyy-MM-dd"), desde.ToString("yyyy-MM-dd"), numeroHH, idInspectores);
+            string parametros = String.Format("{0},{1},{2},{3}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), numeroHH, idInspectores);
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
