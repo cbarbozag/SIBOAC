@@ -73,7 +73,7 @@ namespace Cosevi.SIBOAC.Controllers
                         listaInspectores = _listInspectores;
                     }
 
-                    ViewBag.Inspectores = listaInspectores;
+                    ViewBag.Inspectores = listaInspectores.OrderBy(a => a.Descripcion);
 
 
                     break;
@@ -113,10 +113,10 @@ namespace Cosevi.SIBOAC.Controllers
                             }
                        
                         }
-                       listaDelegaciones = _listDelegaciones;
+                        listaDelegaciones = _listDelegaciones;
                     }
                    
-                    ViewBag.Delegaciones = listaDelegaciones;
+                    ViewBag.Delegaciones = listaDelegaciones.OrderBy(a => a.Descripcion);
                     
               
                     var listaAutoridades = (from r in db.AUTORIDAD
@@ -150,7 +150,7 @@ namespace Cosevi.SIBOAC.Controllers
                         listaAutoridades = _listAutoridad;
                     }
 
-                    ViewBag.Autoridades = listaAutoridades;
+                    ViewBag.Autoridades = listaAutoridades.OrderBy(a => a.Descripcion);
                     break;
                 case "_ConsultaeImpresionDeParteOficial":
                   
@@ -181,15 +181,15 @@ namespace Cosevi.SIBOAC.Controllers
                                  .Select(x => new item
                                  {
                                      Id = x.Id,
-                                     Descripcion = x.Descripcion
+                                     Descripcion = x.Id +" - "+ x.Descripcion
                                  }
                                  );
-                    ViewBag.Delegacion = listaDelegacion;
+                    ViewBag.Delegacion = listaDelegacion.OrderBy(a => a.Descripcion);
                     var listaInspector = (from r in db.INSPECTOR
                                             select new
                                             {
                                                 r.Id,
-                                                r.Nombre
+                                                r.Nombre                                                
                                             }).ToList().Distinct()
                              .Select(x => new item
                              {
@@ -197,7 +197,7 @@ namespace Cosevi.SIBOAC.Controllers
                                  Descripcion = x.Id+ " - "+x.Nombre
                              }
                              );
-                    ViewBag.Inspector = listaInspector;
+                    ViewBag.Inspector = listaInspector.OrderBy(a => a.Descripcion);
                     break;
 
                 case "_ReporteStatusActualPlano":
@@ -238,7 +238,7 @@ namespace Cosevi.SIBOAC.Controllers
                         listaDelegaciones2 = _listDelegaciones;
                     }
 
-                    ViewBag.Delegacion = listaDelegaciones2;
+                    ViewBag.Delegacion = listaDelegaciones2.OrderBy(a => a.Descripcion);
 
 
                     var listaAutoridades2 = (from r in db.AUTORIDAD
@@ -272,7 +272,7 @@ namespace Cosevi.SIBOAC.Controllers
                         listaAutoridades2 = _listAutoridad;
                     }
 
-                    ViewBag.Autoridad = listaAutoridades2;
+                    ViewBag.Autoridad = listaAutoridades2.OrderBy(a => a.Descripcion);
                     break;
 
                 default:

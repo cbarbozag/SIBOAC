@@ -34,32 +34,34 @@
         <br />
        
         <br>
-        <div class="row">
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label class="control-label col-md-2"> Oficial de Transito</label>
-                    <div class="col-max col-md-8">
-                        <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items">
-                            @foreach (var item in ViewBag.Inspectores)
-                            {
-
-                                if (item.Seleccionado == true)
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label class="control-label col-md-2"> Oficial de Transito</label>
+                        <div class="col-max col-md-8">
+                            <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items">
+                                @foreach (var item in ViewBag.Inspectores)
                                 {
-                                    <option value="@item.Id" selected>@item.Descripcion</option>
-                                }
-                                else
-                                {
-                                    <option value="@item.Id">@item.Descripcion</option>
-                                }
+
+                                    if (item.Seleccionado == true)
+                                    {
+                                        <option value="@item.Id" selected>@item.Descripcion</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Descripcion</option>
+                                    }
 
 
-                            }
-                        </select>
+                                }
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
-          <br>
+            </div>
+            <br>
         </div>
              <div class="pull-right">
             <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />

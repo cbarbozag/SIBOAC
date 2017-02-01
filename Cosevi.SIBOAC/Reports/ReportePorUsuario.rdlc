@@ -22,9 +22,10 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Reporte por Usuario]</Value>
+                <Value>Reporte por Usuario</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>

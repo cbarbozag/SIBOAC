@@ -7,7 +7,7 @@
   <Width>9.11458in</Width>
   <Page>
     <PageHeader>
-      <Height>2.54cm</Height>
+      <Height>2.71391cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -20,7 +20,7 @@
                 <TextRun>
                   <Value>Reporte por Reimpresión de Boletas de Campo</Value>
                   <Style>
-                    <FontSize>18pt</FontSize>
+                    <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -32,8 +32,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
           <Top>0.66573cm</Top>
+          <Left>5.95946cm</Left>
           <Height>1.20854cm</Height>
-          <Width>23.15104cm</Width>
+          <Width>13.6197cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -45,6 +46,21 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Image Name="logo">
+          <Source>Embedded</Source>
+          <Value>cosevi</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.27588cm</Top>
+          <Left>0.44662cm</Left>
+          <Height>2.26164cm</Height>
+          <Width>5.44229cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
       </ReportItems>
       <Style>
         <Border>
@@ -62,6 +78,15 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <EmbeddedImages>
+    <EmbeddedImage Name="cosevi">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>e9bbcada-9519-4748-9e5f-1116d733e64c</rd:ReportID>
 </Report>

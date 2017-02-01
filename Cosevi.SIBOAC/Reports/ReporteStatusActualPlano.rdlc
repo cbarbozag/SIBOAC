@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>[Reporte por Usuario]</Value>
+                <Value>Estatus Actual del Plano o Croquis</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                 </Style>
@@ -630,7 +630,7 @@
         <Top>2.45745cm</Top>
         <Left>0.2951cm</Left>
         <Height>1.2cm</Height>
-        <Width>27.38031cm</Width>
+        <Width>27.38032cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>

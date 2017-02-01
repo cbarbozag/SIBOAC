@@ -99,15 +99,19 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Identificacion, LugarTrabajo, Email, codigo,FechaDeActualizacionClave, Activo ")] SIBOACUsuarios sIBOACUsuarios, [System.Web.Http.FromUri] string[] SIBOACRoles)
+        public ActionResult Create([Bind(Include = " Id, Nombre, Usuario, Identificacion, LugarTrabajo, Email, codigo, Activo ")] SIBOACUsuarios sIBOACUsuarios, [System.Web.Http.FromUri] string[] SIBOACRoles)
         {
             if (ModelState.IsValid)
             {
-                var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
-                                   select a;
-                foreach (var i in query_where2)
+                if (SIBOACRoles != null)
                 {
-                    sIBOACUsuarios.SIBOACRoles.Add(i);
+                    var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
+                                       select a;
+
+                    foreach (var i in query_where2)
+                    {
+                        sIBOACUsuarios.SIBOACRoles.Add(i);
+                    }
                 }
                 sIBOACUsuarios.Contrasena = sIBOACUsuarios.Usuario;
                 dbs.SIBOACUsuarios.Add(sIBOACUsuarios);
@@ -115,6 +119,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "")
                 {
                     sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
+                    sIBOACUsuarios.UltimoIngreso = DateTime.Now;
                     dbs.SaveChanges();
                     Bitacora(sIBOACUsuarios, "I", "SIBOACUsuarios");
                     TempData["Type"] = "success";
