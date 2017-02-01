@@ -31,7 +31,14 @@
                         <select name="listaUsuarios" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
                             @foreach (var item in ViewBag.Usuarios)
                             {
-                                <option value="@item.Id">@item.Usuario</option>
+                                if (item.Seleccionado == true)
+                                {
+                                    <option value="@item.Id" selected>@item.Descripcion</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Descripcion</option>
+                                }
                             }
                             
                         </select>
@@ -42,8 +49,8 @@
                 <br />
                 <br />
                 <div class="btn-group pull-right">
-                    @*<button id="todos" type="button" class="btn btn-primary">Marcar todos</button>
-                    <button id="limpiar" type="button" class="btn btn-warning">Limpiar</button>*@
+                    <button id="todos" type="button" class="btn btn-primary">Marcar todos</button>
+                    <button id="limpiar" type="button" class="btn btn-warning">Limpiar</button>
                 </div>
                 <br />
                 <br />
@@ -108,23 +115,4 @@
         });
              };
     </script>
-
-@*<script>
-        function cargarDatos() {
-            $.ajax({
-                type: 'GET',
-                url: 'api/SIBOACUsuarios',
-                //data: {},
-                success: function (results) {
-                    var list = $('#list');
-                    for (var i = 0; i < results.length; i++) {
-                        list.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Usuario + ' - ' + results[i].Nombre + '</li>');
-                    };
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR);
-                }
-            });
-        };
-</script>*@
 }
