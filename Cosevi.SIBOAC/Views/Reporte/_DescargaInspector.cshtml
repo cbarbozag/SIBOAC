@@ -30,56 +30,94 @@
         <br>
         Numero de la Hand Held
         <br>
-        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" value="@Request.Params["numeroHH"]"  @*size='30' maxLength='60'*@>
+        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" value="@Request.Params["numeroHH"]" @*size='30' maxLength='60'*@>
         <br />
-        Código del Oficial de Transito
+       
         <br>
-        <input id="codigoInspector" type='text' name='codigoInspector' class="input-sm form-control" value="@Request.Params["codigoInspector"]"  @*size='30' maxLength='60'*@>
-        <br>
-    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-10"> Código del Oficial de Transito</label>
+                    <div class="col-max col-md-10">
+                        <select name="listaInspectores" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
 
-    <div class="pull-right">
-        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
-    </div>
 
-}
+                            @foreach (var item in ViewBag.Inspectores)
+                            {
 
-<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
-@section scripts
+                                if (item.Seleccionado == true)
+                                {
+                                    <option value="@item.Id" selected>@item.Descripcion</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Descripcion</option>
+                                }
+
+
+                            }
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                        <br>
+                    </div>
+
+                    <div class="pull-right">
+                        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+                    </div>
+
+                    }
+
+                    <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+                    @section scripts
     {
-    <script>
-        $(document).ready(
-        function () {
-            Calendario();
-            ReportCall();
-        });
-    </script>
+                        <script>
+                            $(document).ready(
+                            function () {
+                                Calendario();
+                                ReportCall();
+                            });
+                        </script>
 
-    <script>
-        function Calendario() {
-            $('.input-daterange').datepicker({
-                startView: 2
-            });
-        };
+                        <script>
+                            function Calendario() {
+                                $('.input-daterange').datepicker({
+                                    startView: 2
+                                });
+                            };
 
-        function ReportCall() {
+                            function ReportCall() {
 
-            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+                                var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
 
-            var myFrame = document.getElementById('ifrmReportViewer');
-            if (myFrame !== null) {
-                if (myFrame.src) {
-                    myFrame.src = url;
-                }
-                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
-                    myFrame.contentWindow.location = url;
-                }
-                else {
-                    myFrame.setAttribute('src', url);
-                }
-            }
+                                var myFrame = document.getElementById('ifrmReportViewer');
+                                if (myFrame !== null) {
+                                    if (myFrame.src) {
+                                        myFrame.src = url;
+                                    }
+                                    else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                                        myFrame.contentWindow.location = url;
+                                    }
+                                    else {
+                                        myFrame.setAttribute('src', url);
+                                    }
+                                }
 
-            return false;
-        }
-    </script>
-}
+                                return false;
+                            }
+
+                            $("#listaInspectores").change(function () {
+                                var id = $(this).attr('name');
+                                var str2 = "";
+                                $("#listaInspectores option:selected").each(function () {
+
+                                    str2 += "&" + id + "=" + $(this).attr('value');
+                                });
+                                $("div").text(str2);
+                            })
+                                   .trigger('change');
+                        </script>
+                    }

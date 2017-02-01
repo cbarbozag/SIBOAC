@@ -769,6 +769,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050.mdf" />
+    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050_log.ldf">
+      <DependentUpon>aspnet-Cosevi.SIBOAC-20161115085050.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\DefaultConnection.mdf" />
+    <Content Include="App_Data\DefaultConnection_log.ldf">
+      <DependentUpon>DefaultConnection.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\Bitacoras.png" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\btnExcel.png" />
@@ -1581,13 +1589,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\ConsultaeImpresionDeBoletas.rdlc" />
-    <EmbeddedResource Include="Reports\ConsultaeImpresionDeParteOficial.rdlc" />
-    <EmbeddedResource Include="Reports\DescargaBoleta.rdlc" />
-    <EmbeddedResource Include="Reports\DescargaInspector.rdlc" />
-    <EmbeddedResource Include="Reports\DescargaParteOficial.rdlc" />
-    <EmbeddedResource Include="Reports\ReimpresionDeBoletasDeCampo.rdlc" />
-    <EmbeddedResource Include="Reports\ReportePorUsuario.rdlc" />
+    <Content Include="Reports\ConsultaeImpresionDeBoletas.rdlc" />
+    <Content Include="Reports\ConsultaeImpresionDeParteOficial.rdlc" />
+    <Content Include="Reports\DescargaBoleta.rdlc" />
+    <Content Include="Reports\DescargaInspector.rdlc" />
+    <Content Include="Reports\DescargaParteOficial.rdlc" />
+    <Content Include="Reports\ReimpresionDeBoletasDeCampo.rdlc" />
+    <Content Include="Reports\ReportePorUsuario.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -91,7 +91,7 @@ namespace Cosevi.SIBOAC.Reports
             DateTime fechaInicio = Convert.ToDateTime(param[0]);
             DateTime fechaFin = Convert.ToDateTime(param[1]);
             string numeroHandHeld = param[2];
-            string codigoOficial = param[3];
+            string codigoOficial = param[3].Replace("|", ",").Replace("-", "").Trim(); ;
           
             var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, numeroHandHeld, codigoOficial).ToList();
             return lista;

@@ -35,8 +35,46 @@ namespace Cosevi.SIBOAC.Controllers
 
                     break;
                 case "_DescargaInspector":
+                    var listaSeleccionadosInspector = ViewBag.InspectoresSeleccionados;
 
-                   
+                    var listaInspectores = (from r in db.INSPECTOR
+                                             select new
+                                             {
+                                                 r.Id,
+                                                 r.Nombre,
+                                                 r.Identificacion
+                                             }).ToList().Distinct()
+                                 .Select(x => new item
+                                 {
+                                     Id = x.Id,
+                                     Descripcion = x.Identificacion + " - "+ x.Nombre,
+                                     Seleccionado = false
+                                 }
+                                 );
+
+
+
+                    if (listaSeleccionadosInspector != null)
+                    {
+                        List<item> _list = new List<item>();
+                        _list = (List<item>)listaSeleccionadosInspector;
+                        List<item> _listInspectores = listaInspectores.ToList();
+                        List<item> _temp = new List<item>();
+
+                        for (int i = 0; i < _listInspectores.Count(); i++)
+                        {
+                            if (_list.ToArray().Any(a => a.Id == _listInspectores.ElementAt(i).Id))
+                            {
+                                _listInspectores.ElementAt(i).Seleccionado = true;
+                            }
+
+                        }
+                        listaInspectores = _listInspectores;
+                    }
+
+                    ViewBag.Inspectores = listaInspectores;
+
+
                     break;
                 case "_DescargaBoleta":
 
@@ -211,11 +249,38 @@ namespace Cosevi.SIBOAC.Controllers
             return bitacora;
         }
 
-        public ActionResult GetReporteDescargaInspector(DateTime hasta, DateTime desde, string numeroHH, string codigoInspector)
+        public ActionResult GetReporteDescargaInspector(DateTime hasta, DateTime desde, string numeroHH, [FromUri] string [] listaInspectores)
         {
             string reporteID = "_DescargaInspector";
             string nombreReporte = "DescargaInspector";
-            string parametros = String.Format("{0},{1},{2},{3}", hasta.ToString("yyyy-MM-dd"), desde.ToString("yyyy-MM-dd"), numeroHH, codigoInspector);
+            string idInspectores = "";
+            foreach (var i in listaInspectores)
+            {
+                idInspectores += "-" + i + "-|";
+
+            }
+            if (idInspectores.Length > 0)
+            {
+                idInspectores = idInspectores.Substring(0, idInspectores.Length - 1);
+            }
+
+            var lstInspectoresSeleccionados = (from r in db.INSPECTOR
+                                                where listaInspectores.Contains(r.Id)
+                                                select new
+                                                {
+                                                    r.Id,
+                                                    r.Nombre,
+                                                    r.Identificacion
+                                                }).ToList().Distinct()
+                                              .Select(x => new item
+                                              {
+                                                  Id = x.Id,
+                                                  Descripcion = x.Identificacion + " - "+ x.Nombre,
+                                                  Seleccionado = true
+                                              }
+                                            );
+            ViewBag.InspectoresSeleccionados = lstInspectoresSeleccionados.ToList();
+            string parametros = String.Format("{0},{1},{2},{3}", hasta.ToString("yyyy-MM-dd"), desde.ToString("yyyy-MM-dd"), numeroHH, idInspectores);
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -225,9 +290,19 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_DescargaInspector");
         }
 
-        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, string numeroHH, string codigoInspector)
+        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, string numeroHH, [FromUri] string [] listaInspectores)
         {
-            var lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, codigoInspector).ToList();
+            string idInspectores = "";
+            foreach (var i in listaInspectores)
+            {
+                idInspectores += "-" + i + "-|";
+
+            }
+            if (idInspectores.Length > 0)
+            {
+                idInspectores = idInspectores.Substring(0, idInspectores.Length - 1);
+            }
+            var lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, idInspectores).ToList();
 
             return lista;
         }
