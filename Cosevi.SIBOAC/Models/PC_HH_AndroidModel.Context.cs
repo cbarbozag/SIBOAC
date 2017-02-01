@@ -329,5 +329,22 @@ namespace Cosevi.SIBOAC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteStatusActualPlanoData_Result>("GetReporteStatusActualPlanoData", statusPlanoParameter, fechaInicialParameter, fechaFinalParameter, delegacionParameter, autoridadParameter);
         }
+    
+        public virtual ObjectResult<GetActividadOficialData_Result> GetActividadOficialData(string inspector, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        {
+            var inspectorParameter = inspector != null ?
+                new ObjectParameter("Inspector", inspector) :
+                new ObjectParameter("Inspector", typeof(string));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActividadOficialData_Result>("GetActividadOficialData", inspectorParameter, fechaInicioParameter, fechaFinParameter);
+        }
     }
 }
