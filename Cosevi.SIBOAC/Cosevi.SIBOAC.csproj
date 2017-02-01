@@ -333,6 +333,7 @@
     <Compile Include="Controllers\ReportePorEstadoActualDelPlanoController.cs" />
     <Compile Include="Controllers\SIBOACMenuOpcionesController.cs" />
     <Compile Include="Controllers\SIBOACUsuariosController.cs" />
+    <Compile Include="Controllers\AdjuntarArchivosController.cs" />
     <Compile Include="Controllers\StatusPlanoController.cs" />
     <Compile Include="Controllers\TiempoesController.cs" />
     <Compile Include="Controllers\TIPODANOesController.cs" />
@@ -391,6 +392,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GetReporteStatusActualPlanoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -942,6 +948,17 @@
     </None>
     <Content Include="GetReportePorUsuarioDataSet.xss">
       <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReporteStatusActualPlanoDataSet.xsc">
+      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReporteStatusActualPlanoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReporteStatusActualPlanoDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetReporteStatusActualPlanoDataSet.xss">
+      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1570,6 +1587,9 @@
     <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ReportePorUsuario.cshtml" />
     <Content Include="Views\Reporte\_ConsultaeImpresionDeBoletas.cshtml" />
+    <Content Include="Views\AdjuntarArchivos\_AdjuntarView.cshtml" />
+    <Content Include="Views\AdjuntarArchivos\Index.cshtml" />
+    <Content Include="Views\Reporte\_ReporteStatusActualPlano.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
