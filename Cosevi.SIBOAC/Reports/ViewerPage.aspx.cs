@@ -1,7 +1,10 @@
 ﻿using Cosevi.SIBOAC.Models;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,6 +34,7 @@ namespace Cosevi.SIBOAC.Reports
                 ReportDataSource RDS = new ReportDataSource("DataSet1", GetData(reporteID, parametros));
                 ReportViewer1.LocalReport.DataSources.Add(RDS);
                 ReportViewer1.LocalReport.Refresh();
+                btnPrint.Visible = true;
 
             }
         }
@@ -188,5 +192,73 @@ namespace Cosevi.SIBOAC.Reports
         
 
         #endregion
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType;
+            string encoding;
+            string extension;
+
+            // Elimina archivos creados con mas de 10 minutos respecto a la hora actual
+            var files = new DirectoryInfo(HttpContext.Current.Server.MapPath("")).GetFiles("*.pdf");
+            foreach (var file in files)
+            {
+                if (DateTime.UtcNow - file.CreationTimeUtc > TimeSpan.FromMinutes(10))
+                {
+                    File.Delete(file.FullName);
+                }
+            }
+
+            string fileName = Path.ChangeExtension(Path.GetTempFileName(), ".pdf");
+            string fileReportName = "Reporte" + DateTime.Now.ToString("HHmmss") + ".pdf";
+
+            byte[] bytes = ReportViewer1.LocalReport.Render("PDF", null, out mimeType,
+               out encoding, out extension, out streamids, out warnings);
+
+            FileStream fs = new FileStream(String.Format("{0}", fileName),
+            FileMode.Create);
+            fs.Write(bytes, 0, bytes.Length);
+            fs.Close();
+
+            //Open existing PDF
+            Document document = new Document(PageSize.LETTER);
+            PdfReader reader = new PdfReader(fileName);
+
+            //Getting a instance of new PDF writer
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
+               HttpContext.Current.Server.MapPath(fileReportName), FileMode.Create));
+            document.Open();
+            PdfContentByte cb = writer.DirectContent;
+
+            int i = 0;
+            int p = 0;
+            int n = reader.NumberOfPages;
+            Rectangle psize = reader.GetPageSize(1);
+
+            float width = psize.Width;
+            float height = psize.Height;
+
+            //Add Page to new document
+            while (i < n)
+            {
+                document.NewPage();
+                p++;
+                i++;
+
+                PdfImportedPage page1 = writer.GetImportedPage(reader, i);
+                cb.AddTemplate(page1, 0, 0);
+            }
+
+            //Attach javascript to the document
+            PdfAction jAction = PdfAction.JavaScript("this.print(true);\r", writer);
+            writer.AddJavaScript(jAction);
+            document.Close();
+
+            //Attach pdf to the iframe
+            frmPrint.Attributes["src"] = fileReportName;
+
+        }
     }
 }
