@@ -1016,7 +1016,26 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Reporte de Descarga Inspector</Value>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -1027,12 +1046,26 @@
               <TextAlign>Center</TextAlign>
             </Style>
           </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Descarga Inspector</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>1.05833cm</Top>
+        <Top>0.76729cm</Top>
         <Left>6.05516cm</Left>
-        <Height>1.85526cm</Height>
-        <Width>9.94805cm</Width>
+        <Height>2.67547cm</Height>
+        <Width>11.2253cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -1050,7 +1083,7 @@
         <Sizing>FitProportional</Sizing>
         <Top>0.76729cm</Top>
         <Left>0.36632cm</Left>
-        <Height>1.62595cm</Height>
+        <Height>2.23449cm</Height>
         <Width>5.51245cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
