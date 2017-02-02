@@ -12,34 +12,34 @@
               <Width>2.27069cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.97843cm</Width>
+              <Width>1.76135cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.45049cm</Width>
+              <Width>1.60924cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.5034cm</Width>
+              <Width>1.63569cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.14382cm</Width>
+              <Width>3.4084cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.27069cm</Width>
+              <Width>2.90569cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.27069cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.79444cm</Width>
+              <Width>2.87923cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.79444cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.95319cm</Width>
+              <Width>2.35006cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.27069cm</Width>
+              <Width>1.66215cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.90027cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -352,7 +352,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Status Plano</Value>
+                              <Value>Croquis/Plano</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -719,21 +719,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Status_Plano">
+                    <Textbox Name="plano_generado">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Status_Plano.Value</Value>
+                              <Value>=Fields!plano_generado.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Status_Plano</rd:DefaultName>
+                      <rd:DefaultName>plano_generado</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -838,102 +838,132 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>1.84891cm</Top>
-        <Left>0.07938cm</Left>
+        <Top>3.98708cm</Top>
+        <Left>0.35534cm</Left>
         <Height>1.2cm</Height>
-        <Width>24.93978cm</Width>
+        <Width>25.41602cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
+      <Image Name="Image1">
+        <Source>Embedded</Source>
+        <Value>cosevi</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>0.49389cm</Top>
+        <Left>0.78842cm</Left>
+        <Height>2.50541cm</Height>
+        <Width>6.3059cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="ReportName">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Descarga de Parte Oficial</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ReportName</rd:DefaultName>
+        <Top>0.49389cm</Top>
+        <Left>7.23543cm</Left>
+        <Height>2.77cm</Height>
+        <Width>12.97972cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>5.31317cm</Height>
     <Style />
   </Body>
-  <Width>10.99852in</Width>
+  <Width>27.94cm</Width>
   <Page>
-    <PageHeader>
-      <Height>1in</Height>
-      <PrintOnFirstPage>true</PrintOnFirstPage>
-      <PrintOnLastPage>true</PrintOnLastPage>
-      <ReportItems>
-        <Image Name="Image1">
-          <Source>Embedded</Source>
-          <Value>cosevi</Value>
-          <Sizing>FitProportional</Sizing>
-          <Top>0.28153cm</Top>
-          <Left>0.26141cm</Left>
-          <Height>2.08208cm</Height>
-          <Width>6.3059cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
-        <Textbox Name="ReportName">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Reporte por Descarga de Parte Oficial</Value>
-                  <Style>
-                    <FontSize>14pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value />
-                  <Style>
-                    <FontSize>14pt</FontSize>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>ReportName</rd:DefaultName>
-          <Top>0.28153cm</Top>
-          <Left>8.83708cm</Left>
-          <Height>2.08208cm</Height>
-          <Width>8.95805cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-      </ReportItems>
-      <Style>
-        <Border>
-          <Style>None</Style>
-        </Border>
-      </Style>
-    </PageHeader>
-    <PageHeight>8.5in</PageHeight>
-    <PageWidth>11in</PageWidth>
-    <LeftMargin>0.7874in</LeftMargin>
-    <RightMargin>0.7874in</RightMargin>
-    <TopMargin>0.7874in</TopMargin>
-    <BottomMargin>0.7874in</BottomMargin>
-    <ColumnSpacing>0.05118in</ColumnSpacing>
+    <PageHeight>21.59cm</PageHeight>
+    <PageWidth>27.94cm</PageWidth>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
+    <TopMargin>0cm</TopMargin>
+    <BottomMargin>0cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -943,7 +973,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>b80fd1e9-8101-424c-b541-5f90db6144d8</rd:DataSourceID>
+      <rd:DataSourceID>d8f899fb-ead8-44e8-b042-9e397033a63b</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -989,9 +1019,9 @@
           <DataField>InfoPlaca</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Status_Plano">
-          <DataField>Status_Plano</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+        <Field Name="plano_generado">
+          <DataField>plano_generado</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="placa_confiscada">
           <DataField>placa_confiscada</DataField>
@@ -1021,6 +1051,6 @@ gfaXjUhXNiJd2Yh0ZSPSlY1IVzYiXdmIdGUj0pWNSFc2Il21N6I7dzY2jr569OjhwszMp5/OzMz8cnd3
 cK8MDiIXn4CES3BuOzFYQvHHeDc6mhYX8SGfJ7HmZo856Rx80g0jXVAKh1NCEFaThjhq4URLSmH6yQji5aW3w90QvYpdSQhGuVf0wyvmFg/GSiIH2RRm6QQUEvtQFrzscXcvBhGmsmIQPCMAsRiMxAzx08qKNpsU5BoEF5eWlnIjFUrcmXsQw9ediMMqHW77IhHKO2keNsE1yND/wFIPkAKXMYgwH3U42HyMzkM0+NKveVNZuy6KxHshLY6Ojr67dUAhkNuCJNZwzDYHdCCpwBztade8AHMpWXayfFxQf0xb90GEmkisFkvK8gp0GHMSYBmiZVbKgikQea6OUqhgRFDKLWZp+kB3EtI0SoFKoitw/XEnC6ByVP0EgRV5bxjyvksT1xXD3sUyRDn2G0hvEGQvXg/AhXNoVYB9QqR4CRZgYK1tIZM4OJ1LS9elWh8hSmv/YUsJUJJ352AAV0jviwTLEFmGaEt64PC6MJ94XLDeEYTlgVo+EQaH5K1MSrx+Y26JecCRiEJv7u1SCHvFIMxrJ0gQDtOCwbUMShmmxEHI5s7/tjeRdbkopggirXDWE4KMKRqivmIMi9qgkBjvgCmKCIykSocUco1AXpIvl9HVWUWZ82kfsMhOuONeiAlydD4NLrcxjlqZritnOwYnrHBDT+2y0+/EkAgOWO3FS9UuiCoJMRF/IazaQu2CCMtZW84yaCdEbSsbka5sRLqyEenKRqQrG5GubES6shHpykakKxuRrmxEurIR6ep/aSu1D6flV54AAAAASUVORK5CYII=</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>b5b5a316-8d77-4fa8-92eb-ba5bbd5b18a7</rd:ReportID>
 </Report>

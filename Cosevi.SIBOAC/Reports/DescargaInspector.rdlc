@@ -12,7 +12,7 @@
               <Width>1.54183cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.80641cm</Width>
+              <Width>2.41216cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.68766cm</Width>
@@ -21,28 +21,28 @@
               <Width>1.59475cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.62121cm</Width>
+              <Width>2.57371cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.83287cm</Width>
+              <Width>2.41933cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.13204cm</Width>
+              <Width>2.21025cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.93329cm</Width>
+              <Width>1.27725cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.1585cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.60766cm</Width>
+              <Width>2.35478cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.62121cm</Width>
+              <Width>2.15038cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.39662cm</Width>
+              <Width>1.9787cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.1148cm</Width>
@@ -989,7 +989,7 @@
         <Top>4.11304cm</Top>
         <Left>0.36632cm</Left>
         <Height>1.2cm</Height>
-        <Width>21.24605cm</Width>
+        <Width>26.6713cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1016,7 +1016,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Reporte de Descarga Inspector</Value>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                 </Style>
@@ -1026,12 +1026,46 @@
               <TextAlign>Center</TextAlign>
             </Style>
           </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Descarga Inspector</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>1.05833cm</Top>
+        <Top>0.76729cm</Top>
         <Left>6.05516cm</Left>
-        <Height>1.85526cm</Height>
-        <Width>9.94805cm</Width>
+        <Height>2.67547cm</Height>
+        <Width>11.2253cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -1049,7 +1083,7 @@
         <Sizing>FitProportional</Sizing>
         <Top>0.76729cm</Top>
         <Left>0.36632cm</Left>
-        <Height>1.62595cm</Height>
+        <Height>2.23449cm</Height>
         <Width>5.51245cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
@@ -1059,13 +1093,13 @@
         </Style>
       </Image>
     </ReportItems>
-    <Height>2.09175in</Height>
+    <Height>5.31305cm</Height>
     <Style />
   </Body>
-  <Width>8.65625in</Width>
+  <Width>27.4345cm</Width>
   <Page>
     <PageFooter>
-      <Height>1in</Height>
+      <Height>2.54cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1105,13 +1139,13 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>8.5in</PageHeight>
-    <PageWidth>11in</PageWidth>
-    <LeftMargin>0.7874in</LeftMargin>
-    <RightMargin>0.7874in</RightMargin>
-    <TopMargin>0.7874in</TopMargin>
-    <BottomMargin>0.7874in</BottomMargin>
-    <ColumnSpacing>0.05118in</ColumnSpacing>
+    <PageHeight>21.59cm</PageHeight>
+    <PageWidth>27.94cm</PageWidth>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
+    <TopMargin>2cm</TopMargin>
+    <BottomMargin>2cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -1207,6 +1241,6 @@ gfaXjUhXNiJd2Yh0ZSPSlY1IVzYiXdmIdGUj0pWNSFc2Il21N6I7dzY2jr569OjhwszMp5/OzMz8cnd3
 cK8MDiIXn4CES3BuOzFYQvHHeDc6mhYX8SGfJ7HmZo856Rx80g0jXVAKh1NCEFaThjhq4URLSmH6yQji5aW3w90QvYpdSQhGuVf0wyvmFg/GSiIH2RRm6QQUEvtQFrzscXcvBhGmsmIQPCMAsRiMxAzx08qKNpsU5BoEF5eWlnIjFUrcmXsQw9ediMMqHW77IhHKO2keNsE1yND/wFIPkAKXMYgwH3U42HyMzkM0+NKveVNZuy6KxHshLY6Ojr67dUAhkNuCJNZwzDYHdCCpwBztade8AHMpWXayfFxQf0xb90GEmkisFkvK8gp0GHMSYBmiZVbKgikQea6OUqhgRFDKLWZp+kB3EtI0SoFKoitw/XEnC6ByVP0EgRV5bxjyvksT1xXD3sUyRDn2G0hvEGQvXg/AhXNoVYB9QqR4CRZgYK1tIZM4OJ1LS9elWh8hSmv/YUsJUJJ352AAV0jviwTLEFmGaEt64PC6MJ94XLDeEYTlgVo+EQaH5K1MSrx+Y26JecCRiEJv7u1SCHvFIMxrJ0gQDtOCwbUMShmmxEHI5s7/tjeRdbkopggirXDWE4KMKRqivmIMi9qgkBjvgCmKCIykSocUco1AXpIvl9HVWUWZ82kfsMhOuONeiAlydD4NLrcxjlqZritnOwYnrHBDT+2y0+/EkAgOWO3FS9UuiCoJMRF/IazaQu2CCMtZW84yaCdEbSsbka5sRLqyEenKRqQrG5GubES6shHpykakKxuRrmxEurIR6ep/aSu1D6flV54AAAAASUVORK5CYII=</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>140f2b3e-854f-4482-b933-a525e93462fe</rd:ReportID>
 </Report>

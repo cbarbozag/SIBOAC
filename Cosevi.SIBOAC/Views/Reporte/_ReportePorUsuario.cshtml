@@ -14,9 +14,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" />
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" />
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]"/>
                 </div>
             </div>
         </div>
@@ -31,7 +31,14 @@
                         <select name="listaUsuarios" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
                             @foreach (var item in ViewBag.Usuarios)
                             {
-                                <option value="@item.Id">@item.Usuario</option>
+                                if (item.Seleccionado == true)
+                                {
+                                    <option value="@item.Id" selected>@item.Usuario</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Usuario</option>
+                                }
                             }
                             
                         </select>
@@ -108,23 +115,4 @@
         });
              };
     </script>
-
-@*<script>
-        function cargarDatos() {
-            $.ajax({
-                type: 'GET',
-                url: 'api/SIBOACUsuarios',
-                //data: {},
-                success: function (results) {
-                    var list = $('#list');
-                    for (var i = 0; i < results.length; i++) {
-                        list.append('<li data-id=' + results[i].Id + ' class="list-group-item">' + results[i].Usuario + ' - ' + results[i].Nombre + '</li>');
-                    };
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR);
-                }
-            });
-        };
-</script>*@
 }
