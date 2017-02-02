@@ -2693,8 +2693,7 @@
           <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result">
-          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="203" />
           <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
           <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="serie" Nullable="false" />
@@ -4146,7 +4145,6 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReportePorUsuarioData_Result">
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="serie" ColumnName="serie" />
