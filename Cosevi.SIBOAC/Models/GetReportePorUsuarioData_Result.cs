@@ -10,7 +10,7 @@
 namespace Cosevi.SIBOAC.Models
 {
     using System;
-
+    
     public partial class GetReportePorUsuarioData_Result
     {
         public string Usuario { get; set; }

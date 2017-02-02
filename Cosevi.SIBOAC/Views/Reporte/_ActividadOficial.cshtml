@@ -7,13 +7,14 @@
     <div class="form-group">
         <label class="control-label col-md-2"> Inspector:</label>
         <div class="col-md-10">
-            <input type="text" name="CodigoInspector" value="@ViewBag.CodigoInspector" />
+            <input type="text" name="CodigoInspector" value="@ViewBag.CodigoInspector" class = "form-control" />
         </div>
     </div>
-    <div class="row">
+    <br />
+    <br />
         <div class="form-group">
             <label class="control-label col-md-2">Rango de fechas</label>
-            <div class="col-md-1">
+            <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
                     <input id="FechaInicio" type="text" class="input-sm form-control" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
                     <span class="input-group-addon">a</span>
@@ -21,7 +22,11 @@
                 </div>
             </div>
         </div>
-    </div>
+<br />
+<br />
+<br />
+    <br />
+
 <div class="pull-right">
 <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
 </div>
@@ -33,6 +38,7 @@
     <script>
         $(document).ready(
         function () {
+            Calendario();
             ReportCall();
         });
     </script>
@@ -57,5 +63,10 @@
 
             return false;
         }
+        function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2
+            });
+        };
     </script>
 }

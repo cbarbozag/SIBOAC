@@ -704,7 +704,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>2.61056cm</Top>
+        <Top>3.56306cm</Top>
         <Left>0.63137cm</Left>
         <Height>1.2cm</Height>
         <Width>27.30863cm</Width>
@@ -721,10 +721,36 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Reporte por Consulta e Impresión de Boletas</Value>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
                 <Style>
-                  <FontSize>18pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Consulta e Impresión de Boletas</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -735,7 +761,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
         <Top>0.45861cm</Top>
-        <Height>1.20854cm</Height>
+        <Height>2.16146cm</Height>
         <Width>27.94cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -753,7 +779,7 @@
         <Source>Embedded</Source>
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.14111cm</Top>
+        <Top>0.45861cm</Top>
         <Left>0.3175cm</Left>
         <Height>1.94979cm</Height>
         <Width>5.90093cm</Width>

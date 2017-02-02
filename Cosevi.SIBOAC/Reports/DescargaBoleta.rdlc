@@ -905,7 +905,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>2.8575cm</Top>
+        <Top>3.81cm</Top>
         <Left>0.635cm</Left>
         <Height>1.2cm</Height>
         <Width>27.4428cm</Width>
@@ -935,10 +935,36 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Reporte por Descarga de Boleta</Value>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
                 <Style>
                   <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Descarga de Boleta</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -950,7 +976,7 @@
         <rd:DefaultName>ReportName</rd:DefaultName>
         <Top>0.70556cm</Top>
         <Left>0.26226cm</Left>
-        <Height>1.71125cm</Height>
+        <Height>2.63729cm</Height>
         <Width>27.86295cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -967,7 +993,7 @@
         <Source>Embedded</Source>
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.38806cm</Top>
+        <Top>0.70556cm</Top>
         <Left>0.52598cm</Left>
         <Height>1.94979cm</Height>
         <Width>7.02979cm</Width>

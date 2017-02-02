@@ -838,7 +838,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.03458cm</Top>
+        <Top>3.98708cm</Top>
         <Left>0.35534cm</Left>
         <Height>1.2cm</Height>
         <Width>25.41602cm</Width>
@@ -852,9 +852,9 @@
         <Source>Embedded</Source>
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.17639cm</Top>
-        <Left>0.75314cm</Left>
-        <Height>2.08208cm</Height>
+        <Top>0.49389cm</Top>
+        <Left>0.78842cm</Left>
+        <Height>2.50541cm</Height>
         <Width>6.3059cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -883,10 +883,36 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Reporte por Descarga de Parte Oficial</Value>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
                 <Style>
                   <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Descarga de Parte Oficial</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -912,7 +938,7 @@
         <rd:DefaultName>ReportName</rd:DefaultName>
         <Top>0.49389cm</Top>
         <Left>7.23543cm</Left>
-        <Height>2.08208cm</Height>
+        <Height>2.77cm</Height>
         <Width>12.97972cm</Width>
         <ZIndex>2</ZIndex>
         <Style>

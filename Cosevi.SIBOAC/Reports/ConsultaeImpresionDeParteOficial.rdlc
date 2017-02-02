@@ -23,10 +23,36 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Reporte  de Consulta e Impresion de Parte Oficial</Value>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
                 <Style>
                   <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Consulta e Impresion de Parte Oficial</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -38,7 +64,7 @@
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.44979cm</Top>
         <Left>6.91536cm</Left>
-        <Height>1.87cm</Height>
+        <Height>2.76958cm</Height>
         <Width>14.53854cm</Width>
         <Style>
           <Border>
@@ -54,7 +80,7 @@
         <Source>Embedded</Source>
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.31432cm</Top>
+        <Top>0.63182cm</Top>
         <Left>0.3937cm</Left>
         <Height>2.00547cm</Height>
         <Width>5.83916cm</Width>
@@ -968,10 +994,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.2512cm</Top>
+        <Top>3.8862cm</Top>
         <Left>0.0762cm</Left>
         <Height>1.2cm</Height>
-        <Width>27.31728cm</Width>
+        <Width>27.31729cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -980,7 +1006,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>2.58577in</Height>
     <Style />
   </Body>
   <Width>10.88826in</Width>

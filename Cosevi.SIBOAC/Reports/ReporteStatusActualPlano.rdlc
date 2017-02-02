@@ -9,6 +9,32 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
+                <Value>Ministerio de Obras Públicas y Transporte  </Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Dirección General de la Policía de Tránsito</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
                 <Value>Estatus Actual del Plano o Croquis</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
@@ -21,8 +47,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>ReportName</rd:DefaultName>
-        <Top>0.81104cm</Top>
-        <Height>1.1825cm</Height>
+        <Top>0.76729cm</Top>
+        <Height>2.08208cm</Height>
         <Width>27.94cm</Width>
         <Style>
           <Border>
@@ -38,6 +64,7 @@
         <Source>Embedded</Source>
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
+        <Top>0.635cm</Top>
         <Left>0.2951cm</Left>
         <Height>1.94979cm</Height>
         <Width>7.02979cm</Width>
@@ -627,7 +654,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>2.45745cm</Top>
+        <Top>3.40995cm</Top>
         <Left>0.2951cm</Left>
         <Height>1.2cm</Height>
         <Width>27.38032cm</Width>

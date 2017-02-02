@@ -14,9 +14,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" />
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" />
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]"/>
                 </div>
             </div>
         </div>
