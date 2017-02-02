@@ -645,6 +645,7 @@ namespace Cosevi.SIBOAC.Controllers
             string reporteID = "_ReportePorUsuario";
             string nombreReporte = "ReportePorUsuario";
             string idUsuarios = "";
+            Session["ListaUsuarios"] = listaUsuarios;
             foreach (var i in listaUsuarios)
             {
                 idUsuarios += "-" + i + "-|";
@@ -655,7 +656,8 @@ namespace Cosevi.SIBOAC.Controllers
                 idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
             }
             var lstaUsuariosSeleccionados = (from r in dbSecurity.SIBOACUsuarios
-                                 select new
+                                where listaUsuarios.Contains(r.Id.ToString())
+                                select new
                                  {
                                      r.Id,
                                      r.Usuario,

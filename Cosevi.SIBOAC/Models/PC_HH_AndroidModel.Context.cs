@@ -276,7 +276,7 @@ namespace Cosevi.SIBOAC.Models
             var fechaFinalParameter = fechaFinal.HasValue ?
                 new ObjectParameter("FechaFinal", fechaFinal) :
                 new ObjectParameter("FechaFinal", typeof(System.DateTime));
-    
+          
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter);
         }
     
