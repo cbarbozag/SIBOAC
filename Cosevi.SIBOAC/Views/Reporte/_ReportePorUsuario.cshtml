@@ -33,11 +33,11 @@
                             {
                                 if (item.Seleccionado == true)
                                 {
-                                    <option value="@item.Id" selected>@item.Descripcion</option>
+                                    <option value="@item.Id" selected>@item.Usuario</option>
                                 }
                                 else
                                 {
-                                    <option value="@item.Id">@item.Descripcion</option>
+                                    <option value="@item.Id">@item.Usuario</option>
                                 }
                             }
                             
@@ -49,8 +49,8 @@
                 <br />
                 <br />
                 <div class="btn-group pull-right">
-                    <button id="todos" type="button" class="btn btn-primary">Marcar todos</button>
-                    <button id="limpiar" type="button" class="btn btn-warning">Limpiar</button>
+                    @*<button id="todos" type="button" class="btn btn-primary">Marcar todos</button>
+                    <button id="limpiar" type="button" class="btn btn-warning">Limpiar</button>*@
                 </div>
                 <br />
                 <br />
