@@ -14,9 +14,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required/>
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]"/>
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]" required/>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Usuarios</label>
                     <div class="col-max col-md-10">
-                        <select name="listaUsuarios" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
+                        <select name="listaUsuarios" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                             @foreach (var item in ViewBag.Usuarios)
                             {
                                 if (item.Seleccionado == true)
