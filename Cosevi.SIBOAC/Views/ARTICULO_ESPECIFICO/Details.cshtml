@@ -1,0 +1,51 @@
+﻿@model Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Artículo Específico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_retiro_temporal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_retiro_temporal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_inmovilizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_inmovilizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacion_noaplicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacion_noaplicacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

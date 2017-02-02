@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Artículos Específicos</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigo_retiro_temporal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigo_inmovilizacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.observacion_noaplicacion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.estado == "I")
+    {
+        <tr class="warning">
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo_retiro_temporal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigo_inmovilizacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.observacion_noaplicacion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+            @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            @if (item.estado == "I")
+            {
+                @Html.ActionLink("Activar", "Delete", new { id = item.codigo })
+            }
+            else
+            {
+                @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo })
+            }
+        </td>
+    </tr>
+    }
+
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo_retiro_temporal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo_inmovilizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.observacion_noaplicacion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                @if (item.estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.codigo })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo })
+                }
+            </td>
+        </tr>
+    }
+}
+
+</table>

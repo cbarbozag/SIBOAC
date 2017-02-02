@@ -1,0 +1,73 @@
+﻿@model Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO
+
+@{
+    ViewBag.Title = "Inactivar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.estado == "A")
+            {
+    <h2>Inactivar</h2>
+}
+else
+{
+    <h2>Activar</h2>
+}
+
+<h3>¿Está seguro que desea cambiar el estado?</h3>
+<div>
+    <h4>Artículo Específico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_retiro_temporal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_retiro_temporal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigo_inmovilizacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigo_inmovilizacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacion_noaplicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacion_noaplicacion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if (Model.estado == "A")
+            {
+                <input type="submit" value="Inactivar" class="btn btn-warning" />
+            }
+            else
+            {
+                <input type="submit" value="Activar" class="btn btn-success" />
+            }
+            |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>
