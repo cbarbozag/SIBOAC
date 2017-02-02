@@ -250,6 +250,7 @@
     <Compile Include="Controllers\api\AutoridadJudicialController.cs" />
     <Compile Include="Controllers\api\DelegacionsController.cs" />
     <Compile Include="Controllers\api\SIBOACUsuariosController.cs" />
+    <Compile Include="Controllers\ARTICULO_ESPECIFICOController.cs" />
     <Compile Include="Controllers\AutoridadsController.cs" />
     <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -550,9 +551,6 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReportePorUsuarioData_Result.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetReportePorUsuarioData_Result1.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReporteStatusActualPlanoData_Result.cs">
@@ -972,9 +970,9 @@
       <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReporteStatusActualPlanoDataSet.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GetReporteStatusActualPlanoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="GetReporteStatusActualPlanoDataSet.xss">
       <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
@@ -1606,6 +1604,11 @@
     <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ReportePorUsuario.cshtml" />
     <Content Include="Views\Reporte\_ConsultaeImpresionDeBoletas.cshtml" />
+    <Content Include="Views\ARTICULO_ESPECIFICO\Create.cshtml" />
+    <Content Include="Views\ARTICULO_ESPECIFICO\Delete.cshtml" />
+    <Content Include="Views\ARTICULO_ESPECIFICO\Details.cshtml" />
+    <Content Include="Views\ARTICULO_ESPECIFICO\Edit.cshtml" />
+    <Content Include="Views\ARTICULO_ESPECIFICO\Index.cshtml" />
     <Content Include="Views\AdjuntarArchivos\_AdjuntarView.cshtml" />
     <Content Include="Views\AdjuntarArchivos\Index.cshtml" />
     <Content Include="Views\Reporte\_ReporteStatusActualPlano.cshtml" />

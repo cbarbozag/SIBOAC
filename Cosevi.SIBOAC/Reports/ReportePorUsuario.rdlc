@@ -49,7 +49,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Reporte por Usuario</Value>
+                <Value>Reporte por Usuario Status Plano o Croquis</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
                   <FontWeight>Normal</FontWeight>
@@ -769,9 +769,7 @@
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember>
-              <KeepWithGroup>After</KeepWithGroup>
-            </TablixMember>
+            <TablixMember />
             <TablixMember>
               <Group Name="Details" />
             </TablixMember>
@@ -793,7 +791,7 @@
     <Height>3.16667in</Height>
     <Style />
   </Body>
-  <Width>11in</Width>
+  <Width>16.59178in</Width>
   <Page>
     <PageHeight>21.59cm</PageHeight>
     <PageWidth>27.94cm</PageWidth>

@@ -279,7 +279,7 @@ namespace Cosevi.SIBOAC {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GetReporteStatusActualPlanoDataDataTable : global::System.Data.TypedTableBase<GetReporteStatusActualPlanoDataRow> {
             
-            private global::System.Data.DataColumn columncodigo_autoridad_registra;
+            private global::System.Data.DataColumn columnAutoridad;
             
             private global::System.Data.DataColumn columnserie_parteoficial;
             
@@ -330,9 +330,9 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn codigo_autoridad_registraColumn {
+            public global::System.Data.DataColumn AutoridadColumn {
                 get {
-                    return this.columncodigo_autoridad_registra;
+                    return this.columnAutoridad;
                 }
             }
             
@@ -429,10 +429,10 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetReporteStatusActualPlanoDataRow AddGetReporteStatusActualPlanoDataRow(string codigo_autoridad_registra, string serie_parteoficial, string numeroparte, decimal numero_boleta, System.DateTime Fecha, System.DateTime fecha_descarga, string identificacion, string Nombre) {
+            public GetReporteStatusActualPlanoDataRow AddGetReporteStatusActualPlanoDataRow(string Autoridad, string serie_parteoficial, string numeroparte, decimal numero_boleta, System.DateTime Fecha, System.DateTime fecha_descarga, string identificacion, string Nombre) {
                 GetReporteStatusActualPlanoDataRow rowGetReporteStatusActualPlanoDataRow = ((GetReporteStatusActualPlanoDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        codigo_autoridad_registra,
+                        Autoridad,
                         serie_parteoficial,
                         numeroparte,
                         numero_boleta,
@@ -462,7 +462,7 @@ namespace Cosevi.SIBOAC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columncodigo_autoridad_registra = base.Columns["codigo_autoridad_registra"];
+                this.columnAutoridad = base.Columns["Autoridad"];
                 this.columnserie_parteoficial = base.Columns["serie_parteoficial"];
                 this.columnnumeroparte = base.Columns["numeroparte"];
                 this.columnnumero_boleta = base.Columns["numero_boleta"];
@@ -475,8 +475,8 @@ namespace Cosevi.SIBOAC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columncodigo_autoridad_registra = new global::System.Data.DataColumn("codigo_autoridad_registra", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncodigo_autoridad_registra);
+                this.columnAutoridad = new global::System.Data.DataColumn("Autoridad", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAutoridad);
                 this.columnserie_parteoficial = new global::System.Data.DataColumn("serie_parteoficial", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnserie_parteoficial);
                 this.columnnumeroparte = new global::System.Data.DataColumn("numeroparte", typeof(string), null, global::System.Data.MappingType.Element);
@@ -491,10 +491,12 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnidentificacion);
                 this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombre);
-                this.columncodigo_autoridad_registra.MaxLength = 5;
+                this.columnAutoridad.ReadOnly = true;
+                this.columnAutoridad.MaxLength = 5;
                 this.columnserie_parteoficial.MaxLength = 4;
                 this.columnnumeroparte.MaxLength = 15;
                 this.columnnumero_boleta.AllowDBNull = false;
+                this.columnFecha.AllowDBNull = false;
                 this.columnidentificacion.AllowDBNull = false;
                 this.columnidentificacion.MaxLength = 15;
                 this.columnNombre.ReadOnly = true;
@@ -641,18 +643,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string codigo_autoridad_registra {
+            public string Autoridad {
                 get {
                     try {
-                        return ((string)(this[this.tableGetReporteStatusActualPlanoData.codigo_autoridad_registraColumn]));
+                        return ((string)(this[this.tableGetReporteStatusActualPlanoData.AutoridadColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'codigo_autoridad_registra\' in table \'GetReporteStatusActual" +
-                                "PlanoData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Autoridad\' in table \'GetReporteStatusActualPlanoData\' is DB" +
+                                "Null.", e);
                     }
                 }
                 set {
-                    this[this.tableGetReporteStatusActualPlanoData.codigo_autoridad_registraColumn] = value;
+                    this[this.tableGetReporteStatusActualPlanoData.AutoridadColumn] = value;
                 }
             }
             
@@ -705,13 +707,7 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime Fecha {
                 get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableGetReporteStatusActualPlanoData.FechaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Fecha\' in table \'GetReporteStatusActualPlanoData\' is DBNull" +
-                                ".", e);
-                    }
+                    return ((global::System.DateTime)(this[this.tableGetReporteStatusActualPlanoData.FechaColumn]));
                 }
                 set {
                     this[this.tableGetReporteStatusActualPlanoData.FechaColumn] = value;
@@ -765,14 +761,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Iscodigo_autoridad_registraNull() {
-                return this.IsNull(this.tableGetReporteStatusActualPlanoData.codigo_autoridad_registraColumn);
+            public bool IsAutoridadNull() {
+                return this.IsNull(this.tableGetReporteStatusActualPlanoData.AutoridadColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setcodigo_autoridad_registraNull() {
-                this[this.tableGetReporteStatusActualPlanoData.codigo_autoridad_registraColumn] = global::System.Convert.DBNull;
+            public void SetAutoridadNull() {
+                this[this.tableGetReporteStatusActualPlanoData.AutoridadColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -797,18 +793,6 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetnumeroparteNull() {
                 this[this.tableGetReporteStatusActualPlanoData.numeroparteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFechaNull() {
-                return this.IsNull(this.tableGetReporteStatusActualPlanoData.FechaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFechaNull() {
-                this[this.tableGetReporteStatusActualPlanoData.FechaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -995,7 +979,7 @@ namespace Cosevi.SIBOAC.GetReporteStatusActualPlanoDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "GetReporteStatusActualPlanoData";
-            tableMapping.ColumnMappings.Add("codigo_autoridad_registra", "codigo_autoridad_registra");
+            tableMapping.ColumnMappings.Add("Autoridad", "Autoridad");
             tableMapping.ColumnMappings.Add("serie_parteoficial", "serie_parteoficial");
             tableMapping.ColumnMappings.Add("numeroparte", "numeroparte");
             tableMapping.ColumnMappings.Add("numero_boleta", "numero_boleta");
@@ -1010,7 +994,9 @@ namespace Cosevi.SIBOAC.GetReporteStatusActualPlanoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PC_HH_AndroidConnectionString"].ConnectionString;
+            this._connection.ConnectionString = "Data Source=AFARIASRV\\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security I" +
+                "nfo=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Applicati" +
+                "on Name=EntityFramework";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

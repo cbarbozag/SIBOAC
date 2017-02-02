@@ -303,16 +303,16 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Delegacion = listaDelegaciones2.OrderBy(a => a.Descripcion);
 
 
-                    var listaAutoridades2 = (from r in db.AUTORIDAD
-                                            select new
+                    var listaAutoridades2 = (from r in db.AUTORIDAD                                             
+                                             select new
                                             {
                                                 r.Id,
-                                                r.Descripcion
-                                            }).ToList().Distinct()
+                                                r.Descripcion,
+                                            }).Distinct().ToList()
                              .Select(x => new item
                              {
                                  Id = x.Id,
-                                 Descripcion =x.Id+" - "+ x.Descripcion,
+                                 Descripcion =x.Id+" - "+ x.Descripcion.Trim(),
                                  Seleccionado = false
                              }
                              );
@@ -320,7 +320,7 @@ namespace Cosevi.SIBOAC.Controllers
                     {
                         List<item> _list = new List<item>();
                         _list = (List<item>)listaSeleccionadosAutoridad2;
-                        List<item> _listAutoridad = listaAutoridades2.ToList();
+                        List<item> _listAutoridad = listaAutoridades2.Distinct().ToList();
                         List<item> _temp = new List<item>();
 
                         for (int i = 0; i < _listAutoridad.Count(); i++)
@@ -752,7 +752,7 @@ namespace Cosevi.SIBOAC.Controllers
                                                   Seleccionado = true
                                               }
                                             );
-            ViewBag.InspectoresSeleccionados = lstInspectoresSeleccionados.ToList();
+            ViewBag.InspectorSeleccionadas = lstInspectoresSeleccionados.ToList();
 
             string parametros = String.Format(" {0}, {1}, {2}, {3} ", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), idDelegacion, idInspector);
 
@@ -795,7 +795,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
 
             string reporteID = "_ReporteStatusActualPlano";
-            string nombreReporte = "StatusActualPlano";
+            string nombreReporte = "ReporteStatusActualPlano";
             string idDelegaciones = "";
             string idAutoridades = "";
             Session["ListaDelegaciones"] = listaDelegacion;
@@ -844,11 +844,11 @@ namespace Cosevi.SIBOAC.Controllers
                                         .Select(x => new item
                                         {
                                             Id = x.Id,
-                                            Descripcion = x.Descripcion,
+                                            Descripcion = x.Descripcion.Trim(),
                                             Seleccionado = true
                                         }
                                       );
-            ViewBag.AutoridadesSeleccionadas = lstAutoridadesSeleccionadas.ToList();
+            ViewBag.AutoridadesSeleccionadas = lstAutoridadesSeleccionadas.Distinct().ToList();
             string parametros = String.Format("{0}, {1}, {2}, {3}, {4}", radio, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), idAutoridades, idDelegaciones);
 
             ViewBag.ReporteID = reporteID;

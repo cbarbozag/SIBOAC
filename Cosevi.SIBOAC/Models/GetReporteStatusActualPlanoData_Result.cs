@@ -13,7 +13,6 @@ namespace Cosevi.SIBOAC.Models
     
     public partial class GetReporteStatusActualPlanoData_Result
     {
-        public string codigo_autoridad_registra { get; set; }
         public string serie_parteoficial { get; set; }
         public string numeroparte { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
@@ -21,5 +20,6 @@ namespace Cosevi.SIBOAC.Models
         public string identificacion { get; set; }
         public string Nombre { get; set; }
         public decimal numero_boleta { get; set; }
+        public string Autoridad { get; set; }
     }
 }
