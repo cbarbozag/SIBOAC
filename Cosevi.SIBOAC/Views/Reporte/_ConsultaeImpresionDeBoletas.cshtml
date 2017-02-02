@@ -16,9 +16,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" />
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" />
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]"/>
                 </div>
             </div>
         </div>
@@ -35,7 +35,15 @@
                             <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
                                 @foreach (var item in ViewBag.Delegacion)
                                 {
-                                    <option value="@item.Id">@item.Descripcion</option>
+                                    if (item.Seleccionado == true)
+                                    {
+                                        <option value="@item.Id" selected>@item.Descripcion</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Descripcion</option>
+                                    }
+
                                 }  
                             </select>                           
                         </div>
@@ -55,7 +63,14 @@
                             <select name="listaInspector" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
                                 @foreach (var item in ViewBag.Inspector)
                                 {
-                                    <option value="@item.Id">@item.Descripcion</option>
+                                    if (item.Seleccionado == true)
+                                    {
+                                        <option value="@item.Id" selected>@item.Descripcion</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Descripcion</option>
+                                    }
                                 }
                             </select> 
                         </div>
@@ -82,8 +97,7 @@
                 $(document).ready(
                 function () {
                     Calendario();
-                    cargarDatosInspector();
-                    cargarDatosDelegacion();
+                
                     ReportCall();
 
                 });
