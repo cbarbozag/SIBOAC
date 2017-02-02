@@ -274,7 +274,11 @@ namespace Cosevi.SIBOAC.Controllers
 
                     ViewBag.Autoridad = listaAutoridades2.OrderBy(a => a.Descripcion);
                     break;
-
+                case "_ActividadOficial":
+                    var Inspector = (dbSecurity.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.codigo).ToList());
+                    string  CodigoInspector = Inspector.ToArray().FirstOrDefault() == null ? ViewBag.Inspector : Inspector.ToArray().FirstOrDefault().ToString();
+                    ViewBag.CodigoInspector = CodigoInspector;
+                    break;
                 default:
                     break;
             }
@@ -318,6 +322,24 @@ namespace Cosevi.SIBOAC.Controllers
             GetData(reporteID);
 
             return View("_Bitacora");
+        }
+        public ActionResult GetActividadOficial(string CodigoInspector, DateTime fechaInicio, DateTime fechaFin)
+        {
+            string reporteID = "_ActividadOficial";
+            string nombreReporte = "ActividadOficial";
+            string parametros = String.Format("{0},{1},{2}",CodigoInspector, fechaInicio.ToString("yyyy-MM-dd"), fechaFin.ToString("yyyy-MM-dd"));
+            ViewBag.Inspector = CodigoInspector;
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
+
+            return View("_ActividadOficial");
+        }
+        private List<GetActividadOficialData_Result> GetActividadOficialData(string CodigoInspector,DateTime fechaInicio, DateTime fechaFin)
+        {
+            var lista = db.GetActividadOficialData(CodigoInspector, fechaInicio, fechaFin).ToList();
+            return lista;
         }
 
         private List<BitacoraSIBOAC> GetBitacoraData(DateTime fechaInicio, DateTime fechaFin, string nombreTabla, string operacion, string usuario)

@@ -71,7 +71,9 @@ namespace Cosevi.SIBOAC.Reports
                 case "_ReporteStatusActualPlano":
                     result = GetReporteStatusActualPlanoData(parametros);
                     break;
-
+                case "_ActividadOficial":
+                    result = GetActividadOficialData(parametros);
+                    break;
                 default:
                     break;
             }
@@ -91,6 +93,16 @@ namespace Cosevi.SIBOAC.Reports
 
             var bitacora = db.GetBitacoraData(fechaInicio, fechaFin, nombreTabla, usuario, operacion).ToList();
             return bitacora;
+        }
+        private List<GetActividadOficialData_Result> GetActividadOficialData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            string CodigoInspector = param[0];
+            DateTime fechaInicio = Convert.ToDateTime(param[1]);
+            DateTime fechaFin = Convert.ToDateTime(param[2]);
+        
+            var actividadOificial = db.GetActividadOficialData(CodigoInspector,fechaInicio, fechaFin).ToList();
+            return actividadOificial;
         }
 
         private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(string parametros)

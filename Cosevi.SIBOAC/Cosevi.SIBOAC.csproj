@@ -353,6 +353,11 @@
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
     <Compile Include="Controllers\ValidarCarroceriasController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
+    <Compile Include="GetActividadOficialDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetActividadOficialDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetBitacoraDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -861,6 +866,17 @@
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="GetActividadOficialDataSet.xsc">
+      <DependentUpon>GetActividadOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetActividadOficialDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetActividadOficialDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetActividadOficialDataSet.xss">
+      <DependentUpon>GetActividadOficialDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="GetBitacoraDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GetBitacoraDataSet1.Designer.cs</LastGenOutput>
@@ -1593,6 +1609,7 @@
     <Content Include="Views\AdjuntarArchivos\_AdjuntarView.cshtml" />
     <Content Include="Views\AdjuntarArchivos\Index.cshtml" />
     <Content Include="Views\Reporte\_ReporteStatusActualPlano.cshtml" />
+    <Content Include="Views\Reporte\_ActividadOficial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1622,6 +1639,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\ReporteStatusActualPlano.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\ActividadOficial.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
