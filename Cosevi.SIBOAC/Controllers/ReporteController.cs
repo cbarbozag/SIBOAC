@@ -754,7 +754,7 @@ namespace Cosevi.SIBOAC.Controllers
                                                   Seleccionado = true
                                               }
                                             );
-            ViewBag.InspectoresSeleccionados = lstInspectoresSeleccionados.ToList();
+            ViewBag.InspectorSeleccionadas = lstInspectoresSeleccionados.ToList();
 
             string parametros = String.Format(" {0}, {1}, {2}, {3} ", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), idDelegacion, idInspector);
 
