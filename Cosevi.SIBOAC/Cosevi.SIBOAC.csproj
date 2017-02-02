@@ -930,12 +930,6 @@
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="GetReportePorUsuarioDataSet.xsc">
-      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="GetReportePorUsuarioDataSet.xsc">
-      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
       <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
@@ -958,16 +952,19 @@
     <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xss">
       <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="GetReporteStatusActualPlanoDataSet.xsc">
+      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReportePorUsuarioDataSet.xsc">
+      <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="GetReportePorUsuarioDataSet.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GetReportePorUsuarioDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="GetReportePorUsuarioDataSet.xss">
       <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="GetReporteStatusActualPlanoDataSet.xsc">
-      <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReporteStatusActualPlanoDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
