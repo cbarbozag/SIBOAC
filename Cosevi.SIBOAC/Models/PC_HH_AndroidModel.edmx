@@ -2786,14 +2786,14 @@
           <Property Type="String" Name="StatusPlano" Nullable="false" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="GetReporteStatusActualPlanoData_Result">
-          <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
           <Property Type="String" Name="serie_parteoficial" Nullable="true" MaxLength="4" />
           <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
-          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
           <Property Type="String" Name="identificacion" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="72" />
           <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Autoridad" Nullable="true" MaxLength="5" />
         </ComplexType>
         <EntityType Name="ARTICULO_ESPECIFICO">
           <Key>
@@ -4179,7 +4179,6 @@
           <FunctionImportMapping FunctionImportName="GetReporteStatusActualPlanoData" FunctionName="PC_HH_AndroidModel.Store.GetReporteStatusActualPlanoData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReporteStatusActualPlanoData_Result">
-                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
                 <ScalarProperty Name="serie_parteoficial" ColumnName="serie_parteoficial" />
                 <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -4187,6 +4186,7 @@
                 <ScalarProperty Name="identificacion" ColumnName="identificacion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
+                <ScalarProperty Name="Autoridad" ColumnName="Autoridad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

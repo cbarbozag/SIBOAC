@@ -972,9 +972,9 @@
       <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReporteStatusActualPlanoDataSet.xsd">
-      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GetReporteStatusActualPlanoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="GetReporteStatusActualPlanoDataSet.xss">
       <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>

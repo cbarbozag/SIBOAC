@@ -389,21 +389,21 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="codigo_autoridad_registra">
+                    <Textbox Name="Autoridad">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!codigo_autoridad_registra.Value</Value>
+                              <Value>=Fields!Autoridad.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>codigo_autoridad_registra</rd:DefaultName>
+                      <rd:DefaultName>Autoridad</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -415,6 +415,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -687,7 +688,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>45106d7a-df3d-484c-933e-b1fa110042bc</rd:DataSourceID>
+      <rd:DataSourceID>5da03407-dc0a-490c-9bbc-f6528435f696</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -697,8 +698,8 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="codigo_autoridad_registra">
-          <DataField>codigo_autoridad_registra</DataField>
+        <Field Name="Autoridad">
+          <DataField>Autoridad</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="serie_parteoficial">
