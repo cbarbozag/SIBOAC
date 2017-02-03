@@ -15,7 +15,7 @@ namespace Cosevi.SIBOAC.Models
     {
         public string serie_parteoficial { get; set; }
         public string numeroparte { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
+        public System.DateTime Fecha { get; set; }
         public Nullable<System.DateTime> fecha_descarga { get; set; }
         public string identificacion { get; set; }
         public string Nombre { get; set; }

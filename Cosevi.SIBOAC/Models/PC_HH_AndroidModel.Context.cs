@@ -346,5 +346,30 @@ namespace Cosevi.SIBOAC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActividadOficialData_Result>("GetActividadOficialData", inspectorParameter, fechaInicioParameter, fechaFinParameter);
         }
+    
+        public virtual ObjectResult<GetReportePorDelegacionAutoridadData_Result> GetReportePorDelegacionAutoridadData(Nullable<int> tipoConsulta, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string idAutoridad, string idDelegacion)
+        {
+            var tipoConsultaParameter = tipoConsulta.HasValue ?
+                new ObjectParameter("TipoConsulta", tipoConsulta) :
+                new ObjectParameter("TipoConsulta", typeof(int));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("FechaInicio", fechaInicio) :
+                new ObjectParameter("FechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("FechaFin", fechaFin) :
+                new ObjectParameter("FechaFin", typeof(System.DateTime));
+    
+            var idAutoridadParameter = idAutoridad != null ?
+                new ObjectParameter("IdAutoridad", idAutoridad) :
+                new ObjectParameter("IdAutoridad", typeof(string));
+    
+            var idDelegacionParameter = idDelegacion != null ?
+                new ObjectParameter("IdDelegacion", idDelegacion) :
+                new ObjectParameter("IdDelegacion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorDelegacionAutoridadData_Result>("GetReportePorDelegacionAutoridadData", tipoConsultaParameter, fechaInicioParameter, fechaFinParameter, idAutoridadParameter, idDelegacionParameter);
+        }
     }
 }

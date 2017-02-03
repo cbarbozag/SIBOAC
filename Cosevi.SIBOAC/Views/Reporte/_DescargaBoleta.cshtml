@@ -22,15 +22,18 @@
                         <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
                     }
                     else
-                    {                       
-                        <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
-                        <br>
+                    {
+
                         if (Request.Params["opcionRadio"] == "2")
                         {
+                            <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
+                            <br>
                             <label><input id="radio02" type="radio" name="opcionRadio" value="2" checked="checked">Fecha de infracción</label>
                         }
                         else
                         {
+                            <label><input id="radio01" type="radio" name="opcionRadio" value="1" checked>Fecha de descarga</label>
+                            <br>
                             <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
                         }
                     }
@@ -46,9 +49,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="fechaDesde" value="@Request.Params["fechaDesde"]"/>
+                    <input id="desde" type="text" class="input-sm form-control" name="fechaDesde" value="@Request.Params["fechaDesde"]" required/>
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="fechaHasta" value="@Request.Params["fechaHasta"]" />
+                    <input id="hasta" type="text" class="input-sm form-control" name="fechaHasta" value="@Request.Params["fechaHasta"]" required/>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@
             <div class="col-md-10">
 
                 <div class="radio" id="radioButton">
-                    <label><input id="radio1" type="radio" name="radio" value="1">Con Plano</label>
+                    <label><input id="radio1" type="radio" name="radio" value="1" checked>Con Plano</label>
                     <br>
                     <label><input id="radio2" type="radio" name="radio" value="2">Sin Plano</label>
                     <br>
@@ -38,9 +38,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required/>
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" />
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" required/>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Delegación</label>
                         <div class="col-max col-md-10">
-                            <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
+                            <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                 @foreach (var item in ViewBag.Delegacion)
                                 {
                                     if (item.Seleccionado == true)
@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Autoridad Judicial</label>
                         <div class="col-max col-md-10">
-                            <select name="listaAutoridad" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items">
+                            <select name="listaAutoridad" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                 @foreach (var item in ViewBag.Autoridad)
                                 {
                                     if (item.Seleccionado == true)

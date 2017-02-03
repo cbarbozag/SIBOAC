@@ -14,7 +14,6 @@ namespace Cosevi.SIBOAC.Models
     public partial class GetReportePorUsuarioData_Result
     {
         public string Usuario { get; set; }
-        public string Nombre { get; set; }
         public string codigo_autoridad_registra { get; set; }
         public System.DateTime Fecha { get; set; }
         public int serie { get; set; }

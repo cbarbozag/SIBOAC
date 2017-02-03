@@ -281,8 +281,6 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnUsuario;
             
-            private global::System.Data.DataColumn columnNombre;
-            
             private global::System.Data.DataColumn columncodigo_autoridad_registra;
             
             private global::System.Data.DataColumn columnFecha;
@@ -337,14 +335,6 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn UsuarioColumn {
                 get {
                     return this.columnUsuario;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NombreColumn {
-                get {
-                    return this.columnNombre;
                 }
             }
             
@@ -449,11 +439,10 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetReportePorUsuarioDataRow AddGetReportePorUsuarioDataRow(string Usuario, string Nombre, string codigo_autoridad_registra, System.DateTime Fecha, int serie, string numeroparte, decimal numero_boleta, System.DateTime fecha_descarga, string Placa, string StatusPlano) {
+            public GetReportePorUsuarioDataRow AddGetReportePorUsuarioDataRow(string Usuario, string codigo_autoridad_registra, System.DateTime Fecha, int serie, string numeroparte, decimal numero_boleta, System.DateTime fecha_descarga, string Placa, string StatusPlano) {
                 GetReportePorUsuarioDataRow rowGetReportePorUsuarioDataRow = ((GetReportePorUsuarioDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Usuario,
-                        Nombre,
                         codigo_autoridad_registra,
                         Fecha,
                         serie,
@@ -485,7 +474,6 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnUsuario = base.Columns["Usuario"];
-                this.columnNombre = base.Columns["Nombre"];
                 this.columncodigo_autoridad_registra = base.Columns["codigo_autoridad_registra"];
                 this.columnFecha = base.Columns["Fecha"];
                 this.columnserie = base.Columns["serie"];
@@ -501,8 +489,6 @@ namespace Cosevi.SIBOAC {
             private void InitClass() {
                 this.columnUsuario = new global::System.Data.DataColumn("Usuario", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUsuario);
-                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNombre);
                 this.columncodigo_autoridad_registra = new global::System.Data.DataColumn("codigo_autoridad_registra", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodigo_autoridad_registra);
                 this.columnFecha = new global::System.Data.DataColumn("Fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -519,10 +505,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnPlaca);
                 this.columnStatusPlano = new global::System.Data.DataColumn("StatusPlano", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatusPlano);
-                this.columnUsuario.AllowDBNull = false;
-                this.columnUsuario.MaxLength = 100;
-                this.columnNombre.AllowDBNull = false;
-                this.columnNombre.MaxLength = 100;
+                this.columnUsuario.ReadOnly = true;
+                this.columnUsuario.MaxLength = 203;
                 this.columncodigo_autoridad_registra.MaxLength = 5;
                 this.columnFecha.AllowDBNull = false;
                 this.columnserie.AllowDBNull = false;
@@ -676,21 +660,15 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Usuario {
                 get {
-                    return ((string)(this[this.tableGetReportePorUsuarioData.UsuarioColumn]));
+                    try {
+                        return ((string)(this[this.tableGetReportePorUsuarioData.UsuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Usuario\' in table \'GetReportePorUsuarioData\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableGetReportePorUsuarioData.UsuarioColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Nombre {
-                get {
-                    return ((string)(this[this.tableGetReportePorUsuarioData.NombreColumn]));
-                }
-                set {
-                    this[this.tableGetReportePorUsuarioData.NombreColumn] = value;
                 }
             }
             
@@ -809,6 +787,18 @@ namespace Cosevi.SIBOAC {
                 set {
                     this[this.tableGetReportePorUsuarioData.StatusPlanoColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioNull() {
+                return this.IsNull(this.tableGetReportePorUsuarioData.UsuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioNull() {
+                this[this.tableGetReportePorUsuarioData.UsuarioColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1032,7 +1022,6 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "GetReportePorUsuarioData";
             tableMapping.ColumnMappings.Add("Usuario", "Usuario");
-            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
             tableMapping.ColumnMappings.Add("codigo_autoridad_registra", "codigo_autoridad_registra");
             tableMapping.ColumnMappings.Add("Fecha", "Fecha");
             tableMapping.ColumnMappings.Add("serie", "serie");
@@ -1048,7 +1037,9 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PC_HH_AndroidConnectionString"].ConnectionString;
+            this._connection.ConnectionString = "Data Source=AFARIASRV\\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security I" +
+                "nfo=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Applicati" +
+                "on Name=EntityFramework";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
