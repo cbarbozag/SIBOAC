@@ -18,25 +18,61 @@ namespace Cosevi.SIBOAC.Controllers
 
         // GET: CatalogoDeArticulos
         [SessionExpire]
-        public ActionResult Index(int? page, string searchString)
+        public ActionResult Index(int? page, string searchString, int? radio)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";            
-            var list = from s in db.CATARTICULO.ToList() select s;
-            
-            
-            if (!String.IsNullOrEmpty(searchString))
+            var list = from s in db.CATARTICULO.ToList().OrderBy(s => s.Estado) select s;
+            if (radio == 1)
             {
-                list = list.Where(s => s.Id.Contains(searchString)
-                                        || s.Conducta.Contains(searchString)
-                                        || s.Descripcion.Contains(searchString)
-                                        || s.Estado.Contains(searchString)
-                                        || s.Multa.ToString().Contains(searchString));
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    list = list.Where(s => s.Id.Contains(searchString)
+                                            || s.Conducta.Contains(searchString)
+                                            || s.Descripcion.Contains(searchString)                                            
+                                            || s.Multa.ToString().Contains(searchString));
+
+                    list = list.Where(s => s.Estado.Equals("A"));
+                }
+                else
+                {
+                    list = list.Where(s => s.Estado.Equals("A"));
+                }
+            }
+            if (radio == 2)
+            {
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    list = list.Where(s => s.Id.Contains(searchString)
+                                            || s.Conducta.Contains(searchString)
+                                            || s.Descripcion.Contains(searchString)                                            
+                                            || s.Multa.ToString().Contains(searchString));
+
+                    list = list.Where(s => s.Estado.Equals("I"));
+                }
+                else
+                {
+                    list = list.Where(s => s.Estado.Equals("I"));
+                }
+            }
+            if (radio.ToString() == "")
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    list = list.Where(s => s.Id.Contains(searchString)
+                                            || s.Conducta.Contains(searchString)
+                                            || s.Descripcion.Contains(searchString)                                            
+                                            || s.Multa.ToString().Contains(searchString));
+                }
             }
 
             int pageSize = 20;
-            int pageNumber = (page ?? 1);
-            return View(list.ToPagedList(pageNumber, pageSize));
+                int pageNumber = (page ?? 1);
+                return View(list.ToPagedList(pageNumber, pageSize));
+
+            
         }
 
 
