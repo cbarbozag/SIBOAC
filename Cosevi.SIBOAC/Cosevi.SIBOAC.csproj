@@ -389,6 +389,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetReportePorDelegacionAutoridadDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetReportePorDelegacionAutoridadDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetReportePorUsuarioDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -944,6 +949,17 @@
     </Content>
     <Content Include="GetReportePorUsuarioDataSet.xsc">
       <DependentUpon>GetReportePorUsuarioDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReportePorDelegacionAutoridadDataSet.xsc">
+      <DependentUpon>GetReportePorDelegacionAutoridadDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReportePorDelegacionAutoridadDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReportePorDelegacionAutoridadDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetReportePorDelegacionAutoridadDataSet.xss">
+      <DependentUpon>GetReportePorDelegacionAutoridadDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReportePorUsuarioDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>

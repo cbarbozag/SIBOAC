@@ -2850,10 +2850,10 @@
           <Property Type="String" Name="clase_placa" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="codigo_placa" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="numero_placa" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="C_P" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="PC" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="VD" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="PE" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="CP" Nullable="false" MaxLength="1" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4267,10 +4267,10 @@
                 <ScalarProperty Name="clase_placa" ColumnName="clase_placa" />
                 <ScalarProperty Name="codigo_placa" ColumnName="codigo_placa" />
                 <ScalarProperty Name="numero_placa" ColumnName="numero_placa" />
-                <ScalarProperty Name="C_P" ColumnName="C/P" />
                 <ScalarProperty Name="PC" ColumnName="PC" />
                 <ScalarProperty Name="VD" ColumnName="VD" />
                 <ScalarProperty Name="PE" ColumnName="PE" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
