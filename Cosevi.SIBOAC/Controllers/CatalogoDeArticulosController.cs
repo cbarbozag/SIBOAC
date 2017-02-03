@@ -31,7 +31,7 @@ namespace Cosevi.SIBOAC.Controllers
                     list = list.Where(s => s.Id.Contains(searchString)
                                             || s.Conducta.Contains(searchString)
                                             || s.Descripcion.Contains(searchString)                                            
-                                            || s.Multa.ToString().Contains(searchString));
+                                            || s.Multa.ToString().Contains(searchString)).OrderBy(s => s.Estado);
 
                     list = list.Where(s => s.Estado.Equals("A"));
                 }
@@ -48,7 +48,7 @@ namespace Cosevi.SIBOAC.Controllers
                     list = list.Where(s => s.Id.Contains(searchString)
                                             || s.Conducta.Contains(searchString)
                                             || s.Descripcion.Contains(searchString)                                            
-                                            || s.Multa.ToString().Contains(searchString));
+                                            || s.Multa.ToString().Contains(searchString)).OrderBy(s => s.Estado);
 
                     list = list.Where(s => s.Estado.Equals("I"));
                 }

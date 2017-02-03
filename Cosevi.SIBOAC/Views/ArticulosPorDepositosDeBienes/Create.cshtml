@@ -197,7 +197,7 @@
 
 
         <div class="form-group">
-            <input type="hidden" id="IdConducta" value="@ViewData["Conducta"]" />
+            <input type="hidden" id="IdConducta" value="@ViewData["Conducta"]"/>
             <input type="hidden" id="IdFechaDeFin" value="@ViewData["FechaDeFin"]" />
             <input type="hidden" id="IdFechaDeInicio" value="@ViewData["FechaDeInicio"]" />
             @Html.LabelFor(model => model.CodigoDepositosBienes, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -226,7 +226,7 @@
            <div class="form-group">
             @Html.LabelFor(model => model.Conducta, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="Conducta" name="Conducta" class="form-control"> <option value="0">Seleccione...</option> </select>
+                <select id="Conducta" name="Conducta" class="form-control"> <option value="0" required>Seleccione...</option> </select>
                 @*@Html.EditorFor(model => model.Conducta, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Conducta, "", new { @class = "text-danger" })*@
             </div>
@@ -236,7 +236,7 @@
             @Html.LabelFor(model => model.FechaDeInicio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*<select id="FechaDeInicio"> <option value="0">Seleccione...</option> </select>*@
-                <select id="FechaDeInicio" name="FechaDeInicio" class="form-control"> <option value="0">Seleccione...</option> </select>
+                <select id="FechaDeInicio" name="FechaDeInicio" class="form-control"> <option value="0" required>Seleccione...</option> </select>
                
                @*@Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaDeInicio, "", new { @class = "text-danger" })*@
@@ -246,7 +246,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeFin, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="FechaDeFin" name="FechaDeFin" class="form-control"> <option value="0">Seleccione...</option> </select>
+                <select id="FechaDeFin" name="FechaDeFin" class="form-control"> <option value="0" required>Seleccione...</option> </select>
                 @*@Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaDeFin, "", new { @class = "text-danger" })*@
             </div>
