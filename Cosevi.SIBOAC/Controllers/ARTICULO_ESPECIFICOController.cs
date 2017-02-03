@@ -183,18 +183,18 @@ namespace Cosevi.SIBOAC.Controllers
                   where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A"
                   select new
                   {
-                      //fecha = o.FechaDeInicio
-                      fecha = o.FechaDeInicio.ToString()
+                      fecha = o.FechaDeInicio
+                      //fecha = o.FechaDeInicio.ToString()
 
 
                   }).ToList().Distinct()
             .Select(x => new ClaseFechaInicio
             {
-                //Id = Convert.ToString(x.fecha),
-                //Nombre = Convert.ToString(x.fecha)
+                Id = Convert.ToString(x.fecha),
+                Nombre = Convert.ToString(x.fecha)
 
-                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
-                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+                //Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
+                //Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
 
             }).Distinct();
 
@@ -207,24 +207,24 @@ namespace Cosevi.SIBOAC.Controllers
             DateTime fechaDeInicio = DateTime.Now;
             if (FechaDeInicio != "" && FechaDeInicio != null)
             {
-                fechaDeInicio = DateTime.Parse(FechaDeInicio);
-                // FechaDeInicio = fechaDeInicio.ToString();
+                //fechaDeInicio = DateTime.Parse(FechaDeInicio);
+                FechaDeInicio = fechaDeInicio.ToString();
             }
             var listaconducta =
                  (from o in db.CATARTICULO
                   where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio == fechaDeInicio
                   select new
                   {
-                      fecha = o.FechaDeFin.ToString()
-                      //fecha = o.FechaDeFin
+                      //fecha = o.FechaDeFin.ToString()
+                      fecha = o.FechaDeFin
                   }).ToList().Distinct()
             .Select(x => new ClaseFechaFinal
             {
-                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
-                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+                //Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
+                //Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
 
-                //Id = Convert.ToString(x.fecha),
-                //Nombre = Convert.ToString(x.fecha)
+                Id = Convert.ToString(x.fecha),
+                Nombre = Convert.ToString(x.fecha)
 
             }).Distinct();
 
@@ -238,13 +238,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ARTICULO_ESPECIFICO/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string id, string conducta, DateTime fechaInicial, DateTime fechaFinal)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(id);
+            ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(id, conducta, fechaInicial, fechaFinal);
             if (aRTICULO_ESPECIFICO == null)
             {
                 return HttpNotFound();
@@ -281,8 +281,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.ARTICULO_ESPECIFICO.Add(aRTICULO_ESPECIFICO);
                 string mensaje = Verificar(aRTICULO_ESPECIFICO.codigo,
                                            aRTICULO_ESPECIFICO.conducta,
-                                           aRTICULO_ESPECIFICO.fecha_inicio.Value,
-                                           aRTICULO_ESPECIFICO.fecha_final.Value);
+                                           aRTICULO_ESPECIFICO.fecha_inicio,
+                                           aRTICULO_ESPECIFICO.fecha_final);
 
 
                 if (mensaje == "")
@@ -313,8 +313,8 @@ namespace Cosevi.SIBOAC.Controllers
 
 
                     ViewData["Conducta"] = aRTICULO_ESPECIFICO.conducta;
-                    ViewData["FechaDeInicio"] = aRTICULO_ESPECIFICO.fecha_inicio.Value.ToString("dd-MM-yyyy");
-                    ViewData["FechaDeFin"] = aRTICULO_ESPECIFICO.fecha_final.Value.ToString("dd-MM-yyyy");
+                    ViewData["FechaDeInicio"] = aRTICULO_ESPECIFICO.fecha_inicio.ToString("dd-MM-yyyy");
+                    ViewData["FechaDeFin"] = aRTICULO_ESPECIFICO.fecha_final.ToString("dd-MM-yyyy");
                     ViewData["CodRetTemp"] = aRTICULO_ESPECIFICO.codigo_retiro_temporal;
                     return View(aRTICULO_ESPECIFICO);
                 }
@@ -325,18 +325,67 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: ARTICULO_ESPECIFICO/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, DateTime FechaInicio, DateTime FechaFin)
         {
-            if (id == null)
+            if (id == null || FechaInicio == null || FechaFin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(id);
-            if (aRTICULO_ESPECIFICO == null)
+
+
+            var list =
+                (from a in db.ARTICULO_ESPECIFICO join c in db.CATARTICULO on new { codigo = a.codigo, fecha_inicio = a.fecha_inicio, fecha_final = a.fecha_final }
+                   equals new { codigo = c.Id, fecha_inicio = c.FechaDeInicio, fecha_final = c.FechaDeFin }
+                   where a.codigo == id && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
+
+                 //join c in db.CATARTICULO on new { CodigoArticulo = a.codigo, Conducta = a.conducta, fechaInicio = a.fecha_inicio, fechaFinal = a.fecha_final } equals new { CodigoArticulo = c.Id, Conducta = c.Conducta, fechaInicio = c.FechaDeInicio, fechaFinal = c.FechaDeFin } into c_join
+                 //where a.codigo == id && a.conducta == Conducta && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
+
+
+                 select new
+                 {
+                     CodigoArticulo = a.codigo,
+                     Conducta = a.conducta,
+                     FechaDeInicio = a.fecha_inicio,
+                     FechaDeFin = a.fecha_final,
+                     Estado = a.estado,
+                     codigo_retiro_temporal = a.codigo_retiro_temporal,
+                     codigo_inmovilizacion = a.codigo_inmovilizacion,
+                     observacion_noaplicacion = a.observacion_noaplicacion
+                     //DescripcionArticulo = c.Descripcion
+                 }).ToList()
+
+
+
+                  .Select(x => new ARTICULO_ESPECIFICO
+                  {
+                      codigo = x.CodigoArticulo,
+                      conducta = x.Conducta,
+                      fecha_inicio = x.FechaDeInicio,
+                      fecha_final = x.FechaDeFin,
+                      estado = x.Estado,
+                      codigo_retiro_temporal = x.codigo_retiro_temporal,
+                      codigo_inmovilizacion = x.codigo_inmovilizacion,
+                      observacion_noaplicacion = x.observacion_noaplicacion
+                      //DescripcionArticulo = x.DescripcionArticulo
+
+                  }).SingleOrDefault();
+
+
+            if (list == null)
             {
                 return HttpNotFound();
             }
-            return View(aRTICULO_ESPECIFICO);
+
+            ViewBag.ComboArticulos = new SelectList(db.CATARTICULO.OrderBy(x => x.Id), "Id", "Id", id);
+
+
+            //ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            //if (aRTICULO_ESPECIFICO == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View(list);
         }
 
         // POST: ARTICULO_ESPECIFICO/Edit/5
@@ -348,8 +397,17 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == aRTICULO_ESPECIFICO.codigo &&
+                                                                                        d.conducta == aRTICULO_ESPECIFICO.conducta &&
+                                                                                        d.fecha_inicio == aRTICULO_ESPECIFICO.fecha_inicio &&
+                                                                                        d.fecha_final == aRTICULO_ESPECIFICO.fecha_final).FirstOrDefault();
+
+
+
                 db.Entry(aRTICULO_ESPECIFICO).State = EntityState.Modified;
                 db.SaveChanges();
+                Bitacora(aRTICULO_ESPECIFICO, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
                 return RedirectToAction("Index");
             }
             return View(aRTICULO_ESPECIFICO);

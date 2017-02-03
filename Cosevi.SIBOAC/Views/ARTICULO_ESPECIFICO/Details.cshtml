@@ -11,8 +11,23 @@
     <h4>Artículo Específico</h4>
     <hr />
     <dl class="dl-horizontal">
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.estado)
+            @Html.DisplayNameFor(model => model.codigo)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.conducta)
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_inicio)
+        </dt>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_final)
         </dt>
 
         <dd>
@@ -46,6 +61,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.codigo, Conducta = Model.conducta, FechaInicio = Model.fecha_inicio, FechaFin = Model.fecha_final }) |
     @Html.ActionLink("Regresar a la lista", "Index")
 </p>
