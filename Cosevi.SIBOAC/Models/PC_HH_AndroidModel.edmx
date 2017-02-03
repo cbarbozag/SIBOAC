@@ -2838,14 +2838,14 @@
         </ComplexType>
         <ComplexType Name="GetReportePorDelegacionAutoridadData_Result">
           <Property Type="String" Name="Reporte" Nullable="false" MaxLength="21" />
-          <Property Type="String" Name="fuente" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="serie" Nullable="true" MaxLength="4" />
-          <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="serie" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="numeroparte" Nullable="false" MaxLength="15" />
           <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
           <Property Type="DateTime" Name="fecha_registro" Nullable="true" Precision="23" />
           <Property Type="String" Name="codigo_delegacion" Nullable="true" MaxLength="4" />
           <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Identificacion" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="18" />
           <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="72" />
           <Property Type="String" Name="clase_placa" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="codigo_placa" Nullable="true" MaxLength="3" />
