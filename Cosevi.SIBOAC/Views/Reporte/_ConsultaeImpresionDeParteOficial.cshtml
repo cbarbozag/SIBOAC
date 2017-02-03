@@ -70,7 +70,7 @@
                                 else
                                 {
 
-                                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1" checked>Parte Oficial</label>
                                     <br>
                                     <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
                                     <br>
@@ -97,11 +97,11 @@
             <br>
             Serie del Parte Oficial
             <br>
-            <input id="serieParte" type='text' name='serieParte' class="input-sm form-control" value="@Request.Params["serieParte"]" @*size='30' maxLength='60'*@>
+            <input id="serieParte" type='text' name='serieParte' class="input-sm form-control" value="@Request.Params["serieParte"]"  @*size='30' maxLength='60'*@>
             <br>
             N° del Parte Oficial
             <br>
-            <input id="numeroParte" type='text' name='numeroParte' class="input-sm form-control" value="@Request.Params["numeroParte"]" @*size='30' maxLength='60'*@>
+            <input id="numeroParte" type='text' name='numeroParte' class="input-sm form-control" value="@Request.Params["numeroParte"]" >
             <br>
         </div>
 
@@ -109,11 +109,11 @@
             <br>
             Serie de la Boleta de Citación
             <br>
-            <input id="serieBoleta" type='text' name='serieBoleta' class="input-sm form-control"  value="@Request.Params["serieBoleta"]">
+            <input id="serieBoleta" type='text' name='serieBoleta' class="input-sm form-control"  value="@Request.Params["serieBoleta"]" >
             <br>
             N° de la Boleta de Citación
             <br>
-            <input id="numeroBoleta" type='text' name='numeroBoleta' class="input-sm form-control"  value="@Request.Params["numeroBoleta"]">
+            <input id="numeroBoleta" type='text' name='numeroBoleta' class="input-sm form-control"  value="@Request.Params["numeroBoleta"]" >
             <br>
         </div>
 
@@ -121,11 +121,11 @@
             <br>
             Tipo de Identificación
             <br>
-            <input id="tipoId" type='text' name='tipoId' class="input-sm form-control"  value="@Request.Params["tipoId"]">
+            <input id="tipoId" type='text' name='tipoId' class="input-sm form-control"  value="@Request.Params["tipoId"]" >
             <br>
             N° Identificación del Implicado
             <br>
-            <input id="numeroID" type='text' name='numeroID' class="input-sm form-control"  value="@Request.Params["numeroID"]">
+            <input id="numeroID" type='text' name='numeroID' class="input-sm form-control"  value="@Request.Params["numeroID"]" >
             <br>
         </div>
 

@@ -22,15 +22,18 @@
                         <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
                     }
                     else
-                    {                       
-                        <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
-                        <br>
+                    {
+
                         if (Request.Params["opcionRadio"] == "2")
                         {
+                            <label><input id="radio01" type="radio" name="opcionRadio" value="1">Fecha de descarga</label>
+                            <br>
                             <label><input id="radio02" type="radio" name="opcionRadio" value="2" checked="checked">Fecha de infracción</label>
                         }
                         else
                         {
+                            <label><input id="radio01" type="radio" name="opcionRadio" value="1" checked>Fecha de descarga</label>
+                            <br>
                             <label><input id="radio02" type="radio" name="opcionRadio" value="2">Fecha de infracción</label>
                         }
                     }

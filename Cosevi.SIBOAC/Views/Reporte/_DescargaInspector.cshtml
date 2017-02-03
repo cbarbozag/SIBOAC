@@ -15,9 +15,9 @@
         <label class="control-label col-md-2">Rango de fechas</label>
         <div class="col-md-10">
             <div class="input-daterange input-group" id="datepicker">
-                <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" />
+                <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required />
                 <span class="input-group-addon">a</span>
-                <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" />
+                <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" required/>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <br>
         Numero de la Hand Held
         <br>
-        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" value="@Request.Params["numeroHH"]" @*size='30' maxLength='60'*@>
+        <input id="numeroHH" type='text' name='numeroHH' class="input-sm form-control" value="@Request.Params["numeroHH"]" required @*size='30' maxLength='60'*@>
         <br />
        
         <br>
@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2"> Oficial de Transito</label>
                         <div class="col-max col-md-8">
-                            <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items">
+                            <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
                                 @foreach (var item in ViewBag.Inspectores)
                                 {
 
