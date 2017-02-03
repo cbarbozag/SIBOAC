@@ -26,9 +26,9 @@ namespace Cosevi.SIBOAC.Models
         public string clase_placa { get; set; }
         public string codigo_placa { get; set; }
         public string numero_placa { get; set; }
-        public string C_P { get; set; }
         public string PC { get; set; }
         public string VD { get; set; }
         public string PE { get; set; }
+        public string CP { get; set; }
     }
 }
