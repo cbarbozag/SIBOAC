@@ -24,16 +24,16 @@
               <Width>2.29648cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.5821cm</Width>
+              <Width>0.84127cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.47627cm</Width>
+              <Width>0.84127cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.13773cm</Width>
+              <Width>1.34398cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.37585cm</Width>
+              <Width>2.29647cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.31002cm</Width>
@@ -91,7 +91,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Numero Boleta</Value>
+                              <Value>N° Boleta</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -157,7 +157,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fehca  Boleta</Value>
+                              <Value>Fecha  Boleta</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -256,13 +256,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Clase Placa</Value>
+                              <Value>Placa</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox16</rd:DefaultName>
@@ -278,74 +280,11 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>3</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox18">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Codigo Placa</Value>
-                              <Style>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox18</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>Black</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox20">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Numero Placa</Value>
-                              <Style>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox20</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>Black</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox22">
@@ -421,7 +360,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Codigo Rol</Value>
+                              <Value>Rol</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -454,7 +393,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Numero Parte</Value>
+                              <Value>Número Parte</Value>
                               <Style>
                                 <Color>White</Color>
                               </Style>
@@ -553,7 +492,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!fecha_descarga.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>dd/MM/yyyy hh:mm tt</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -583,7 +524,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!fecha_hora_boleta.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>dd/MM/yyyy hh:mm tt</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -908,7 +851,7 @@
         <Top>3.81cm</Top>
         <Left>0.635cm</Left>
         <Height>1.2cm</Height>
-        <Width>27.4428cm</Width>
+        <Width>25.19384cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -975,9 +918,9 @@
         </Paragraphs>
         <rd:DefaultName>ReportName</rd:DefaultName>
         <Top>0.70556cm</Top>
-        <Left>0.26226cm</Left>
+        <Left>8.09393cm</Left>
         <Height>2.63729cm</Height>
-        <Width>27.86295cm</Width>
+        <Width>12.94596cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -993,8 +936,8 @@
         <Source>Embedded</Source>
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.70556cm</Top>
-        <Left>0.52598cm</Left>
+        <Top>0.34396cm</Top>
+        <Left>0.635cm</Left>
         <Height>1.94979cm</Height>
         <Width>7.02979cm</Width>
         <ZIndex>2</ZIndex>
