@@ -699,11 +699,11 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_DescargaParteOficial");
         }
         [System.Web.Http.HttpPost]
-        public ActionResult GetReportListadoMultaFija(DateTime desde, DateTime hasta, int radio, [FromUri] string[] listaInspectores, [FromUri] string[] listaDelegaciones)
+        public ActionResult GetReporteListadoMultaFija(DateTime desde, DateTime hasta, int radio, [FromUri] string[] listaInspectores, [FromUri] string[] listaDelegaciones)
         {
 
-            string reporteID = "_ReporteListadoMultafija";
-            string nombreReporte = "DescargaParteOficial";
+            string reporteID = "_ReporteListadoMultaFija";
+            string nombreReporte = "ReporteListadoMultaFija";
             string idDelegaciones = "";
             string idInspectores = "";
             foreach (var i in listaDelegaciones)
@@ -767,19 +767,17 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_ReporteListadoMultaFija");
         }
 
+        private List<GetReporteListadoMultaFijaData_Result> GetReporteListadoMultaFijaData(DateTime desde, DateTime hasta, int radio, string idInspectores, string listaDelegaciones)
+        {
+         
+            var lista = db.GetReporteListadoMultaFijaData(desde, hasta, radio, idInspectores, listaDelegaciones).ToList();
+            // return lista;
+            return lista;
+        }
+
         private List<GetReportePorDelegacionAutoridadData_Result> GetReportePorDelegacionAutoridadData(DateTime desde, DateTime hasta, int radio, string idAutoridades, string listaDelegaciones)
         {
-            string idDelegaciones = "";
-            foreach (var i in listaDelegaciones)
-            {
-                idDelegaciones += "-" + i + "-|";
-
-            }
-            if (idDelegaciones.Length > 0)
-            {
-                idDelegaciones = idDelegaciones.Substring(0, idDelegaciones.Length - 1);
-            }
-            var lista = db.GetReportePorDelegacionAutoridadData(radio,desde, hasta, idAutoridades, idDelegaciones).ToList();
+            var lista = db.GetReportePorDelegacionAutoridadData(radio,desde, hasta, idAutoridades, listaDelegaciones).ToList();
             // return lista;
             return lista;
         }

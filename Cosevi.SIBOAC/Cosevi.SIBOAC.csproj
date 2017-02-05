@@ -389,6 +389,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetReporteListadoMultaFijaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetReporteListadoMultaFijaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetReportePorDelegacionAutoridadDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -955,6 +960,17 @@
     </Content>
     <Content Include="GetReportePorDelegacionAutoridadDataSet.xsc">
       <DependentUpon>GetReportePorDelegacionAutoridadDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReporteListadoMultaFijaDataSet.xsc">
+      <DependentUpon>GetReporteListadoMultaFijaDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReporteListadoMultaFijaDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReporteListadoMultaFijaDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetReporteListadoMultaFijaDataSet.xss">
+      <DependentUpon>GetReporteListadoMultaFijaDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReportePorDelegacionAutoridadDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1649,6 +1665,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\ActividadOficial.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\ReporteListadoMultaFija.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
