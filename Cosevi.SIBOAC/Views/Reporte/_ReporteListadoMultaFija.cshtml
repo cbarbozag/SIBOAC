@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewBag.Title = "_DescargaParteOficial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reporte Listado de Multas Fijas </h2>
+<h4>Filtro</h4>
+<hr />
+
+@using (Html.BeginForm("GetReporteListadoMultaFija", "Reporte", FormMethod.Get))
+{
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Seleccione una opción para las fechas</label>
+            <div class="col-md-10">
+
+                <div class="radio" id="radioButton">
+                    @{
+                        if (Request.Params["radio"] == "1")
+                        {
+                            <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de infraccón</label>
+                            <br>
+                            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de descarga</label>
+                           
+                        }
+
+                        if (Request.Params["radio"] == "2")
+                        {
+                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de infracción</label>
+                            <br>
+                            <label><input id="radio2" type="radio" name="radio" value="2" checked>Fecha de descarga</label>
+                           
+                        }
+                      
+                        if (Request.Params["radio"] == null)
+                        {
+                                <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de infracción</label>
+                                <br>
+                                <label><input id="radio2" type="radio" name="radio" value="2">Fecha de descarga</label>
+                        }
+                    }
+               
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Rango de fechas</label>
+            <div class="col-md-10">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required  />
+                    <span class="input-group-addon">a</span>
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" required />
+                </div>
+            </div>
+        </div>
+      
+       
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Delegación</label>
+                        <div class="col-max col-md-10">
+                           <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
+                                                             
+
+                                    @foreach (var item in ViewBag.Delegaciones)
+                                    {
+                                       
+                                        if (item.Seleccionado == true)
+                                        {
+                                            <option value="@item.Id" selected >@item.Descripcion</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Descripcion</option>
+                                        }
+                                       
+
+                                    }
+</select>
+
+
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="btn-group pull-right">
+                        @*<button id="todosDelegacion" type="button" class="btn btn-primary" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                            <button id="limpiarDelegacion" type="button" class="btn btn-warning" onclick="limpiarTodosDelegacion()">Limpiar</button>*@
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Inspectores</label>
+                        <div class="col-max col-md-10">
+                            <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required >
+                                @foreach (var item in ViewBag.Inspectores)
+                                {
+                                    if (item.Seleccionado == true)
+                                    {
+                                        <option value="@item.Id" selected>@item.Descripcion</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id">@item.Descripcion</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />
+                    <div class="btn-group pull-right">
+                        @*<button id="todosAutoridad" type="button" class="btn btn-primary" onclick="marcarTodoAutoridad()">Marcar todos</button>
+                            <button id="limpiarAutoridad" type="button" class="btn btn-warning" onclick="limpiarTodosAutoridad()">Limpiar</button>*@                       
+                    </div>
+                </div>
+            </div>
+
+        <br />
+        <br />
+        <br />
+
+        </div>
+
+        <div class="pull-right">
+            <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        </div>
+
+}
+
+
+
+ <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+   @section scripts
+    {
+            <script>
+                $(document).ready(                 
+                function () {                  
+                    Calendario();                   
+                    ReportCall();
+                
+                });
+                $(window).load(function () {                
+                    
+                });
+            </script>
+            <script>
+                $("#listaDelegaciones").change(function () {
+                    var id = $(this).attr('name');
+                    var str2 = "";
+                    $("#listaDelegaciones option:selected").each(function () {
+
+                        str2 += "&" + id + "=" + $(this).attr('value');
+                    });
+                    $("div").text(str2);
+                })
+                 .trigger('change');
+
+                $("#listaInspectores").change(function () {
+                    var id = $(this).attr('name');
+                    var str2 = "";
+                    $("#listaInspectores option:selected").each(function () {
+
+                        str2 += "&" + id + "=" + $(this).attr('value');
+                    });
+                    $("div").text(str2);
+                })
+                .trigger('change');
+
+                function ReportCall() {
+
+                    var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+                    var myFrame = document.getElementById('ifrmReportViewer');
+                    if (myFrame !== null) {
+                        if (myFrame.src) {
+                            myFrame.src = url;
+                        }
+                        else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                            myFrame.contentWindow.location = url;
+                        }
+                        else {
+                            myFrame.setAttribute('src', url);
+                        }
+                    }
+
+                    return false;
+                }
+                function Calendario() {
+                    $('.input-daterange').datepicker({
+                        startView: 2
+                    });
+                };
+                function marcarTodosDelegacion() {
+                   
+                    var items = $('#listaD option');
+                    for (var i = 0; i < items.length; i++) {
+                        $(items[i]).prop('selected', true)
+                         if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosDelegacion() {
+                    var items = $('#listaD option');
+                    for (var i = 0; i < items.length; i++) {
+                        $(items[i]).prop('selected', false)
+                      //  $(items[i]).removeClass('active');
+                     
+                    }
+                };
+                function marcarTodosAutoridad() {
+
+                    var items = $('#listaI option.list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        $(items[i]).selected='selected'
+                        if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosAutoridad() {
+                    var items = $('#listaI option.list-group-item');
+                    for (var i = 0; i < items.length; i++) {                        
+                        $(items[i]).removeClass('active');
+                       
+                    }
+                };
+       </script>
+
+    }

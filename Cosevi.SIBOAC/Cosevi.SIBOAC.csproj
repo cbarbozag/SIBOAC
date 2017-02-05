@@ -1613,6 +1613,7 @@
     <Content Include="Views\AdjuntarArchivos\Index.cshtml" />
     <Content Include="Views\Reporte\_ReporteStatusActualPlano.cshtml" />
     <Content Include="Views\Reporte\_ActividadOficial.cshtml" />
+    <Content Include="Views\Reporte\_ReporteListadoMultaFija.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
