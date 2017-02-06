@@ -394,6 +394,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GetReporteListadoMultaFijaDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="GetReporteListadoParteOficialDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetReporteListadoParteOficialDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetReportePorDelegacionAutoridadDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -558,10 +563,16 @@
     <Compile Include="Models\GetReporteListadoMultaFijaData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetReporteListadoParteOficialData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetReportePorDelegacionAutoridadData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReportePorUsuarioData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetReportePorUsuarioData_Result1.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReporteStatusActualPlanoData_Result.cs">
@@ -971,6 +982,17 @@
     </None>
     <Content Include="GetReporteListadoMultaFijaDataSet.xss">
       <DependentUpon>GetReporteListadoMultaFijaDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReporteListadoParteOficialDataSet.xsc">
+      <DependentUpon>GetReporteListadoParteOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReporteListadoParteOficialDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReporteListadoParteOficialDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetReporteListadoParteOficialDataSet.xss">
+      <DependentUpon>GetReporteListadoParteOficialDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReportePorDelegacionAutoridadDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1633,6 +1655,7 @@
     <Content Include="Views\Reporte\_ReporteStatusActualPlano.cshtml" />
     <Content Include="Views\Reporte\_ActividadOficial.cshtml" />
     <Content Include="Views\Reporte\_ReporteListadoMultaFija.cshtml" />
+    <Content Include="Views\Reporte\_ReporteListadoParteOficial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
@@ -1668,6 +1691,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\ReporteListadoMultaFija.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\ReporteListadoParteOficial.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

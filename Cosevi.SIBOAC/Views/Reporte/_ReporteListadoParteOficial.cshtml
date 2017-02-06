@@ -1,14 +1,14 @@
 ﻿
 @{
-    ViewBag.Title = "Listado Multa Fija";
+    ViewBag.Title = "Listado Parte Oficial";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reporte Listado de Multas Fijas </h2>
+<h2>Reporte Listado de Partes Oficiales </h2>
 <h4>Filtro</h4>
 <hr />
 
-@using (Html.BeginForm("GetReporteListadoMultaFija", "Reporte", FormMethod.Get))
+@using (Html.BeginForm("GetReporteListadoParteOficial", "Reporte", FormMethod.Get))
 {
 
         <div class="form-group">
@@ -19,7 +19,7 @@
                     @{
                         if (Request.Params["radio"] == "1")
                         {
-                            <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de infraccón</label>
+                            <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha del Parte Oficial</label>
                             <br>
                             <label><input id="radio2" type="radio" name="radio" value="2">Fecha de descarga</label>
                            
@@ -27,7 +27,7 @@
 
                         if (Request.Params["radio"] == "2")
                         {
-                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de infracción</label>
+                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha del Parte Oficial</label>
                             <br>
                             <label><input id="radio2" type="radio" name="radio" value="2" checked>Fecha de descarga</label>
                            
@@ -35,7 +35,7 @@
                       
                         if (Request.Params["radio"] == null)
                         {
-                                <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de infracción</label>
+                                <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha del Parte Oficial</label>
                                 <br>
                                 <label><input id="radio2" type="radio" name="radio" value="2">Fecha de descarga</label>
                         }
