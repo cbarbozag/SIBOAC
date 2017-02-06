@@ -30,7 +30,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     list = list.Where(s => s.Id.Contains(searchString)
                                             || s.Conducta.Contains(searchString)
-                                            || s.Descripcion.Contains(searchString)                                            
+                                            || s.Descripcion.ToUpper().Contains(searchString.ToUpper())
                                             || s.Multa.ToString().Contains(searchString)).OrderBy(s => s.Estado);
 
                     list = list.Where(s => s.Estado.Equals("A"));

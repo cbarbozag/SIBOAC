@@ -25,11 +25,11 @@ namespace Cosevi.SIBOAC.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                list = list.Where(s => s.Id.ToString().Contains(searchString)
-                                        || s.DescripcionRuta.Contains(searchString)
+                list = list.Where(s => s.Id.ToString().ToUpper().Contains(searchString.ToUpper())
+                                        || s.DescripcionRuta.ToUpper().Contains(searchString.ToUpper())
                                         || s.Inicia.Contains(searchString)
                                         || s.Termina.Contains(searchString)
-                                        || s.Estado.Contains(searchString));
+                                        || s.Estado.ToUpper().Contains(searchString.ToUpper()));
             }
 
             int pageSize = 20;
