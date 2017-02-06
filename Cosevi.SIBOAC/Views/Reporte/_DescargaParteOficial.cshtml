@@ -115,8 +115,8 @@
                     <br />
                     <br />
                     <div class="btn-group pull-right">
-                        @*<button id="todosDelegacion" type="button" class="btn btn-primary" onclick="marcarTodosDelegacion()">Marcar todos</button>
-                            <button id="limpiarDelegacion" type="button" class="btn btn-warning" onclick="limpiarTodosDelegacion()">Limpiar</button>*@
+                        <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                            <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -151,8 +151,8 @@
                     <br />
                     <br />
                     <div class="btn-group pull-right">
-                        @*<button id="todosAutoridad" type="button" class="btn btn-primary" onclick="marcarTodoAutoridad()">Marcar todos</button>
-                            <button id="limpiarAutoridad" type="button" class="btn btn-warning" onclick="limpiarTodosAutoridad()">Limpiar</button>*@                       
+                        <button id="todosAutoridad" type="button" class="btn btn-danger" onclick="marcarTodosAutoridad()">Marcar todos</button>
+                            <button id="limpiarAutoridad" type="button" class="btn  btn-primary" onclick="limpiarTodosAutoridad()">Limpiar</button>                       
                     </div>
                 </div>
             </div>
@@ -234,9 +234,8 @@
                 };
                 function marcarTodosDelegacion() {
                    
-                    var items = $('#listaD option');
-                    for (var i = 0; i < items.length; i++) {
-                        $(items[i]).prop('selected', true)
+                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {                      
                          if (!$(items[i]).hasClass('active')) {
                             $(items[i]).addClass('active')
                         }
@@ -244,18 +243,17 @@
                 };
 
                 function limpiarTodosDelegacion() {
-                    var items = $('#listaD option');
+                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
-                        $(items[i]).prop('selected', false)
-                      //  $(items[i]).removeClass('active');
+                      //  $(items[i]).prop('selected', false)
+                       $(items[i]).removeClass('active');
                      
                     }
                 };
                 function marcarTodosAutoridad() {
 
-                    var items = $('#listaA option.list-group-item');
-                    for (var i = 0; i < items.length; i++) {
-                        $(items[i]).selected='selected'
+                    var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {               
                         if (!$(items[i]).hasClass('active')) {
                             $(items[i]).addClass('active')
                         }
@@ -263,7 +261,7 @@
                 };
 
                 function limpiarTodosAutoridad() {
-                    var items = $('#listaA option.list-group-item');
+                    var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {                        
                         $(items[i]).removeClass('active');
                        
