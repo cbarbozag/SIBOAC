@@ -241,3 +241,12 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Cosevi.SIBOAC/Models/SIBOACMenuOpcionesRol.cs
+/Cosevi.SIBOAC/GetReporteListadoMultaFijaDataSet.xsc
+/Cosevi.SIBOAC/GetReporteListadoMultaFijaDataSet.xss
+/Cosevi.SIBOAC/GetReportePorDelegacionAutoridadDataSet.xsc
+/Cosevi.SIBOAC/Reports/ReporteListadoMultaFija.rdlc
+/Cosevi.SIBOAC/Models/GetReporteListadoMultaFijaData_Result.cs
+/Cosevi.SIBOAC/GetReporteListadoMultaFijaDataSet.xsd
+/Cosevi.SIBOAC/GetReportePorDelegacionAutoridadDataSet.Designer.cs
+/Cosevi.SIBOAC/GetReportePorDelegacionAutoridadDataSet.xsd
+/Cosevi.SIBOAC/GetReportePorDelegacionAutoridadDataSet.xss
