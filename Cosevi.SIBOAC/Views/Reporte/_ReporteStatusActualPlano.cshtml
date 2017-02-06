@@ -52,20 +52,26 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label col-md-2">Delegación</label>
+                        <br />
+                        <p>
+                            <input type="text" id="BuscarDelegacion" name="BuscarDelegaciones" onkeyup="BuscarDelega()" placeholder="Buscar..">
+                        </p>
                         <div class="col-max col-md-10">
-                            <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
-                                @foreach (var item in ViewBag.Delegacion)
-                                {
-                                    if (item.Seleccionado == true)
+                            <div id="ListaDelegaciones">
+                                <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
+                                    @foreach (var item in ViewBag.Delegacion)
                                     {
-                                        <option value="@item.Id" selected>@item.Descripcion</option>
+                                        if (item.Seleccionado == true)
+                                        {
+                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Descripcion</option>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <option value="@item.Id">@item.Descripcion</option>
-                                    }
-                                }
-                            </select>
+                                </select>
+                            </div>
                         </div>
                         <br>
                         <br /> <br /> <br /> <br /> <br /> <br />
@@ -79,20 +85,26 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label col-md-2">Autoridad Judicial</label>
+                        <br />
+                        <p>
+                            <input type="text" id="BuscarAutoridad" name="BuscarAutoridades" onkeyup="BuscarAut()" placeholder="Buscar..">
+                        </p>
                         <div class="col-max col-md-10">
-                            <select name="listaAutoridad" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
-                                @foreach (var item in ViewBag.Autoridad)
-                                {
-                                    if (item.Seleccionado == true)
+                            <div id="ListaAutoridades">
+                                <select name="listaAutoridad" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
+                                    @foreach (var item in ViewBag.Autoridad)
                                     {
-                                        <option value="@item.Id" selected>@item.Descripcion</option>
+                                        if (item.Seleccionado == true)
+                                        {
+                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Descripcion</option>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <option value="@item.Id">@item.Descripcion</option>
-                                    }
-                                }
-                            </select>
+                                </select>
+                            </div>
                         </div>
                         <br>
                         <br /> <br /> <br /> <br /> <br /> <br />
@@ -171,4 +183,40 @@
             });
         };
     </script>
+
+<script type="text/javascript">
+
+    function BuscarAut() {
+        var input = document.getElementById('BuscarAutoridad').value.toLowerCase();
+        var output = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
+
+        for (var i = 0; i < output.length; i++) {
+            if (output[i].text.toLowerCase().indexOf(input) < 0) {
+                output[i].style.display = "none";
+                output[i].setAttribute('style', 'display:none;');
+
+            } else {
+                output[i].style.display = "";
+                output[i].setAttribute('style', 'display:');
+            }
+        }
+    }
+
+    function BuscarDelega() {
+        var input = document.getElementById('BuscarDelegacion').value.toLowerCase();
+        var output = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+
+        for (var i = 0; i < output.length; i++) {
+            if (output[i].text.toLowerCase().indexOf(input) < 0) {
+                output[i].style.display = "none";
+                output[i].setAttribute('style', 'display:none;');
+
+            } else {
+                output[i].style.display = "";
+                output[i].setAttribute('style', 'display:');
+            }
+        }
+    }
+
+</script>
 }
