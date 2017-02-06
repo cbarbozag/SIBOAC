@@ -371,5 +371,30 @@ namespace Cosevi.SIBOAC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorDelegacionAutoridadData_Result>("GetReportePorDelegacionAutoridadData", tipoConsultaParameter, fechaInicioParameter, fechaFinParameter, idAutoridadParameter, idDelegacionParameter);
         }
+    
+        public virtual ObjectResult<GetReporteListadoMultaFijaData_Result> GetReporteListadoMultaFijaData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idInspectores, string idDelegaciones)
+        {
+            var fechaDesdeParameter = fechaDesde.HasValue ?
+                new ObjectParameter("FechaDesde", fechaDesde) :
+                new ObjectParameter("FechaDesde", typeof(System.DateTime));
+    
+            var fechaHastaParameter = fechaHasta.HasValue ?
+                new ObjectParameter("FechaHasta", fechaHasta) :
+                new ObjectParameter("FechaHasta", typeof(System.DateTime));
+    
+            var valorParameter = valor.HasValue ?
+                new ObjectParameter("Valor", valor) :
+                new ObjectParameter("Valor", typeof(int));
+    
+            var idInspectoresParameter = idInspectores != null ?
+                new ObjectParameter("idInspectores", idInspectores) :
+                new ObjectParameter("idInspectores", typeof(string));
+    
+            var idDelegacionesParameter = idDelegaciones != null ?
+                new ObjectParameter("idDelegaciones", idDelegaciones) :
+                new ObjectParameter("idDelegaciones", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteListadoMultaFijaData_Result>("GetReporteListadoMultaFijaData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idInspectoresParameter, idDelegacionesParameter);
+        }
     }
 }

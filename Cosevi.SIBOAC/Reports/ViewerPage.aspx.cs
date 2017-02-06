@@ -55,7 +55,10 @@ namespace Cosevi.SIBOAC.Reports
                     result = GetDescargaBoletaData(parametros);
                     break;
                 case "_DescargaParteOficial":
-                    result = GetDescargaParteOficialData(parametros);
+                    result = GetReportePorDelegacionAutoridadData(parametros);
+                    break;
+                case "_ReporteListadoMultaFija":
+                    result = GetReporteListadoMultafijaData(parametros);
                     break;
                 case "_ConsultaeImpresionDeParteOficial":
                     result = GetConsultaeImpresionDeParteOficialData(parametros);
@@ -130,19 +133,31 @@ namespace Cosevi.SIBOAC.Reports
         }
 
 
-        private List<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(string parametros)
+        private List<GetReportePorDelegacionAutoridadData_Result> GetReportePorDelegacionAutoridadData(string parametros)
         {
             string[] param = parametros.Split(',');
-            DateTime FechaDesde = Convert.ToDateTime(param[0]);
-            DateTime FechaHasta = Convert.ToDateTime(param[1]);
-            int Valor = Convert.ToInt32(param[2]);
+            int Valor = Convert.ToInt32(param[0]);
+            DateTime FechaDesde = Convert.ToDateTime(param[1]);
+            DateTime FechaHasta = Convert.ToDateTime(param[2]);    
             string idAutoridades =param[3].Replace("|", ",").Replace("-", "").Trim();
             string idDelegaciones = param[4].Replace("|",",").Replace("-","").Trim();
 
-            var lista = db.GetDescargaParteOficialData(FechaDesde, FechaHasta, Valor, idAutoridades, idDelegaciones).ToList();
+            var lista = db.GetReportePorDelegacionAutoridadData(Valor,FechaDesde, FechaHasta, idAutoridades, idDelegaciones).ToList();
             return lista;
         }
 
+        private List<GetReporteListadoMultaFijaData_Result> GetReporteListadoMultafijaData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            int Valor = Convert.ToInt32(param[0]);
+            DateTime FechaDesde = Convert.ToDateTime(param[1]);
+            DateTime FechaHasta = Convert.ToDateTime(param[2]);
+            string idInspectores = param[3].Replace("|", ",").Replace("-", "").Trim();
+            string idDelegaciones = param[4].Replace("|", ",").Replace("-", "").Trim();
+
+            var lista = db.GetReporteListadoMultaFijaData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones).ToList();
+            return lista;
+        }
 
 
         private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(string parametros)

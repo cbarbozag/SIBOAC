@@ -16,8 +16,8 @@ namespace Cosevi.SIBOAC.Models
     {
         public string codigo { get; set; }
         public string conducta { get; set; }
-        public System.DateTime? fecha_inicio { get; set; }
-        public System.DateTime? fecha_final { get; set; }
+        public System.DateTime fecha_inicio { get; set; }
+        public System.DateTime fecha_final { get; set; }
         public string estado { get; set; }
         public string codigo_retiro_temporal { get; set; }
         public string codigo_inmovilizacion { get; set; }

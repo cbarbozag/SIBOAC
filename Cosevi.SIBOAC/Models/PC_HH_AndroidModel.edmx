@@ -1217,12 +1217,12 @@
           <Parameter Name="serieBoleta" Type="varchar" Mode="In" />
           <Parameter Name="numeroBoleta" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="GetReportePorDelegacionAutoridadData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TipoConsulta" Type="int" Mode="In" />
-          <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
-          <Parameter Name="FechaFin" Type="datetime" Mode="In" />
-          <Parameter Name="IdAutoridad" Type="varchar(max)" Mode="In" />
-          <Parameter Name="IdDelegacion" Type="varchar(max)" Mode="In" />
+        <Function Name="GetReporteListadoMultaFijaData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
+          <Parameter Name="FechaHasta" Type="datetime" Mode="In" />
+          <Parameter Name="Valor" Type="int" Mode="In" />
+          <Parameter Name="idInspectores" Type="varchar(max)" Mode="In" />
+          <Parameter Name="idDelegaciones" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="GetReportePorUsuarioData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="varchar(max)" Mode="In" />
@@ -1561,6 +1561,13 @@
             <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
             <Parameter Name="IdAutoridad" Mode="In" Type="String" />
             <Parameter Name="IdDelegacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetReporteListadoMultaFijaData" ReturnType="Collection(PC_HH_AndroidModel.GetReporteListadoMultaFijaData_Result)">
+            <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
+            <Parameter Name="Valor" Mode="In" Type="Int32" />
+            <Parameter Name="idInspectores" Mode="In" Type="String" />
+            <Parameter Name="idDelegaciones" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
@@ -2838,22 +2845,33 @@
         </ComplexType>
         <ComplexType Name="GetReportePorDelegacionAutoridadData_Result">
           <Property Type="String" Name="Reporte" Nullable="false" MaxLength="21" />
-          <Property Type="String" Name="fuente" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="serie" Nullable="true" MaxLength="4" />
-          <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="serie" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="numeroparte" Nullable="false" MaxLength="15" />
           <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
           <Property Type="DateTime" Name="fecha_registro" Nullable="true" Precision="23" />
           <Property Type="String" Name="codigo_delegacion" Nullable="true" MaxLength="4" />
           <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Identificacion" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="18" />
           <Property Type="String" Name="NombreCompleto" Nullable="true" MaxLength="72" />
           <Property Type="String" Name="clase_placa" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="codigo_placa" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="numero_placa" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="C_P" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="PC" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="VD" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="PE" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="CP" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="GetReporteListadoMultaFijaData_Result">
+          <Property Type="String" Name="codigo_delegacion" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="codigo_inspector" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
+          <Property Type="DateTime" Name="fecha_hora_boleta" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="dias" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4251,26 +4269,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetReportePorDelegacionAutoridadData" FunctionName="PC_HH_AndroidModel.Store.GetReportePorDelegacionAutoridadData">
+          <FunctionImportMapping FunctionImportName="GetReporteListadoMultaFijaData" FunctionName="PC_HH_AndroidModel.Store.GetReporteListadoMultaFijaData">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReportePorDelegacionAutoridadData_Result">
-                <ScalarProperty Name="Reporte" ColumnName="Reporte" />
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReporteListadoMultaFijaData_Result">
+                <ScalarProperty Name="codigo_delegacion" ColumnName="codigo_delegacion" />
+                <ScalarProperty Name="codigo_inspector" ColumnName="codigo_inspector" />
                 <ScalarProperty Name="fuente" ColumnName="fuente" />
                 <ScalarProperty Name="serie" ColumnName="serie" />
-                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
                 <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
-                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
-                <ScalarProperty Name="codigo_delegacion" ColumnName="codigo_delegacion" />
                 <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
-                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
-                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
-                <ScalarProperty Name="clase_placa" ColumnName="clase_placa" />
-                <ScalarProperty Name="codigo_placa" ColumnName="codigo_placa" />
-                <ScalarProperty Name="numero_placa" ColumnName="numero_placa" />
-                <ScalarProperty Name="C_P" ColumnName="C/P" />
-                <ScalarProperty Name="PC" ColumnName="PC" />
-                <ScalarProperty Name="VD" ColumnName="VD" />
-                <ScalarProperty Name="PE" ColumnName="PE" />
+                <ScalarProperty Name="fecha_hora_boleta" ColumnName="fecha_hora_boleta" />
+                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
+                <ScalarProperty Name="dias" ColumnName="dias" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

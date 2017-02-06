@@ -38,6 +38,7 @@ namespace Cosevi.SIBOAC.Models
         public System.DateTime FechaDeActualizacionClave { get; set; }
         public Nullable<bool> Activo { get; set; }
 
+        [StringLength(9, ErrorMessage = "La identificación no debe ser mayor a 9 caracteres")]
         [Required(ErrorMessage = "La Identificación es obligatoria")]
         public string Identificacion { get; set; }
         public string LugarTrabajo { get; set; }

@@ -4,11 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reporte Descarga de Parte Oficial </h2>
+<h2>Reporte Listado de Multas Fijas </h2>
 <h4>Filtro</h4>
 <hr />
 
-@using (Html.BeginForm("GetReportePorDelegacionAutoridad", "Reporte", FormMethod.Get))
+@using (Html.BeginForm("GetReporteListadoMultaFija", "Reporte", FormMethod.Get))
 {
 
         <div class="form-group">
@@ -19,36 +19,25 @@
                     @{
                         if (Request.Params["radio"] == "1")
                         {
-                            <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de descarga</label>
+                            <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de infraccón</label>
                             <br>
-                            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
-                            <br>
-                            <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de descarga</label>
+                           
                         }
 
                         if (Request.Params["radio"] == "2")
                         {
-                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
+                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de infracción</label>
                             <br>
-                            <label><input id="radio2" type="radio" name="radio" value="2" checked>Fecha de infracción</label>
-                            <br>
-                            <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                            <label><input id="radio2" type="radio" name="radio" value="2" checked>Fecha de descarga</label>
+                           
                         }
-                        if (Request.Params["radio"] == "3")
-                        {
-                            <label><input id="radio1" type="radio" name="radio" value="1">Fecha de descarga</label>
-                            <br>
-                            <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
-                                <br>
-                            <label><input id="radio3" type="radio" name="radio" value="3" checked>Fecha del accidente</label>
-                        }
+                      
                         if (Request.Params["radio"] == null)
                         {
-                            <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de descarga</label>
+                                <label><input id="radio1" type="radio" name="radio" value="1" checked>Fecha de infracción</label>
                                 <br>
-                                <label><input id="radio2" type="radio" name="radio" value="2">Fecha de infracción</label>
-                                <br>
-                                <label><input id="radio3" type="radio" name="radio" value="3">Fecha del accidente</label>
+                                <label><input id="radio2" type="radio" name="radio" value="2">Fecha de descarga</label>
                         }
                     }
                
@@ -81,8 +70,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Delegación</label>
                         <div class="col-max col-md-10">
-                            Search <input type="text" id="texto_busqueda" onkeyup="crit_busqueda()">
-                            <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
+                           <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
                                                              
 
                                     @foreach (var item in ViewBag.Delegaciones)
@@ -116,10 +104,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label col-md-2">Autoridad Judicial</label>
+                        <label class="control-label col-md-2">Inspectores</label>
                         <div class="col-max col-md-10">
-                            <select name="listaAutoridades" id="listaA" multiple="multiple" class="list-group" data-toggle="items" required >
-                                @foreach (var item in ViewBag.Autoridades)
+                            <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required >
+                                @foreach (var item in ViewBag.Inspectores)
                                 {
                                     if (item.Seleccionado == true)
                                     {
@@ -184,10 +172,10 @@
                 })
                  .trigger('change');
 
-                $("#listaAutoridades").change(function () {
+                $("#listaInspectores").change(function () {
                     var id = $(this).attr('name');
                     var str2 = "";
-                    $("#listaAutoridades option:selected").each(function () {
+                    $("#listaInspectores option:selected").each(function () {
 
                         str2 += "&" + id + "=" + $(this).attr('value');
                     });
@@ -240,7 +228,7 @@
                 };
                 function marcarTodosAutoridad() {
 
-                    var items = $('#listaA option.list-group-item');
+                    var items = $('#listaI option.list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         $(items[i]).selected='selected'
                         if (!$(items[i]).hasClass('active')) {
@@ -250,25 +238,12 @@
                 };
 
                 function limpiarTodosAutoridad() {
-                    var items = $('#listaA option.list-group-item');
+                    var items = $('#listaI option.list-group-item');
                     for (var i = 0; i < items.length; i++) {                        
                         $(items[i]).removeClass('active');
                        
                     }
                 };
        </script>
-<SCRIPT type="text/javascript">
-function crit_busqueda() {
-  var input=document.getElementById('texto_busqueda').value.toLowerCase();
-  var output = document.getElementById('listaD').options;
-  for(var i=0;i<output.length;i++) {
-    if(output[i].text.indexOf(input)==-1){
-      output[i].selected=true;
-      }
-    if (input == '') {
-      output[0].selected=true;
-      }
-  }
-}
-</SCRIPT>
+
     }
