@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Delegación</label>
                         <div class="col-max col-md-10">
-                            <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
+                            <select name="listaDelegacion" id="listaDele" multiple="multiple" class="list-group" data-toggle="items" required>
                                 @foreach (var item in ViewBag.Delegacion)
                                 {
                                     if (item.Seleccionado == true)
@@ -53,14 +53,21 @@
                     <br />
                     <br />
                     <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <div class="btn-group pull-right">
+                        <button id="todosDelegacion" type="button" class="btn btn-primary" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                        <button id="limpiarDelegacion" type="button" class="btn btn-warning" onclick="limpiarTodosDelegacion()">Limpiar</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label col-md-2">Inspector</label>
                         <div class="col-max col-md-10">
-                            <select name="listaInspector" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
+                            <select name="listaInspector" id="listaIns" multiple="multiple" class="list-group" data-toggle="items" required>
                                 @foreach (var item in ViewBag.Inspector)
                                 {
                                     if (item.Seleccionado == true)
@@ -79,10 +86,20 @@
                     </div>
                     <br />
                     <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <div class="btn-group pull-right">
+                        <button id="todosInspector" type="button" class="btn btn-primary" onclick="marcarTodosInspector()">Marcar todos</button>
+                        <button id="limpiarInspector" type="button" class="btn btn-warning" onclick="limpiarTodosInspector()">Limpiar</button>
                     </div>
                 </div>
             </div>
+            <br />
+            <br />
             <div class="pull-right">
                 <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
             </div>
@@ -149,6 +166,22 @@
                     $('.input-daterange').datepicker({
                         startView: 2
                     });
+                };
+
+                function marcarTodosDelegacion() {
+                    var items = document.getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosDelegacion() {
+                    var items = document.getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        $(items[i]).removeClass('active');
+                    }
                 };
             </script>
         }
