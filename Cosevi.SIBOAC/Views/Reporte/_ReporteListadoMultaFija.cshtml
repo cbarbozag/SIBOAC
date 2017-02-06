@@ -68,27 +68,33 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label col-md-2">Delegación</label>
+                        <label class="control-label col-md-2">Delegación  </label>
+                        <br />
+                        <p>
+                            <input type="text" id="BuscarDelegacion" name="BuscarDelegaciones" onkeyup="BuscarDel()" placeholder="Buscar..">
+                        </p>
                         <div class="col-max col-md-10">
-                           <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
-                                                             
+                            <div id="ListaDelegaciones">
+                                <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
+
 
                                     @foreach (var item in ViewBag.Delegaciones)
                                     {
-                                       
+
                                         if (item.Seleccionado == true)
                                         {
-                                            <option value="@item.Id" selected >@item.Descripcion</option>
+                                            <option value="@item.Id" selected>@item.Descripcion</option>
                                         }
                                         else
                                         {
                                             <option value="@item.Id">@item.Descripcion</option>
                                         }
-                                       
+
 
                                     }
-</select>
+                                </select>
 
+                            </div>
 
                         </div>
                         <br />
@@ -104,21 +110,27 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label col-md-2">Inspectores</label>
+                        <label class="control-label col-md-2">Inspectores  </label>
+                        <br />
+                        <p>
+                            <input type="text" id="BuscarInspector" name="BuscarInspectores" onkeyup="BuscarInspec()" placeholder="Buscar..">
+                        </p>
                         <div class="col-max col-md-10">
-                            <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required >
-                                @foreach (var item in ViewBag.Inspectores)
-                                {
-                                    if (item.Seleccionado == true)
+                            <div id="ListaInspectores">
+                                <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
+                                    @foreach (var item in ViewBag.Inspectores)
                                     {
-                                        <option value="@item.Id" selected>@item.Descripcion</option>
+                                        if (item.Seleccionado == true)
+                                        {
+                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Descripcion</option>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <option value="@item.Id">@item.Descripcion</option>
-                                    }
-                                }
-                            </select>
+                                </select>
+                            </div>
                         </div>
                         <br />
                         <br />
@@ -245,5 +257,38 @@
                     }
                 };
        </script>
+<script type="text/javascript">
 
+    function BuscarDel() {
+        var input = document.getElementById('BuscarDelegacion').value.toLowerCase();
+        var output = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+
+        for (var i = 0; i < output.length; i++) {
+            if (output[i].text.toLowerCase().indexOf(input) < 0) {
+                output[i].style.display = "none";
+                output[i].setAttribute('style', 'display:none;');
+
+            } else {
+                output[i].style.display = "";
+                output[i].setAttribute('style', 'display:');
+            }
+        }       
+    }
+    function BuscarInspec() {
+        var input = document.getElementById('BuscarInspector').value.toLowerCase();
+        var output = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+
+        for (var i = 0; i < output.length; i++) {
+            if (output[i].text.toLowerCase().indexOf(input) < 0) {
+                output[i].style.display = "none";
+                output[i].setAttribute('style', 'display:none;');
+
+            } else {
+                output[i].style.display = "";
+                output[i].setAttribute('style', 'display:');
+            }
+        }
+
+    }
+</script>
     }
