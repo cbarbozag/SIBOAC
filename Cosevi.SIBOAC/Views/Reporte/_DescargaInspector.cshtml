@@ -38,8 +38,13 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="form-group">
-                        <label class="control-label col-md-2"> Oficial de Transito</label>
+                        <label class="control-label col-md-10"> Oficial de Transito</label>
+                        <br />
+                        <p>
+                            <input type="text" id="BuscarInspector" name="BuscarInspectores" onkeyup="BuscarInspec()" placeholder="Buscar..">
+                        </p>
                         <div class="col-max col-md-8">
+                            <div id="ListaInspectores">
                             <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
                                 @foreach (var item in ViewBag.Inspectores)
                                 {
@@ -56,6 +61,7 @@
 
                                 }
                             </select>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -118,5 +124,25 @@
                             })
                                    .trigger('change');
                         </script>
+
+<script type="text/javascript">
+
+    function BuscarInspec() {
+        var input = document.getElementById('BuscarInspector').value.toLowerCase();
+        var output = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+
+        for (var i = 0; i < output.length; i++) {
+            if (output[i].text.toLowerCase().indexOf(input) < 0) {
+                output[i].style.display = "none";
+                output[i].setAttribute('style', 'display:none;');
+
+            } else {
+                output[i].style.display = "";
+                output[i].setAttribute('style', 'display:');
+            }
+        }
+    }
+   
+</script>
                     }
 
