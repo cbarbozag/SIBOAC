@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -17,9 +18,23 @@ namespace Cosevi.SIBOAC.Controllers
 
         // GET: ResetPasswords
         [SessionExpire]
-        public ActionResult Index()
+        public ActionResult Index(int ? page, string searchString)
         {
-            return View(dbSecurity.SIBOACUsuarios.ToList());
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+            var list = from s in dbSecurity.SIBOACUsuarios.ToList() select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(s => s.Usuario.ToUpper().Contains(searchString.ToUpper())
+                                        || s.Nombre.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
+
+            //return View(dbSecurity.SIBOACUsuarios.ToList());
         }
 
         //// GET: ResetPasswords/Details/5
@@ -117,6 +132,8 @@ namespace Cosevi.SIBOAC.Controllers
             sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
             dbSecurity.SaveChanges();
             Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
+            TempData["Type"] = "success";
+            TempData["Message"] = "La contraseña se reinició correctamente";
             return RedirectToAction("Index");
         }
 

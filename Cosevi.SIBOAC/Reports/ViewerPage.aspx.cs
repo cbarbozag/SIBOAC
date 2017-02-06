@@ -60,6 +60,9 @@ namespace Cosevi.SIBOAC.Reports
                 case "_ReporteListadoMultaFija":
                     result = GetReporteListadoMultafijaData(parametros);
                     break;
+                case "_ReporteListadoParteOficial":
+                    result = GetReporteListadoParteOficialData(parametros);
+                    break;
                 case "_ConsultaeImpresionDeParteOficial":
                     result = GetConsultaeImpresionDeParteOficialData(parametros);
                     break;
@@ -158,7 +161,18 @@ namespace Cosevi.SIBOAC.Reports
             var lista = db.GetReporteListadoMultaFijaData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones).ToList();
             return lista;
         }
+        private List<GetReporteListadoParteOficialData_Result> GetReporteListadoParteOficialData(string parametros)
+        {
+            string[] param = parametros.Split(',');
+            int Valor = Convert.ToInt32(param[0]);
+            DateTime FechaDesde = Convert.ToDateTime(param[1]);
+            DateTime FechaHasta = Convert.ToDateTime(param[2]);
+            string idInspectores = param[3].Replace("|", ",").Replace("-", "").Trim();
+            string idDelegaciones = param[4].Replace("|", ",").Replace("-", "").Trim();
 
+            var lista = db.GetReporteListadoParteOficialData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones).ToList();
+            return lista;
+        }
 
         private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(string parametros)
         {

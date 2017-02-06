@@ -72,16 +72,18 @@
                 </div>
                 <br />
                 <br />
-                <div class="btn-group pull-right">
-                    @*<button id="todos" type="button" class="btn btn-primary">Marcar todos</button>
-                    <button id="limpiar" type="button" class="btn btn-warning">Limpiar</button>*@
+                <br />
+                <br />                
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="btn-group col-md-10">
+                    <button id="todos" type="button" class="btn btn-primary" onclick="marcarTodosUsuarios()">Marcar todos</button>
+                    <button id="limpiar" type="button" class="btn btn-warning" onclick="limpiarTodosUsuarios()">Limpiar</button>
                 </div>
                 <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
+                <br />                
             </div>
             <div class="pull-right">
                 <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
@@ -98,7 +100,7 @@
         function () {            
             Calendario();
             ReportCall();
-            //cargarDatos();
+            //prepararEventos();
         });
     </script>
 
@@ -134,9 +136,25 @@
         }
 
              function Calendario() {
-        $('.input-daterange').datepicker({
-            startView: 2
-        });
+            $('.input-daterange').datepicker({
+                startView: 2
+            });
+             };
+
+             function marcarTodosUsuarios() {
+                 var items = document.getElementsByClassName('list-group-item');
+                 for (var i = 0; i < items.length; i++) {
+                     if (!$(items[i]).hasClass('active')) {
+                         $(items[i]).addClass('active')
+                     }
+                 }
+             };
+
+             function limpiarTodosUsuarios() {
+                 var items = document.getElementsByClassName('list-group-item');
+                 for (var i = 0; i < items.length; i++) {
+                     $(items[i]).removeClass('active');
+                 }
              };
     </script>
 }
