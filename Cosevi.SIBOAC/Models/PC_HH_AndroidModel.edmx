@@ -720,6 +720,21 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="OtrosAdjuntos">
+          <Key>
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero_boleta" />
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="fuente" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="numero_boleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="extension" Type="varchar" MaxLength="6" />
+          <Property Name="consecutivo_extension" Type="int" />
+        </EntityType>
         <EntityType Name="OTROTIPOTRANSPORTE">
           <Key>
             <PropertyRef Name="codigo" />
@@ -1301,6 +1316,7 @@
           <EntitySet Name="OPCFORMULARIOXARTICULO" EntityType="Self.OPCFORMULARIOXARTICULO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCIONFORMULARIO" EntityType="Self.OPCIONFORMULARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCIONPLANO" EntityType="Self.OPCIONPLANO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OtrosAdjuntos" EntityType="Self.OtrosAdjuntos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTROTIPOTRANSPORTE" EntityType="Self.OTROTIPOTRANSPORTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PARTEOFICIAL" EntityType="Self.PARTEOFICIAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEATON" EntityType="Self.PEATON" Schema="dbo" store:Type="Tables" />
@@ -1583,6 +1599,7 @@
             <Parameter Name="idInspectores" Mode="In" Type="String" />
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="OtrosAdjuntos" EntityType="PC_HH_AndroidModel.OtrosAdjuntos" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2898,6 +2915,21 @@
           <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="dias" Nullable="true" />
         </ComplexType>
+        <EntityType Name="OtrosAdjuntos">
+          <Key>
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero_boleta" />
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="numero_boleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="extension" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="consecutivo_extension" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4294,21 +4326,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetReporteListadoMultaFijaData" FunctionName="PC_HH_AndroidModel.Store.GetReporteListadoMultaFijaData">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReporteListadoMultaFijaData_Result">
-                <ScalarProperty Name="codigo_delegacion" ColumnName="codigo_delegacion" />
-                <ScalarProperty Name="codigo_inspector" ColumnName="codigo_inspector" />
-                <ScalarProperty Name="fuente" ColumnName="fuente" />
-                <ScalarProperty Name="serie" ColumnName="serie" />
+          <EntitySetMapping Name="OtrosAdjuntos">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OtrosAdjuntos">
+              <MappingFragment StoreEntitySet="OtrosAdjuntos">
+                <ScalarProperty Name="consecutivo_extension" ColumnName="consecutivo_extension" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
-                <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />
-                <ScalarProperty Name="fecha_hora_boleta" ColumnName="fecha_hora_boleta" />
-                <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
-                <ScalarProperty Name="dias" ColumnName="dias" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="fuente" ColumnName="fuente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetReporteListadoParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetReporteListadoParteOficialData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReporteListadoParteOficialData_Result">
