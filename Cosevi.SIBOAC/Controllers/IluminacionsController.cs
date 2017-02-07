@@ -139,15 +139,17 @@ namespace Cosevi.SIBOAC.Controllers
                 string mensaje = ValidarFechas(iluminacion.FechaDeInicio, iluminacion.FechaDeFin);
                 if (mensaje == "")
                 {
-                    ViewBag.Type = "warning";
-                    ViewBag.Message = mensaje;
-                    return View(iluminacion);
+                    db.SaveChanges();
+                    Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "La edición se realizó correctamente";
+                    return RedirectToAction("Index");                    
                 }
                 else
                 {
-                    db.SaveChanges();
-                    Bitacora(iluminacion, "U", "ILUMINACION", iluminacionAntes);
-                    return RedirectToAction("Index");
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(iluminacion);
                 }                
             }
             return View(iluminacion);

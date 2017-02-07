@@ -140,6 +140,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(codigoDeLaPlaca).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(codigoDeLaPlaca, "U", "CODIGO", codigoDeLaPlacaAntes);
+                TempData["Type"] = "success";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(codigoDeLaPlaca);
@@ -202,6 +204,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CODIGO.Remove(codigoDeLaPlaca);
             db.SaveChanges();
             Bitacora(codigoDeLaPlaca, "D", "CODIGO");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

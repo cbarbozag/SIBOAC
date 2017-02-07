@@ -267,6 +267,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(danioPorHospital, "U", "DAÑOXHOSPITAL", danioPorHospitalAntes);
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -415,6 +417,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.DAÑOXHOSPITAL.Remove(danioPorHospital);
             db.SaveChanges();
             Bitacora(danioPorHospital, "D", "DAÑOXHOSPITAL");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

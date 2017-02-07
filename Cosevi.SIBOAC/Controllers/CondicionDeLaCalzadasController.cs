@@ -139,6 +139,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(condicionDeLaCalzada).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(condicionDeLaCalzada, "U", "CONDCALZADA", condicionDeLaCalzadaAntes);
+                TempData["Type"] = "success";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(condicionDeLaCalzada);
@@ -200,6 +202,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CONDCALZADA.Remove(condicionDeLaCalzada);
             db.SaveChanges();
             Bitacora(condicionDeLaCalzada, "D", "CONDCALZADA");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

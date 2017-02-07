@@ -17,7 +17,21 @@ namespace Cosevi.SIBOAC.Controllers
         // GET: MantenimientoTablas
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+
             return View(dbs.SIBOACTablas.ToList());
+        }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = dbs.SIBOACTablas.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: MantenimientoTablas/Details/5
@@ -51,9 +65,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 dbs.SIBOACTablas.Add(sIBOACTablas);
-                dbs.SaveChanges();
-                Bitacora(sIBOACTablas, "I", "SIBOACTablas");
-                return RedirectToAction("Index");
+                string mensaje = Verificar(sIBOACTablas.Id);
+
+                if (mensaje == "")
+                {
+                    dbs.SaveChanges();
+                    Bitacora(sIBOACTablas, "I", "SIBOACTablas");
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(sIBOACTablas);
+                }
             }
 
             return View(sIBOACTablas);
@@ -87,6 +114,8 @@ namespace Cosevi.SIBOAC.Controllers
                 dbs.Entry(sIBOACTablas).State = EntityState.Modified;
                 dbs.SaveChanges();
                 Bitacora(sIBOACTablas, "U", "SIBOACTablas", sIBOACTablasAntes);
+                TempData["Type"] = "success";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(sIBOACTablas);
@@ -117,6 +146,8 @@ namespace Cosevi.SIBOAC.Controllers
             dbs.SIBOACTablas.Remove(sIBOACTablas);
             db.SaveChanges();
             Bitacora(sIBOACTablas, "U", "SIBOACTablas", sIBOACTablasAntes);
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

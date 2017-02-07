@@ -143,6 +143,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(direccion, "U", "DIRECCION", direccionAntes);
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -213,6 +215,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.DIRECCION.Remove(direccion);
             db.SaveChanges();
             Bitacora(direccion, "D", "DIRECCION");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

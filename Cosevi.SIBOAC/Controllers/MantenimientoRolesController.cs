@@ -18,7 +18,21 @@ namespace Cosevi.SIBOAC.Controllers
         [SessionExpire]
         public ActionResult Index()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+
             return View(dbs.SIBOACRoles.ToList());
+        }
+
+        public string Verificar(int id)
+        {
+            string mensaje = "";
+            bool exist = dbs.SIBOACRoles.Any(x => x.Id == id);
+            if (exist)
+            {
+                mensaje = "El codigo " + id + " ya esta registrado";
+            }
+            return mensaje;
         }
 
         // GET: MantenimientoRoles/Details/5
@@ -52,9 +66,22 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 dbs.SIBOACRoles.Add(sIBOACRoles);
-                dbs.SaveChanges();
-                Bitacora(sIBOACRoles, "I", "SIBOACRoles");
-                return RedirectToAction("Index");
+                string mensaje = Verificar(sIBOACRoles.Id);
+
+                if (mensaje == "")
+                {
+                    dbs.SaveChanges();
+                    Bitacora(sIBOACRoles, "I", "SIBOACRoles");
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(sIBOACRoles);
+                }                
             }
 
             return View(sIBOACRoles);
@@ -88,6 +115,8 @@ namespace Cosevi.SIBOAC.Controllers
                 dbs.Entry(sIBOACRoles).State = EntityState.Modified;                
                 dbs.SaveChanges();
                 Bitacora(sIBOACRoles, "U", "SIBOACRoles", sIBOACRolesAntes);
+                TempData["Type"] = "success";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(sIBOACRoles);

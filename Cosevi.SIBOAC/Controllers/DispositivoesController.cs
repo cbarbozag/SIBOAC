@@ -140,6 +140,8 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "") { 
                     db.SaveChanges();
                     Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -210,6 +212,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.Dispositivoes1.Remove(dispositivo);
             db.SaveChanges();
             Bitacora(dispositivo, "D", "DISPOSITIVO");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

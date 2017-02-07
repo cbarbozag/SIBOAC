@@ -138,6 +138,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(condicionDeLaPersona).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(condicionDeLaPersona, "U", "CIRCULACION", condicionDeLaPersonaAntes);
+                TempData["Type"] = "success";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(condicionDeLaPersona);
@@ -199,6 +201,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CONDPERSONA.Remove(condicionDeLaPersona);
             db.SaveChanges();
             Bitacora(condicionDeLaPersona, "D", "CONDPERSONA");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 
