@@ -181,7 +181,7 @@
                 };
 
                 function marcarTodosDelegacion() {
-                    var items = document.getElementsByClassName('list-group-item');
+                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         if (!$(items[i]).hasClass('active')) {
                             $(items[i]).addClass('active')
@@ -190,7 +190,23 @@
                 };
 
                 function limpiarTodosDelegacion() {
-                    var items = document.getElementsByClassName('list-group-item');
+                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        $(items[i]).removeClass('active');
+                    }
+                };
+
+                function marcarTodosInspector() {
+                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosInspector() {
+                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         $(items[i]).removeClass('active');
                     }
