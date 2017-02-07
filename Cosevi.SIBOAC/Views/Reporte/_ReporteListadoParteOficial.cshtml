@@ -44,10 +44,9 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="form-group">
-            <label class="control-label col-md-10">Rango de fechas</label>
-            <br />
+            <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
                     <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required  />
@@ -90,14 +89,20 @@
                                         {
                                             <option value="@item.Id">@item.Descripcion</option>
                                         }
+
+
                                     }
                                 </select>
                             </div>
-                        </div>                        
-                    </div>                                     
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />  
                     <div class="btn-group pull-right">
-                            <button id="todosDelegacion" type="button" class="btn btn-primary" onclick="marcarTodosDelegacion()">Marcar todos</button>
-                            <button id="limpiarDelegacion" type="button" class="btn btn-warning" onclick="limpiarTodosDelegacion()">Limpiar</button>
+                        <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                        <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -124,19 +129,22 @@
                                 </select>
                             </div>
                         </div>
-                    </div>                  
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <br />
                     <div class="btn-group pull-right">
-                        <button id="todosInspector" type="button" class="btn btn-primary" onclick="marcarTodoInspector()">Marcar todos</button>
-                        <button id="limpiarInspector" type="button" class="btn btn-warning" onclick="limpiarTodosInspector()">Limpiar</button>                       
+                        <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                        <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
+
                     </div>
                 </div>
             </div>
-
         <br />
         <br />
         <br />
         </div>
-
         <div class="pull-right">
             <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
         </div>
@@ -159,7 +167,6 @@
                     
                 });
             </script>
-
             <script>
                 $("#listaDelegaciones").change(function () {
                     var id = $(this).attr('name');
@@ -183,6 +190,42 @@
                 })
                 .trigger('change');
 
+                function marcarTodosDelegacion() {
+
+                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosDelegacion() {
+                    var items = $('#listaD option');
+                    for (var i = 0; i < items.length; i++) {
+                        //  $(items[i]).prop('selected', false)
+                        $(items[i]).removeClass('active');
+
+                    }
+                };
+                function marcarTodosInspector() {
+
+                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosInspector() {
+                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        $(items[i]).removeClass('active');
+
+                    }
+                };
+             
                 function ReportCall() {
 
                     var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
@@ -207,41 +250,7 @@
                         startView: 2
                     });
                 };
-                function marcarTodosDelegacion() {                   
-                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
-                    for (var i = 0; i < items.length; i++) {
-                        $(items[i]).prop('selected', true)
-                         if (!$(items[i]).hasClass('active')) {
-                            $(items[i]).addClass('active')
-                        }
-                    }
-                };
-
-                function limpiarTodosDelegacion() {
-                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
-                    for (var i = 0; i < items.length; i++) {
-                        //$(items[i]).prop('selected', false)
-                        $(items[i]).removeClass('active');
-                     
-                    }
-                };
-                function marcarTodoInspector() {
-                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
-                    for (var i = 0; i < items.length; i++) {
-                        $(items[i]).selected='selected'
-                        if (!$(items[i]).hasClass('active')) {
-                            $(items[i]).addClass('active')
-                        }
-                    }
-                };
-
-                function limpiarTodosInspector() {
-                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
-                    for (var i = 0; i < items.length; i++) {                        
-                        $(items[i]).removeClass('active');
-                       
-                    }
-                };
+                
        </script>
 <script type="text/javascript">
 

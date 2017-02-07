@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO>
+﻿
+@model PagedList.IPagedList<Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Lista";
@@ -15,32 +17,32 @@
 
 
         <th>
-            @Html.DisplayNameFor(model => model.codigo)
+            @Html.DisplayNameFor(model => model.First().codigo)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.conducta)
+            @Html.DisplayNameFor(model => model.First().conducta)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.fecha_inicio)
+            @Html.DisplayNameFor(model => model.First().fecha_inicio)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.fecha_final)
+            @Html.DisplayNameFor(model => model.First().fecha_final)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.estado)
+            @Html.DisplayNameFor(model => model.First().estado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.codigo_retiro_temporal)
+            @Html.DisplayNameFor(model => model.First().codigo_retiro_temporal)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.codigo_inmovilizacion)
+            @Html.DisplayNameFor(model => model.First().codigo_inmovilizacion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.observacion_noaplicacion)
+            @Html.DisplayNameFor(model => model.First().observacion_noaplicacion)
         </th>
         <th></th>
     </tr>
@@ -79,16 +81,16 @@
             @Html.DisplayFor(modelItem => item.observacion_noaplicacion)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
+            @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
+            @Html.ActionLink("Detalles", "Details", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
             @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             @if (item.estado == "I")
             {
-                @Html.ActionLink("Activar", "Delete", new { id = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                @Html.ActionLink("Activar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
             }
             else
             {
-                @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                @Html.ActionLink("Inactivar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
             }
         </td>
     </tr>
@@ -128,16 +130,16 @@
                 @Html.DisplayFor(modelItem => item.observacion_noaplicacion)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new {  id=item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
+                @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
+                @Html.ActionLink("Detalles", "Details", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 @if (item.estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                    @Html.ActionLink("Activar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                    @Html.ActionLink("Inactivar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
                 }
             </td>
         </tr>
@@ -145,3 +147,8 @@
 }
 
 </table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+

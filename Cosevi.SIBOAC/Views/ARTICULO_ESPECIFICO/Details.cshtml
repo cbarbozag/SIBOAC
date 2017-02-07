@@ -17,17 +17,38 @@
             @Html.DisplayNameFor(model => model.codigo)
         </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.codigo)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.conducta)
         </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.conducta)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.fecha_inicio)
         </dt>
 
 
+        <dd>
+            @Html.DisplayFor(model => model.fecha_inicio)
+        </dd>
+
+
         <dt>
             @Html.DisplayNameFor(model => model.fecha_final)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_final)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
         </dt>
 
         <dd>
@@ -61,6 +82,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.codigo, Conducta = Model.conducta, FechaInicio = Model.fecha_inicio, FechaFin = Model.fecha_final }) |
+    @Html.ActionLink("Editar", "Edit", new { CodArticulo = Model.codigo, Conducta = Model.conducta, FechaInicio = Model.fecha_inicio, FechaFin = Model.fecha_final }) |
     @Html.ActionLink("Regresar a la lista", "Index")
 </p>
