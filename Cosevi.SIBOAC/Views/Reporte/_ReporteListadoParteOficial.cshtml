@@ -12,7 +12,7 @@
 {
 
         <div class="form-group">
-            <label class="control-label col-md-2">Seleccione una opción para las fechas</label>
+            <label class="control-label col-md-10">Seleccione una opción para las fechas</label>
             <div class="col-md-10">
 
                 <div class="radio" id="radioButton">
@@ -73,7 +73,7 @@
                         <p>
                             <input type="text" id="BuscarDelegacion" name="BuscarDelegaciones" onkeyup="BuscarDel()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-10">
+                        <div class="col-max col-md-12">
                             <div id="ListaDelegaciones">
                                 <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
 
@@ -115,7 +115,7 @@
                         <p>
                             <input type="text" id="BuscarInspector" name="BuscarInspectores" onkeyup="BuscarInspec()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-10">
+                        <div class="col-max col-md-12">
                             <div id="ListaInspectores">
                                 <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Inspectores)
@@ -207,7 +207,7 @@
                 };
 
                 function limpiarTodosDelegacion() {
-                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+                    var items = $('#listaD option');
                     for (var i = 0; i < items.length; i++) {
                         //  $(items[i]).prop('selected', false)
                         $(items[i]).removeClass('active');

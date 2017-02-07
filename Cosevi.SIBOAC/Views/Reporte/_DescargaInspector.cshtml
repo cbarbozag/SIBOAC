@@ -36,14 +36,14 @@
         <br>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="form-group">
-                        <label class="control-label col-md-10"> Oficial de Transito</label>
+                        <label class="control-label col-md-3"> Oficial de Transito</label>
                         <br />
                         <p>
                             <input type="text" id="BuscarInspector" name="BuscarInspectores" onkeyup="BuscarInspec()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-8">
+                        <div class="col-max col-md-7">
                             <div id="ListaInspectores">
                             <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
                                 @foreach (var item in ViewBag.Inspectores)
@@ -80,8 +80,8 @@
 
     }
 
-                    <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
-                    @section scripts
+    <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+    @section scripts
     {
                         <script>
                             $(document).ready(
