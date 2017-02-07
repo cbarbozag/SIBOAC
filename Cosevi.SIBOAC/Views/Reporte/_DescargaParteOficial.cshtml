@@ -232,8 +232,7 @@
                         startView: 2
                     });
                 };
-                function marcarTodosDelegacion() {
-                   
+                function marcarTodosDelegacion() {                  
                     var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {                      
                          if (!$(items[i]).hasClass('active')) {
@@ -250,6 +249,7 @@
                      
                     }
                 };
+
                 function marcarTodosAutoridad() {
 
                     var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
