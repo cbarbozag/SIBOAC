@@ -56,7 +56,7 @@
                         <p>
                             <input type="text" id="BuscarDelegacion" name="BuscarDelegaciones" onkeyup="BuscarDelega()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-12">
+                        <div class="col-max col-md-10">
                             <div id="ListaDelegaciones">
                                 <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Delegacion)
@@ -74,9 +74,11 @@
                             </div>
                         </div>
                         <br>
+                        <br /> <br /> <br /> <br /> <br /> <br />
+                        <br /> <br /> <br /> <br /> <br /> <br />
                         <div class="btn-group pull-right">
-                            <button id="todosDelegacion" type="button" class="btn btn-primary" onclick="marcarTodosDelegacion()">Marcar todos</button>
-                            <button id="limpiarDelegacion" type="button" class="btn btn-warning" onclick="limpiarTodosDelegacion()">Limpiar</button>
+                            <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                            <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +89,7 @@
                         <p>
                             <input type="text" id="BuscarAutoridad" name="BuscarAutoridades" onkeyup="BuscarAut()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-12">
+                        <div class="col-max col-md-10">
                             <div id="ListaAutoridades">
                                 <select name="listaAutoridad" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Autoridad)
@@ -104,10 +106,13 @@
                                 </select>
                             </div>
                         </div>
-                        <br>                                                
+                        <br>
+                        <br /> <br /> <br /> <br /> <br /> <br />
+                        <br /> <br /> <br /> <br /> <br /> <br />
                         <div class="btn-group pull-right">
-                                <button id="todosAutoridad" type="button" class="btn btn-primary" onclick="marcarTodosAutoridad()">Marcar todos</button>
-                                <button id="limpiarAutoridad" type="button" class="btn btn-warning" onclick="limpiarTodosAutoridad()">Limpiar</button>
+                            <button id="todosAutoridad" type="button" class="btn btn-danger" onclick="marcarTodosAutoridad()">Marcar todos</button>
+                            <button id="limpiarAutoridad" type="button" class="btn  btn-primary" onclick="limpiarTodosAutoridad()">Limpiar</button>
+
                         </div>
                     </div>
                 </div>
@@ -154,6 +159,42 @@
             $("div").text(str2);
         }).trigger('change');
 
+        function marcarTodosDelegacion() {
+
+            var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                if (!$(items[i]).hasClass('active')) {
+                    $(items[i]).addClass('active')
+                }
+            }
+        };
+
+        function limpiarTodosDelegacion() {
+            var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                //  $(items[i]).prop('selected', false)
+                $(items[i]).removeClass('active');
+
+            }
+        };
+
+        function marcarTodosAutoridad() {
+
+            var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                if (!$(items[i]).hasClass('active')) {
+                    $(items[i]).addClass('active')
+                }
+            }
+        };
+
+        function limpiarTodosAutoridad() {
+            var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                $(items[i]).removeClass('active');
+
+            }
+        };
         function ReportCall() {
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
 
@@ -177,41 +218,6 @@
             $('.input-daterange').datepicker({
                 startView: 2
             });
-        };
-
-        function marcarTodosAutoridad() {
-            var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
-            for (var i = 0; i < items.length; i++) {
-                if (!$(items[i]).hasClass('active')) {
-                    $(items[i]).addClass('active')
-                }
-            }
-        };
-
-        function limpiarTodosAutoridad() {
-            var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
-            for (var i = 0; i < items.length; i++) {
-                $(items[i]).removeClass('active');
-
-            }
-        };
-
-        function marcarTodosDelegacion() {
-            var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
-            for (var i = 0; i < items.length; i++) {
-                if (!$(items[i]).hasClass('active')) {
-                    $(items[i]).addClass('active')
-                }
-            }
-        };
-
-        function limpiarTodosDelegacion() {
-            var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
-            for (var i = 0; i < items.length; i++) {
-                //  $(items[i]).prop('selected', false)
-                $(items[i]).removeClass('active');
-
-            }
         };
     </script>
 

@@ -65,8 +65,9 @@
                     <br />
                     <br />
                     <div class="btn-group pull-right">
-                        <button id="todosDelegacion" type="button" class="btn btn-primary" onclick="marcarTodosDelegacion()">Marcar todos</button>
-                        <button id="limpiarDelegacion" type="button" class="btn btn-warning" onclick="limpiarTodosDelegacion()">Limpiar</button>
+                        <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                        <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
+
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -98,20 +99,16 @@
                     </div>
                     <br />
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                     <div class="btn-group pull-right">
-                        <button id="todosInspector" type="button" class="btn btn-primary" onclick="marcarTodosInspector()">Marcar todos</button>
-                        <button id="limpiarInspector" type="button" class="btn btn-warning" onclick="limpiarTodosInspector()">Limpiar</button>
+                        <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                        <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
+
                     </div>
                 </div>
             </div>
             <br />
             <br />
+  
             <div class="pull-right">
                 <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
             </div>
@@ -181,6 +178,7 @@
                 };
 
                 function marcarTodosDelegacion() {
+
                     var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         if (!$(items[i]).hasClass('active')) {
@@ -192,11 +190,13 @@
                 function limpiarTodosDelegacion() {
                     var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
+                        //  $(items[i]).prop('selected', false)
                         $(items[i]).removeClass('active');
+
                     }
                 };
-
                 function marcarTodosInspector() {
+
                     var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         if (!$(items[i]).hasClass('active')) {
@@ -209,6 +209,7 @@
                     var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         $(items[i]).removeClass('active');
+
                     }
                 };
             </script>
