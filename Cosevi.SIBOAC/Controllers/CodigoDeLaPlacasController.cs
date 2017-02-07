@@ -138,11 +138,22 @@ namespace Cosevi.SIBOAC.Controllers
                 var codigoDeLaPlacaAntes = db.CODIGO.AsNoTracking().Where(d => d.Id == codigoDeLaPlaca.Id).FirstOrDefault();
 
                 db.Entry(codigoDeLaPlaca).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(codigoDeLaPlaca, "U", "CODIGO", codigoDeLaPlacaAntes);
-                TempData["Type"] = "success";
-                TempData["Message"] = "La edición se realizó correctamente";
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(codigoDeLaPlaca.FechaDeInicio, codigoDeLaPlaca.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(codigoDeLaPlaca, "U", "CODIGO", codigoDeLaPlacaAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(codigoDeLaPlaca);
+                }               
             }
             return View(codigoDeLaPlaca);
         }

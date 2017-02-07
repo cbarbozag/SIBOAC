@@ -142,7 +142,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(dano, "U", "DAÑO", danoAntes);
-                    TempData["Type"] = "success";
+                    TempData["Type"] = "info";
                     TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }

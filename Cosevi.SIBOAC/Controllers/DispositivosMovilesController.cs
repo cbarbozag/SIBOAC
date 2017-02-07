@@ -96,7 +96,7 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(dispositivosMoviles).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(dispositivosMoviles, "U", "DispositivosMoviles", dispositivosMovilesAntes);
-                TempData["Type"] = "success";
+                TempData["Type"] = "info";
                 TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }

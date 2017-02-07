@@ -230,6 +230,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(aRTICULO_ESPECIFICO).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(aRTICULO_ESPECIFICO, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(aRTICULO_ESPECIFICO);

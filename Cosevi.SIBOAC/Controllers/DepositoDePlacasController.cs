@@ -145,7 +145,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(depositoDePlaca, "U", "DAÑOXHOSPITAL", depositoDePlacaAntes);
-                    TempData["Type"] = "success";
+                    TempData["Type"] = "info";
                     TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }

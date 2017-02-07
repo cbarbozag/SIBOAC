@@ -140,7 +140,7 @@ namespace Cosevi.SIBOAC.Controllers
                 if (mensaje == "") { 
                     db.SaveChanges();
                     Bitacora(dispositivo, "U", "DISPOSITIVO", dispositivoAntes);
-                    TempData["Type"] = "success";
+                    TempData["Type"] = "info";
                     TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }

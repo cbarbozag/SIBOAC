@@ -287,6 +287,8 @@ namespace Cosevi.SIBOAC.Controllers
 
                     db.SaveChanges();
                     Bitacora(rolPorPersonaOpcionFormulario, "U", "ROLPERSONA_OPCIONFORMULARIO", rolPorPersonaOpcionFormularioAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else

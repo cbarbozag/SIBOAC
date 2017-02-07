@@ -153,6 +153,8 @@ namespace Cosevi.SIBOAC.Controllers
 
                     db.SaveChanges();
                     Bitacora(ruta, "U", "RUTA", rutaAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else

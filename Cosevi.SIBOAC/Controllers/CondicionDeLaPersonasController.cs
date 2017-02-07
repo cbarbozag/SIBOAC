@@ -136,11 +136,22 @@ namespace Cosevi.SIBOAC.Controllers
                 var condicionDeLaPersonaAntes = db.CONDPERSONA.AsNoTracking().Where(d => d.Id == condicionDeLaPersona.Id).FirstOrDefault();
 
                 db.Entry(condicionDeLaPersona).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(condicionDeLaPersona, "U", "CIRCULACION", condicionDeLaPersonaAntes);
-                TempData["Type"] = "success";
-                TempData["Message"] = "La edición se realizó correctamente";
-                return RedirectToAction("Index");
+                string mensaje = ValidarFechas(condicionDeLaPersona.FechaDeInicio, condicionDeLaPersona.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(condicionDeLaPersona, "U", "CONDPERSONA", condicionDeLaPersonaAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(condicionDeLaPersona);
+                }
             }
             return View(condicionDeLaPersona);
         }

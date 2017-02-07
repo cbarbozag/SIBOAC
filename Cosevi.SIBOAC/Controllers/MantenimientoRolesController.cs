@@ -115,7 +115,7 @@ namespace Cosevi.SIBOAC.Controllers
                 dbs.Entry(sIBOACRoles).State = EntityState.Modified;                
                 dbs.SaveChanges();
                 Bitacora(sIBOACRoles, "U", "SIBOACRoles", sIBOACRolesAntes);
-                TempData["Type"] = "success";
+                TempData["Type"] = "info";
                 TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }

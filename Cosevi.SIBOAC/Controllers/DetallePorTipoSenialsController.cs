@@ -224,7 +224,7 @@ namespace Cosevi.SIBOAC.Controllers
                     db.Entry(detallePorTipoSenial).State = EntityState.Modified;
                     db.SaveChanges();
                     Bitacora(detallePorTipoSenial, "U", "DETALLETIPOSEÑAL", detallePorTipoSenialAntes);
-                    TempData["Type"] = "success";
+                    TempData["Type"] = "info";
                     TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }

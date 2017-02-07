@@ -289,6 +289,8 @@ namespace Cosevi.SIBOAC.Controllers
                     }
 
                     Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
 

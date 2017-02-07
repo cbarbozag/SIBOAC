@@ -126,6 +126,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(nombreDeMenu).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(nombreDeMenu, "U", "Nombre_Menu", nombreDeMenuAntes);
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(nombreDeMenu);

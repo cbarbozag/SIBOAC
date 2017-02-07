@@ -124,7 +124,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(dispositivoPorRolPersona, "I", "DISPXROLPERSONA");
-                    TempData["Type"] = "success";
+                    TempData["Type"] = "info";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
 

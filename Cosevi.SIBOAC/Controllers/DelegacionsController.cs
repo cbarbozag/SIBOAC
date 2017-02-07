@@ -141,7 +141,7 @@ namespace Cosevi.SIBOAC.Controllers
                     db.Entry(delegacion).State = EntityState.Modified;
                     db.SaveChanges();
                     Bitacora(delegacion, "U", "DELEGACION", delegacionAntes);
-                    TempData["Type"] = "success";
+                    TempData["Type"] = "info";
                     TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
