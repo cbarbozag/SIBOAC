@@ -22,5 +22,7 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> fecha_hora_boleta { get; set; }
         public Nullable<System.DateTime> fecha_descarga { get; set; }
         public Nullable<int> dias { get; set; }
+        public string DescripcionDelegacion { get; set; }
+        public string DescripcionAutoridad { get; set; }
     }
 }

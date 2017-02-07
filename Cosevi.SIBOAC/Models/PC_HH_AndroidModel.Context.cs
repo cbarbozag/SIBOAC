@@ -171,7 +171,7 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BitacoraSIBOAC>("GetBitacoraData", mergeOption, fechaInicioParameter, fechaFinParameter, nombreTablaParameter, usuarioParameter, operacionParameter);
         }
     
-        public virtual ObjectResult<GetDescargaBoletaData_Result> GetDescargaBoletaData(Nullable<int> tipoFecha, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal)
+        public virtual ObjectResult<GetDescargaBoletaData_Result> GetDescargaBoletaData(Nullable<int> tipoFecha, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string usuarioSistema)
         {
             var tipoFechaParameter = tipoFecha.HasValue ?
                 new ObjectParameter("TipoFecha", tipoFecha) :
@@ -185,10 +185,14 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("FechaFinal", fechaFinal) :
                 new ObjectParameter("FechaFinal", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaBoletaData_Result>("GetDescargaBoletaData", tipoFechaParameter, fechaInicialParameter, fechaFinalParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaBoletaData_Result>("GetDescargaBoletaData", tipoFechaParameter, fechaInicialParameter, fechaFinalParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetDescargaInspectorData_Result> GetDescargaInspectorData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string numeroHandHeld, string codigoOficial)
+        public virtual ObjectResult<GetDescargaInspectorData_Result> GetDescargaInspectorData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string numeroHandHeld, string codigoOficial, string usuarioSistema)
         {
             var fechaInicioParameter = fechaInicio.HasValue ?
                 new ObjectParameter("FechaInicio", fechaInicio) :
@@ -206,7 +210,11 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("CodigoOficial", codigoOficial) :
                 new ObjectParameter("CodigoOficial", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaInspectorData_Result>("GetDescargaInspectorData", fechaInicioParameter, fechaFinParameter, numeroHandHeldParameter, codigoOficialParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaInspectorData_Result>("GetDescargaInspectorData", fechaInicioParameter, fechaFinParameter, numeroHandHeldParameter, codigoOficialParameter, usuarioSistemaParameter);
         }
     
         public virtual ObjectResult<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3)
@@ -230,7 +238,7 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeParteOficialData_Result>("GetConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter);
         }
     
-        public virtual ObjectResult<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, string idDelegaciones, string idInspectores)
+        public virtual ObjectResult<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, string idDelegaciones, string idInspectores, string usuarioSistema)
         {
             var fechaDesdeParameter = fechaDesde.HasValue ?
                 new ObjectParameter("FechaDesde", fechaDesde) :
@@ -248,10 +256,14 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("idInspectores", idInspectores) :
                 new ObjectParameter("idInspectores", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeBoletasData_Result>("GetConsultaeImpresionDeBoletasData", fechaDesdeParameter, fechaHastaParameter, idDelegacionesParameter, idInspectoresParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeBoletasData_Result>("GetConsultaeImpresionDeBoletasData", fechaDesdeParameter, fechaHastaParameter, idDelegacionesParameter, idInspectoresParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string serieBoleta, string numeroBoleta)
+        public virtual ObjectResult<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string serieBoleta, string numeroBoleta, string usuarioSistema)
         {
             var serieBoletaParameter = serieBoleta != null ?
                 new ObjectParameter("serieBoleta", serieBoleta) :
@@ -261,10 +273,14 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("numeroBoleta", numeroBoleta) :
                 new ObjectParameter("numeroBoleta", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string idUsuario, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal)
+        public virtual ObjectResult<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string idUsuario, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string usuarioSistema)
         {
             var idUsuarioParameter = idUsuario != null ?
                 new ObjectParameter("IdUsuario", idUsuario) :
@@ -278,7 +294,11 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("FechaFinal", fechaFinal) :
                 new ObjectParameter("FechaFinal", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter, usuarioSistemaParameter);
         }
     
         public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
@@ -306,7 +326,7 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
         }
     
-        public virtual ObjectResult<GetReporteStatusActualPlanoData_Result> GetReporteStatusActualPlanoData(Nullable<int> statusPlano, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string delegacion, string autoridad)
+        public virtual ObjectResult<GetReporteStatusActualPlanoData_Result> GetReporteStatusActualPlanoData(Nullable<int> statusPlano, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string delegacion, string autoridad, string usuarioSistema)
         {
             var statusPlanoParameter = statusPlano.HasValue ?
                 new ObjectParameter("StatusPlano", statusPlano) :
@@ -328,10 +348,14 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("Autoridad", autoridad) :
                 new ObjectParameter("Autoridad", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteStatusActualPlanoData_Result>("GetReporteStatusActualPlanoData", statusPlanoParameter, fechaInicialParameter, fechaFinalParameter, delegacionParameter, autoridadParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteStatusActualPlanoData_Result>("GetReporteStatusActualPlanoData", statusPlanoParameter, fechaInicialParameter, fechaFinalParameter, delegacionParameter, autoridadParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetActividadOficialData_Result> GetActividadOficialData(string inspector, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin)
+        public virtual ObjectResult<GetActividadOficialData_Result> GetActividadOficialData(string inspector, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string usuarioSistema)
         {
             var inspectorParameter = inspector != null ?
                 new ObjectParameter("Inspector", inspector) :
@@ -345,10 +369,14 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("FechaFin", fechaFin) :
                 new ObjectParameter("FechaFin", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActividadOficialData_Result>("GetActividadOficialData", inspectorParameter, fechaInicioParameter, fechaFinParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActividadOficialData_Result>("GetActividadOficialData", inspectorParameter, fechaInicioParameter, fechaFinParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetReportePorDelegacionAutoridadData_Result> GetReportePorDelegacionAutoridadData(Nullable<int> tipoConsulta, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string idAutoridad, string idDelegacion)
+        public virtual ObjectResult<GetReportePorDelegacionAutoridadData_Result> GetReportePorDelegacionAutoridadData(Nullable<int> tipoConsulta, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string idAutoridad, string idDelegacion, string usuarioSistema)
         {
             var tipoConsultaParameter = tipoConsulta.HasValue ?
                 new ObjectParameter("TipoConsulta", tipoConsulta) :
@@ -370,10 +398,14 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("IdDelegacion", idDelegacion) :
                 new ObjectParameter("IdDelegacion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorDelegacionAutoridadData_Result>("GetReportePorDelegacionAutoridadData", tipoConsultaParameter, fechaInicioParameter, fechaFinParameter, idAutoridadParameter, idDelegacionParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorDelegacionAutoridadData_Result>("GetReportePorDelegacionAutoridadData", tipoConsultaParameter, fechaInicioParameter, fechaFinParameter, idAutoridadParameter, idDelegacionParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetReporteListadoMultaFijaData_Result> GetReporteListadoMultaFijaData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idInspectores, string idDelegaciones)
+        public virtual ObjectResult<GetReporteListadoParteOficialData_Result> GetReporteListadoParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idInspectores, string idDelegaciones, string usuarioSistema)
         {
             var fechaDesdeParameter = fechaDesde.HasValue ?
                 new ObjectParameter("FechaDesde", fechaDesde) :
@@ -395,10 +427,14 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("idDelegaciones", idDelegaciones) :
                 new ObjectParameter("idDelegaciones", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteListadoMultaFijaData_Result>("GetReporteListadoMultaFijaData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idInspectoresParameter, idDelegacionesParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteListadoParteOficialData_Result>("GetReporteListadoParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idInspectoresParameter, idDelegacionesParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetReporteListadoParteOficialData_Result> GetReporteListadoParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idInspectores, string idDelegaciones)
+        public virtual ObjectResult<GetReporteListadoMultaFijaData_Result> GetReporteListadoMultaFijaData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idInspectores, string idDelegaciones, string usuarioSistema)
         {
             var fechaDesdeParameter = fechaDesde.HasValue ?
                 new ObjectParameter("FechaDesde", fechaDesde) :
@@ -420,7 +456,11 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("idDelegaciones", idDelegaciones) :
                 new ObjectParameter("idDelegaciones", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteListadoParteOficialData_Result>("GetReporteListadoParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idInspectoresParameter, idDelegacionesParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteListadoMultaFijaData_Result>("GetReporteListadoMultaFijaData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idInspectoresParameter, idDelegacionesParameter, usuarioSistemaParameter);
         }
     }
 }
