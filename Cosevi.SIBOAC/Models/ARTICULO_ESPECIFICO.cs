@@ -11,16 +11,45 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class ARTICULO_ESPECIFICO
     {
+        [DisplayName("Código de artículo específico")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public string codigo { get; set; }
+
+
         public string conducta { get; set; }
+
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de inicio")]
+        [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public System.DateTime fecha_inicio { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de fin")]
+        [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public System.DateTime fecha_final { get; set; }
+
+        [DisplayName("Estado")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
         public string estado { get; set; }
+
+
+        [DisplayName("Código de retiro temporal")]
         public string codigo_retiro_temporal { get; set; }
+
+
+        [DisplayName("Código de inmovilización")]
         public string codigo_inmovilizacion { get; set; }
+
+        [DisplayName("Observaciones")]
         public string observacion_noaplicacion { get; set; }
     }
 }

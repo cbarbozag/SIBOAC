@@ -7,12 +7,277 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
+using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
     public class ARTICULO_ESPECIFICOController : BaseController<ARTICULO_ESPECIFICO>
     {
         //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+
+
+
+        // GET: ARTICULO_ESPECIFICO
+        [SessionExpire]
+        public ActionResult Index(int? page)
+        {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
+
+            var list =
+            (from a in db.ARTICULO_ESPECIFICO
+             join c in db.CATARTICULO
+                   on new { CodigoArticulo = a.codigo, Conducta = a.conducta, fechaInicio = a.fecha_inicio, fechaFinal = a.fecha_final }
+               equals new { CodigoArticulo = c.Id, Conducta = c.Conducta, fechaInicio = c.FechaDeInicio, fechaFinal = c.FechaDeFin } into c_join
+             from c in c_join.DefaultIfEmpty()
+             select new
+             {
+                 CodigoArticulo = a.codigo,
+                 Conducta = a.conducta,
+                 FechaDeInicio = a.fecha_inicio,
+                 FechaDeFin = a.fecha_final,
+                 Estado = a.estado,
+                 CodigoRetiroTemporal = a.codigo_retiro_temporal,
+                 CodigoInmovilizacion = a.codigo_inmovilizacion,
+                 Observaciones = a.observacion_noaplicacion
+             }).ToList()
+
+             .Select(x => new ARTICULO_ESPECIFICO
+             {
+                 codigo = x.CodigoArticulo,
+                 conducta = x.Conducta,
+                 fecha_inicio = x.FechaDeInicio,
+                 fecha_final = x.FechaDeFin,
+                 estado = x.Estado,
+                 codigo_retiro_temporal = x.CodigoRetiroTemporal,
+                 codigo_inmovilizacion = x.CodigoInmovilizacion,
+                 observacion_noaplicacion = x.Observaciones
+
+             }).OrderBy(x => (x.codigo));
+
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(list.ToPagedList(pageNumber, pageSize));
+        }
+
+
+        // GET: ARTICULO_ESPECIFICO/Details/5
+        public ActionResult Details(string CodArticulo, string Conducta, DateTime? FechaInicio, DateTime? FechaFin)
+        {
+            if (CodArticulo == null || Conducta == null || FechaInicio == null || FechaFin == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            if (articuloEspecifico == null)
+            {
+                return HttpNotFound();
+            }
+            return View(articuloEspecifico);
+        }
+
+        // GET: ARTICULO_ESPECIFICO/Create
+        public ActionResult Create()
+        {
+
+            IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+                                                             where o.Estado == "A"
+                                                             select new { o.Id }).ToList().Distinct()
+                                                          .Select(o => new SelectListItem
+                                                          {
+                                                              Value = o.Id.ToString(),
+                                                              Text = o.Id.ToString()
+                                                          });
+            ViewBag.ComboArticulos = itemsCatArticulos;
+            return View();
+        }
+
+        // POST: ARTICULO_ESPECIFICO/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "codigo, conducta, fecha_inicio, fecha_final, estado, codigo_retiro_temporal, codigo_inmovilizacion, observacion_noaplicacion")] ARTICULO_ESPECIFICO articuloEspecifico)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
+                string mensaje = Verificar(articuloEspecifico.codigo,
+                                           articuloEspecifico.conducta,
+                                           articuloEspecifico.fecha_inicio,
+                                           articuloEspecifico.fecha_final);
+
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(articuloEspecifico, "I", "ARTICULO_ESPECIFICO");
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "El registro se realizó correctamente";
+                    return RedirectToAction("Index");
+
+                }
+
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+
+                    ViewBag.ComboArticulos = null;
+                    ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+                                                             where o.Estado == "A"
+                                                             select new { o.Id }).ToList().Distinct(), "Id", "Id", articuloEspecifico.codigo);
+
+                    ViewData["conducta"] = articuloEspecifico.conducta;
+                    ViewData["fecha_inicio"] = articuloEspecifico.fecha_inicio.ToString("dd-MM-yyyy");
+                    ViewData["fecha_final"] = articuloEspecifico.fecha_final.ToString("dd-MM-yyyy");
+                    ViewData["codigo_retiro_temporal"] = articuloEspecifico.codigo_retiro_temporal;
+                    return View(articuloEspecifico);
+                }
+
+            }
+
+            return View(articuloEspecifico);
+        }
+
+        // GET: ARTICULO_ESPECIFICO/Edit/5
+        public ActionResult Edit(string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (CodArticulo == null || Conducta == null || FechaInicio == null || FechaFin == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            var list =
+                (from a in db.ARTICULO_ESPECIFICO
+                 join c in db.CATARTICULO on new { codigo = a.codigo, conducta = a.conducta, fecha_inicio = a.fecha_inicio, fecha_final = a.fecha_final } equals new { codigo = c.Id, conducta = c.Conducta, fecha_inicio = c.FechaDeInicio, fecha_final = c.FechaDeFin } into c_join
+                 where a.codigo == CodArticulo && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
+                 from c in c_join.DefaultIfEmpty()
+
+
+
+                     /*join c in db.CATARTICULO on new { codigo = a.codigo, fecha_inicio = a.fecha_inicio, fecha_final = a.fecha_final }
+                     equals new { codigo = c.Id, fecha_inicio = c.FechaDeInicio, fecha_final = c.FechaDeFin } into c_join
+                     where a.codigo == CodArticulo && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
+                     from c in c_join.DefaultIfEmpty()*/
+
+
+                 select new
+                 {
+                     CodigoArticulo = a.codigo,
+                     Conducta = a.conducta,
+                     FechaDeInicio = a.fecha_inicio,
+                     FechaDeFin = a.fecha_final,
+                     Estado = a.estado,
+                     codigo_retiro_temporal = a.codigo_retiro_temporal,
+                     codigo_inmovilizacion = a.codigo_inmovilizacion,
+                     observacion_noaplicacion = a.observacion_noaplicacion
+                     //DescripcionArticulo = c.Descripcion
+                 }).ToList()
+
+
+
+                  .Select(x => new ARTICULO_ESPECIFICO
+                  {
+                      codigo = x.CodigoArticulo,
+                      conducta = x.Conducta,
+                      fecha_inicio = x.FechaDeInicio,
+                      fecha_final = x.FechaDeFin,
+                      estado = x.Estado,
+                      codigo_retiro_temporal = x.codigo_retiro_temporal,
+                      codigo_inmovilizacion = x.codigo_inmovilizacion,
+                      observacion_noaplicacion = x.observacion_noaplicacion
+                      //DescripcionArticulo = x.DescripcionArticulo
+
+                  }).SingleOrDefault();
+
+
+            if (list == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.ComboArticulos = new SelectList(db.CATARTICULO.OrderBy(x => x.Id), "Id", "Id", CodArticulo);
+
+
+            //ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            //if (aRTICULO_ESPECIFICO == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View(list);
+        }
+
+        // POST: ARTICULO_ESPECIFICO/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "codigo,conducta,fecha_inicio,fecha_final,estado,codigo_retiro_temporal,codigo_inmovilizacion,observacion_noaplicacion")] ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == aRTICULO_ESPECIFICO.codigo &&
+                                                                                        d.conducta == aRTICULO_ESPECIFICO.conducta &&
+                                                                                        d.fecha_inicio == aRTICULO_ESPECIFICO.fecha_inicio &&
+                                                                                        d.fecha_final == aRTICULO_ESPECIFICO.fecha_final).FirstOrDefault();
+
+
+
+                db.Entry(aRTICULO_ESPECIFICO).State = EntityState.Modified;
+                db.SaveChanges();
+                Bitacora(aRTICULO_ESPECIFICO, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
+                return RedirectToAction("Index");
+            }
+            return View(aRTICULO_ESPECIFICO);
+        }
+
+        // GET: ARTICULO_ESPECIFICO/Delete/5
+        public ActionResult Delete(string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
+        {
+            if (CodArticulo == null || Conducta == null || FechaInicio == null || FechaFin == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            if (articuloEspecifico == null)
+            {
+                return HttpNotFound();
+            }
+            return View(articuloEspecifico);
+        }
+
+        // POST: ARTICULO_ESPECIFICO/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
+        {
+            ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            ARTICULO_ESPECIFICO articuloEspecificoAntes = ObtenerCopia(articuloEspecifico);
+            if (articuloEspecifico.estado == "A")
+                articuloEspecifico.estado = "I";
+            else
+                articuloEspecifico.estado = "A";
+            db.SaveChanges();
+            Bitacora(articuloEspecifico, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+
+
+
 
         public string Verificar(string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
@@ -59,6 +324,8 @@ namespace Cosevi.SIBOAC.Controllers
             return list.ToList();
         }
 
+
+
         public class ClaseConducta
         {
             public string Id { get; set; }
@@ -79,7 +346,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         }
 
-        public class ClaseArticuloRetiroTemporal 
+        public class ClaseArticuloRetiroTemporal
         {
             public string Id { get; set; }
             public string Nombre { get; set; }
@@ -94,66 +361,6 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
 
-        public JsonResult ObtenerArticuloRetiroTemporal(string FechaDeInicio, string FechaDeFin, string Conducta)
-        {
-            DateTime fechaDeInicio = DateTime.Now;
-            DateTime fechaDeFin = DateTime.Now;
-            if (FechaDeInicio != "" && FechaDeInicio != null)
-            {
-                fechaDeInicio = DateTime.Parse(FechaDeInicio);
-                fechaDeFin = DateTime.Parse(FechaDeFin);
-                // FechaDeInicio = fechaDeInicio.ToString();
-            }
-
-            var listaArticuloRetiroTemporal =
-                 (from o in db.CATARTICULO
-                  where o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Estado == "A" && o.Conducta == "1"
-                  select new
-                  {
-
-                      o.Id
-
-                  }).ToList()
-            .Select(x => new ClaseArticuloRetiroTemporal
-            {
-                Id = x.Id,
-                Nombre = x.Id
-
-            }).Distinct();
-
-            return Json(listaArticuloRetiroTemporal, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public JsonResult ObtenerArticuloInmovilizacion(string FechaDeInicio, string FechaDeFin, string Conducta)
-        {
-            DateTime fechaDeInicio = DateTime.Now;
-            DateTime fechaDeFin = DateTime.Now;
-            if (FechaDeInicio != "" && FechaDeInicio != null)
-            {
-                fechaDeInicio = DateTime.Parse(FechaDeInicio);
-                fechaDeFin = DateTime.Parse(FechaDeFin);
-                // FechaDeInicio = fechaDeInicio.ToString();
-            }
-
-            var listaArticuloInmovilizacion =
-                 (from o in db.CATARTICULO
-                  where o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Estado == "A" && o.Conducta == "1"
-                  select new
-                  {
-
-                      o.Id
-
-                  }).ToList()
-            .Select(x => new ClaseArticuloInmovilizacion
-            {
-                Id = x.Id,
-                Nombre = x.Id
-
-            }).Distinct();
-
-            return Json(listaArticuloInmovilizacion, JsonRequestBehavior.AllowGet);
-        }
 
 
 
@@ -183,18 +390,18 @@ namespace Cosevi.SIBOAC.Controllers
                   where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A"
                   select new
                   {
-                      fecha = o.FechaDeInicio
-                      //fecha = o.FechaDeInicio.ToString()
+                      //fecha = o.FechaDeInicio
+                      fecha = o.FechaDeInicio.ToString()
 
 
                   }).ToList().Distinct()
             .Select(x => new ClaseFechaInicio
             {
-                Id = Convert.ToString(x.fecha),
-                Nombre = Convert.ToString(x.fecha)
+                // Id = Convert.ToString(x.fecha),
+                // Nombre = Convert.ToString(x.fecha)
 
-                //Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
-                //Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
+                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
 
             }).Distinct();
 
@@ -207,245 +414,93 @@ namespace Cosevi.SIBOAC.Controllers
             DateTime fechaDeInicio = DateTime.Now;
             if (FechaDeInicio != "" && FechaDeInicio != null)
             {
-                //fechaDeInicio = DateTime.Parse(FechaDeInicio);
-                FechaDeInicio = fechaDeInicio.ToString();
+                fechaDeInicio = DateTime.Parse(FechaDeInicio);
+                //FechaDeInicio = fechaDeInicio.ToString();
             }
             var listaconducta =
                  (from o in db.CATARTICULO
                   where o.Id == CodigoArticulo && o.Conducta == Conducta && o.Estado == "A" && o.FechaDeInicio == fechaDeInicio
                   select new
                   {
-                      //fecha = o.FechaDeFin.ToString()
-                      fecha = o.FechaDeFin
+                      fecha = o.FechaDeFin.ToString()
+                      //fecha = o.FechaDeFin
                   }).ToList().Distinct()
             .Select(x => new ClaseFechaFinal
             {
-                //Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
-                //Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
+                Id = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy"),
+                Nombre = DateTime.Parse(x.fecha).ToString("dd-MM-yyyy")
 
-                Id = Convert.ToString(x.fecha),
-                Nombre = Convert.ToString(x.fecha)
+                //Id = Convert.ToString(x.fecha),
+                //Nombre = Convert.ToString(x.fecha)
 
             }).Distinct();
 
             return Json(listaconducta, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: ARTICULO_ESPECIFICO
-        public ActionResult Index()
-        {
-            return View(db.ARTICULO_ESPECIFICO.ToList());
-        }
 
-        // GET: ARTICULO_ESPECIFICO/Details/5
-        public ActionResult Details(string id, string conducta, DateTime fechaInicial, DateTime fechaFinal)
+
+
+        public JsonResult ObtenerArticuloRetiroTemporal(string CodigoArticulo, string Conducta, string FechaDeInicio, string FechaDeFin)
         {
-            if (id == null)
+            DateTime fechaDeInicio = DateTime.Now;
+            DateTime fechaDeFin = DateTime.Now;
+            if (FechaDeInicio != "" && FechaDeInicio != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(id, conducta, fechaInicial, fechaFinal);
-            if (aRTICULO_ESPECIFICO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aRTICULO_ESPECIFICO);
-        }
-
-        // GET: ARTICULO_ESPECIFICO/Create
-        public ActionResult Create()
-        {
-
-            IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
-                                                             where o.Estado == "A"
-                                                             select new { o.Id }).ToList().Distinct()
-                                                          .Select(o => new SelectListItem
-                                                          {
-                                                              Value = o.Id.ToString(),
-                                                              Text = o.Id.ToString()
-                                                          });
-            ViewBag.ComboArticulos = itemsCatArticulos;
-            return View();
-        }
-
-        // POST: ARTICULO_ESPECIFICO/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codigo,conducta,fecha_inicio,fecha_final,estado,codigo_retiro_temporal,codigo_inmovilizacion,observacion_noaplicacion")] ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO)
-        {
-            if (ModelState.IsValid)
-            {
-
-                db.ARTICULO_ESPECIFICO.Add(aRTICULO_ESPECIFICO);
-                string mensaje = Verificar(aRTICULO_ESPECIFICO.codigo,
-                                           aRTICULO_ESPECIFICO.conducta,
-                                           aRTICULO_ESPECIFICO.fecha_inicio,
-                                           aRTICULO_ESPECIFICO.fecha_final);
-
-
-                if (mensaje == "")
-                {
-                    db.SaveChanges();
-                    Bitacora(aRTICULO_ESPECIFICO, "I", "ARTICULO_ESPECIFICO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
-
-                }
-
-                else
-                {
-                    ViewBag.Type = "warning";
-                    ViewBag.Message = mensaje;
-
-                    ViewBag.ComboArticulos = null;
-                    ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
-                                                             where o.Estado == "A"
-                                                             select new { o.Id }).ToList().Distinct(), "Id", "Id", aRTICULO_ESPECIFICO.codigo);
-
-                    //ViewBag.ComboConducta = new SelectList((from o in db.CATARTICULO
-                    //                                               select new { o.Conducta }).ToList().Distinct(), "Id", "conducta", aRTICULO_ESPECIFICO.conducta);
-
-                    //ViewBag.ComboFechaInicio = new SelectList((from o in db.CATARTICULO
-                    //                                           select new { o.FechaDeInicio }).ToList().Distinct(), "Id", "fecha_inicio", aRTICULO_ESPECIFICO.fecha_inicio);
-
-
-                    ViewData["Conducta"] = aRTICULO_ESPECIFICO.conducta;
-                    ViewData["FechaDeInicio"] = aRTICULO_ESPECIFICO.fecha_inicio.ToString("dd-MM-yyyy");
-                    ViewData["FechaDeFin"] = aRTICULO_ESPECIFICO.fecha_final.ToString("dd-MM-yyyy");
-                    ViewData["CodRetTemp"] = aRTICULO_ESPECIFICO.codigo_retiro_temporal;
-                    return View(aRTICULO_ESPECIFICO);
-                }
-
+                fechaDeInicio = DateTime.Parse(FechaDeInicio);
+                fechaDeFin = DateTime.Parse(FechaDeFin);
+                // FechaDeInicio = fechaDeInicio.ToString();
             }
 
-            return View(aRTICULO_ESPECIFICO);
-        }
-
-        // GET: ARTICULO_ESPECIFICO/Edit/5
-        public ActionResult Edit(string id, DateTime FechaInicio, DateTime FechaFin)
-        {
-            if (id == null || FechaInicio == null || FechaFin == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-
-            var list =
-                (from a in db.ARTICULO_ESPECIFICO join c in db.CATARTICULO on new { codigo = a.codigo, fecha_inicio = a.fecha_inicio, fecha_final = a.fecha_final }
-                   equals new { codigo = c.Id, fecha_inicio = c.FechaDeInicio, fecha_final = c.FechaDeFin }
-                   where a.codigo == id && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
-
-                 //join c in db.CATARTICULO on new { CodigoArticulo = a.codigo, Conducta = a.conducta, fechaInicio = a.fecha_inicio, fechaFinal = a.fecha_final } equals new { CodigoArticulo = c.Id, Conducta = c.Conducta, fechaInicio = c.FechaDeInicio, fechaFinal = c.FechaDeFin } into c_join
-                 //where a.codigo == id && a.conducta == Conducta && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
-
-
-                 select new
-                 {
-                     CodigoArticulo = a.codigo,
-                     Conducta = a.conducta,
-                     FechaDeInicio = a.fecha_inicio,
-                     FechaDeFin = a.fecha_final,
-                     Estado = a.estado,
-                     codigo_retiro_temporal = a.codigo_retiro_temporal,
-                     codigo_inmovilizacion = a.codigo_inmovilizacion,
-                     observacion_noaplicacion = a.observacion_noaplicacion
-                     //DescripcionArticulo = c.Descripcion
-                 }).ToList()
-
-
-
-                  .Select(x => new ARTICULO_ESPECIFICO
+            var listaArticuloRetiroTemporal =
+                 (from o in db.CATARTICULO
+                  where o.Estado == "A" && o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Conducta == Conducta
+                  select new
                   {
-                      codigo = x.CodigoArticulo,
-                      conducta = x.Conducta,
-                      fecha_inicio = x.FechaDeInicio,
-                      fecha_final = x.FechaDeFin,
-                      estado = x.Estado,
-                      codigo_retiro_temporal = x.codigo_retiro_temporal,
-                      codigo_inmovilizacion = x.codigo_inmovilizacion,
-                      observacion_noaplicacion = x.observacion_noaplicacion
-                      //DescripcionArticulo = x.DescripcionArticulo
 
-                  }).SingleOrDefault();
+                      o.Id
 
-
-            if (list == null)
+                  }).ToList()
+            .Select(x => new ClaseArticuloRetiroTemporal
             {
-                return HttpNotFound();
-            }
+                Id = x.Id,
+                Nombre = x.Id
 
-            ViewBag.ComboArticulos = new SelectList(db.CATARTICULO.OrderBy(x => x.Id), "Id", "Id", id);
+            }).Distinct();
 
-
-            //ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
-            //if (aRTICULO_ESPECIFICO == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            return View(list);
+            return Json(listaArticuloRetiroTemporal, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: ARTICULO_ESPECIFICO/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigo,conducta,fecha_inicio,fecha_final,estado,codigo_retiro_temporal,codigo_inmovilizacion,observacion_noaplicacion")] ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO)
+
+        public JsonResult ObtenerArticuloInmovilizacion(string CodigoArticulo, string Conducta, string FechaDeInicio, string FechaDeFin)
         {
-            if (ModelState.IsValid)
+            DateTime fechaDeInicio = DateTime.Now;
+            DateTime fechaDeFin = DateTime.Now;
+            if (FechaDeInicio != "" && FechaDeInicio != null)
             {
-
-                var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == aRTICULO_ESPECIFICO.codigo &&
-                                                                                        d.conducta == aRTICULO_ESPECIFICO.conducta &&
-                                                                                        d.fecha_inicio == aRTICULO_ESPECIFICO.fecha_inicio &&
-                                                                                        d.fecha_final == aRTICULO_ESPECIFICO.fecha_final).FirstOrDefault();
-
-
-
-                db.Entry(aRTICULO_ESPECIFICO).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(aRTICULO_ESPECIFICO, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
-                return RedirectToAction("Index");
+                fechaDeInicio = DateTime.Parse(FechaDeInicio);
+                fechaDeFin = DateTime.Parse(FechaDeFin);
+                // FechaDeInicio = fechaDeInicio.ToString();
             }
-            return View(aRTICULO_ESPECIFICO);
+
+            var listaArticuloInmovilizacion =
+                 (from o in db.CATARTICULO
+                  where o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Estado == "A" && o.Conducta == Conducta
+                  select new
+                  {
+
+                      o.Id
+
+                  }).ToList()
+            .Select(x => new ClaseArticuloInmovilizacion
+            {
+                Id = x.Id,
+                Nombre = x.Id
+
+            }).Distinct();
+
+            return Json(listaArticuloInmovilizacion, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: ARTICULO_ESPECIFICO/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(id);
-            if (aRTICULO_ESPECIFICO == null)
-            {
-                return HttpNotFound();
-            }
-            return View(aRTICULO_ESPECIFICO);
-        }
-
-        // POST: ARTICULO_ESPECIFICO/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(id);
-            db.ARTICULO_ESPECIFICO.Remove(aRTICULO_ESPECIFICO);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
