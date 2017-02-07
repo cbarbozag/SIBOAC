@@ -104,8 +104,8 @@
                     <br />
                     <br />
                     <div class="btn-group pull-right">
-                        @*<button id="todosDelegacion" type="button" class="btn btn-primary" onclick="marcarTodosDelegacion()">Marcar todos</button>
-                            <button id="limpiarDelegacion" type="button" class="btn btn-warning" onclick="limpiarTodosDelegacion()">Limpiar</button>*@
+                        <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                        <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -138,8 +138,9 @@
                     <br />
                     <br />
                     <div class="btn-group pull-right">
-                        @*<button id="todosAutoridad" type="button" class="btn btn-primary" onclick="marcarTodoAutoridad()">Marcar todos</button>
-                            <button id="limpiarAutoridad" type="button" class="btn btn-warning" onclick="limpiarTodosAutoridad()">Limpiar</button>*@                       
+                        <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                        <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
+
                     </div>
                 </div>
             </div>
@@ -195,6 +196,42 @@
                 })
                 .trigger('change');
 
+                function marcarTodosDelegacion() {
+
+                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosDelegacion() {
+                    var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        //  $(items[i]).prop('selected', false)
+                        $(items[i]).removeClass('active');
+
+                    }
+                };
+                function marcarTodosInspector() {
+
+                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        if (!$(items[i]).hasClass('active')) {
+                            $(items[i]).addClass('active')
+                        }
+                    }
+                };
+
+                function limpiarTodosInspector() {
+                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                    for (var i = 0; i < items.length; i++) {
+                        $(items[i]).removeClass('active');
+
+                    }
+                };
+             
                 function ReportCall() {
 
                     var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
@@ -219,43 +256,7 @@
                         startView: 2
                     });
                 };
-                function marcarTodosDelegacion() {
-                   
-                    var items = $('#listaD option');
-                    for (var i = 0; i < items.length; i++) {
-                        $(items[i]).prop('selected', true)
-                         if (!$(items[i]).hasClass('active')) {
-                            $(items[i]).addClass('active')
-                        }
-                    }
-                };
-
-                function limpiarTodosDelegacion() {
-                    var items = $('#listaD option');
-                    for (var i = 0; i < items.length; i++) {
-                        $(items[i]).prop('selected', false)
-                      //  $(items[i]).removeClass('active');
-                     
-                    }
-                };
-                function marcarTodosAutoridad() {
-
-                    var items = $('#listaI option.list-group-item');
-                    for (var i = 0; i < items.length; i++) {
-                        $(items[i]).selected='selected'
-                        if (!$(items[i]).hasClass('active')) {
-                            $(items[i]).addClass('active')
-                        }
-                    }
-                };
-
-                function limpiarTodosAutoridad() {
-                    var items = $('#listaI option.list-group-item');
-                    for (var i = 0; i < items.length; i++) {                        
-                        $(items[i]).removeClass('active');
-                       
-                    }
-                };
+                
        </script>
 <script type="text/javascript">
 

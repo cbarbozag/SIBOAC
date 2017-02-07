@@ -77,8 +77,8 @@
                         <br /> <br /> <br /> <br /> <br /> <br />
                         <br /> <br /> <br /> <br /> <br /> <br />
                         <div class="btn-group pull-right">
-                            @*<button id="todosDelegacion" type="button" class="btn btn-primary">Marcar todos</button>
-                                <button id="limpiarDelegacion" type="button" class="btn btn-warning">Limpiar</button>*@
+                            <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
+                            <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
                         </div>
                     </div>
                 </div>
@@ -110,8 +110,9 @@
                         <br /> <br /> <br /> <br /> <br /> <br />
                         <br /> <br /> <br /> <br /> <br /> <br />
                         <div class="btn-group pull-right">
-                            @*<button id="todosAutoridad" type="button" class="btn btn-primary">Marcar todos</button>
-                                <button id="limpiarAutoridad" type="button" class="btn btn-warning">Limpiar</button>*@
+                            <button id="todosAutoridad" type="button" class="btn btn-danger" onclick="marcarTodosAutoridad()">Marcar todos</button>
+                            <button id="limpiarAutoridad" type="button" class="btn  btn-primary" onclick="limpiarTodosAutoridad()">Limpiar</button>
+
                         </div>
                     </div>
                 </div>
@@ -158,6 +159,42 @@
             $("div").text(str2);
         }).trigger('change');
 
+        function marcarTodosDelegacion() {
+
+            var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                if (!$(items[i]).hasClass('active')) {
+                    $(items[i]).addClass('active')
+                }
+            }
+        };
+
+        function limpiarTodosDelegacion() {
+            var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                //  $(items[i]).prop('selected', false)
+                $(items[i]).removeClass('active');
+
+            }
+        };
+
+        function marcarTodosAutoridad() {
+
+            var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                if (!$(items[i]).hasClass('active')) {
+                    $(items[i]).addClass('active')
+                }
+            }
+        };
+
+        function limpiarTodosAutoridad() {
+            var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                $(items[i]).removeClass('active');
+
+            }
+        };
         function ReportCall() {
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
 

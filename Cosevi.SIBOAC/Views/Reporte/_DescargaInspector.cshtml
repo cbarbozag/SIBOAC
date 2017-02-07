@@ -63,6 +63,11 @@
                             </select>
                                 </div>
                         </div>
+                        <div class="btn-group pull-right">
+                            <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                            <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,7 +97,23 @@
                                     startView: 2
                                 });
                             };
+                            function marcarTodosInspector() {
 
+                                var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                                for (var i = 0; i < items.length; i++) {
+                                    if (!$(items[i]).hasClass('active')) {
+                                        $(items[i]).addClass('active')
+                                    }
+                                }
+                            };
+
+                            function limpiarTodosInspector() {
+                                var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                                for (var i = 0; i < items.length; i++) {
+                                    $(items[i]).removeClass('active');
+
+                                }
+                            };
                             function ReportCall() {
 
                                 var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
