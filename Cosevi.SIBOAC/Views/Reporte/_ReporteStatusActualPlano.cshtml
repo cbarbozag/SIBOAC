@@ -56,7 +56,7 @@
                         <p>
                             <input type="text" id="BuscarDelegacion" name="BuscarDelegaciones" onkeyup="BuscarDelega()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-10">
+                        <div class="col-max col-md-12">
                             <div id="ListaDelegaciones">
                                 <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Delegacion)
@@ -73,9 +73,7 @@
                                 </select>
                             </div>
                         </div>
-                        <br>
-                        <br /> <br /> <br /> <br /> <br /> <br />
-                        <br /> <br /> <br /> <br /> <br /> <br />
+                        <br/>            
                         <div class="btn-group pull-right">
                             <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
                             <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
@@ -89,7 +87,7 @@
                         <p>
                             <input type="text" id="BuscarAutoridad" name="BuscarAutoridades" onkeyup="BuscarAut()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-10">
+                        <div class="col-max col-md-12">
                             <div id="ListaAutoridades">
                                 <select name="listaAutoridad" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Autoridad)
@@ -105,10 +103,8 @@
                                     }
                                 </select>
                             </div>
-                        </div>
-                        <br>
-                        <br /> <br /> <br /> <br /> <br /> <br />
-                        <br /> <br /> <br /> <br /> <br /> <br />
+                        </div>                        
+                        <br />
                         <div class="btn-group pull-right">
                             <button id="todosAutoridad" type="button" class="btn btn-danger" onclick="marcarTodosAutoridad()">Marcar todos</button>
                             <button id="limpiarAutoridad" type="button" class="btn  btn-primary" onclick="limpiarTodosAutoridad()">Limpiar</button>

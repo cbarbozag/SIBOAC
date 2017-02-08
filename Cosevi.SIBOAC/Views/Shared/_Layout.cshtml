@@ -32,12 +32,21 @@
             </ul> 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="@Url.Action("Index", "Home")">
-                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                        Inicio
+                    <a href="@Url.Action("ResetPassword", "Account", new { code = User.Identity.Name })">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        Cambiar clave
                     </a>                       
                 </li>               
             </ul>                
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        Inicio
+                    </a>
+                </li>
+            </ul>
+
         </div>
     </div>
     <div class="row-offcanvas row-offcanvas-left">
