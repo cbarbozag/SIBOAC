@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Cosevi.SIBOAC.Models;
+using System.Configuration;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -27,6 +28,8 @@ namespace Cosevi.SIBOAC.Controllers
             if (serie == null && numero_boleta == null)
                 return View();
             ViewBag.Datos = null;
+            Session["serie"] = serie;
+            Session["numero_boleta"] = numero_boleta;
           
             ViewBag.type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -204,5 +207,18 @@ namespace Cosevi.SIBOAC.Controllers
            
             return new Rotativa.PartialViewAsPdf("_MostrarBoletaView",model) { FileName = "Boleta.pdf" };
         }
+        public ActionResult showimage()
+        {
+            int serie = Convert.ToInt32(Session["serie"]);
+            decimal numero_boleta = Convert.ToDecimal(Session["numero_boleta"]) ;
+            var Inspector = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.codigo_inspector).ToList());
+            string CodigoInspector = Inspector.ToArray().FirstOrDefault() == null ? "0" : Inspector.ToArray().FirstOrDefault().ToString();
+            string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+            //var path = Server.MapPath(ruta);
+            var file = string.Format("{0}-{1}-{2}-inspector-{3}.png","2", serie,numero_boleta,CodigoInspector);
+            var fullPath = Path.Combine(ruta, file);
+            return File(fullPath, "image/png", file);
+        }
+
     }
 }

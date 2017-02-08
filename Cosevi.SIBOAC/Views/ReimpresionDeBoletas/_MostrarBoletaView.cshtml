@@ -8,6 +8,7 @@
 
     <body>
         <div ID="seleccion">
+    
             <FONT_LARGE>
                 <center>
                     <strong>
@@ -117,11 +118,16 @@
                         </table>
 
                         <br />
-                        [FIRMAUSUARIO]
-                        <span>                           </span>
-                        [FIRMAINSPECTOR]
-
-                        Firma del usuario                         Firma del inspector @ViewBag.Datos.CodigoInspector
+                        <table>
+                            <tr>
+                                <td><img src="@Url.Action("showimage", "ReimpresionDeBoletas")" alt="usuario" width="300" height="50" /></td>
+                                <td><img src="@Url.Action("showimage", "ReimpresionDeBoletas")" alt="usuario" width="300" height="50" /></td>
+                            </tr>
+                            <tr>
+                                <td>  Firma del usuario  </td>
+                                <td> Firma del inspector @ViewBag.Datos.CodigoInspector</td>
+                            </tr>
+                        </table>
                         <br />
                         <center>
                             <strong>

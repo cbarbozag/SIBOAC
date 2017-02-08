@@ -800,6 +800,7 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\2-2016-321400195-inspector-3214.png" />
     <Content Include="Content\Bitacoras.png" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\btnExcel.png" />
