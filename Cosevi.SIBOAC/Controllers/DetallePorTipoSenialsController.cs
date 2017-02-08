@@ -224,6 +224,8 @@ namespace Cosevi.SIBOAC.Controllers
                     db.Entry(detallePorTipoSenial).State = EntityState.Modified;
                     db.SaveChanges();
                     Bitacora(detallePorTipoSenial, "U", "DETALLETIPOSEÑAL", detallePorTipoSenialAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -360,6 +362,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.DETALLETIPOSEÑAL.Remove(detallePorTipoSenial);
             db.SaveChanges();
             Bitacora(detallePorTipoSenial, "D", "DETALLETIPOSEÑAL");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

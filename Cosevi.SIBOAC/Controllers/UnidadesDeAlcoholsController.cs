@@ -144,6 +144,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(unidadesDeAlcohol, "U", "UNIDADES_ALCOHOL", unidadesDeAlcoholAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else

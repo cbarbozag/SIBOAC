@@ -142,7 +142,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(circulacion, "U", "CIRCULACION", circulacionAntes);
-
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -214,7 +215,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CIRCULACION.Remove(circulacion);
             db.SaveChanges();
             Bitacora(circulacion, "D", "CIRCULACION");
-
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

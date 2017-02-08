@@ -276,6 +276,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(opcionFormularioPorArticulo, "U", "OPCFORMULARIOXARTICULO", opcionFormularioPorArticuloAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else

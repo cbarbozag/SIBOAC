@@ -19,8 +19,10 @@ namespace Cosevi.SIBOAC.Models
         public string serie { get; set; }
         public string numeroparte { get; set; }
         public string codigo_autoridad_registra { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<System.DateTime> fecha_descarga { get; set; }
         public Nullable<int> dias { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public string DescripcionDelegacion { get; set; }
+        public string DescripcionAutoridad { get; set; }
     }
 }

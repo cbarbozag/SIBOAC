@@ -227,6 +227,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(autoridad, "U", "AUTORIDAD", autoridadAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -359,7 +361,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.AUTORIDAD.Remove(autoridad);
             db.SaveChanges();
             Bitacora(autoridad, "D", "AUTORIDAD");
-
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

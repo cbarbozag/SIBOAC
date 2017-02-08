@@ -1054,13 +1054,14 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdUsuario", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicial", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioSistema", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GetReportePorUsuarioDataSet.GetReportePorUsuarioDataDataTable dataTable, string IdUsuario, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal) {
+        public virtual int Fill(GetReportePorUsuarioDataSet.GetReportePorUsuarioDataDataTable dataTable, string IdUsuario, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((IdUsuario == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -1079,6 +1080,12 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(UsuarioSistema));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1091,7 +1098,7 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GetReportePorUsuarioDataSet.GetReportePorUsuarioDataDataTable GetData(string IdUsuario, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal) {
+        public virtual GetReportePorUsuarioDataSet.GetReportePorUsuarioDataDataTable GetData(string IdUsuario, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((IdUsuario == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -1110,6 +1117,12 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(UsuarioSistema));
             }
             GetReportePorUsuarioDataSet.GetReportePorUsuarioDataDataTable dataTable = new GetReportePorUsuarioDataSet.GetReportePorUsuarioDataDataTable();
             this.Adapter.Fill(dataTable);

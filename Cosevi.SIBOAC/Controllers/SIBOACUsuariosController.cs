@@ -61,6 +61,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 dbs.SIBOACUsuarios.Add(sIBOACUsuarios);
                 dbs.SaveChanges();
+                TempData["Type"] = "success";
+                TempData["Message"] = "El registro se realizó correctamente";
                 return RedirectToAction("Index");
             }
 
@@ -93,6 +95,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 dbs.Entry(sIBOACUsuarios).State = EntityState.Modified;
                 dbs.SaveChanges();
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(sIBOACUsuarios);
@@ -121,6 +125,8 @@ namespace Cosevi.SIBOAC.Controllers
             SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
             dbs.SIBOACUsuarios.Remove(sIBOACUsuarios);
             dbs.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

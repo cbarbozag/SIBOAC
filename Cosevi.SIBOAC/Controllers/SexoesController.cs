@@ -143,6 +143,8 @@ namespace Cosevi.SIBOAC.Models
                 {
                     db.SaveChanges();
                     Bitacora(sexo, "U", "SEXO", sexoAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else

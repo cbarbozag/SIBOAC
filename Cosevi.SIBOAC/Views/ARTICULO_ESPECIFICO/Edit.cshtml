@@ -42,12 +42,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.codigo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.codigo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new
-           {
-               @class = "form-control",
-               //@disabled = "disabled"
-              @*, @onchange = "CallChangefunc(this.value)"*@ })
-              @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.codigo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new{@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
             </div>
         </div>
 

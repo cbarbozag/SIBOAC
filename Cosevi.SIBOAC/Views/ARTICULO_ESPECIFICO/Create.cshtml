@@ -61,10 +61,8 @@
                     data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val() },
                     success: function (items, responseText) {
                         $("#FechaDeInicio").empty(); $("#FechaDeInicio").append($("<option/>").val("0").text("Seleccione..."));
-                        //$("#FechaDeFin").empty(); $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
                         $.each(items, function (i, item) {
                             $("#FechaDeInicio").append($("<option/>").val(item.Id).text(item.Nombre));
-                            //$("#FechaDeFin").append($("<option/>").val(item.Id).text(item.Nombre));
                         });
                     },
                     error: function () {
@@ -260,12 +258,12 @@
                     var cond = $("#IdConducta").val();
                     var FechaIni = $("#IdFechaDeInicio").val();
                     var FechaFin = $("#IdFechaDeFin").val();
-                    var codArtRetTemp = $("#CodRetTemp").val();
+                    var codArtRetTemp = $("#Idcodigo_retiro_temporal").val();
                     $.each(items, function (i, item) {
                         $("#CodRetTemp").append($("<option/>").val(item.Id).text(item.Nombre));
                     });
                     $("#CodRetTemp option").each(function () {
-                        if ($(this).attr('value') == FechaIni && $(this).attr('value') == FechaFin) {
+                        if ($(this).attr('value') == codArtRetTemp) {
                             $(this).attr("selected", "selected");
                         }
                     });
@@ -288,13 +286,13 @@
                     var cond = $("#IdConducta").val();
                     var FechaIni = $("#IdFechaDeInicio").val();
                     var FechaFin = $("#IdFechaDeFin").val();
-                    var codArtRetTemp = $("#CodRetTemp").val();
-                    var codInm = $('#CodInm').val();
+                    var codArtRetTemp = $("#Idcodigo_retiro_temporal").val();
+                    var codInm = $('#Idcodigo_inmovilizacion').val();
                     $.each(items, function (i, item) {
                         $("#CodInm").append($("<option/>").val(item.Id).text(item.Nombre));
                     });
                     $("#CodInm option").each(function () {
-                        if ($(this).attr('value') == FechaIni && $(this).attr('value') == FechaFin) {
+                        if ($(this).attr('value') == codInm) {
                             $(this).attr("selected", "selected");
                         }
                     });
@@ -324,16 +322,18 @@
 
 
         <div class="form-group">
-            <input type="hidden" id="IdCodigo" value="@ViewData["Codigo"]" />
-            <input type="hidden" id="IdConducta" value="@ViewData["Conducta"]" />
-            <input type="hidden" id="IdFechaDeFin" value="@ViewData["FechaDeFin"]" />
-            <input type="hidden" id="IdFechaDeInicio" value="@ViewData["FechaDeInicio"]" />
+            <input type="hidden" id="IdCodigo" value="@ViewData["codigo"]" />
+            <input type="hidden" id="IdConducta" value="@ViewData["conducta"]" />
+            <input type="hidden" id="IdFechaDeFin" value="@ViewData["fecha_final"]" />
+            <input type="hidden" id="IdFechaDeInicio" value="@ViewData["fecha_inicio"]" />
+            <input type="hidden" id="Idcodigo_retiro_temporal" value="@ViewData["codigo_retiro_temporal"]" />
+            <input type="hidden" id="Idcodigo_inmovilizacion" value="@ViewData["codigo_inmovilizacion"]" />
+
             @*@Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.codigo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+            </div>*@
         </div>
 
 

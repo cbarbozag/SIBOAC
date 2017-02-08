@@ -126,6 +126,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(tIPODANO).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(tIPODANO, "U", "TIPODANO", tIPODANOAntes);
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(tIPODANO);
@@ -155,6 +157,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.TIPODANO.Remove(tIPODANO);
             db.SaveChanges();
             Bitacora(tIPODANO, "D", "TIPODANO");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

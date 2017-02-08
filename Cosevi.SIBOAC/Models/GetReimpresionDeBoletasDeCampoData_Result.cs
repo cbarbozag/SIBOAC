@@ -17,42 +17,40 @@ namespace Cosevi.SIBOAC.Models
         public int serie { get; set; }
         public decimal numero_boleta { get; set; }
         public string codigo_delegacion { get; set; }
-        public string descripcion { get; set; }
         public string codigo_autoridad_registra { get; set; }
         public string DescripcionAutoridad { get; set; }
         public string codrol { get; set; }
-        public string descripcion1 { get; set; }
         public string tipo_ide { get; set; }
-        public string Descripcion2 { get; set; }
-        public string identificacion { get; set; }
         public string tipo_lic { get; set; }
-        public string apellido1 { get; set; }
-        public string apellido2 { get; set; }
-        public string nombre { get; set; }
         public string sexo { get; set; }
         public string senasDireccion { get; set; }
         public Nullable<System.DateTime> fecha_hora_boleta { get; set; }
-        public Nullable<System.DateTime> fecha_registro { get; set; }
         public string lugar_hechos { get; set; }
         public Nullable<int> kilometro { get; set; }
-        public string clase_placa { get; set; }
-        public string codigo_placa { get; set; }
         public string numero_placa { get; set; }
         public Nullable<int> codveh { get; set; }
-        public string descripcion3 { get; set; }
         public string marca { get; set; }
-        public string descripcion4 { get; set; }
         public Nullable<int> tipo_carroceria { get; set; }
-        public string Descripcion5 { get; set; }
         public string Rev_Tecnica { get; set; }
-        public string codigo_inspector { get; set; }
-        public string Nombre_Inspector { get; set; }
-        public Nullable<decimal> multa { get; set; }
-        public string humo { get; set; }
-        public Nullable<int> velocidad { get; set; }
         public string codOficinaImpugnacion { get; set; }
-        public string Oficina { get; set; }
         public string Parte_Oficial { get; set; }
-        public string Piepagina { get; set; }
+        public string DescripcionDelegacion { get; set; }
+        public string DescripcionRol { get; set; }
+        public string Usuario { get; set; }
+        public string TipoDocumento { get; set; }
+        public Nullable<System.DateTime> FechaNacimiento { get; set; }
+        public string Identificacion { get; set; }
+        public string DescripcionTipoAutomovil { get; set; }
+        public string DescripcionCarroceria { get; set; }
+        public string DescripcionMarca { get; set; }
+        public string DescripcionOficinaImpugna { get; set; }
+        public string NivelGases { get; set; }
+        public Nullable<int> Velocidad { get; set; }
+        public string CodigoInspector { get; set; }
+        public string NombreInspector { get; set; }
+        public string ClasePlaca { get; set; }
+        public string CodigoPlaca { get; set; }
+        public string PiePagina { get; set; }
+        public string PiePaginaAutoridad { get; set; }
     }
 }

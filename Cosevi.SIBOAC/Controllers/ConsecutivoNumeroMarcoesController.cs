@@ -150,6 +150,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(consecutivoNumeroMarco).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(consecutivoNumeroMarco, "U", "CONSECUTIVONUMEROMARCO", consecutivoNumeroMarcoAntes);
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(consecutivoNumeroMarco);
@@ -210,6 +212,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CONSECUTIVONUMEROMARCO.Remove(consecutivoNumeroMarco);
             db.SaveChanges();
             Bitacora(consecutivoNumeroMarco, "D", "CONSECUTIVONUMEROMARCO");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

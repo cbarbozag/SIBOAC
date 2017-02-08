@@ -10,19 +10,16 @@
 namespace Cosevi.SIBOAC.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class GetReporteListadoMultaFijaData_Result
+    public partial class OtrosAdjuntos
     {
-        public string codigo_delegacion { get; set; }
-        public string codigo_inspector { get; set; }
         public string fuente { get; set; }
         public int serie { get; set; }
         public decimal numero_boleta { get; set; }
-        public string codigo_autoridad_registra { get; set; }
-        public Nullable<System.DateTime> fecha_hora_boleta { get; set; }
-        public Nullable<System.DateTime> fecha_descarga { get; set; }
-        public Nullable<int> dias { get; set; }
-        public string DescripcionDelegacion { get; set; }
-        public string DescripcionAutoridad { get; set; }
+        public string nombre { get; set; }
+        public System.DateTime fechaRegistro { get; set; }
+        public string extension { get; set; }
+        public Nullable<int> consecutivo_extension { get; set; }
     }
 }

@@ -141,6 +141,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(carril, "U", "CARRIL", carrilAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -211,7 +213,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CARRIL.Remove(carril);
             db.SaveChanges();
             Bitacora(carril, "D", "CARRIL");
-
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 
