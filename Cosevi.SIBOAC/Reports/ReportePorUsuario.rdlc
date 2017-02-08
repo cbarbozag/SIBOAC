@@ -63,8 +63,9 @@
         </Paragraphs>
         <rd:DefaultName>ReportName</rd:DefaultName>
         <Top>0.76729cm</Top>
+        <Left>2.75167cm</Left>
         <Height>2.18792cm</Height>
-        <Width>27.94cm</Width>
+        <Width>22.03979cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -302,7 +303,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>5.63813cm</Size>
+                <Size>3.57438cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox2">
                     <CanGrow>true</CanGrow>
@@ -410,7 +411,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.34125cm</Size>
+                            <Size>1.78563cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox8">
                                 <CanGrow>true</CanGrow>
@@ -513,7 +514,6 @@
                                           <PaddingBottom>2pt</PaddingBottom>
                                         </Style>
                                       </Textbox>
-                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                   </TablixHeader>
                                   <TablixMembers>
@@ -542,7 +542,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>5.63813cm</Size>
+                <Size>3.57438cm</Size>
                 <CellContents>
                   <Textbox Name="Usuario1">
                     <CanGrow>true</CanGrow>
@@ -671,7 +671,7 @@
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>2.34125cm</Size>
+                            <Size>1.78563cm</Size>
                             <CellContents>
                               <Textbox Name="serie1">
                                 <CanGrow>true</CanGrow>
@@ -809,7 +809,7 @@
         <Top>3.8862cm</Top>
         <Left>0.635cm</Left>
         <Height>1.2cm</Height>
-        <Width>29.36874cm</Width>
+        <Width>26.74938cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -817,11 +817,41 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="ExecutionTime">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Globals!ExecutionTime</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ExecutionTime</rd:DefaultName>
+        <Top>0.76729cm</Top>
+        <Left>24.89729cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.5cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>3.16667in</Height>
     <Style />
   </Body>
-  <Width>12.35925in</Width>
+  <Width>11.24467in</Width>
   <Page>
     <PageHeight>21.59cm</PageHeight>
     <PageWidth>27.94cm</PageWidth>

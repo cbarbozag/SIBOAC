@@ -35,7 +35,7 @@
                         <p>
                             <input type="text" id="BuscarDelegacion" name="BuscarDelegaciones" onkeyup="BuscarDelega()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-10">
+                        <div class="col-max col-md-12">
                             <div id="ListaDelegaciones">
                                 <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Delegacion)
@@ -53,17 +53,8 @@
                                 </select>
                             </div>                         
                         </div>
-                        <br />
-                        <br />
                     </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                    <br />    
                     <div class="btn-group pull-right">
                         <button id="todosDelegacion" type="button" class="btn btn-danger" onclick="marcarTodosDelegacion()">Marcar todos</button>
                         <button id="limpiarDelegacion" type="button" class="btn btn-primary" onclick="limpiarTodosDelegacion()">Limpiar</button>
@@ -77,7 +68,7 @@
                         <p>
                             <input type="text" id="BuscarInspector" name="BuscarInspectores" onkeyup="BuscarInspec()" placeholder="Buscar..">
                         </p>
-                        <div class="col-max col-md-10">
+                        <div class="col-max col-md-12">
                             <div id="ListaInspectores">
                                 <select name="listaInspector" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Inspector)
@@ -94,11 +85,8 @@
                                 </select>
                             </div>
                         </div>
-                        <br />
-                        <br />
                     </div>
-                    <br />
-                    <br />
+                    <br />                  
                     <div class="btn-group pull-right">
                         <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
                         <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>

@@ -45,29 +45,39 @@
                         </p>
                         <div class="col-max col-md-7">
                             <div id="ListaInspectores">
-                            <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
-                                @foreach (var item in ViewBag.Inspectores)
-                                {
-
-                                    if (item.Seleccionado == true)
+                                <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
+                                    @foreach (var item in ViewBag.Inspectores)
                                     {
-                                        <option value="@item.Id" selected>@item.Descripcion</option>
+
+                                        if (item.Seleccionado == true)
+                                        {
+                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Descripcion</option>
+                                        }
+
+
                                     }
-                                    else
-                                    {
-                                        <option value="@item.Id">@item.Descripcion</option>
-                                    }
-
-
-                                }
-                            </select>
-                                </div>
+                                </select>
+                            </div>
                         </div>
-                        <div class="btn-group pull-right">
-                            <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
-                            <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
+                        <br />
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="btn-group pull-right col-md-6">
+                        <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                        <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
 
-                        </div>
                     </div>
                 </div>
             </div>
