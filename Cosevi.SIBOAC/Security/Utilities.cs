@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Security
 
                 List<int> rolIDs = user.SIBOACRoles.Select(r => r.Id).Distinct().ToList();
 
-                var menuOptions = sdb.SIBOACMenuOpciones.Where(m => m.SIBOACRoles.Any(r => rolIDs.Contains(r.Id) && m.Estado)).OrderBy(a => new { a.Descripcion }).ToList();
+                var menuOptions = sdb.SIBOACMenuOpciones.Where(m => m.SIBOACRoles.Any(r => rolIDs.Contains(r.Id) && m.Estado)).OrderBy(a => new { a.Orden, a.Descripcion }).ToList();
                 return menuOptions;
             }
         }
