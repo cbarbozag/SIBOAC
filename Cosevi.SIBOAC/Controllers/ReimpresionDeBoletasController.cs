@@ -207,15 +207,28 @@ namespace Cosevi.SIBOAC.Controllers
            
             return new Rotativa.PartialViewAsPdf("_MostrarBoletaView",model) { FileName = "Boleta.pdf" };
         }
-        public ActionResult showimage()
+        public ActionResult MostrarImagenInspector()
         {
             int serie = Convert.ToInt32(Session["serie"]);
             decimal numero_boleta = Convert.ToDecimal(Session["numero_boleta"]) ;
-            var Inspector = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.codigo_inspector).ToList());
-            string CodigoInspector = Inspector.ToArray().FirstOrDefault() == null ? "0" : Inspector.ToArray().FirstOrDefault().ToString();
+            var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
+            string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
             string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
             //var path = Server.MapPath(ruta);
-            var file = string.Format("{0}-{1}-{2}-inspector-{3}.png","2", serie,numero_boleta,CodigoInspector);
+            var file = string.Format("{0}{1}{2}-i.png",CodigoFuente, serie,numero_boleta);
+            var fullPath = Path.Combine(ruta, file);
+            return File(fullPath, "image/png", file);
+        }
+
+        public ActionResult MostrarImagenUsuario()
+        {
+            int serie = Convert.ToInt32(Session["serie"]);
+            decimal numero_boleta = Convert.ToDecimal(Session["numero_boleta"]);
+            var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
+            string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
+            string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+            //var path = Server.MapPath(ruta);
+            var file = string.Format("{0}{1}{2}-u.png", CodigoFuente, serie, numero_boleta);
             var fullPath = Path.Combine(ruta, file);
             return File(fullPath, "image/png", file);
         }
