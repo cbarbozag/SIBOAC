@@ -592,7 +592,9 @@ namespace Cosevi.SIBOAC.Controllers
         }
         private List<GetActividadOficialData_Result> GetActividadOficialData(string CodigoInspector,DateTime fechaInicio, DateTime fechaFin)
         {
-            var lista = db.GetActividadOficialData(CodigoInspector, fechaInicio, fechaFin).ToList();
+            var usuarioSistema = User.Identity.Name;
+
+            var lista = db.GetActividadOficialData(CodigoInspector, fechaInicio, fechaFin,usuarioSistema).ToList();
             return lista;
         }
 
@@ -642,6 +644,8 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, string numeroHH, [FromUri] string [] listaInspectores)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string idInspectores = "";
             foreach (var i in listaInspectores)
             {
@@ -652,7 +656,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 idInspectores = idInspectores.Substring(0, idInspectores.Length - 1);
             }
-            var lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, idInspectores).ToList();
+            var lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, idInspectores,usuarioSistema).ToList();
 
             return lista;
         }
@@ -745,7 +749,9 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(int opcionRadio, DateTime fechaDesde, DateTime fechaHasta)
         {
-            var lista = db.GetDescargaBoletaData(opcionRadio, fechaDesde, fechaHasta).ToList();
+            var usuarioSistema = User.Identity.Name;
+
+            var lista = db.GetDescargaBoletaData(opcionRadio, fechaDesde, fechaHasta,usuarioSistema).ToList();
             return lista;
         }
 
@@ -822,7 +828,9 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetReportePorDelegacionAutoridadData_Result> GetReportePorDelegacionAutoridadData(DateTime desde, DateTime hasta, int radio, string idAutoridades, string listaDelegaciones)
         {
-            var lista = db.GetReportePorDelegacionAutoridadData(radio, desde, hasta, idAutoridades, listaDelegaciones).ToList();
+            var usuarioSistema = User.Identity.Name;
+
+            var lista = db.GetReportePorDelegacionAutoridadData(radio, desde, hasta, idAutoridades, listaDelegaciones,usuarioSistema).ToList();
             // return lista;
             return lista;
         }
@@ -901,8 +909,9 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetReporteListadoMultaFijaData_Result> GetReporteListadoMultaFijaData(DateTime desde, DateTime hasta, int radio, string idInspectores, string listaDelegaciones)
         {
-         
-            var lista = db.GetReporteListadoMultaFijaData(desde, hasta, radio, idInspectores, listaDelegaciones).ToList();
+            var usuarioSistema = User.Identity.Name;
+
+            var lista = db.GetReporteListadoMultaFijaData(desde, hasta, radio, idInspectores, listaDelegaciones,usuarioSistema).ToList();
             // return lista;
             return lista;
         }
@@ -981,8 +990,10 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetReporteListadoParteOficialData_Result> GetReporteListadoParteOficialData(DateTime desde, DateTime hasta, int radio, string idInspectores, string listaDelegaciones)
         {
+            var usuarioSistema = User.Identity.Name;
 
-            var lista = db.GetReporteListadoParteOficialData(desde, hasta, radio, idInspectores, listaDelegaciones).ToList();
+
+            var lista = db.GetReporteListadoParteOficialData(desde, hasta, radio, idInspectores, listaDelegaciones,usuarioSistema).ToList();
             // return lista;
             return lista;
         }
@@ -1032,6 +1043,8 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string listaUsuarios, DateTime desde, DateTime hasta)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string idUsuarios = "";
             foreach (var i in listaUsuarios)
             {
@@ -1042,7 +1055,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
             }
-            var lista = db.GetReportePorUsuarioData(idUsuarios, desde, hasta).ToList();
+            var lista = db.GetReportePorUsuarioData(idUsuarios, desde, hasta,usuarioSistema).ToList();
             return lista;
         }
         #endregion
@@ -1118,6 +1131,8 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(DateTime desde, DateTime hasta, string listaDelegacion, string listaInspector)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string idDelegacion = "";
             string idInspector = "";
             foreach (var i in listaDelegacion)
@@ -1139,7 +1154,7 @@ namespace Cosevi.SIBOAC.Controllers
                 idInspector = idInspector.Substring(0, idInspector.Length - 1);
             }
             var
-                 lista = db.GetConsultaeImpresionDeBoletasData(desde, hasta, idDelegacion, idInspector).ToList();
+                 lista = db.GetConsultaeImpresionDeBoletasData(desde, hasta, idDelegacion, idInspector,usuarioSistema).ToList();
             return lista;
         }
 
@@ -1217,6 +1232,8 @@ namespace Cosevi.SIBOAC.Controllers
 
         private List<GetReporteStatusActualPlanoData_Result> GetReporteStatusActualPlanoData(int radio, DateTime desde, DateTime hasta, string listaDelegacion, string listaAutoridad)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string idDelegaciones = "";
             foreach (var i in listaDelegacion)
             {
@@ -1237,7 +1254,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 idAutoridades = idAutoridades.Substring(0, idAutoridades.Length - 1);
             }
-            var lista = db.GetReporteStatusActualPlanoData(radio, desde, hasta, idDelegaciones, idAutoridades).ToList();
+            var lista = db.GetReporteStatusActualPlanoData(radio, desde, hasta, idDelegaciones, idAutoridades,usuarioSistema).ToList();
             // return lista;
             return lista;
         }

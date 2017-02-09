@@ -144,6 +144,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(claseDePlaca, "U", "CLASE", claseDePlacaAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -216,6 +218,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CLASE.Remove(claseDePlaca);
             db.SaveChanges();
             Bitacora(claseDePlaca, "D", "CLASE");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

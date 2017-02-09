@@ -1423,13 +1423,14 @@ namespace Cosevi.SIBOAC.GetReportePorDelegacionAutoridadDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFin", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdAutoridad", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdDelegacion", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioSistema", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GetReportePorDelegacionAutoridadDataSet.GetReportePorDelegacionAutoridadDataDataTable dataTable, global::System.Nullable<int> TipoConsulta, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFin, string IdAutoridad, string IdDelegacion) {
+        public virtual int Fill(GetReportePorDelegacionAutoridadDataSet.GetReportePorDelegacionAutoridadDataDataTable dataTable, global::System.Nullable<int> TipoConsulta, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFin, string IdAutoridad, string IdDelegacion, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((TipoConsulta.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(TipoConsulta.Value));
@@ -1460,6 +1461,12 @@ namespace Cosevi.SIBOAC.GetReportePorDelegacionAutoridadDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = ((string)(IdDelegacion));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(UsuarioSistema));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1472,7 +1479,7 @@ namespace Cosevi.SIBOAC.GetReportePorDelegacionAutoridadDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GetReportePorDelegacionAutoridadDataSet.GetReportePorDelegacionAutoridadDataDataTable GetData(global::System.Nullable<int> TipoConsulta, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFin, string IdAutoridad, string IdDelegacion) {
+        public virtual GetReportePorDelegacionAutoridadDataSet.GetReportePorDelegacionAutoridadDataDataTable GetData(global::System.Nullable<int> TipoConsulta, global::System.Nullable<global::System.DateTime> FechaInicio, global::System.Nullable<global::System.DateTime> FechaFin, string IdAutoridad, string IdDelegacion, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((TipoConsulta.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(TipoConsulta.Value));
@@ -1503,6 +1510,12 @@ namespace Cosevi.SIBOAC.GetReportePorDelegacionAutoridadDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = ((string)(IdDelegacion));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(UsuarioSistema));
             }
             GetReportePorDelegacionAutoridadDataSet.GetReportePorDelegacionAutoridadDataDataTable dataTable = new GetReportePorDelegacionAutoridadDataSet.GetReportePorDelegacionAutoridadDataDataTable();
             this.Adapter.Fill(dataTable);

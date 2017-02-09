@@ -26,5 +26,8 @@ namespace Cosevi.SIBOAC.Models
         public string NumeroPlaca { get; set; }
         public Nullable<int> EstadoPlano { get; set; }
         public string DescripcionRol { get; set; }
+
+        public Nullable<System.DateTime> FechaModificado { get; set; }
+       public string UsuarioModificaPlano { get; set; }
     }
 }

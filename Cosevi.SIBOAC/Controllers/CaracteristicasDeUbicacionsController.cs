@@ -11,9 +11,9 @@ using PagedList;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class CaracteristicasDeUbicacionsController : Controller
+    public class CaracteristicasDeUbicacionsController : BaseController<CaracteristicasDeUbicacion>
     {
-        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
         // GET: CaracteristicasDeUbicacions
         [SessionExpire]
@@ -88,7 +88,7 @@ namespace Cosevi.SIBOAC.Controllers
                     if (mensaje == "")
                     {
                         db.SaveChanges();
-
+                        Bitacora(caracteristicasDeUbicacion, "I", "CARACUBI");
                         TempData["Type"] = "success";
                         TempData["Message"] = "El registro se realizó correctamente";
                         return RedirectToAction("Index");
@@ -136,12 +136,17 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
+                var caracteristicasDeUbicacionAntes = db.CARACUBI.AsNoTracking().Where(d => d.Id == caracteristicasDeUbicacion.Id).FirstOrDefault();
+
                 db.Entry(caracteristicasDeUbicacion).State = EntityState.Modified;
                string  mensaje = ValidarFechas(caracteristicasDeUbicacion.FechaDeInicio, caracteristicasDeUbicacion.FechaDeFin);
 
                 if (mensaje == "")
                 {
                     db.SaveChanges();
+                    Bitacora(caracteristicasDeUbicacion, "U", "CARACUBI", caracteristicasDeUbicacionAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -180,7 +185,7 @@ namespace Cosevi.SIBOAC.Controllers
                 caracteristicasDeUbicacion.Estado = "I";
             else
                 caracteristicasDeUbicacion.Estado = "A";
-            db.SaveChanges();
+                db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -207,6 +212,8 @@ namespace Cosevi.SIBOAC.Controllers
             CaracteristicasDeUbicacion caracteristicasDeUbicacion = db.CARACUBI.Find(id);
             db.CARACUBI.Remove(caracteristicasDeUbicacion);
             db.SaveChanges();
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

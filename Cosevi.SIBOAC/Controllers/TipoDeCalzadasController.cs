@@ -148,6 +148,8 @@ namespace Cosevi.SIBOAC.Controllers
 
                     db.SaveChanges();
                     Bitacora(tipoDeCalzada, "U", "TIPOCALZADA", tipoDeCalzadaAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
 
                 }

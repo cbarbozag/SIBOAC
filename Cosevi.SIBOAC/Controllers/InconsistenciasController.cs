@@ -128,6 +128,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(inconsistencia).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(inconsistencia, "U", "INCONSISTENCIA", inconsistenciaAntes);
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(inconsistencia);

@@ -142,6 +142,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(depositoDeVehiculo, "U", "DEPOSITOVEHICULO", depositoDeVehiculoAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -210,6 +212,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.DEPOSITOVEHICULO.Remove(depositoDeVehiculo);
             db.SaveChanges();
             Bitacora(depositoDeVehiculo, "D", "DEPOSITOVEHICULO");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

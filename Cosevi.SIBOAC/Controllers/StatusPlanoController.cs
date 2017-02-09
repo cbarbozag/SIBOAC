@@ -61,7 +61,9 @@ namespace Cosevi.SIBOAC.Controllers
                          CodigoPlaca = b.codigo_placa,
                          NumeroPlaca = b.numero_placa,
                          EstadoPlano = p.StatusPlano,
-                         DescripcionRol = r.Descripcion
+                         DescripcionRol = r.Descripcion,
+                         FechaModificado = p.fecha_entrega,
+                         UsuarioModificaPlano = p.usuario_entregaPlano
                      }).ToList().Distinct()
                   .Select(x => new StatusPlano
                    {
@@ -75,7 +77,9 @@ namespace Cosevi.SIBOAC.Controllers
                        CodigoPlaca = x.CodigoPlaca,
                        NumeroPlaca = x.NumeroPlaca,
                        EstadoPlano = x.EstadoPlano,
-                       DescripcionRol= x.DescripcionRol
+                       DescripcionRol= x.DescripcionRol,
+                       FechaModificado = x.FechaModificado,
+                       UsuarioModificaPlano = x.UsuarioModificaPlano
 
                    });
               

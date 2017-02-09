@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Cosevi.SIBOAC.Models;
+using System.Configuration;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -27,6 +28,8 @@ namespace Cosevi.SIBOAC.Controllers
             if (serie == null && numero_boleta == null)
                 return View();
             ViewBag.Datos = null;
+            Session["serie"] = serie;
+            Session["numero_boleta"] = numero_boleta;
           
             ViewBag.type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -204,5 +207,31 @@ namespace Cosevi.SIBOAC.Controllers
            
             return new Rotativa.PartialViewAsPdf("_MostrarBoletaView",model) { FileName = "Boleta.pdf" };
         }
+        public ActionResult MostrarImagenInspector()
+        {
+            int serie = Convert.ToInt32(Session["serie"]);
+            decimal numero_boleta = Convert.ToDecimal(Session["numero_boleta"]) ;
+            var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
+            string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
+            string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+            //var path = Server.MapPath(ruta);
+            var file = string.Format("{0}{1}{2}-i.png",CodigoFuente, serie,numero_boleta);
+            var fullPath = Path.Combine(ruta, file);
+            return File(fullPath, "image/png", file);
+        }
+
+        public ActionResult MostrarImagenUsuario()
+        {
+            int serie = Convert.ToInt32(Session["serie"]);
+            decimal numero_boleta = Convert.ToDecimal(Session["numero_boleta"]);
+            var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
+            string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
+            string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+            //var path = Server.MapPath(ruta);
+            var file = string.Format("{0}{1}{2}-u.png", CodigoFuente, serie, numero_boleta);
+            var fullPath = Path.Combine(ruta, file);
+            return File(fullPath, "image/png", file);
+        }
+
     }
 }

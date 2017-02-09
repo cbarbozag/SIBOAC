@@ -294,6 +294,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(division, "U", "DIVISION", divisionAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -437,6 +439,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.DIVISION.Remove(division);
             db.SaveChanges();
             Bitacora(division, "U", "DIVISION");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

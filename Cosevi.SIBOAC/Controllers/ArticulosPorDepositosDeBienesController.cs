@@ -317,6 +317,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(articulosPorDepositosDeBienes).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(articulosPorDepositosDeBienes, "U", "ARTICULOSXDEPOSITOSBIENES", articulosPorDepositosDeBienesAntes);
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(articulosPorDepositosDeBienes);
@@ -460,6 +462,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.ARTICULOSXDEPOSITOSBIENES.Remove(articulosPorDepositosDeBienes);
             db.SaveChanges();
             Bitacora(articulosPorDepositosDeBienes, "D", "CATARTICULO", articulosPorDepositosDeBienesAntes);
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

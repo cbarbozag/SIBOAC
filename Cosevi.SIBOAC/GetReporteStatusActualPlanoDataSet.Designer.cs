@@ -1013,13 +1013,14 @@ namespace Cosevi.SIBOAC.GetReporteStatusActualPlanoDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Delegacion", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Autoridad", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioSistema", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GetReporteStatusActualPlanoDataSet.GetReporteStatusActualPlanoDataDataTable dataTable, global::System.Nullable<int> StatusPlano, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal, string Delegacion, string Autoridad) {
+        public virtual int Fill(GetReporteStatusActualPlanoDataSet.GetReporteStatusActualPlanoDataDataTable dataTable, global::System.Nullable<int> StatusPlano, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal, string Delegacion, string Autoridad, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((StatusPlano.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(StatusPlano.Value));
@@ -1050,6 +1051,12 @@ namespace Cosevi.SIBOAC.GetReporteStatusActualPlanoDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = ((string)(Autoridad));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(UsuarioSistema));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1062,7 +1069,7 @@ namespace Cosevi.SIBOAC.GetReporteStatusActualPlanoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GetReporteStatusActualPlanoDataSet.GetReporteStatusActualPlanoDataDataTable GetData(global::System.Nullable<int> StatusPlano, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal, string Delegacion, string Autoridad) {
+        public virtual GetReporteStatusActualPlanoDataSet.GetReporteStatusActualPlanoDataDataTable GetData(global::System.Nullable<int> StatusPlano, global::System.Nullable<global::System.DateTime> FechaInicial, global::System.Nullable<global::System.DateTime> FechaFinal, string Delegacion, string Autoridad, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((StatusPlano.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(StatusPlano.Value));
@@ -1093,6 +1100,12 @@ namespace Cosevi.SIBOAC.GetReporteStatusActualPlanoDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = ((string)(Autoridad));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(UsuarioSistema));
             }
             GetReporteStatusActualPlanoDataSet.GetReporteStatusActualPlanoDataDataTable dataTable = new GetReporteStatusActualPlanoDataSet.GetReporteStatusActualPlanoDataDataTable();
             this.Adapter.Fill(dataTable);

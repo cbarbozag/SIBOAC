@@ -213,6 +213,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(lEYENDAPORAUTORIDAD, "U", "LEYENDAPORAUTORIDAD", lEYENDAPORAUTORIDADAntes);
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else

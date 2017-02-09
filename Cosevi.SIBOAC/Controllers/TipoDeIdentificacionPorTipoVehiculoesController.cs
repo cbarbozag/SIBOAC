@@ -278,6 +278,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(tipoDeIdentificacionPorTipoVehiculo, "U", "TIPOIDEVEHICULOXTIPOVEH", tipoDeIdentificacionPorTipoVehiculoAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else

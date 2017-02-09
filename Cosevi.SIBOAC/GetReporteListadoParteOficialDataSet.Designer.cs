@@ -291,11 +291,15 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columncodigo_autoridad_registra;
             
-            private global::System.Data.DataColumn columnfecha;
-            
             private global::System.Data.DataColumn columnfecha_descarga;
             
             private global::System.Data.DataColumn columndias;
+            
+            private global::System.Data.DataColumn columnFecha;
+            
+            private global::System.Data.DataColumn columnDescripcionDelegacion;
+            
+            private global::System.Data.DataColumn columnDescripcionAutoridad;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -380,14 +384,6 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fechaColumn {
-                get {
-                    return this.columnfecha;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn fecha_descargaColumn {
                 get {
                     return this.columnfecha_descarga;
@@ -399,6 +395,30 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn diasColumn {
                 get {
                     return this.columndias;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaColumn {
+                get {
+                    return this.columnFecha;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionDelegacionColumn {
+                get {
+                    return this.columnDescripcionDelegacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionAutoridadColumn {
+                get {
+                    return this.columnDescripcionAutoridad;
                 }
             }
             
@@ -439,7 +459,7 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetReporteListadoParteOficialDataRow AddGetReporteListadoParteOficialDataRow(string codigo_delegacion, string codigo_inspector, string fuente, string serie, string numeroparte, string codigo_autoridad_registra, System.DateTime fecha, System.DateTime fecha_descarga, int dias) {
+            public GetReporteListadoParteOficialDataRow AddGetReporteListadoParteOficialDataRow(string codigo_delegacion, string codigo_inspector, string fuente, string serie, string numeroparte, string codigo_autoridad_registra, System.DateTime fecha_descarga, int dias, System.DateTime Fecha, string DescripcionDelegacion, string DescripcionAutoridad) {
                 GetReporteListadoParteOficialDataRow rowGetReporteListadoParteOficialDataRow = ((GetReporteListadoParteOficialDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         codigo_delegacion,
@@ -448,9 +468,11 @@ namespace Cosevi.SIBOAC {
                         serie,
                         numeroparte,
                         codigo_autoridad_registra,
-                        fecha,
                         fecha_descarga,
-                        dias};
+                        dias,
+                        Fecha,
+                        DescripcionDelegacion,
+                        DescripcionAutoridad};
                 rowGetReporteListadoParteOficialDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReporteListadoParteOficialDataRow);
                 return rowGetReporteListadoParteOficialDataRow;
@@ -479,9 +501,11 @@ namespace Cosevi.SIBOAC {
                 this.columnserie = base.Columns["serie"];
                 this.columnnumeroparte = base.Columns["numeroparte"];
                 this.columncodigo_autoridad_registra = base.Columns["codigo_autoridad_registra"];
-                this.columnfecha = base.Columns["fecha"];
                 this.columnfecha_descarga = base.Columns["fecha_descarga"];
                 this.columndias = base.Columns["dias"];
+                this.columnFecha = base.Columns["Fecha"];
+                this.columnDescripcionDelegacion = base.Columns["DescripcionDelegacion"];
+                this.columnDescripcionAutoridad = base.Columns["DescripcionAutoridad"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -499,12 +523,16 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnnumeroparte);
                 this.columncodigo_autoridad_registra = new global::System.Data.DataColumn("codigo_autoridad_registra", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodigo_autoridad_registra);
-                this.columnfecha = new global::System.Data.DataColumn("fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfecha);
                 this.columnfecha_descarga = new global::System.Data.DataColumn("fecha_descarga", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfecha_descarga);
                 this.columndias = new global::System.Data.DataColumn("dias", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndias);
+                this.columnFecha = new global::System.Data.DataColumn("Fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha);
+                this.columnDescripcionDelegacion = new global::System.Data.DataColumn("DescripcionDelegacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionDelegacion);
+                this.columnDescripcionAutoridad = new global::System.Data.DataColumn("DescripcionAutoridad", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionAutoridad);
                 this.columncodigo_delegacion.MaxLength = 4;
                 this.columncodigo_inspector.MaxLength = 4;
                 this.columnfuente.MaxLength = 1;
@@ -512,6 +540,9 @@ namespace Cosevi.SIBOAC {
                 this.columnnumeroparte.MaxLength = 15;
                 this.columncodigo_autoridad_registra.MaxLength = 5;
                 this.columndias.ReadOnly = true;
+                this.columnDescripcionDelegacion.ReadOnly = true;
+                this.columnDescripcionDelegacion.MaxLength = 35;
+                this.columnDescripcionAutoridad.MaxLength = 35;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -756,23 +787,6 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fecha {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableGetReporteListadoParteOficialData.fechaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fecha\' in table \'GetReporteListadoParteOficialData\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReporteListadoParteOficialData.fechaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime fecha_descarga {
                 get {
                     try {
@@ -802,6 +816,57 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetReporteListadoParteOficialData.diasColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime Fecha {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGetReporteListadoParteOficialData.FechaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Fecha\' in table \'GetReporteListadoParteOficialData\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReporteListadoParteOficialData.FechaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionDelegacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReporteListadoParteOficialData.DescripcionDelegacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionDelegacion\' in table \'GetReporteListadoParteOfic" +
+                                "ialData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReporteListadoParteOficialData.DescripcionDelegacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionAutoridad {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReporteListadoParteOficialData.DescripcionAutoridadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionAutoridad\' in table \'GetReporteListadoParteOfici" +
+                                "alData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReporteListadoParteOficialData.DescripcionAutoridadColumn] = value;
                 }
             }
             
@@ -879,18 +944,6 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsfechaNull() {
-                return this.IsNull(this.tableGetReporteListadoParteOficialData.fechaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetfechaNull() {
-                this[this.tableGetReporteListadoParteOficialData.fechaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isfecha_descargaNull() {
                 return this.IsNull(this.tableGetReporteListadoParteOficialData.fecha_descargaColumn);
             }
@@ -911,6 +964,42 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetdiasNull() {
                 this[this.tableGetReporteListadoParteOficialData.diasColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaNull() {
+                return this.IsNull(this.tableGetReporteListadoParteOficialData.FechaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaNull() {
+                this[this.tableGetReporteListadoParteOficialData.FechaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionDelegacionNull() {
+                return this.IsNull(this.tableGetReporteListadoParteOficialData.DescripcionDelegacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionDelegacionNull() {
+                this[this.tableGetReporteListadoParteOficialData.DescripcionDelegacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionAutoridadNull() {
+                return this.IsNull(this.tableGetReporteListadoParteOficialData.DescripcionAutoridadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionAutoridadNull() {
+                this[this.tableGetReporteListadoParteOficialData.DescripcionAutoridadColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1079,9 +1168,11 @@ namespace Cosevi.SIBOAC.GetReporteListadoParteOficialDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("serie", "serie");
             tableMapping.ColumnMappings.Add("numeroparte", "numeroparte");
             tableMapping.ColumnMappings.Add("codigo_autoridad_registra", "codigo_autoridad_registra");
-            tableMapping.ColumnMappings.Add("fecha", "fecha");
             tableMapping.ColumnMappings.Add("fecha_descarga", "fecha_descarga");
             tableMapping.ColumnMappings.Add("dias", "dias");
+            tableMapping.ColumnMappings.Add("Fecha", "Fecha");
+            tableMapping.ColumnMappings.Add("DescripcionDelegacion", "DescripcionDelegacion");
+            tableMapping.ColumnMappings.Add("DescripcionAutoridad", "DescripcionAutoridad");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1108,13 +1199,14 @@ namespace Cosevi.SIBOAC.GetReporteListadoParteOficialDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valor", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idInspectores", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idDelegaciones", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioSistema", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GetReporteListadoParteOficialDataSet.GetReporteListadoParteOficialDataDataTable dataTable, global::System.Nullable<global::System.DateTime> FechaDesde, global::System.Nullable<global::System.DateTime> FechaHasta, global::System.Nullable<int> Valor, string idInspectores, string idDelegaciones) {
+        public virtual int Fill(GetReporteListadoParteOficialDataSet.GetReporteListadoParteOficialDataDataTable dataTable, global::System.Nullable<global::System.DateTime> FechaDesde, global::System.Nullable<global::System.DateTime> FechaHasta, global::System.Nullable<int> Valor, string idInspectores, string idDelegaciones, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((FechaDesde.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaDesde.Value));
@@ -1145,6 +1237,12 @@ namespace Cosevi.SIBOAC.GetReporteListadoParteOficialDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = ((string)(idDelegaciones));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(UsuarioSistema));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1157,7 +1255,7 @@ namespace Cosevi.SIBOAC.GetReporteListadoParteOficialDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GetReporteListadoParteOficialDataSet.GetReporteListadoParteOficialDataDataTable GetData(global::System.Nullable<global::System.DateTime> FechaDesde, global::System.Nullable<global::System.DateTime> FechaHasta, global::System.Nullable<int> Valor, string idInspectores, string idDelegaciones) {
+        public virtual GetReporteListadoParteOficialDataSet.GetReporteListadoParteOficialDataDataTable GetData(global::System.Nullable<global::System.DateTime> FechaDesde, global::System.Nullable<global::System.DateTime> FechaHasta, global::System.Nullable<int> Valor, string idInspectores, string idDelegaciones, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((FechaDesde.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FechaDesde.Value));
@@ -1188,6 +1286,12 @@ namespace Cosevi.SIBOAC.GetReporteListadoParteOficialDataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = ((string)(idDelegaciones));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(UsuarioSistema));
             }
             GetReporteListadoParteOficialDataSet.GetReporteListadoParteOficialDataDataTable dataTable = new GetReporteListadoParteOficialDataSet.GetReporteListadoParteOficialDataDataTable();
             this.Adapter.Fill(dataTable);

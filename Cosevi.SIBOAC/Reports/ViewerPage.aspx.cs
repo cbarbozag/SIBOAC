@@ -15,7 +15,7 @@ namespace Cosevi.SIBOAC.Reports
     public partial class ViewerPage : System.Web.UI.Page
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-
+        private SIBOACSecurityEntities dbSecurity = new SIBOACSecurityEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -102,42 +102,52 @@ namespace Cosevi.SIBOAC.Reports
         }
         private List<GetActividadOficialData_Result> GetActividadOficialData(string parametros)
         {
+            //SE agrega el codigo del usuario
+         
+            var usuarioSistema = User.Identity.Name;
+      
             string[] param = parametros.Split(',');
             string CodigoInspector = param[0];
             DateTime fechaInicio = Convert.ToDateTime(param[1]);
             DateTime fechaFin = Convert.ToDateTime(param[2]);
         
-            var actividadOificial = db.GetActividadOficialData(CodigoInspector,fechaInicio, fechaFin).ToList();
+            var actividadOificial = db.GetActividadOficialData(CodigoInspector,fechaInicio, fechaFin, usuarioSistema).ToList();
             return actividadOificial;
         }
 
         private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             DateTime fechaInicio = Convert.ToDateTime(param[0]);
             DateTime fechaFin = Convert.ToDateTime(param[1]);
             string numeroHandHeld = param[2];
             string codigoOficial = param[3].Replace("|", ",").Replace("-", "").Trim(); ;
           
-            var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, numeroHandHeld, codigoOficial).ToList();
+            var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, numeroHandHeld, codigoOficial,usuarioSistema).ToList();
             return lista;
         }
 
         private List<GetDescargaBoletaData_Result> GetDescargaBoletaData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             int TipoFecha = Convert.ToInt32(param[0]);
             DateTime fechaInicio = Convert.ToDateTime(param[1]);
             DateTime fechaFin = Convert.ToDateTime(param[2]);
   
 
-            var lista = db.GetDescargaBoletaData(TipoFecha,fechaInicio, fechaFin).ToList();
+            var lista = db.GetDescargaBoletaData(TipoFecha,fechaInicio, fechaFin,usuarioSistema).ToList();
             return lista;
         }
 
 
         private List<GetReportePorDelegacionAutoridadData_Result> GetReportePorDelegacionAutoridadData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             int Valor = Convert.ToInt32(param[0]);
             DateTime FechaDesde = Convert.ToDateTime(param[1]);
@@ -145,12 +155,14 @@ namespace Cosevi.SIBOAC.Reports
             string idAutoridades =param[3].Replace("|", ",").Replace("-", "").Trim();
             string idDelegaciones = param[4].Replace("|",",").Replace("-","").Trim();
 
-            var lista = db.GetReportePorDelegacionAutoridadData(Valor,FechaDesde, FechaHasta, idAutoridades, idDelegaciones).ToList();
+            var lista = db.GetReportePorDelegacionAutoridadData(Valor,FechaDesde, FechaHasta, idAutoridades, idDelegaciones,usuarioSistema).ToList();
             return lista;
         }
 
         private List<GetReporteListadoMultaFijaData_Result> GetReporteListadoMultafijaData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             int Valor = Convert.ToInt32(param[0]);
             DateTime FechaDesde = Convert.ToDateTime(param[1]);
@@ -158,11 +170,13 @@ namespace Cosevi.SIBOAC.Reports
             string idInspectores = param[3].Replace("|", ",").Replace("-", "").Trim();
             string idDelegaciones = param[4].Replace("|", ",").Replace("-", "").Trim();
 
-            var lista = db.GetReporteListadoMultaFijaData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones).ToList();
+            var lista = db.GetReporteListadoMultaFijaData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones,usuarioSistema).ToList();
             return lista;
         }
         private List<GetReporteListadoParteOficialData_Result> GetReporteListadoParteOficialData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             int Valor = Convert.ToInt32(param[0]);
             DateTime FechaDesde = Convert.ToDateTime(param[1]);
@@ -170,7 +184,7 @@ namespace Cosevi.SIBOAC.Reports
             string idInspectores = param[3].Replace("|", ",").Replace("-", "").Trim();
             string idDelegaciones = param[4].Replace("|", ",").Replace("-", "").Trim();
 
-            var lista = db.GetReporteListadoParteOficialData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones).ToList();
+            var lista = db.GetReporteListadoParteOficialData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones,usuarioSistema).ToList();
             return lista;
         }
 
@@ -193,13 +207,15 @@ namespace Cosevi.SIBOAC.Reports
 
         private List<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             string IdUsuario = param[0].Replace("|",",").Replace("-","").Trim();
             DateTime fechaInicio = Convert.ToDateTime(param[1]);
             DateTime fechaFin = Convert.ToDateTime(param[2]);
 
 
-            var lista = db.GetReportePorUsuarioData(IdUsuario, fechaInicio, fechaFin).ToList();
+            var lista = db.GetReportePorUsuarioData(IdUsuario, fechaInicio, fechaFin,usuarioSistema).ToList();
             return lista;
         }
 
@@ -207,18 +223,22 @@ namespace Cosevi.SIBOAC.Reports
 
         private List<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             DateTime FechaDesde = Convert.ToDateTime(param[0]);
             DateTime FechaHasta = Convert.ToDateTime(param[1]);
             string idDelegacion = param[2].Replace("|", ",").Replace("-", "").Trim();
             string idInspector = param[3].Replace("|", ",").Replace("-", "").Trim(); 
 
-            var lista = db.GetConsultaeImpresionDeBoletasData(FechaDesde, FechaHasta, idDelegacion, idInspector).ToList();
+            var lista = db.GetConsultaeImpresionDeBoletasData(FechaDesde, FechaHasta, idDelegacion, idInspector,usuarioSistema).ToList();
             return lista;
         }
 
         private List<GetReporteStatusActualPlanoData_Result> GetReporteStatusActualPlanoData(string parametros)
         {
+            var usuarioSistema = User.Identity.Name;
+
             string[] param = parametros.Split(',');
             int statusPlano = Convert.ToInt32(param[0]);
             DateTime FechaDesde = Convert.ToDateTime(param[1]);
@@ -227,7 +247,7 @@ namespace Cosevi.SIBOAC.Reports
             string idAutoridades = param[4].Replace("|", ",").Replace("-", "").Trim();
             
 
-            var lista = db.GetReporteStatusActualPlanoData(statusPlano, FechaDesde, FechaHasta, idAutoridades, idDelegaciones).ToList();
+            var lista = db.GetReporteStatusActualPlanoData(statusPlano, FechaDesde, FechaHasta, idAutoridades, idDelegaciones,usuarioSistema).ToList();
             return lista;
         }
         

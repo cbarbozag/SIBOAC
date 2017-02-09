@@ -537,16 +537,19 @@
     <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetReimpresionDeBoletasDeCampoData_Result.cs">
+    <Compile Include="Models\GetDescargaParteOficialData_Result1.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetDescargaParteOficialData_Result1.cs">
+    <Compile Include="Models\GetReimpresionDeBoletasDeCampoData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReporteListadoMultaFijaData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReporteListadoParteOficialData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetReportePorDelegacionAutoridadData1_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReportePorDelegacionAutoridadData_Result.cs">
@@ -613,6 +616,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OpcionFormularioPorArticulo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OtrosAdjuntos.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OtroTipoTransporte.cs">
@@ -794,6 +800,7 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\2-2016-321400195-inspector-3214.png" />
     <Content Include="Content\Bitacoras.png" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\btnExcel.png" />

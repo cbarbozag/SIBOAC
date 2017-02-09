@@ -124,7 +124,7 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(dispositivoPorRolPersona, "I", "DISPXROLPERSONA");
-                    TempData["Type"] = "success";
+                    TempData["Type"] = "info";
                     TempData["Message"] = "El registro se realizó correctamente";
                     return RedirectToAction("Index");
 
@@ -207,6 +207,8 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Entry(dispositivoPorRolPersona).State = EntityState.Modified;
                 db.SaveChanges();
                 Bitacora(dispositivoPorRolPersona, "U", "DISPXROLPERSONA", dispositivoPorRolPersonaAntes);
+                TempData["Type"] = "success";
+                TempData["Message"] = "La edición se realizó correctamente";
                 return RedirectToAction("Index");
             }
             return View(dispositivoPorRolPersona);
@@ -239,6 +241,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.DISPXROLPERSONA.Remove(dispositivo);
             db.SaveChanges();
             Bitacora(dispositivo, "D", "DISPXROLPERSONA", dispositivoAntes);
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

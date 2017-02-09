@@ -141,6 +141,8 @@ namespace Cosevi.SIBOAC.Controllers
                     db.Entry(delegacion).State = EntityState.Modified;
                     db.SaveChanges();
                     Bitacora(delegacion, "U", "DELEGACION", delegacionAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -209,6 +211,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.DELEGACION.Remove(delegacion);
             db.SaveChanges();
             Bitacora(delegacion, "D", "DELEGACION");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

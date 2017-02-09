@@ -203,6 +203,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(catalogoDeArticulos, "U", "CATARTICULO", catalogoDeArticulosAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -291,6 +293,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CATARTICULO.Remove(catalogoDeArticulos);
             db.SaveChanges();
             Bitacora(catalogoDeArticulos, "D", "CATARTICULO");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

@@ -137,9 +137,23 @@ namespace Cosevi.SIBOAC.Controllers
                 var condicionDeLaCalzadaAntes = db.CONDCALZADA.AsNoTracking().Where(d => d.Id == condicionDeLaCalzada.Id).FirstOrDefault();
 
                 db.Entry(condicionDeLaCalzada).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(condicionDeLaCalzada, "U", "CONDCALZADA", condicionDeLaCalzadaAntes);
-                return RedirectToAction("Index");
+
+                string mensaje = ValidarFechas(condicionDeLaCalzada.FechaDeInicio, condicionDeLaCalzada.FechaDeFin);
+
+                if (mensaje == "")
+                {
+                    db.SaveChanges();
+                    Bitacora(condicionDeLaCalzada, "U", "CONDCALZADA", condicionDeLaCalzadaAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Type = "warning";
+                    ViewBag.Message = mensaje;
+                    return View(condicionDeLaCalzada);
+                }
             }
             return View(condicionDeLaCalzada);
         }
@@ -200,6 +214,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.CONDCALZADA.Remove(condicionDeLaCalzada);
             db.SaveChanges();
             Bitacora(condicionDeLaCalzada, "D", "CONDCALZADA");
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 

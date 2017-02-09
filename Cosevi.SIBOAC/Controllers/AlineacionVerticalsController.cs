@@ -85,7 +85,6 @@ namespace Cosevi.SIBOAC.Controllers
                     {
                         db.SaveChanges();
                         Bitacora(alineacionVertical, "I", "ALINVERT");
-
                         TempData["Type"] = "success";
                         TempData["Message"] = "El registro se realizó correctamente";
                         return RedirectToAction("Index");
@@ -141,6 +140,8 @@ namespace Cosevi.SIBOAC.Controllers
                 {
                     db.SaveChanges();
                     Bitacora(alineacionVertical, "U", "ALINVERT", alineacionVerticalAntes);
+                    TempData["Type"] = "info";
+                    TempData["Message"] = "La edición se realizó correctamente";
                     return RedirectToAction("Index");
                 }
                 else
@@ -212,7 +213,8 @@ namespace Cosevi.SIBOAC.Controllers
             db.ALINVERT.Remove(alineacionVertical);
             db.SaveChanges();
             Bitacora(alineacionVertical, "D", "ALINVERT");
-
+            TempData["Type"] = "error";
+            TempData["Message"] = "El registro se eliminó correctamente";
             return RedirectToAction("Index");
         }
 
