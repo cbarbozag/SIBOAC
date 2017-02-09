@@ -326,6 +326,11 @@ namespace Cosevi.SIBOAC.Controllers
                             ModelState.AddModelError("", "¡La contraseña no puede ser igual al usuario!");
                             return View();
                         }
+                        if (user.Contrasena == model.NewPassword)
+                        {
+                            ModelState.AddModelError("", "¡La contraseña no puede ser igual a la actual!");
+                            return View();
+                        }
 
                         user.Id = user.Id;
                         user.Usuario = user.Usuario;
