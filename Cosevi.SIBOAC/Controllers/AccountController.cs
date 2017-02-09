@@ -281,6 +281,99 @@ namespace Cosevi.SIBOAC.Controllers
             return View();
         }
 
+
+        //
+        // GET: /Account/ChangePassword
+        [AllowAnonymous]
+        public ActionResult ChangePassword(string code)
+        {
+            return code == null ? View("Error") : View();
+            //return View();
+        }
+
+        //
+        // POST: /Account/ChangePassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordAViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
+            {
+                var user = sdb.SIBOACUsuarios.Where(a => a.Usuario.Equals(model.Code)).FirstOrDefault();
+                //var user = await UserManager.FindByNameAsync(model.Code);
+
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    //return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    return View();
+                }
+                //string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id.ToString());
+                try
+                {
+                    //IdentityResult result = await this.UserManager.ResetPasswordAsync(user.Id.ToString(), model.Code, model.Password);
+                    //  SIBOACUsuarios usuarioModificado = new SIBOACUsuarios();
+                    if (model.OldPassword == user.Contrasena)
+                    {
+                        if (model.Code == model.NewPassword)
+                        {
+                            ModelState.AddModelError("", "¡La contraseña no puede ser igual al usuario!");
+                            return View();
+                        }
+                        if (user.Contrasena == model.NewPassword)
+                        {
+                            ModelState.AddModelError("", "¡La contraseña no puede ser igual a la actual!");
+                            return View();
+                        }
+
+                        user.Id = user.Id;
+                        user.Usuario = user.Usuario;
+                        user.Email = user.Email;
+                        user.Contrasena = model.NewPassword;
+                        user.Nombre = user.Nombre;
+                        user.codigo = user.codigo;
+                        user.FechaDeActualizacionClave = DateTime.Now;
+                        user.UltimoIngreso = DateTime.Now;
+                        user.Activo = user.Activo;
+
+                        sdb.Entry(user).State = EntityState.Modified;
+                        sdb.SaveChanges();
+
+                        return RedirectToAction("ChangePasswordConfirmation", "Account");
+                    }
+                    else
+                    {
+
+                        ModelState.AddModelError("", "¡La contraseña actual no corresponde a la del usuario!");
+                        return View();
+                    }
+
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+
+                return View();
+            }
+        }
+
+        //
+        // GET: /Account/ChangePasswordAConfirmation
+        [AllowAnonymous]
+        public ActionResult ChangePasswordConfirmation()
+        {
+            return View();
+        }
+
+
+
+
+
+
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]

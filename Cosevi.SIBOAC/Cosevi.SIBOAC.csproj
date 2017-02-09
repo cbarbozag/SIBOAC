@@ -1625,6 +1625,8 @@
     <Content Include="Views\Reporte\_ActividadOficial.cshtml" />
     <Content Include="Views\Reporte\_ReporteListadoMultaFija.cshtml" />
     <Content Include="Views\Reporte\_ReporteListadoParteOficial.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />
