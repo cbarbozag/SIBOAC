@@ -289,7 +289,7 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnparteOficial;
             
-            private global::System.Data.DataColumn columnStatus_Plano;
+            private global::System.Data.DataColumn columnStatusPlano;
             
             private global::System.Data.DataColumn columnnombre;
             
@@ -372,9 +372,9 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Status_PlanoColumn {
+            public global::System.Data.DataColumn StatusPlanoColumn {
                 get {
-                    return this.columnStatus_Plano;
+                    return this.columnStatusPlano;
                 }
             }
             
@@ -439,7 +439,7 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetDescargaInspectorDataRow AddGetDescargaInspectorDataRow(string boleta, System.DateTime fecha_descarga, string identificacion, string placa, string parteOficial, short Status_Plano, string nombre, string FechaInicial, string FechaFinal) {
+            public GetDescargaInspectorDataRow AddGetDescargaInspectorDataRow(string boleta, System.DateTime fecha_descarga, string identificacion, string placa, string parteOficial, string StatusPlano, string nombre, string FechaInicial, string FechaFinal) {
                 GetDescargaInspectorDataRow rowGetDescargaInspectorDataRow = ((GetDescargaInspectorDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         boleta,
@@ -447,7 +447,7 @@ namespace Cosevi.SIBOAC {
                         identificacion,
                         placa,
                         parteOficial,
-                        Status_Plano,
+                        StatusPlano,
                         nombre,
                         FechaInicial,
                         FechaFinal};
@@ -478,7 +478,7 @@ namespace Cosevi.SIBOAC {
                 this.columnidentificacion = base.Columns["identificacion"];
                 this.columnplaca = base.Columns["placa"];
                 this.columnparteOficial = base.Columns["parteOficial"];
-                this.columnStatus_Plano = base.Columns["Status_Plano"];
+                this.columnStatusPlano = base.Columns["StatusPlano"];
                 this.columnnombre = base.Columns["nombre"];
                 this.columnFechaInicial = base.Columns["FechaInicial"];
                 this.columnFechaFinal = base.Columns["FechaFinal"];
@@ -497,8 +497,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnplaca);
                 this.columnparteOficial = new global::System.Data.DataColumn("parteOficial", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnparteOficial);
-                this.columnStatus_Plano = new global::System.Data.DataColumn("Status_Plano", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStatus_Plano);
+                this.columnStatusPlano = new global::System.Data.DataColumn("StatusPlano", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatusPlano);
                 this.columnnombre = new global::System.Data.DataColumn("nombre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnombre);
                 this.columnFechaInicial = new global::System.Data.DataColumn("FechaInicial", typeof(string), null, global::System.Data.MappingType.Element);
@@ -513,6 +513,8 @@ namespace Cosevi.SIBOAC {
                 this.columnplaca.MaxLength = 32;
                 this.columnparteOficial.ReadOnly = true;
                 this.columnparteOficial.MaxLength = 22;
+                this.columnStatusPlano.ReadOnly = true;
+                this.columnStatusPlano.MaxLength = 20;
                 this.columnnombre.MaxLength = 50;
                 this.columnFechaInicial.ReadOnly = true;
                 this.columnFechaInicial.MaxLength = 30;
@@ -743,18 +745,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Status_Plano {
+            public string StatusPlano {
                 get {
                     try {
-                        return ((short)(this[this.tableGetDescargaInspectorData.Status_PlanoColumn]));
+                        return ((string)(this[this.tableGetDescargaInspectorData.StatusPlanoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Status_Plano\' in table \'GetDescargaInspectorData\' is DBNull" +
-                                ".", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StatusPlano\' in table \'GetDescargaInspectorData\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableGetDescargaInspectorData.Status_PlanoColumn] = value;
+                    this[this.tableGetDescargaInspectorData.StatusPlanoColumn] = value;
                 }
             }
             
@@ -869,14 +871,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsStatus_PlanoNull() {
-                return this.IsNull(this.tableGetDescargaInspectorData.Status_PlanoColumn);
+            public bool IsStatusPlanoNull() {
+                return this.IsNull(this.tableGetDescargaInspectorData.StatusPlanoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetStatus_PlanoNull() {
-                this[this.tableGetDescargaInspectorData.Status_PlanoColumn] = global::System.Convert.DBNull;
+            public void SetStatusPlanoNull() {
+                this[this.tableGetDescargaInspectorData.StatusPlanoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1080,7 +1082,7 @@ namespace Cosevi.SIBOAC.GetDescargaInspectorDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("identificacion", "identificacion");
             tableMapping.ColumnMappings.Add("placa", "placa");
             tableMapping.ColumnMappings.Add("parteOficial", "parteOficial");
-            tableMapping.ColumnMappings.Add("Status_Plano", "Status_Plano");
+            tableMapping.ColumnMappings.Add("StatusPlano", "StatusPlano");
             tableMapping.ColumnMappings.Add("nombre", "nombre");
             tableMapping.ColumnMappings.Add("FechaInicial", "FechaInicial");
             tableMapping.ColumnMappings.Add("FechaFinal", "FechaFinal");

@@ -2727,10 +2727,10 @@
           <Property Type="String" Name="identificacion" Nullable="false" MaxLength="18" />
           <Property Type="String" Name="placa" Nullable="true" MaxLength="32" />
           <Property Type="String" Name="parteOficial" Nullable="true" MaxLength="22" />
-          <Property Type="Int16" Name="Status_Plano" Nullable="true" />
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="FechaInicial" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="FechaFinal" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="StatusPlano" Nullable="false" MaxLength="20" />
           </ComplexType>
         <ComplexType Name="GetDescargaParteOficialData_Result">
           <Property Type="String" Name="Serie" Nullable="false" MaxLength="4" />
@@ -4197,10 +4197,10 @@
                 <ScalarProperty Name="identificacion" ColumnName="identificacion" />
                 <ScalarProperty Name="placa" ColumnName="placa" />
                 <ScalarProperty Name="parteOficial" ColumnName="parteOficial" />
-                <ScalarProperty Name="Status_Plano" ColumnName="Status_Plano" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
                 <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="StatusPlano" ColumnName="StatusPlano" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -665,25 +665,26 @@
                                       <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
                                   </Textbox>
+                                  <rd:Selected>true</rd:Selected>
                                 </CellContents>
                               </TablixCell>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Status_Plano">
+                                  <Textbox Name="StatusPlano">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!Status_Plano.Value</Value>
+                                            <Value>=Fields!StatusPlano.Value</Value>
                                             <Style />
                                           </TextRun>
                                         </TextRuns>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>Status_Plano</rd:DefaultName>
+                                    <rd:DefaultName>StatusPlano</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Color>LightGrey</Color>
@@ -859,9 +860,9 @@
           <DataField>parteOficial</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Status_Plano">
-          <DataField>Status_Plano</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+        <Field Name="StatusPlano">
+          <DataField>StatusPlano</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="nombre">
           <DataField>nombre</DataField>

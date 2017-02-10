@@ -18,9 +18,9 @@ namespace Cosevi.SIBOAC.Models
         public string identificacion { get; set; }
         public string placa { get; set; }
         public string parteOficial { get; set; }
-        public Nullable<short> Status_Plano { get; set; }
         public string nombre { get; set; }
         public string FechaInicial { get; set; }
         public string FechaFinal { get; set; }
+        public string StatusPlano { get; set; }
     }
 }
