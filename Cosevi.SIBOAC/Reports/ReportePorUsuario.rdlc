@@ -7,9 +7,9 @@
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
         <Top>0.76729cm</Top>
-        <Left>0.635cm</Left>
+        <Left>0.34396cm</Left>
         <Height>1.94979cm</Height>
-        <Width>7.02979cm</Width>
+        <Width>6.60646cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -63,9 +63,9 @@
         </Paragraphs>
         <rd:DefaultName>ReportName</rd:DefaultName>
         <Top>0.76729cm</Top>
-        <Left>2.75167cm</Left>
-        <Height>2.18792cm</Height>
-        <Width>22.03979cm</Width>
+        <Left>7.1268cm</Left>
+        <Height>1.94979cm</Height>
+        <Width>14.76306cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -81,13 +81,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.08208cm</Width>
+              <Width>3.82292cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.61125cm</Width>
+              <Width>3.53186cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.50541cm</Width>
+              <Width>3.71708cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -303,7 +303,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>3.57438cm</Size>
+                <Size>3.07167cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox2">
                     <CanGrow>true</CanGrow>
@@ -339,7 +339,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>2.36771cm</Size>
+                    <Size>1.70625cm</Size>
                     <CellContents>
                       <Textbox Name="Textbox4">
                         <CanGrow>true</CanGrow>
@@ -411,7 +411,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>1.78563cm</Size>
+                            <Size>1.54751cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox8">
                                 <CanGrow>true</CanGrow>
@@ -447,7 +447,7 @@
                           <TablixMembers>
                             <TablixMember>
                               <TablixHeader>
-                                <Size>2.97625cm</Size>
+                                <Size>2.94979cm</Size>
                                 <CellContents>
                                   <Textbox Name="Textbox14">
                                     <CanGrow>true</CanGrow>
@@ -542,7 +542,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>3.57438cm</Size>
+                <Size>3.07167cm</Size>
                 <CellContents>
                   <Textbox Name="Usuario1">
                     <CanGrow>true</CanGrow>
@@ -585,7 +585,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.36771cm</Size>
+                    <Size>1.70625cm</Size>
                     <CellContents>
                       <Textbox Name="codigo_autoridad_registra1">
                         <CanGrow>true</CanGrow>
@@ -671,7 +671,7 @@
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>1.78563cm</Size>
+                            <Size>1.54751cm</Size>
                             <CellContents>
                               <Textbox Name="serie1">
                                 <CanGrow>true</CanGrow>
@@ -714,7 +714,7 @@
                                 </SortExpression>
                               </SortExpressions>
                               <TablixHeader>
-                                <Size>2.97625cm</Size>
+                                <Size>2.94979cm</Size>
                                 <CellContents>
                                   <Textbox Name="numeroparte">
                                     <CanGrow>true</CanGrow>
@@ -806,10 +806,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.8862cm</Top>
-        <Left>0.635cm</Left>
+        <Top>7.96078cm</Top>
+        <Left>0.34396cm</Left>
         <Height>1.2cm</Height>
-        <Width>26.74938cm</Width>
+        <Width>26.19375cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -825,17 +825,21 @@
             <TextRuns>
               <TextRun>
                 <Value>=Globals!ExecutionTime</Value>
-                <Style />
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>ExecutionTime</rd:DefaultName>
-        <Top>0.76729cm</Top>
-        <Left>24.89729cm</Left>
+        <Top>4.67995cm</Top>
+        <Left>4.51334cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>4.98708cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -847,12 +851,215 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Rango Solicitado:           </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!FechaInicial.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>      al      </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!FechaFinal.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>3.70099cm</Top>
+        <Left>0.34396cm</Left>
+        <Height>0.6cm</Height>
+        <Width>23.88779cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Fecha de Impresión:</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>4.65349cm</Top>
+        <Left>0.34396cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.67362cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Usuarios que solicita:      </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!usutexto.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>5.65891cm</Top>
+        <Left>0.34396cm</Left>
+        <Height>0.6cm</Height>
+        <Width>9.15647cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Line Name="Line1">
+        <Top>7.29023cm</Top>
+        <Left>0.34396cm</Left>
+        <Height>0cm</Height>
+        <Width>26.19375cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
     </ReportItems>
-    <Height>3.16667in</Height>
+    <Height>3.85417in</Height>
     <Style />
   </Body>
-  <Width>11.24467in</Width>
+  <Width>10.57292in</Width>
   <Page>
+    <PageFooter>
+      <Height>2.19604cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="PageNumber">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>PageNumber</rd:DefaultName>
+          <Top>0.89062cm</Top>
+          <Left>25.36063cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.17708cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox3">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Página:</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox3</rd:DefaultName>
+          <Top>0.89062cm</Top>
+          <Left>23.95424cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.33583cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <PageHeight>21.59cm</PageHeight>
     <PageWidth>27.94cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
@@ -913,6 +1120,18 @@
         </Field>
         <Field Name="StatusPlano">
           <DataField>StatusPlano</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaInicial">
+          <DataField>FechaInicial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaFinal">
+          <DataField>FechaFinal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="usutexto">
+          <DataField>usutexto</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

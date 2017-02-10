@@ -22,5 +22,8 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> fecha_descarga { get; set; }
         public string Placa { get; set; }
         public string StatusPlano { get; set; }
+        public string FechaInicial { get; set; }
+        public string FechaFinal { get; set; }
+        public string usutexto { get; set; }
     }
 }
