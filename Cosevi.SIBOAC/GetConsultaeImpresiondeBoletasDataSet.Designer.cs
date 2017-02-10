@@ -299,6 +299,14 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columny;
             
+            private global::System.Data.DataColumn columnFechaInicial;
+            
+            private global::System.Data.DataColumn columnFechaFinal;
+            
+            private global::System.Data.DataColumn columnidDele;
+            
+            private global::System.Data.DataColumn columnidInsp;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GetConsultaeImpresionDeBoletasDataDataTable() {
@@ -414,6 +422,38 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaInicialColumn {
+                get {
+                    return this.columnFechaInicial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaFinalColumn {
+                get {
+                    return this.columnFechaFinal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn idDeleColumn {
+                get {
+                    return this.columnidDele;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn idInspColumn {
+                get {
+                    return this.columnidInsp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +489,7 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetConsultaeImpresionDeBoletasDataRow AddGetConsultaeImpresionDeBoletasDataRow(string DescripcionDelegacion, string codigo_inspector, int serie, decimal numero_boleta, System.DateTime fecha_hora_boleta, System.DateTime fecha_descarga, string articuloPorBoleta, string Provincia, string x, string y) {
+            public GetConsultaeImpresionDeBoletasDataRow AddGetConsultaeImpresionDeBoletasDataRow(string DescripcionDelegacion, string codigo_inspector, int serie, decimal numero_boleta, System.DateTime fecha_hora_boleta, System.DateTime fecha_descarga, string articuloPorBoleta, string Provincia, string x, string y, string FechaInicial, string FechaFinal, string idDele, string idInsp) {
                 GetConsultaeImpresionDeBoletasDataRow rowGetConsultaeImpresionDeBoletasDataRow = ((GetConsultaeImpresionDeBoletasDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         DescripcionDelegacion,
@@ -461,7 +501,11 @@ namespace Cosevi.SIBOAC {
                         articuloPorBoleta,
                         Provincia,
                         x,
-                        y};
+                        y,
+                        FechaInicial,
+                        FechaFinal,
+                        idDele,
+                        idInsp};
                 rowGetConsultaeImpresionDeBoletasDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetConsultaeImpresionDeBoletasDataRow);
                 return rowGetConsultaeImpresionDeBoletasDataRow;
@@ -494,6 +538,10 @@ namespace Cosevi.SIBOAC {
                 this.columnProvincia = base.Columns["Provincia"];
                 this.columnx = base.Columns["x"];
                 this.columny = base.Columns["y"];
+                this.columnFechaInicial = base.Columns["FechaInicial"];
+                this.columnFechaFinal = base.Columns["FechaFinal"];
+                this.columnidDele = base.Columns["idDele"];
+                this.columnidInsp = base.Columns["idInsp"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +567,14 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnx);
                 this.columny = new global::System.Data.DataColumn("y", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columny);
+                this.columnFechaInicial = new global::System.Data.DataColumn("FechaInicial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaInicial);
+                this.columnFechaFinal = new global::System.Data.DataColumn("FechaFinal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaFinal);
+                this.columnidDele = new global::System.Data.DataColumn("idDele", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidDele);
+                this.columnidInsp = new global::System.Data.DataColumn("idInsp", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidInsp);
                 this.columnDescripcionDelegacion.MaxLength = 35;
                 this.columncodigo_inspector.MaxLength = 4;
                 this.columnserie.AllowDBNull = false;
@@ -529,6 +585,14 @@ namespace Cosevi.SIBOAC {
                 this.columnProvincia.MaxLength = 72;
                 this.columnx.MaxLength = 25;
                 this.columny.MaxLength = 25;
+                this.columnFechaInicial.ReadOnly = true;
+                this.columnFechaInicial.MaxLength = 30;
+                this.columnFechaFinal.ReadOnly = true;
+                this.columnFechaFinal.MaxLength = 30;
+                this.columnidDele.ReadOnly = true;
+                this.columnidDele.MaxLength = 2147483647;
+                this.columnidInsp.ReadOnly = true;
+                this.columnidInsp.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -823,6 +887,74 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FechaInicial {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeBoletasData.FechaInicialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaInicial\' in table \'GetConsultaeImpresionDeBoletasData\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeBoletasData.FechaInicialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FechaFinal {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeBoletasData.FechaFinalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaFinal\' in table \'GetConsultaeImpresionDeBoletasData\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeBoletasData.FechaFinalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string idDele {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeBoletasData.idDeleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'idDele\' in table \'GetConsultaeImpresionDeBoletasData\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeBoletasData.idDeleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string idInsp {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeBoletasData.idInspColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'idInsp\' in table \'GetConsultaeImpresionDeBoletasData\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeBoletasData.idInspColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsDescripcionDelegacionNull() {
                 return this.IsNull(this.tableGetConsultaeImpresionDeBoletasData.DescripcionDelegacionColumn);
             }
@@ -903,6 +1035,54 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetyNull() {
                 this[this.tableGetConsultaeImpresionDeBoletasData.yColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaInicialNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeBoletasData.FechaInicialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaInicialNull() {
+                this[this.tableGetConsultaeImpresionDeBoletasData.FechaInicialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaFinalNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeBoletasData.FechaFinalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaFinalNull() {
+                this[this.tableGetConsultaeImpresionDeBoletasData.FechaFinalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsidDeleNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeBoletasData.idDeleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetidDeleNull() {
+                this[this.tableGetConsultaeImpresionDeBoletasData.idDeleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsidInspNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeBoletasData.idInspColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetidInspNull() {
+                this[this.tableGetConsultaeImpresionDeBoletasData.idInspColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1075,6 +1255,10 @@ namespace Cosevi.SIBOAC.GetConsultaeImpresiondeBoletasDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Provincia", "Provincia");
             tableMapping.ColumnMappings.Add("x", "x");
             tableMapping.ColumnMappings.Add("y", "y");
+            tableMapping.ColumnMappings.Add("FechaInicial", "FechaInicial");
+            tableMapping.ColumnMappings.Add("FechaFinal", "FechaFinal");
+            tableMapping.ColumnMappings.Add("idDele", "idDele");
+            tableMapping.ColumnMappings.Add("idInsp", "idInsp");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

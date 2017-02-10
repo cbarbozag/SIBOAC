@@ -2800,6 +2800,10 @@
           <Property Type="String" Name="Provincia" Nullable="false" MaxLength="72" />
           <Property Type="String" Name="x" Nullable="true" MaxLength="25" />
           <Property Type="String" Name="y" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="FechaInicial" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="FechaFinal" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="idDele" Nullable="true" />
+          <Property Type="String" Name="idInsp" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetReimpresionDeBoletasDeCampoData_Result">
           <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />
@@ -4235,6 +4239,10 @@
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
                 <ScalarProperty Name="x" ColumnName="x" />
                 <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="idDele" ColumnName="idDele" />
+                <ScalarProperty Name="idInsp" ColumnName="idInsp" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

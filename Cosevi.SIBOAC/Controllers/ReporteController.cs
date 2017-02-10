@@ -268,7 +268,7 @@ namespace Cosevi.SIBOAC.Controllers
                             }
 
                         }
-                        listaDelegacion3 = _listInspector;
+                        listaInspector3 = _listInspector;
                     }                    
                     ViewBag.Inspector = listaInspector3.OrderBy(a => a.Descripcion);
                     break;
