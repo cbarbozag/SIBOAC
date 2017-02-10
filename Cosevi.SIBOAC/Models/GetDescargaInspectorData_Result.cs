@@ -13,19 +13,14 @@ namespace Cosevi.SIBOAC.Models
     
     public partial class GetDescargaInspectorData_Result
     {
-        public int serie { get; set; }
-        public decimal numero_boleta { get; set; }
-        public string codigo_inspector { get; set; }
-        public string Nombre { get; set; }
         public Nullable<System.DateTime> fecha_descarga { get; set; }
-        public Nullable<System.DateTime> fecha_hora_boleta { get; set; }
-        public string codigo_autoridad_registra { get; set; }
-        public string codigo_delegacion { get; set; }
-        public string clase_placa { get; set; }
-        public string codigo_placa { get; set; }
-        public string numero_placa { get; set; }
-        public string numeroHH { get; set; }
-        public string serie_parteoficial { get; set; }
-        public string numeroparte { get; set; }
+        public string boleta { get; set; }
+        public string identificacion { get; set; }
+        public string placa { get; set; }
+        public string parteOficial { get; set; }
+        public Nullable<short> Status_Plano { get; set; }
+        public string nombre { get; set; }
+        public string FechaInicial { get; set; }
+        public string FechaFinal { get; set; }
     }
 }
