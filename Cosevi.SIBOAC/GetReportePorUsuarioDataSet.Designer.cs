@@ -297,6 +297,12 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnStatusPlano;
             
+            private global::System.Data.DataColumn columnFechaInicial;
+            
+            private global::System.Data.DataColumn columnFechaFinal;
+            
+            private global::System.Data.DataColumn columnusutexto;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GetReportePorUsuarioDataDataTable() {
@@ -404,6 +410,30 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaInicialColumn {
+                get {
+                    return this.columnFechaInicial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaFinalColumn {
+                get {
+                    return this.columnFechaFinal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn usutextoColumn {
+                get {
+                    return this.columnusutexto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +469,7 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetReportePorUsuarioDataRow AddGetReportePorUsuarioDataRow(string Usuario, string codigo_autoridad_registra, System.DateTime Fecha, int serie, string numeroparte, decimal numero_boleta, System.DateTime fecha_descarga, string Placa, string StatusPlano) {
+            public GetReportePorUsuarioDataRow AddGetReportePorUsuarioDataRow(string Usuario, string codigo_autoridad_registra, System.DateTime Fecha, int serie, string numeroparte, decimal numero_boleta, System.DateTime fecha_descarga, string Placa, string StatusPlano, string FechaInicial, string FechaFinal, string usutexto) {
                 GetReportePorUsuarioDataRow rowGetReportePorUsuarioDataRow = ((GetReportePorUsuarioDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Usuario,
@@ -450,7 +480,10 @@ namespace Cosevi.SIBOAC {
                         numero_boleta,
                         fecha_descarga,
                         Placa,
-                        StatusPlano};
+                        StatusPlano,
+                        FechaInicial,
+                        FechaFinal,
+                        usutexto};
                 rowGetReportePorUsuarioDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReportePorUsuarioDataRow);
                 return rowGetReportePorUsuarioDataRow;
@@ -482,6 +515,9 @@ namespace Cosevi.SIBOAC {
                 this.columnfecha_descarga = base.Columns["fecha_descarga"];
                 this.columnPlaca = base.Columns["Placa"];
                 this.columnStatusPlano = base.Columns["StatusPlano"];
+                this.columnFechaInicial = base.Columns["FechaInicial"];
+                this.columnFechaFinal = base.Columns["FechaFinal"];
+                this.columnusutexto = base.Columns["usutexto"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -505,6 +541,12 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnPlaca);
                 this.columnStatusPlano = new global::System.Data.DataColumn("StatusPlano", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatusPlano);
+                this.columnFechaInicial = new global::System.Data.DataColumn("FechaInicial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaInicial);
+                this.columnFechaFinal = new global::System.Data.DataColumn("FechaFinal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaFinal);
+                this.columnusutexto = new global::System.Data.DataColumn("usutexto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusutexto);
                 this.columnUsuario.ReadOnly = true;
                 this.columnUsuario.MaxLength = 203;
                 this.columncodigo_autoridad_registra.MaxLength = 5;
@@ -516,6 +558,12 @@ namespace Cosevi.SIBOAC {
                 this.columnPlaca.MaxLength = 32;
                 this.columnStatusPlano.ReadOnly = true;
                 this.columnStatusPlano.MaxLength = 20;
+                this.columnFechaInicial.ReadOnly = true;
+                this.columnFechaInicial.MaxLength = 30;
+                this.columnFechaFinal.ReadOnly = true;
+                this.columnFechaFinal.MaxLength = 30;
+                this.columnusutexto.ReadOnly = true;
+                this.columnusutexto.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -791,6 +839,55 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FechaInicial {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReportePorUsuarioData.FechaInicialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaInicial\' in table \'GetReportePorUsuarioData\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReportePorUsuarioData.FechaInicialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string FechaFinal {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReportePorUsuarioData.FechaFinalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaFinal\' in table \'GetReportePorUsuarioData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReportePorUsuarioData.FechaFinalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string usutexto {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReportePorUsuarioData.usutextoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'usutexto\' in table \'GetReportePorUsuarioData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReportePorUsuarioData.usutextoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsUsuarioNull() {
                 return this.IsNull(this.tableGetReportePorUsuarioData.UsuarioColumn);
             }
@@ -859,6 +956,42 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetStatusPlanoNull() {
                 this[this.tableGetReportePorUsuarioData.StatusPlanoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaInicialNull() {
+                return this.IsNull(this.tableGetReportePorUsuarioData.FechaInicialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaInicialNull() {
+                this[this.tableGetReportePorUsuarioData.FechaInicialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaFinalNull() {
+                return this.IsNull(this.tableGetReportePorUsuarioData.FechaFinalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaFinalNull() {
+                this[this.tableGetReportePorUsuarioData.FechaFinalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsusutextoNull() {
+                return this.IsNull(this.tableGetReportePorUsuarioData.usutextoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetusutextoNull() {
+                this[this.tableGetReportePorUsuarioData.usutextoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1030,6 +1163,9 @@ namespace Cosevi.SIBOAC.GetReportePorUsuarioDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("fecha_descarga", "fecha_descarga");
             tableMapping.ColumnMappings.Add("Placa", "Placa");
             tableMapping.ColumnMappings.Add("StatusPlano", "StatusPlano");
+            tableMapping.ColumnMappings.Add("FechaInicial", "FechaInicial");
+            tableMapping.ColumnMappings.Add("FechaFinal", "FechaFinal");
+            tableMapping.ColumnMappings.Add("usutexto", "usutexto");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

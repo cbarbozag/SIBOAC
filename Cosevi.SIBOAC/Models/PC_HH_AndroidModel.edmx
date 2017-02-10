@@ -2774,6 +2774,9 @@
           <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
           <Property Type="String" Name="Placa" Nullable="true" MaxLength="32" />
           <Property Type="String" Name="StatusPlano" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="FechaInicial" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="FechaFinal" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="usutexto" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="GetDescargaParteOficialData_Result1">
           <Property Type="String" Name="Serie" Nullable="false" MaxLength="4" />
@@ -4303,6 +4306,9 @@
                 <ScalarProperty Name="fecha_descarga" ColumnName="fecha_descarga" />
                 <ScalarProperty Name="Placa" ColumnName="Placa" />
                 <ScalarProperty Name="StatusPlano" ColumnName="StatusPlano" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="usutexto" ColumnName="usutexto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
