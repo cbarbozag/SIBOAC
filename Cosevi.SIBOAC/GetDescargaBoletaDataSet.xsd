@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetDescargaBoletaDataTableAdapter" GeneratorDataComponentClassName="GetDescargaBoletaDataTableAdapter" Name="GetDescargaBoletaData" UserDataComponentName="GetDescargaBoletaDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SIBOACSecurityEntities (Cosevi.SIBOAC)" DbObjectName="PC_HH_Android.dbo.GetDescargaBoletaData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="SIBOACSecurityEntities (Cosevi.SIBOAC)" DbObjectName="PC_HH_Android.dbo.GetDescargaBoletaData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.GetDescargaBoletaData</CommandText>
@@ -25,19 +25,14 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="serie" DataSetColumn="serie" />
-              <Mapping SourceColumn="numero_boleta" DataSetColumn="numero_boleta" />
-              <Mapping SourceColumn="fecha_descarga" DataSetColumn="fecha_descarga" />
+              <Mapping SourceColumn="codigo_autoridad_registra" DataSetColumn="codigo_autoridad_registra" />
+              <Mapping SourceColumn="codigo_delegacion" DataSetColumn="codigo_delegacion" />
+              <Mapping SourceColumn="boleta" DataSetColumn="boleta" />
+              <Mapping SourceColumn="codigo_articulo" DataSetColumn="codigo_articulo" />
+              <Mapping SourceColumn="conducta" DataSetColumn="conducta" />
+              <Mapping SourceColumn="codigo_inspector" DataSetColumn="codigo_inspector" />
               <Mapping SourceColumn="fecha_hora_boleta" DataSetColumn="fecha_hora_boleta" />
-              <Mapping SourceColumn="Autoridad" DataSetColumn="Autoridad" />
-              <Mapping SourceColumn="Delegacion" DataSetColumn="Delegacion" />
-              <Mapping SourceColumn="clase_placa" DataSetColumn="clase_placa" />
-              <Mapping SourceColumn="codigo_placa" DataSetColumn="codigo_placa" />
-              <Mapping SourceColumn="numero_placa" DataSetColumn="numero_placa" />
-              <Mapping SourceColumn="identificacion" DataSetColumn="identificacion" />
-              <Mapping SourceColumn="Nombre" DataSetColumn="Nombre" />
-              <Mapping SourceColumn="codrol" DataSetColumn="codrol" />
-              <Mapping SourceColumn="NumeroParte" DataSetColumn="NumeroParte" />
+              <Mapping SourceColumn="fecha_descarga" DataSetColumn="fecha_descarga" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -49,76 +44,53 @@
   <xs:element name="GetDescargaBoletaDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GetDescargaBoletaDataSet" msprop:Generator_UserDSName="GetDescargaBoletaDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="GetDescargaBoletaData" msprop:Generator_TableClassName="GetDescargaBoletaDataDataTable" msprop:Generator_TableVarName="tableGetDescargaBoletaData" msprop:Generator_RowChangedName="GetDescargaBoletaDataRowChanged" msprop:Generator_TablePropName="GetDescargaBoletaData" msprop:Generator_RowDeletingName="GetDescargaBoletaDataRowDeleting" msprop:Generator_RowChangingName="GetDescargaBoletaDataRowChanging" msprop:Generator_RowEvHandlerName="GetDescargaBoletaDataRowChangeEventHandler" msprop:Generator_RowDeletedName="GetDescargaBoletaDataRowDeleted" msprop:Generator_RowClassName="GetDescargaBoletaDataRow" msprop:Generator_UserTableName="GetDescargaBoletaData" msprop:Generator_RowEvArgName="GetDescargaBoletaDataRowChangeEvent">
+        <xs:element name="GetDescargaBoletaData" msprop:Generator_TableClassName="GetDescargaBoletaDataDataTable" msprop:Generator_TableVarName="tableGetDescargaBoletaData" msprop:Generator_TablePropName="GetDescargaBoletaData" msprop:Generator_RowDeletingName="GetDescargaBoletaDataRowDeleting" msprop:Generator_RowChangingName="GetDescargaBoletaDataRowChanging" msprop:Generator_RowEvHandlerName="GetDescargaBoletaDataRowChangeEventHandler" msprop:Generator_RowDeletedName="GetDescargaBoletaDataRowDeleted" msprop:Generator_UserTableName="GetDescargaBoletaData" msprop:Generator_RowChangedName="GetDescargaBoletaDataRowChanged" msprop:Generator_RowEvArgName="GetDescargaBoletaDataRowChangeEvent" msprop:Generator_RowClassName="GetDescargaBoletaDataRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="serie" msprop:Generator_ColumnVarNameInTable="columnserie" msprop:Generator_ColumnPropNameInRow="serie" msprop:Generator_ColumnPropNameInTable="serieColumn" msprop:Generator_UserColumnName="serie" type="xs:int" />
-              <xs:element name="numero_boleta" msprop:Generator_ColumnVarNameInTable="columnnumero_boleta" msprop:Generator_ColumnPropNameInRow="numero_boleta" msprop:Generator_ColumnPropNameInTable="numero_boletaColumn" msprop:Generator_UserColumnName="numero_boleta" type="xs:decimal" />
-              <xs:element name="fecha_descarga" msprop:Generator_ColumnVarNameInTable="columnfecha_descarga" msprop:Generator_ColumnPropNameInRow="fecha_descarga" msprop:Generator_ColumnPropNameInTable="fecha_descargaColumn" msprop:Generator_UserColumnName="fecha_descarga" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="fecha_hora_boleta" msprop:Generator_ColumnVarNameInTable="columnfecha_hora_boleta" msprop:Generator_ColumnPropNameInRow="fecha_hora_boleta" msprop:Generator_ColumnPropNameInTable="fecha_hora_boletaColumn" msprop:Generator_UserColumnName="fecha_hora_boleta" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Autoridad" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAutoridad" msprop:Generator_ColumnPropNameInRow="Autoridad" msprop:Generator_ColumnPropNameInTable="AutoridadColumn" msprop:Generator_UserColumnName="Autoridad" minOccurs="0">
+              <xs:element name="codigo_autoridad_registra" msprop:Generator_ColumnVarNameInTable="columncodigo_autoridad_registra" msprop:Generator_ColumnPropNameInRow="codigo_autoridad_registra" msprop:Generator_ColumnPropNameInTable="codigo_autoridad_registraColumn" msprop:Generator_UserColumnName="codigo_autoridad_registra" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="43" />
+                    <xs:maxLength value="5" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Delegacion" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDelegacion" msprop:Generator_ColumnPropNameInRow="Delegacion" msprop:Generator_ColumnPropNameInTable="DelegacionColumn" msprop:Generator_UserColumnName="Delegacion" minOccurs="0">
+              <xs:element name="codigo_delegacion" msprop:Generator_ColumnVarNameInTable="columncodigo_delegacion" msprop:Generator_ColumnPropNameInRow="codigo_delegacion" msprop:Generator_ColumnPropNameInTable="codigo_delegacionColumn" msprop:Generator_UserColumnName="codigo_delegacion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="42" />
+                    <xs:maxLength value="4" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="clase_placa" msprop:Generator_ColumnVarNameInTable="columnclase_placa" msprop:Generator_ColumnPropNameInRow="clase_placa" msprop:Generator_ColumnPropNameInTable="clase_placaColumn" msprop:Generator_UserColumnName="clase_placa" minOccurs="0">
+              <xs:element name="boleta" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnboleta" msprop:Generator_ColumnPropNameInRow="boleta" msprop:Generator_ColumnPropNameInTable="boletaColumn" msprop:Generator_UserColumnName="boleta" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
+                    <xs:maxLength value="56" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="codigo_placa" msprop:Generator_ColumnVarNameInTable="columncodigo_placa" msprop:Generator_ColumnPropNameInRow="codigo_placa" msprop:Generator_ColumnPropNameInTable="codigo_placaColumn" msprop:Generator_UserColumnName="codigo_placa" minOccurs="0">
+              <xs:element name="codigo_articulo" msprop:Generator_ColumnVarNameInTable="columncodigo_articulo" msprop:Generator_ColumnPropNameInRow="codigo_articulo" msprop:Generator_ColumnPropNameInTable="codigo_articuloColumn" msprop:Generator_UserColumnName="codigo_articulo">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
+                    <xs:maxLength value="6" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="numero_placa" msprop:Generator_ColumnVarNameInTable="columnnumero_placa" msprop:Generator_ColumnPropNameInRow="numero_placa" msprop:Generator_ColumnPropNameInTable="numero_placaColumn" msprop:Generator_UserColumnName="numero_placa" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="20" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="identificacion" msprop:Generator_ColumnVarNameInTable="columnidentificacion" msprop:Generator_ColumnPropNameInRow="identificacion" msprop:Generator_ColumnPropNameInTable="identificacionColumn" msprop:Generator_UserColumnName="identificacion">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="15" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Nombre" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="72" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="codrol" msprop:Generator_ColumnVarNameInTable="columncodrol" msprop:Generator_ColumnPropNameInRow="codrol" msprop:Generator_ColumnPropNameInTable="codrolColumn" msprop:Generator_UserColumnName="codrol" minOccurs="0">
+              <xs:element name="conducta" msprop:Generator_ColumnVarNameInTable="columnconducta" msprop:Generator_ColumnPropNameInRow="conducta" msprop:Generator_ColumnPropNameInTable="conductaColumn" msprop:Generator_UserColumnName="conducta">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NumeroParte" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNumeroParte" msprop:Generator_ColumnPropNameInRow="NumeroParte" msprop:Generator_ColumnPropNameInTable="NumeroParteColumn" msprop:Generator_UserColumnName="NumeroParte" minOccurs="0">
+              <xs:element name="codigo_inspector" msprop:Generator_ColumnVarNameInTable="columncodigo_inspector" msprop:Generator_ColumnPropNameInRow="codigo_inspector" msprop:Generator_ColumnPropNameInTable="codigo_inspectorColumn" msprop:Generator_UserColumnName="codigo_inspector" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="22" />
+                    <xs:maxLength value="4" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="fecha_hora_boleta" msprop:Generator_ColumnVarNameInTable="columnfecha_hora_boleta" msprop:Generator_ColumnPropNameInRow="fecha_hora_boleta" msprop:Generator_ColumnPropNameInTable="fecha_hora_boletaColumn" msprop:Generator_UserColumnName="fecha_hora_boleta" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fecha_descarga" msprop:Generator_ColumnVarNameInTable="columnfecha_descarga" msprop:Generator_ColumnPropNameInRow="fecha_descarga" msprop:Generator_ColumnPropNameInTable="fecha_descargaColumn" msprop:Generator_UserColumnName="fecha_descarga" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -279,31 +279,21 @@ namespace Cosevi.SIBOAC {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GetDescargaBoletaDataDataTable : global::System.Data.TypedTableBase<GetDescargaBoletaDataRow> {
             
-            private global::System.Data.DataColumn columnserie;
+            private global::System.Data.DataColumn columncodigo_autoridad_registra;
             
-            private global::System.Data.DataColumn columnnumero_boleta;
+            private global::System.Data.DataColumn columncodigo_delegacion;
             
-            private global::System.Data.DataColumn columnfecha_descarga;
+            private global::System.Data.DataColumn columnboleta;
+            
+            private global::System.Data.DataColumn columncodigo_articulo;
+            
+            private global::System.Data.DataColumn columnconducta;
+            
+            private global::System.Data.DataColumn columncodigo_inspector;
             
             private global::System.Data.DataColumn columnfecha_hora_boleta;
             
-            private global::System.Data.DataColumn columnAutoridad;
-            
-            private global::System.Data.DataColumn columnDelegacion;
-            
-            private global::System.Data.DataColumn columnclase_placa;
-            
-            private global::System.Data.DataColumn columncodigo_placa;
-            
-            private global::System.Data.DataColumn columnnumero_placa;
-            
-            private global::System.Data.DataColumn columnidentificacion;
-            
-            private global::System.Data.DataColumn columnNombre;
-            
-            private global::System.Data.DataColumn columncodrol;
-            
-            private global::System.Data.DataColumn columnNumeroParte;
+            private global::System.Data.DataColumn columnfecha_descarga;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -340,25 +330,49 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn serieColumn {
+            public global::System.Data.DataColumn codigo_autoridad_registraColumn {
                 get {
-                    return this.columnserie;
+                    return this.columncodigo_autoridad_registra;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn numero_boletaColumn {
+            public global::System.Data.DataColumn codigo_delegacionColumn {
                 get {
-                    return this.columnnumero_boleta;
+                    return this.columncodigo_delegacion;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fecha_descargaColumn {
+            public global::System.Data.DataColumn boletaColumn {
                 get {
-                    return this.columnfecha_descarga;
+                    return this.columnboleta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn codigo_articuloColumn {
+                get {
+                    return this.columncodigo_articulo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn conductaColumn {
+                get {
+                    return this.columnconducta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn codigo_inspectorColumn {
+                get {
+                    return this.columncodigo_inspector;
                 }
             }
             
@@ -372,73 +386,9 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn AutoridadColumn {
+            public global::System.Data.DataColumn fecha_descargaColumn {
                 get {
-                    return this.columnAutoridad;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DelegacionColumn {
-                get {
-                    return this.columnDelegacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn clase_placaColumn {
-                get {
-                    return this.columnclase_placa;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn codigo_placaColumn {
-                get {
-                    return this.columncodigo_placa;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn numero_placaColumn {
-                get {
-                    return this.columnnumero_placa;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn identificacionColumn {
-                get {
-                    return this.columnidentificacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NombreColumn {
-                get {
-                    return this.columnNombre;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn codrolColumn {
-                get {
-                    return this.columncodrol;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NumeroParteColumn {
-                get {
-                    return this.columnNumeroParte;
+                    return this.columnfecha_descarga;
                 }
             }
             
@@ -479,22 +429,17 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetDescargaBoletaDataRow AddGetDescargaBoletaDataRow(int serie, decimal numero_boleta, System.DateTime fecha_descarga, System.DateTime fecha_hora_boleta, string Autoridad, string Delegacion, string clase_placa, string codigo_placa, string numero_placa, string identificacion, string Nombre, string codrol, string NumeroParte) {
+            public GetDescargaBoletaDataRow AddGetDescargaBoletaDataRow(string codigo_autoridad_registra, string codigo_delegacion, string boleta, string codigo_articulo, string conducta, string codigo_inspector, System.DateTime fecha_hora_boleta, System.DateTime fecha_descarga) {
                 GetDescargaBoletaDataRow rowGetDescargaBoletaDataRow = ((GetDescargaBoletaDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        serie,
-                        numero_boleta,
-                        fecha_descarga,
+                        codigo_autoridad_registra,
+                        codigo_delegacion,
+                        boleta,
+                        codigo_articulo,
+                        conducta,
+                        codigo_inspector,
                         fecha_hora_boleta,
-                        Autoridad,
-                        Delegacion,
-                        clase_placa,
-                        codigo_placa,
-                        numero_placa,
-                        identificacion,
-                        Nombre,
-                        codrol,
-                        NumeroParte};
+                        fecha_descarga};
                 rowGetDescargaBoletaDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetDescargaBoletaDataRow);
                 return rowGetDescargaBoletaDataRow;
@@ -517,66 +462,44 @@ namespace Cosevi.SIBOAC {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnserie = base.Columns["serie"];
-                this.columnnumero_boleta = base.Columns["numero_boleta"];
-                this.columnfecha_descarga = base.Columns["fecha_descarga"];
+                this.columncodigo_autoridad_registra = base.Columns["codigo_autoridad_registra"];
+                this.columncodigo_delegacion = base.Columns["codigo_delegacion"];
+                this.columnboleta = base.Columns["boleta"];
+                this.columncodigo_articulo = base.Columns["codigo_articulo"];
+                this.columnconducta = base.Columns["conducta"];
+                this.columncodigo_inspector = base.Columns["codigo_inspector"];
                 this.columnfecha_hora_boleta = base.Columns["fecha_hora_boleta"];
-                this.columnAutoridad = base.Columns["Autoridad"];
-                this.columnDelegacion = base.Columns["Delegacion"];
-                this.columnclase_placa = base.Columns["clase_placa"];
-                this.columncodigo_placa = base.Columns["codigo_placa"];
-                this.columnnumero_placa = base.Columns["numero_placa"];
-                this.columnidentificacion = base.Columns["identificacion"];
-                this.columnNombre = base.Columns["Nombre"];
-                this.columncodrol = base.Columns["codrol"];
-                this.columnNumeroParte = base.Columns["NumeroParte"];
+                this.columnfecha_descarga = base.Columns["fecha_descarga"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnserie = new global::System.Data.DataColumn("serie", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnserie);
-                this.columnnumero_boleta = new global::System.Data.DataColumn("numero_boleta", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumero_boleta);
-                this.columnfecha_descarga = new global::System.Data.DataColumn("fecha_descarga", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfecha_descarga);
+                this.columncodigo_autoridad_registra = new global::System.Data.DataColumn("codigo_autoridad_registra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodigo_autoridad_registra);
+                this.columncodigo_delegacion = new global::System.Data.DataColumn("codigo_delegacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodigo_delegacion);
+                this.columnboleta = new global::System.Data.DataColumn("boleta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnboleta);
+                this.columncodigo_articulo = new global::System.Data.DataColumn("codigo_articulo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodigo_articulo);
+                this.columnconducta = new global::System.Data.DataColumn("conducta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnconducta);
+                this.columncodigo_inspector = new global::System.Data.DataColumn("codigo_inspector", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodigo_inspector);
                 this.columnfecha_hora_boleta = new global::System.Data.DataColumn("fecha_hora_boleta", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfecha_hora_boleta);
-                this.columnAutoridad = new global::System.Data.DataColumn("Autoridad", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAutoridad);
-                this.columnDelegacion = new global::System.Data.DataColumn("Delegacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDelegacion);
-                this.columnclase_placa = new global::System.Data.DataColumn("clase_placa", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnclase_placa);
-                this.columncodigo_placa = new global::System.Data.DataColumn("codigo_placa", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncodigo_placa);
-                this.columnnumero_placa = new global::System.Data.DataColumn("numero_placa", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumero_placa);
-                this.columnidentificacion = new global::System.Data.DataColumn("identificacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnidentificacion);
-                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNombre);
-                this.columncodrol = new global::System.Data.DataColumn("codrol", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncodrol);
-                this.columnNumeroParte = new global::System.Data.DataColumn("NumeroParte", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNumeroParte);
-                this.columnserie.AllowDBNull = false;
-                this.columnnumero_boleta.AllowDBNull = false;
-                this.columnAutoridad.ReadOnly = true;
-                this.columnAutoridad.MaxLength = 43;
-                this.columnDelegacion.ReadOnly = true;
-                this.columnDelegacion.MaxLength = 42;
-                this.columnclase_placa.MaxLength = 3;
-                this.columncodigo_placa.MaxLength = 3;
-                this.columnnumero_placa.MaxLength = 20;
-                this.columnidentificacion.AllowDBNull = false;
-                this.columnidentificacion.MaxLength = 15;
-                this.columnNombre.ReadOnly = true;
-                this.columnNombre.MaxLength = 72;
-                this.columncodrol.MaxLength = 2;
-                this.columnNumeroParte.ReadOnly = true;
-                this.columnNumeroParte.MaxLength = 22;
+                this.columnfecha_descarga = new global::System.Data.DataColumn("fecha_descarga", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfecha_descarga);
+                this.columncodigo_autoridad_registra.MaxLength = 5;
+                this.columncodigo_delegacion.MaxLength = 4;
+                this.columnboleta.ReadOnly = true;
+                this.columnboleta.MaxLength = 56;
+                this.columncodigo_articulo.AllowDBNull = false;
+                this.columncodigo_articulo.MaxLength = 6;
+                this.columnconducta.AllowDBNull = false;
+                this.columnconducta.MaxLength = 2;
+                this.columncodigo_inspector.MaxLength = 4;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -719,40 +642,90 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int serie {
-                get {
-                    return ((int)(this[this.tableGetDescargaBoletaData.serieColumn]));
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.serieColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal numero_boleta {
-                get {
-                    return ((decimal)(this[this.tableGetDescargaBoletaData.numero_boletaColumn]));
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.numero_boletaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fecha_descarga {
+            public string codigo_autoridad_registra {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableGetDescargaBoletaData.fecha_descargaColumn]));
+                        return ((string)(this[this.tableGetDescargaBoletaData.codigo_autoridad_registraColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fecha_descarga\' in table \'GetDescargaBoletaData\' is DBNull." +
-                                "", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'codigo_autoridad_registra\' in table \'GetDescargaBoletaData\'" +
+                                " is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetDescargaBoletaData.fecha_descargaColumn] = value;
+                    this[this.tableGetDescargaBoletaData.codigo_autoridad_registraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string codigo_delegacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetDescargaBoletaData.codigo_delegacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'codigo_delegacion\' in table \'GetDescargaBoletaData\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetDescargaBoletaData.codigo_delegacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string boleta {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetDescargaBoletaData.boletaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'boleta\' in table \'GetDescargaBoletaData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetDescargaBoletaData.boletaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string codigo_articulo {
+                get {
+                    return ((string)(this[this.tableGetDescargaBoletaData.codigo_articuloColumn]));
+                }
+                set {
+                    this[this.tableGetDescargaBoletaData.codigo_articuloColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string conducta {
+                get {
+                    return ((string)(this[this.tableGetDescargaBoletaData.conductaColumn]));
+                }
+                set {
+                    this[this.tableGetDescargaBoletaData.conductaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string codigo_inspector {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetDescargaBoletaData.codigo_inspectorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'codigo_inspector\' in table \'GetDescargaBoletaData\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetDescargaBoletaData.codigo_inspectorColumn] = value;
                 }
             }
             
@@ -775,153 +748,67 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Autoridad {
+            public System.DateTime fecha_descarga {
                 get {
                     try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.AutoridadColumn]));
+                        return ((global::System.DateTime)(this[this.tableGetDescargaBoletaData.fecha_descargaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Autoridad\' in table \'GetDescargaBoletaData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'fecha_descarga\' in table \'GetDescargaBoletaData\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableGetDescargaBoletaData.AutoridadColumn] = value;
+                    this[this.tableGetDescargaBoletaData.fecha_descargaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Delegacion {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.DelegacionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Delegacion\' in table \'GetDescargaBoletaData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.DelegacionColumn] = value;
-                }
+            public bool Iscodigo_autoridad_registraNull() {
+                return this.IsNull(this.tableGetDescargaBoletaData.codigo_autoridad_registraColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string clase_placa {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.clase_placaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'clase_placa\' in table \'GetDescargaBoletaData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.clase_placaColumn] = value;
-                }
+            public void Setcodigo_autoridad_registraNull() {
+                this[this.tableGetDescargaBoletaData.codigo_autoridad_registraColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string codigo_placa {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.codigo_placaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'codigo_placa\' in table \'GetDescargaBoletaData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.codigo_placaColumn] = value;
-                }
+            public bool Iscodigo_delegacionNull() {
+                return this.IsNull(this.tableGetDescargaBoletaData.codigo_delegacionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string numero_placa {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.numero_placaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numero_placa\' in table \'GetDescargaBoletaData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.numero_placaColumn] = value;
-                }
+            public void Setcodigo_delegacionNull() {
+                this[this.tableGetDescargaBoletaData.codigo_delegacionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string identificacion {
-                get {
-                    return ((string)(this[this.tableGetDescargaBoletaData.identificacionColumn]));
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.identificacionColumn] = value;
-                }
+            public bool IsboletaNull() {
+                return this.IsNull(this.tableGetDescargaBoletaData.boletaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Nombre {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.NombreColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Nombre\' in table \'GetDescargaBoletaData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.NombreColumn] = value;
-                }
+            public void SetboletaNull() {
+                this[this.tableGetDescargaBoletaData.boletaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string codrol {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.codrolColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'codrol\' in table \'GetDescargaBoletaData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.codrolColumn] = value;
-                }
+            public bool Iscodigo_inspectorNull() {
+                return this.IsNull(this.tableGetDescargaBoletaData.codigo_inspectorColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string NumeroParte {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetDescargaBoletaData.NumeroParteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NumeroParte\' in table \'GetDescargaBoletaData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetDescargaBoletaData.NumeroParteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfecha_descargaNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.fecha_descargaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfecha_descargaNull() {
-                this[this.tableGetDescargaBoletaData.fecha_descargaColumn] = global::System.Convert.DBNull;
+            public void Setcodigo_inspectorNull() {
+                this[this.tableGetDescargaBoletaData.codigo_inspectorColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -938,98 +825,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsAutoridadNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.AutoridadColumn);
+            public bool Isfecha_descargaNull() {
+                return this.IsNull(this.tableGetDescargaBoletaData.fecha_descargaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetAutoridadNull() {
-                this[this.tableGetDescargaBoletaData.AutoridadColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDelegacionNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.DelegacionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDelegacionNull() {
-                this[this.tableGetDescargaBoletaData.DelegacionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isclase_placaNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.clase_placaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setclase_placaNull() {
-                this[this.tableGetDescargaBoletaData.clase_placaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Iscodigo_placaNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.codigo_placaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setcodigo_placaNull() {
-                this[this.tableGetDescargaBoletaData.codigo_placaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isnumero_placaNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.numero_placaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setnumero_placaNull() {
-                this[this.tableGetDescargaBoletaData.numero_placaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNombreNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.NombreColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNombreNull() {
-                this[this.tableGetDescargaBoletaData.NombreColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IscodrolNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.codrolColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetcodrolNull() {
-                this[this.tableGetDescargaBoletaData.codrolColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNumeroParteNull() {
-                return this.IsNull(this.tableGetDescargaBoletaData.NumeroParteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNumeroParteNull() {
-                this[this.tableGetDescargaBoletaData.NumeroParteColumn] = global::System.Convert.DBNull;
+            public void Setfecha_descargaNull() {
+                this[this.tableGetDescargaBoletaData.fecha_descargaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1192,19 +995,14 @@ namespace Cosevi.SIBOAC.GetDescargaBoletaDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "GetDescargaBoletaData";
-            tableMapping.ColumnMappings.Add("serie", "serie");
-            tableMapping.ColumnMappings.Add("numero_boleta", "numero_boleta");
-            tableMapping.ColumnMappings.Add("fecha_descarga", "fecha_descarga");
+            tableMapping.ColumnMappings.Add("codigo_autoridad_registra", "codigo_autoridad_registra");
+            tableMapping.ColumnMappings.Add("codigo_delegacion", "codigo_delegacion");
+            tableMapping.ColumnMappings.Add("boleta", "boleta");
+            tableMapping.ColumnMappings.Add("codigo_articulo", "codigo_articulo");
+            tableMapping.ColumnMappings.Add("conducta", "conducta");
+            tableMapping.ColumnMappings.Add("codigo_inspector", "codigo_inspector");
             tableMapping.ColumnMappings.Add("fecha_hora_boleta", "fecha_hora_boleta");
-            tableMapping.ColumnMappings.Add("Autoridad", "Autoridad");
-            tableMapping.ColumnMappings.Add("Delegacion", "Delegacion");
-            tableMapping.ColumnMappings.Add("clase_placa", "clase_placa");
-            tableMapping.ColumnMappings.Add("codigo_placa", "codigo_placa");
-            tableMapping.ColumnMappings.Add("numero_placa", "numero_placa");
-            tableMapping.ColumnMappings.Add("identificacion", "identificacion");
-            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
-            tableMapping.ColumnMappings.Add("codrol", "codrol");
-            tableMapping.ColumnMappings.Add("NumeroParte", "NumeroParte");
+            tableMapping.ColumnMappings.Add("fecha_descarga", "fecha_descarga");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
