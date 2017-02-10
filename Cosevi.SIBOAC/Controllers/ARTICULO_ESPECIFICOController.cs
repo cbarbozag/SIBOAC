@@ -157,19 +157,19 @@ namespace Cosevi.SIBOAC.Controllers
             //    return HttpNotFound();
             //}
 
-            /*ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+            ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
                                                      where o.Id == CodArticulo
-                                                     select new { o.Id }).ToList().Distinct(), "Id", "Id", CodArticulo);*/
+                                                     select new { o.Id }).ToList().Distinct(), "Id", "Id", CodArticulo);
 
-            IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
-                                                             where o.Id == CodArticulo
-                                                             select new { o.Id }).ToList().Distinct()
-                                                          .Select(o => new SelectListItem
-                                                          {
-                                                              Value = o.Id.ToString(),
-                                                              Text = o.Id.ToString()
-                                                          });
-            ViewBag.ComboArticulos = itemsCatArticulos;
+            //IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+            //                                                 where o.Id == CodArticulo
+            //                                                 select new { o.Id }).ToList().Distinct()
+            //                                              .Select(o => new SelectListItem
+            //                                              {
+            //                                                  Value = o.Id.ToString(),
+            //                                                  Text = o.Id.ToString()
+            //                                              });
+            //ViewBag.ComboArticulos = itemsCatArticulos;
             return View();
         }
 
@@ -199,16 +199,21 @@ namespace Cosevi.SIBOAC.Controllers
 
 
 
-                    db.Entry(articuloEspecifico).State = EntityState.Modified;
-
-                    try
+                    //db.Entry(articuloEspecifico).State = EntityState.Modified;
+                    bool saveFailed;
+                    do
                     {
-
+                        saveFailed = false;
+                        try
+                    {
+                       // db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
+                        db.Entry(articuloEspecifico).State = EntityState.Modified;
                         db.SaveChanges();
                     }
                     catch (DbEntityValidationException e)
                     {
-                        foreach (var eve in e.EntityValidationErrors)
+                            saveFailed = true;
+                            foreach (var eve in e.EntityValidationErrors)
                         {
                             Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
                                 eve.Entry.Entity.GetType().Name, eve.Entry.State);
@@ -220,6 +225,7 @@ namespace Cosevi.SIBOAC.Controllers
                         }
                         throw;
                     }
+                    } while (saveFailed);
 
                     Bitacora(articuloEspecifico, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
                     return RedirectToAction("Index");
