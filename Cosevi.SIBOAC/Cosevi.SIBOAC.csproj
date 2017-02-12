@@ -901,9 +901,6 @@
     <Content Include="GetDescargaBoletaDataSet.xsc">
       <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xsc">
-      <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="GetConsultaeImpresiondeBoletasDataSet.xsc">
       <DependentUpon>GetConsultaeImpresiondeBoletasDataSet.xsd</DependentUpon>
     </Content>
@@ -914,6 +911,9 @@
     </None>
     <Content Include="GetConsultaeImpresiondeBoletasDataSet.xss">
       <DependentUpon>GetConsultaeImpresiondeBoletasDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xsc">
+      <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetConsultaeImpresionDeParteOficialDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>

@@ -670,17 +670,17 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if(idRadio ==1) // Consulta por parte oficial
             {
-                var lista1 = db.GetConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(),null).ToList();
+                var lista1 = db.GetConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(),null,null).ToList();
                 return lista1;
             }
             if (idRadio == 2)//consulta por Boleta de citación
             {
-                var lista2 = db.GetConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte,null).ToList();
+                var lista2 = db.GetConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte,null,null).ToList();
                 return lista2;
             }
             if (idRadio == 3)//Indentificación del implicado
             {
-                var lista3 = db.GetConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null).ToList();
+                var lista3 = db.GetConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null,null).ToList();
                 return lista3;
             }
             if (idRadio == 4)//Placa

@@ -2878,6 +2878,7 @@
           <Property Type="String" Name="RolVeh" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="DesRolVehiculo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="CondicionPersona" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PlanoAccidente" Nullable="false" MaxLength="20" />
           </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="203" />
@@ -4447,6 +4448,7 @@
                 <ScalarProperty Name="RolVeh" ColumnName="RolVeh" />
                 <ScalarProperty Name="DesRolVehiculo" ColumnName="DesRolVehiculo" />
                 <ScalarProperty Name="CondicionPersona" ColumnName="CondicionPersona" />
+                <ScalarProperty Name="PlanoAccidente" ColumnName="PlanoAccidente" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

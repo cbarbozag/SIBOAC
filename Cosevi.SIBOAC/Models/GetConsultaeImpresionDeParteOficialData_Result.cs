@@ -10,7 +10,7 @@
 namespace Cosevi.SIBOAC.Models
 {
     using System;
-
+    
     public partial class GetConsultaeImpresionDeParteOficialData_Result
     {
         public int serie { get; set; }
@@ -137,5 +137,6 @@ namespace Cosevi.SIBOAC.Models
         public string RolVeh { get; set; }
         public string DesRolVehiculo { get; set; }
         public string CondicionPersona { get; set; }
+        public string PlanoAccidente { get; set; }
     }
 }
