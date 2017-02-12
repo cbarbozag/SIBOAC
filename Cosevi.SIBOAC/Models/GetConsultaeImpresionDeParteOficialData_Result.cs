@@ -10,24 +10,132 @@
 namespace Cosevi.SIBOAC.Models
 {
     using System;
-    
+
     public partial class GetConsultaeImpresionDeParteOficialData_Result
     {
-        public string Reporte { get; set; }
         public int serie { get; set; }
         public decimal numero_boleta { get; set; }
-        public Nullable<System.DateTime> fecha_registro { get; set; }
-        public string codigo_autoridad_registra { get; set; }
-        public string codigo_delegacion { get; set; }
         public string DescripcionDelegacion { get; set; }
         public string clase_placa { get; set; }
         public string codigo_placa { get; set; }
         public string numero_placa { get; set; }
-        public string Identificacion { get; set; }
-        public string NombreCompleto { get; set; }
-        public string codrol { get; set; }
-        public string DescripcionRol { get; set; }
-        public string serie_parteoficial { get; set; }
-        public string numeroparte { get; set; }
+        public string FuenteParte { get; set; }
+        public string SerieParte { get; set; }
+        public string NumeroParte { get; set; }
+        public string CodigoAutoridad { get; set; }
+        public string DescripcionAutoridad { get; set; }
+        public string LugarHechos { get; set; }
+        public Nullable<int> CodigoRuta { get; set; }
+        public string DescripcionRuta { get; set; }
+        public Nullable<int> Kilometro { get; set; }
+        public Nullable<int> Seccion { get; set; }
+        public string Avenidas { get; set; }
+        public string Calles { get; set; }
+        public System.DateTime FechaAccidente { get; set; }
+        public string CodigoDelegacion { get; set; }
+        public string CodigoInspector { get; set; }
+        public string NombreInspector { get; set; }
+        public int VelocidadAmbiente { get; set; }
+        public string CodigoCarril { get; set; }
+        public string DescripcionCarril { get; set; }
+        public int CodigoEstructura { get; set; }
+        public string DescripcionEstructura { get; set; }
+        public int CodigoClaseCalzada { get; set; }
+        public string DescripcionClaseCalzada { get; set; }
+        public int CodigoCondicionCalzada { get; set; }
+        public string DescripcionCondicionCalzada { get; set; }
+        public int CodigoIluminacion { get; set; }
+        public string DescripcionIluminacion { get; set; }
+        public Nullable<int> CodigoCaracteristicaUbicacion { get; set; }
+        public string DescripcionCaracteristicaUbicacion { get; set; }
+        public int CodigoAlineacionVertical { get; set; }
+        public string DescripcionVertical { get; set; }
+        public string CodigoSenalamiento { get; set; }
+        public string DescripcionSenalamiento { get; set; }
+        public string Codigoexistencia { get; set; }
+        public string DescripcionExistencia { get; set; }
+        public string CodigoSentidO { get; set; }
+        public string DescripcionSentido { get; set; }
+        public int CodigoEstadoCalzada { get; set; }
+        public string DescripcionEstado { get; set; }
+        public int CodigoTiempo { get; set; }
+        public string DescripcionTiempo { get; set; }
+        public int CodigoInterseccion { get; set; }
+        public string DescripcionInterseccion { get; set; }
+        public int CodigoAlineacionHorizontal { get; set; }
+        public string DescripcionHorizontal { get; set; }
+        public int CodAccidente { get; set; }
+        public string DescripcionTipoAccidente { get; set; }
+        public int CodigoVehiculoCirculacion { get; set; }
+        public string DescripcionVehiculoCircula { get; set; }
+        public int codObstaculo { get; set; }
+        public string DescripcionObstaculo { get; set; }
+        public string Observaciones { get; set; }
+        public string TipoIdentificacionTestigo { get; set; }
+        public string IdentificacionTestigo { get; set; }
+        public string NombreTestigo { get; set; }
+        public string Apellito1Testigo { get; set; }
+        public string Apellido2Testigo { get; set; }
+        public string fuente { get; set; }
+        public string marca { get; set; }
+        public string DescripcionMarca { get; set; }
+        public Nullable<int> tipo_carroceria { get; set; }
+        public string DescripcionCarroceria { get; set; }
+        public string direccion { get; set; }
+        public string DescripcionDireccion { get; set; }
+        public string SegHuella { get; set; }
+        public Nullable<bool> SegCinturon { get; set; }
+        public Nullable<bool> SegSilla { get; set; }
+        public Nullable<bool> SegBolsa { get; set; }
+        public Nullable<bool> SegOtro { get; set; }
+        public Nullable<bool> SegNinguno { get; set; }
+        public Nullable<bool> SegNoIndica { get; set; }
+        public int CodigoManiobra { get; set; }
+        public string DescripcionManiobra { get; set; }
+        public int CodigoDispositivo { get; set; }
+        public string DescripcionDispositivo { get; set; }
+        public string tipo_ide { get; set; }
+        public string identificacion { get; set; }
+        public string nombre { get; set; }
+        public string apellido1 { get; set; }
+        public string apellido2 { get; set; }
+        public Nullable<int> Edad { get; set; }
+        public string sexo { get; set; }
+        public int CodigoDano { get; set; }
+        public string DescripcionDano { get; set; }
+        public Nullable<int> cod_provincia { get; set; }
+        public string DescripcionProvincia { get; set; }
+        public Nullable<int> cod_canton { get; set; }
+        public string DescripcionCanton { get; set; }
+        public Nullable<int> cod_distrito { get; set; }
+        public string DescripcionDistrito { get; set; }
+        public string telefono { get; set; }
+        public string rev_tecnica { get; set; }
+        public string carga { get; set; }
+        public string PortaSenal { get; set; }
+        public string CondicionUsuario { get; set; }
+        public string nivel_alcohol { get; set; }
+        public string num_prueba_alcohol { get; set; }
+        public string num_alcohosensor { get; set; }
+        public string numero_vin { get; set; }
+        public string codigod { get; set; }
+        public string codigotd { get; set; }
+        public string DLocalizacion { get; set; }
+        public string DescLocalizacionD { get; set; }
+        public string ApreciacionHund { get; set; }
+        public string DescAprecHundD { get; set; }
+        public string OtrosD { get; set; }
+        public string DescOtrosD { get; set; }
+        public string ApreciacionCor { get; set; }
+        public string DescApreciacionCorD { get; set; }
+        public string FactorR { get; set; }
+        public string DescFactorRiesgoD { get; set; }
+        public string PorEv { get; set; }
+        public string DescPorEviD { get; set; }
+        public string ObstVis { get; set; }
+        public string DescObstruccionVisiD { get; set; }
+        public string RolVeh { get; set; }
+        public string DesRolVehiculo { get; set; }
+        public string CondicionPersona { get; set; }
     }
 }

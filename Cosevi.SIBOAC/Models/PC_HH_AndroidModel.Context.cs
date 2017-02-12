@@ -192,7 +192,7 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaBoletaData_Result>("GetDescargaBoletaData", tipoFechaParameter, fechaInicialParameter, fechaFinalParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetDescargaInspectorData_Result> GetDescargaInspectorData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string numeroHandHeld, string codigoOficial, string usuarioSistema)
+        public virtual ObjectResult<GetDescargaInspectorData_Result> GetDescargaInspectorData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string codigoOficial, string usuarioSistema)
         {
             var fechaInicioParameter = fechaInicio.HasValue ?
                 new ObjectParameter("FechaInicio", fechaInicio) :
@@ -202,10 +202,6 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("FechaFin", fechaFin) :
                 new ObjectParameter("FechaFin", typeof(System.DateTime));
     
-            var numeroHandHeldParameter = numeroHandHeld != null ?
-                new ObjectParameter("NumeroHandHeld", numeroHandHeld) :
-                new ObjectParameter("NumeroHandHeld", typeof(string));
-    
             var codigoOficialParameter = codigoOficial != null ?
                 new ObjectParameter("CodigoOficial", codigoOficial) :
                 new ObjectParameter("CodigoOficial", typeof(string));
@@ -214,10 +210,10 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("UsuarioSistema", usuarioSistema) :
                 new ObjectParameter("UsuarioSistema", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaInspectorData_Result>("GetDescargaInspectorData", fechaInicioParameter, fechaFinParameter, numeroHandHeldParameter, codigoOficialParameter, usuarioSistemaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaInspectorData_Result>("GetDescargaInspectorData", fechaInicioParameter, fechaFinParameter, codigoOficialParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3)
+        public virtual ObjectResult<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3, string parametro4)
         {
             var tipoConsultaParameter = tipoConsulta.HasValue ?
                 new ObjectParameter("TipoConsulta", tipoConsulta) :
@@ -235,7 +231,11 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("Parametro3", parametro3) :
                 new ObjectParameter("Parametro3", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeParteOficialData_Result>("GetConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter);
+            var parametro4Parameter = parametro4 != null ?
+                new ObjectParameter("Parametro4", parametro4) :
+                new ObjectParameter("Parametro4", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeParteOficialData_Result>("GetConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter, parametro4Parameter);
         }
     
         public virtual ObjectResult<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, string idDelegaciones, string idInspectores, string usuarioSistema)

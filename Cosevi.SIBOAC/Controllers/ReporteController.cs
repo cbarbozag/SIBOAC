@@ -656,7 +656,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 idInspectores = idInspectores.Substring(0, idInspectores.Length - 1);
             }
-            var lista = db.GetDescargaInspectorData(hasta, desde, numeroHH, idInspectores,usuarioSistema).ToList();
+            var lista = db.GetDescargaInspectorData(hasta, desde, idInspectores,usuarioSistema).ToList();
 
             return lista;
         }
@@ -666,7 +666,7 @@ namespace Cosevi.SIBOAC.Controllers
         #region ConsultaeImpresionParteOficialData
         private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionParteOficialData( int idRadio,  string serieParte,
              string numeroParte,  int? serieBoleta,  decimal? numeroBoleta,  string tipoId,
-             string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca)
+             string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca, string VIN)
         {
             if(idRadio ==1) // Consulta por parte oficial
             {
@@ -685,7 +685,7 @@ namespace Cosevi.SIBOAC.Controllers
             }
             if (idRadio == 4)//Placa
             {
-                var lista4 = db.GetConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca).ToList();
+                var lista4 = db.GetConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca,VIN).ToList();
                 return lista4;
             }
 
@@ -694,7 +694,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         public ActionResult GetConsultaeImpresionParteOficial([FromUri] int opcionConsulta, [FromUri] string serieParte,
             [FromUri] string numeroParte, [FromUri] int? serieBoleta, [FromUri] decimal? numeroBoleta, [FromUri] string tipoId,
-            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
+            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca, [FromUri] string VIN)
         {
 
             string reporteID = "_ConsultaeImpresionDeParteOficial";
@@ -703,7 +703,7 @@ namespace Cosevi.SIBOAC.Controllers
             if (opcionConsulta == 1)
             {
                 parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieParte, numeroParte, "null");
-            }
+             }
             if(opcionConsulta == 2)
             {
                
@@ -716,7 +716,7 @@ namespace Cosevi.SIBOAC.Controllers
             }
             if (opcionConsulta == 4)
             {
-                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), numeroPlaca, codigoPlaca, clasePlaca);
+                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), numeroPlaca, codigoPlaca, clasePlaca, VIN);
 
 
             }
