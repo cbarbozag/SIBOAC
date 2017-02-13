@@ -157,19 +157,19 @@ namespace Cosevi.SIBOAC.Controllers
             //    return HttpNotFound();
             //}
 
-            ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
-                                                     where o.Id == CodArticulo
-                                                     select new { o.Id }).ToList().Distinct(), "Id", "Id", CodArticulo);
+            //ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+            //                                         where o.Id == CodArticulo
+            //                                         select new { o.Id }).ToList().Distinct(), "Id", "Id", CodArticulo);
 
-            //IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
-            //                                                 where o.Id == CodArticulo
-            //                                                 select new { o.Id }).ToList().Distinct()
-            //                                              .Select(o => new SelectListItem
-            //                                              {
-            //                                                  Value = o.Id.ToString(),
-            //                                                  Text = o.Id.ToString()
-            //                                              });
-            //ViewBag.ComboArticulos = itemsCatArticulos;
+            IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+                                                             where o.Id == CodArticulo
+                                                             select new { o.Id }).ToList().Distinct()
+                                                          .Select(o => new SelectListItem
+                                                          {
+                                                              Value = o.Id.ToString(),
+                                                              Text = o.Id.ToString()
+                                                          });
+            ViewBag.ComboArticulos = itemsCatArticulos;
             return View();
         }
 
@@ -183,14 +183,14 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
-                string mensaje = Verificar(articuloEspecifico.codigo,
-                                           articuloEspecifico.conducta,
-                                           articuloEspecifico.fecha_inicio,
-                                           articuloEspecifico.fecha_final);
+                //string mensaje = Verificar(articuloEspecifico.codigo,
+                //                           articuloEspecifico.conducta,
+                //                           articuloEspecifico.fecha_inicio,
+                //                           articuloEspecifico.fecha_final);
 
 
-                if (mensaje == "")
-                {
+                //if (mensaje == "")
+                //{
 
                     var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == articuloEspecifico.codigo &&
                                                                           //d.conducta == articuloEspecifico.conducta &&
@@ -230,7 +230,7 @@ namespace Cosevi.SIBOAC.Controllers
                     Bitacora(articuloEspecifico, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
                     return RedirectToAction("Index");
                 }
-            }
+            //}
             return View(articuloEspecifico);
         }
 
@@ -365,6 +365,49 @@ namespace Cosevi.SIBOAC.Controllers
 
         public JsonResult ObtenerConducta(string CodigoArticulo)
         {
+            //var listaconducta =
+            //     (from o in db.CATARTICULO
+            //      where o.Id == CodigoArticulo && o.Estado == "A"
+            //      select new
+            //      {
+
+            //          o.Conducta
+            //      }).ToList().Distinct()
+            //.Select(x => new ClaseConducta
+            //{
+            //    Id = x.Conducta,
+            //    Nombre = x.Conducta
+            //}).Distinct();
+
+            //return Json(listaconducta, JsonRequestBehavior.AllowGet);
+
+
+
+            var listaconducta =
+                 (from o in db.ARTICULO_ESPECIFICO
+                  where o.codigo == CodigoArticulo && o.estado == "A"
+                  select new
+                  {
+                      o.conducta
+
+                  }).ToList().Distinct()
+
+            .Select(x => new ClaseConducta
+            {
+                Id = x.conducta,
+                Nombre = x.conducta
+            }).Distinct();
+
+            return Json(listaconducta, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+
+
+        public JsonResult ObtenerConductaCreate(string CodigoArticulo)
+        {
             var listaconducta =
                  (from o in db.CATARTICULO
                   where o.Id == CodigoArticulo && o.Estado == "A"
@@ -381,6 +424,10 @@ namespace Cosevi.SIBOAC.Controllers
 
             return Json(listaconducta, JsonRequestBehavior.AllowGet);
         }
+
+
+
+
 
         public JsonResult ObtenerFechaInicio(string CodigoArticulo, string Conducta)
         {
