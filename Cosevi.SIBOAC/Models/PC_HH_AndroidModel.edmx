@@ -2976,6 +2976,10 @@
           <Property Type="String" Name="Nombre" Nullable="true" MaxLength="72" />
           <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
           <Property Type="String" Name="Autoridad" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="usuarioConsulta" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FechaInicial" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="FechaFinal" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="StatusPlano" Nullable="false" MaxLength="20" />
         </ComplexType>
         <EntityType Name="ARTICULO_ESPECIFICO">
           <Key>
@@ -4554,6 +4558,10 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
                 <ScalarProperty Name="Autoridad" ColumnName="Autoridad" />
+                <ScalarProperty Name="usuarioConsulta" ColumnName="usuarioConsulta" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="StatusPlano" ColumnName="StatusPlano" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

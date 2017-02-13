@@ -2,14 +2,15 @@
 <xs:schema id="GetReporteStatusActualPlanoDataSet" targetNamespace="http://tempuri.org/GetReporteStatusActualPlanoDataSet.xsd" xmlns:mstns="http://tempuri.org/GetReporteStatusActualPlanoDataSet.xsd" xmlns="http://tempuri.org/GetReporteStatusActualPlanoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection ConnectionStringObject="Data Source=AFARIASRV\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security Info=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Application Name=EntityFramework" IsAppSettingsProperty="false" Modifier="Assembly" Name="SIBOACSecurityEntities (Cosevi.SIBOAC)" ParameterPrefix="@" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetReporteStatusActualPlanoDataTableAdapter" GeneratorDataComponentClassName="GetReporteStatusActualPlanoDataTableAdapter" Name="GetReporteStatusActualPlanoData" UserDataComponentName="GetReporteStatusActualPlanoDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SIBOACSecurityEntities (Cosevi.SIBOAC)" DbObjectName="PC_HH_Android.dbo.GetReporteStatusActualPlanoData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="PC_HH_AndroidConnectionString (Web.config)" DbObjectName="PC_HH_Android.dbo.GetReporteStatusActualPlanoData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.GetReporteStatusActualPlanoData</CommandText>
@@ -35,6 +36,10 @@
               <Mapping SourceColumn="fecha_descarga" DataSetColumn="fecha_descarga" />
               <Mapping SourceColumn="identificacion" DataSetColumn="identificacion" />
               <Mapping SourceColumn="Nombre" DataSetColumn="Nombre" />
+              <Mapping SourceColumn="usuarioConsulta" DataSetColumn="usuarioConsulta" />
+              <Mapping SourceColumn="FechaInicial" DataSetColumn="FechaInicial" />
+              <Mapping SourceColumn="FechaFinal" DataSetColumn="FechaFinal" />
+              <Mapping SourceColumn="StatusPlano" DataSetColumn="StatusPlano" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -46,7 +51,7 @@
   <xs:element name="GetReporteStatusActualPlanoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GetReporteStatusActualPlanoDataSet" msprop:Generator_UserDSName="GetReporteStatusActualPlanoDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="GetReporteStatusActualPlanoData" msprop:Generator_TableClassName="GetReporteStatusActualPlanoDataDataTable" msprop:Generator_TableVarName="tableGetReporteStatusActualPlanoData" msprop:Generator_RowChangedName="GetReporteStatusActualPlanoDataRowChanged" msprop:Generator_TablePropName="GetReporteStatusActualPlanoData" msprop:Generator_RowDeletingName="GetReporteStatusActualPlanoDataRowDeleting" msprop:Generator_RowChangingName="GetReporteStatusActualPlanoDataRowChanging" msprop:Generator_RowEvHandlerName="GetReporteStatusActualPlanoDataRowChangeEventHandler" msprop:Generator_RowDeletedName="GetReporteStatusActualPlanoDataRowDeleted" msprop:Generator_RowClassName="GetReporteStatusActualPlanoDataRow" msprop:Generator_UserTableName="GetReporteStatusActualPlanoData" msprop:Generator_RowEvArgName="GetReporteStatusActualPlanoDataRowChangeEvent">
+        <xs:element name="GetReporteStatusActualPlanoData" msprop:Generator_TableClassName="GetReporteStatusActualPlanoDataDataTable" msprop:Generator_TableVarName="tableGetReporteStatusActualPlanoData" msprop:Generator_TablePropName="GetReporteStatusActualPlanoData" msprop:Generator_RowDeletingName="GetReporteStatusActualPlanoDataRowDeleting" msprop:Generator_RowChangingName="GetReporteStatusActualPlanoDataRowChanging" msprop:Generator_RowEvHandlerName="GetReporteStatusActualPlanoDataRowChangeEventHandler" msprop:Generator_RowDeletedName="GetReporteStatusActualPlanoDataRowDeleted" msprop:Generator_UserTableName="GetReporteStatusActualPlanoData" msprop:Generator_RowChangedName="GetReporteStatusActualPlanoDataRowChanged" msprop:Generator_RowEvArgName="GetReporteStatusActualPlanoDataRowChangeEvent" msprop:Generator_RowClassName="GetReporteStatusActualPlanoDataRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Autoridad" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAutoridad" msprop:Generator_ColumnPropNameInRow="Autoridad" msprop:Generator_ColumnPropNameInTable="AutoridadColumn" msprop:Generator_UserColumnName="Autoridad" minOccurs="0">
@@ -84,6 +89,34 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="72" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="usuarioConsulta" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnusuarioConsulta" msprop:Generator_ColumnPropNameInRow="usuarioConsulta" msprop:Generator_ColumnPropNameInTable="usuarioConsultaColumn" msprop:Generator_UserColumnName="usuarioConsulta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FechaInicial" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFechaInicial" msprop:Generator_ColumnPropNameInRow="FechaInicial" msprop:Generator_ColumnPropNameInTable="FechaInicialColumn" msprop:Generator_UserColumnName="FechaInicial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FechaFinal" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFechaFinal" msprop:Generator_ColumnPropNameInRow="FechaFinal" msprop:Generator_ColumnPropNameInTable="FechaFinalColumn" msprop:Generator_UserColumnName="FechaFinal" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StatusPlano" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnStatusPlano" msprop:Generator_ColumnPropNameInRow="StatusPlano" msprop:Generator_ColumnPropNameInTable="StatusPlanoColumn" msprop:Generator_UserColumnName="StatusPlano" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

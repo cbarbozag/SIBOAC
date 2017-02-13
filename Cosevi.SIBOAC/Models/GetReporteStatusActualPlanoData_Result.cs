@@ -21,5 +21,9 @@ namespace Cosevi.SIBOAC.Models
         public string Nombre { get; set; }
         public decimal numero_boleta { get; set; }
         public string Autoridad { get; set; }
+        public string usuarioConsulta { get; set; }
+        public string FechaInicial { get; set; }
+        public string FechaFinal { get; set; }
+        public string StatusPlano { get; set; }
     }
 }
