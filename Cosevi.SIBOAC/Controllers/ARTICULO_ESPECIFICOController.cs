@@ -104,26 +104,50 @@ namespace Cosevi.SIBOAC.Controllers
             {
 
                 db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
-                string mensaje = Verificar(articuloEspecifico.codigo,
-                                           articuloEspecifico.conducta,
-                                           articuloEspecifico.fecha_inicio,
-                                           articuloEspecifico.fecha_final);
 
-
-                if (mensaje == "")
+                string mensajeNull = validarNulos(articuloEspecifico.codigo_retiro_temporal,
+                                                  articuloEspecifico.codigo_inmovilizacion,
+                                                  articuloEspecifico.observacion_noaplicacion);
+                if (mensajeNull == "")
                 {
-                    db.SaveChanges();
-                    Bitacora(articuloEspecifico, "I", "ARTICULO_ESPECIFICO");
-                    TempData["Type"] = "success";
-                    TempData["Message"] = "El registro se realizó correctamente";
-                    return RedirectToAction("Index");
 
+                    string mensaje = Verificar(articuloEspecifico.codigo,
+                                               articuloEspecifico.conducta,
+                                               articuloEspecifico.fecha_inicio,
+                                               articuloEspecifico.fecha_final);
+
+
+                    if (mensaje == "")
+                    {
+                        db.SaveChanges();
+                        Bitacora(articuloEspecifico, "I", "ARTICULO_ESPECIFICO");
+                        TempData["Type"] = "success";
+                        TempData["Message"] = "El registro se realizó correctamente";
+                        return RedirectToAction("Index");
+
+                    }
+
+                    else
+                    {
+                        ViewBag.Type = "warning";
+                        ViewBag.Message = mensaje;
+
+                        ViewBag.ComboArticulos = null;
+                        ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+                                                                 where o.Estado == "A"
+                                                                 select new { o.Id }).ToList().Distinct(), "Id", "Id", articuloEspecifico.codigo);
+
+                        ViewData["conducta"] = articuloEspecifico.conducta;
+                        ViewData["fecha_inicio"] = articuloEspecifico.fecha_inicio.ToString("dd-MM-yyyy");
+                        ViewData["fecha_final"] = articuloEspecifico.fecha_final.ToString("dd-MM-yyyy");
+                        ViewData["codigo_retiro_temporal"] = articuloEspecifico.codigo_retiro_temporal;
+                        return View(articuloEspecifico);
+                    }
                 }
-
                 else
                 {
                     ViewBag.Type = "warning";
-                    ViewBag.Message = mensaje;
+                    ViewBag.Message = mensajeNull;
 
                     ViewBag.ComboArticulos = null;
                     ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
@@ -150,17 +174,6 @@ namespace Cosevi.SIBOAC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo);
-
-            //if (articuloEspecifico == null)
-            //{
-            //    return HttpNotFound();
-            //}
-
-            //ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
-            //                                         where o.Id == CodArticulo
-            //                                         select new { o.Id }).ToList().Distinct(), "Id", "Id", CodArticulo);
-
             IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
                                                              where o.Id == CodArticulo
                                                              select new { o.Id }).ToList().Distinct()
@@ -170,6 +183,8 @@ namespace Cosevi.SIBOAC.Controllers
                                                               Text = o.Id.ToString()
                                                           });
             ViewBag.ComboArticulos = itemsCatArticulos;
+            //ViewBag.ComboArticulos = new SelectList(db.CATARTICULO.OrderBy(x => x.Id), "Id", "Id", CodArticulo);
+            //ViewBag.ComboConducta = new SelectList(db.CATARTICULO.OrderBy(x => x.Conducta).Distinct(), "Id", "conducta", Conducta);
             return View();
         }
 
@@ -183,30 +198,17 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
-                //string mensaje = Verificar(articuloEspecifico.codigo,
-                //                           articuloEspecifico.conducta,
-                //                           articuloEspecifico.fecha_inicio,
-                //                           articuloEspecifico.fecha_final);
-
-
-                //if (mensaje == "")
-                //{
 
                     var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == articuloEspecifico.codigo &&
-                                                                          //d.conducta == articuloEspecifico.conducta &&
                                                                           d.fecha_inicio == articuloEspecifico.fecha_inicio &&
                                                                           d.fecha_final == articuloEspecifico.fecha_final).FirstOrDefault();
 
-
-
-                    //db.Entry(articuloEspecifico).State = EntityState.Modified;
                     bool saveFailed;
                     do
                     {
                         saveFailed = false;
                         try
                     {
-                       // db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
                         db.Entry(articuloEspecifico).State = EntityState.Modified;
                         db.SaveChanges();
                     }
@@ -230,7 +232,7 @@ namespace Cosevi.SIBOAC.Controllers
                     Bitacora(articuloEspecifico, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
                     return RedirectToAction("Index");
                 }
-            //}
+
             return View(articuloEspecifico);
         }
 
@@ -295,6 +297,24 @@ namespace Cosevi.SIBOAC.Controllers
             return mensaje;
         }
 
+
+
+
+        public string validarNulos(string codigoRetiroTemporal, string codigoInmovilizacion, string observacionNoAplicacion)
+        {
+            string mensajeValidaNull = "";
+
+            /*bool exist = db.ARTICULO_ESPECIFICO.Any(x => x.codigo_retiro_temporal == codigoRetiroTemporal
+                                                    && x.codigo_inmovilizacion == codigoInmovilizacion
+                                                    && x.observacion_noaplicacion == observacionNoAplicacion);*/
+
+            if (codigoRetiroTemporal == "0" && codigoInmovilizacion == "0" && observacionNoAplicacion == null)
+            {
+                mensajeValidaNull = " Debe indicar una observación ";
+            }
+
+            return mensajeValidaNull;
+        }
 
 
         public List<CatalogoDeArticulos> ListCatalogoArticulos()
