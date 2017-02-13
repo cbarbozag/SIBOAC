@@ -2214,7 +2214,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>2</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4677,7 +4676,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </PageBreak>
         <Top>21.90953cm</Top>
         <Left>0.3937cm</Left>
-        <Height>13.28281cm</Height>
+        <Height>13.28282cm</Height>
         <Width>15.54272cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -4687,7 +4686,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>13.85525in</Height>
+    <Height>13.85526in</Height>
     <Style />
   </Body>
   <Width>6.64867in</Width>
