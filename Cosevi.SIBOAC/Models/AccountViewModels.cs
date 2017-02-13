@@ -101,6 +101,32 @@ namespace Cosevi.SIBOAC.Models
         public string Code { get; set; }
     }
 
+
+
+    public class ChangePasswordAViewModel
+    {
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Clave actual")]
+        public string OldPassword { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "La {0} debe ser al menos de {2} caracteres de largo.", MinimumLength = 6)]
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Nueva clave")]
+        public string NewPassword { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar nueva clave")]
+        [Compare("NewPassword", ErrorMessage = "La clave nueva y su confirmación no coinciden.")]
+        public string ConfirmPassword { get; set; }
+        public string Code { get; set; }
+
+    }
+
+
+
     public class ForgotPasswordViewModel
     {
         [Required]

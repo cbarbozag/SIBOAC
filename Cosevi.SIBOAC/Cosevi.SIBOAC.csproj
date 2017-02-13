@@ -537,9 +537,6 @@
     <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetDescargaParteOficialData_Result1.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\GetReimpresionDeBoletasDeCampoData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -549,16 +546,10 @@
     <Compile Include="Models\GetReporteListadoParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetReportePorDelegacionAutoridadData1_Result.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\GetReportePorDelegacionAutoridadData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReportePorUsuarioData_Result.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetReportePorUsuarioData_Result1.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReporteStatusActualPlanoData_Result.cs">
@@ -895,9 +886,6 @@
     <Content Include="GetBitacoraDataSet.xss">
       <DependentUpon>GetBitacoraDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="GetDescargaInspectorDataSet.xsc">
-      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="GetDescargaBoletaDataSet.xsc">
       <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
     </Content>
@@ -931,19 +919,22 @@
     <Content Include="GetDescargaBoletaDataSet.xss">
       <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
     </Content>
-    <None Include="GetDescargaInspectorDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GetDescargaInspectorDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="GetDescargaInspectorDataSet.xss">
-      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
       <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetDescargaInspectorDataSet.xsc">
+      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetDescargaInspectorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetDescargaInspectorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="GetDescargaInspectorDataSet.xss">
+      <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReimpresionDeBoletasDeCampoDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1625,6 +1616,8 @@
     <Content Include="Views\Reporte\_ActividadOficial.cshtml" />
     <Content Include="Views\Reporte\_ReporteListadoMultaFija.cshtml" />
     <Content Include="Views\Reporte\_ReporteListadoParteOficial.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Index\" />

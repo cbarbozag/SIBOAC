@@ -23,5 +23,9 @@ namespace Cosevi.SIBOAC.Models
         public string Provincia { get; set; }
         public string x { get; set; }
         public string y { get; set; }
+        public string FechaInicial { get; set; }
+        public string FechaFinal { get; set; }
+        public string idDele { get; set; }
+        public string idInsp { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Cosevi.SIBOAC.Models;
 using PagedList;
+using System.Data.Entity.Validation;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -149,65 +150,27 @@ namespace Cosevi.SIBOAC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            //ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo);
 
-            var list =
-                (from a in db.ARTICULO_ESPECIFICO
-                 join c in db.CATARTICULO on new { codigo = a.codigo, conducta = a.conducta, fecha_inicio = a.fecha_inicio, fecha_final = a.fecha_final } equals new { codigo = c.Id, conducta = c.Conducta, fecha_inicio = c.FechaDeInicio, fecha_final = c.FechaDeFin } into c_join
-                 where a.codigo == CodArticulo && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
-                 from c in c_join.DefaultIfEmpty()
-
-
-
-                     /*join c in db.CATARTICULO on new { codigo = a.codigo, fecha_inicio = a.fecha_inicio, fecha_final = a.fecha_final }
-                     equals new { codigo = c.Id, fecha_inicio = c.FechaDeInicio, fecha_final = c.FechaDeFin } into c_join
-                     where a.codigo == CodArticulo && a.fecha_inicio == FechaInicio && a.fecha_final == FechaFin
-                     from c in c_join.DefaultIfEmpty()*/
-
-
-                 select new
-                 {
-                     CodigoArticulo = a.codigo,
-                     Conducta = a.conducta,
-                     FechaDeInicio = a.fecha_inicio,
-                     FechaDeFin = a.fecha_final,
-                     Estado = a.estado,
-                     codigo_retiro_temporal = a.codigo_retiro_temporal,
-                     codigo_inmovilizacion = a.codigo_inmovilizacion,
-                     observacion_noaplicacion = a.observacion_noaplicacion
-                     //DescripcionArticulo = c.Descripcion
-                 }).ToList()
-
-
-
-                  .Select(x => new ARTICULO_ESPECIFICO
-                  {
-                      codigo = x.CodigoArticulo,
-                      conducta = x.Conducta,
-                      fecha_inicio = x.FechaDeInicio,
-                      fecha_final = x.FechaDeFin,
-                      estado = x.Estado,
-                      codigo_retiro_temporal = x.codigo_retiro_temporal,
-                      codigo_inmovilizacion = x.codigo_inmovilizacion,
-                      observacion_noaplicacion = x.observacion_noaplicacion
-                      //DescripcionArticulo = x.DescripcionArticulo
-
-                  }).SingleOrDefault();
-
-
-            if (list == null)
-            {
-                return HttpNotFound();
-            }
-
-            ViewBag.ComboArticulos = new SelectList(db.CATARTICULO.OrderBy(x => x.Id), "Id", "Id", CodArticulo);
-
-
-            //ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
-            //if (aRTICULO_ESPECIFICO == null)
+            //if (articuloEspecifico == null)
             //{
             //    return HttpNotFound();
             //}
-            return View(list);
+
+            /*ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
+                                                     where o.Id == CodArticulo
+                                                     select new { o.Id }).ToList().Distinct(), "Id", "Id", CodArticulo);*/
+
+            IEnumerable<SelectListItem> itemsCatArticulos = (from o in db.CATARTICULO
+                                                             where o.Id == CodArticulo
+                                                             select new { o.Id }).ToList().Distinct()
+                                                          .Select(o => new SelectListItem
+                                                          {
+                                                              Value = o.Id.ToString(),
+                                                              Text = o.Id.ToString()
+                                                          });
+            ViewBag.ComboArticulos = itemsCatArticulos;
+            return View();
         }
 
         // POST: ARTICULO_ESPECIFICO/Edit/5
@@ -215,26 +178,54 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigo,conducta,fecha_inicio,fecha_final,estado,codigo_retiro_temporal,codigo_inmovilizacion,observacion_noaplicacion")] ARTICULO_ESPECIFICO aRTICULO_ESPECIFICO)
+        public ActionResult Edit([Bind(Include = "codigo,conducta,fecha_inicio,fecha_final,estado,codigo_retiro_temporal,codigo_inmovilizacion,observacion_noaplicacion")] ARTICULO_ESPECIFICO articuloEspecifico)
         {
             if (ModelState.IsValid)
             {
+                db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
+                string mensaje = Verificar(articuloEspecifico.codigo,
+                                           articuloEspecifico.conducta,
+                                           articuloEspecifico.fecha_inicio,
+                                           articuloEspecifico.fecha_final);
 
-                var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == aRTICULO_ESPECIFICO.codigo &&
-                                                                                        d.conducta == aRTICULO_ESPECIFICO.conducta &&
-                                                                                        d.fecha_inicio == aRTICULO_ESPECIFICO.fecha_inicio &&
-                                                                                        d.fecha_final == aRTICULO_ESPECIFICO.fecha_final).FirstOrDefault();
+
+                if (mensaje == "")
+                {
+
+                    var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == articuloEspecifico.codigo &&
+                                                                          //d.conducta == articuloEspecifico.conducta &&
+                                                                          d.fecha_inicio == articuloEspecifico.fecha_inicio &&
+                                                                          d.fecha_final == articuloEspecifico.fecha_final).FirstOrDefault();
 
 
 
-                db.Entry(aRTICULO_ESPECIFICO).State = EntityState.Modified;
-                db.SaveChanges();
-                Bitacora(aRTICULO_ESPECIFICO, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
-                TempData["Type"] = "info";
-                TempData["Message"] = "La edición se realizó correctamente";
-                return RedirectToAction("Index");
+                    db.Entry(articuloEspecifico).State = EntityState.Modified;
+
+                    try
+                    {
+
+                        db.SaveChanges();
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                    ve.PropertyName, ve.ErrorMessage);
+                            }
+                        }
+                        throw;
+                    }
+
+                    Bitacora(articuloEspecifico, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
+                    return RedirectToAction("Index");
+                }
             }
-            return View(aRTICULO_ESPECIFICO);
+            return View(articuloEspecifico);
         }
 
         // GET: ARTICULO_ESPECIFICO/Delete/5
@@ -503,6 +494,5 @@ namespace Cosevi.SIBOAC.Controllers
 
             return Json(listaArticuloInmovilizacion, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

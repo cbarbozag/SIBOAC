@@ -6,16 +6,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.58005cm</Width>
+              <Width>3.98596cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.18318cm</Width>
+              <Width>2.02443cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.89213cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.58005cm</Width>
+              <Width>1.44234cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.58005cm</Width>
@@ -27,13 +24,16 @@
               <Width>2.58005cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.17297cm</Width>
+              <Width>1.97151cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.58005cm</Width>
+              <Width>5.96672cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.58005cm</Width>
+              <Width>2.09159cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.08593cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -704,7 +704,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.56306cm</Top>
+        <Top>7.53181cm</Top>
         <Left>0.63137cm</Left>
         <Height>1.2cm</Height>
         <Width>27.30863cm</Width>
@@ -761,8 +761,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
         <Top>0.45861cm</Top>
+        <Left>6.56167cm</Left>
         <Height>2.16146cm</Height>
-        <Width>27.94cm</Width>
+        <Width>14.71083cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -780,9 +781,9 @@
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
         <Top>0.45861cm</Top>
-        <Left>0.3175cm</Left>
-        <Height>1.94979cm</Height>
-        <Width>5.90093cm</Width>
+        <Left>0.63137cm</Left>
+        <Height>2.16146cm</Height>
+        <Width>5.61352cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -790,12 +791,245 @@
           </Border>
         </Style>
       </Image>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Rango Solicitado:           </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!FechaInicial.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>      al       </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!FechaFinal.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>3.64808cm</Top>
+        <Left>0.63137cm</Left>
+        <Height>0.6cm</Height>
+        <Width>14.39551cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Fecha de Impresión: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>4.42446cm</Top>
+        <Left>0.63137cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.70634cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="ExecutionTime">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Globals!ExecutionTime</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ExecutionTime</rd:DefaultName>
+        <Top>4.42446cm</Top>
+        <Left>4.78673cm</Left>
+        <Height>0.6cm</Height>
+        <Width>5.08005cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Delegaciones:                 </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!idDele.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox10</rd:DefaultName>
+        <Top>5.39433cm</Top>
+        <Left>0.63137cm</Left>
+        <Height>0.6cm</Height>
+        <Width>27.30863cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Inspectores:                    </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!idInsp.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox12</rd:DefaultName>
+        <Top>6.34683cm</Top>
+        <Left>0.63137cm</Left>
+        <Height>0.6cm</Height>
+        <Width>27.30863cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>4.35417in</Height>
     <Style />
   </Body>
   <Width>11.13399in</Width>
   <Page>
+    <PageFooter>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="PageNumber">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>PageNumber</rd:DefaultName>
+          <Top>1.49917cm</Top>
+          <Left>25.08746cm</Left>
+          <Height>0.6cm</Height>
+          <Width>2.5cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <PageHeight>21.59cm</PageHeight>
     <PageWidth>27.94cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
@@ -812,7 +1046,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>e316e16f-ff26-484d-9de9-e04e1f69b4e8</rd:DataSourceID>
+      <rd:DataSourceID>e019bf8f-c14e-4064-a807-b4a182f03f62</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -862,10 +1096,26 @@
           <DataField>y</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FechaInicial">
+          <DataField>FechaInicial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaFinal">
+          <DataField>FechaFinal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idDele">
+          <DataField>idDele</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idInsp">
+          <DataField>idInsp</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetConsultaeImpresiondeBoletasDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\soporte\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetConsultaeImpresiondeBoletasDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Carlos Barboza\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetConsultaeImpresiondeBoletasDataSet.xsd</rd:SchemaPath>
         <rd:TableName>GetConsultaeImpresionDeBoletasData</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

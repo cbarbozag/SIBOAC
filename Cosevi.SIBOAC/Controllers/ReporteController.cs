@@ -268,7 +268,7 @@ namespace Cosevi.SIBOAC.Controllers
                             }
 
                         }
-                        listaDelegacion3 = _listInspector;
+                        listaInspector3 = _listInspector;
                     }                    
                     ViewBag.Inspector = listaInspector3.OrderBy(a => a.Descripcion);
                     break;
@@ -601,7 +601,7 @@ namespace Cosevi.SIBOAC.Controllers
         #endregion
 
         #region Reporte Descarga Inspector
-        public ActionResult GetReporteDescargaInspector(DateTime desde, DateTime hasta, string numeroHH, [FromUri] string [] listaInspectores)
+        public ActionResult GetReporteDescargaInspector(DateTime desde, DateTime hasta, [FromUri] string [] listaInspectores)
         {
             string reporteID = "_DescargaInspector";
             string nombreReporte = "DescargaInspector";
@@ -632,7 +632,7 @@ namespace Cosevi.SIBOAC.Controllers
                                               }
                                             );
             ViewBag.InspectoresSeleccionados = lstInspectoresSeleccionados.ToList();
-            string parametros = String.Format("{0},{1},{2},{3}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), numeroHH, idInspectores);
+            string parametros = String.Format("{0},{1},{2}", desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), idInspectores);
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -642,7 +642,7 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_DescargaInspector");
         }
 
-        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, string numeroHH, [FromUri] string [] listaInspectores)
+        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, [FromUri] string [] listaInspectores)
         {
             var usuarioSistema = User.Identity.Name;
 

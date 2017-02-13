@@ -10,10 +10,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         //Nos suscribimos al evento change de nuestro primer dropsownlist
-        $("#CodigoArticulo").change(function ()
+        $("#codigo").change(function ()
         {
             //Limpiamos los otros dropsownlist
-            if ($("#CodigoArticulo").val() == 0)
+            if ($("#codigo").val() == 0)
             {
                 $("#Departamento").empty();
                 $("#FechaDeInicio").empty();
@@ -28,7 +28,8 @@
                     type: "POST",
                     dataType: "json",
                     async:true,
-                    data: {'CodigoArticulo': $("#CodigoArticulo").val()
+                    data: {
+                        'CodigoArticulo': $("#codigo").val()
                     },
                     success:function(items, responseText)
                     {
@@ -58,7 +59,7 @@
                     type: "POST",
                     dataType: "json",
                     async: true,
-                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val() },
+                    data: { 'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#Conducta").val() },
                     success: function (items, responseText) {
                         $("#FechaDeInicio").empty(); $("#FechaDeInicio").append($("<option/>").val("0").text("Seleccione..."));
                         $.each(items, function (i, item) {
@@ -82,7 +83,7 @@
                     type: "POST",
                     dataType: "json",
                     async: true,
-                    data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val() },
+                    data: { 'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val() },
                     success: function (items, responseText) {
                         $("#FechaDeFin").empty(); $("#FechaDeFin").append($("<option/>").val("0").text("Seleccione..."));
                         $.each(items, function (i, item) {
@@ -113,7 +114,8 @@
                     dataType: "json",
                     async: true,
                     data: {
-                        'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val(), 'FechaDeFin': $("#FechaDeFin").val()},
+                        'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val(), 'FechaDeFin': $("#FechaDeFin").val()
+                    },
                     success: function (items, responseText) {
                         $("#CodRetTemp").empty();
                         $("#CodRetTemp").append($("<option />").val("0").text("Seleccione..."));
@@ -145,7 +147,8 @@
                     dataType: "json",
                     async: true,
                     data: {
-                        'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val(), 'FechaDeFin': $("#FechaDeFin").val()},
+                        'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#Conducta").val(), 'FechaDeInicio': $("#FechaDeInicio").val(), 'FechaDeFin': $("#FechaDeFin").val()
+                    },
                     success: function (items, responseText) {
                         $("#CodInm").empty();
                         $("#CodInm").append($("<option />").val("0").text("Seleccione..."));
@@ -170,10 +173,10 @@
                 dataType: "json",
                 async: true,
                 data: {
-                    'CodigoArticulo': $("#CodigoArticulo").val()
+                    'CodigoArticulo': $("#codigo").val()
                 },
                 success: function (items, responseText) {
-                    var idArt = $("#CodigoArticulo").val();
+                    var idArt = $("#codigo").val();
                     var cond = $("#IdConducta").val();
                     $.each(items, function (i, item) {
                         $("#Conducta").append($("<option />").val(item.Id).text(item.Nombre));
@@ -197,9 +200,9 @@
                 type: "POST",
                 dataType: "json",
                 async: true,
-                data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#IdConducta").val() },
+                data: { 'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#IdConducta").val() },
                 success: function (items, responseText) {
-                    var idArt = $("#CodigoArticulo").val();
+                    var idArt = $("#codigo").val();
                     var cond = $("#IdConducta").val();
                     var FechaIni = $("#IdFechaDeInicio").val();
                     $.each(items, function (i, item) {
@@ -225,9 +228,9 @@
                 type: "POST",
                 dataType: "json",
                 async: true,
-                data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val() },
+                data: { 'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val() },
                 success: function (items, responseText) {
-                    var idArt = $("#CodigoArticulo").val();
+                    var idArt = $("#codigo").val();
                     var cond = $("#IdConducta").val();
                     var FechaIni = $("#IdFechaDeInicio").val();
                     var FechaFin = $("#IdFechaDeFin").val();
@@ -252,9 +255,9 @@
                 type: "POST",
                 dataType: "json",
                 async: true,
-                data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val(), 'FechaDeFin': $("#IdFechaDeFin").val() },
+                data: { 'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val(), 'FechaDeFin': $("#IdFechaDeFin").val() },
                 success: function (items, responseText) {
-                    var idArt = $("#CodigoArticulo").val();
+                    var idArt = $("#codigo").val();
                     var cond = $("#IdConducta").val();
                     var FechaIni = $("#IdFechaDeInicio").val();
                     var FechaFin = $("#IdFechaDeFin").val();
@@ -280,9 +283,9 @@
                 type: "POST",
                 dataType: "json",
                 async: true,
-                data: { 'CodigoArticulo': $("#CodigoArticulo").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val(), 'FechaDeFin': $("#IdFechaDeFin").val() },
+                data: { 'CodigoArticulo': $("#codigo").val(), 'Conducta': $("#IdConducta").val(), 'FechaDeInicio': $("#IdFechaDeInicio").val(), 'FechaDeFin': $("#IdFechaDeFin").val() },
                 success: function (items, responseText) {
-                    var idArt = $("#CodigoArticulo").val();
+                    var idArt = $("#codigo").val();
                     var cond = $("#IdConducta").val();
                     var FechaIni = $("#IdFechaDeInicio").val();
                     var FechaFin = $("#IdFechaDeFin").val();
@@ -328,24 +331,17 @@
             <input type="hidden" id="IdFechaDeInicio" value="@ViewData["fecha_inicio"]" />
             <input type="hidden" id="Idcodigo_retiro_temporal" value="@ViewData["codigo_retiro_temporal"]" />
             <input type="hidden" id="Idcodigo_inmovilizacion" value="@ViewData["codigo_inmovilizacion"]" />
-
-            @*@Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.codigo, (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
-            </div>*@
         </div>
 
 
             <div class="form-group">
                 @Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CodigoArticulo", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione", new { @class = "form-control" })
+                    @Html.DropDownList("codigo", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-
+        
             <div class="form-group">
                 @Html.LabelFor(model => model.conducta, "Conducta", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -356,14 +352,14 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.fecha_inicio, "Fecha inicial", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <select id="FechaDeInicio" name="FechaDeInicio" class="form-control"> <option value="0">Seleccione...</option> </select>
+                    <select id="FechaDeInicio" name="fecha_inicio" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.fecha_final, "Fecha final", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <select id="FechaDeFin" name="FechaDeFin" class="form-control"> <option value="0">Seleccione...</option> </select>
+                    <select id="FechaDeFin" name="fecha_final" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
 
@@ -386,16 +382,18 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.codigo_retiro_temporal, "Código retiro temporal", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <select id="CodRetTemp" name="CodRetTemp" class="form-control"> <option value="0">Seleccione...</option> </select>
+                    <select id="CodRetTemp" name="codigo_retiro_temporal" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.codigo_inmovilizacion, "Código inmovilización", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <select id="CodInm" name="CodInm" class="form-control"> <option value="0">Seleccione...</option> </select>
+                    <select id="CodInm" name="codigo_inmovilizacion" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
+
+        @*@if (@ViewData["codigo_retiro_temporal"] == null && @ViewData["codigo_inmovilizacion"] == null ) {*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.observacion_noaplicacion, "Observaciones", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -404,6 +402,7 @@
                     @Html.ValidationMessageFor(model => model.observacion_noaplicacion, "", new { @class = "text-danger" })
                 </div>
             </div>
+        @*}*@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
