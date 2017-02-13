@@ -125,7 +125,7 @@ namespace Cosevi.SIBOAC.Reports
             string numeroHandHeld = param[2];
             string codigoOficial = param[3].Replace("|", ",").Replace("-", "").Trim(); ;
           
-            var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, numeroHandHeld, codigoOficial,usuarioSistema).ToList();
+            var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, codigoOficial,usuarioSistema).ToList();
             return lista;
         }
 

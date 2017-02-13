@@ -702,16 +702,16 @@ namespace Cosevi.SIBOAC.Controllers
             string parametros = "";
             if (opcionConsulta == 1)
             {
-                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieParte, numeroParte, "null");
+                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), serieParte, numeroParte, "null","null");
              }
             if(opcionConsulta == 2)
             {
                
-                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null");
+                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null","null");
             }
             if (opcionConsulta == 3)
             {
-                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), tipoId, numeroID, "null");
+                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), tipoId, numeroID, "null","null");
 
             }
             if (opcionConsulta == 4)
