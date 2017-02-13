@@ -194,13 +194,14 @@ namespace Cosevi.SIBOAC.Reports
             string  Parametro1 =param[1];
             string Parametro2 = param[2];
             string Parametro3 = param[3];
+            string Parametro4 = param[4];
 
-            if(Parametro3 == "null")
+            if (Parametro3 == "null")
             {
-                var lista1 = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0").ToList();
+                var lista1 = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0","-0").ToList();
                 return lista1;
             }
-            var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3).ToList();
+            var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3,Parametro4).ToList();
             return lista;
         }
 

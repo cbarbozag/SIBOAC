@@ -75,11 +75,18 @@
     <script>
         $(document).ready(
         function () {
+            Calendario();
             ReportCall();
         });
     </script>
 
     <script>
+        function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2
+            });
+        };
+
         function ReportCall() {
 
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';

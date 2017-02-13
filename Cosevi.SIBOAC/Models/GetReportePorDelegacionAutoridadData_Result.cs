@@ -30,5 +30,8 @@ namespace Cosevi.SIBOAC.Models
         public string VD { get; set; }
         public string PE { get; set; }
         public string CP { get; set; }
+        public Nullable<System.DateTime> FechaInicial { get; set; }
+        public Nullable<System.DateTime> FechaFinal { get; set; }
+        public string UsuarioCons { get; set; }
     }
 }

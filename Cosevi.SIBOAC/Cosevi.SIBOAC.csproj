@@ -537,9 +537,6 @@
     <Compile Include="Models\GetDescargaParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetDescargaParteOficialData_Result1.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\GetReimpresionDeBoletasDeCampoData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -549,16 +546,10 @@
     <Compile Include="Models\GetReporteListadoParteOficialData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetReportePorDelegacionAutoridadData1_Result.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\GetReportePorDelegacionAutoridadData_Result.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReportePorUsuarioData_Result.cs">
-      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetReportePorUsuarioData_Result1.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetReporteStatusActualPlanoData_Result.cs">
@@ -898,9 +889,6 @@
     <Content Include="GetDescargaBoletaDataSet.xsc">
       <DependentUpon>GetDescargaBoletaDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xsc">
-      <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="GetConsultaeImpresiondeBoletasDataSet.xsc">
       <DependentUpon>GetConsultaeImpresiondeBoletasDataSet.xsd</DependentUpon>
     </Content>
@@ -911,6 +899,9 @@
     </None>
     <Content Include="GetConsultaeImpresiondeBoletasDataSet.xss">
       <DependentUpon>GetConsultaeImpresiondeBoletasDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xsc">
+      <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetConsultaeImpresionDeParteOficialDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1018,6 +1009,7 @@
     <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <Content Include="Reports\rptBitacora.rdlc">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1646,25 +1638,47 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\ConsultaeImpresionDeBoletas.rdlc" />
-    <Content Include="Reports\ConsultaeImpresionDeParteOficial.rdlc" />
-    <Content Include="Reports\DescargaBoleta.rdlc" />
-    <Content Include="Reports\DescargaInspector.rdlc" />
-    <Content Include="Reports\DescargaParteOficial.rdlc" />
-    <Content Include="Reports\ReimpresionDeBoletasDeCampo.rdlc" />
-    <Content Include="Reports\ReportePorUsuario.rdlc" />
+    <Content Include="Reports\ConsultaeImpresionDeBoletas.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\ConsultaeImpresionDeParteOficial.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\DescargaBoleta.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\DescargaInspector.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\DescargaParteOficial.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\ReimpresionDeBoletasDeCampo.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\ReportePorUsuario.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\ReporteStatusActualPlano.rdlc" />
+    <Content Include="Reports\ReporteStatusActualPlano.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\ActividadOficial.rdlc" />
+    <Content Include="Reports\ActividadOficial.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\ReporteListadoMultaFija.rdlc" />
+    <Content Include="Reports\ReporteListadoMultaFija.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\ReporteListadoParteOficial.rdlc" />
+    <Content Include="Reports\ReporteListadoParteOficial.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

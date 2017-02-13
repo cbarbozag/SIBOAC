@@ -305,13 +305,19 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnnumero_placa;
             
+            private global::System.Data.DataColumn columnCP;
+            
             private global::System.Data.DataColumn columnPC;
             
             private global::System.Data.DataColumn columnVD;
             
             private global::System.Data.DataColumn columnPE;
             
-            private global::System.Data.DataColumn columnCP;
+            private global::System.Data.DataColumn columnFechaInicial;
+            
+            private global::System.Data.DataColumn columnFechaFinal;
+            
+            private global::System.Data.DataColumn columnUsuarioCons;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -452,6 +458,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CPColumn {
+                get {
+                    return this.columnCP;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn PCColumn {
                 get {
                     return this.columnPC;
@@ -476,9 +490,25 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CPColumn {
+            public global::System.Data.DataColumn FechaInicialColumn {
                 get {
-                    return this.columnCP;
+                    return this.columnFechaInicial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaFinalColumn {
+                get {
+                    return this.columnFechaFinal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioConsColumn {
+                get {
+                    return this.columnUsuarioCons;
                 }
             }
             
@@ -533,10 +563,13 @@ namespace Cosevi.SIBOAC {
                         string clase_placa, 
                         string codigo_placa, 
                         string numero_placa, 
+                        string CP, 
                         string PC, 
                         string VD, 
                         string PE, 
-                        string CP) {
+                        System.DateTime FechaInicial, 
+                        System.DateTime FechaFinal, 
+                        string UsuarioCons) {
                 GetReportePorDelegacionAutoridadDataRow rowGetReportePorDelegacionAutoridadDataRow = ((GetReportePorDelegacionAutoridadDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Reporte,
@@ -552,10 +585,13 @@ namespace Cosevi.SIBOAC {
                         clase_placa,
                         codigo_placa,
                         numero_placa,
+                        CP,
                         PC,
                         VD,
                         PE,
-                        CP};
+                        FechaInicial,
+                        FechaFinal,
+                        UsuarioCons};
                 rowGetReportePorDelegacionAutoridadDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReportePorDelegacionAutoridadDataRow);
                 return rowGetReportePorDelegacionAutoridadDataRow;
@@ -591,10 +627,13 @@ namespace Cosevi.SIBOAC {
                 this.columnclase_placa = base.Columns["clase_placa"];
                 this.columncodigo_placa = base.Columns["codigo_placa"];
                 this.columnnumero_placa = base.Columns["numero_placa"];
+                this.columnCP = base.Columns["CP"];
                 this.columnPC = base.Columns["PC"];
                 this.columnVD = base.Columns["VD"];
                 this.columnPE = base.Columns["PE"];
-                this.columnCP = base.Columns["CP"];
+                this.columnFechaInicial = base.Columns["FechaInicial"];
+                this.columnFechaFinal = base.Columns["FechaFinal"];
+                this.columnUsuarioCons = base.Columns["UsuarioCons"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -626,14 +665,20 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columncodigo_placa);
                 this.columnnumero_placa = new global::System.Data.DataColumn("numero_placa", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumero_placa);
+                this.columnCP = new global::System.Data.DataColumn("CP", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCP);
                 this.columnPC = new global::System.Data.DataColumn("PC", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPC);
                 this.columnVD = new global::System.Data.DataColumn("VD", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVD);
                 this.columnPE = new global::System.Data.DataColumn("PE", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPE);
-                this.columnCP = new global::System.Data.DataColumn("CP", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCP);
+                this.columnFechaInicial = new global::System.Data.DataColumn("FechaInicial", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaInicial);
+                this.columnFechaFinal = new global::System.Data.DataColumn("FechaFinal", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaFinal);
+                this.columnUsuarioCons = new global::System.Data.DataColumn("UsuarioCons", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioCons);
                 this.columnReporte.ReadOnly = true;
                 this.columnReporte.MaxLength = 21;
                 this.columnfuente.AllowDBNull = false;
@@ -652,14 +697,18 @@ namespace Cosevi.SIBOAC {
                 this.columnclase_placa.MaxLength = 3;
                 this.columncodigo_placa.MaxLength = 3;
                 this.columnnumero_placa.MaxLength = 20;
+                this.columnCP.ReadOnly = true;
+                this.columnCP.MaxLength = 1;
                 this.columnPC.ReadOnly = true;
                 this.columnPC.MaxLength = 1;
                 this.columnVD.ReadOnly = true;
                 this.columnVD.MaxLength = 1;
                 this.columnPE.ReadOnly = true;
                 this.columnPE.MaxLength = 1;
-                this.columnCP.ReadOnly = true;
-                this.columnCP.MaxLength = 1;
+                this.columnFechaInicial.ReadOnly = true;
+                this.columnFechaFinal.ReadOnly = true;
+                this.columnUsuarioCons.ReadOnly = true;
+                this.columnUsuarioCons.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -999,6 +1048,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CP {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReportePorDelegacionAutoridadData.CPColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CP\' in table \'GetReportePorDelegacionAutoridadData\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReportePorDelegacionAutoridadData.CPColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string PC {
                 get {
                     try {
@@ -1050,18 +1116,52 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CP {
+            public System.DateTime FechaInicial {
                 get {
                     try {
-                        return ((string)(this[this.tableGetReportePorDelegacionAutoridadData.CPColumn]));
+                        return ((global::System.DateTime)(this[this.tableGetReportePorDelegacionAutoridadData.FechaInicialColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CP\' in table \'GetReportePorDelegacionAutoridadData\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaInicial\' in table \'GetReportePorDelegacionAutoridadDat" +
+                                "a\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetReportePorDelegacionAutoridadData.CPColumn] = value;
+                    this[this.tableGetReportePorDelegacionAutoridadData.FechaInicialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaFinal {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGetReportePorDelegacionAutoridadData.FechaFinalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaFinal\' in table \'GetReportePorDelegacionAutoridadData\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReportePorDelegacionAutoridadData.FechaFinalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UsuarioCons {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReportePorDelegacionAutoridadData.UsuarioConsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UsuarioCons\' in table \'GetReportePorDelegacionAutoridadData" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReportePorDelegacionAutoridadData.UsuarioConsColumn] = value;
                 }
             }
             
@@ -1175,6 +1275,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCPNull() {
+                return this.IsNull(this.tableGetReportePorDelegacionAutoridadData.CPColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCPNull() {
+                this[this.tableGetReportePorDelegacionAutoridadData.CPColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPCNull() {
                 return this.IsNull(this.tableGetReportePorDelegacionAutoridadData.PCColumn);
             }
@@ -1211,14 +1323,38 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCPNull() {
-                return this.IsNull(this.tableGetReportePorDelegacionAutoridadData.CPColumn);
+            public bool IsFechaInicialNull() {
+                return this.IsNull(this.tableGetReportePorDelegacionAutoridadData.FechaInicialColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCPNull() {
-                this[this.tableGetReportePorDelegacionAutoridadData.CPColumn] = global::System.Convert.DBNull;
+            public void SetFechaInicialNull() {
+                this[this.tableGetReportePorDelegacionAutoridadData.FechaInicialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaFinalNull() {
+                return this.IsNull(this.tableGetReportePorDelegacionAutoridadData.FechaFinalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaFinalNull() {
+                this[this.tableGetReportePorDelegacionAutoridadData.FechaFinalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioConsNull() {
+                return this.IsNull(this.tableGetReportePorDelegacionAutoridadData.UsuarioConsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioConsNull() {
+                this[this.tableGetReportePorDelegacionAutoridadData.UsuarioConsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1394,10 +1530,13 @@ namespace Cosevi.SIBOAC.GetReportePorDelegacionAutoridadDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("clase_placa", "clase_placa");
             tableMapping.ColumnMappings.Add("codigo_placa", "codigo_placa");
             tableMapping.ColumnMappings.Add("numero_placa", "numero_placa");
+            tableMapping.ColumnMappings.Add("CP", "CP");
             tableMapping.ColumnMappings.Add("PC", "PC");
             tableMapping.ColumnMappings.Add("VD", "VD");
             tableMapping.ColumnMappings.Add("PE", "PE");
-            tableMapping.ColumnMappings.Add("CP", "CP");
+            tableMapping.ColumnMappings.Add("FechaInicial", "FechaInicial");
+            tableMapping.ColumnMappings.Add("FechaFinal", "FechaFinal");
+            tableMapping.ColumnMappings.Add("UsuarioCons", "UsuarioCons");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1405,8 +1544,7 @@ namespace Cosevi.SIBOAC.GetReportePorDelegacionAutoridadDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=AFARIASRV\\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security I" +
-                "nfo=True;User ID=sa;Password=ADCMovil123";
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PC_HH_AndroidConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
