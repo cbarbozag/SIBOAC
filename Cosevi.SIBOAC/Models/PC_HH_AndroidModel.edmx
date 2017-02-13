@@ -3023,6 +3023,9 @@
           <Property Type="String" Name="VD" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="PE" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="CP" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="FechaInicial" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaFinal" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UsuarioCons" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="GetReporteListadoMultaFijaData_Result">
           <Property Type="String" Name="codigo_delegacion" Nullable="true" MaxLength="4" />
@@ -4651,6 +4654,9 @@
                 <ScalarProperty Name="VD" ColumnName="VD" />
                 <ScalarProperty Name="PE" ColumnName="PE" />
                 <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="UsuarioCons" ColumnName="UsuarioCons" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
