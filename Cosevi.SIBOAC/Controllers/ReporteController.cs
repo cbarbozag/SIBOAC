@@ -53,7 +53,7 @@ namespace Cosevi.SIBOAC.Controllers
                                  .Select(x => new item
                                  {
                                      Id = x.Id,
-                                     Descripcion = x.Identificacion + " - "+ x.Nombre,
+                                     Descripcion = x.Id + " - "+ x.Nombre,
                                      Seleccionado = false
                                  }
                                  );
@@ -627,7 +627,7 @@ namespace Cosevi.SIBOAC.Controllers
                                               .Select(x => new item
                                               {
                                                   Id = x.Id,
-                                                  Descripcion = x.Identificacion + " - "+ x.Nombre,
+                                                  Descripcion = x.Id + " - "+ x.Nombre,
                                                   Seleccionado = true
                                               }
                                             );

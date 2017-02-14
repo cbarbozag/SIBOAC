@@ -52,5 +52,11 @@ namespace Cosevi.SIBOAC.Models
         public string CodigoPlaca { get; set; }
         public string PiePagina { get; set; }
         public string PiePaginaAutoridad { get; set; }
+        public string fuente_parteoficial { get; set; }
+        public string serie_parteoficial { get; set; }
+        public string numeroparte { get; set; }
+        public string codigo_articulo { get; set; }
+        public Nullable<decimal> multa { get; set; }
+        public Nullable<int> puntos { get; set; }
     }
 }
