@@ -521,7 +521,48 @@ namespace Cosevi.SIBOAC.Controllers
 
                     ViewBag.Inspectores = _listaInspector.OrderBy(a => a.Descripcion);
                     break;
-#endregion
+                #endregion
+
+                case "_BitacoraAplicacion":
+
+                    #region "Bitacora de Aplicacion"
+                    var listaSeleccionadosUsuarios2 = ViewBag.UsuariosSeleccionados;
+
+                    var listaUsuarios2 = (from r in dbSecurity.SIBOACUsuarios
+                                         select new
+                                         {
+                                             r.Id,
+                                             r.Usuario,
+                                             r.Nombre
+                                         }).ToList().Distinct()
+                                 .Select(x => new item
+                                 {
+                                     Id = x.Usuario.ToString(),
+                                     Usuario = x.Usuario + " - " + x.Nombre,
+                                 }
+                                 );
+
+                    if (listaSeleccionadosUsuarios2 != null)
+                    {
+                        List<item> _list = new List<item>();
+                        _list = (List<item>)listaSeleccionadosUsuarios2;
+                        List<item> _listUsuarios = listaUsuarios2.ToList();
+                        List<item> _temp = new List<item>();
+
+                        for (int i = 0; i < _listUsuarios.Count(); i++)
+                        {
+                            if (_list.ToArray().Any(a => a.Usuario == _listUsuarios.ElementAt(i).Usuario))
+                            {
+                                _listUsuarios.ElementAt(i).Seleccionado = true;
+                            }
+
+                        }
+                        listaUsuarios2 = _listUsuarios;
+                    }
+
+                    ViewBag.Usuarios = listaUsuarios2.OrderBy(a => a.Descripcion);
+                    break;
+                #endregion
                 default:
                     break;
             }
@@ -1260,5 +1301,63 @@ namespace Cosevi.SIBOAC.Controllers
         }
         #endregion
 
+        #region Bitacora de Aplicacion
+        public ActionResult GetBitacoraAplicacion(string tipoConsulta1, string tipoConsulta2, DateTime ? desde, DateTime ? hasta, [FromUri] string[] listaUsuarios)
+        {
+            string reporteID = "_BitacoraAplicacion";
+            string nombreReporte = "BitacoraAplicacion";
+            string idUsuarios = "";
+            Session["ListaUsuarios"] = listaUsuarios;
+            foreach (var i in listaUsuarios)
+            {
+                idUsuarios += "-" + i + "-|";
+
+            }
+            if (idUsuarios.Length > 0)
+            {
+                idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
+            }
+            var lstaUsuariosSeleccionados = (from r in dbSecurity.SIBOACUsuarios
+                                             where listaUsuarios.Contains(r.Id.ToString())
+                                             select new
+                                             {
+                                                 r.Id,
+                                                 r.Usuario,
+                                                 r.Nombre
+                                             }).ToList().Distinct()
+                                .Select(x => new item
+                                {
+                                    Id = x.Usuario.ToString(),
+                                    Usuario = x.Usuario + " - " + x.Nombre,
+                                }
+                                );
+            ViewBag.UsuariosSeleccionados = lstaUsuariosSeleccionados.ToList();
+            string parametros = String.Format("{0},{1},{2},{3},{4}",tipoConsulta1, tipoConsulta2 , desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), idUsuarios);
+
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
+
+            return View("_BitacoraAplicacion");
+        }
+
+        private List<GetBitacoraDeAplicacion_Result> GetBitacoraAplicacionData(string tipoconsulta1, string tipoconsulta2, DateTime desde, DateTime hasta, string listaUsuarios)
+        {            
+
+            string idUsuarios = "";
+            foreach (var i in listaUsuarios)
+            {
+                idUsuarios += "-" + i + "-|";
+
+            }
+            if (idUsuarios.Length > 0)
+            {
+                idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
+            }
+            var lista = db.GetBitacoraDeAplicacion(tipoconsulta1,tipoconsulta2,desde, hasta, idUsuarios).ToList();
+            return lista;
+        }
+        #endregion
     }
 }

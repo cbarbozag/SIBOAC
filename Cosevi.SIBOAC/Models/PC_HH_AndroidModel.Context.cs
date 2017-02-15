@@ -462,5 +462,30 @@ namespace Cosevi.SIBOAC.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReporteListadoMultaFijaData_Result>("GetReporteListadoMultaFijaData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idInspectoresParameter, idDelegacionesParameter, usuarioSistemaParameter);
         }
+    
+        public virtual ObjectResult<GetBitacoraDeAplicacion_Result> GetBitacoraDeAplicacion(string tipoConsulta1, string tipoConsulta2, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string idUsuario)
+        {
+            var tipoConsulta1Parameter = tipoConsulta1 != null ?
+                new ObjectParameter("TipoConsulta1", tipoConsulta1) :
+                new ObjectParameter("TipoConsulta1", typeof(string));
+    
+            var tipoConsulta2Parameter = tipoConsulta2 != null ?
+                new ObjectParameter("TipoConsulta2", tipoConsulta2) :
+                new ObjectParameter("TipoConsulta2", typeof(string));
+    
+            var fechaInicialParameter = fechaInicial.HasValue ?
+                new ObjectParameter("FechaInicial", fechaInicial) :
+                new ObjectParameter("FechaInicial", typeof(System.DateTime));
+    
+            var fechaFinalParameter = fechaFinal.HasValue ?
+                new ObjectParameter("FechaFinal", fechaFinal) :
+                new ObjectParameter("FechaFinal", typeof(System.DateTime));
+    
+            var idUsuarioParameter = idUsuario != null ?
+                new ObjectParameter("IdUsuario", idUsuario) :
+                new ObjectParameter("IdUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBitacoraDeAplicacion_Result>("GetBitacoraDeAplicacion", tipoConsulta1Parameter, tipoConsulta2Parameter, fechaInicialParameter, fechaFinalParameter, idUsuarioParameter);
+        }
     }
 }

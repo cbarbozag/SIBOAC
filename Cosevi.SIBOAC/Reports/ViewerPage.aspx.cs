@@ -80,6 +80,9 @@ namespace Cosevi.SIBOAC.Reports
                 case "_ActividadOficial":
                     result = GetActividadOficialData(parametros);
                     break;
+                case "_BitacoraAplicacion":
+                    result = GetBitacoraAplicacionData(parametros);
+                    break;
                 default:
                     break;
             }
@@ -216,6 +219,21 @@ namespace Cosevi.SIBOAC.Reports
 
 
             var lista = db.GetReportePorUsuarioData(IdUsuario, fechaInicio, fechaFin,usuarioSistema).ToList();
+            return lista;
+        }
+
+        private List<GetBitacoraDeAplicacion_Result> GetBitacoraAplicacionData(string parametros)
+        {            
+
+            string[] param = parametros.Split(',');
+            string tipoConsulta1 = param[0];
+            string tipoConsulta2 = param[1];
+            DateTime fechaInicio = Convert.ToDateTime(param[2]);
+            DateTime fechaFin = Convert.ToDateTime( param[3]);
+            string IdUsuario = param[4].Replace("|", ",").Replace("-", "").Trim();
+
+
+            var lista = db.GetBitacoraDeAplicacion(tipoConsulta1, tipoConsulta2, fechaInicio, fechaFin, IdUsuario).ToList();
             return lista;
         }
 
