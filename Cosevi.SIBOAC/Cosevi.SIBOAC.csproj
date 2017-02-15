@@ -922,9 +922,6 @@
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
-      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="GetDescargaInspectorDataSet.xsc">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Content>
@@ -935,14 +932,6 @@
     </None>
     <Content Include="GetDescargaInspectorDataSet.xss">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="GetReimpresionDeBoletasDeCampoDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GetReimpresionDeBoletasDeCampoDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xss">
-      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="GetReporteStatusActualPlanoDataSet.xsc">
       <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
@@ -955,6 +944,17 @@
     </Content>
     <Content Include="GetReporteListadoMultaFijaDataSet.xsc">
       <DependentUpon>GetReporteListadoMultaFijaDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
+      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReimpresionDeBoletasDeCampoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReimpresionDeBoletasDeCampoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xss">
+      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReporteListadoMultaFijaDataSet.xsd">
       <SubType>Designer</SubType>

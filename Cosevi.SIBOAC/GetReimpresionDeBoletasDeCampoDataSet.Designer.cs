@@ -285,7 +285,11 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnnumero_boleta;
             
+            private global::System.Data.DataColumn columnfecha_hora_boleta;
+            
             private global::System.Data.DataColumn columncodigo_delegacion;
+            
+            private global::System.Data.DataColumn columnDescripcionDelegacion;
             
             private global::System.Data.DataColumn columncodigo_autoridad_registra;
             
@@ -293,15 +297,23 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columncodrol;
             
+            private global::System.Data.DataColumn columnDescripcionRol;
+            
+            private global::System.Data.DataColumn columnUsuario;
+            
             private global::System.Data.DataColumn columntipo_ide;
             
-            private global::System.Data.DataColumn columntipo_lic;
+            private global::System.Data.DataColumn columnTipoDocumento;
             
             private global::System.Data.DataColumn columnsexo;
             
+            private global::System.Data.DataColumn columnFechaNacimiento;
+            
             private global::System.Data.DataColumn columnsenasDireccion;
             
-            private global::System.Data.DataColumn columnfecha_hora_boleta;
+            private global::System.Data.DataColumn columntipo_lic;
+            
+            private global::System.Data.DataColumn columnIdentificacion;
             
             private global::System.Data.DataColumn columnlugar_hechos;
             
@@ -311,33 +323,19 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columncodveh;
             
-            private global::System.Data.DataColumn columnmarca;
+            private global::System.Data.DataColumn columnDescripcionTipoAutomovil;
             
             private global::System.Data.DataColumn columntipo_carroceria;
+            
+            private global::System.Data.DataColumn columnDescripcionCarroceria;
+            
+            private global::System.Data.DataColumn columnmarca;
+            
+            private global::System.Data.DataColumn columnDescripcionMarca;
             
             private global::System.Data.DataColumn columnRev_Tecnica;
             
             private global::System.Data.DataColumn columncodOficinaImpugnacion;
-            
-            private global::System.Data.DataColumn columnParte_Oficial;
-            
-            private global::System.Data.DataColumn columnDescripcionDelegacion;
-            
-            private global::System.Data.DataColumn columnDescripcionRol;
-            
-            private global::System.Data.DataColumn columnUsuario;
-            
-            private global::System.Data.DataColumn columnTipoDocumento;
-            
-            private global::System.Data.DataColumn columnFechaNacimiento;
-            
-            private global::System.Data.DataColumn columnIdentificacion;
-            
-            private global::System.Data.DataColumn columnDescripcionTipoAutomovil;
-            
-            private global::System.Data.DataColumn columnDescripcionCarroceria;
-            
-            private global::System.Data.DataColumn columnDescripcionMarca;
             
             private global::System.Data.DataColumn columnDescripcionOficinaImpugna;
             
@@ -349,6 +347,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnNombreInspector;
             
+            private global::System.Data.DataColumn columnParte_Oficial;
+            
             private global::System.Data.DataColumn columnClasePlaca;
             
             private global::System.Data.DataColumn columnCodigoPlaca;
@@ -356,6 +356,18 @@ namespace Cosevi.SIBOAC {
             private global::System.Data.DataColumn columnPiePagina;
             
             private global::System.Data.DataColumn columnPiePaginaAutoridad;
+            
+            private global::System.Data.DataColumn columnfuente_parteoficial;
+            
+            private global::System.Data.DataColumn columnserie_parteoficial;
+            
+            private global::System.Data.DataColumn columnnumeroparte;
+            
+            private global::System.Data.DataColumn columncodigo_articulo;
+            
+            private global::System.Data.DataColumn columnmulta;
+            
+            private global::System.Data.DataColumn columnpuntos;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -416,9 +428,25 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fecha_hora_boletaColumn {
+                get {
+                    return this.columnfecha_hora_boleta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn codigo_delegacionColumn {
                 get {
                     return this.columncodigo_delegacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionDelegacionColumn {
+                get {
+                    return this.columnDescripcionDelegacion;
                 }
             }
             
@@ -448,6 +476,22 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionRolColumn {
+                get {
+                    return this.columnDescripcionRol;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioColumn {
+                get {
+                    return this.columnUsuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn tipo_ideColumn {
                 get {
                     return this.columntipo_ide;
@@ -456,9 +500,9 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn tipo_licColumn {
+            public global::System.Data.DataColumn TipoDocumentoColumn {
                 get {
-                    return this.columntipo_lic;
+                    return this.columnTipoDocumento;
                 }
             }
             
@@ -472,6 +516,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaNacimientoColumn {
+                get {
+                    return this.columnFechaNacimiento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn senasDireccionColumn {
                 get {
                     return this.columnsenasDireccion;
@@ -480,9 +532,17 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn fecha_hora_boletaColumn {
+            public global::System.Data.DataColumn tipo_licColumn {
                 get {
-                    return this.columnfecha_hora_boleta;
+                    return this.columntipo_lic;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdentificacionColumn {
+                get {
+                    return this.columnIdentificacion;
                 }
             }
             
@@ -520,9 +580,9 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn marcaColumn {
+            public global::System.Data.DataColumn DescripcionTipoAutomovilColumn {
                 get {
-                    return this.columnmarca;
+                    return this.columnDescripcionTipoAutomovil;
                 }
             }
             
@@ -531,6 +591,30 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn tipo_carroceriaColumn {
                 get {
                     return this.columntipo_carroceria;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionCarroceriaColumn {
+                get {
+                    return this.columnDescripcionCarroceria;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn marcaColumn {
+                get {
+                    return this.columnmarca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionMarcaColumn {
+                get {
+                    return this.columnDescripcionMarca;
                 }
             }
             
@@ -547,86 +631,6 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn codOficinaImpugnacionColumn {
                 get {
                     return this.columncodOficinaImpugnacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Parte_OficialColumn {
-                get {
-                    return this.columnParte_Oficial;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescripcionDelegacionColumn {
-                get {
-                    return this.columnDescripcionDelegacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescripcionRolColumn {
-                get {
-                    return this.columnDescripcionRol;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn UsuarioColumn {
-                get {
-                    return this.columnUsuario;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TipoDocumentoColumn {
-                get {
-                    return this.columnTipoDocumento;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FechaNacimientoColumn {
-                get {
-                    return this.columnFechaNacimiento;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IdentificacionColumn {
-                get {
-                    return this.columnIdentificacion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescripcionTipoAutomovilColumn {
-                get {
-                    return this.columnDescripcionTipoAutomovil;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescripcionCarroceriaColumn {
-                get {
-                    return this.columnDescripcionCarroceria;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DescripcionMarcaColumn {
-                get {
-                    return this.columnDescripcionMarca;
                 }
             }
             
@@ -672,6 +676,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Parte_OficialColumn {
+                get {
+                    return this.columnParte_Oficial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn ClasePlacaColumn {
                 get {
                     return this.columnClasePlaca;
@@ -699,6 +711,54 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn PiePaginaAutoridadColumn {
                 get {
                     return this.columnPiePaginaAutoridad;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fuente_parteoficialColumn {
+                get {
+                    return this.columnfuente_parteoficial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn serie_parteoficialColumn {
+                get {
+                    return this.columnserie_parteoficial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn numeroparteColumn {
+                get {
+                    return this.columnnumeroparte;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn codigo_articuloColumn {
+                get {
+                    return this.columncodigo_articulo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn multaColumn {
+                get {
+                    return this.columnmulta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn puntosColumn {
+                get {
+                    return this.columnpuntos;
                 }
             }
             
@@ -743,95 +803,98 @@ namespace Cosevi.SIBOAC {
                         string fuente, 
                         int serie, 
                         decimal numero_boleta, 
+                        System.DateTime fecha_hora_boleta, 
                         string codigo_delegacion, 
+                        string DescripcionDelegacion, 
                         string codigo_autoridad_registra, 
                         string DescripcionAutoridad, 
                         string codrol, 
+                        string DescripcionRol, 
+                        string Usuario, 
                         string tipo_ide, 
-                        string tipo_lic, 
+                        string TipoDocumento, 
                         string sexo, 
+                        System.DateTime FechaNacimiento, 
                         string senasDireccion, 
-                        System.DateTime fecha_hora_boleta, 
+                        string tipo_lic, 
+                        string Identificacion, 
                         string lugar_hechos, 
                         int kilometro, 
                         string numero_placa, 
                         int codveh, 
-                        string marca, 
+                        string DescripcionTipoAutomovil, 
                         int tipo_carroceria, 
+                        string DescripcionCarroceria, 
+                        string marca, 
+                        string DescripcionMarca, 
                         string Rev_Tecnica, 
                         string codOficinaImpugnacion, 
-                        string Parte_Oficial, 
-                        string DescripcionDelegacion, 
-                        string DescripcionRol, 
-                        string Usuario, 
-                        string TipoDocumento, 
-                        System.DateTime FechaNacimiento, 
-                        string Identificacion, 
-                        string DescripcionTipoAutomovil, 
-                        string DescripcionCarroceria, 
-                        string DescripcionMarca, 
                         string DescripcionOficinaImpugna, 
                         string NivelGases, 
                         int Velocidad, 
                         string CodigoInspector, 
                         string NombreInspector, 
+                        string Parte_Oficial, 
                         string ClasePlaca, 
                         string CodigoPlaca, 
                         string PiePagina, 
-                        string PiePaginaAutoridad) {
+                        string PiePaginaAutoridad, 
+                        string fuente_parteoficial, 
+                        string serie_parteoficial, 
+                        string numeroparte, 
+                        string codigo_articulo, 
+                        decimal multa, 
+                        int puntos) {
                 GetReimpresionDeBoletasDeCampoDataRow rowGetReimpresionDeBoletasDeCampoDataRow = ((GetReimpresionDeBoletasDeCampoDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fuente,
                         serie,
                         numero_boleta,
+                        fecha_hora_boleta,
                         codigo_delegacion,
+                        DescripcionDelegacion,
                         codigo_autoridad_registra,
                         DescripcionAutoridad,
                         codrol,
+                        DescripcionRol,
+                        Usuario,
                         tipo_ide,
-                        tipo_lic,
+                        TipoDocumento,
                         sexo,
+                        FechaNacimiento,
                         senasDireccion,
-                        fecha_hora_boleta,
+                        tipo_lic,
+                        Identificacion,
                         lugar_hechos,
                         kilometro,
                         numero_placa,
                         codveh,
-                        marca,
+                        DescripcionTipoAutomovil,
                         tipo_carroceria,
+                        DescripcionCarroceria,
+                        marca,
+                        DescripcionMarca,
                         Rev_Tecnica,
                         codOficinaImpugnacion,
-                        Parte_Oficial,
-                        DescripcionDelegacion,
-                        DescripcionRol,
-                        Usuario,
-                        TipoDocumento,
-                        FechaNacimiento,
-                        Identificacion,
-                        DescripcionTipoAutomovil,
-                        DescripcionCarroceria,
-                        DescripcionMarca,
                         DescripcionOficinaImpugna,
                         NivelGases,
                         Velocidad,
                         CodigoInspector,
                         NombreInspector,
+                        Parte_Oficial,
                         ClasePlaca,
                         CodigoPlaca,
                         PiePagina,
-                        PiePaginaAutoridad};
+                        PiePaginaAutoridad,
+                        fuente_parteoficial,
+                        serie_parteoficial,
+                        numeroparte,
+                        codigo_articulo,
+                        multa,
+                        puntos};
                 rowGetReimpresionDeBoletasDeCampoDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReimpresionDeBoletasDeCampoDataRow);
                 return rowGetReimpresionDeBoletasDeCampoDataRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetReimpresionDeBoletasDeCampoDataRow FindByfuenteserienumero_boleta(string fuente, int serie, decimal numero_boleta) {
-                return ((GetReimpresionDeBoletasDeCampoDataRow)(this.Rows.Find(new object[] {
-                            fuente,
-                            serie,
-                            numero_boleta})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -854,42 +917,48 @@ namespace Cosevi.SIBOAC {
                 this.columnfuente = base.Columns["fuente"];
                 this.columnserie = base.Columns["serie"];
                 this.columnnumero_boleta = base.Columns["numero_boleta"];
+                this.columnfecha_hora_boleta = base.Columns["fecha_hora_boleta"];
                 this.columncodigo_delegacion = base.Columns["codigo_delegacion"];
+                this.columnDescripcionDelegacion = base.Columns["DescripcionDelegacion"];
                 this.columncodigo_autoridad_registra = base.Columns["codigo_autoridad_registra"];
                 this.columnDescripcionAutoridad = base.Columns["DescripcionAutoridad"];
                 this.columncodrol = base.Columns["codrol"];
+                this.columnDescripcionRol = base.Columns["DescripcionRol"];
+                this.columnUsuario = base.Columns["Usuario"];
                 this.columntipo_ide = base.Columns["tipo_ide"];
-                this.columntipo_lic = base.Columns["tipo_lic"];
+                this.columnTipoDocumento = base.Columns["TipoDocumento"];
                 this.columnsexo = base.Columns["sexo"];
+                this.columnFechaNacimiento = base.Columns["FechaNacimiento"];
                 this.columnsenasDireccion = base.Columns["senasDireccion"];
-                this.columnfecha_hora_boleta = base.Columns["fecha_hora_boleta"];
+                this.columntipo_lic = base.Columns["tipo_lic"];
+                this.columnIdentificacion = base.Columns["Identificacion"];
                 this.columnlugar_hechos = base.Columns["lugar_hechos"];
                 this.columnkilometro = base.Columns["kilometro"];
                 this.columnnumero_placa = base.Columns["numero_placa"];
                 this.columncodveh = base.Columns["codveh"];
-                this.columnmarca = base.Columns["marca"];
+                this.columnDescripcionTipoAutomovil = base.Columns["DescripcionTipoAutomovil"];
                 this.columntipo_carroceria = base.Columns["tipo_carroceria"];
+                this.columnDescripcionCarroceria = base.Columns["DescripcionCarroceria"];
+                this.columnmarca = base.Columns["marca"];
+                this.columnDescripcionMarca = base.Columns["DescripcionMarca"];
                 this.columnRev_Tecnica = base.Columns["Rev_Tecnica"];
                 this.columncodOficinaImpugnacion = base.Columns["codOficinaImpugnacion"];
-                this.columnParte_Oficial = base.Columns["Parte_Oficial"];
-                this.columnDescripcionDelegacion = base.Columns["DescripcionDelegacion"];
-                this.columnDescripcionRol = base.Columns["DescripcionRol"];
-                this.columnUsuario = base.Columns["Usuario"];
-                this.columnTipoDocumento = base.Columns["TipoDocumento"];
-                this.columnFechaNacimiento = base.Columns["FechaNacimiento"];
-                this.columnIdentificacion = base.Columns["Identificacion"];
-                this.columnDescripcionTipoAutomovil = base.Columns["DescripcionTipoAutomovil"];
-                this.columnDescripcionCarroceria = base.Columns["DescripcionCarroceria"];
-                this.columnDescripcionMarca = base.Columns["DescripcionMarca"];
                 this.columnDescripcionOficinaImpugna = base.Columns["DescripcionOficinaImpugna"];
                 this.columnNivelGases = base.Columns["NivelGases"];
                 this.columnVelocidad = base.Columns["Velocidad"];
                 this.columnCodigoInspector = base.Columns["CodigoInspector"];
                 this.columnNombreInspector = base.Columns["NombreInspector"];
+                this.columnParte_Oficial = base.Columns["Parte_Oficial"];
                 this.columnClasePlaca = base.Columns["ClasePlaca"];
                 this.columnCodigoPlaca = base.Columns["CodigoPlaca"];
                 this.columnPiePagina = base.Columns["PiePagina"];
                 this.columnPiePaginaAutoridad = base.Columns["PiePaginaAutoridad"];
+                this.columnfuente_parteoficial = base.Columns["fuente_parteoficial"];
+                this.columnserie_parteoficial = base.Columns["serie_parteoficial"];
+                this.columnnumeroparte = base.Columns["numeroparte"];
+                this.columncodigo_articulo = base.Columns["codigo_articulo"];
+                this.columnmulta = base.Columns["multa"];
+                this.columnpuntos = base.Columns["puntos"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -901,24 +970,36 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnserie);
                 this.columnnumero_boleta = new global::System.Data.DataColumn("numero_boleta", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumero_boleta);
+                this.columnfecha_hora_boleta = new global::System.Data.DataColumn("fecha_hora_boleta", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfecha_hora_boleta);
                 this.columncodigo_delegacion = new global::System.Data.DataColumn("codigo_delegacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodigo_delegacion);
+                this.columnDescripcionDelegacion = new global::System.Data.DataColumn("DescripcionDelegacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionDelegacion);
                 this.columncodigo_autoridad_registra = new global::System.Data.DataColumn("codigo_autoridad_registra", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodigo_autoridad_registra);
                 this.columnDescripcionAutoridad = new global::System.Data.DataColumn("DescripcionAutoridad", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcionAutoridad);
                 this.columncodrol = new global::System.Data.DataColumn("codrol", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodrol);
+                this.columnDescripcionRol = new global::System.Data.DataColumn("DescripcionRol", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionRol);
+                this.columnUsuario = new global::System.Data.DataColumn("Usuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuario);
                 this.columntipo_ide = new global::System.Data.DataColumn("tipo_ide", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntipo_ide);
-                this.columntipo_lic = new global::System.Data.DataColumn("tipo_lic", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntipo_lic);
+                this.columnTipoDocumento = new global::System.Data.DataColumn("TipoDocumento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoDocumento);
                 this.columnsexo = new global::System.Data.DataColumn("sexo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsexo);
+                this.columnFechaNacimiento = new global::System.Data.DataColumn("FechaNacimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaNacimiento);
                 this.columnsenasDireccion = new global::System.Data.DataColumn("senasDireccion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsenasDireccion);
-                this.columnfecha_hora_boleta = new global::System.Data.DataColumn("fecha_hora_boleta", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnfecha_hora_boleta);
+                this.columntipo_lic = new global::System.Data.DataColumn("tipo_lic", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntipo_lic);
+                this.columnIdentificacion = new global::System.Data.DataColumn("Identificacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdentificacion);
                 this.columnlugar_hechos = new global::System.Data.DataColumn("lugar_hechos", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnlugar_hechos);
                 this.columnkilometro = new global::System.Data.DataColumn("kilometro", typeof(int), null, global::System.Data.MappingType.Element);
@@ -927,34 +1008,20 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnnumero_placa);
                 this.columncodveh = new global::System.Data.DataColumn("codveh", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodveh);
-                this.columnmarca = new global::System.Data.DataColumn("marca", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmarca);
+                this.columnDescripcionTipoAutomovil = new global::System.Data.DataColumn("DescripcionTipoAutomovil", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionTipoAutomovil);
                 this.columntipo_carroceria = new global::System.Data.DataColumn("tipo_carroceria", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntipo_carroceria);
+                this.columnDescripcionCarroceria = new global::System.Data.DataColumn("DescripcionCarroceria", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionCarroceria);
+                this.columnmarca = new global::System.Data.DataColumn("marca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmarca);
+                this.columnDescripcionMarca = new global::System.Data.DataColumn("DescripcionMarca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionMarca);
                 this.columnRev_Tecnica = new global::System.Data.DataColumn("Rev_Tecnica", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRev_Tecnica);
                 this.columncodOficinaImpugnacion = new global::System.Data.DataColumn("codOficinaImpugnacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodOficinaImpugnacion);
-                this.columnParte_Oficial = new global::System.Data.DataColumn("Parte_Oficial", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnParte_Oficial);
-                this.columnDescripcionDelegacion = new global::System.Data.DataColumn("DescripcionDelegacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionDelegacion);
-                this.columnDescripcionRol = new global::System.Data.DataColumn("DescripcionRol", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionRol);
-                this.columnUsuario = new global::System.Data.DataColumn("Usuario", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUsuario);
-                this.columnTipoDocumento = new global::System.Data.DataColumn("TipoDocumento", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTipoDocumento);
-                this.columnFechaNacimiento = new global::System.Data.DataColumn("FechaNacimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFechaNacimiento);
-                this.columnIdentificacion = new global::System.Data.DataColumn("Identificacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdentificacion);
-                this.columnDescripcionTipoAutomovil = new global::System.Data.DataColumn("DescripcionTipoAutomovil", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionTipoAutomovil);
-                this.columnDescripcionCarroceria = new global::System.Data.DataColumn("DescripcionCarroceria", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionCarroceria);
-                this.columnDescripcionMarca = new global::System.Data.DataColumn("DescripcionMarca", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionMarca);
                 this.columnDescripcionOficinaImpugna = new global::System.Data.DataColumn("DescripcionOficinaImpugna", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcionOficinaImpugna);
                 this.columnNivelGases = new global::System.Data.DataColumn("NivelGases", typeof(string), null, global::System.Data.MappingType.Element);
@@ -965,6 +1032,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnCodigoInspector);
                 this.columnNombreInspector = new global::System.Data.DataColumn("NombreInspector", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombreInspector);
+                this.columnParte_Oficial = new global::System.Data.DataColumn("Parte_Oficial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnParte_Oficial);
                 this.columnClasePlaca = new global::System.Data.DataColumn("ClasePlaca", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClasePlaca);
                 this.columnCodigoPlaca = new global::System.Data.DataColumn("CodigoPlaca", typeof(string), null, global::System.Data.MappingType.Element);
@@ -973,51 +1042,63 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnPiePagina);
                 this.columnPiePaginaAutoridad = new global::System.Data.DataColumn("PiePaginaAutoridad", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPiePaginaAutoridad);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnfuente,
-                                this.columnserie,
-                                this.columnnumero_boleta}, true));
+                this.columnfuente_parteoficial = new global::System.Data.DataColumn("fuente_parteoficial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfuente_parteoficial);
+                this.columnserie_parteoficial = new global::System.Data.DataColumn("serie_parteoficial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnserie_parteoficial);
+                this.columnnumeroparte = new global::System.Data.DataColumn("numeroparte", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumeroparte);
+                this.columncodigo_articulo = new global::System.Data.DataColumn("codigo_articulo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodigo_articulo);
+                this.columnmulta = new global::System.Data.DataColumn("multa", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmulta);
+                this.columnpuntos = new global::System.Data.DataColumn("puntos", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpuntos);
                 this.columnfuente.AllowDBNull = false;
                 this.columnfuente.MaxLength = 1;
                 this.columnserie.AllowDBNull = false;
                 this.columnnumero_boleta.AllowDBNull = false;
                 this.columncodigo_delegacion.MaxLength = 4;
+                this.columnDescripcionDelegacion.MaxLength = 35;
                 this.columncodigo_autoridad_registra.MaxLength = 5;
                 this.columnDescripcionAutoridad.ReadOnly = true;
                 this.columnDescripcionAutoridad.MaxLength = 35;
                 this.columncodrol.MaxLength = 2;
-                this.columntipo_ide.AllowDBNull = false;
-                this.columntipo_ide.MaxLength = 2;
-                this.columntipo_lic.MaxLength = 2;
-                this.columnsexo.MaxLength = 1;
-                this.columnsenasDireccion.MaxLength = 250;
-                this.columnlugar_hechos.MaxLength = 255;
-                this.columnnumero_placa.MaxLength = 20;
-                this.columnmarca.MaxLength = 6;
-                this.columnRev_Tecnica.ReadOnly = true;
-                this.columnRev_Tecnica.MaxLength = 2;
-                this.columncodOficinaImpugnacion.MaxLength = 2;
-                this.columnParte_Oficial.ReadOnly = true;
-                this.columnParte_Oficial.MaxLength = 11;
-                this.columnDescripcionDelegacion.MaxLength = 35;
                 this.columnDescripcionRol.MaxLength = 50;
                 this.columnUsuario.ReadOnly = true;
                 this.columnUsuario.MaxLength = 72;
+                this.columntipo_ide.AllowDBNull = false;
+                this.columntipo_ide.MaxLength = 2;
                 this.columnTipoDocumento.MaxLength = 40;
+                this.columnsexo.MaxLength = 1;
+                this.columnsenasDireccion.MaxLength = 250;
+                this.columntipo_lic.MaxLength = 2;
                 this.columnIdentificacion.AllowDBNull = false;
                 this.columnIdentificacion.MaxLength = 15;
+                this.columnlugar_hechos.MaxLength = 255;
+                this.columnnumero_placa.MaxLength = 20;
                 this.columnDescripcionTipoAutomovil.MaxLength = 50;
                 this.columnDescripcionCarroceria.MaxLength = 30;
+                this.columnmarca.MaxLength = 6;
                 this.columnDescripcionMarca.MaxLength = 50;
+                this.columnRev_Tecnica.ReadOnly = true;
+                this.columnRev_Tecnica.MaxLength = 2;
+                this.columncodOficinaImpugnacion.MaxLength = 2;
                 this.columnDescripcionOficinaImpugna.MaxLength = 20;
                 this.columnNivelGases.MaxLength = 10;
                 this.columnCodigoInspector.MaxLength = 4;
                 this.columnNombreInspector.MaxLength = 50;
+                this.columnParte_Oficial.ReadOnly = true;
+                this.columnParte_Oficial.MaxLength = 22;
                 this.columnClasePlaca.MaxLength = 3;
                 this.columnCodigoPlaca.MaxLength = 3;
                 this.columnPiePagina.MaxLength = 2200;
                 this.columnPiePaginaAutoridad.ReadOnly = true;
                 this.columnPiePaginaAutoridad.MaxLength = 2200;
+                this.columnfuente_parteoficial.MaxLength = 1;
+                this.columnserie_parteoficial.MaxLength = 4;
+                this.columnnumeroparte.MaxLength = 15;
+                this.columncodigo_articulo.MaxLength = 6;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1193,6 +1274,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime fecha_hora_boleta {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fecha_hora_boleta\' in table \'GetReimpresionDeBoletasDeCampo" +
+                                "Data\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string codigo_delegacion {
                 get {
                     try {
@@ -1205,6 +1303,23 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetReimpresionDeBoletasDeCampoData.codigo_delegacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionDelegacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionDelegacion\' in table \'GetReimpresionDeBoletasDeC" +
+                                "ampoData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn] = value;
                 }
             }
             
@@ -1261,6 +1376,40 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionRol {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionRol\' in table \'GetReimpresionDeBoletasDeCampoDat" +
+                                "a\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Usuario {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Usuario\' in table \'GetReimpresionDeBoletasDeCampoData\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string tipo_ide {
                 get {
                     return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_ideColumn]));
@@ -1272,18 +1421,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string tipo_lic {
+            public string TipoDocumento {
                 get {
                     try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn]));
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tipo_lic\' in table \'GetReimpresionDeBoletasDeCampoData\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TipoDocumento\' in table \'GetReimpresionDeBoletasDeCampoData" +
+                                "\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn] = value;
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn] = value;
                 }
             }
             
@@ -1306,6 +1455,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaNacimiento {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FechaNacimiento\' in table \'GetReimpresionDeBoletasDeCampoDa" +
+                                "ta\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string senasDireccion {
                 get {
                     try {
@@ -1323,18 +1489,29 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime fecha_hora_boleta {
+            public string tipo_lic {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn]));
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fecha_hora_boleta\' in table \'GetReimpresionDeBoletasDeCampo" +
-                                "Data\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'tipo_lic\' in table \'GetReimpresionDeBoletasDeCampoData\' is " +
+                                "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn] = value;
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Identificacion {
+                get {
+                    return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.IdentificacionColumn]));
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.IdentificacionColumn] = value;
                 }
             }
             
@@ -1408,18 +1585,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string marca {
+            public string DescripcionTipoAutomovil {
                 get {
                     try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn]));
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'marca\' in table \'GetReimpresionDeBoletasDeCampoData\' is DBN" +
-                                "ull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionTipoAutomovil\' in table \'GetReimpresionDeBoletas" +
+                                "DeCampoData\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn] = value;
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn] = value;
                 }
             }
             
@@ -1437,6 +1614,57 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_carroceriaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionCarroceria {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionCarroceria\' in table \'GetReimpresionDeBoletasDeC" +
+                                "ampoData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string marca {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'marca\' in table \'GetReimpresionDeBoletasDeCampoData\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionMarca {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionMarca\' in table \'GetReimpresionDeBoletasDeCampoD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn] = value;
                 }
             }
             
@@ -1471,170 +1699,6 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetReimpresionDeBoletasDeCampoData.codOficinaImpugnacionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Parte_Oficial {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Parte_Oficial\' in table \'GetReimpresionDeBoletasDeCampoData" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DescripcionDelegacion {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionDelegacion\' in table \'GetReimpresionDeBoletasDeC" +
-                                "ampoData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DescripcionRol {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionRol\' in table \'GetReimpresionDeBoletasDeCampoDat" +
-                                "a\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Usuario {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Usuario\' in table \'GetReimpresionDeBoletasDeCampoData\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string TipoDocumento {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TipoDocumento\' in table \'GetReimpresionDeBoletasDeCampoData" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FechaNacimiento {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FechaNacimiento\' in table \'GetReimpresionDeBoletasDeCampoDa" +
-                                "ta\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Identificacion {
-                get {
-                    return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.IdentificacionColumn]));
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.IdentificacionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DescripcionTipoAutomovil {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionTipoAutomovil\' in table \'GetReimpresionDeBoletas" +
-                                "DeCampoData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DescripcionCarroceria {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionCarroceria\' in table \'GetReimpresionDeBoletasDeC" +
-                                "ampoData\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string DescripcionMarca {
-                get {
-                    try {
-                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionMarca\' in table \'GetReimpresionDeBoletasDeCampoD" +
-                                "ata\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn] = value;
                 }
             }
             
@@ -1725,6 +1789,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Parte_Oficial {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Parte_Oficial\' in table \'GetReimpresionDeBoletasDeCampoData" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string ClasePlaca {
                 get {
                     try {
@@ -1793,6 +1874,120 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string fuente_parteoficial {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.fuente_parteoficialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fuente_parteoficial\' in table \'GetReimpresionDeBoletasDeCam" +
+                                "poData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.fuente_parteoficialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string serie_parteoficial {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.serie_parteoficialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'serie_parteoficial\' in table \'GetReimpresionDeBoletasDeCamp" +
+                                "oData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.serie_parteoficialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string numeroparte {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.numeroparteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numeroparte\' in table \'GetReimpresionDeBoletasDeCampoData\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.numeroparteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string codigo_articulo {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.codigo_articuloColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'codigo_articulo\' in table \'GetReimpresionDeBoletasDeCampoDa" +
+                                "ta\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.codigo_articuloColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal multa {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableGetReimpresionDeBoletasDeCampoData.multaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'multa\' in table \'GetReimpresionDeBoletasDeCampoData\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.multaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int puntos {
+                get {
+                    try {
+                        return ((int)(this[this.tableGetReimpresionDeBoletasDeCampoData.puntosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'puntos\' in table \'GetReimpresionDeBoletasDeCampoData\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.puntosColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isfecha_hora_boletaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfecha_hora_boletaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Iscodigo_delegacionNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.codigo_delegacionColumn);
             }
@@ -1801,6 +1996,18 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setcodigo_delegacionNull() {
                 this[this.tableGetReimpresionDeBoletasDeCampoData.codigo_delegacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionDelegacionNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionDelegacionNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1841,14 +2048,38 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Istipo_licNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn);
+            public bool IsDescripcionRolNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Settipo_licNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn] = global::System.Convert.DBNull;
+            public void SetDescripcionRolNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoDocumentoNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoDocumentoNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1865,6 +2096,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaNacimientoNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaNacimientoNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IssenasDireccionNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.senasDireccionColumn);
             }
@@ -1877,14 +2120,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isfecha_hora_boletaNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn);
+            public bool Istipo_licNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setfecha_hora_boletaNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn] = global::System.Convert.DBNull;
+            public void Settipo_licNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_licColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1937,14 +2180,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsmarcaNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn);
+            public bool IsDescripcionTipoAutomovilNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetmarcaNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn] = global::System.Convert.DBNull;
+            public void SetDescripcionTipoAutomovilNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1957,6 +2200,42 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Settipo_carroceriaNull() {
                 this[this.tableGetReimpresionDeBoletasDeCampoData.tipo_carroceriaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionCarroceriaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionCarroceriaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsmarcaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetmarcaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.marcaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionMarcaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionMarcaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1981,114 +2260,6 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetcodOficinaImpugnacionNull() {
                 this[this.tableGetReimpresionDeBoletasDeCampoData.codOficinaImpugnacionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsParte_OficialNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetParte_OficialNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDescripcionDelegacionNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDescripcionDelegacionNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionDelegacionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDescripcionRolNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDescripcionRolNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionRolColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsUsuarioNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetUsuarioNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.UsuarioColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTipoDocumentoNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTipoDocumentoNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.TipoDocumentoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFechaNacimientoNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFechaNacimientoNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDescripcionTipoAutomovilNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDescripcionTipoAutomovilNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionTipoAutomovilColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDescripcionCarroceriaNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDescripcionCarroceriaNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionCarroceriaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDescripcionMarcaNull() {
-                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDescripcionMarcaNull() {
-                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionMarcaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2153,6 +2324,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsParte_OficialNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetParte_OficialNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.Parte_OficialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsClasePlacaNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.ClasePlacaColumn);
             }
@@ -2197,6 +2380,78 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPiePaginaAutoridadNull() {
                 this[this.tableGetReimpresionDeBoletasDeCampoData.PiePaginaAutoridadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isfuente_parteoficialNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.fuente_parteoficialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfuente_parteoficialNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.fuente_parteoficialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isserie_parteoficialNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.serie_parteoficialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setserie_parteoficialNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.serie_parteoficialColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsnumeroparteNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.numeroparteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetnumeroparteNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.numeroparteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Iscodigo_articuloNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.codigo_articuloColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setcodigo_articuloNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.codigo_articuloColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsmultaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.multaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetmultaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.multaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspuntosNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.puntosColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpuntosNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.puntosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2362,42 +2617,48 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("fuente", "fuente");
             tableMapping.ColumnMappings.Add("serie", "serie");
             tableMapping.ColumnMappings.Add("numero_boleta", "numero_boleta");
+            tableMapping.ColumnMappings.Add("fecha_hora_boleta", "fecha_hora_boleta");
             tableMapping.ColumnMappings.Add("codigo_delegacion", "codigo_delegacion");
+            tableMapping.ColumnMappings.Add("DescripcionDelegacion", "DescripcionDelegacion");
             tableMapping.ColumnMappings.Add("codigo_autoridad_registra", "codigo_autoridad_registra");
             tableMapping.ColumnMappings.Add("DescripcionAutoridad", "DescripcionAutoridad");
             tableMapping.ColumnMappings.Add("codrol", "codrol");
+            tableMapping.ColumnMappings.Add("DescripcionRol", "DescripcionRol");
+            tableMapping.ColumnMappings.Add("Usuario", "Usuario");
             tableMapping.ColumnMappings.Add("tipo_ide", "tipo_ide");
-            tableMapping.ColumnMappings.Add("tipo_lic", "tipo_lic");
+            tableMapping.ColumnMappings.Add("TipoDocumento", "TipoDocumento");
             tableMapping.ColumnMappings.Add("sexo", "sexo");
+            tableMapping.ColumnMappings.Add("FechaNacimiento", "FechaNacimiento");
             tableMapping.ColumnMappings.Add("senasDireccion", "senasDireccion");
-            tableMapping.ColumnMappings.Add("fecha_hora_boleta", "fecha_hora_boleta");
+            tableMapping.ColumnMappings.Add("tipo_lic", "tipo_lic");
+            tableMapping.ColumnMappings.Add("Identificacion", "Identificacion");
             tableMapping.ColumnMappings.Add("lugar_hechos", "lugar_hechos");
             tableMapping.ColumnMappings.Add("kilometro", "kilometro");
             tableMapping.ColumnMappings.Add("numero_placa", "numero_placa");
             tableMapping.ColumnMappings.Add("codveh", "codveh");
-            tableMapping.ColumnMappings.Add("marca", "marca");
+            tableMapping.ColumnMappings.Add("DescripcionTipoAutomovil", "DescripcionTipoAutomovil");
             tableMapping.ColumnMappings.Add("tipo_carroceria", "tipo_carroceria");
+            tableMapping.ColumnMappings.Add("DescripcionCarroceria", "DescripcionCarroceria");
+            tableMapping.ColumnMappings.Add("marca", "marca");
+            tableMapping.ColumnMappings.Add("DescripcionMarca", "DescripcionMarca");
             tableMapping.ColumnMappings.Add("Rev_Tecnica", "Rev_Tecnica");
             tableMapping.ColumnMappings.Add("codOficinaImpugnacion", "codOficinaImpugnacion");
-            tableMapping.ColumnMappings.Add("Parte_Oficial", "Parte_Oficial");
-            tableMapping.ColumnMappings.Add("DescripcionDelegacion", "DescripcionDelegacion");
-            tableMapping.ColumnMappings.Add("DescripcionRol", "DescripcionRol");
-            tableMapping.ColumnMappings.Add("Usuario", "Usuario");
-            tableMapping.ColumnMappings.Add("TipoDocumento", "TipoDocumento");
-            tableMapping.ColumnMappings.Add("FechaNacimiento", "FechaNacimiento");
-            tableMapping.ColumnMappings.Add("Identificacion", "Identificacion");
-            tableMapping.ColumnMappings.Add("DescripcionTipoAutomovil", "DescripcionTipoAutomovil");
-            tableMapping.ColumnMappings.Add("DescripcionCarroceria", "DescripcionCarroceria");
-            tableMapping.ColumnMappings.Add("DescripcionMarca", "DescripcionMarca");
             tableMapping.ColumnMappings.Add("DescripcionOficinaImpugna", "DescripcionOficinaImpugna");
             tableMapping.ColumnMappings.Add("NivelGases", "NivelGases");
             tableMapping.ColumnMappings.Add("Velocidad", "Velocidad");
             tableMapping.ColumnMappings.Add("CodigoInspector", "CodigoInspector");
             tableMapping.ColumnMappings.Add("NombreInspector", "NombreInspector");
+            tableMapping.ColumnMappings.Add("Parte_Oficial", "Parte_Oficial");
             tableMapping.ColumnMappings.Add("ClasePlaca", "ClasePlaca");
             tableMapping.ColumnMappings.Add("CodigoPlaca", "CodigoPlaca");
             tableMapping.ColumnMappings.Add("PiePagina", "PiePagina");
             tableMapping.ColumnMappings.Add("PiePaginaAutoridad", "PiePaginaAutoridad");
+            tableMapping.ColumnMappings.Add("fuente_parteoficial", "fuente_parteoficial");
+            tableMapping.ColumnMappings.Add("serie_parteoficial", "serie_parteoficial");
+            tableMapping.ColumnMappings.Add("numeroparte", "numeroparte");
+            tableMapping.ColumnMappings.Add("codigo_articulo", "codigo_articulo");
+            tableMapping.ColumnMappings.Add("multa", "multa");
+            tableMapping.ColumnMappings.Add("puntos", "puntos");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

@@ -58,5 +58,6 @@ namespace Cosevi.SIBOAC.Models
         public string codigo_articulo { get; set; }
         public Nullable<decimal> multa { get; set; }
         public Nullable<int> puntos { get; set; }
+        public string descripcion { get; set; }
     }
 }
