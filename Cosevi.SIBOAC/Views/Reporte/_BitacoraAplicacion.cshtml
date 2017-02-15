@@ -1,0 +1,209 @@
+﻿@model IEnumerable <Cosevi.SIBOAC.Models.SIBOACUsuarios>
+@{
+    ViewBag.Title = "_BitacoraAplicacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    function doSearch() {
+        var input = document.getElementById('searchTerm').value.toLowerCase();
+        var output = document.getElementsByClassName('list-group-item');
+
+        for (var i = 0; i < output.length; i++) {
+            if (output[i].text.toLowerCase().indexOf(input) < 0) {
+                output[i].style.display = "none";
+                output[i].setAttribute('style', 'display:none;');
+
+            } else {
+                output[i].style.display = "";
+                output[i].setAttribute('style', 'display:');                
+            }        
+        }
+    }
+</script>
+
+<h2>Reporte de Bítacoras de Consultas en la Aplicación</h2>
+<h4>Filtro</h4>
+<hr />
+@using (Html.BeginForm("GetBitacoraAplicacion", "Reporte", FormMethod.Get))
+{
+    <table border="0">
+        <div class="form-group">
+            <div class="col-md-12 pull-left">
+                <div class="checkbox">
+                    <label>
+                        <input name="tipoConsulta1" id="tipoConsulta1" type="checkbox" value="1" onclick="boxDisable1(datepicker, $(this));">Reporte por fecha: 
+                    </label>
+                </div>
+            </div>
+            <br />
+            <br />
+            @*<input name="tipoConsulta1" id="tipoConsulta1" type="checkbox" value="1" class="control-label"> Reporte por fecha:*@                      
+            <label class="control-label col-md-2">Rango de fechas</label>
+            <div class="col-md-7">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" disabled/>
+                    <span class="input-group-addon">a</span>
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]" disabled/>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 pull-left">
+                        <div class="checkbox">
+                            <label>
+                                <input name="tipoConsulta2" id="tipoConsulta2" type="checkbox" value="1" onclick="boxDisable2($(this));"> Reporte por usuario:
+                            </label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />                                    
+                    <label class="control-label col-md-2">Usuarios</label>
+                    <p>
+                        <input type="text" id="searchTerm" name="searchTerm" onkeyup="doSearch()" placeholder="Buscar..">
+                    </p>
+                    <div class="col-max col-md-6 text-center">
+                        <select name="listaUsuarios" id="listaUsu" class="list-group" data-toggle="items">
+                            @foreach (var item in ViewBag.Usuarios)
+                            {
+                                if (item.Seleccionado == true)
+                                {
+                                    <option value="@item.Id" selected>@item.Usuario</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Usuario</option>
+                                }
+                            }
+
+                        </select>
+                    </div>                    
+                </div>
+                <br />
+                <br />           
+            </div>
+            <br />
+            <br />                       
+            <div class="pull-right">
+                <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+            </div>
+        </div>
+    </table>
+}
+
+<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+@section scripts{    
+
+    <script>
+        $(document).ready(
+        function () {            
+            Calendario();
+            ReportCall();
+            listadesmarcar();
+            //prepararEventos();
+        });
+    </script>
+
+    <script>
+        $("#listaUsuarios").change(function () {
+            var id = $(this).attr('name');
+            var str2 = "";
+            $("#listaUsuarios option:selected").each(function () {
+
+                str2 += "&" + id + "=" + $(this).attr('value');
+            });
+            $("div").text(str2);
+        }).trigger('change');
+
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }
+
+             function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2
+            });
+             };
+
+             function marcarTodosUsuarios() {
+                 var items = document.getElementsByClassName('list-group-item');
+                 for (var i = 0; i < items.length; i++) {
+                     if (!$(items[i]).hasClass('active')) {
+                         $(items[i]).addClass('active')
+                     }
+                 }
+             };
+
+             function limpiarTodosUsuarios() {
+                 var items = document.getElementsByClassName('list-group-item');
+                 for (var i = 0; i < items.length; i++) {
+                     $(items[i]).removeClass('active');
+                 }
+             };
+
+             function boxDisable1(e, t) {
+                 if (t.is(':checked')) {
+                     $(e).find('input').removeAttr('disabled');
+                 } else {
+                     $(e).find('input').attr('disabled', true);
+                 }
+             }
+
+             function listadesmarcar() {
+                 var items = document.getElementsByClassName('list-group-item');
+                 for (var i = 0; i < items.length; i++) {
+                     $(items[i]).removeClass('active');
+                     if (!$(items[i]).hasClass('disabled')) {
+                         $(items[i]).addClass('disabled')
+                     }
+                 }
+             };
+
+             function boxDisable2(t) {
+                 var items = document.getElementsByClassName('list-group-item');
+                 if (t.is(':checked')) {
+                     for (var i = 0; i < items.length; i++) {
+                             $(items[i]).removeClass('disabled');                     
+                     }
+                 } else {
+                     for (var i = 0; i < items.length; i++) {
+                         $(items[i]).removeClass('active');
+                         if (!$(items[i]).hasClass('disabled')) {
+                             $(items[i]).addClass('disabled')
+                         }
+                     }
+                 }
+             }
+                
+             //$("#tipoConsulta2").click(function() {
+             //    var items = document.getElementsByClassName('list-group-item');
+             //    for (var i = 0; i < items.length; i++) {
+             //        $(items[i]).removeClass('disabled');                     
+             //    }
+             //});
+    </script>
+}

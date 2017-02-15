@@ -1199,6 +1199,13 @@
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
           <Parameter Name="Operacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetBitacoraDeAplicacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TipoConsulta1" Type="varchar" Mode="In" />
+          <Parameter Name="TipoConsulta2" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInicial" Type="datetime" Mode="In" />
+          <Parameter Name="FechaFinal" Type="datetime" Mode="In" />
+          <Parameter Name="IdUsuario" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="GetConsultaeImpresionDeBoletasData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaDesde" Type="datetime" Mode="In" />
           <Parameter Name="FechaHasta" Type="datetime" Mode="In" />
@@ -1626,6 +1633,13 @@
             <Parameter Name="idInspectores" Mode="In" Type="String" />
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetBitacoraDeAplicacion" ReturnType="Collection(PC_HH_AndroidModel.GetBitacoraDeAplicacion_Result)">
+            <Parameter Name="TipoConsulta1" Mode="In" Type="String" />
+            <Parameter Name="TipoConsulta2" Mode="In" Type="String" />
+            <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
+            <Parameter Name="IdUsuario" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
@@ -3097,6 +3111,13 @@
           <Property Type="String" Name="PC" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="VD" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="PE" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="GetBitacoraDeAplicacion_Result">
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Modulo" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Accion" Nullable="false" MaxLength="64" />
+          <Property Type="String" Name="Parametros" Nullable="true" MaxLength="500" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4679,6 +4700,17 @@
                 <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
                 <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
                 <ScalarProperty Name="UsuarioCons" ColumnName="UsuarioCons" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBitacoraDeAplicacion" FunctionName="PC_HH_AndroidModel.Store.GetBitacoraDeAplicacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetBitacoraDeAplicacion_Result">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Parametros" ColumnName="Parametros" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
