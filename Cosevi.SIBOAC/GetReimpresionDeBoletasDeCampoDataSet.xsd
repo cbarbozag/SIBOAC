@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetReimpresionDeBoletasDeCampoDataTableAdapter" GeneratorDataComponentClassName="GetReimpresionDeBoletasDeCampoDataTableAdapter" Name="GetReimpresionDeBoletasDeCampoData" UserDataComponentName="GetReimpresionDeBoletasDeCampoDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SIBOACSecurityEntities (Cosevi.SIBOAC)" DbObjectName="PC_HH_Android.dbo.GetReimpresionDeBoletasDeCampoData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="SIBOACSecurityEntities (Cosevi.SIBOAC)" DbObjectName="PC_HH_Android.dbo.GetReimpresionDeBoletasDeCampoData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.GetReimpresionDeBoletasDeCampoData</CommandText>
@@ -69,6 +69,7 @@
               <Mapping SourceColumn="codigo_articulo" DataSetColumn="codigo_articulo" />
               <Mapping SourceColumn="multa" DataSetColumn="multa" />
               <Mapping SourceColumn="puntos" DataSetColumn="puntos" />
+              <Mapping SourceColumn="descripcion" DataSetColumn="descripcion" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -80,7 +81,7 @@
   <xs:element name="GetReimpresionDeBoletasDeCampoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GetReimpresionDeBoletasDeCampoDataSet" msprop:Generator_UserDSName="GetReimpresionDeBoletasDeCampoDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="GetReimpresionDeBoletasDeCampoData" msprop:Generator_TableClassName="GetReimpresionDeBoletasDeCampoDataDataTable" msprop:Generator_TableVarName="tableGetReimpresionDeBoletasDeCampoData" msprop:Generator_TablePropName="GetReimpresionDeBoletasDeCampoData" msprop:Generator_RowDeletingName="GetReimpresionDeBoletasDeCampoDataRowDeleting" msprop:Generator_RowChangingName="GetReimpresionDeBoletasDeCampoDataRowChanging" msprop:Generator_RowEvHandlerName="GetReimpresionDeBoletasDeCampoDataRowChangeEventHandler" msprop:Generator_RowDeletedName="GetReimpresionDeBoletasDeCampoDataRowDeleted" msprop:Generator_UserTableName="GetReimpresionDeBoletasDeCampoData" msprop:Generator_RowChangedName="GetReimpresionDeBoletasDeCampoDataRowChanged" msprop:Generator_RowEvArgName="GetReimpresionDeBoletasDeCampoDataRowChangeEvent" msprop:Generator_RowClassName="GetReimpresionDeBoletasDeCampoDataRow">
+        <xs:element name="GetReimpresionDeBoletasDeCampoData" msprop:Generator_TableClassName="GetReimpresionDeBoletasDeCampoDataDataTable" msprop:Generator_TableVarName="tableGetReimpresionDeBoletasDeCampoData" msprop:Generator_RowChangedName="GetReimpresionDeBoletasDeCampoDataRowChanged" msprop:Generator_TablePropName="GetReimpresionDeBoletasDeCampoData" msprop:Generator_RowDeletingName="GetReimpresionDeBoletasDeCampoDataRowDeleting" msprop:Generator_RowChangingName="GetReimpresionDeBoletasDeCampoDataRowChanging" msprop:Generator_RowEvHandlerName="GetReimpresionDeBoletasDeCampoDataRowChangeEventHandler" msprop:Generator_RowDeletedName="GetReimpresionDeBoletasDeCampoDataRowDeleted" msprop:Generator_RowClassName="GetReimpresionDeBoletasDeCampoDataRow" msprop:Generator_UserTableName="GetReimpresionDeBoletasDeCampoData" msprop:Generator_RowEvArgName="GetReimpresionDeBoletasDeCampoDataRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="fuente" msprop:Generator_ColumnVarNameInTable="columnfuente" msprop:Generator_ColumnPropNameInRow="fuente" msprop:Generator_ColumnPropNameInTable="fuenteColumn" msprop:Generator_UserColumnName="fuente">
@@ -338,6 +339,13 @@
               </xs:element>
               <xs:element name="multa" msprop:Generator_ColumnVarNameInTable="columnmulta" msprop:Generator_ColumnPropNameInRow="multa" msprop:Generator_ColumnPropNameInTable="multaColumn" msprop:Generator_UserColumnName="multa" type="xs:decimal" minOccurs="0" />
               <xs:element name="puntos" msprop:Generator_ColumnVarNameInTable="columnpuntos" msprop:Generator_ColumnPropNameInRow="puntos" msprop:Generator_ColumnPropNameInTable="puntosColumn" msprop:Generator_UserColumnName="puntos" type="xs:int" minOccurs="0" />
+              <xs:element name="descripcion" msprop:Generator_ColumnVarNameInTable="columndescripcion" msprop:Generator_ColumnPropNameInRow="descripcion" msprop:Generator_ColumnPropNameInTable="descripcionColumn" msprop:Generator_UserColumnName="descripcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

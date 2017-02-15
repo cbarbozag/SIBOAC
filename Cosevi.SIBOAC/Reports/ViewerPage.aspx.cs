@@ -4,6 +4,7 @@ using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -31,6 +32,41 @@ namespace Cosevi.SIBOAC.Reports
 
                 ReportViewer1.Reset();
                 ReportViewer1.LocalReport.ReportPath = Server.MapPath(String.Format("~/Reports/{0}.rdlc", nombreReporte));
+            
+                switch (reporteID)
+                {
+                    case "_ReimpresionDeBoletasDeCampo":
+
+                        ReportViewer1.LocalReport.EnableExternalImages = true;
+
+                        string[] param = parametros.Split(',');
+                        int serie = Convert.ToInt32(param[0]);
+                        decimal numero_boleta = Convert.ToDecimal(param[1]);
+
+                        var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
+                        string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
+                        string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
+                        //var path = Server.MapPath(ruta);
+                        var fileUsuario = string.Format("{0}{1}{2}-i.png", CodigoFuente, serie, numero_boleta);
+                        var fileInspector = string.Format("{0}{1}{2}-u.png", CodigoFuente, serie, numero_boleta);
+                        var fullPathUsuario = Path.Combine(ruta, fileUsuario);
+                        var fullPathInspector = Path.Combine(ruta, fileInspector);
+
+                        //Server.MapPath(fullPath)
+                        string imgFirmaUsuarioPath = new Uri(fullPathUsuario).AbsoluteUri;
+                        string imgFirmaInspectorPath = new Uri(fullPathInspector).AbsolutePath;
+
+                        //Array que contendrá los parámetros
+                        ReportParameter[] parameters = new ReportParameter[2];
+                       
+                        //Establecemos el valor de los parámetros
+                        parameters[0] = new ReportParameter("ImagenFirmaUsuarioPath", imgFirmaUsuarioPath);
+                        parameters[1] = new ReportParameter("ImagenFirmaInspectorPath", imgFirmaInspectorPath);
+                        ReportViewer1.LocalReport.SetParameters(parameters);
+                     
+                        break;
+ 
+                }
                 ReportDataSource RDS = new ReportDataSource("DataSet1", GetData(reporteID, parametros));
                 ReportViewer1.LocalReport.DataSources.Add(RDS);
                 ReportViewer1.LocalReport.Refresh();
@@ -79,6 +115,9 @@ namespace Cosevi.SIBOAC.Reports
                     break;
                 case "_ActividadOficial":
                     result = GetActividadOficialData(parametros);
+                    break;
+                case "_ReimpresionDeBoletasDeCampo":
+                    result = GetReimpresionDeBoletasDeCampoData(parametros);
                     break;
                 default:
                     break;
@@ -250,9 +289,21 @@ namespace Cosevi.SIBOAC.Reports
             var lista = db.GetReporteStatusActualPlanoData(statusPlano, FechaDesde, FechaHasta, idAutoridades, idDelegaciones,usuarioSistema).ToList();
             return lista;
         }
-        
+
+        private List<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string parametros)
+        {
+            var usuarioSistema = User.Identity.Name;
+
+            string[] param = parametros.Split(',');
+            string Serie = param[0];
+            string NumeroBoleta = param[1];         
+
+            var lista = db.GetReimpresionDeBoletasDeCampoData(Serie, NumeroBoleta,usuarioSistema).ToList();
+            return lista;
+        }
 
         #endregion
+
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {

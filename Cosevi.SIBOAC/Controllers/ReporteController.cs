@@ -1260,5 +1260,30 @@ namespace Cosevi.SIBOAC.Controllers
         }
         #endregion
 
+        #region "Reimpresion de Boletas de Campo"
+        public ActionResult GetReimpresionDeBoletasDeCampo(string Serie,string NumeroBoleta)
+        {
+            string reporteID = "_ReimpresionDeBoletasDeCampo";
+            string nombreReporte = "ReimpresionDeBoletasDeCampo";
+         
+            string parametros = String.Format("{0},{1}",Serie,NumeroBoleta);
+
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
+
+            return View("_ReimpresionDeBoletasDeCampo");
+        }
+
+        private List<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string Serie, string NumeroBoleta)
+        {
+            var usuarioSistema = User.Identity.Name;          
+            var lista = db.GetReimpresionDeBoletasDeCampoData(Serie,NumeroBoleta,usuarioSistema).ToList();
+
+            return lista;
+        }
+        #endregion
+
     }
 }
