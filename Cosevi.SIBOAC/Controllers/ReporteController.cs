@@ -1332,7 +1332,20 @@ namespace Cosevi.SIBOAC.Controllers
                                 }
                                 );
             ViewBag.UsuariosSeleccionados = lstaUsuariosSeleccionados.ToList();
-            string parametros = String.Format("{0},{1},{2},{3},{4}",tipoConsulta1, tipoConsulta2 , desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), idUsuarios);
+            string parametros = "";
+
+            if (tipoConsulta1 == "1" && tipoConsulta2 == "1")
+            {
+                parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, tipoConsulta2, desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), idUsuarios);
+            }
+            if (tipoConsulta1 == "1" && tipoConsulta2 == null)
+            {
+                parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, "", desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), "");
+            }
+            if (tipoConsulta1 == null && tipoConsulta2 == "1")
+            {
+                parametros = String.Format("{0},{1},{2},{3},{4}", "", tipoConsulta2, "null", "null", idUsuarios);
+            }
 
             ViewBag.ReporteID = reporteID;
             ViewBag.NombreReporte = nombreReporte;
@@ -1355,8 +1368,27 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
             }
-            var lista = db.GetBitacoraDeAplicacion(tipoconsulta1,tipoconsulta2,desde, hasta, idUsuarios).ToList();
-            return lista;
+
+            if (tipoconsulta1 == "1" && tipoconsulta2 == "1")
+            {
+                var lista = db.GetBitacoraDeAplicacion(tipoconsulta1, tipoconsulta2, desde, hasta, idUsuarios).ToList();
+                return lista;
+            }
+
+            if (tipoconsulta1 == "1" && tipoconsulta2 == "")
+            {
+                var lista2 = db.GetBitacoraDeAplicacion(tipoconsulta1, null, desde, hasta, null).ToList();
+                return lista2;
+            }
+
+            if (tipoconsulta1 == "" && tipoconsulta2 == "1")
+            {
+                var lista = db.GetBitacoraDeAplicacion(null, tipoconsulta2, null, null, idUsuarios).ToList();
+                return lista;
+            }
+
+            return null;
+           
         }
         #endregion
     }

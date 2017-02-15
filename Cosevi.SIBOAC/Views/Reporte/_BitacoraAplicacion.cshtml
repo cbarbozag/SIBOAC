@@ -35,7 +35,7 @@
             <div class="col-md-12 pull-left">
                 <div class="checkbox">
                     <label>
-                        <input name="tipoConsulta1" id="tipoConsulta1" type="checkbox" value="1">Reporte por fecha: 
+                        <input name="tipoConsulta1" id="tipoConsulta1" type="checkbox" value="1" onclick="boxDisable1(datepicker, $(this));">Reporte por fecha: 
                     </label>
                 </div>
             </div>
@@ -45,9 +45,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-7">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]"/>
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" disabled/>
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]"/>
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]" disabled/>
                 </div>
             </div>
         </div>
@@ -60,13 +60,12 @@
                     <div class="col-md-12 pull-left">
                         <div class="checkbox">
                             <label>
-                                <input name="tipoConsulta2" id="tipoConsulta2" type="checkbox" value="1"> Reporte por usuario:
+                                <input name="tipoConsulta2" id="tipoConsulta2" type="checkbox" value="1" onclick="boxDisable2($(this));"> Reporte por usuario:
                             </label>
                         </div>
                     </div>
                     <br />
-                    <br />
-                    @*<input name="tipoConsulta1" id="tipoConsulta2" type="checkbox" value="2" class="control-label"> Reporte por usuario:*@                 
+                    <br />                                    
                     <label class="control-label col-md-2">Usuarios</label>
                     <p>
                         <input type="text" id="searchTerm" name="searchTerm" onkeyup="doSearch()" placeholder="Buscar..">
@@ -108,6 +107,7 @@
         function () {            
             Calendario();
             ReportCall();
+            listadesmarcar();
             //prepararEventos();
         });
     </script>
@@ -165,14 +165,45 @@
                  }
              };
 
-             $(function () {
-                 $(checkbox).click(function () {
-                     if ($('#tipoConsulta1').is(':checked')) {
-                         $('#datepicker').find('input').attr('disabled', true);
-                     } else {
-                         $('#datepicker').find('input').removeAttr('disabled');
+             function boxDisable1(e, t) {
+                 if (t.is(':checked')) {
+                     $(e).find('input').removeAttr('disabled');
+                 } else {
+                     $(e).find('input').attr('disabled', true);
+                 }
+             }
+
+             function listadesmarcar() {
+                 var items = document.getElementsByClassName('list-group-item');
+                 for (var i = 0; i < items.length; i++) {
+                     $(items[i]).removeClass('active');
+                     if (!$(items[i]).hasClass('disabled')) {
+                         $(items[i]).addClass('disabled')
                      }
-                 });
-             });
+                 }
+             };
+
+             function boxDisable2(t) {
+                 var items = document.getElementsByClassName('list-group-item');
+                 if (t.is(':checked')) {
+                     for (var i = 0; i < items.length; i++) {
+                             $(items[i]).removeClass('disabled');                     
+                     }
+                 } else {
+                     for (var i = 0; i < items.length; i++) {
+                         $(items[i]).removeClass('active');
+                         if (!$(items[i]).hasClass('disabled')) {
+                             $(items[i]).addClass('disabled')
+                         }
+                     }
+                 }
+             }
+                
+             //$("#tipoConsulta2").click(function() {
+             //    var items = document.getElementsByClassName('list-group-item');
+             //    for (var i = 0; i < items.length; i++) {
+             //        $(items[i]).removeClass('disabled');                     
+             //    }
+             //});
     </script>
 }

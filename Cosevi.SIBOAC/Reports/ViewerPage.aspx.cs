@@ -223,13 +223,25 @@ namespace Cosevi.SIBOAC.Reports
         }
 
         private List<GetBitacoraDeAplicacion_Result> GetBitacoraAplicacionData(string parametros)
-        {            
+        {
+            DateTime fechaInicio = DateTime.Now;
+            DateTime fechaFin = DateTime.Now;
 
             string[] param = parametros.Split(',');
             string tipoConsulta1 = param[0];
             string tipoConsulta2 = param[1];
-            DateTime fechaInicio = Convert.ToDateTime(param[2]);
-            DateTime fechaFin = Convert.ToDateTime( param[3]);
+            
+            if (param[2] != "null")
+            {
+                 fechaInicio = Convert.ToDateTime(param[2]);
+            }            
+            if (param[3] != "null")
+            {
+                fechaFin = Convert.ToDateTime(param[3]);
+            }
+
+            fechaInicio.ToString("dd-MM-yyyy");
+            fechaFin.ToString("dd-MM-yyyy");
             string IdUsuario = param[4].Replace("|", ",").Replace("-", "").Trim();
 
 
