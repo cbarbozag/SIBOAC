@@ -21,6 +21,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
             var list = db.ALINHORI.ToList();
+    
 
             int pageSize = 20;
             int pageNumber = (page ?? 1);
