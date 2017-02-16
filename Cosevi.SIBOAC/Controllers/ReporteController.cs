@@ -1391,7 +1391,7 @@ namespace Cosevi.SIBOAC.Controllers
            
         }
         #endregion
-    }
+    
         #region "Reimpresion de Boletas de Campo"
         public ActionResult GetReimpresionDeBoletasDeCampo(string Serie,string NumeroBoleta)
         {
