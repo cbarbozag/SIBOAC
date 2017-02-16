@@ -791,10 +791,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050.mdf" />
-    <Content Include="App_Data\aspnet-Cosevi.SIBOAC-20161115085050_log.ldf">
-      <DependentUpon>aspnet-Cosevi.SIBOAC-20161115085050.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\DefaultConnection.mdf" />
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
