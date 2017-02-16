@@ -18,20 +18,20 @@ namespace Cosevi.SIBOAC.Models
     {
 
         [DisplayName("Código")]
-        [Required(ErrorMessage = "El c�digo es obligatorio")]
+        [Required(ErrorMessage = "El código es obligatorio")]
         public int Id { get; set; }
 
 
         [DisplayName("Descripción")]
-        [StringLength(30, ErrorMessage = "La descripci�n no debe ser mayor a 30 caracteres")]
-        [Required(ErrorMessage = "La descripci�n es obligatoria")]
+        [StringLength(30, ErrorMessage = "La descripción no debe ser mayor a 30 caracteres")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
 
         [DisplayName("Estado")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         [Required(ErrorMessage = "El estado es obligatorio")]
         public string Estado { get; set; }
-
+        
         [DisplayName("Fecha de inicio")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

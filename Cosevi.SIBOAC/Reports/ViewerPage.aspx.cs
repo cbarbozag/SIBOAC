@@ -4,6 +4,7 @@ using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,7 @@ namespace Cosevi.SIBOAC.Reports
                 ReportViewer1.LocalReport.DataSources.Add(RDS);
                 ReportViewer1.LocalReport.Refresh();
                 btnPrint.Visible = true;
+                ReportViewer1.LocalReport.EnableHyperlinks = true;
 
             }
         }
@@ -201,9 +203,11 @@ namespace Cosevi.SIBOAC.Reports
 
             if (Parametro3 == "null")
             {
+                db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
                 var lista1 = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0","-0").ToList();
                 return lista1;
             }
+            db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
             var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3,Parametro4).ToList();
             return lista;
         }
