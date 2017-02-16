@@ -75,7 +75,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DescripcionDelegacion</rd:DefaultName>
-        <Top>3.43641cm</Top>
+        <Top>3.11891cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.63833cm</Width>
@@ -113,7 +113,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DescripcionAutoridad</rd:DefaultName>
-        <Top>4.10696cm</Top>
+        <Top>3.71891cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.63833cm</Width>
@@ -151,7 +151,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DescripcionRol</rd:DefaultName>
-        <Top>4.77752cm</Top>
+        <Top>4.38947cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.63833cm</Width>
@@ -189,7 +189,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Usuario</rd:DefaultName>
-        <Top>5.37752cm</Top>
+        <Top>5.0953cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.63833cm</Width>
@@ -227,7 +227,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>TipoDocumento</rd:DefaultName>
-        <Top>6.04808cm</Top>
+        <Top>5.6953cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.63833cm</Width>
@@ -265,7 +265,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>sexo</rd:DefaultName>
-        <Top>6.68335cm</Top>
+        <Top>6.2953cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
@@ -303,7 +303,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>FechaNacimiento</rd:DefaultName>
-        <Top>7.24641cm</Top>
+        <Top>6.8953cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.63833cm</Width>
@@ -341,7 +341,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>senasDireccion</rd:DefaultName>
-        <Top>7.91696cm</Top>
+        <Top>7.53058cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>16.25833cm</Width>
@@ -379,7 +379,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>tipo_lic</rd:DefaultName>
-        <Top>8.58752cm</Top>
+        <Top>8.16585cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>10.91375cm</Width>
@@ -417,7 +417,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Identificacion</rd:DefaultName>
-        <Top>9.25808cm</Top>
+        <Top>8.76585cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>16.25833cm</Width>
@@ -455,7 +455,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>lugar_hechos</rd:DefaultName>
-        <Top>9.92863cm</Top>
+        <Top>9.40113cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>16.25833cm</Width>
@@ -493,7 +493,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>kilometro</rd:DefaultName>
-        <Top>10.56391cm</Top>
+        <Top>10.00113cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.34729cm</Width>
@@ -531,7 +531,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>ClasePlaca</rd:DefaultName>
-        <Top>11.19919cm</Top>
+        <Top>10.60113cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>3.79646cm</Width>
@@ -569,7 +569,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DescripcionTipoAutomovil</rd:DefaultName>
-        <Top>11.9403cm</Top>
+        <Top>11.20113cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>13.08333cm</Width>
@@ -607,7 +607,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DescripcionCarroceria</rd:DefaultName>
-        <Top>12.5403cm</Top>
+        <Top>11.83641cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>13.08333cm</Width>
@@ -645,7 +645,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DescripcionMarca</rd:DefaultName>
-        <Top>13.1403cm</Top>
+        <Top>12.43641cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>13.08333cm</Width>
@@ -683,7 +683,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Rev_Tecnica</rd:DefaultName>
-        <Top>13.84613cm</Top>
+        <Top>13.03641cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>6.86562cm</Width>
@@ -721,7 +721,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DescripcionOficinaImpugna</rd:DefaultName>
-        <Top>14.48141cm</Top>
+        <Top>13.63641cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>11.76042cm</Width>
@@ -759,7 +759,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NivelGases</rd:DefaultName>
-        <Top>15.11669cm</Top>
+        <Top>14.27169cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.63833cm</Width>
@@ -797,7 +797,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Velocidad</rd:DefaultName>
-        <Top>15.79245cm</Top>
+        <Top>14.87169cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>8.00333cm</Width>
@@ -816,10 +816,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.46674cm</Width>
+              <Width>2.29716cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>8.61659cm</Width>
+              <Width>9.37347cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>6.76862cm</Width>
@@ -1160,44 +1160,6 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox4">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox4</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>White</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <ColSpan>3</ColSpan>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell />
-                <TablixCell />
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
-              <Height>0.6cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Textbox7">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -1260,16 +1222,15 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>16.79787cm</Top>
+        <Top>15.54224cm</Top>
         <Left>1.0287cm</Left>
-        <Height>3.6cm</Height>
-        <Width>19.85195cm</Width>
+        <Height>3cm</Height>
+        <Width>18.43925cm</Width>
         <ZIndex>22</ZIndex>
         <Style>
           <Border>
@@ -1278,7 +1239,7 @@
         </Style>
       </Tablix>
       <Line Name="Line1">
-        <Top>23.19644cm</Top>
+        <Top>20.65644cm</Top>
         <Left>1.0287cm</Left>
         <Height>0cm</Height>
         <Width>4.75592cm</Width>
@@ -1290,8 +1251,8 @@
         </Style>
       </Line>
       <Line Name="Line2">
-        <Top>23.19644cm</Top>
-        <Left>14.71203cm</Left>
+        <Top>20.65644cm</Top>
+        <Left>12.17184cm</Left>
         <Height>0cm</Height>
         <Width>4.75592cm</Width>
         <ZIndex>24</ZIndex>
@@ -1316,7 +1277,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>23.37282cm</Top>
+        <Top>20.83282cm</Top>
         <Left>1.0287cm</Left>
         <Height>0.6cm</Height>
         <Width>4.86021cm</Width>
@@ -1346,8 +1307,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>23.37282cm</Top>
-        <Left>14.71203cm</Left>
+        <Top>20.83282cm</Top>
+        <Left>12.17184cm</Left>
         <Height>0.6cm</Height>
         <Width>3.30056cm</Width>
         <ZIndex>26</ZIndex>
@@ -1376,8 +1337,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CodigoInspector</rd:DefaultName>
-        <Top>23.37282cm</Top>
-        <Left>18.01259cm</Left>
+        <Top>20.83282cm</Top>
+        <Left>15.54296cm</Left>
         <Height>0.6cm</Height>
         <Width>1.45536cm</Width>
         <ZIndex>27</ZIndex>
@@ -1406,8 +1367,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NombreInspector</rd:DefaultName>
-        <Top>24.07866cm</Top>
-        <Left>14.71203cm</Left>
+        <Top>21.43282cm</Top>
+        <Left>12.17184cm</Left>
         <Height>0.6cm</Height>
         <Width>7.51316cm</Width>
         <ZIndex>28</ZIndex>
@@ -1422,10 +1383,10 @@
         </Style>
       </Textbox>
       <Line Name="Line3">
-        <Top>25.2017cm</Top>
-        <Left>1.0287cm</Left>
+        <Top>22.31774cm</Top>
+        <Left>0.44662cm</Left>
         <Height>0cm</Height>
-        <Width>21.19649cm</Width>
+        <Width>19.85195cm</Width>
         <ZIndex>29</ZIndex>
         <Style>
           <Border>
@@ -1435,14 +1396,16 @@
       </Line>
       <Textbox Name="PiePagina">
         <CanGrow>true</CanGrow>
+        <CanShrink>true</CanShrink>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!PiePagina.Value, "DataSet1")</Value>
+                <Value>=First(Fields!PiePagina.Value).ToString().Replace("@",Chr(10))</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
+                  <Format>E2</Format>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -1450,10 +1413,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PiePagina</rd:DefaultName>
-        <Top>25.37809cm</Top>
-        <Left>1.0287cm</Left>
+        <Top>22.45885cm</Top>
+        <Left>0.44662cm</Left>
         <Height>1.82544cm</Height>
-        <Width>21.19649cm</Width>
+        <Width>19.85195cm</Width>
         <ZIndex>30</ZIndex>
         <Style>
           <Border>
@@ -1467,12 +1430,13 @@
       </Textbox>
       <Textbox Name="PiePaginaAutoridad">
         <CanGrow>true</CanGrow>
+        <CanShrink>true</CanShrink>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!PiePaginaAutoridad.Value, "DataSet1")</Value>
+                <Value>=First(Fields!PiePaginaAutoridad.Value).ToString().Replace("@",Chr(10))</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                 </Style>
@@ -1482,10 +1446,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PiePaginaAutoridad</rd:DefaultName>
-        <Top>27.34464cm</Top>
-        <Left>1.0287cm</Left>
+        <Top>24.4254cm</Top>
+        <Left>0.44662cm</Left>
         <Height>1.85329cm</Height>
-        <Width>21.19649cm</Width>
+        <Width>19.85195cm</Width>
         <ZIndex>31</ZIndex>
         <Style>
           <Border>
@@ -1500,7 +1464,7 @@
       <Image Name="ImgFirmaUsuario">
         <Source>External</Source>
         <Value>=Parameters!ImagenFirmaUsuarioPath.Value</Value>
-        <Top>21.37516cm</Top>
+        <Top>18.83516cm</Top>
         <Left>1.0287cm</Left>
         <Height>1.5cm</Height>
         <Width>5.86562cm</Width>
@@ -1515,8 +1479,8 @@
       <Image Name="ImgFirmaInspector">
         <Source>External</Source>
         <Value>=Parameters!ImagenFirmaInspectorPath.Value</Value>
-        <Top>21.37516cm</Top>
-        <Left>14.11203cm</Left>
+        <Top>18.83516cm</Top>
+        <Left>12.17184cm</Left>
         <Height>1.5cm</Height>
         <Width>6.60646cm</Width>
         <ZIndex>33</ZIndex>
@@ -1527,17 +1491,17 @@
         </Style>
       </Image>
     </ReportItems>
-    <Height>11.63647in</Height>
+    <Height>10.45939in</Height>
     <Style />
   </Body>
-  <Width>9.11458in</Width>
+  <Width>8.30216in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
+    <TopMargin>1cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
