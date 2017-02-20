@@ -50,8 +50,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="input-daterange input-group" id="datepicker" name="fecha1">
+            <div class="col-md-2">
+                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     @Html.EditorFor(model => model.FechaDeInicio, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.FechaDeInicio, "", new { @class = "text-danger" })
                 </div>
@@ -60,8 +60,8 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeFin, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="input-daterange input-group" id="datepicker">
+            <div class="col-md-2">
+                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     @Html.EditorFor(model => model.FechaDeFin, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.FechaDeFin, "", new { @class = "text-danger" })
                 </div>
@@ -91,10 +91,12 @@
 
     <script>       
         function Calendario() {
-            $('.input-daterange').datepicker({
-                startView: 2,
+            $('.input-group.date').datepicker({
+                startView: 2,                                
                 autoclose: true,
+                orientation: 'bottom auto',
                 todayHighlight: true,
+                todayBtn: true,                
                 format: 'dd/mm/yyyy'
             });
         };
