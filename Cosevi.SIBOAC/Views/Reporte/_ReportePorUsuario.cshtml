@@ -129,11 +129,22 @@
             return false;
         }
 
-             function Calendario() {
+        function Calendario() {
+            //$.fn.datepicker.defaults.format = "dd/mm/yyyy";
             $('.input-daterange').datepicker({
-                startView: 2
+                startView: 2,
+                autoclose: true,
+                orientation: 'bottom auto',
+                todayHighlight: true,
+                todayBtn: true               
+                //format: 'dd/mm/yyyy' desde
             });
-             };
+        };
+        //function cale2() {
+        //    $("#desde").datepicker({
+        //        format: 'dd/mm/yyyy'
+        //    });
+        //};
 
              function marcarTodosUsuarios() {
                  var items = document.getElementsByClassName('list-group-item');

@@ -178,7 +178,7 @@ namespace Cosevi.SIBOAC.Controllers
                                          }).ToList().Distinct()
                                  .Select(x => new item
                                  {
-                                     Id = x.Id.ToString(),
+                                     Id = x.Usuario.ToString(),
                                      Usuario = x.Usuario + " - " + x.Nombre,
                                  }
                                  );
@@ -192,7 +192,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                         for (int i = 0; i < _listUsuarios.Count(); i++)
                         {
-                            if (_list.ToArray().Any(a => a.Id == _listUsuarios.ElementAt(i).Id))
+                            if (_list.ToArray().Any(a => a.Usuario == _listUsuarios.ElementAt(i).Usuario))
                             {
                                 _listUsuarios.ElementAt(i).Seleccionado = true;
                             }
@@ -1073,7 +1073,7 @@ namespace Cosevi.SIBOAC.Controllers
                                  }).ToList().Distinct()
                                 .Select(x => new item
                                 {
-                                    Id = x.Id.ToString(),
+                                    Id = x.Usuario.ToString(),
                                     Usuario = x.Usuario + " - " + x.Nombre,
                                 }
                                 );

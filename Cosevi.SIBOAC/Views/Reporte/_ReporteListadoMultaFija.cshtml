@@ -239,7 +239,11 @@
                 }
                 function Calendario() {
                     $('.input-daterange').datepicker({
-                        startView: 2
+                        startView: 2,
+                        autoclose: true,
+                        orientation: 'bottom auto',
+                        todayHighlight: true,
+                        todayBtn: true
                     });
                 };           
        </script>
