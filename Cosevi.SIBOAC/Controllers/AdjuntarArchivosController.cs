@@ -149,6 +149,28 @@ namespace Cosevi.SIBOAC.Controllers
                         }
 
                         string ext = Path.GetExtension(nombreArchivo).Replace(".", "");
+
+                        //Valida si la extension es permitida
+                        string[] allowFileTypes = ConfigurationManager.AppSettings["AllowFileTypes"].Split(',');
+                        bool isAllowExt = false;
+
+                        foreach (var item in allowFileTypes)
+                        {
+                            if (String.Compare(item, ext, true) == 0)
+                            {
+                                isAllowExt = true;
+                                break;
+                            }
+                        }
+
+                        if (!isAllowExt)
+                        {
+                            TempData["Type"] = "warning";
+                            TempData["Message"] = "Extensión no válida.";
+
+                            return Json(new { result = false, msg = "Extensión no válida." });
+                        }
+
                         int? maxValue = db.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
 
@@ -177,16 +199,23 @@ namespace Cosevi.SIBOAC.Controllers
                         db.SaveChanges();
                     }
 
-                    return Json("Archivo adjuntado exitosamente!");
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "Archivo adjuntado exitosamente!";
+
+                    return Json(new { result = true, msg = "Archivo adjuntado exitosamente!" });
                 }
                 catch (Exception ex)
                 {
-                    return Json("Ocurrió un error. Detalles: " + ex.Message);
+                    TempData["Type"] = "error";
+                    TempData["Message"] = "Ocurrió un error. Detalles: " + ex.Message;
+                    return Json(new { result = false, msg = "Ocurrió un error. Detalles: " + ex.Message });
                 }
             }
             else
             {
-                return Json("No hay archivo seleccionado.");
+                TempData["Type"] = "warning";
+                TempData["Message"] = "No hay archivo seleccionado.";
+                return Json(new { result = false, msg = "No hay archivo seleccionado." });
             }
         }
 
