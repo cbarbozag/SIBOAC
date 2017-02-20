@@ -1037,7 +1037,6 @@
     <Content Include="PC_HH_AndroidDataSet.xss">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\CoseviSIBOAC20161115084840.pubxml" />
     <Content Include="Reports\rptBitacora.rdlc">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1654,6 +1653,7 @@
     <Content Include="Views\Reporte\_BitacoraAplicacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Index\" />
     <Folder Include="Views\Usuarios\" />
   </ItemGroup>
