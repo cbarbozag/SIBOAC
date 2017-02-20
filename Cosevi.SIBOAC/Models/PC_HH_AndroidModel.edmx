@@ -2968,6 +2968,13 @@
           <Property Type="String" Name="CodigoPlaca" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="PiePagina" Nullable="true" MaxLength="2200" />
           <Property Type="String" Name="PiePaginaAutoridad" Nullable="true" MaxLength="2200" />
+          <Property Type="String" Name="fuente_parteoficial" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="serie_parteoficial" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="codigo_articulo" Nullable="true" MaxLength="6" />
+          <Property Type="Decimal" Name="multa" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="puntos" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
         </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result1">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
@@ -4529,6 +4536,13 @@
                 <ScalarProperty Name="CodigoPlaca" ColumnName="CodigoPlaca" />
                 <ScalarProperty Name="PiePagina" ColumnName="PiePagina" />
                 <ScalarProperty Name="PiePaginaAutoridad" ColumnName="PiePaginaAutoridad" />
+                <ScalarProperty Name="fuente_parteoficial" ColumnName="fuente_parteoficial" />
+                <ScalarProperty Name="serie_parteoficial" ColumnName="serie_parteoficial" />
+                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
+                <ScalarProperty Name="codigo_articulo" ColumnName="codigo_articulo" />
+                <ScalarProperty Name="multa" ColumnName="multa" />
+                <ScalarProperty Name="puntos" ColumnName="puntos" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

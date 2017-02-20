@@ -405,6 +405,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ImagenesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImagenesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActividadOficial.cs" />
     <Compile Include="Models\AlineacionHorizontal.cs">
@@ -937,9 +942,6 @@
     <Content Include="PC_HH_AndroidDataSet.xsc">
       <DependentUpon>PC_HH_AndroidDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
-      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
-    </Content>
     <Content Include="GetDescargaInspectorDataSet.xsc">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
     </Content>
@@ -950,14 +952,6 @@
     </None>
     <Content Include="GetDescargaInspectorDataSet.xss">
       <DependentUpon>GetDescargaInspectorDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="GetReimpresionDeBoletasDeCampoDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GetReimpresionDeBoletasDeCampoDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xss">
-      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="GetReporteStatusActualPlanoDataSet.xsc">
       <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
@@ -970,6 +964,17 @@
     </Content>
     <Content Include="GetReporteListadoMultaFijaDataSet.xsc">
       <DependentUpon>GetReporteListadoMultaFijaDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xsc">
+      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="GetReimpresionDeBoletasDeCampoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GetReimpresionDeBoletasDeCampoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xss">
+      <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReporteListadoMultaFijaDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1013,6 +1018,17 @@
     </None>
     <Content Include="GetReporteStatusActualPlanoDataSet.xss">
       <DependentUpon>GetReporteStatusActualPlanoDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="ImagenesDataSet.xsc">
+      <DependentUpon>ImagenesDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ImagenesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImagenesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ImagenesDataSet.xss">
+      <DependentUpon>ImagenesDataSet.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1634,6 +1650,7 @@
     <Content Include="Views\Reporte\_ReporteListadoParteOficial.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordConfirmation.cshtml" />
+    <Content Include="Views\Reporte\_ReimpresionDeBoletasDeCampo.cshtml" />
     <Content Include="Views\Reporte\_BitacoraAplicacion.cshtml" />
   </ItemGroup>
   <ItemGroup>

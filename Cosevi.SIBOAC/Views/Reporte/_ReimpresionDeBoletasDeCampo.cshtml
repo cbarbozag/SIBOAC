@@ -1,0 +1,58 @@
+﻿<h2>Reimpresión de Boletas de Campo</h2>
+<h4>Filtro</h4>
+<hr />
+@using (Html.BeginForm("GetReimpresionDeBoletasDeCampo", "Reporte", FormMethod.Get))
+{
+
+    <div class="form-group">
+        <label class="control-label col-md-2"> Serie:</label>
+        <div class="col-md-10">
+            <input type="text" name="Serie"  class = "form-control" value="@Request.Params["Serie"]" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"> Numero Boleta:</label>
+        <div class="col-md-10">
+            <input type="text" name="NumeroBoleta" class="form-control" value="@Request.Params["NumeroBoleta"]" />
+        </div>
+    </div>
+    <br />
+    <br />     
+
+<div class="pull-right">
+<input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+</div>
+}
+
+<iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
+@section scripts
+    {
+    <script>
+        $(document).ready(
+        function () {          
+            ReportCall();
+        });
+    </script>
+
+    <script>
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }    
+    </script>
+}

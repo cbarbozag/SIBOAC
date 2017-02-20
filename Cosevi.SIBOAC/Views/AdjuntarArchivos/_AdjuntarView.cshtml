@@ -156,8 +156,14 @@
                     contentType: false, // Not to set any content header
                     processData: false, // Not to process data
                     data: fileData,
-                    success: function (result) {
-                        location.reload(true);
+                    success: function (resultData) {
+                        //if (resultData.result) {
+                            location.reload(true);
+                        //}
+                        //else {
+                        //    alert(resultData.msg);
+                        //}
+                        
                     },
                     error: function (err) {
                         alert(err.statusText);
