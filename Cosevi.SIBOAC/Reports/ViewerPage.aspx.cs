@@ -54,7 +54,7 @@ namespace Cosevi.SIBOAC.Reports
 
                         //Server.MapPath(fullPath)
                         string imgFirmaUsuarioPath = new Uri(fullPathUsuario).AbsoluteUri;
-                        string imgFirmaInspectorPath = new Uri(fullPathInspector).AbsolutePath;
+                        string imgFirmaInspectorPath = new Uri(fullPathInspector).AbsoluteUri;
 
                         //Array que contendrá los parámetros
                         ReportParameter[] parameters = new ReportParameter[2];
