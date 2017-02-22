@@ -5,21 +5,23 @@
 {
 
     <div class="form-group">
-        <label class="control-label col-md-2"> Serie:</label>
-        <div class="col-md-10">
+        <label class="control-label col-md-1"> Serie:</label>
+        <div class="col-md-4">
             <input type="text" name="Serie"  class = "form-control" value="@Request.Params["Serie"]" />
         </div>
     </div>
+    <br/>
+    <br />
     <div class="form-group">
-        <label class="control-label col-md-2"> Numero Boleta:</label>
-        <div class="col-md-10">
+        <label class="control-label col-md-1"> Numero Boleta:</label>
+        <div class="col-md-4">
             <input type="text" name="NumeroBoleta" class="form-control" value="@Request.Params["NumeroBoleta"]" />
         </div>
     </div>
     <br />
-    <br />     
-
-<div class="pull-right">
+    <br />
+    <br /><br />
+<div class="pull-right col-md-5">
 <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
 </div>
 }

@@ -35,14 +35,14 @@ namespace Cosevi.SIBOAC.Models
         [StringLength(2, ErrorMessage = "La conducta no debe ser mayor a 2 caracteres")]
         public string Conducta { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public System.DateTime FechaDeInicio { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de fin")]
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public System.DateTime FechaDeFin { get; set; }

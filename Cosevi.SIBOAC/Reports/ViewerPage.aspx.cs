@@ -47,8 +47,8 @@ namespace Cosevi.SIBOAC.Reports
                         string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
                         //var path = Server.MapPath(ruta);
-                        var fileUsuario = string.Format("{0}{1}{2}-i.png", CodigoFuente, serie, numero_boleta);
-                        var fileInspector = string.Format("{0}{1}{2}-u.png", CodigoFuente, serie, numero_boleta);
+                        var fileUsuario = string.Format("{0}{1}{2}-u.png", CodigoFuente, serie, numero_boleta);
+                        var fileInspector = string.Format("{0}{1}{2}-i.png", CodigoFuente, serie, numero_boleta);
                         var fullPathUsuario = Path.Combine(ruta, fileUsuario);
                         var fullPathInspector = Path.Combine(ruta, fileInspector);
 

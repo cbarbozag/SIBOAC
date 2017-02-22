@@ -46,11 +46,15 @@ namespace Cosevi.SIBOAC.Controllers
 
                 ViewBag.Adjuntos = adjuntos;
 
+                bool exist = this.db.BOLETA.Any(x => x.serie_parteoficial == seriet && x.numeroparte == NumeroParteT);
+
+                if (exist) { 
+
                 var list =
                   (
                      from p in db.PARTEOFICIAL
-                     join b in db.BOLETA on new { fuente_parteoficial = p.Fuente, serie_parteoficial = p.Serie, numeroparte = p.NumeroParte } equals new { fuente_parteoficial = b.fuente_parteoficial, serie_parteoficial = b.serie_parteoficial, numeroparte = b.numeroparte } into o_join
                      where p.Serie == seriet && p.NumeroParte == NumeroParteT
+                     join b in db.BOLETA on new { fuente_parteoficial = p.Fuente, serie_parteoficial = p.Serie, numeroparte = p.NumeroParte } equals new { fuente_parteoficial = b.fuente_parteoficial, serie_parteoficial = b.serie_parteoficial, numeroparte = b.numeroparte } into o_join
                      from b in o_join.DefaultIfEmpty()
                      join a in db.AUTORIDAD on new { codigo = b.codigo_autoridad_registra } equals new { codigo = a.Id } into ba_join
                      from a in ba_join.DefaultIfEmpty()
@@ -85,13 +89,13 @@ namespace Cosevi.SIBOAC.Controllers
                       DescripcionRol = x.DescripcionRol
 
                   });
+              
 
                 //Sí no trae datos es porque no existe 
                 if (list.Count() == 0 || list.FirstOrDefault() == null)
                 {
                     _tipoMensaje = "error";
-                    _mensaje = "No se encontró información para el Parte Oficial " + NumeroParteT + " " + seriet;
-
+                    _mensaje = "No se encontró información para el Parte Oficial " + NumeroParteT + " " + seriet;                        
                 }
                 if (list.Count() > 0)
                 {
@@ -102,6 +106,13 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.Valor = list;
                         return View();
                     }
+
+                }
+                }
+                else
+                { 
+                    _tipoMensaje = "error";
+                    _mensaje = "No se encontró boletas asociadas al Parte Oficial " + NumeroParteT + " " + seriet;
 
                 }
             }
