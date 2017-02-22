@@ -11,13 +11,23 @@ namespace Cosevi.SIBOAC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ARTICULOXBOLETA
     {
         public string codigo_articulo { get; set; }
         public string conducta { get; set; }
+
+        [DisplayName("Fecha de Inicio")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Fecha_Inicio { get; set; }
+
+        [DisplayName("Fecha de Fin")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Fecha_Final { get; set; }
+
+
         public string fuente { get; set; }
         public int serie { get; set; }
         public decimal numero_boleta { get; set; }
