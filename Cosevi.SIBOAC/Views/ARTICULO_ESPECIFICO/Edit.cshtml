@@ -378,15 +378,19 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_inicio, "Fecha inicial", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select id="FechaDeInicio" name="fecha_inicio" class="form-control"> <option value="0">Seleccione...</option> </select>
+            <div class="col-md-2">
+                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <select id="FechaDeInicio" name="fecha_inicio" class="form-control"> <option value="0">Seleccione...</option> </select>
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_final, "Fecha final", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select id="FechaDeFin" name="fecha_final" class="form-control"> <option value="0">Seleccione...</option> </select>
+            <div class="col-md-2">
+                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <select id="FechaDeFin" name="fecha_final" class="form-control"> <option value="0">Seleccione...</option> </select>
+                </div>
             </div>
         </div>
 
@@ -440,7 +444,27 @@
                 @Html.ActionLink("Regresar a la lista", "Index")
             </div>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
+<script>
+        $(document).ready(
+        function () {
+            Calendario();
+        });
+</script>
+
+<script>
+
+        function Calendario() {
+            $('.input-group.date').datepicker({
+                startView: 2,
+                autoclose: true,
+                orientation: 'bottom auto',
+                todayHighlight: true,
+                todayBtn: true,
+                format: 'dd/mm/yyyy'
+            });
+        };
+</script>
             }

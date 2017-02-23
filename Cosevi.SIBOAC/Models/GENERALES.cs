@@ -70,13 +70,13 @@ namespace Cosevi.SIBOAC.Models
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
         public string estado { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
         public Nullable<System.DateTime> fecha_inicio { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de Fin")]
         public Nullable<System.DateTime> fecha_fin { get; set; }
 

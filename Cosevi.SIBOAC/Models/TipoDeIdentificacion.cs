@@ -30,15 +30,15 @@ namespace Cosevi.SIBOAC.Models
         [StringLength(4, ErrorMessage = "El índice no debe ser mayor a 4 caracteres")]
         public string Indice { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public Nullable<System.DateTime> FechaDeInicio { get; set; }
 
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de fin")]
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public Nullable<System.DateTime> FechaDeFin { get; set; }

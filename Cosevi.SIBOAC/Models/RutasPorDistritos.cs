@@ -34,14 +34,14 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
 
         [DisplayName("Fecha de inicio")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
         public System.DateTime FechaDeInicio { get; set; }
 
         [DisplayName("Fecha de fin")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
         public System.DateTime FechaDeFin { get; set; }
 
