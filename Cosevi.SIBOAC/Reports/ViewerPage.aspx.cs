@@ -32,11 +32,11 @@ namespace Cosevi.SIBOAC.Reports
 
                 ReportViewer1.Reset();
                 ReportViewer1.LocalReport.ReportPath = Server.MapPath(String.Format("~/Reports/{0}.rdlc", nombreReporte));
-            
+
                 switch (reporteID)
                 {
                     case "_ReimpresionDeBoletasDeCampo":
-
+                        #region ReimpresionDeBoletasDeCampo
                         ReportViewer1.LocalReport.EnableExternalImages = true;
 
                         string[] param = parametros.Split(',');
@@ -58,14 +58,197 @@ namespace Cosevi.SIBOAC.Reports
 
                         //Array que contendrá los parámetros
                         ReportParameter[] parameters = new ReportParameter[2];
-                       
+
                         //Establecemos el valor de los parámetros
                         parameters[0] = new ReportParameter("ImagenFirmaUsuarioPath", imgFirmaUsuarioPath);
                         parameters[1] = new ReportParameter("ImagenFirmaInspectorPath", imgFirmaInspectorPath);
                         ReportViewer1.LocalReport.SetParameters(parameters);
-                     
+                        #endregion
                         break;
- 
+                                            
+                    case "_ConsultaeImpresionDeParteOficial":
+                        #region ConsultaeImpresionDeParteOficial
+                        ReportViewer1.LocalReport.EnableExternalImages = true;
+
+                        string[] param2 = parametros.Split(',');
+                        int TipoConsulta = Convert.ToInt32(param2[0]);
+                        string Parametro1 = param2[1];
+                        string Parametro2 = param2[2];
+                        string Parametro3 = param2[3];
+                        string Parametro4 = param2[4];
+
+                        if (TipoConsulta == 1)
+                        {
+                            int serieParte1 = Convert.ToInt32(Parametro1);
+                            decimal numeroParte1 = Convert.ToDecimal(Parametro2);
+
+                            var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
+                            string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
+
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1).Select(oa => oa.extension);
+                            string CodigoExt1 = ext1.ToArray().FirstOrDefault() == null ? "0" : ext1.ToArray().FirstOrDefault().ToString();
+
+                            var conse1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1).Select(oa => oa.consecutivo_extension);
+                            string CodigoConse1 = conse1.ToArray().FirstOrDefault() == null ? "0" : conse1.ToArray().FirstOrDefault().ToString();
+
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //var path = Server.MapPath(ruta);
+                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente1, Parametro1, Parametro2, CodigoConse1, CodigoExt1);
+                            var fullPathArchvo = Path.Combine(ruta1, fileArchivo);                            
+
+                            //Server.MapPath(fullPath)
+                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+
+                            ReportParameter[] parameters2 = new ReportParameter[2];
+
+                            //Establecemos el valor de los parámetros
+                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
+                            ReportViewer1.LocalReport.SetParameters(parameters2);
+                            ReportViewer1.ZoomMode = ZoomMode.Percent;
+                            ReportViewer1.ZoomPercent = 100;
+                        }
+
+                        if (TipoConsulta == 2)
+                        {
+                            int serieBoleta2 = Convert.ToInt32(Parametro1);
+                            decimal numeroBoleta2 = Convert.ToDecimal(Parametro2);
+
+                            var numeroPart2 = (db.BOLETA.Where(a => a.serie == serieBoleta2 && a.numero_boleta == numeroBoleta2).Select(a => a.numeroparte).ToList());
+                            string CodigoNumParte2 = numeroPart2.ToArray().FirstOrDefault() == null ? "0" : numeroPart2.ToArray().FirstOrDefault().ToString();
+
+                            var seriePart2 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte2).Select(a => a.Serie).ToList());
+                            string CodigoSerie2 = seriePart2.ToArray().FirstOrDefault() == null ? "0" : seriePart2.ToArray().FirstOrDefault().ToString();
+
+                            var fuente2 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie2 && a.NumeroParte == CodigoNumParte2).Select(a => a.Fuente).ToList());
+                            string CodigoFuente2 = fuente2.ToArray().FirstOrDefault() == null ? "0" : fuente2.ToArray().FirstOrDefault().ToString();
+
+                            int serieParte2 = Convert.ToInt32(CodigoSerie2);
+                            decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
+
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2).Select(oa => oa.extension);
+                            string CodigoExt2 = ext2.ToArray().FirstOrDefault() == null ? "0" : ext2.ToArray().FirstOrDefault().ToString();
+
+                            var conse2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2).Select(oa => oa.consecutivo_extension);
+                            string CodigoConse2 = conse2.ToArray().FirstOrDefault() == null ? "0" : conse2.ToArray().FirstOrDefault().ToString();
+
+                            string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //var path = Server.MapPath(ruta);
+                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, CodigoSerie2, CodigoNumParte2, CodigoConse2, CodigoExt2);
+                            var fullPathArchvo = Path.Combine(ruta2, fileArchivo);
+
+                            //Server.MapPath(fullPath)
+                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+
+                            ReportParameter[] parameters2 = new ReportParameter[1];
+
+                            //Establecemos el valor de los parámetros
+                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
+                            ReportViewer1.LocalReport.SetParameters(parameters2);
+                            ReportViewer1.ZoomMode = ZoomMode.Percent;
+                            ReportViewer1.ZoomPercent = 100;
+                        }
+
+                        if (TipoConsulta == 3)
+                        {
+                            //int serieParte1 = Convert.ToInt32(Parametro1);
+                            //decimal numeroParte1 = Convert.ToDecimal(Parametro2);
+
+
+                            var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.NumeroBoleta).ToList());
+                            string CodigoNumBoleta3 = Convert.ToString(numeroBoleta3.ToArray().FirstOrDefault()) == null ? "0" : numeroBoleta3.ToArray().FirstOrDefault().ToString();
+
+                            var seriBolet3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.Serie).ToList());
+                            string CodigoSerBol3 = Convert.ToString(seriBolet3.ToArray().FirstOrDefault()) == null ? "0" : seriBolet3.ToArray().FirstOrDefault().ToString();
+
+                            int SerieBole3 = Convert.ToInt32(CodigoSerBol3);
+                            decimal NumBole3 = Convert.ToDecimal(CodigoNumBoleta3);
+
+                            var numeroPart3 = (db.BOLETA.Where(a => a.serie == SerieBole3 && a.numero_boleta == NumBole3).Select(a => a.numeroparte).ToList());
+                            string CodigoNumParte3 = numeroPart3.ToArray().FirstOrDefault() == null ? "0" : numeroPart3.ToArray().FirstOrDefault().ToString();
+
+                            var seriePart3 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte3).Select(a => a.Serie).ToList());
+                            string CodigoSerie3 = seriePart3.ToArray().FirstOrDefault() == null ? "0" : seriePart3.ToArray().FirstOrDefault().ToString();
+
+                            var fuente3 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie3 && a.NumeroParte == CodigoNumParte3).Select(a => a.Fuente).ToList());
+                            string CodigoFuente3 = fuente3.ToArray().FirstOrDefault() == null ? "0" : fuente3.ToArray().FirstOrDefault().ToString();
+
+                            int serieParte3 = Convert.ToInt32(CodigoSerie3);
+                            decimal numeroParte3 = Convert.ToDecimal(CodigoNumParte3);
+
+                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3).Select(oa => oa.extension);
+                            string CodigoExt3 = ext3.ToArray().FirstOrDefault() == null ? "0" : ext3.ToArray().FirstOrDefault().ToString();
+
+                            var conse3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3).Select(oa => oa.consecutivo_extension);
+                            string CodigoConse3 = conse3.ToArray().FirstOrDefault() == null ? "0" : conse3.ToArray().FirstOrDefault().ToString();
+
+                            string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //var path = Server.MapPath(ruta);
+                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente3, CodigoSerie3, CodigoNumParte3, CodigoConse3, CodigoExt3);
+                            var fullPathArchvo = Path.Combine(ruta3, fileArchivo);
+
+                            //Server.MapPath(fullPath)
+                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+
+                            ReportParameter[] parameters2 = new ReportParameter[1];
+
+                            //Establecemos el valor de los parámetros
+                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
+                            ReportViewer1.LocalReport.SetParameters(parameters2);
+                            ReportViewer1.ZoomMode = ZoomMode.Percent;
+                            ReportViewer1.ZoomPercent = 100;
+                        }
+
+                        if (TipoConsulta == 4)
+                        {
+
+                            var numeroBoleta4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3 && a.numero_vin == Parametro4).Select(a => a.NumeroBoleta).ToList());
+                            string CodigoNumBoleta4 = Convert.ToString(numeroBoleta4.ToArray().FirstOrDefault()) == null ? "0" : numeroBoleta4.ToArray().FirstOrDefault().ToString();
+
+                            var seriBolet4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3 && a.numero_vin == Parametro4).Select(a => a.Serie).ToList());
+                            string CodigoSerBol4 = Convert.ToString(seriBolet4.ToArray().FirstOrDefault()) == null ? "0" : seriBolet4.ToArray().FirstOrDefault().ToString();
+
+                            int SerieBole4 = Convert.ToInt32(CodigoSerBol4);
+                            decimal NumBole4 = Convert.ToDecimal(CodigoNumBoleta4);
+
+                            var numeroPart4 = (db.BOLETA.Where(a => a.serie == SerieBole4 && a.numero_boleta == NumBole4).Select(a => a.numeroparte).ToList());
+                            string CodigoNumParte4 = numeroPart4.ToArray().FirstOrDefault() == null ? "0" : numeroPart4.ToArray().FirstOrDefault().ToString();
+
+                            var seriePart4 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte4).Select(a => a.Serie).ToList());
+                            string CodigoSerie4 = seriePart4.ToArray().FirstOrDefault() == null ? "0" : seriePart4.ToArray().FirstOrDefault().ToString();
+
+                            var fuente4 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie4 && a.NumeroParte == CodigoNumParte4).Select(a => a.Fuente).ToList());
+                            string CodigoFuente4 = fuente4.ToArray().FirstOrDefault() == null ? "0" : fuente4.ToArray().FirstOrDefault().ToString();
+
+                            int serieParte4 = Convert.ToInt32(CodigoSerie4);
+                            decimal numeroParte4 = Convert.ToDecimal(CodigoNumParte4);
+
+                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4).Select(oa => oa.extension);
+                            string CodigoExt4 = ext4.ToArray().FirstOrDefault() == null ? "0" : ext4.ToArray().FirstOrDefault().ToString();
+
+                            var conse4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4).Select(oa => oa.consecutivo_extension);
+                            string CodigoConse4 = conse4.ToArray().FirstOrDefault() == null ? "0" : conse4.ToArray().FirstOrDefault().ToString();
+
+                            string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //var path = Server.MapPath(ruta);
+                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente4, CodigoSerie4, CodigoNumParte4, CodigoConse4, CodigoExt4);
+                            var fullPathArchvo = Path.Combine(ruta2, fileArchivo);
+
+                            //Server.MapPath(fullPath)
+                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+
+                            ReportParameter[] parameters2 = new ReportParameter[1];
+
+                            //Establecemos el valor de los parámetros
+                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
+                            ReportViewer1.LocalReport.SetParameters(parameters2);
+                            ReportViewer1.ZoomMode = ZoomMode.Percent;
+                            ReportViewer1.ZoomPercent = 100;
+                        }
+
+                        #endregion
+                        break;
+
+
                 }
                 ReportDataSource RDS = new ReportDataSource("DataSet1", GetData(reporteID, parametros));
                 ReportViewer1.LocalReport.DataSources.Add(RDS);
@@ -146,15 +329,15 @@ namespace Cosevi.SIBOAC.Reports
         private List<GetActividadOficialData_Result> GetActividadOficialData(string parametros)
         {
             //SE agrega el codigo del usuario
-         
+
             var usuarioSistema = User.Identity.Name;
-      
+
             string[] param = parametros.Split(',');
             string CodigoInspector = param[0];
             DateTime fechaInicio = Convert.ToDateTime(param[1]);
             DateTime fechaFin = Convert.ToDateTime(param[2]);
-        
-            var actividadOificial = db.GetActividadOficialData(CodigoInspector,fechaInicio, fechaFin, usuarioSistema).ToList();
+
+            var actividadOificial = db.GetActividadOficialData(CodigoInspector, fechaInicio, fechaFin, usuarioSistema).ToList();
             return actividadOificial;
         }
 
@@ -164,10 +347,10 @@ namespace Cosevi.SIBOAC.Reports
 
             string[] param = parametros.Split(',');
             DateTime fechaInicio = Convert.ToDateTime(param[0]);
-            DateTime fechaFin = Convert.ToDateTime(param[1]);            
+            DateTime fechaFin = Convert.ToDateTime(param[1]);
             string codigoOficial = param[2].Replace("|", ",").Replace("-", "").Trim(); ;
-          
-            var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, codigoOficial,usuarioSistema).ToList();
+
+            var lista = db.GetDescargaInspectorData(fechaInicio, fechaFin, codigoOficial, usuarioSistema).ToList();
             return lista;
         }
 
@@ -179,9 +362,9 @@ namespace Cosevi.SIBOAC.Reports
             int TipoFecha = Convert.ToInt32(param[0]);
             DateTime fechaInicio = Convert.ToDateTime(param[1]);
             DateTime fechaFin = Convert.ToDateTime(param[2]);
-  
 
-            var lista = db.GetDescargaBoletaData(TipoFecha,fechaInicio, fechaFin,usuarioSistema).ToList();
+
+            var lista = db.GetDescargaBoletaData(TipoFecha, fechaInicio, fechaFin, usuarioSistema).ToList();
             return lista;
         }
 
@@ -193,11 +376,11 @@ namespace Cosevi.SIBOAC.Reports
             string[] param = parametros.Split(',');
             int Valor = Convert.ToInt32(param[0]);
             DateTime FechaDesde = Convert.ToDateTime(param[1]);
-            DateTime FechaHasta = Convert.ToDateTime(param[2]);    
-            string idAutoridades =param[3].Replace("|", ",").Replace("-", "").Trim();
-            string idDelegaciones = param[4].Replace("|",",").Replace("-","").Trim();
+            DateTime FechaHasta = Convert.ToDateTime(param[2]);
+            string idAutoridades = param[3].Replace("|", ",").Replace("-", "").Trim();
+            string idDelegaciones = param[4].Replace("|", ",").Replace("-", "").Trim();
 
-            var lista = db.GetReportePorDelegacionAutoridadData(Valor,FechaDesde, FechaHasta, idAutoridades, idDelegaciones,usuarioSistema).ToList();
+            var lista = db.GetReportePorDelegacionAutoridadData(Valor, FechaDesde, FechaHasta, idAutoridades, idDelegaciones, usuarioSistema).ToList();
             return lista;
         }
 
@@ -212,7 +395,7 @@ namespace Cosevi.SIBOAC.Reports
             string idInspectores = param[3].Replace("|", ",").Replace("-", "").Trim();
             string idDelegaciones = param[4].Replace("|", ",").Replace("-", "").Trim();
 
-            var lista = db.GetReporteListadoMultaFijaData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones,usuarioSistema).ToList();
+            var lista = db.GetReporteListadoMultaFijaData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones, usuarioSistema).ToList();
             return lista;
         }
         private List<GetReporteListadoParteOficialData_Result> GetReporteListadoParteOficialData(string parametros)
@@ -226,7 +409,7 @@ namespace Cosevi.SIBOAC.Reports
             string idInspectores = param[3].Replace("|", ",").Replace("-", "").Trim();
             string idDelegaciones = param[4].Replace("|", ",").Replace("-", "").Trim();
 
-            var lista = db.GetReporteListadoParteOficialData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones,usuarioSistema).ToList();
+            var lista = db.GetReporteListadoParteOficialData(FechaDesde, FechaHasta, Valor, idInspectores, idDelegaciones, usuarioSistema).ToList();
             return lista;
         }
 
@@ -234,7 +417,7 @@ namespace Cosevi.SIBOAC.Reports
         {
             string[] param = parametros.Split(',');
             int TipoConsulta = Convert.ToInt32(param[0]);
-            string  Parametro1 =param[1];
+            string Parametro1 = param[1];
             string Parametro2 = param[2];
             string Parametro3 = param[3];
             string Parametro4 = param[4];
@@ -242,11 +425,11 @@ namespace Cosevi.SIBOAC.Reports
             if (Parametro3 == "null")
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista1 = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0","-0").ToList();
+                var lista1 = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0", "-0").ToList();
                 return lista1;
             }
             db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-            var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3,Parametro4).ToList();
+            var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3, Parametro4).ToList();
             return lista;
         }
 
@@ -255,12 +438,12 @@ namespace Cosevi.SIBOAC.Reports
             var usuarioSistema = User.Identity.Name;
 
             string[] param = parametros.Split(',');
-            string IdUsuario = param[0].Replace("|",",").Replace("-","").Trim();
+            string IdUsuario = param[0].Replace("|", ",").Replace("-", "").Trim();
             DateTime fechaInicio = Convert.ToDateTime(param[1]);
             DateTime fechaFin = Convert.ToDateTime(param[2]);
 
 
-            var lista = db.GetReportePorUsuarioData(IdUsuario, fechaInicio, fechaFin,usuarioSistema).ToList();
+            var lista = db.GetReportePorUsuarioData(IdUsuario, fechaInicio, fechaFin, usuarioSistema).ToList();
             return lista;
         }
 
@@ -272,11 +455,11 @@ namespace Cosevi.SIBOAC.Reports
             string[] param = parametros.Split(',');
             string tipoConsulta1 = param[0];
             string tipoConsulta2 = param[1];
-            
+
             if (param[2] != "null")
             {
-                 fechaInicio = Convert.ToDateTime(param[2]);
-            }            
+                fechaInicio = Convert.ToDateTime(param[2]);
+            }
             if (param[3] != "null")
             {
                 fechaFin = Convert.ToDateTime(param[3]);
@@ -301,9 +484,9 @@ namespace Cosevi.SIBOAC.Reports
             DateTime FechaDesde = Convert.ToDateTime(param[0]);
             DateTime FechaHasta = Convert.ToDateTime(param[1]);
             string idDelegacion = param[2].Replace("|", ",").Replace("-", "").Trim();
-            string idInspector = param[3].Replace("|", ",").Replace("-", "").Trim(); 
+            string idInspector = param[3].Replace("|", ",").Replace("-", "").Trim();
 
-            var lista = db.GetConsultaeImpresionDeBoletasData(FechaDesde, FechaHasta, idDelegacion, idInspector,usuarioSistema).ToList();
+            var lista = db.GetConsultaeImpresionDeBoletasData(FechaDesde, FechaHasta, idDelegacion, idInspector, usuarioSistema).ToList();
             return lista;
         }
 
@@ -317,9 +500,9 @@ namespace Cosevi.SIBOAC.Reports
             DateTime FechaHasta = Convert.ToDateTime(param[2]);
             string idDelegaciones = param[3].Replace("|", ",").Replace("-", "").Trim();
             string idAutoridades = param[4].Replace("|", ",").Replace("-", "").Trim();
-            
 
-            var lista = db.GetReporteStatusActualPlanoData(statusPlano, FechaDesde, FechaHasta, idAutoridades, idDelegaciones,usuarioSistema).ToList();
+
+            var lista = db.GetReporteStatusActualPlanoData(statusPlano, FechaDesde, FechaHasta, idAutoridades, idDelegaciones, usuarioSistema).ToList();
             return lista;
         }
 
@@ -329,9 +512,9 @@ namespace Cosevi.SIBOAC.Reports
 
             string[] param = parametros.Split(',');
             string Serie = param[0];
-            string NumeroBoleta = param[1];         
+            string NumeroBoleta = param[1];
 
-            var lista = db.GetReimpresionDeBoletasDeCampoData(Serie, NumeroBoleta,usuarioSistema).ToList();
+            var lista = db.GetReimpresionDeBoletasDeCampoData(Serie, NumeroBoleta, usuarioSistema).ToList();
             return lista;
         }
 

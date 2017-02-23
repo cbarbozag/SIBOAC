@@ -4685,8 +4685,24 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           </Border>
         </Style>
       </Tablix>
+      <Image Name="ImagenAdjuntaParte">
+        <Source>External</Source>
+        <Value>=Parameters!ArchivoAdjuntoPath.Value</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>36.07626cm</Top>
+        <Left>0.42017cm</Left>
+        <Height>6.58cm</Height>
+        <Width>15.51625cm</Width>
+        <ZIndex>2</ZIndex>
+        <ToolTip>Imagen de Parte</ToolTip>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
     </ReportItems>
-    <Height>13.85526in</Height>
+    <Height>17.0438in</Height>
     <Style />
   </Body>
   <Width>6.64867in</Width>
@@ -5372,6 +5388,12 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="ArchivoAdjuntoPath">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <EmbeddedImages>
     <EmbeddedImage Name="cosevi">
       <MIMEType>image/png</MIMEType>
