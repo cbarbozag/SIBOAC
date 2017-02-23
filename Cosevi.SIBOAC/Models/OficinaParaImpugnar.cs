@@ -33,14 +33,14 @@ namespace Cosevi.SIBOAC.Models
         public string Estado { get; set; }
 
         [Required(ErrorMessage = "La fecha de inicio es requerida.")] //alerta de que el usuario debe llenar el espacio
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha Inicio")]
         public System.DateTime FechaDeInicio { get; set; }
 
         [Required(ErrorMessage = "La fecha de Fin es requerida.")] //alerta de que el usuario debe llenar el espacio
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha Fin")]
         public System.DateTime FechaDeFin { get; set; }
     }
