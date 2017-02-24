@@ -611,7 +611,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Estructura Especial:</Value>
+                              <Value>Estructura Especial: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -649,7 +649,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Sentido:</Value>
+                              <Value>Sentido: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -758,7 +758,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Clase Calzada:</Value>
+                              <Value>Clase Calzada: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -796,7 +796,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Estado:</Value>
+                              <Value>Estado: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -917,7 +917,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Estado del Tiempo:</Value>
+                              <Value>Estado del Tiempo: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1006,7 +1006,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Iluminación:</Value>
+                              <Value>Iluminación: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1044,7 +1044,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tipo Intersección Y:</Value>
+                              <Value>Tipo Intersección Y: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1240,7 +1240,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Alinea. Vertical:</Value>
+                              <Value>Alinea. Vertical: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1278,7 +1278,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Alinea. Horizontal:</Value>
+                              <Value>Alinea. Horizontal: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1359,7 +1359,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Señalamiento Vial:</Value>
+                              <Value>Señalamiento Vial: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1472,7 +1472,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Existencia de:</Value>
+                              <Value>Existencia de: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1686,7 +1686,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Obstaculos en la vía:</Value>
+                              <Value>Obstaculos en la vía: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1819,7 +1819,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Plano del Accidente:</Value>
+                              <Value>Plano del Accidente: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -2513,7 +2513,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Edad:</Value>
+                              <Value>Edad: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -2693,7 +2693,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Dirección del vehículo:</Value>
+                              <Value>Dirección del vehículo: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -2861,7 +2861,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Lleva Carga:</Value>
+                              <Value>Lleva Carga: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -2904,7 +2904,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Sistema de Seguridad del Vehículo:</Value>
+                              <Value>Sistema de Seguridad del Vehículo: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -2953,7 +2953,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Porta Señales:</Value>
+                              <Value>Porta Señales: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -2999,7 +2999,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Maniobra Conductor:</Value>
+                              <Value>Maniobra Conductor: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3040,7 +3040,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Condición de Usuario:</Value>
+                              <Value>Condición de Usuario: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3086,7 +3086,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Dispositivo de Seguridad:</Value>
+                              <Value>Dispositivo de Seguridad: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3127,7 +3127,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Nivel de Alcohol:</Value>
+                              <Value>Nivel de Alcohol: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3167,7 +3167,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Alcosensor:</Value>
+                              <Value>Alcosensor: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
