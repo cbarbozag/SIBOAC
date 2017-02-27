@@ -4685,24 +4685,95 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           </Border>
         </Style>
       </Tablix>
-      <Image Name="ImagenAdjuntaParte">
-        <Source>External</Source>
-        <Value>=Parameters!ArchivoAdjuntoPath.Value</Value>
-        <Sizing>FitProportional</Sizing>
-        <Top>36.07626cm</Top>
+      <Tablix Name="Tablix2">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>15.51625cm</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>6.19594cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Image Name="ImagenAdjuntaParte">
+                      <Source>External</Source>
+                      <Value>=Fields!NombreArchivo.Value</Value>
+                      <Sizing>Fit</Sizing>
+                      <ZIndex>2</ZIndex>
+                      <ToolTip>Imagen de Parte</ToolTip>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Image>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Details9" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>ArchivoDataSet</DataSetName>
+        <Top>37.16105cm</Top>
         <Left>0.42017cm</Left>
-        <Height>6.58cm</Height>
+        <Height>6.19594cm</Height>
         <Width>15.51625cm</Width>
         <ZIndex>2</ZIndex>
-        <ToolTip>Imagen de Parte</ToolTip>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
-      </Image>
+      </Tablix>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Imagenes Adjuntas al Parte Oficial</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>36.07626cm</Top>
+        <Left>0.42017cm</Left>
+        <Height>0.6cm</Height>
+        <Width>6.23062cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>17.0438in</Height>
+    <Height>17.72088in</Height>
     <Style />
   </Body>
   <Width>6.64867in</Width>
@@ -4868,6 +4939,13 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>30b01862-ece4-4c2c-a064-34b745ca7b17</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="ArchivosDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>c811e7f9-c615-4f4c-b37f-8a57ca52514a</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -5387,13 +5465,27 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         <rd:TableAdapterName>GetConsultaeImpresionDeParteOficialDataTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="ArchivoDataSet">
+      <Query>
+        <DataSourceName>ArchivosDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="NombreArchivo">
+          <DataField>NombreArchivo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>ArchivosDataSet</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Carlos Barboza\Source\Repos\SIBOAC\Cosevi.SIBOAC\ArchivosDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>DataTable1</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
-  <ReportParameters>
-    <ReportParameter Name="ArchivoAdjuntoPath">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-  </ReportParameters>
   <EmbeddedImages>
     <EmbeddedImage Name="cosevi">
       <MIMEType>image/png</MIMEType>

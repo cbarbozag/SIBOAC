@@ -234,6 +234,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ArchivosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadPorOficialController.cs" />
     <Compile Include="Controllers\ActividadOficialController.cs" />
@@ -878,6 +883,17 @@
     <Content Include="ClassDiagram1.cd" />
     <Content Include="GetActividadOficialDataSet.xsc">
       <DependentUpon>GetActividadOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="ArchivosDataSet.xsc">
+      <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ArchivosDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ArchivosDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ArchivosDataSet.xss">
+      <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetActividadOficialDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>

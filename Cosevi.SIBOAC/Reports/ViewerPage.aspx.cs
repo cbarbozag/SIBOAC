@@ -5,6 +5,7 @@ using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -85,27 +86,21 @@ namespace Cosevi.SIBOAC.Reports
                             var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
                             string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
 
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1).Select(oa => oa.extension);
-                            string CodigoExt1 = ext1.ToArray().FirstOrDefault() == null ? "0" : ext1.ToArray().FirstOrDefault().ToString();
-
-                            var conse1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1).Select(oa => oa.consecutivo_extension);
-                            string CodigoConse1 = conse1.ToArray().FirstOrDefault() == null ? "0" : conse1.ToArray().FirstOrDefault().ToString();
+                            
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1).Select(oa => oa.nombre );                            
+                            var listaArchivos = new DataTable();
+                            listaArchivos.Columns.Add("NombreArchivo");
 
                             string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            //var path = Server.MapPath(ruta);
-                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente1, Parametro1, Parametro2, CodigoConse1, CodigoExt1);
-                            var fullPathArchvo = Path.Combine(ruta1, fileArchivo);                            
 
-                            //Server.MapPath(fullPath)
-                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+                            foreach (string item in ext1)
+                            {                                
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri);                                
+                            }                                                                                                                                                                                                                   
 
-                            ReportParameter[] parameters2 = new ReportParameter[2];
-
-                            //Establecemos el valor de los parámetros
-                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
-                            ReportViewer1.LocalReport.SetParameters(parameters2);
-                            ReportViewer1.ZoomMode = ZoomMode.Percent;
-                            ReportViewer1.ZoomPercent = 100;
+                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
+                            ReportViewer1.LocalReport.DataSources.Add(RDS2);                            
+                            
                         }
 
                         if (TipoConsulta == 2)
@@ -125,34 +120,24 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte2 = Convert.ToInt32(CodigoSerie2);
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2).Select(oa => oa.extension);
-                            string CodigoExt2 = ext2.ToArray().FirstOrDefault() == null ? "0" : ext2.ToArray().FirstOrDefault().ToString();
-
-                            var conse2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2).Select(oa => oa.consecutivo_extension);
-                            string CodigoConse2 = conse2.ToArray().FirstOrDefault() == null ? "0" : conse2.ToArray().FirstOrDefault().ToString();
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2).Select(oa => oa.nombre);
+                                                    
+                            var listaArchivos = new DataTable();
+                            listaArchivos.Columns.Add("NombreArchivo");
 
                             string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            //var path = Server.MapPath(ruta);
-                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, CodigoSerie2, CodigoNumParte2, CodigoConse2, CodigoExt2);
-                            var fullPathArchvo = Path.Combine(ruta2, fileArchivo);
 
-                            //Server.MapPath(fullPath)
-                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+                            foreach (string item in ext2)
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item)).AbsoluteUri);
+                            }
 
-                            ReportParameter[] parameters2 = new ReportParameter[1];
-
-                            //Establecemos el valor de los parámetros
-                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
-                            ReportViewer1.LocalReport.SetParameters(parameters2);
-                            ReportViewer1.ZoomMode = ZoomMode.Percent;
-                            ReportViewer1.ZoomPercent = 100;
+                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
+                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
                         }
 
                         if (TipoConsulta == 3)
                         {
-                            //int serieParte1 = Convert.ToInt32(Parametro1);
-                            //decimal numeroParte1 = Convert.ToDecimal(Parametro2);
-
 
                             var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.NumeroBoleta).ToList());
                             string CodigoNumBoleta3 = Convert.ToString(numeroBoleta3.ToArray().FirstOrDefault()) == null ? "0" : numeroBoleta3.ToArray().FirstOrDefault().ToString();
@@ -175,27 +160,20 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte3 = Convert.ToInt32(CodigoSerie3);
                             decimal numeroParte3 = Convert.ToDecimal(CodigoNumParte3);
 
-                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3).Select(oa => oa.extension);
-                            string CodigoExt3 = ext3.ToArray().FirstOrDefault() == null ? "0" : ext3.ToArray().FirstOrDefault().ToString();
+                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3).Select(oa => oa.nombre);
 
-                            var conse3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3).Select(oa => oa.consecutivo_extension);
-                            string CodigoConse3 = conse3.ToArray().FirstOrDefault() == null ? "0" : conse3.ToArray().FirstOrDefault().ToString();
+                            var listaArchivos = new DataTable();
+                            listaArchivos.Columns.Add("NombreArchivo");
 
                             string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            //var path = Server.MapPath(ruta);
-                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente3, CodigoSerie3, CodigoNumParte3, CodigoConse3, CodigoExt3);
-                            var fullPathArchvo = Path.Combine(ruta3, fileArchivo);
 
-                            //Server.MapPath(fullPath)
-                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+                            foreach (string item in ext3)
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item)).AbsoluteUri);
+                            }
 
-                            ReportParameter[] parameters2 = new ReportParameter[1];
-
-                            //Establecemos el valor de los parámetros
-                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
-                            ReportViewer1.LocalReport.SetParameters(parameters2);
-                            ReportViewer1.ZoomMode = ZoomMode.Percent;
-                            ReportViewer1.ZoomPercent = 100;
+                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
+                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
                         }
 
                         if (TipoConsulta == 4)
@@ -222,27 +200,20 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte4 = Convert.ToInt32(CodigoSerie4);
                             decimal numeroParte4 = Convert.ToDecimal(CodigoNumParte4);
 
-                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4).Select(oa => oa.extension);
-                            string CodigoExt4 = ext4.ToArray().FirstOrDefault() == null ? "0" : ext4.ToArray().FirstOrDefault().ToString();
+                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4).Select(oa => oa.nombre);
 
-                            var conse4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4).Select(oa => oa.consecutivo_extension);
-                            string CodigoConse4 = conse4.ToArray().FirstOrDefault() == null ? "0" : conse4.ToArray().FirstOrDefault().ToString();
+                            var listaArchivos = new DataTable();
+                            listaArchivos.Columns.Add("NombreArchivo");
 
-                            string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            //var path = Server.MapPath(ruta);
-                            var fileArchivo = string.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente4, CodigoSerie4, CodigoNumParte4, CodigoConse4, CodigoExt4);
-                            var fullPathArchvo = Path.Combine(ruta2, fileArchivo);
+                            string ruta4 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
-                            //Server.MapPath(fullPath)
-                            string ArchivoPartePath = new Uri(fullPathArchvo).AbsoluteUri;
+                            foreach (string item in ext4)
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item)).AbsoluteUri);
+                            }
 
-                            ReportParameter[] parameters2 = new ReportParameter[1];
-
-                            //Establecemos el valor de los parámetros
-                            parameters2[0] = new ReportParameter("ArchivoAdjuntoPath", ArchivoPartePath);
-                            ReportViewer1.LocalReport.SetParameters(parameters2);
-                            ReportViewer1.ZoomMode = ZoomMode.Percent;
-                            ReportViewer1.ZoomPercent = 100;
+                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
+                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
                         }
 
                         #endregion
@@ -253,6 +224,8 @@ namespace Cosevi.SIBOAC.Reports
                 ReportDataSource RDS = new ReportDataSource("DataSet1", GetData(reporteID, parametros));
                 ReportViewer1.LocalReport.DataSources.Add(RDS);
                 ReportViewer1.LocalReport.Refresh();
+                ReportViewer1.ZoomMode = ZoomMode.Percent;
+                ReportViewer1.ZoomPercent = 100;
                 btnPrint.Visible = true;
                 ReportViewer1.LocalReport.EnableHyperlinks = true;
 
