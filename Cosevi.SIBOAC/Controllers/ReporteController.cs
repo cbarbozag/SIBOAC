@@ -807,13 +807,14 @@ namespace Cosevi.SIBOAC.Controllers
 
         #region Reporte Por Delegacion Autoridad o Descarga Parte Oficial
         [System.Web.Http.HttpPost]
-        public ActionResult GetReportePorDelegacionAutoridad(DateTime desde, DateTime hasta, int radio, [FromUri] string[]  listaAutoridades,[FromUri] string [] listaDelegaciones)
+        public ActionResult GetReportePorDelegacionAutoridad(DateTime desde, DateTime hasta, int radio, [FromUri] string autoridadesValues, [FromUri] string delegacionesValues)
         {
 
             string reporteID = "_DescargaParteOficial";
             string nombreReporte = "DescargaParteOficial";
             string idDelegaciones = "";
             string idAutoridades = "";
+            string[] listaDelegaciones = delegacionesValues.Split(',');
             foreach (var i in listaDelegaciones)
             {
                 idDelegaciones += "-"+i+"-|";
@@ -823,6 +824,8 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 idDelegaciones = idDelegaciones.Substring(0, idDelegaciones.Length - 1);
             }
+
+            string[] listaAutoridades = autoridadesValues.Split(',');
             foreach (var i in listaAutoridades)
             {
                 idAutoridades += "-" + i + "-|";

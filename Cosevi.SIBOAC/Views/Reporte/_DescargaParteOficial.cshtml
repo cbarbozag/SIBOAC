@@ -10,7 +10,9 @@
 
 @using (Html.BeginForm("GetReportePorDelegacionAutoridad", "Reporte", FormMethod.Get))
 {
-
+    @Html.Hidden("delegacionesValues");
+    @Html.Hidden("autoridadesValues");
+   
     <div class="form-group">
         <label class="control-label col-md-2">Seleccione una opción para las fechas</label>
         <div class="col-md-10">
@@ -86,25 +88,19 @@
                         </p>
                         <div class="col-max col-md-12">
                             <div id="ListaDelegaciones">
-                                <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
-
-
-                                    @foreach (var item in ViewBag.Delegaciones)
-                                    {
-
-                                        if (item.Seleccionado == true)
+                                    <div class="list-group" data-toggle="items">
+                                        @foreach (var item in ViewBag.Delegaciones)
                                         {
-                                            <option value="@item.Id" selected>@item.Descripcion</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@item.Id">@item.Descripcion</option>
-                                        }
-
-
-                                    }
-                                </select>
-
+                                            if (item.Seleccionado == true)
+                                            {
+                                                <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaDelegacionesChange(this); return false;">@item.Descripcion</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaDelegacionesChange(this); return false;">@item.Descripcion</a>
+                                            }
+                                        }                                                                                                                       
+                                    </div>                                   
                             </div>
                         </div>
                     </div>
@@ -123,20 +119,21 @@
                         </p>
                         <div class="col-max col-md-12">
                             <div id="ListaAutoridades">
-
-                                <select name="listaAutoridades" id="listaA" multiple="multiple" class="list-group" data-toggle="items" required>
+                                <div class="list-group" data-toggle="items">
                                     @foreach (var item in ViewBag.Autoridades)
                                     {
                                         if (item.Seleccionado == true)
                                         {
-                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                            <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaAutoridadesChange(this); return false;">@item.Descripcion</a>
                                         }
                                         else
                                         {
-                                            <option value="@item.Id">@item.Descripcion</option>
+                                            <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaAutoridadesChange(this); return false;">@item.Descripcion</a>
                                         }
                                     }
-                                </select>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -177,28 +174,67 @@
 
         });
     </script>
-    <script>
-        $("#listaDelegaciones").change(function () {
-            var id = $(this).attr('name');
-            var str2 = "";
-            $("#listaDelegaciones option:selected").each(function () {
+    <script>       
+        function listaDelegacionesChange(obj) {
+            
+            var delegacionID = obj.getAttribute('data-value');
+            var selectedValues = document.getElementById('delegacionesValues').value == '' ? [] : document.getElementById('delegacionesValues').value.split(',');
 
-                str2 += "&" + id + "=" + $(this).attr('value');
-            });
-            $("div").text(str2);
-        })
-         .trigger('change');
+            var index = selectedValues.indexOf(delegacionID);
+            if (!$(obj).hasClass('active')) {
+                selectedValues.push(delegacionID);
+            }
+            else
+            {
+                if (index > -1) {
+                    selectedValues.splice(index, 1);
+                }
+            }
 
-        $("#listaAutoridades").change(function () {
-            var id = $(this).attr('name');
-            var str2 = "";
-            $("#listaAutoridades option:selected").each(function () {
+            document.getElementById('delegacionesValues').value = selectedValues.join();            
+        }
+        
+        function listaAutoridadesChange(obj) {
 
-                str2 += "&" + id + "=" + $(this).attr('value');
-            });
-            $("div").text(str2);
-        })
-        .trigger('change');
+            var autoridadID = obj.getAttribute('data-value');
+            var selectedValues = document.getElementById('autoridadesValues').value == '' ? [] : document.getElementById('autoridadesValues').value.split(',');
+
+            var index = selectedValues.indexOf(autoridadID);
+            if (!$(obj).hasClass('active')) {
+                selectedValues.push(autoridadID);
+            }
+            else {
+                if (index > -1) {
+                    selectedValues.splice(index, 1);
+                }
+            }
+
+            document.getElementById('autoridadesValues').value = selectedValues.join();
+        }
+
+        //$(function () {
+        //    $("#listaDelegaciones").change(function () {
+        //        var id = $(this).attr('name');
+        //        var str2 = "";
+        //        $("#listaDelegaciones option:selected").each(function () {
+
+        //            str2 += "&" + id + "=" + $(this).attr('value');
+        //        });
+        //        $("div").text(str2);
+        //    })
+        //    //.trigger('change');
+        //})
+
+        //$("#listaAutoridades").change(function () {
+        //    var id = $(this).attr('name');
+        //    var str2 = "";
+        //    $("#listaAutoridades option:selected").each(function () {
+
+        //        str2 += "&" + id + "=" + $(this).attr('value');
+        //    });
+        //    $("div").text(str2);
+        //})
+        //.trigger('change');
 
         function ReportCall() {
 
@@ -229,39 +265,53 @@
             });
         };
         function marcarTodosDelegacion() {
+            var selectedValues =  [];
             var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+
             for (var i = 0; i < items.length; i++) {
                 if (!$(items[i]).hasClass('active')) {
                     $(items[i]).addClass('active')
                 }
-            }
+
+                var delegacionID = items[i].getAttribute('data-value');
+                selectedValues.push(delegacionID);
+            }                      
+            document.getElementById('delegacionesValues').value = selectedValues.join();
+
         };
 
         function limpiarTodosDelegacion() {
             var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
             for (var i = 0; i < items.length; i++) {
-                //  $(items[i]).prop('selected', false)
                 $(items[i]).removeClass('active');
-
             }
+
+            document.getElementById('delegacionesValues').value = '';
         };
 
         function marcarTodosAutoridad() {
-
+            var selectedValues = [];
             var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
+
             for (var i = 0; i < items.length; i++) {
                 if (!$(items[i]).hasClass('active')) {
                     $(items[i]).addClass('active')
                 }
+
+                var autoridadID = items[i].getAttribute('data-value');
+                selectedValues.push(autoridadID);
             }
+
+            document.getElementById('autoridadesValues').value = selectedValues.join();            
         };
 
         function limpiarTodosAutoridad() {
             var items = document.getElementById("ListaAutoridades").getElementsByClassName('list-group-item');
             for (var i = 0; i < items.length; i++) {
                 $(items[i]).removeClass('active');
-
             }
+
+            document.getElementById('autoridadesValues').value = '';
         };
     </script>
     <script type="text/javascript">
