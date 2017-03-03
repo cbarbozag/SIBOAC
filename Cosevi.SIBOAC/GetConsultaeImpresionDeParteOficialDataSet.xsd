@@ -147,6 +147,7 @@
               <Mapping SourceColumn="DescObstruccionVisiD" DataSetColumn="DescObstruccionVisiD" />
               <Mapping SourceColumn="RolVeh" DataSetColumn="RolVeh" />
               <Mapping SourceColumn="DesRolVehiculo" DataSetColumn="DesRolVehiculo" />
+              <Mapping SourceColumn="CondicionPersona" DataSetColumn="CondicionPersona" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -791,6 +792,13 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="DesRolVehiculo" msprop:Generator_ColumnVarNameInTable="columnDesRolVehiculo" msprop:Generator_ColumnPropNameInRow="DesRolVehiculo" msprop:Generator_ColumnPropNameInTable="DesRolVehiculoColumn" msprop:Generator_UserColumnName="DesRolVehiculo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CondicionPersona" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCondicionPersona" msprop:Generator_ColumnPropNameInRow="CondicionPersona" msprop:Generator_ColumnPropNameInTable="CondicionPersonaColumn" msprop:Generator_UserColumnName="CondicionPersona" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />

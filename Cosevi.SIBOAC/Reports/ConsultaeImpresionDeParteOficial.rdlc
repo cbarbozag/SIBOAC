@@ -5435,6 +5435,10 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <DataField>DesRolVehiculo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CondicionPersona">
+          <DataField>CondicionPersona</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetConsultaeImpresionDeParteOficialDataSet</rd:DataSetName>

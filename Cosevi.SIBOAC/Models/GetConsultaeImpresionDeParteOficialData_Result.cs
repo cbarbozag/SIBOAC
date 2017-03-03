@@ -50,10 +50,7 @@ namespace Cosevi.SIBOAC.Models
         public string DescripcionCaracteristicaUbicacion { get; set; }
         public int CodigoAlineacionVertical { get; set; }
         public string DescripcionVertical { get; set; }
-        public string CodigoSenalamiento { get; set; }
         public string DescripcionSenalamiento { get; set; }
-        public string Codigoexistencia { get; set; }
-        public string DescripcionExistencia { get; set; }
         public string CodigoSentidO { get; set; }
         public string DescripcionSentido { get; set; }
         public int CodigoEstadoCalzada { get; set; }
@@ -118,8 +115,6 @@ namespace Cosevi.SIBOAC.Models
         public string num_prueba_alcohol { get; set; }
         public string num_alcohosensor { get; set; }
         public string numero_vin { get; set; }
-        public string codigod { get; set; }
-        public string codigotd { get; set; }
         public string DLocalizacion { get; set; }
         public string DescLocalizacionD { get; set; }
         public string ApreciacionHund { get; set; }
@@ -136,7 +131,8 @@ namespace Cosevi.SIBOAC.Models
         public string DescObstruccionVisiD { get; set; }
         public string RolVeh { get; set; }
         public string DesRolVehiculo { get; set; }
-        public string CondicionPersona { get; set; }
         public string PlanoAccidente { get; set; }
+        public string DescripcionTipoSenal { get; set; }
+        public string CondicionPersona { get; set; }
     }
 }

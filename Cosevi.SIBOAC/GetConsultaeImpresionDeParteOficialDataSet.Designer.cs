@@ -519,6 +519,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnDesRolVehiculo;
             
+            private global::System.Data.DataColumn columnCondicionPersona;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GetConsultaeImpresionDeParteOficialDataDataTable() {
@@ -1514,6 +1516,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CondicionPersonaColumn {
+                get {
+                    return this.columnCondicionPersona;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1669,7 +1679,8 @@ namespace Cosevi.SIBOAC {
                         string ObstVis, 
                         string DescObstruccionVisiD, 
                         string RolVeh, 
-                        string DesRolVehiculo) {
+                        string DesRolVehiculo, 
+                        string CondicionPersona) {
                 GetConsultaeImpresionDeParteOficialDataRow rowGetConsultaeImpresionDeParteOficialDataRow = ((GetConsultaeImpresionDeParteOficialDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FuenteParte,
@@ -1791,7 +1802,8 @@ namespace Cosevi.SIBOAC {
                         ObstVis,
                         DescObstruccionVisiD,
                         RolVeh,
-                        DesRolVehiculo};
+                        DesRolVehiculo,
+                        CondicionPersona};
                 rowGetConsultaeImpresionDeParteOficialDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetConsultaeImpresionDeParteOficialDataRow);
                 return rowGetConsultaeImpresionDeParteOficialDataRow;
@@ -1946,6 +1958,7 @@ namespace Cosevi.SIBOAC {
                 this.columnDescObstruccionVisiD = base.Columns["DescObstruccionVisiD"];
                 this.columnRolVeh = base.Columns["RolVeh"];
                 this.columnDesRolVehiculo = base.Columns["DesRolVehiculo"];
+                this.columnCondicionPersona = base.Columns["CondicionPersona"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2191,6 +2204,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnRolVeh);
                 this.columnDesRolVehiculo = new global::System.Data.DataColumn("DesRolVehiculo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDesRolVehiculo);
+                this.columnCondicionPersona = new global::System.Data.DataColumn("CondicionPersona", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCondicionPersona);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnFuenteParte,
                                 this.columnSerieParte,
@@ -2336,6 +2351,8 @@ namespace Cosevi.SIBOAC {
                 this.columnDescObstruccionVisiD.MaxLength = 50;
                 this.columnRolVeh.MaxLength = 2;
                 this.columnDesRolVehiculo.MaxLength = 50;
+                this.columnCondicionPersona.ReadOnly = true;
+                this.columnCondicionPersona.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4254,6 +4271,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CondicionPersona {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeParteOficialData.CondicionPersonaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CondicionPersona\' in table \'GetConsultaeImpresionDeParteOfi" +
+                                "cialData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeParteOficialData.CondicionPersonaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCodigoAutoridadNull() {
                 return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.CodigoAutoridadColumn);
             }
@@ -5163,6 +5197,18 @@ namespace Cosevi.SIBOAC {
             public void SetDesRolVehiculoNull() {
                 this[this.tableGetConsultaeImpresionDeParteOficialData.DesRolVehiculoColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCondicionPersonaNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.CondicionPersonaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCondicionPersonaNull() {
+                this[this.tableGetConsultaeImpresionDeParteOficialData.CondicionPersonaColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -5444,6 +5490,7 @@ namespace Cosevi.SIBOAC.GetConsultaeImpresionDeParteOficialDataSetTableAdapters 
             tableMapping.ColumnMappings.Add("DescObstruccionVisiD", "DescObstruccionVisiD");
             tableMapping.ColumnMappings.Add("RolVeh", "RolVeh");
             tableMapping.ColumnMappings.Add("DesRolVehiculo", "DesRolVehiculo");
+            tableMapping.ColumnMappings.Add("CondicionPersona", "CondicionPersona");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
