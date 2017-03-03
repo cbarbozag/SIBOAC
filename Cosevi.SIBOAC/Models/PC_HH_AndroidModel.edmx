@@ -2771,7 +2771,7 @@
           <Property Type="String" Name="DescripcionAutoridad" Nullable="true" MaxLength="35" />
           <Property Type="String" Name="LugarHechos" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="CodigoRuta" Nullable="true" />
-          <Property Type="String" Name="DescripcionRuta" Nullable="true" MaxLength="103" />
+          <Property Type="String" Name="DescripcionRuta" Nullable="false" MaxLength="103" />
           <Property Type="Int32" Name="Kilometro" Nullable="true" />
           <Property Type="Int32" Name="Seccion" Nullable="true" />
           <Property Type="String" Name="Avenidas" Nullable="true" MaxLength="23" />
@@ -2782,39 +2782,36 @@
           <Property Type="String" Name="NombreInspector" Nullable="true" MaxLength="89" />
           <Property Type="Int32" Name="VelocidadAmbiente" Nullable="false" />
           <Property Type="String" Name="CodigoCarril" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="DescripcionCarril" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="DescripcionCarril" Nullable="false" MaxLength="25" />
           <Property Type="Int32" Name="CodigoEstructura" Nullable="false" />
-          <Property Type="String" Name="DescripcionEstructura" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionEstructura" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoClaseCalzada" Nullable="false" />
-          <Property Type="String" Name="DescripcionClaseCalzada" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionClaseCalzada" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoCondicionCalzada" Nullable="false" />
-          <Property Type="String" Name="DescripcionCondicionCalzada" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionCondicionCalzada" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoIluminacion" Nullable="false" />
-          <Property Type="String" Name="DescripcionIluminacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionIluminacion" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoCaracteristicaUbicacion" Nullable="true" />
-          <Property Type="String" Name="DescripcionCaracteristicaUbicacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionCaracteristicaUbicacion" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoAlineacionVertical" Nullable="false" />
-          <Property Type="String" Name="DescripcionVertical" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="CodigoSenalamiento" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescripcionSenalamiento" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Codigoexistencia" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescripcionExistencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionVertical" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="DescripcionSenalamiento" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CodigoSentidO" Nullable="false" MaxLength="2" />
-          <Property Type="String" Name="DescripcionSentido" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DescripcionSentido" Nullable="false" MaxLength="30" />
           <Property Type="Int32" Name="CodigoEstadoCalzada" Nullable="false" />
-          <Property Type="String" Name="DescripcionEstado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionEstado" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoTiempo" Nullable="false" />
-          <Property Type="String" Name="DescripcionTiempo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionTiempo" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoInterseccion" Nullable="false" />
-          <Property Type="String" Name="DescripcionInterseccion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionInterseccion" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoAlineacionHorizontal" Nullable="false" />
-          <Property Type="String" Name="DescripcionHorizontal" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DescripcionHorizontal" Nullable="false" MaxLength="30" />
           <Property Type="Int32" Name="CodAccidente" Nullable="false" />
-          <Property Type="String" Name="DescripcionTipoAccidente" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionTipoAccidente" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="CodigoVehiculoCirculacion" Nullable="false" />
-          <Property Type="String" Name="DescripcionVehiculoCircula" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionVehiculoCircula" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="codObstaculo" Nullable="false" />
-          <Property Type="String" Name="DescripcionObstaculo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripcionObstaculo" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="180" />
           <Property Type="String" Name="TipoIdentificacionTestigo" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="IdentificacionTestigo" Nullable="true" MaxLength="15" />
@@ -2863,8 +2860,6 @@
           <Property Type="String" Name="num_prueba_alcohol" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="num_alcohosensor" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="numero_vin" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="codigod" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="codigotd" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="DLocalizacion" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="DescLocalizacionD" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="ApreciacionHund" Nullable="true" MaxLength="2" />
@@ -2881,8 +2876,8 @@
           <Property Type="String" Name="DescObstruccionVisiD" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="RolVeh" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="DesRolVehiculo" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CondicionPersona" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="PlanoAccidente" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="DescripcionTipoSenal" Nullable="false" MaxLength="18" />
           </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="203" />
@@ -4383,10 +4378,7 @@
                 <ScalarProperty Name="DescripcionCaracteristicaUbicacion" ColumnName="DescripcionCaracteristicaUbicacion" />
                 <ScalarProperty Name="CodigoAlineacionVertical" ColumnName="CodigoAlineacionVertical" />
                 <ScalarProperty Name="DescripcionVertical" ColumnName="DescripcionVertical" />
-                <ScalarProperty Name="CodigoSenalamiento" ColumnName="CodigoSenalamiento" />
                 <ScalarProperty Name="DescripcionSenalamiento" ColumnName="DescripcionSenalamiento" />
-                <ScalarProperty Name="Codigoexistencia" ColumnName="Codigoexistencia" />
-                <ScalarProperty Name="DescripcionExistencia" ColumnName="DescripcionExistencia" />
                 <ScalarProperty Name="CodigoSentidO" ColumnName="CodigoSentidO" />
                 <ScalarProperty Name="DescripcionSentido" ColumnName="DescripcionSentido" />
                 <ScalarProperty Name="CodigoEstadoCalzada" ColumnName="CodigoEstadoCalzada" />
@@ -4451,8 +4443,6 @@
                 <ScalarProperty Name="num_prueba_alcohol" ColumnName="num_prueba_alcohol" />
                 <ScalarProperty Name="num_alcohosensor" ColumnName="num_alcohosensor" />
                 <ScalarProperty Name="numero_vin" ColumnName="numero_vin" />
-                <ScalarProperty Name="codigod" ColumnName="codigod" />
-                <ScalarProperty Name="codigotd" ColumnName="codigotd" />
                 <ScalarProperty Name="DLocalizacion" ColumnName="DLocalizacion" />
                 <ScalarProperty Name="DescLocalizacionD" ColumnName="DescLocalizacionD" />
                 <ScalarProperty Name="ApreciacionHund" ColumnName="ApreciacionHund" />
@@ -4469,8 +4459,8 @@
                 <ScalarProperty Name="DescObstruccionVisiD" ColumnName="DescObstruccionVisiD" />
                 <ScalarProperty Name="RolVeh" ColumnName="RolVeh" />
                 <ScalarProperty Name="DesRolVehiculo" ColumnName="DesRolVehiculo" />
-                <ScalarProperty Name="CondicionPersona" ColumnName="CondicionPersona" />
                 <ScalarProperty Name="PlanoAccidente" ColumnName="PlanoAccidente" />
+                <ScalarProperty Name="DescripcionTipoSenal" ColumnName="DescripcionTipoSenal" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

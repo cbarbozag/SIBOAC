@@ -5083,20 +5083,12 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <DataField>DescripcionVertical</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CodigoSenalamiento">
-          <DataField>CodigoSenalamiento</DataField>
+        <Field Name="DescripcionTipoSenal">
+          <DataField>DescripcionTipoSenal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DescripcionSenalamiento">
           <DataField>DescripcionSenalamiento</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Codigoexistencia">
-          <DataField>Codigoexistencia</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescripcionExistencia">
-          <DataField>DescripcionExistencia</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CodigoSentidO">
@@ -5165,6 +5157,10 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Field>
         <Field Name="Observaciones">
           <DataField>Observaciones</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PlanoAccidente">
+          <DataField>PlanoAccidente</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TipoIdentificacionTestigo">
@@ -5375,14 +5371,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <DataField>numero_vin</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="codigod">
-          <DataField>codigod</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="codigotd">
-          <DataField>codigotd</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="DLocalizacion">
           <DataField>DLocalizacion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -5447,18 +5435,10 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <DataField>DesRolVehiculo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CondicionPersona">
-          <DataField>CondicionPersona</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PlanoAccidente">
-          <DataField>PlanoAccidente</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetConsultaeImpresionDeParteOficialDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\nzamora\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetConsultaeImpresionDeParteOficialDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Carlos Barboza\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetConsultaeImpresionDeParteOficialDataSet.xsd</rd:SchemaPath>
         <rd:TableName>GetConsultaeImpresionDeParteOficialData</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
