@@ -180,6 +180,7 @@ namespace Cosevi.SIBOAC.Controllers
                                  {
                                      Id = x.Usuario.ToString(),
                                      Usuario = x.Usuario + " - " + x.Nombre,
+                                     Seleccionado = false
                                  }
                                  );
 
@@ -540,6 +541,7 @@ namespace Cosevi.SIBOAC.Controllers
                                  {
                                      Id = x.Usuario.ToString(),
                                      Usuario = x.Usuario + " - " + x.Nombre,
+                                     Seleccionado = false
                                  }
                                  );
 
@@ -642,12 +644,13 @@ namespace Cosevi.SIBOAC.Controllers
 
         #endregion
 
-        #region Reporte Descarga Inspector
-        public ActionResult GetReporteDescargaInspector(DateTime desde, DateTime hasta, [FromUri] string [] listaInspectores)
+        #region Reporte Descarga Inspector        
+        public ActionResult GetReporteDescargaInspector(DateTime desde, DateTime hasta, [FromUri] string inspectorValues)
         {
             string reporteID = "_DescargaInspector";
             string nombreReporte = "DescargaInspector";
             string idInspectores = "";
+            string[] listaInspectores = inspectorValues.Split(',');
             foreach (var i in listaInspectores)
             {
                 idInspectores += "-" + i + "-|";
@@ -684,7 +687,7 @@ namespace Cosevi.SIBOAC.Controllers
             return View("_DescargaInspector");
         }
 
-        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, [FromUri] string [] listaInspectores)
+        private List<GetDescargaInspectorData_Result> GetDescargaInspectorData(DateTime hasta, DateTime desde, string listaInspectores)
         {
             var usuarioSistema = User.Identity.Name;
 
@@ -889,13 +892,15 @@ namespace Cosevi.SIBOAC.Controllers
 
         #region Reporte Listado Multa Fija
         [System.Web.Http.HttpPost]
-        public ActionResult GetReporteListadoMultaFija(DateTime desde, DateTime hasta, int radio, [FromUri] string[] listaInspectores, [FromUri] string[] listaDelegaciones)
+        public ActionResult GetReporteListadoMultaFija(DateTime desde, DateTime hasta, int radio, [FromUri] string inspectorValues, [FromUri] string delegacionesValues)
         {
 
             string reporteID = "_ReporteListadoMultaFija";
             string nombreReporte = "ReporteListadoMultaFija";
             string idDelegaciones = "";
             string idInspectores = "";
+            string[] listaInspectores = inspectorValues.Split(',');
+            string[] listaDelegaciones = delegacionesValues.Split(',');
             foreach (var i in listaDelegaciones)
             {
                 idDelegaciones += "-" + i + "-|";
@@ -968,15 +973,17 @@ namespace Cosevi.SIBOAC.Controllers
 
         #endregion
 
-        #region Reporte Listado Multa Fija
+        #region Reporte Listado Parte Oficial
         [System.Web.Http.HttpPost]
-        public ActionResult GetReporteListadoParteOficial(DateTime desde, DateTime hasta, int radio, [FromUri] string[] listaInspectores, [FromUri] string[] listaDelegaciones)
+        public ActionResult GetReporteListadoParteOficial(DateTime desde, DateTime hasta, int radio, [FromUri] string inspectorValues, [FromUri] string delegacionesValues)
         {
 
             string reporteID = "_ReporteListadoParteOficial";
             string nombreReporte = "ReporteListadoParteOficial";
             string idDelegaciones = "";
             string idInspectores = "";
+            string[] listaInspectores = inspectorValues.Split(',');
+            string[] listaDelegaciones = delegacionesValues.Split(',');
             foreach (var i in listaDelegaciones)
             {
                 idDelegaciones += "-" + i + "-|";
@@ -1051,12 +1058,13 @@ namespace Cosevi.SIBOAC.Controllers
         #endregion
 
         #region Reporte Por Usuario
-        public ActionResult GetReportePorUsuario([FromUri] string [] listaUsuarios, DateTime desde, DateTime hasta)
+        public ActionResult GetReportePorUsuario([FromUri] string usuariosValues, DateTime desde, DateTime hasta)
         {
             string reporteID = "_ReportePorUsuario";
             string nombreReporte = "ReportePorUsuario";
             string idUsuarios = "";
-            Session["ListaUsuarios"] = listaUsuarios;
+            string[] listaUsuarios = usuariosValues.Split(',');
+            //Session["ListaUsuarios"] = listaUsuarios;
             foreach (var i in listaUsuarios)
             {
                 idUsuarios += "-" + i + "-|";
@@ -1067,7 +1075,7 @@ namespace Cosevi.SIBOAC.Controllers
                 idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
             }
             var lstaUsuariosSeleccionados = (from r in dbSecurity.SIBOACUsuarios
-                                where listaUsuarios.Contains(r.Id.ToString())
+                                where listaUsuarios.Contains(r.Usuario.ToString())
                                 select new
                                  {
                                      r.Id,
@@ -1078,6 +1086,7 @@ namespace Cosevi.SIBOAC.Controllers
                                 {
                                     Id = x.Usuario.ToString(),
                                     Usuario = x.Usuario + " - " + x.Nombre,
+                                    Seleccionado = true
                                 }
                                 );
             ViewBag.UsuariosSeleccionados = lstaUsuariosSeleccionados.ToList();
@@ -1112,12 +1121,14 @@ namespace Cosevi.SIBOAC.Controllers
 
 
         #region Consulta e Impresion de  Boletas
-        public ActionResult GetConsultaeImpresionDeBoletas([FromUri] DateTime desde, DateTime hasta, [FromUri] string [] listaDelegacion, [FromUri] string [] listaInspector)
+        public ActionResult GetConsultaeImpresionDeBoletas([FromUri] DateTime desde, DateTime hasta, [FromUri] string delegacionesValues, [FromUri] string inspectorValues)
         {
             string reporteID = "_ConsultaeImpresionDeBoletas";
             string nombreReporte = "ConsultaeImpresionDeBoletas";
             string idDelegacion = "";
             string idInspector = "";
+            string[] listaInspector = inspectorValues.Split(',');
+            string[] listaDelegacion = delegacionesValues.Split(',');
             foreach (var i in listaDelegacion)
             {
                 idDelegacion += "-" + i + "-|";
@@ -1212,15 +1223,17 @@ namespace Cosevi.SIBOAC.Controllers
 
 
         #region Reporte Status Actual Plano
-        public ActionResult GetReporteStatusActualPlano(int radio, DateTime desde, DateTime hasta, [FromUri] string [] listaDelegacion, [FromUri] string [] listaAutoridad)
+        public ActionResult GetReporteStatusActualPlano(int radio, DateTime desde, DateTime hasta, [FromUri] string delegacionesValues, [FromUri] string autoridadesValues)
         {
 
             string reporteID = "_ReporteStatusActualPlano";
             string nombreReporte = "ReporteStatusActualPlano";
             string idDelegaciones = "";
             string idAutoridades = "";
-            Session["ListaDelegaciones"] = listaDelegacion;
-            Session["ListaAutoridades"] = listaAutoridad;
+            //Session["ListaDelegaciones"] = listaDelegacion;
+            //Session["ListaAutoridades"] = listaAutoridad;
+            string[] listaDelegacion = delegacionesValues.Split(',');
+            string[] listaAutoridad = autoridadesValues.Split(',');
             foreach (var i in listaDelegacion)
             {
                 idDelegaciones += "-" + i + "-|";
@@ -1311,11 +1324,11 @@ namespace Cosevi.SIBOAC.Controllers
         #endregion
 
         #region Bitacora de Aplicacion
-        public ActionResult GetBitacoraAplicacion(string tipoConsulta1, string tipoConsulta2, DateTime ? desde, DateTime ? hasta, [FromUri] string[] listaUsuarios)
+        public ActionResult GetBitacoraAplicacion(string tipoConsulta1, string tipoConsulta2, DateTime ? desde, DateTime ? hasta, [FromUri] string [] listaUsuarios)
         {
             string reporteID = "_BitacoraAplicacion";
             string nombreReporte = "BitacoraAplicacion";
-            string idUsuarios = "";
+            string idUsuarios = "";                        
             Session["ListaUsuarios"] = listaUsuarios;
             foreach (var i in listaUsuarios)
             {
@@ -1327,7 +1340,7 @@ namespace Cosevi.SIBOAC.Controllers
                 idUsuarios = idUsuarios.Substring(0, idUsuarios.Length - 1);
             }
             var lstaUsuariosSeleccionados = (from r in dbSecurity.SIBOACUsuarios
-                                             where listaUsuarios.Contains(r.Id.ToString())
+                                             where listaUsuarios.Contains(r.Usuario.ToString())
                                              select new
                                              {
                                                  r.Id,
@@ -1338,6 +1351,7 @@ namespace Cosevi.SIBOAC.Controllers
                                 {
                                     Id = x.Usuario.ToString(),
                                     Usuario = x.Usuario + " - " + x.Nombre,
+                                    Seleccionado = true
                                 }
                                 );
             ViewBag.UsuariosSeleccionados = lstaUsuariosSeleccionados.ToList();

@@ -88,7 +88,7 @@
                         </p>
                         <div class="col-max col-md-12">
                             <div id="ListaDelegaciones">
-                                    <div class="list-group" data-toggle="items">
+                                    <div class="list-group" data-toggle="items" required>
                                         @foreach (var item in ViewBag.Delegaciones)
                                         {
                                             if (item.Seleccionado == true)
@@ -119,7 +119,7 @@
                         </p>
                         <div class="col-max col-md-12">
                             <div id="ListaAutoridades">
-                                <div class="list-group" data-toggle="items">
+                                <div class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Autoridades)
                                     {
                                         if (item.Seleccionado == true)

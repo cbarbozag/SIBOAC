@@ -10,7 +10,9 @@
 <hr />
 @using (Html.BeginForm("GetReporteDescargaInspector", "Reporte", FormMethod.Get))
 {
-  
+
+    @Html.Hidden("inspectorValues");
+
     <div class="form-group">
         <label class="control-label col-md-2">Rango de fechas</label>
         <div class="col-md-10">
@@ -39,22 +41,19 @@
                         </p>
                         <div class="col-max col-md-7">
                             <div id="ListaInspectores">
-                                <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
+                                <div class="list-group" data-toggle="items">
                                     @foreach (var item in ViewBag.Inspectores)
                                     {
-
                                         if (item.Seleccionado == true)
                                         {
-                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                            <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaInspectorChange(this); return false;">@item.Descripcion</a>
                                         }
                                         else
                                         {
-                                            <option value="@item.Id">@item.Descripcion</option>
+                                            <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaInspectorChange(this); return false;">@item.Descripcion</a>
                                         }
-
-
                                     }
-                                </select>
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -69,7 +68,7 @@
                     <br />
                     <br />
                     <div class="btn-group pull-right col-md-6">
-                        <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                        @*<button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>*@
                         <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
 
                     </div>
@@ -105,22 +104,29 @@
                                     todayBtn: true
                                 });
                             };
-                            function marcarTodosInspector() {
+                            //function marcarTodosInspector() {
 
-                                var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
-                                for (var i = 0; i < items.length; i++) {
-                                    if (!$(items[i]).hasClass('active')) {
-                                        $(items[i]).addClass('active')
-                                    }
-                                }
-                            };
+                            //    var selectedValues = [];
+                            //    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+
+                            //    for (var i = 0; i < items.length; i++) {
+                            //        if (!$(items[i]).hasClass('active')) {
+                            //            $(items[i]).addClass('active')
+                            //        }
+
+                            //        var inspectorID = items[i].getAttribute('data-value');
+                            //        selectedValues.push(inspectorID);
+                            //    }
+                            //    document.getElementById('inspectorValues').value = selectedValues.join();
+                            //};
 
                             function limpiarTodosInspector() {
                                 var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
                                 for (var i = 0; i < items.length; i++) {
                                     $(items[i]).removeClass('active');
-
                                 }
+
+                                document.getElementById('inspectorValues').value = '';
                             };
                             function ReportCall() {
 
@@ -142,16 +148,34 @@
                                 return false;
                             }
 
-                            $("#listaInspectores").change(function () {
-                                var id = $(this).attr('name');
-                                var str2 = "";
-                                $("#listaInspectores option:selected").each(function () {
+                            function listaInspectorChange(obj) {
 
-                                    str2 += "&" + id + "=" + $(this).attr('value');
-                                });
-                                $("div").text(str2);
-                            })
-                                   .trigger('change');
+                                var InspectorID = obj.getAttribute('data-value');
+                                var selectedValues = document.getElementById('inspectorValues').value == '' ? [] : document.getElementById('inspectorValues').value.split(',');
+
+                                var index = selectedValues.indexOf(InspectorID);
+                                if (!$(obj).hasClass('active')) {
+                                    selectedValues.push(InspectorID);
+                                }
+                                else {
+                                    if (index > -1) {
+                                        selectedValues.splice(index, 1);
+                                    }
+                                }
+
+                                document.getElementById('inspectorValues').value = selectedValues.join();
+                            }
+
+                            //$("#listaInspectores").change(function () {
+                            //    var id = $(this).attr('name');
+                            //    var str2 = "";
+                            //    $("#listaInspectores option:selected").each(function () {
+
+                            //        str2 += "&" + id + "=" + $(this).attr('value');
+                            //    });
+                            //    $("div").text(str2);
+                            //})
+                            //       .trigger('change');
                         </script>
 
 <script type="text/javascript">

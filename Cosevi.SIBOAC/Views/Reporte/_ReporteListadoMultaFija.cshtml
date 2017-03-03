@@ -10,6 +10,8 @@
 
 @using (Html.BeginForm("GetReporteListadoMultaFija", "Reporte", FormMethod.Get))
 {
+    @Html.Hidden("delegacionesValues");
+    @Html.Hidden("inspectorValues");
 
         <div class="form-group">
             <label class="control-label col-md-10">Seleccione una opción para las fechas</label>
@@ -73,25 +75,20 @@
                             <input type="text" id="BuscarDelegacion" name="BuscarDelegaciones" onkeyup="BuscarDel()" placeholder="Buscar..">
                         </p>
                         <div class="col-max col-md-12">
-                            <div id="ListaDelegaciones">
-                                <select name="listaDelegaciones" id="listaD" multiple="multiple" class="list-group" data-toggle="items" required>
-
-
+                            <div id="ListaDelegaciones">                                
+                                <div class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Delegaciones)
                                     {
-
                                         if (item.Seleccionado == true)
                                         {
-                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                            <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaDelegacionesChange(this); return false;">@item.Descripcion</a>
                                         }
                                         else
                                         {
-                                            <option value="@item.Id">@item.Descripcion</option>
+                                            <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaDelegacionesChange(this); return false;">@item.Descripcion</a>
                                         }
-
-
                                     }
-                                </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,25 +107,25 @@
                         </p>
                         <div class="col-max col-md-12">
                             <div id="ListaInspectores">
-                                <select name="listaInspectores" id="listaI" multiple="multiple" class="list-group" data-toggle="items" required>
+                                <div class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Inspectores)
                                     {
                                         if (item.Seleccionado == true)
                                         {
-                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                            <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaInspectorChange(this); return false;">@item.Descripcion</a>
                                         }
                                         else
                                         {
-                                            <option value="@item.Id">@item.Descripcion</option>
+                                            <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaInspectorChange(this); return false;">@item.Descripcion</a>
                                         }
                                     }
-                                </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <br />
                     <div class="btn-group pull-right">
-                        <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                        @*<button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>*@
                         <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
 
                     </div>
@@ -162,61 +159,47 @@
                 });
             </script>
             <script>
-                $("#listaDelegaciones").change(function () {
-                    var id = $(this).attr('name');
-                    var str2 = "";
-                    $("#listaDelegaciones option:selected").each(function () {
-
-                        str2 += "&" + id + "=" + $(this).attr('value');
-                    });
-                    $("div").text(str2);
-                })
-                 .trigger('change');
-
-                $("#listaInspectores").change(function () {
-                    var id = $(this).attr('name');
-                    var str2 = "";
-                    $("#listaInspectores option:selected").each(function () {
-
-                        str2 += "&" + id + "=" + $(this).attr('value');
-                    });
-                    $("div").text(str2);
-                })
-                .trigger('change');
-
                 function marcarTodosDelegacion() {
 
+                    var selectedValues = [];
                     var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+
                     for (var i = 0; i < items.length; i++) {
                         if (!$(items[i]).hasClass('active')) {
                             $(items[i]).addClass('active')
                         }
+
+                        var delegacionID = items[i].getAttribute('data-value');
+                        selectedValues.push(delegacionID);
                     }
+                    document.getElementById('delegacionesValues').value = selectedValues.join();
                 };
 
                 function limpiarTodosDelegacion() {
                     var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         $(items[i]).removeClass('active');
-
                     }
-                };
-                function marcarTodosInspector() {
 
-                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
-                    for (var i = 0; i < items.length; i++) {
-                        if (!$(items[i]).hasClass('active')) {
-                            $(items[i]).addClass('active')
-                        }
-                    }
+                    document.getElementById('delegacionesValues').value = '';
                 };
+                //function marcarTodosInspector() {
+
+                //    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                //    for (var i = 0; i < items.length; i++) {
+                //        if (!$(items[i]).hasClass('active')) {
+                //            $(items[i]).addClass('active')
+                //        }
+                //    }
+                //};
 
                 function limpiarTodosInspector() {
                     var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         $(items[i]).removeClass('active');
-
                     }
+
+                    document.getElementById('inspectorValues').value = '';
                 };
                 function ReportCall() {
 
@@ -237,6 +220,43 @@
 
                     return false;
                 }
+
+                function listaDelegacionesChange(obj) {
+
+                    var delegacionID = obj.getAttribute('data-value');
+                    var selectedValues = document.getElementById('delegacionesValues').value == '' ? [] : document.getElementById('delegacionesValues').value.split(',');
+
+                    var index = selectedValues.indexOf(delegacionID);
+                    if (!$(obj).hasClass('active')) {
+                        selectedValues.push(delegacionID);
+                    }
+                    else {
+                        if (index > -1) {
+                            selectedValues.splice(index, 1);
+                        }
+                    }
+
+                    document.getElementById('delegacionesValues').value = selectedValues.join();
+                }
+
+                function listaInspectorChange(obj) {
+
+                    var InspectorID = obj.getAttribute('data-value');
+                    var selectedValues = document.getElementById('inspectorValues').value == '' ? [] : document.getElementById('inspectorValues').value.split(',');
+
+                    var index = selectedValues.indexOf(InspectorID);
+                    if (!$(obj).hasClass('active')) {
+                        selectedValues.push(InspectorID);
+                    }
+                    else {
+                        if (index > -1) {
+                            selectedValues.splice(index, 1);
+                        }
+                    }
+
+                    document.getElementById('inspectorValues').value = selectedValues.join();
+                }
+
                 function Calendario() {
                     $('.input-daterange').datepicker({
                         startView: 2,

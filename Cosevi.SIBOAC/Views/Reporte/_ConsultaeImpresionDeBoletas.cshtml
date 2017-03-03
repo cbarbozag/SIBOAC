@@ -10,6 +10,8 @@
 
 @using (Html.BeginForm("GetConsultaeImpresionDeBoletas", "Reporte", FormMethod.Get))
 {
+    @Html.Hidden("delegacionesValues");
+    @Html.Hidden("inspectorValues");
 
     <table border="0">
         <div class="form-group">
@@ -37,20 +39,20 @@
                         </p>
                         <div class="col-max col-md-12">
                             <div id="ListaDelegaciones">
-                                <select name="listaDelegacion" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
+                                <div class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Delegacion)
                                     {
                                         if (item.Seleccionado == true)
                                         {
-                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                            <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaDelegacionesChange(this); return false;">@item.Descripcion</a>
                                         }
                                         else
                                         {
-                                            <option value="@item.Id">@item.Descripcion</option>
+                                            <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaDelegacionesChange(this); return false;">@item.Descripcion</a>
                                         }
 
                                     }
-                                </select>
+                                </div>
                             </div>                         
                         </div>
                     </div>
@@ -70,25 +72,25 @@
                         </p>
                         <div class="col-max col-md-12">
                             <div id="ListaInspectores">
-                                <select name="listaInspector" id="example-getting-started" multiple="multiple" class="list-group" data-toggle="items" required>
+                                <div class="list-group" data-toggle="items" required>
                                     @foreach (var item in ViewBag.Inspector)
                                     {
                                         if (item.Seleccionado == true)
                                         {
-                                            <option value="@item.Id" selected>@item.Descripcion</option>
+                                            <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaInspectorChange(this); return false;">@item.Descripcion</a>
                                         }
                                         else
                                         {
-                                            <option value="@item.Id">@item.Descripcion</option>
+                                            <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaInspectorChange(this); return false;">@item.Descripcion</a>
                                         }
                                     }
-                                </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <br />                  
                     <div class="btn-group pull-right">
-                        <button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>
+                        @*<button id="todosInspector" type="button" class="btn btn-danger" onclick="marcarTodosInspector()">Marcar todos</button>*@
                         <button id="limpiarInspector" type="button" class="btn btn-primary" onclick="limpiarTodosInspector()">Limpiar</button>
 
                     </div>
@@ -120,25 +122,41 @@
 
             <script>
 
-                $("#listaDelegacion").change(function () {
-                    var id = $(this).attr('name');
-                    var str2 = "";
-                    $("#listaDelegacion option:selected").each(function () {
+                function listaDelegacionesChange(obj) {
 
-                        str2 += "&" + id + "=" + $(this).attr('value');
-                    });
-                    $("div").text(str2);
-                }).trigger('change');
+                    var delegacionID = obj.getAttribute('data-value');
+                    var selectedValues = document.getElementById('delegacionesValues').value == '' ? [] : document.getElementById('delegacionesValues').value.split(',');
 
-                $("#listaInspector").change(function () {
-                    var id = $(this).attr('name');
-                    var str2 = "";
-                    $("#listaInspector option:selected").each(function () {
+                    var index = selectedValues.indexOf(delegacionID);
+                    if (!$(obj).hasClass('active')) {
+                        selectedValues.push(delegacionID);
+                    }
+                    else {
+                        if (index > -1) {
+                            selectedValues.splice(index, 1);
+                        }
+                    }
 
-                        str2 += "&" + id + "=" + $(this).attr('value');
-                    });
-                    $("div").text(str2);
-                }).trigger('change');
+                    document.getElementById('delegacionesValues').value = selectedValues.join();
+                }
+
+                function listaInspectorChange(obj) {
+
+                    var InspectorID = obj.getAttribute('data-value');
+                    var selectedValues = document.getElementById('inspectorValues').value == '' ? [] : document.getElementById('inspectorValues').value.split(',');
+
+                    var index = selectedValues.indexOf(InspectorID);
+                    if (!$(obj).hasClass('active')) {
+                        selectedValues.push(InspectorID);
+                    }
+                    else {
+                        if (index > -1) {
+                            selectedValues.splice(index, 1);
+                        }
+                    }
+
+                    document.getElementById('inspectorValues').value = selectedValues.join();
+                }
 
                 function ReportCall() {
                     var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
@@ -171,38 +189,45 @@
 
                 function marcarTodosDelegacion() {
 
+                    var selectedValues = [];
                     var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
+
                     for (var i = 0; i < items.length; i++) {
                         if (!$(items[i]).hasClass('active')) {
                             $(items[i]).addClass('active')
                         }
+
+                        var delegacionID = items[i].getAttribute('data-value');
+                        selectedValues.push(delegacionID);
                     }
+                    document.getElementById('delegacionesValues').value = selectedValues.join();
                 };
 
                 function limpiarTodosDelegacion() {
                     var items = document.getElementById("ListaDelegaciones").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
-                        //  $(items[i]).prop('selected', false)
                         $(items[i]).removeClass('active');
-
                     }
-                };
-                function marcarTodosInspector() {
 
-                    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
-                    for (var i = 0; i < items.length; i++) {
-                        if (!$(items[i]).hasClass('active')) {
-                            $(items[i]).addClass('active')
-                        }
-                    }
+                    document.getElementById('delegacionesValues').value = '';
                 };
+                //function marcarTodosInspector() {
+
+                //    var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
+                //    for (var i = 0; i < items.length; i++) {
+                //        if (!$(items[i]).hasClass('active')) {
+                //            $(items[i]).addClass('active')
+                //        }
+                //    }
+                //};
 
                 function limpiarTodosInspector() {
                     var items = document.getElementById("ListaInspectores").getElementsByClassName('list-group-item');
                     for (var i = 0; i < items.length; i++) {
                         $(items[i]).removeClass('active');
-
                     }
+
+                    document.getElementById('inspectorValues').value = '';
                 };
             </script>
 

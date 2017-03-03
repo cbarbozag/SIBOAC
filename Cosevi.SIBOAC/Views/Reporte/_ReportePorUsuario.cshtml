@@ -1,4 +1,4 @@
-﻿@model IEnumerable <Cosevi.SIBOAC.Models.SIBOACUsuarios>
+﻿@model IEnumerable<Cosevi.SIBOAC.Models.SIBOACUsuarios>
 @{
     ViewBag.Title = "_ReportePorUsuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,8 +19,8 @@
 
             } else {
                 output[i].style.display = "";
-                output[i].setAttribute('style', 'display:');                
-            }        
+                output[i].setAttribute('style', 'display:');
+            }
         }
     }
 </script>
@@ -30,14 +30,16 @@
 <hr />
 @using (Html.BeginForm("GetReportePorUsuario", "Reporte", FormMethod.Get))
 {
+    @Html.Hidden("usuariosValues");
+
     <table border="0">
         <div class="form-group">
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required/>
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required />
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]" required/>
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" required />
                 </div>
             </div>
         </div>
@@ -52,33 +54,35 @@
                         <input type="text" id="searchTerm" name="searchTerm" onkeyup="doSearch()" placeholder="Buscar..">
                     </p>
                     <div class="col-max col-md-7">
-                        <select name="listaUsuarios" id="listaUsu" multiple="multiple" class="list-group" data-toggle="items" required>
-                            @foreach (var item in ViewBag.Usuarios)
-                            {
-                                if (item.Seleccionado == true)
+                        <div id="ListaUsuarios">
+                            <div class="list-group" data-toggle="items" required>
+                                @foreach (var item in ViewBag.Usuarios)
                                 {
-                                    <option value="@item.Id" selected>@item.Usuario</option>
+                                    if (item.Seleccionado == true)
+                                    {
+                                        <a href="#" class="list-group-item active" data-value="@item.Id" onclick="listaUsuariosChange(this); return false;">@item.Usuario</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="list-group-item" data-value="@item.Id" onclick="listaUsuariosChange(this); return false;">@item.Usuario</a>
+                                    }
                                 }
-                                else
-                                {
-                                    <option value="@item.Id">@item.Usuario</option>
-                                }
-                            }
 
-                        </select>
-                    </div>                    
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <br />
-                <br />           
+                <br />
             </div>
             <br />
             <br />
-            <div class="btn-group pull-right col-md-6">                    
+            <div class="btn-group pull-right col-md-6">
                 <button id="todos" type="button" class="btn btn-danger" onclick="marcarTodosUsuarios()">Marcar todos</button>
                 <button id="limpiar" type="button" class="btn btn-primary" onclick="limpiarTodosUsuarios()">Limpiar</button>
             </div>
-                <br />
-                <br />                        
+            <br />
+            <br />
             <div class="pull-right">
                 <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
             </div>
@@ -87,11 +91,11 @@
 }
 
 <iframe id="ifrmReportViewer" style="height:1200px; width:99%;" frameborder="0" scrolling="no"></iframe>
-@section scripts{    
+@section scripts{
 
     <script>
         $(document).ready(
-        function () {            
+        function () {
             Calendario();
             ReportCall();
             //prepararEventos();
@@ -99,15 +103,24 @@
     </script>
 
     <script>
-        $("#listaUsuarios").change(function () {
-            var id = $(this).attr('name');
-            var str2 = "";
-            $("#listaUsuarios option:selected").each(function () {
 
-                str2 += "&" + id + "=" + $(this).attr('value');
-            });
-            $("div").text(str2);
-        }).trigger('change');
+        function listaUsuariosChange(obj) {
+
+            var UsuariosID = obj.getAttribute('data-value');
+            var selectedValues = document.getElementById('usuariosValues').value == '' ? [] : document.getElementById('usuariosValues').value.split(',');
+
+            var index = selectedValues.indexOf(UsuariosID);
+            if (!$(obj).hasClass('active')) {
+                selectedValues.push(UsuariosID);
+            }
+            else {
+                if (index > -1) {
+                    selectedValues.splice(index, 1);
+                }
+            }
+
+            document.getElementById('usuariosValues').value = selectedValues.join();
+        }
 
         function ReportCall() {
 
@@ -136,7 +149,7 @@
                 autoclose: true,
                 orientation: 'bottom auto',
                 todayHighlight: true,
-                todayBtn: true               
+                todayBtn: true
                 //format: 'dd/mm/yyyy' desde
             });
         };
@@ -146,20 +159,28 @@
         //    });
         //};
 
-             function marcarTodosUsuarios() {
-                 var items = document.getElementsByClassName('list-group-item');
-                 for (var i = 0; i < items.length; i++) {
-                     if (!$(items[i]).hasClass('active')) {
-                         $(items[i]).addClass('active')
-                     }
-                 }
-             };
+        function marcarTodosUsuarios() {
+            var selectedValues = [];
+            var items = document.getElementById("ListaUsuarios").getElementsByClassName('list-group-item');
 
-             function limpiarTodosUsuarios() {
-                 var items = document.getElementsByClassName('list-group-item');
-                 for (var i = 0; i < items.length; i++) {
-                     $(items[i]).removeClass('active');
-                 }
-             };
+            for (var i = 0; i < items.length; i++) {
+                if (!$(items[i]).hasClass('active')) {
+                    $(items[i]).addClass('active')
+                }
+
+                var UsuariosID = items[i].getAttribute('data-value');
+                selectedValues.push(UsuariosID);
+            }
+            document.getElementById('usuariosValues').value = selectedValues.join();
+        };
+
+        function limpiarTodosUsuarios() {
+            var items = document.getElementById("ListaUsuarios").getElementsByClassName('list-group-item');
+            for (var i = 0; i < items.length; i++) {
+                $(items[i]).removeClass('active');
+            }
+
+            document.getElementById('usuariosValues').value = '';
+        };
     </script>
 }
