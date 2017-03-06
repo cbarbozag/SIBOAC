@@ -711,31 +711,31 @@ namespace Cosevi.SIBOAC.Controllers
         #region ConsultaeImpresionParteOficialData
         private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionParteOficialData( int idRadio,  string serieParte,
              string numeroParte,  int? serieBoleta,  decimal? numeroBoleta,  string tipoId,
-             string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca, string VIN)
+             string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca)
         {
             if(idRadio ==1) // Consulta por parte oficial
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista1 = db.GetConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(),null,null).ToList();
+                var lista1 = db.GetConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(),null).ToList();
                 return lista1;
             }
             if (idRadio == 2)//consulta por Boleta de citación
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista2 = db.GetConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte,null,null).ToList();
+                var lista2 = db.GetConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte,null).ToList();
                 
                 return lista2;
             }
             if (idRadio == 3)//Indentificación del implicado
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista3 = db.GetConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null,null).ToList();
+                var lista3 = db.GetConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null).ToList();
                 return lista3;
             }
             if (idRadio == 4)//Placa
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista4 = db.GetConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca,VIN).ToList();
+                var lista4 = db.GetConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca).ToList();
                 return lista4;
             }
 
@@ -744,7 +744,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         public ActionResult GetConsultaeImpresionParteOficial([FromUri] int opcionConsulta, [FromUri] string serieParte,
             [FromUri] string numeroParte, [FromUri] int? serieBoleta, [FromUri] decimal? numeroBoleta, [FromUri] string tipoId,
-            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca, [FromUri] string VIN)
+            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
         {
 
             string reporteID = "_ConsultaeImpresionDeParteOficial";
@@ -752,21 +752,21 @@ namespace Cosevi.SIBOAC.Controllers
             string parametros = "";
             if (opcionConsulta == 1)
             {
-                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), serieParte, numeroParte, "null","null");
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieParte, numeroParte, "null");
              }
             if(opcionConsulta == 2)
             {
                
-                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null","null");
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null");
             }
             if (opcionConsulta == 3)
             {
-                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), tipoId, numeroID, "null","null");
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), tipoId, numeroID, "null");
 
             }
             if (opcionConsulta == 4)
             {
-                parametros = String.Format("{0},{1},{2},{3},{4}", opcionConsulta.ToString(), numeroPlaca, codigoPlaca, clasePlaca, VIN);
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), numeroPlaca, codigoPlaca, clasePlaca);
 
 
             }

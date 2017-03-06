@@ -76,7 +76,7 @@ namespace Cosevi.SIBOAC.Reports
                         string Parametro1 = param2[1];
                         string Parametro2 = param2[2];
                         string Parametro3 = param2[3];
-                        string Parametro4 = param2[4];
+                        //string Parametro4 = param2[4];
 
                         if (TipoConsulta == 1)
                         {
@@ -179,10 +179,10 @@ namespace Cosevi.SIBOAC.Reports
                         if (TipoConsulta == 4)
                         {
 
-                            var numeroBoleta4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3 && a.numero_vin == Parametro4).Select(a => a.NumeroBoleta).ToList());
+                            var numeroBoleta4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3).Select(a => a.NumeroBoleta).ToList());
                             string CodigoNumBoleta4 = Convert.ToString(numeroBoleta4.ToArray().FirstOrDefault()) == null ? "0" : numeroBoleta4.ToArray().FirstOrDefault().ToString();
 
-                            var seriBolet4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3 && a.numero_vin == Parametro4).Select(a => a.Serie).ToList());
+                            var seriBolet4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3).Select(a => a.Serie).ToList());
                             string CodigoSerBol4 = Convert.ToString(seriBolet4.ToArray().FirstOrDefault()) == null ? "0" : seriBolet4.ToArray().FirstOrDefault().ToString();
 
                             int SerieBole4 = Convert.ToInt32(CodigoSerBol4);
@@ -398,11 +398,11 @@ namespace Cosevi.SIBOAC.Reports
             if (Parametro3 == "null")
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista1 = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0", "-0").ToList();
+                var lista1 = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0").ToList();
                 return lista1;
             }
             db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-            var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3, Parametro4).ToList();
+            var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3).ToList();
             return lista;
         }
 
@@ -496,28 +496,28 @@ namespace Cosevi.SIBOAC.Reports
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-            string reporteID = Request.QueryString["reporteID"];
-            string nombreReporte = Request.QueryString["nombreReporte"];
-            string parametros = Request.QueryString["parametros"];
+            //string reporteID = Request.QueryString["reporteID"];
+            //string nombreReporte = Request.QueryString["nombreReporte"];
+            //string parametros = Request.QueryString["parametros"];
 
 
-            if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
-            {
-                return;
-            }
+            //if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
+            //{
+            //    return;
+            //}
 
-            switch (reporteID)
-            {
-                case "_ConsultaeImpresionDeParteOficial":
+            //switch (reporteID)
+            //{
+            //    case "_ConsultaeImpresionDeParteOficial":
 
-                    break;
-            }
+            //        break;
+            //}
 
             
 
 
 
-                    Warning[] warnings;
+            Warning[] warnings;
             string[] streamids;
             string mimeType;
             string encoding;
