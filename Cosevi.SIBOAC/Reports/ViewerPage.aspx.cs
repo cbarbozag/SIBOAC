@@ -496,7 +496,28 @@ namespace Cosevi.SIBOAC.Reports
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-            Warning[] warnings;
+            string reporteID = Request.QueryString["reporteID"];
+            string nombreReporte = Request.QueryString["nombreReporte"];
+            string parametros = Request.QueryString["parametros"];
+
+
+            if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
+            {
+                return;
+            }
+
+            switch (reporteID)
+            {
+                case "_ConsultaeImpresionDeParteOficial":
+
+                    break;
+            }
+
+            
+
+
+
+                    Warning[] warnings;
             string[] streamids;
             string mimeType;
             string encoding;

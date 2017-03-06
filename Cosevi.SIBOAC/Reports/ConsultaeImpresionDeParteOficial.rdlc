@@ -5300,68 +5300,12 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <DataField>numero_vin</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DLocalizacion">
-          <DataField>DLocalizacion</DataField>
+        <Field Name="DescripconCodigod">
+          <DataField>DescripconCodigod</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DescLocalizacionD">
-          <DataField>DescLocalizacionD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ApreciacionHund">
-          <DataField>ApreciacionHund</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescAprecHundD">
-          <DataField>DescAprecHundD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="OtrosD">
-          <DataField>OtrosD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescOtrosD">
-          <DataField>DescOtrosD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ApreciacionCor">
-          <DataField>ApreciacionCor</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescApreciacionCorD">
-          <DataField>DescApreciacionCorD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FactorR">
-          <DataField>FactorR</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescFactorRiesgoD">
-          <DataField>DescFactorRiesgoD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PorEv">
-          <DataField>PorEv</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescPorEviD">
-          <DataField>DescPorEviD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ObstVis">
-          <DataField>ObstVis</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescObstruccionVisiD">
-          <DataField>DescObstruccionVisiD</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="RolVeh">
-          <DataField>RolVeh</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DesRolVehiculo">
-          <DataField>DesRolVehiculo</DataField>
+        <Field Name="DescripcionCodigotd">
+          <DataField>DescripcionCodigotd</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CondicionPersona">

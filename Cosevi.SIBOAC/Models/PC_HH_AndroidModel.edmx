@@ -1218,7 +1218,6 @@
           <Parameter Name="Parametro1" Type="varchar" Mode="In" />
           <Parameter Name="Parametro2" Type="varchar" Mode="In" />
           <Parameter Name="Parametro3" Type="varchar" Mode="In" />
-          <Parameter Name="Parametro4" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetDescargaBoletaData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TipoFecha" Type="int" Mode="In" />
@@ -1567,7 +1566,6 @@
             <Parameter Name="Parametro1" Mode="In" Type="String" />
             <Parameter Name="Parametro2" Mode="In" Type="String" />
             <Parameter Name="Parametro3" Mode="In" Type="String" />
-            <Parameter Name="Parametro4" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetConsultaeImpresionDeBoletasData" ReturnType="Collection(PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
@@ -2860,25 +2858,11 @@
           <Property Type="String" Name="num_prueba_alcohol" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="num_alcohosensor" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="numero_vin" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="DLocalizacion" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescLocalizacionD" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ApreciacionHund" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescAprecHundD" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="OtrosD" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescOtrosD" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ApreciacionCor" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescApreciacionCorD" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="FactorR" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescFactorRiesgoD" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PorEv" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescPorEviD" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ObstVis" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DescObstruccionVisiD" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="RolVeh" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="DesRolVehiculo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="PlanoAccidente" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="DescripcionTipoSenal" Nullable="false" MaxLength="18" />
           <Property Type="String" Name="CondicionPersona" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescripconCodigod" Nullable="true" MaxLength="26" />
+          <Property Type="String" Name="DescripcionCodigotd" Nullable="true" MaxLength="50" />
           </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="203" />
@@ -4444,25 +4428,11 @@
                 <ScalarProperty Name="num_prueba_alcohol" ColumnName="num_prueba_alcohol" />
                 <ScalarProperty Name="num_alcohosensor" ColumnName="num_alcohosensor" />
                 <ScalarProperty Name="numero_vin" ColumnName="numero_vin" />
-                <ScalarProperty Name="DLocalizacion" ColumnName="DLocalizacion" />
-                <ScalarProperty Name="DescLocalizacionD" ColumnName="DescLocalizacionD" />
-                <ScalarProperty Name="ApreciacionHund" ColumnName="ApreciacionHund" />
-                <ScalarProperty Name="DescAprecHundD" ColumnName="DescAprecHundD" />
-                <ScalarProperty Name="OtrosD" ColumnName="OtrosD" />
-                <ScalarProperty Name="DescOtrosD" ColumnName="DescOtrosD" />
-                <ScalarProperty Name="ApreciacionCor" ColumnName="ApreciacionCor" />
-                <ScalarProperty Name="DescApreciacionCorD" ColumnName="DescApreciacionCorD" />
-                <ScalarProperty Name="FactorR" ColumnName="FactorR" />
-                <ScalarProperty Name="DescFactorRiesgoD" ColumnName="DescFactorRiesgoD" />
-                <ScalarProperty Name="PorEv" ColumnName="PorEv" />
-                <ScalarProperty Name="DescPorEviD" ColumnName="DescPorEviD" />
-                <ScalarProperty Name="ObstVis" ColumnName="ObstVis" />
-                <ScalarProperty Name="DescObstruccionVisiD" ColumnName="DescObstruccionVisiD" />
-                <ScalarProperty Name="RolVeh" ColumnName="RolVeh" />
-                <ScalarProperty Name="DesRolVehiculo" ColumnName="DesRolVehiculo" />
                 <ScalarProperty Name="PlanoAccidente" ColumnName="PlanoAccidente" />
                 <ScalarProperty Name="DescripcionTipoSenal" ColumnName="DescripcionTipoSenal" />
                 <ScalarProperty Name="CondicionPersona" ColumnName="CondicionPersona" />
+                <ScalarProperty Name="DescripconCodigod" ColumnName="DescripconCodigod" />
+                <ScalarProperty Name="DescripcionCodigotd" ColumnName="DescripcionCodigotd" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

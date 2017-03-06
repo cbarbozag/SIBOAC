@@ -115,24 +115,10 @@ namespace Cosevi.SIBOAC.Models
         public string num_prueba_alcohol { get; set; }
         public string num_alcohosensor { get; set; }
         public string numero_vin { get; set; }
-        public string DLocalizacion { get; set; }
-        public string DescLocalizacionD { get; set; }
-        public string ApreciacionHund { get; set; }
-        public string DescAprecHundD { get; set; }
-        public string OtrosD { get; set; }
-        public string DescOtrosD { get; set; }
-        public string ApreciacionCor { get; set; }
-        public string DescApreciacionCorD { get; set; }
-        public string FactorR { get; set; }
-        public string DescFactorRiesgoD { get; set; }
-        public string PorEv { get; set; }
-        public string DescPorEviD { get; set; }
-        public string ObstVis { get; set; }
-        public string DescObstruccionVisiD { get; set; }
-        public string RolVeh { get; set; }
-        public string DesRolVehiculo { get; set; }
         public string PlanoAccidente { get; set; }
         public string DescripcionTipoSenal { get; set; }
         public string CondicionPersona { get; set; }
+        public string DescripconCodigod { get; set; }
+        public string DescripcionCodigotd { get; set; }
     }
 }
