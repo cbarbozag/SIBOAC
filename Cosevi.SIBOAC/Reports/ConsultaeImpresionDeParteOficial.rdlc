@@ -31,7 +31,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>AUTORIDAD JUDICIAL QUE CONOCE EL CASO: </Value>
+                              <Value>AUTORIDAD JUDICIAL QUE CONOCE EL CASO:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -78,7 +85,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>LUGAR DE LOS HECHOS: </Value>
+                              <Value>LUGAR DE LOS HECHOS:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -125,7 +139,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>RUTA: </Value>
+                              <Value>RUTA:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -165,7 +186,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>KILOMETRO: </Value>
+                              <Value>KILOMETRO:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -203,7 +231,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>SECCIÓN: </Value>
+                              <Value>SECCIÓN:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -246,7 +281,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>AVENIDAS: </Value>
+                              <Value>AVENIDAS:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -361,7 +403,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ACCIDENTE OCURRIDO EL:  </Value>
+                              <Value>ACCIDENTE OCURRIDO EL:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Format>dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt</Format>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt</Format>
@@ -410,7 +460,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>DELEGACIÓN: </Value>
+                              <Value>DELEGACIÓN:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -457,7 +514,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>INSPECTOR: </Value>
+                              <Value>INSPECTOR:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -552,6 +616,7 @@
                               <Value>Velo Km/H</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -584,6 +649,7 @@
                               <Value>Carril Dos</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -613,7 +679,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Estructura Especial: </Value>
+                              <Value>Estructura Especial:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -651,7 +724,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Sentido: </Value>
+                              <Value>Sentido:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -762,7 +842,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Clase Calzada: </Value>
+                              <Value>Clase Calzada:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -800,7 +887,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Estado: </Value>
+                              <Value>Estado:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -883,7 +977,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Condic. de Calzada:  </Value>
+                              <Value>Condic. de Calzada:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -921,7 +1022,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Estado del Tiempo:  </Value>
+                              <Value>Estado del Tiempo:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1010,7 +1118,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Iluminación: </Value>
+                              <Value>Iluminación:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1048,7 +1163,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tipo Intersección Y:  </Value>
+                              <Value>Tipo Intersección Y:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1131,7 +1253,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Características: </Value>
+                              <Value>Características:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1244,7 +1373,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Alinea. Vertical: </Value>
+                              <Value>Alinea. Vertical:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1282,7 +1418,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Alinea. Horizontal:  </Value>
+                              <Value>Alinea. Horizontal:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1382,6 +1525,7 @@
                                             <Value>=Fields!DescripcionTipoSenal.Value</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
+                                              <FontWeight>Bold</FontWeight>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
@@ -1526,7 +1670,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tipo de Accidente: </Value>
+                              <Value>Tipo de Accidente:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1573,7 +1724,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Vehículo en Circulación: </Value>
+                              <Value>Vehículo en Circulación:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1620,7 +1778,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Obstaculos en la vía: </Value>
+                              <Value>Obstaculos en la vía:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1667,7 +1832,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Observaciones: </Value>
+                              <Value>Observaciones:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -1763,7 +1935,7 @@
                               <Value>=Fields!PlanoAccidente.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
+                                <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2751,7 +2923,20 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Identificación: "+Fields!tipo_ide.Value.ToString() +" "+ Fields!identificacion.Value + "  "+ Fields!apellido1.Value +" "+Fields!apellido2.Value +" " +Fields!nombre.Value</Value>
+                              <Value>Identificación:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!tipo_ide.Value.ToString() +" "+ Fields!identificacion.Value + "  "+ Fields!apellido1.Value +" "+Fields!apellido2.Value +" " +Fields!nombre.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -2796,6 +2981,13 @@
                               <Value>Marca: </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                             <TextRun>
@@ -2836,6 +3028,13 @@
                               <Value>Carrocería:</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                             <TextRun>
@@ -2871,7 +3070,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Edad: </Value>
+                              <Value>Edad:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3011,7 +3217,20 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Dirección: "+Fields!DescripcionProvincia.Value+ " " +Fields!DescripcionCanton.Value +" "+Fields!DescripcionDistrito.Value</Value>
+                              <Value>Dirección:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!DescripcionProvincia.Value+ " " +Fields!DescripcionCanton.Value +" "+Fields!DescripcionDistrito.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3051,7 +3270,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Dirección del vehículo: </Value>
+                              <Value>Dirección del vehículo:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3092,7 +3318,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Teléfono: </Value>
+                              <Value>Teléfono:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3138,7 +3371,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Huella de Frenado: </Value>
+                              <Value>Huella de Frenado:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3179,7 +3419,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Revisión Técnica: </Value>
+                              <Value>Revisión Técnica:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3219,7 +3466,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Lleva Carga: </Value>
+                              <Value>Lleva Carga:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3262,7 +3516,14 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Sistema de Seguridad del Vehículo: </Value>
+                              <Value>Sistema de Seguridad del Vehículo:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3311,7 +3572,14 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Porta Señales: </Value>
+                              <Value>Porta Señales:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3357,7 +3625,14 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Maniobra Conductor: </Value>
+                              <Value>Maniobra Conductor:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3398,7 +3673,14 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Condición de Usuario: </Value>
+                              <Value>Condición de Usuario:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3444,7 +3726,14 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Dispositivo de Seguridad: </Value>
+                              <Value>Dispositivo de Seguridad:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve"> </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3485,7 +3774,14 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Nivel de Alcohol:  </Value>
+                              <Value>Nivel de Alcohol:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3525,7 +3821,14 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Alcosensor:  </Value>
+                              <Value>Alcosensor:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3607,6 +3910,13 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                           <TextRuns>
                             <TextRun>
                               <Value>Tiquete #:</Value>
+                              <Style>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value xml:space="preserve">  </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
@@ -3747,6 +4057,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                             <Value>=Fields!DescripconCodigod.Value</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
+                                              <FontWeight>Bold</FontWeight>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
@@ -3838,6 +4149,185 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                 <TablixCell />
               </TablixCells>
             </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox9">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox9</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox10">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox10</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox11">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox11</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
@@ -3876,6 +4366,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixMember>
           </TablixMembers>
@@ -3886,7 +4377,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </PageBreak>
         <Top>15.68504cm</Top>
         <Left>0.3937cm</Left>
-        <Height>6.82533cm</Height>
+        <Height>7.42533cm</Height>
         <Width>15.54272cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
