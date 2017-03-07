@@ -2830,9 +2830,9 @@
           <Property Type="Boolean" Name="SegOtro" Nullable="true" />
           <Property Type="Boolean" Name="SegNinguno" Nullable="true" />
           <Property Type="Boolean" Name="SegNoIndica" Nullable="true" />
-          <Property Type="Int32" Name="CodigoManiobra" Nullable="false" />
+          <Property Type="Int32" Name="CodigoManiobra" Nullable="true" />
           <Property Type="String" Name="DescripcionManiobra" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="CodigoDispositivo" Nullable="false" />
+          <Property Type="Int32" Name="CodigoDispositivo" Nullable="true" />
           <Property Type="String" Name="DescripcionDispositivo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="tipo_ide" Nullable="false" MaxLength="2" />
           <Property Type="String" Name="identificacion" Nullable="false" MaxLength="15" />
@@ -2841,7 +2841,7 @@
           <Property Type="String" Name="apellido2" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="Edad" Nullable="true" />
           <Property Type="String" Name="sexo" Nullable="true" MaxLength="1" />
-          <Property Type="Int32" Name="CodigoDano" Nullable="false" />
+          <Property Type="Int32" Name="CodigoDano" Nullable="true" />
           <Property Type="String" Name="DescripcionDano" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="cod_provincia" Nullable="true" />
           <Property Type="String" Name="DescripcionProvincia" Nullable="true" MaxLength="10" />
@@ -2863,6 +2863,12 @@
           <Property Type="String" Name="CondicionPersona" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="DescripconCodigod" Nullable="true" MaxLength="26" />
           <Property Type="String" Name="DescripcionCodigotd" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="tipo_ideherido" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="identificacionherido" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="nombreherido" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="apellido1herido" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="apellido2herido" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="sexoherido" Nullable="true" MaxLength="1" />
           </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="203" />
@@ -4433,6 +4439,12 @@
                 <ScalarProperty Name="CondicionPersona" ColumnName="CondicionPersona" />
                 <ScalarProperty Name="DescripconCodigod" ColumnName="DescripconCodigod" />
                 <ScalarProperty Name="DescripcionCodigotd" ColumnName="DescripcionCodigotd" />
+                <ScalarProperty Name="tipo_ideherido" ColumnName="tipo_ideherido" />
+                <ScalarProperty Name="identificacionherido" ColumnName="identificacionherido" />
+                <ScalarProperty Name="nombreherido" ColumnName="nombreherido" />
+                <ScalarProperty Name="apellido1herido" ColumnName="apellido1herido" />
+                <ScalarProperty Name="apellido2herido" ColumnName="apellido2herido" />
+                <ScalarProperty Name="sexoherido" ColumnName="sexoherido" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

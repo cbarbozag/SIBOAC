@@ -940,9 +940,9 @@
       <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetConsultaeImpresionDeParteOficialDataSet.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GetConsultaeImpresionDeParteOficialDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <Content Include="GetConsultaeImpresionDeParteOficialDataSet.xss">
       <DependentUpon>GetConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>

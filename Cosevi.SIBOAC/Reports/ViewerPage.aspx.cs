@@ -393,7 +393,7 @@ namespace Cosevi.SIBOAC.Reports
             string Parametro1 = param[1];
             string Parametro2 = param[2];
             string Parametro3 = param[3];
-            string Parametro4 = param[4];
+            //string Parametro4 = param[4];
 
             if (Parametro3 == "null")
             {

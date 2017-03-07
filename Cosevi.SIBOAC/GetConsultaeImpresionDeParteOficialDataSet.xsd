@@ -2,10 +2,8 @@
 <xs:schema id="GetConsultaeImpresionDeParteOficialDataSet" targetNamespace="http://tempuri.org/GetConsultaeImpresionDeParteOficialDataSet.xsd" xmlns:mstns="http://tempuri.org/GetConsultaeImpresionDeParteOficialDataSet.xsd" xmlns="http://tempuri.org/GetConsultaeImpresionDeParteOficialDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection ConnectionStringObject="Data Source=.\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security Info=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Application Name=EntityFramework" IsAppSettingsProperty="false" Modifier="Assembly" Name="PC_HH_AndroidEntities (Cosevi.SIBOAC)" ParameterPrefix="@" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -114,8 +112,6 @@
               <Mapping SourceColumn="apellido2" DataSetColumn="apellido2" />
               <Mapping SourceColumn="Edad" DataSetColumn="Edad" />
               <Mapping SourceColumn="sexo" DataSetColumn="sexo" />
-              <Mapping SourceColumn="CodigoDano" DataSetColumn="CodigoDano" />
-              <Mapping SourceColumn="DescripcionDano" DataSetColumn="DescripcionDano" />
               <Mapping SourceColumn="cod_provincia" DataSetColumn="cod_provincia" />
               <Mapping SourceColumn="DescripcionProvincia" DataSetColumn="DescripcionProvincia" />
               <Mapping SourceColumn="cod_canton" DataSetColumn="cod_canton" />
@@ -123,6 +119,14 @@
               <Mapping SourceColumn="cod_distrito" DataSetColumn="cod_distrito" />
               <Mapping SourceColumn="DescripcionDistrito" DataSetColumn="DescripcionDistrito" />
               <Mapping SourceColumn="telefono" DataSetColumn="telefono" />
+              <Mapping SourceColumn="tipo_ideherido" DataSetColumn="tipo_ideherido" />
+              <Mapping SourceColumn="identificacionherido" DataSetColumn="identificacionherido" />
+              <Mapping SourceColumn="nombreherido" DataSetColumn="nombreherido" />
+              <Mapping SourceColumn="apellido1herido" DataSetColumn="apellido1herido" />
+              <Mapping SourceColumn="apellido2herido" DataSetColumn="apellido2herido" />
+              <Mapping SourceColumn="sexoherido" DataSetColumn="sexoherido" />
+              <Mapping SourceColumn="CodigoDano" DataSetColumn="CodigoDano" />
+              <Mapping SourceColumn="DescripcionDano" DataSetColumn="DescripcionDano" />
               <Mapping SourceColumn="rev_tecnica" DataSetColumn="rev_tecnica" />
               <Mapping SourceColumn="carga" DataSetColumn="carga" />
               <Mapping SourceColumn="PortaSenal" DataSetColumn="PortaSenal" />
@@ -142,7 +146,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="GetConsultaeImpresionDeParteOficialDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GetConsultaeImpresionDeParteOficialDataSet" msprop:Generator_UserDSName="GetConsultaeImpresionDeParteOficialDataSet">
+  <xs:element name="GetConsultaeImpresionDeParteOficialDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="GetConsultaeImpresionDeParteOficialDataSet" msprop:Generator_UserDSName="GetConsultaeImpresionDeParteOficialDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="GetConsultaeImpresionDeParteOficialData" msprop:Generator_TableClassName="GetConsultaeImpresionDeParteOficialDataDataTable" msprop:Generator_TableVarName="tableGetConsultaeImpresionDeParteOficialData" msprop:Generator_TablePropName="GetConsultaeImpresionDeParteOficialData" msprop:Generator_RowDeletingName="GetConsultaeImpresionDeParteOficialDataRowDeleting" msprop:Generator_RowChangingName="GetConsultaeImpresionDeParteOficialDataRowChanging" msprop:Generator_RowEvHandlerName="GetConsultaeImpresionDeParteOficialDataRowChangeEventHandler" msprop:Generator_RowDeletedName="GetConsultaeImpresionDeParteOficialDataRowDeleted" msprop:Generator_UserTableName="GetConsultaeImpresionDeParteOficialData" msprop:Generator_RowChangedName="GetConsultaeImpresionDeParteOficialDataRowChanged" msprop:Generator_RowEvArgName="GetConsultaeImpresionDeParteOficialDataRowChangeEvent" msprop:Generator_RowClassName="GetConsultaeImpresionDeParteOficialDataRow">
@@ -518,7 +522,7 @@
               <xs:element name="SegOtro" msprop:Generator_ColumnVarNameInTable="columnSegOtro" msprop:Generator_ColumnPropNameInRow="SegOtro" msprop:Generator_ColumnPropNameInTable="SegOtroColumn" msprop:Generator_UserColumnName="SegOtro" type="xs:boolean" minOccurs="0" />
               <xs:element name="SegNinguno" msprop:Generator_ColumnVarNameInTable="columnSegNinguno" msprop:Generator_ColumnPropNameInRow="SegNinguno" msprop:Generator_ColumnPropNameInTable="SegNingunoColumn" msprop:Generator_UserColumnName="SegNinguno" type="xs:boolean" minOccurs="0" />
               <xs:element name="SegNoIndica" msprop:Generator_ColumnVarNameInTable="columnSegNoIndica" msprop:Generator_ColumnPropNameInRow="SegNoIndica" msprop:Generator_ColumnPropNameInTable="SegNoIndicaColumn" msprop:Generator_UserColumnName="SegNoIndica" type="xs:boolean" minOccurs="0" />
-              <xs:element name="CodigoManiobra" msprop:Generator_ColumnVarNameInTable="columnCodigoManiobra" msprop:Generator_ColumnPropNameInRow="CodigoManiobra" msprop:Generator_ColumnPropNameInTable="CodigoManiobraColumn" msprop:Generator_UserColumnName="CodigoManiobra" type="xs:int" />
+              <xs:element name="CodigoManiobra" msprop:Generator_ColumnVarNameInTable="columnCodigoManiobra" msprop:Generator_ColumnPropNameInRow="CodigoManiobra" msprop:Generator_ColumnPropNameInTable="CodigoManiobraColumn" msprop:Generator_UserColumnName="CodigoManiobra" type="xs:int" minOccurs="0" />
               <xs:element name="DescripcionManiobra" msprop:Generator_ColumnVarNameInTable="columnDescripcionManiobra" msprop:Generator_ColumnPropNameInRow="DescripcionManiobra" msprop:Generator_ColumnPropNameInTable="DescripcionManiobraColumn" msprop:Generator_UserColumnName="DescripcionManiobra" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -526,7 +530,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CodigoDispositivo" msprop:Generator_ColumnVarNameInTable="columnCodigoDispositivo" msprop:Generator_ColumnPropNameInRow="CodigoDispositivo" msprop:Generator_ColumnPropNameInTable="CodigoDispositivoColumn" msprop:Generator_UserColumnName="CodigoDispositivo" type="xs:int" />
+              <xs:element name="CodigoDispositivo" msprop:Generator_ColumnVarNameInTable="columnCodigoDispositivo" msprop:Generator_ColumnPropNameInRow="CodigoDispositivo" msprop:Generator_ColumnPropNameInTable="CodigoDispositivoColumn" msprop:Generator_UserColumnName="CodigoDispositivo" type="xs:int" minOccurs="0" />
               <xs:element name="DescripcionDispositivo" msprop:Generator_ColumnVarNameInTable="columnDescripcionDispositivo" msprop:Generator_ColumnPropNameInRow="DescripcionDispositivo" msprop:Generator_ColumnPropNameInTable="DescripcionDispositivoColumn" msprop:Generator_UserColumnName="DescripcionDispositivo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -577,14 +581,6 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CodigoDano" msprop:Generator_ColumnVarNameInTable="columnCodigoDano" msprop:Generator_ColumnPropNameInRow="CodigoDano" msprop:Generator_ColumnPropNameInTable="CodigoDanoColumn" msprop:Generator_UserColumnName="CodigoDano" type="xs:int" />
-              <xs:element name="DescripcionDano" msprop:Generator_ColumnVarNameInTable="columnDescripcionDano" msprop:Generator_ColumnPropNameInRow="DescripcionDano" msprop:Generator_ColumnPropNameInTable="DescripcionDanoColumn" msprop:Generator_UserColumnName="DescripcionDano" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
               <xs:element name="cod_provincia" msprop:Generator_ColumnVarNameInTable="columncod_provincia" msprop:Generator_ColumnPropNameInRow="cod_provincia" msprop:Generator_ColumnPropNameInTable="cod_provinciaColumn" msprop:Generator_UserColumnName="cod_provincia" type="xs:int" minOccurs="0" />
               <xs:element name="DescripcionProvincia" msprop:Generator_ColumnVarNameInTable="columnDescripcionProvincia" msprop:Generator_ColumnPropNameInRow="DescripcionProvincia" msprop:Generator_ColumnPropNameInTable="DescripcionProvinciaColumn" msprop:Generator_UserColumnName="DescripcionProvincia" minOccurs="0">
                 <xs:simpleType>
@@ -613,6 +609,56 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tipo_ideherido" msprop:Generator_ColumnVarNameInTable="columntipo_ideherido" msprop:Generator_ColumnPropNameInRow="tipo_ideherido" msprop:Generator_ColumnPropNameInTable="tipo_ideheridoColumn" msprop:Generator_UserColumnName="tipo_ideherido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="identificacionherido" msprop:Generator_ColumnVarNameInTable="columnidentificacionherido" msprop:Generator_ColumnPropNameInRow="identificacionherido" msprop:Generator_ColumnPropNameInTable="identificacionheridoColumn" msprop:Generator_UserColumnName="identificacionherido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombreherido" msprop:Generator_ColumnVarNameInTable="columnnombreherido" msprop:Generator_ColumnPropNameInRow="nombreherido" msprop:Generator_ColumnPropNameInTable="nombreheridoColumn" msprop:Generator_UserColumnName="nombreherido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellido1herido" msprop:Generator_ColumnVarNameInTable="columnapellido1herido" msprop:Generator_ColumnPropNameInRow="apellido1herido" msprop:Generator_ColumnPropNameInTable="apellido1heridoColumn" msprop:Generator_UserColumnName="apellido1herido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="apellido2herido" msprop:Generator_ColumnVarNameInTable="columnapellido2herido" msprop:Generator_ColumnPropNameInRow="apellido2herido" msprop:Generator_ColumnPropNameInTable="apellido2heridoColumn" msprop:Generator_UserColumnName="apellido2herido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sexoherido" msprop:Generator_ColumnVarNameInTable="columnsexoherido" msprop:Generator_ColumnPropNameInRow="sexoherido" msprop:Generator_ColumnPropNameInTable="sexoheridoColumn" msprop:Generator_UserColumnName="sexoherido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CodigoDano" msprop:Generator_ColumnVarNameInTable="columnCodigoDano" msprop:Generator_ColumnPropNameInRow="CodigoDano" msprop:Generator_ColumnPropNameInTable="CodigoDanoColumn" msprop:Generator_UserColumnName="CodigoDano" type="xs:int" minOccurs="0" />
+              <xs:element name="DescripcionDano" msprop:Generator_ColumnVarNameInTable="columnDescripcionDano" msprop:Generator_ColumnPropNameInRow="DescripcionDano" msprop:Generator_ColumnPropNameInTable="DescripcionDanoColumn" msprop:Generator_UserColumnName="DescripcionDano" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

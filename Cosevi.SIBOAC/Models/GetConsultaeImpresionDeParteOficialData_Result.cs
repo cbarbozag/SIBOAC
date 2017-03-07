@@ -87,9 +87,9 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<bool> SegOtro { get; set; }
         public Nullable<bool> SegNinguno { get; set; }
         public Nullable<bool> SegNoIndica { get; set; }
-        public int CodigoManiobra { get; set; }
+        public Nullable<int> CodigoManiobra { get; set; }
         public string DescripcionManiobra { get; set; }
-        public int CodigoDispositivo { get; set; }
+        public Nullable<int> CodigoDispositivo { get; set; }
         public string DescripcionDispositivo { get; set; }
         public string tipo_ide { get; set; }
         public string identificacion { get; set; }
@@ -98,7 +98,7 @@ namespace Cosevi.SIBOAC.Models
         public string apellido2 { get; set; }
         public Nullable<int> Edad { get; set; }
         public string sexo { get; set; }
-        public int CodigoDano { get; set; }
+        public Nullable<int> CodigoDano { get; set; }
         public string DescripcionDano { get; set; }
         public Nullable<int> cod_provincia { get; set; }
         public string DescripcionProvincia { get; set; }
@@ -120,5 +120,11 @@ namespace Cosevi.SIBOAC.Models
         public string CondicionPersona { get; set; }
         public string DescripconCodigod { get; set; }
         public string DescripcionCodigotd { get; set; }
+        public string tipo_ideherido { get; set; }
+        public string identificacionherido { get; set; }
+        public string nombreherido { get; set; }
+        public string apellido1herido { get; set; }
+        public string apellido2herido { get; set; }
+        public string sexoherido { get; set; }
     }
 }
