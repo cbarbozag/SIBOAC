@@ -57,7 +57,6 @@
                             {
                                 if (Request.Params["opcionConsulta"] == "4")
                                 {
-
                                     <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
                                     <br>
                                     <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
@@ -69,7 +68,6 @@
                                 }
                                 else
                                 {
-
                                     <label><input id="radio01" type="radio" name="opcionConsulta" value="1" checked>Parte Oficial</label>
                                     <br>
                                     <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
@@ -131,18 +129,18 @@
 
         <div id="opc-4" style="display:none;">
             <br>
-            N° de Placa
+             Clase de Placa
             <br>
-            <input id="numeroPlaca" type='text' name='numeroPlaca' class="input-sm form-control"  value="@Request.Params["numeroPlaca"]">
-            <br>
-            Código de Placa
+            <input id="clasePlaca" type='text' name='clasePlaca' class="input-sm form-control" value="@Request.Params["clasePlaca"]">
+            <br>           
+             Código de Placa
             <br>
             <input id="codigoPlaca" type='text' name='codigoPlaca' class="input-sm form-control"  value="@Request.Params["codigoPlaca"]">
             <br>
-            Clase de Placa
+             N° de Placa
             <br>
-            <input id="clasePlaca" type='text' name='clasePlaca' class="input-sm form-control"  value="@Request.Params["clasePlaca"]">
-            <br>
+            <input id="numeroPlaca" type='text' name='numeroPlaca' class="input-sm form-control" value="@Request.Params["numeroPlaca"]">
+            <br>            
             @*Número de VIN
             <br>
             <input id="VIN" type='text' name='VIN' class="input-sm form-control" value="@Request.Params["VIN"]">
