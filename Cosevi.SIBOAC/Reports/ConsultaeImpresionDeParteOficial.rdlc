@@ -2282,6 +2282,9 @@
                                                       <TablixMember>
                                                         <Group Name="Details4">
                                                           <GroupExpressions>
+                                                            <GroupExpression>=Fields!FuenteParte.Value</GroupExpression>
+                                                            <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
+                                                            <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
                                                             <GroupExpression>=Fields!TipoIdentificacionTestigo.Value</GroupExpression>
                                                             <GroupExpression>=Fields!IdentificacionTestigo.Value</GroupExpression>
                                                           </GroupExpressions>
@@ -2699,7 +2702,15 @@
                                     <TablixRowHierarchy>
                                       <TablixMembers>
                                         <TablixMember>
-                                          <Group Name="Details5" />
+                                          <Group Name="Details5">
+                                            <GroupExpressions>
+                                              <GroupExpression>=Fields!FuenteParte.Value</GroupExpression>
+                                              <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
+                                              <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
+                                              <GroupExpression>=Fields!tipo_ideherido.Value</GroupExpression>
+                                              <GroupExpression>=Fields!identificacionherido.Value</GroupExpression>
+                                            </GroupExpressions>
+                                          </Group>
                                         </TablixMember>
                                       </TablixMembers>
                                     </TablixRowHierarchy>
