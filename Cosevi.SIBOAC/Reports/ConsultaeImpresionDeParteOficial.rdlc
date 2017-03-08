@@ -2,92 +2,6 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Tablix Name="Tablix2">
-        <TablixBody>
-          <TablixColumns>
-            <TablixColumn>
-              <Width>15.51625cm</Width>
-            </TablixColumn>
-          </TablixColumns>
-          <TablixRows>
-            <TablixRow>
-              <Height>6.19594cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Image Name="ImagenAdjuntaParte">
-                      <Source>External</Source>
-                      <Value>=Fields!NombreArchivo.Value</Value>
-                      <Sizing>Fit</Sizing>
-                      <ZIndex>2</ZIndex>
-                      <ToolTip>Imagen de Parte</ToolTip>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </Image>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-          </TablixRows>
-        </TablixBody>
-        <TablixColumnHierarchy>
-          <TablixMembers>
-            <TablixMember />
-          </TablixMembers>
-        </TablixColumnHierarchy>
-        <TablixRowHierarchy>
-          <TablixMembers>
-            <TablixMember>
-              <Group Name="Details9" />
-            </TablixMember>
-          </TablixMembers>
-        </TablixRowHierarchy>
-        <DataSetName>ArchivoDataSet</DataSetName>
-        <Top>25.32695cm</Top>
-        <Left>0.42017cm</Left>
-        <Height>6.19594cm</Height>
-        <Width>15.51625cm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Tablix>
-      <Textbox Name="Textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Imagenes Adjuntas al Parte Oficial</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>24.24216cm</Top>
-        <Left>0.42017cm</Left>
-        <Height>0.6cm</Height>
-        <Width>6.23062cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Tablix Name="Tablix9">
         <TablixBody>
           <TablixColumns>
@@ -2951,7 +2865,6 @@
                                           <TextRun>
                                             <Value>="VEHICULO # " +RunningValue(CountDistinct(Fields!numero_boleta.Value),Count,"DataSet1").ToString()</Value>
                                             <Style>
-                                              <FontSize>8pt</FontSize>
                                               <FontWeight>Bold</FontWeight>
                                             </Style>
                                           </TextRun>
@@ -2987,7 +2900,6 @@
                                           <TextRun>
                                             <Value>="BOLETA # "+Fields!fuente.Value.ToString() + " - "+Fields!serie.Value.ToString() + " - "+Fields!numero_boleta.Value.ToString()</Value>
                                             <Style>
-                                              <FontSize>8pt</FontSize>
                                               <FontWeight>Bold</FontWeight>
                                             </Style>
                                           </TextRun>
@@ -4388,7 +4300,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox2">
+                                  <Textbox Name="Textbox35">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
@@ -4402,7 +4314,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>Textbox2</rd:DefaultName>
+                                    <rd:DefaultName>Textbox35</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>None</Style>
@@ -4417,7 +4329,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               </TablixCell>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox3">
+                                  <Textbox Name="Textbox36">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
@@ -4431,7 +4343,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>Textbox3</rd:DefaultName>
+                                    <rd:DefaultName>Textbox36</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>None</Style>
@@ -4446,7 +4358,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               </TablixCell>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox5">
+                                  <Textbox Name="Textbox37">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
@@ -4460,7 +4372,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>Textbox5</rd:DefaultName>
+                                    <rd:DefaultName>Textbox37</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>None</Style>
@@ -4475,7 +4387,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               </TablixCell>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox9">
+                                  <Textbox Name="Textbox38">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
@@ -4489,7 +4401,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>Textbox9</rd:DefaultName>
+                                    <rd:DefaultName>Textbox38</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>None</Style>
@@ -4504,7 +4416,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               </TablixCell>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox10">
+                                  <Textbox Name="Textbox40">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
@@ -4518,7 +4430,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>Textbox10</rd:DefaultName>
+                                    <rd:DefaultName>Textbox40</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>None</Style>
@@ -4533,7 +4445,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               </TablixCell>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox11">
+                                  <Textbox Name="Textbox41">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
@@ -4547,7 +4459,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                         <Style />
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>Textbox11</rd:DefaultName>
+                                    <rd:DefaultName>Textbox41</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>None</Style>
@@ -4656,15 +4568,114 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         <Left>0.44664cm</Left>
         <Height>23.21333cm</Height>
         <Width>15.48978cm</Width>
-        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
+      <Rectangle Name="Rectangle2">
+        <ReportItems>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Imagenes Adjuntas al Parte Oficial</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.13229cm</Top>
+            <Left>0cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.23062cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Tablix2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>15.51625cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>6.19594cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Image Name="ImagenAdjuntaParte">
+                          <Source>External</Source>
+                          <Value>=Fields!NombreArchivo.Value</Value>
+                          <Sizing>Fit</Sizing>
+                          <ZIndex>2</ZIndex>
+                          <ToolTip>Imagen de Parte</ToolTip>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Image>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details9" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>ArchivoDataSet</DataSetName>
+            <Top>1.43785cm</Top>
+            <Height>6.19594cm</Height>
+            <Width>15.51625cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>23.96848cm</Top>
+        <Left>0.44664cm</Left>
+        <Height>8.08358cm</Height>
+        <Width>15.51625cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Rectangle>
     </ReportItems>
-    <Height>12.68142in</Height>
+    <Height>12.83767in</Height>
     <Style />
   </Body>
   <Width>6.57651in</Width>
