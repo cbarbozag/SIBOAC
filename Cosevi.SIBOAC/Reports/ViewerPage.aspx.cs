@@ -66,7 +66,7 @@ namespace Cosevi.SIBOAC.Reports
                         ReportViewer1.LocalReport.SetParameters(parameters);
                         #endregion
                         break;
-                                            
+
                     case "_ConsultaeImpresionDeParteOficial":
                         #region ConsultaeImpresionDeParteOficial
                         ReportViewer1.LocalReport.EnableExternalImages = true;
@@ -86,21 +86,21 @@ namespace Cosevi.SIBOAC.Reports
                             var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
                             string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
 
-                            
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre );                            
+
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
 
                             string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
                             foreach (string item in ext1)
-                            {                                
-                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri);                                
-                            }                                                                                                                                                                                                                   
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri);
+                            }
 
                             ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
-                            ReportViewer1.LocalReport.DataSources.Add(RDS2);                            
-                            
+                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
+
                         }
 
                         if (TipoConsulta == 2)
@@ -121,7 +121,7 @@ namespace Cosevi.SIBOAC.Reports
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
                             var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
-                                                    
+
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
 
@@ -496,9 +496,9 @@ namespace Cosevi.SIBOAC.Reports
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-            //string reporteID = Request.QueryString["reporteID"];
-            //string nombreReporte = Request.QueryString["nombreReporte"];
-            //string parametros = Request.QueryString["parametros"];
+            string reporteID = Request.QueryString["reporteID"];
+            string parametros = Request.QueryString["parametros"];
+            List<string> lstPDF = new List<string>();
 
 
             //if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
@@ -506,14 +506,17 @@ namespace Cosevi.SIBOAC.Reports
             //    return;
             //}
 
-            //switch (reporteID)
-            //{
-            //    case "_ConsultaeImpresionDeParteOficial":
+            switch (reporteID)
+            {
+                case "_ReimpresionDeBoletasDeCampo":
+                    int serie = Convert.ToInt32(parametros.Split(',')[0]);
+                    decimal numeroBoleta = Convert.ToDecimal(parametros.Split(',')[1]);
+                    lstPDF = db.OtrosAdjuntos.Where(oa => oa.serie == serie && oa.numero_boleta == numeroBoleta && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
 
-            //        break;
-            //}
+                    break;
+            }
 
-            
+
 
 
 
@@ -546,7 +549,21 @@ namespace Cosevi.SIBOAC.Reports
 
             //Open existing PDF
             Document document = new Document(PageSize.LETTER);
-            PdfReader reader = new PdfReader(fileName);
+            List<PdfReader> lstReader = new List<PdfReader>(); //Lista de PDFs
+            Dictionary<int, int> numberOfPages = new Dictionary<int, int>(); //Numero de paginas por cada PDF
+
+            lstReader.Add(new PdfReader(fileName));
+            numberOfPages.Add(0, lstReader[0].NumberOfPages);
+
+            int newIndex = 1;
+            string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+            
+            foreach (var item in lstPDF)
+            {
+                lstReader.Add(new PdfReader(Path.Combine(ruta, item)));
+                numberOfPages.Add(newIndex, lstReader[newIndex].NumberOfPages);
+                newIndex++;
+            }
 
             //Getting a instance of new PDF writer
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
@@ -556,22 +573,26 @@ namespace Cosevi.SIBOAC.Reports
 
             int i = 0;
             int p = 0;
-            int n = reader.NumberOfPages;
-            Rectangle psize = reader.GetPageSize(1);
+            Rectangle psize = lstReader[0].GetPageSize(1);
 
             float width = psize.Width;
             float height = psize.Height;
 
             //Add Page to new document
-            while (i < n)
+            for (int indexPDF = 0; indexPDF < lstReader.Count; indexPDF++)
             {
-                document.NewPage();
-                p++;
-                i++;
+                while (i < numberOfPages[indexPDF])
+                {
+                    document.NewPage();
+                    p++;
+                    i++;
 
-                PdfImportedPage page1 = writer.GetImportedPage(reader, i);
-                cb.AddTemplate(page1, 0, 0);
+                    PdfImportedPage page1 = writer.GetImportedPage(lstReader[indexPDF], i);
+                    cb.AddTemplate(page1, 0, 0);
+                }
+                i = 0;
             }
+
 
             //Attach javascript to the document
             PdfAction jAction = PdfAction.JavaScript("this.print(true);\r", writer);
