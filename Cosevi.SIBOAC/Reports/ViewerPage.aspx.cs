@@ -88,7 +88,7 @@ namespace Cosevi.SIBOAC.Reports
                             var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
                             string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
                                                                                     
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension != extensionRestringida).Select(oa => oa.nombre );                            
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension != "PDF" && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre );                            
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
 
@@ -121,7 +121,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte2 = Convert.ToInt32(CodigoSerie2);
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension != extensionRestringida).Select(oa => oa.nombre);
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension != "PDF" && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
                                                     
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
@@ -161,7 +161,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte3 = Convert.ToInt32(CodigoSerie3);
                             decimal numeroParte3 = Convert.ToDecimal(CodigoNumParte3);
 
-                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3 && oa.extension != extensionRestringida).Select(oa => oa.nombre);
+                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3 && oa.extension != "PDF" && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
 
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
@@ -201,7 +201,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte4 = Convert.ToInt32(CodigoSerie4);
                             decimal numeroParte4 = Convert.ToDecimal(CodigoNumParte4);
 
-                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4 && oa.extension != extensionRestringida).Select(oa => oa.nombre);
+                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4 && oa.extension != "PDF" && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
 
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
@@ -501,25 +501,35 @@ namespace Cosevi.SIBOAC.Reports
             string parametros = Request.QueryString["parametros"];
             List<string> lstPDF = new List<string>();
 
-
-            //if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
-            //{
-            //    return;
-            //}
-
             switch (reporteID)
             {
-                case "_ReimpresionDeBoletasDeCampo":
-                    int serie = Convert.ToInt32(parametros.Split(',')[0]);
-                    decimal numeroBoleta = Convert.ToDecimal(parametros.Split(',')[1]);
-                    lstPDF = db.OtrosAdjuntos.Where(oa => oa.serie == serie && oa.numero_boleta == numeroBoleta && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
+                //case "_ReimpresionDeBoletasDeCampo":
+                //    int serie = Convert.ToInt32(parametros.Split(',')[0]);
+                //    decimal numeroBoleta = Convert.ToDecimal(parametros.Split(',')[1]);
+                //    lstPDF = db.OtrosAdjuntos.Where(oa => oa.serie == serie && oa.numero_boleta == numeroBoleta && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
 
+                //    break;
+
+                case "_ConsultaeImpresionDeParteOficial":
+
+                    string[] parame = parametros.Split(',');
+                    int TipoConsulta = Convert.ToInt32(parame[0]);
+                    string Parametro1 = parame[1];
+                    string Parametro2 = parame[2];
+                    string Parametro3 = parame[3];
+
+                    if (TipoConsulta == 1)
+                    {
+                        int serieParte1 = Convert.ToInt32(Parametro1);
+                        decimal numeroParte1 = Convert.ToDecimal(Parametro2);
+
+                        var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
+                        string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
+
+                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
+                    }
                     break;
             }
-
-
-
-
 
             Warning[] warnings;
             string[] streamids;
