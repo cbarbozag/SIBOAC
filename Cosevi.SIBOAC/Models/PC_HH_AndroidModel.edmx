@@ -1218,6 +1218,7 @@
           <Parameter Name="Parametro1" Type="varchar" Mode="In" />
           <Parameter Name="Parametro2" Type="varchar" Mode="In" />
           <Parameter Name="Parametro3" Type="varchar" Mode="In" />
+          <Parameter Name="UsuarioSistema" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetDescargaBoletaData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TipoFecha" Type="int" Mode="In" />
@@ -1566,6 +1567,7 @@
             <Parameter Name="Parametro1" Mode="In" Type="String" />
             <Parameter Name="Parametro2" Mode="In" Type="String" />
             <Parameter Name="Parametro3" Mode="In" Type="String" />
+            <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetConsultaeImpresionDeBoletasData" ReturnType="Collection(PC_HH_AndroidModel.GetConsultaeImpresionDeBoletasData_Result)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
@@ -2813,7 +2815,7 @@
           <Property Type="String" Name="Observaciones" Nullable="true" MaxLength="180" />
           <Property Type="String" Name="TipoIdentificacionTestigo" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="IdentificacionTestigo" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="NombreTestigo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="NombreTestigo" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Apellito1Testigo" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Apellido2Testigo" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />

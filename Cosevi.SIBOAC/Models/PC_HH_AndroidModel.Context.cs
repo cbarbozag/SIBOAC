@@ -213,7 +213,7 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaInspectorData_Result>("GetDescargaInspectorData", fechaInicioParameter, fechaFinParameter, codigoOficialParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3)
+        public virtual ObjectResult<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3, string usuarioSistema)
         {
             var tipoConsultaParameter = tipoConsulta.HasValue ?
                 new ObjectParameter("TipoConsulta", tipoConsulta) :
@@ -231,7 +231,11 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("Parametro3", parametro3) :
                 new ObjectParameter("Parametro3", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeParteOficialData_Result>("GetConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetConsultaeImpresionDeParteOficialData_Result>("GetConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter, usuarioSistemaParameter);
         }
     
         public virtual ObjectResult<GetConsultaeImpresionDeBoletasData_Result> GetConsultaeImpresionDeBoletasData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, string idDelegaciones, string idInspectores, string usuarioSistema)

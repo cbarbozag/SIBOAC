@@ -2172,7 +2172,7 @@ namespace Cosevi.SIBOAC {
                 this.columnPlanoAccidente.MaxLength = 20;
                 this.columnTipoIdentificacionTestigo.MaxLength = 2;
                 this.columnIdentificacionTestigo.MaxLength = 15;
-                this.columnNombreTestigo.MaxLength = 30;
+                this.columnNombreTestigo.MaxLength = 50;
                 this.columnApellito1Testigo.MaxLength = 20;
                 this.columnApellido2Testigo.MaxLength = 20;
                 this.columnnumero_boleta.AllowDBNull = false;
@@ -5198,13 +5198,14 @@ namespace Cosevi.SIBOAC.GetConsultaeImpresionDeParteOficialDataSetTableAdapters 
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Parametro1", global::System.Data.SqlDbType.VarChar, 64, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Parametro2", global::System.Data.SqlDbType.VarChar, 64, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Parametro3", global::System.Data.SqlDbType.VarChar, 64, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UsuarioSistema", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GetConsultaeImpresionDeParteOficialDataSet.GetConsultaeImpresionDeParteOficialDataDataTable dataTable, global::System.Nullable<int> TipoConsulta, string Parametro1, string Parametro2, string Parametro3) {
+        public virtual int Fill(GetConsultaeImpresionDeParteOficialDataSet.GetConsultaeImpresionDeParteOficialDataDataTable dataTable, global::System.Nullable<int> TipoConsulta, string Parametro1, string Parametro2, string Parametro3, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((TipoConsulta.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(TipoConsulta.Value));
@@ -5229,6 +5230,12 @@ namespace Cosevi.SIBOAC.GetConsultaeImpresionDeParteOficialDataSetTableAdapters 
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = ((string)(Parametro3));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(UsuarioSistema));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5241,7 +5248,7 @@ namespace Cosevi.SIBOAC.GetConsultaeImpresionDeParteOficialDataSetTableAdapters 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GetConsultaeImpresionDeParteOficialDataSet.GetConsultaeImpresionDeParteOficialDataDataTable GetData(global::System.Nullable<int> TipoConsulta, string Parametro1, string Parametro2, string Parametro3) {
+        public virtual GetConsultaeImpresionDeParteOficialDataSet.GetConsultaeImpresionDeParteOficialDataDataTable GetData(global::System.Nullable<int> TipoConsulta, string Parametro1, string Parametro2, string Parametro3, string UsuarioSistema) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((TipoConsulta.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(TipoConsulta.Value));
@@ -5266,6 +5273,12 @@ namespace Cosevi.SIBOAC.GetConsultaeImpresionDeParteOficialDataSetTableAdapters 
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = ((string)(Parametro3));
+            }
+            if ((UsuarioSistema == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(UsuarioSistema));
             }
             GetConsultaeImpresionDeParteOficialDataSet.GetConsultaeImpresionDeParteOficialDataDataTable dataTable = new GetConsultaeImpresionDeParteOficialDataSet.GetConsultaeImpresionDeParteOficialDataDataTable();
             this.Adapter.Fill(dataTable);

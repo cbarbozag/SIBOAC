@@ -713,29 +713,31 @@ namespace Cosevi.SIBOAC.Controllers
              string numeroParte,  int? serieBoleta,  decimal? numeroBoleta,  string tipoId,
              string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca)
         {
-            if(idRadio ==1) // Consulta por parte oficial
+            var usuarioSistema = User.Identity.Name;
+
+            if (idRadio ==1) // Consulta por parte oficial
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista1 = db.GetConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(),null).ToList();
+                var lista1 = db.GetConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(),null, usuarioSistema).ToList();
                 return lista1;
             }
             if (idRadio == 2)//consulta por Boleta de citación
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista2 = db.GetConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte,null).ToList();
+                var lista2 = db.GetConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte,null, usuarioSistema).ToList();
                 
                 return lista2;
             }
             if (idRadio == 3)//Indentificación del implicado
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista3 = db.GetConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null).ToList();
+                var lista3 = db.GetConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null, usuarioSistema).ToList();
                 return lista3;
             }
             if (idRadio == 4)//Placa
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista4 = db.GetConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca).ToList();
+                var lista4 = db.GetConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca, usuarioSistema).ToList();
                 return lista4;
             }
 
@@ -745,7 +747,7 @@ namespace Cosevi.SIBOAC.Controllers
         public ActionResult GetConsultaeImpresionParteOficial([FromUri] int opcionConsulta, [FromUri] string serieParte,
             [FromUri] string numeroParte, [FromUri] int? serieBoleta, [FromUri] decimal? numeroBoleta, [FromUri] string tipoId,
             [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
-        {
+        {            
 
             string reporteID = "_ConsultaeImpresionDeParteOficial";
             string nombreReporte = "ConsultaeImpresionDeParteOficial";
