@@ -2874,7 +2874,7 @@
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>="VEHICULO # " +RunningValue(CountDistinct(Fields!NumeroParte.Value),Count,"DataSet1").ToString()</Value>
+                                            <Value>="VEHICULO # " +RunningValue(CountDistinct(Fields!NumeroParte.Value),Count,"Details6").ToString()</Value>
                                             <Style>
                                               <FontWeight>Bold</FontWeight>
                                             </Style>
@@ -2897,6 +2897,7 @@
                                     </Style>
                                   </Textbox>
                                   <ColSpan>2</ColSpan>
+                                  <rd:Selected>true</rd:Selected>
                                 </CellContents>
                               </TablixCell>
                               <TablixCell />

@@ -27,14 +27,39 @@ namespace Cosevi.SIBOAC.Models
 
         [DisplayName("Alcohol Mínimo")]
         [Required(ErrorMessage = "La información es obligatoria")]
-        [RegularExpression(@"^[0-9]+(\,[0-9]{1,2})?$", ErrorMessage = "La dato solo puede tener 2 decimales 0.00")]
-        public double AlcoholMinimo { get; set; }
+        [RegularExpression(@"^[0-9]+(\,[0-9]{1,2})?$", ErrorMessage = "La dato solo puede tener 2 decimales 0.00")]        
+        public double AlcoholMinimo
+        {
+            get
+            {
+                alcoholMinimo = Math.Round(alcoholMinimo, 2);
+                return alcoholMinimo;
+            }
+            set
+            {
+                alcoholMinimo = value;
+            }
+        }
+        private double alcoholMinimo { get; set; }
+
 
         [DisplayName("Alcohol Máximo")]
         [Required(ErrorMessage = "La información es obligatoria")]
         [RegularExpression(@"^[0-9]+(\,[0-9]{1,2})?$", ErrorMessage = "La dato solo puede tener 2 decimales 0.00")]
-        //[RegularExpression("{0:0.00}", ErrorMessage = "El dato solo puede tener 2 decimales")]
-        public double AlcoholMaximo { get; set; }
+        //[RegularExpression("{0:0.00}", ErrorMessage = "El dato solo puede tener 2 decimales")]        
+        public double AlcoholMaximo
+        {
+            get
+            {
+                alcoholMaximo = Math.Round(alcoholMaximo, 2);
+                return alcoholMaximo;
+            }
+            set
+            {
+                alcoholMaximo = value;
+            }
+        }
+        private double alcoholMaximo { get; set; }
 
         [DisplayName("Estado")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
