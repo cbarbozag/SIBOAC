@@ -2874,7 +2874,7 @@
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>="VEHICULO # " +RunningValue(CountDistinct(Fields!numero_boleta.Value),Count,"DataSet1").ToString()</Value>
+                                            <Value>="VEHICULO # " +RunningValue(CountDistinct(Fields!NumeroParte.Value),Count,"DataSet1").ToString()</Value>
                                             <Style>
                                               <FontWeight>Bold</FontWeight>
                                             </Style>
@@ -4605,7 +4605,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.13229cm</Top>
-            <Left>0cm</Left>
             <Height>0.6cm</Height>
             <Width>6.23062cm</Width>
             <Style>

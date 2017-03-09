@@ -78,6 +78,8 @@ namespace Cosevi.SIBOAC.Reports
                         string Parametro3 = param2[3];
                         //string Parametro4 = param2[4];
 
+                        string extensionRestringida = ConfigurationManager.AppSettings["ExtenException"];
+
                         if (TipoConsulta == 1)
                         {
                             int serieParte1 = Convert.ToInt32(Parametro1);
@@ -85,9 +87,8 @@ namespace Cosevi.SIBOAC.Reports
 
                             var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
                             string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
-
-                            
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre );                            
+                                                                                    
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension != extensionRestringida).Select(oa => oa.nombre );                            
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
 
@@ -120,7 +121,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte2 = Convert.ToInt32(CodigoSerie2);
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension != extensionRestringida).Select(oa => oa.nombre);
                                                     
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
@@ -160,7 +161,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte3 = Convert.ToInt32(CodigoSerie3);
                             decimal numeroParte3 = Convert.ToDecimal(CodigoNumParte3);
 
-                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3 && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
+                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3 && oa.extension != extensionRestringida).Select(oa => oa.nombre);
 
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
@@ -200,7 +201,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte4 = Convert.ToInt32(CodigoSerie4);
                             decimal numeroParte4 = Convert.ToDecimal(CodigoNumParte4);
 
-                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4 && oa.extension != "3GP" && oa.extension != "WMV").Select(oa => oa.nombre);
+                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4 && oa.extension != extensionRestringida).Select(oa => oa.nombre);
 
                             var listaArchivos = new DataTable();
                             listaArchivos.Columns.Add("NombreArchivo");
@@ -495,27 +496,7 @@ namespace Cosevi.SIBOAC.Reports
 
 
         protected void btnPrint_Click(object sender, EventArgs e)
-        {
-            //string reporteID = Request.QueryString["reporteID"];
-            //string nombreReporte = Request.QueryString["nombreReporte"];
-            //string parametros = Request.QueryString["parametros"];
-
-
-            //if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
-            //{
-            //    return;
-            //}
-
-            //switch (reporteID)
-            //{
-            //    case "_ConsultaeImpresionDeParteOficial":
-
-            //        break;
-            //}
-
-            
-
-
+        {            
 
             Warning[] warnings;
             string[] streamids;
