@@ -120,10 +120,10 @@
               <Width>2.93656cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.11635cm</Width>
+              <Width>1.29937cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.11635cm</Width>
+              <Width>1.06864cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.59613cm</Width>
@@ -173,7 +173,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox1</rd:DefaultName>
@@ -207,7 +209,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -241,7 +245,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -275,7 +281,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox7</rd:DefaultName>
@@ -302,14 +310,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Delegación</Value>
+                              <Value>Deleg.</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox9</rd:DefaultName>
@@ -336,14 +346,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Autoridad</Value>
+                              <Value>Aut.</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox11</rd:DefaultName>
@@ -377,7 +389,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox13</rd:DefaultName>
@@ -411,7 +425,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox15</rd:DefaultName>
@@ -484,7 +500,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox23</rd:DefaultName>
@@ -518,7 +536,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox25</rd:DefaultName>
@@ -552,7 +572,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox27</rd:DefaultName>
@@ -586,7 +608,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox29</rd:DefaultName>
@@ -674,7 +698,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1113,7 +1136,7 @@
         <Top>6.77926cm</Top>
         <Left>0.635cm</Left>
         <Height>1.2cm</Height>
-        <Width>24.42077cm</Width>
+        <Width>22.55608cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -1137,7 +1160,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
         <Top>8.31384cm</Top>
-        <Left>21.32224cm</Left>
+        <Left>20.10578cm</Left>
         <Height>0.6cm</Height>
         <Width>3.0853cm</Width>
         <ZIndex>3</ZIndex>
@@ -1169,7 +1192,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox52</rd:DefaultName>
         <Top>8.31384cm</Top>
-        <Left>17.54349cm</Left>
+        <Left>16.32703cm</Left>
         <Height>0.6cm</Height>
         <Width>3.58447cm</Width>
         <ZIndex>4</ZIndex>
@@ -1199,7 +1222,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox53</rd:DefaultName>
         <Top>9.09023cm</Top>
-        <Left>21.32224cm</Left>
+        <Left>20.10578cm</Left>
         <Height>0.6cm</Height>
         <Width>3.0853cm</Width>
         <ZIndex>5</ZIndex>
@@ -1231,7 +1254,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox54</rd:DefaultName>
         <Top>9.09023cm</Top>
-        <Left>17.54349cm</Left>
+        <Left>16.32703cm</Left>
         <Height>0.6cm</Height>
         <Width>3.58447cm</Width>
         <ZIndex>6</ZIndex>
@@ -1407,7 +1430,7 @@
     <Height>10.91557cm</Height>
     <Style />
   </Body>
-  <Width>25.54203cm</Width>
+  <Width>23.79578cm</Width>
   <Page>
     <PageFooter>
       <Height>2.27542cm</Height>
@@ -1430,7 +1453,7 @@
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
           <Top>0.97cm</Top>
-          <Left>23.23046cm</Left>
+          <Left>22.014cm</Left>
           <Height>0.6cm</Height>
           <Width>1.17708cm</Width>
           <Style>
@@ -1459,7 +1482,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
           <Top>0.97cm</Top>
-          <Left>21.82407cm</Left>
+          <Left>20.60761cm</Left>
           <Height>0.6cm</Height>
           <Width>1.33583cm</Width>
           <ZIndex>1</ZIndex>

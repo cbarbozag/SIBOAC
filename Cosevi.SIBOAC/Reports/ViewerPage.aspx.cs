@@ -530,6 +530,25 @@ namespace Cosevi.SIBOAC.Reports
 
                         lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
                     }
+                    if (TipoConsulta == 2)
+                    {
+                        int serieBoleta2 = Convert.ToInt32(Parametro1);
+                        decimal numeroBoleta2 = Convert.ToDecimal(Parametro2);
+
+                        var numeroPart2 = (db.BOLETA.Where(a => a.serie == serieBoleta2 && a.numero_boleta == numeroBoleta2).Select(a => a.numeroparte).ToList());
+                        string CodigoNumParte2 = numeroPart2.ToArray().FirstOrDefault() == null ? "0" : numeroPart2.ToArray().FirstOrDefault().ToString();
+
+                        var seriePart2 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte2).Select(a => a.Serie).ToList());
+                        string CodigoSerie2 = seriePart2.ToArray().FirstOrDefault() == null ? "0" : seriePart2.ToArray().FirstOrDefault().ToString();
+
+                        var fuente2 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie2 && a.NumeroParte == CodigoNumParte2).Select(a => a.Fuente).ToList());
+                        string CodigoFuente2 = fuente2.ToArray().FirstOrDefault() == null ? "0" : fuente2.ToArray().FirstOrDefault().ToString();
+
+                        int serieParte2 = Convert.ToInt32(CodigoSerie2);
+                        decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);                        
+
+                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();                        
+                    }
                     break;
             }
 
