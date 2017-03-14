@@ -43,11 +43,11 @@
 <table border="1" align="center">
     <thead>
         <tr>
-            <td>Número de Boleta</td>
-            <td>Rol de Persona</td>
-            <td>Clase de Placa</td>
-            <td>Código de Placa</td>
-            <td>Número de Placa</td>
+            <td>Número de Boleta </td>
+            <td>Rol de Persona </td>
+            <td>Clase de Placa </td>
+            <td>Código de Placa </td>
+            <td>Número de Placa </td>
         </tr>
     </thead>
     
@@ -70,7 +70,33 @@
             <td>
                 @item.NumeroPlaca
             </td>
+
         </tr>
     }
 </table>
+<br />
+<br />
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td>Fecha de Modificacion Anterior </td>
+            <td>Usuario Modifica </td>            
+        </tr>
+    </thead>
+
+    @foreach (var item in ViewBag.Valor)
+    {
+        <tr>
+            <td>
+                @item.FechaModificado
+            </td>
+            <td>
+                @item.UsuarioModificaPlano
+            </td>
+        </tr>
+        break;
+    }
+</table>
+
+
     

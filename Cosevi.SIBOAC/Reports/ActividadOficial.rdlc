@@ -84,7 +84,7 @@
               <Width>1.57396cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.65333cm</Width>
+              <Width>1.16981cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -93,27 +93,27 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>1.71978cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.62688cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.1825cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.08208cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>0.99688cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -781,8 +781,8 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>5.81766cm</Top>
         <Left>0.635cm</Left>
-        <Height>1.2cm</Height>
-        <Width>23.22729cm</Width>
+        <Height>1.59688cm</Height>
+        <Width>21.35501cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -790,11 +790,23 @@
           </Border>
         </Style>
       </Tablix>
+      <Line Name="Line1">
+        <Top>5.18238cm</Top>
+        <Left>0.635cm</Left>
+        <Height>0cm</Height>
+        <Width>21.35501cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
     </ReportItems>
     <Height>9.13433cm</Height>
     <Style />
   </Body>
-  <Width>27.4345cm</Width>
+  <Width>22.69846cm</Width>
   <Page>
     <PageFooter>
       <Height>2cm</Height>
@@ -816,8 +828,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>1.31974cm</Top>
-          <Left>23.12141cm</Left>
+          <Top>0.86995cm</Top>
+          <Left>19.49001cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
           <Style>
