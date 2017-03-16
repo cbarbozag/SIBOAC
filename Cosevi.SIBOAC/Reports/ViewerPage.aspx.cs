@@ -48,6 +48,8 @@ namespace Cosevi.SIBOAC.Reports
 
                         var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
                         string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
+
+
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
                         //var path = Server.MapPath(ruta);
                         var fileUsuario = string.Format("{0}{1}{2}-u.png", CodigoFuente, serie, numero_boleta);

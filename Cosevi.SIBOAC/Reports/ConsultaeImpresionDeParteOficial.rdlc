@@ -2085,19 +2085,19 @@
                                                   <TablixBody>
                                                     <TablixColumns>
                                                       <TablixColumn>
-                                                        <Width>1.3854cm</Width>
+                                                        <Width>1.57422cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
-                                                        <Width>2.36634cm</Width>
+                                                        <Width>2.55516cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
-                                                        <Width>2.14432cm</Width>
+                                                        <Width>2.33314cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
-                                                        <Width>2.49603cm</Width>
+                                                        <Width>1.56727cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
-                                                        <Width>2.32952cm</Width>
+                                                        <Width>2.6918cm</Width>
                                                       </TablixColumn>
                                                     </TablixColumns>
                                                     <TablixRows>
@@ -2106,39 +2106,7 @@
                                                         <TablixCells>
                                                           <TablixCell>
                                                             <CellContents>
-                                                              <Textbox Name="TipoIdentificacionTestigo">
-                                                                <CanGrow>true</CanGrow>
-                                                                <KeepTogether>true</KeepTogether>
-                                                                <Paragraphs>
-                                                                  <Paragraph>
-                                                                    <TextRuns>
-                                                                      <TextRun>
-                                                                        <Value>=Fields!TipoIdentificacionTestigo.Value</Value>
-                                                                        <Style>
-                                                                          <FontSize>8pt</FontSize>
-                                                                        </Style>
-                                                                      </TextRun>
-                                                                    </TextRuns>
-                                                                    <Style />
-                                                                  </Paragraph>
-                                                                </Paragraphs>
-                                                                <rd:DefaultName>TipoIdentificacionTestigo</rd:DefaultName>
-                                                                <Style>
-                                                                  <Border>
-                                                                    <Color>LightGrey</Color>
-                                                                    <Style>Solid</Style>
-                                                                  </Border>
-                                                                  <PaddingLeft>2pt</PaddingLeft>
-                                                                  <PaddingRight>2pt</PaddingRight>
-                                                                  <PaddingTop>2pt</PaddingTop>
-                                                                  <PaddingBottom>2pt</PaddingBottom>
-                                                                </Style>
-                                                              </Textbox>
-                                                            </CellContents>
-                                                          </TablixCell>
-                                                          <TablixCell>
-                                                            <CellContents>
-                                                              <Textbox Name="IdentificacionTestigo">
+                                                              <Textbox Name="IdentificacionTestigo1">
                                                                 <CanGrow>true</CanGrow>
                                                                 <KeepTogether>true</KeepTogether>
                                                                 <Paragraphs>
@@ -2154,7 +2122,39 @@
                                                                     <Style />
                                                                   </Paragraph>
                                                                 </Paragraphs>
-                                                                <rd:DefaultName>IdentificacionTestigo</rd:DefaultName>
+                                                                <rd:DefaultName>IdentificacionTestigo1</rd:DefaultName>
+                                                                <Style>
+                                                                  <Border>
+                                                                    <Color>LightGrey</Color>
+                                                                    <Style>Solid</Style>
+                                                                  </Border>
+                                                                  <PaddingLeft>2pt</PaddingLeft>
+                                                                  <PaddingRight>2pt</PaddingRight>
+                                                                  <PaddingTop>2pt</PaddingTop>
+                                                                  <PaddingBottom>2pt</PaddingBottom>
+                                                                </Style>
+                                                              </Textbox>
+                                                            </CellContents>
+                                                          </TablixCell>
+                                                          <TablixCell>
+                                                            <CellContents>
+                                                              <Textbox Name="NombreTestigo1">
+                                                                <CanGrow>true</CanGrow>
+                                                                <KeepTogether>true</KeepTogether>
+                                                                <Paragraphs>
+                                                                  <Paragraph>
+                                                                    <TextRuns>
+                                                                      <TextRun>
+                                                                        <Value>=Fields!NombreTestigo.Value</Value>
+                                                                        <Style>
+                                                                          <FontSize>8pt</FontSize>
+                                                                        </Style>
+                                                                      </TextRun>
+                                                                    </TextRuns>
+                                                                    <Style />
+                                                                  </Paragraph>
+                                                                </Paragraphs>
+                                                                <rd:DefaultName>NombreTestigo1</rd:DefaultName>
                                                                 <Style>
                                                                   <Border>
                                                                     <Color>LightGrey</Color>
@@ -2177,7 +2177,7 @@
                                                                   <Paragraph>
                                                                     <TextRuns>
                                                                       <TextRun>
-                                                                        <Value>=Fields!NombreTestigo.Value</Value>
+                                                                        <Value>=Fields!Apellito1Testigo.Value</Value>
                                                                         <Style>
                                                                           <FontSize>8pt</FontSize>
                                                                         </Style>
@@ -2209,7 +2209,7 @@
                                                                   <Paragraph>
                                                                     <TextRuns>
                                                                       <TextRun>
-                                                                        <Value>=Fields!Apellito1Testigo.Value</Value>
+                                                                        <Value>=Fields!Apellido2Testigo.Value</Value>
                                                                         <Style>
                                                                           <FontSize>8pt</FontSize>
                                                                         </Style>
@@ -2234,34 +2234,23 @@
                                                           </TablixCell>
                                                           <TablixCell>
                                                             <CellContents>
-                                                              <Textbox Name="Apellido2Testigo">
-                                                                <CanGrow>true</CanGrow>
-                                                                <KeepTogether>true</KeepTogether>
-                                                                <Paragraphs>
-                                                                  <Paragraph>
-                                                                    <TextRuns>
-                                                                      <TextRun>
-                                                                        <Value>=Fields!Apellido2Testigo.Value</Value>
-                                                                        <Style>
-                                                                          <FontSize>8pt</FontSize>
-                                                                        </Style>
-                                                                      </TextRun>
-                                                                    </TextRuns>
-                                                                    <Style />
-                                                                  </Paragraph>
-                                                                </Paragraphs>
-                                                                <rd:DefaultName>Apellido2Testigo</rd:DefaultName>
+                                                              <Subreport Name="Subreport1">
+                                                                <ReportName>SubReportTestigo</ReportName>
+                                                                <Parameters>
+                                                                  <Parameter Name="ParamParteOficial">
+                                                                    <Value>=Fields!NumeroParte.Value</Value>
+                                                                  </Parameter>
+                                                                  <Parameter Name="ParamIden">
+                                                                    <Value>=Fields!IdentificacionTestigo.Value</Value>
+                                                                  </Parameter>
+                                                                </Parameters>
                                                                 <Style>
                                                                   <Border>
-                                                                    <Color>LightGrey</Color>
-                                                                    <Style>Solid</Style>
+                                                                    <Style>None</Style>
                                                                   </Border>
-                                                                  <PaddingLeft>2pt</PaddingLeft>
-                                                                  <PaddingRight>2pt</PaddingRight>
-                                                                  <PaddingTop>2pt</PaddingTop>
-                                                                  <PaddingBottom>2pt</PaddingBottom>
                                                                 </Style>
-                                                              </Textbox>
+                                                              </Subreport>
+                                                              <rd:Selected>true</rd:Selected>
                                                             </CellContents>
                                                           </TablixCell>
                                                         </TablixCells>
