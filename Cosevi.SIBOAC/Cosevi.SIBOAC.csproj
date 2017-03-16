@@ -1736,6 +1736,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\SubReport.rdlc" />
+    <EmbeddedResource Include="Reports\SubReportAdjuntos.rdlc" />
     <EmbeddedResource Include="Reports\SubReportTestigo.rdlc" />
   </ItemGroup>
   <PropertyGroup>
