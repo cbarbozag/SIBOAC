@@ -1094,6 +1094,44 @@
                 </TablixCell>
               </TablixCells>
             </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Subreport Name="Subreport1">
+                      <ReportName>SubReport</ReportName>
+                      <Parameters>
+                        <Parameter Name="ParteOficial">
+                          <Value>=Fields!numeroparte.Value</Value>
+                        </Parameter>
+                      </Parameters>
+                      <ZIndex>11</ZIndex>
+                      <Style>
+                        <Border>
+                          <Style>None</Style>
+                        </Border>
+                      </Style>
+                    </Subreport>
+                    <ColSpan>15</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
@@ -1129,13 +1167,17 @@
                   <GroupExpression>=Fields!numero_boleta.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>6.77926cm</Top>
         <Left>0.635cm</Left>
-        <Height>1.2cm</Height>
+        <Height>1.8cm</Height>
         <Width>22.55608cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
@@ -1159,7 +1201,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
-        <Top>8.31384cm</Top>
+        <Top>9.26634cm</Top>
         <Left>20.10578cm</Left>
         <Height>0.6cm</Height>
         <Width>3.0853cm</Width>
@@ -1191,7 +1233,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox52</rd:DefaultName>
-        <Top>8.31384cm</Top>
+        <Top>9.26634cm</Top>
         <Left>16.32703cm</Left>
         <Height>0.6cm</Height>
         <Width>3.58447cm</Width>
@@ -1221,7 +1263,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox53</rd:DefaultName>
-        <Top>9.09023cm</Top>
+        <Top>10.04273cm</Top>
         <Left>20.10578cm</Left>
         <Height>0.6cm</Height>
         <Width>3.0853cm</Width>
@@ -1253,7 +1295,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox54</rd:DefaultName>
-        <Top>9.09023cm</Top>
+        <Top>10.04273cm</Top>
         <Left>16.32703cm</Left>
         <Height>0.6cm</Height>
         <Width>3.58447cm</Width>
@@ -1427,7 +1469,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>10.91557cm</Height>
+    <Height>17.99495cm</Height>
     <Style />
   </Body>
   <Width>23.79578cm</Width>

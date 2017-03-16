@@ -281,6 +281,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnNombreArchivo;
             
+            private global::System.Data.DataColumn columnParteOficial;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DataTable1DataTable() {
@@ -324,6 +326,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ParteOficialColumn {
+                get {
+                    return this.columnParteOficial;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -359,10 +369,11 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string NombreArchivo) {
+            public DataTable1Row AddDataTable1Row(string NombreArchivo, string ParteOficial) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        NombreArchivo};
+                        NombreArchivo,
+                        ParteOficial};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -386,6 +397,7 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnNombreArchivo = base.Columns["NombreArchivo"];
+                this.columnParteOficial = base.Columns["ParteOficial"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -393,6 +405,8 @@ namespace Cosevi.SIBOAC {
             private void InitClass() {
                 this.columnNombreArchivo = new global::System.Data.DataColumn("NombreArchivo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombreArchivo);
+                this.columnParteOficial = new global::System.Data.DataColumn("ParteOficial", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnParteOficial);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -551,6 +565,22 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ParteOficial {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.ParteOficialColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ParteOficial\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.ParteOficialColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNombreArchivoNull() {
                 return this.IsNull(this.tableDataTable1.NombreArchivoColumn);
             }
@@ -559,6 +589,18 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNombreArchivoNull() {
                 this[this.tableDataTable1.NombreArchivoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsParteOficialNull() {
+                return this.IsNull(this.tableDataTable1.ParteOficialColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetParteOficialNull() {
+                this[this.tableDataTable1.ParteOficialColumn] = global::System.Convert.DBNull;
             }
         }
         
