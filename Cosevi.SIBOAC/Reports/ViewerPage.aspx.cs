@@ -46,9 +46,13 @@ namespace Cosevi.SIBOAC.Reports
 
                         var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
                         string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
+
+                        var ideUsuario = (db.PERSONA.Where(a => a.Serie == serie && a.NumeroBoleta == numero_boleta).Select(a => a.identificacion).ToList());
+                        string CodigoIde = ideUsuario.ToArray().FirstOrDefault() == null ? "0" : ideUsuario.ToArray().FirstOrDefault().ToString();
+
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
                         //var path = Server.MapPath(ruta);
-                        var fileUsuario = string.Format("{0}{1}{2}-u.png", CodigoFuente, serie, numero_boleta);
+                        var fileUsuario = string.Format("{0}{1}{2}-u-{3}.png", CodigoFuente, serie, numero_boleta, CodigoIde);
                         var fileInspector = string.Format("{0}{1}{2}-i.png", CodigoFuente, serie, numero_boleta);
                         var fullPathUsuario = Path.Combine(ruta, fileUsuario);
                         var fullPathInspector = Path.Combine(ruta, fileInspector);
@@ -141,30 +145,22 @@ namespace Cosevi.SIBOAC.Reports
                         {
 
                             var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.NumeroBoleta).ToList());
-                            string CodigoNumBoleta3 = Convert.ToString(numeroBoleta3.ToArray().FirstOrDefault()) == null ? "0" : numeroBoleta3.ToArray().FirstOrDefault().ToString();
 
                             var seriBolet3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.Serie).ToList());
-                            string CodigoSerBol3 = Convert.ToString(seriBolet3.ToArray().FirstOrDefault()) == null ? "0" : seriBolet3.ToArray().FirstOrDefault().ToString();
 
-                            int SerieBole3 = Convert.ToInt32(CodigoSerBol3);
-                            decimal NumBole3 = Convert.ToDecimal(CodigoNumBoleta3);
+                            var numeroPart3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
+                            var numeroParte3 = (db.PARTEOFICIAL.Where(a => numeroPart3.Contains(a.NumeroParte)).Select(a => a.NumeroParte).ToList());
+                            var numParte3 = numeroParte3.Select(s => Convert.ToDecimal(s)).ToList();
 
-                            var numeroPart3 = (db.BOLETA.Where(a => a.serie == SerieBole3 && a.numero_boleta == NumBole3).Select(a => a.numeroparte).ToList());
-                            string CodigoNumParte3 = numeroPart3.ToArray().FirstOrDefault() == null ? "0" : numeroPart3.ToArray().FirstOrDefault().ToString();
+                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numeroParte3.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
+                            var serParte3 = seriePart3.Select(s => Convert.ToInt32(s)).ToList();
 
-                            var seriePart3 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte3).Select(a => a.Serie).ToList());
-                            string CodigoSerie3 = seriePart3.ToArray().FirstOrDefault() == null ? "0" : seriePart3.ToArray().FirstOrDefault().ToString();
+                            var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numeroParte3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
 
-                            var fuente3 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie3 && a.NumeroParte == CodigoNumParte3).Select(a => a.Fuente).ToList());
-                            string CodigoFuente3 = fuente3.ToArray().FirstOrDefault() == null ? "0" : fuente3.ToArray().FirstOrDefault().ToString();
-
-                            int serieParte3 = Convert.ToInt32(CodigoSerie3);
-                            decimal numeroParte3 = Convert.ToDecimal(CodigoNumParte3);
-
-                            var ext3 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente3 && oa.serie == serieParte3 && oa.numero_boleta == numeroParte3 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var ext3 = (db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numParte3.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList());
 
                             var listaArchivos = new DataTable();
-                            listaArchivos.Columns.Add("NombreArchivo");
+                            listaArchivos.Columns.Add("NombreArchivo");                            
 
                             string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
@@ -174,7 +170,7 @@ namespace Cosevi.SIBOAC.Reports
                             }
 
                             ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
-                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
+                            ReportViewer1.LocalReport.DataSources.Add(RDS2);                            
                         }
 
                         if (TipoConsulta == 4)
