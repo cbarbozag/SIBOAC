@@ -139,29 +139,28 @@ namespace Cosevi.SIBOAC.Reports
 
                         if (TipoConsulta == 3)
                         {
-
                             var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.NumeroBoleta).ToList());
 
                             var seriBolet3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.Serie).ToList());
 
-                            var numeroPart3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
-                            var numeroParte3 = (db.PARTEOFICIAL.Where(a => numeroPart3.Contains(a.NumeroParte)).Select(a => a.NumeroParte).ToList());
-                            var numParte3 = numeroParte3.Select(s => Convert.ToDecimal(s)).ToList();
+                            var numPartBo3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
+                            var numPartPar3 = (db.PARTEOFICIAL.Where(a => numPartBo3.Contains(a.NumeroParte)).Select(a => a.NumeroParte).ToList());
+                            var numPartConv3 = numPartPar3.Select(s => Convert.ToDecimal(s)).ToList();
 
-                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numeroParte3.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
+                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numPartPar3.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
                             var serParte3 = seriePart3.Select(s => Convert.ToInt32(s)).ToList();
 
-                            var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numeroParte3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
+                            var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numPartPar3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
 
-                            var ext3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numParte3.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                            var nombreAdjuntos = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
 
-                            var nuPart = db.OtrosAdjuntos.Where(oa => ext3.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
+                            var numPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
 
                             string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
-                            var listaAdjuntos = ext3.Zip(nuPart, (n, w) => new { NombreAr = n, NumPar = w });
+                            var listaAdjuntos = nombreAdjuntos.Zip(numPartLista3, (n, w) => new { NombreAr = n, NumPar = w });
 
                             foreach (var item in listaAdjuntos)
                             {

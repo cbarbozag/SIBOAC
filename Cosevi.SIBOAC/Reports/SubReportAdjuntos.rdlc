@@ -59,7 +59,6 @@
                         </Border>
                       </Style>
                     </Image>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -96,7 +95,7 @@
         <Top>1.18745cm</Top>
         <Left>0.28787cm</Left>
         <Height>6.67068cm</Height>
-        <Width>16.04195cm</Width>
+        <Width>16.04194cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -110,12 +109,16 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Sub Report: </Value>
-                <Style />
+                <Value>Imágenes del Parte Oficial: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Parameters!ParteOficial.Value</Value>
-                <Style />
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -125,7 +128,7 @@
         <Top>0.41106cm</Top>
         <Left>0.28787cm</Left>
         <Height>0.6cm</Height>
-        <Width>6.15125cm</Width>
+        <Width>8.00333cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
