@@ -4873,33 +4873,19 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox43">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox43</rd:DefaultName>
+                    <Subreport Name="Subreport1">
+                      <ReportName>SubReportAdjuntos</ReportName>
+                      <Parameters>
+                        <Parameter Name="ParteOficial">
+                          <Value>=Fields!NumeroParte.Value</Value>
+                        </Parameter>
+                      </Parameters>
                       <Style>
                         <Border>
                           <Style>None</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                    </Textbox>
+                    </Subreport>
                     <ColSpan>3</ColSpan>
                   </CellContents>
                 </TablixCell>
@@ -4939,7 +4925,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.30092cm</Top>
+        <Top>0.19509cm</Top>
         <Left>0.47312cm</Left>
         <Height>31.51431cm</Height>
         <Width>15.48978cm</Width>
@@ -4950,10 +4936,10 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>12.72309in</Height>
+    <Height>12.59809in</Height>
     <Style />
   </Body>
-  <Width>6.46193in</Width>
+  <Width>6.40985in</Width>
   <Page>
     <PageHeader>
       <Height>2.10495cm</Height>

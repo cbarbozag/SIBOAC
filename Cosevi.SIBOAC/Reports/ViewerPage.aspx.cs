@@ -25,6 +25,8 @@ namespace Cosevi.SIBOAC.Reports
                 string reporteID = Request.QueryString["reporteID"];
                 string nombreReporte = Request.QueryString["nombreReporte"];
                 string parametros = Request.QueryString["parametros"];
+                DataTable listaArchivos = new DataTable();
+                listaArchivos.Columns.Add("NombreArchivo");
 
                 if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
                 {
@@ -92,9 +94,7 @@ namespace Cosevi.SIBOAC.Reports
                             var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
                             string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
                                                                                                                 
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre );                            
-                            var listaArchivos = new DataTable();
-                            listaArchivos.Columns.Add("NombreArchivo");
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre );                                                        
 
                             string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
@@ -125,10 +125,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte2 = Convert.ToInt32(CodigoSerie2);
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
-                                                    
-                            var listaArchivos = new DataTable();
-                            listaArchivos.Columns.Add("NombreArchivo");
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);                                                                                
 
                             string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
@@ -148,29 +145,31 @@ namespace Cosevi.SIBOAC.Reports
 
                             var seriBolet3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.Serie).ToList());
 
-                            var numeroPart3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
-                            var numeroParte3 = (db.PARTEOFICIAL.Where(a => numeroPart3.Contains(a.NumeroParte)).Select(a => a.NumeroParte).ToList());
-                            var numParte3 = numeroParte3.Select(s => Convert.ToDecimal(s)).ToList();
+                            var numPartBo3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
+                            var numPartPar3 = (db.PARTEOFICIAL.Where(a => numPartBo3.Contains(a.NumeroParte)).Select(a => a.NumeroParte).ToList());
+                            var numPartConv3 = numPartPar3.Select(s => Convert.ToDecimal(s)).ToList();
 
-                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numeroParte3.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
+                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numPartPar3.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
                             var serParte3 = seriePart3.Select(s => Convert.ToInt32(s)).ToList();
 
-                            var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numeroParte3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
+                            var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numPartPar3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
 
-                            var ext3 = (db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numParte3.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList());
+                            var nombreAdjuntos = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                            var numPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
 
-                            var listaArchivos = new DataTable();
-                            listaArchivos.Columns.Add("NombreArchivo");                            
+                            listaArchivos.Columns.Add("ParteOficial");
 
                             string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
-                            foreach (string item in ext3)
+                            var listaAdjuntos = nombreAdjuntos.Zip(numPartLista3, (n, w) => new { NombreAr = n, NumPar = w });
+
+                            foreach (var item in listaAdjuntos)
                             {
-                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item)).AbsoluteUri);
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.NombreAr)).AbsoluteUri, item.NumPar);
                             }
 
-                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
-                            ReportViewer1.LocalReport.DataSources.Add(RDS2);                            
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                         }
 
                         if (TipoConsulta == 4)
@@ -197,10 +196,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte4 = Convert.ToInt32(CodigoSerie4);
                             decimal numeroParte4 = Convert.ToDecimal(CodigoNumParte4);
 
-                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
-
-                            var listaArchivos = new DataTable();
-                            listaArchivos.Columns.Add("NombreArchivo");
+                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);                            
 
                             string ruta4 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
@@ -227,6 +223,12 @@ namespace Cosevi.SIBOAC.Reports
                 ReportViewer1.LocalReport.EnableHyperlinks = true;
 
             }
+        }
+
+        private void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
+        {
+            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_DescargaParteOficialData"]));
+            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_ConsultaeImpresionDeParteOficialData"]));
         }
 
         private object GetData(string reporteID, string parametros)
