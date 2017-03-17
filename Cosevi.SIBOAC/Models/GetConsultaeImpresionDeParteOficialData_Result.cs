@@ -126,5 +126,11 @@ namespace Cosevi.SIBOAC.Models
         public string apellido1herido { get; set; }
         public string apellido2herido { get; set; }
         public string sexoherido { get; set; }
+        public string TipoIdentificacionTestigoB { get; set; }
+        public string IdentificacionTestigoB { get; set; }
+        public string NombreTestigoB { get; set; }
+        public string Apellito1TestigoB { get; set; }
+        public string Apellido2TestigoB { get; set; }
+        public Nullable<decimal> numero_boletaB { get; set; }
     }
 }

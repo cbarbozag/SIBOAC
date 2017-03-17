@@ -84,6 +84,12 @@
               <Mapping SourceColumn="NombreTestigo" DataSetColumn="NombreTestigo" />
               <Mapping SourceColumn="Apellito1Testigo" DataSetColumn="Apellito1Testigo" />
               <Mapping SourceColumn="Apellido2Testigo" DataSetColumn="Apellido2Testigo" />
+              <Mapping SourceColumn="TipoIdentificacionTestigoB" DataSetColumn="TipoIdentificacionTestigoB" />
+              <Mapping SourceColumn="IdentificacionTestigoB" DataSetColumn="IdentificacionTestigoB" />
+              <Mapping SourceColumn="NombreTestigoB" DataSetColumn="NombreTestigoB" />
+              <Mapping SourceColumn="Apellito1TestigoB" DataSetColumn="Apellito1TestigoB" />
+              <Mapping SourceColumn="Apellido2TestigoB" DataSetColumn="Apellido2TestigoB" />
+              <Mapping SourceColumn="numero_boletaB" DataSetColumn="numero_boletaB" />
               <Mapping SourceColumn="numero_boleta" DataSetColumn="numero_boleta" />
               <Mapping SourceColumn="serie" DataSetColumn="serie" />
               <Mapping SourceColumn="fuente" DataSetColumn="fuente" />
@@ -445,6 +451,42 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="TipoIdentificacionTestigoB" msprop:Generator_ColumnVarNameInTable="columnTipoIdentificacionTestigoB" msprop:Generator_ColumnPropNameInRow="TipoIdentificacionTestigoB" msprop:Generator_ColumnPropNameInTable="TipoIdentificacionTestigoBColumn" msprop:Generator_UserColumnName="TipoIdentificacionTestigoB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IdentificacionTestigoB" msprop:Generator_ColumnVarNameInTable="columnIdentificacionTestigoB" msprop:Generator_ColumnPropNameInRow="IdentificacionTestigoB" msprop:Generator_ColumnPropNameInTable="IdentificacionTestigoBColumn" msprop:Generator_UserColumnName="IdentificacionTestigoB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NombreTestigoB" msprop:Generator_ColumnVarNameInTable="columnNombreTestigoB" msprop:Generator_ColumnPropNameInRow="NombreTestigoB" msprop:Generator_ColumnPropNameInTable="NombreTestigoBColumn" msprop:Generator_UserColumnName="NombreTestigoB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Apellito1TestigoB" msprop:Generator_ColumnVarNameInTable="columnApellito1TestigoB" msprop:Generator_ColumnPropNameInRow="Apellito1TestigoB" msprop:Generator_ColumnPropNameInTable="Apellito1TestigoBColumn" msprop:Generator_UserColumnName="Apellito1TestigoB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Apellido2TestigoB" msprop:Generator_ColumnVarNameInTable="columnApellido2TestigoB" msprop:Generator_ColumnPropNameInRow="Apellido2TestigoB" msprop:Generator_ColumnPropNameInTable="Apellido2TestigoBColumn" msprop:Generator_UserColumnName="Apellido2TestigoB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numero_boletaB" msprop:Generator_ColumnVarNameInTable="columnnumero_boletaB" msprop:Generator_ColumnPropNameInRow="numero_boletaB" msprop:Generator_ColumnPropNameInTable="numero_boletaBColumn" msprop:Generator_UserColumnName="numero_boletaB" type="xs:decimal" minOccurs="0" />
               <xs:element name="numero_boleta" msprop:Generator_ColumnVarNameInTable="columnnumero_boleta" msprop:Generator_ColumnPropNameInRow="numero_boleta" msprop:Generator_ColumnPropNameInTable="numero_boletaColumn" msprop:Generator_UserColumnName="numero_boleta" type="xs:decimal" />
               <xs:element name="serie" msprop:Generator_ColumnVarNameInTable="columnserie" msprop:Generator_ColumnPropNameInRow="serie" msprop:Generator_ColumnPropNameInTable="serieColumn" msprop:Generator_UserColumnName="serie" type="xs:int" />
               <xs:element name="fuente" msprop:Generator_ColumnVarNameInTable="columnfuente" msprop:Generator_ColumnPropNameInRow="fuente" msprop:Generator_ColumnPropNameInTable="fuenteColumn" msprop:Generator_UserColumnName="fuente">
@@ -746,11 +788,13 @@
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+    <xs:unique name="Constraint1">
       <xs:selector xpath=".//mstns:GetConsultaeImpresionDeParteOficialData" />
       <xs:field xpath="mstns:FuenteParte" />
       <xs:field xpath="mstns:SerieParte" />
       <xs:field xpath="mstns:NumeroParte" />
+      <xs:field xpath="mstns:TipoIdentificacionTestigoB" />
+      <xs:field xpath="mstns:IdentificacionTestigoB" />
       <xs:field xpath="mstns:numero_boleta" />
       <xs:field xpath="mstns:serie" />
       <xs:field xpath="mstns:fuente" />

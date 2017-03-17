@@ -393,6 +393,18 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnApellido2Testigo;
             
+            private global::System.Data.DataColumn columnTipoIdentificacionTestigoB;
+            
+            private global::System.Data.DataColumn columnIdentificacionTestigoB;
+            
+            private global::System.Data.DataColumn columnNombreTestigoB;
+            
+            private global::System.Data.DataColumn columnApellito1TestigoB;
+            
+            private global::System.Data.DataColumn columnApellido2TestigoB;
+            
+            private global::System.Data.DataColumn columnnumero_boletaB;
+            
             private global::System.Data.DataColumn columnnumero_boleta;
             
             private global::System.Data.DataColumn columnserie;
@@ -996,6 +1008,54 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoIdentificacionTestigoBColumn {
+                get {
+                    return this.columnTipoIdentificacionTestigoB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdentificacionTestigoBColumn {
+                get {
+                    return this.columnIdentificacionTestigoB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreTestigoBColumn {
+                get {
+                    return this.columnNombreTestigoB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Apellito1TestigoBColumn {
+                get {
+                    return this.columnApellito1TestigoB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Apellido2TestigoBColumn {
+                get {
+                    return this.columnApellido2TestigoB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn numero_boletaBColumn {
+                get {
+                    return this.columnnumero_boletaB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn numero_boletaColumn {
                 get {
                     return this.columnnumero_boleta;
@@ -1537,6 +1597,12 @@ namespace Cosevi.SIBOAC {
                         string NombreTestigo, 
                         string Apellito1Testigo, 
                         string Apellido2Testigo, 
+                        string TipoIdentificacionTestigoB, 
+                        string IdentificacionTestigoB, 
+                        string NombreTestigoB, 
+                        string Apellito1TestigoB, 
+                        string Apellido2TestigoB, 
+                        decimal numero_boletaB, 
                         decimal numero_boleta, 
                         int serie, 
                         string fuente, 
@@ -1652,6 +1718,12 @@ namespace Cosevi.SIBOAC {
                         NombreTestigo,
                         Apellito1Testigo,
                         Apellido2Testigo,
+                        TipoIdentificacionTestigoB,
+                        IdentificacionTestigoB,
+                        NombreTestigoB,
+                        Apellito1TestigoB,
+                        Apellido2TestigoB,
+                        numero_boletaB,
                         numero_boleta,
                         serie,
                         fuente,
@@ -1711,18 +1783,6 @@ namespace Cosevi.SIBOAC {
                 rowGetConsultaeImpresionDeParteOficialDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetConsultaeImpresionDeParteOficialDataRow);
                 return rowGetConsultaeImpresionDeParteOficialDataRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetConsultaeImpresionDeParteOficialDataRow FindByFuenteParteSerieParteNumeroPartenumero_boletaseriefuente(string FuenteParte, string SerieParte, string NumeroParte, decimal numero_boleta, int serie, string fuente) {
-                return ((GetConsultaeImpresionDeParteOficialDataRow)(this.Rows.Find(new object[] {
-                            FuenteParte,
-                            SerieParte,
-                            NumeroParte,
-                            numero_boleta,
-                            serie,
-                            fuente})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1799,6 +1859,12 @@ namespace Cosevi.SIBOAC {
                 this.columnNombreTestigo = base.Columns["NombreTestigo"];
                 this.columnApellito1Testigo = base.Columns["Apellito1Testigo"];
                 this.columnApellido2Testigo = base.Columns["Apellido2Testigo"];
+                this.columnTipoIdentificacionTestigoB = base.Columns["TipoIdentificacionTestigoB"];
+                this.columnIdentificacionTestigoB = base.Columns["IdentificacionTestigoB"];
+                this.columnNombreTestigoB = base.Columns["NombreTestigoB"];
+                this.columnApellito1TestigoB = base.Columns["Apellito1TestigoB"];
+                this.columnApellido2TestigoB = base.Columns["Apellido2TestigoB"];
+                this.columnnumero_boletaB = base.Columns["numero_boletaB"];
                 this.columnnumero_boleta = base.Columns["numero_boleta"];
                 this.columnserie = base.Columns["serie"];
                 this.columnfuente = base.Columns["fuente"];
@@ -1974,6 +2040,18 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnApellito1Testigo);
                 this.columnApellido2Testigo = new global::System.Data.DataColumn("Apellido2Testigo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnApellido2Testigo);
+                this.columnTipoIdentificacionTestigoB = new global::System.Data.DataColumn("TipoIdentificacionTestigoB", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoIdentificacionTestigoB);
+                this.columnIdentificacionTestigoB = new global::System.Data.DataColumn("IdentificacionTestigoB", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdentificacionTestigoB);
+                this.columnNombreTestigoB = new global::System.Data.DataColumn("NombreTestigoB", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreTestigoB);
+                this.columnApellito1TestigoB = new global::System.Data.DataColumn("Apellito1TestigoB", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApellito1TestigoB);
+                this.columnApellido2TestigoB = new global::System.Data.DataColumn("Apellido2TestigoB", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApellido2TestigoB);
+                this.columnnumero_boletaB = new global::System.Data.DataColumn("numero_boletaB", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumero_boletaB);
                 this.columnnumero_boleta = new global::System.Data.DataColumn("numero_boleta", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumero_boleta);
                 this.columnserie = new global::System.Data.DataColumn("serie", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2090,9 +2168,11 @@ namespace Cosevi.SIBOAC {
                                 this.columnFuenteParte,
                                 this.columnSerieParte,
                                 this.columnNumeroParte,
+                                this.columnTipoIdentificacionTestigoB,
+                                this.columnIdentificacionTestigoB,
                                 this.columnnumero_boleta,
                                 this.columnserie,
-                                this.columnfuente}, true));
+                                this.columnfuente}, false));
                 this.columnFuenteParte.AllowDBNull = false;
                 this.columnFuenteParte.MaxLength = 1;
                 this.columnSerieParte.AllowDBNull = false;
@@ -2175,6 +2255,11 @@ namespace Cosevi.SIBOAC {
                 this.columnNombreTestigo.MaxLength = 50;
                 this.columnApellito1Testigo.MaxLength = 20;
                 this.columnApellido2Testigo.MaxLength = 20;
+                this.columnTipoIdentificacionTestigoB.MaxLength = 2;
+                this.columnIdentificacionTestigoB.MaxLength = 15;
+                this.columnNombreTestigoB.MaxLength = 50;
+                this.columnApellito1TestigoB.MaxLength = 20;
+                this.columnApellido2TestigoB.MaxLength = 20;
                 this.columnnumero_boleta.AllowDBNull = false;
                 this.columnserie.AllowDBNull = false;
                 this.columnfuente.AllowDBNull = false;
@@ -3113,6 +3198,108 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetConsultaeImpresionDeParteOficialData.Apellido2TestigoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TipoIdentificacionTestigoB {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeParteOficialData.TipoIdentificacionTestigoBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TipoIdentificacionTestigoB\' in table \'GetConsultaeImpresion" +
+                                "DeParteOficialData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeParteOficialData.TipoIdentificacionTestigoBColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IdentificacionTestigoB {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeParteOficialData.IdentificacionTestigoBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IdentificacionTestigoB\' in table \'GetConsultaeImpresionDePa" +
+                                "rteOficialData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeParteOficialData.IdentificacionTestigoBColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreTestigoB {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeParteOficialData.NombreTestigoBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreTestigoB\' in table \'GetConsultaeImpresionDeParteOfici" +
+                                "alData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeParteOficialData.NombreTestigoBColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Apellito1TestigoB {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeParteOficialData.Apellito1TestigoBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Apellito1TestigoB\' in table \'GetConsultaeImpresionDeParteOf" +
+                                "icialData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeParteOficialData.Apellito1TestigoBColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Apellido2TestigoB {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetConsultaeImpresionDeParteOficialData.Apellido2TestigoBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Apellido2TestigoB\' in table \'GetConsultaeImpresionDeParteOf" +
+                                "icialData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeParteOficialData.Apellido2TestigoBColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal numero_boletaB {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableGetConsultaeImpresionDeParteOficialData.numero_boletaBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numero_boletaB\' in table \'GetConsultaeImpresionDeParteOfici" +
+                                "alData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetConsultaeImpresionDeParteOficialData.numero_boletaBColumn] = value;
                 }
             }
             
@@ -4292,6 +4479,78 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoIdentificacionTestigoBNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.TipoIdentificacionTestigoBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoIdentificacionTestigoBNull() {
+                this[this.tableGetConsultaeImpresionDeParteOficialData.TipoIdentificacionTestigoBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIdentificacionTestigoBNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.IdentificacionTestigoBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIdentificacionTestigoBNull() {
+                this[this.tableGetConsultaeImpresionDeParteOficialData.IdentificacionTestigoBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreTestigoBNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.NombreTestigoBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreTestigoBNull() {
+                this[this.tableGetConsultaeImpresionDeParteOficialData.NombreTestigoBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApellito1TestigoBNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.Apellito1TestigoBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApellito1TestigoBNull() {
+                this[this.tableGetConsultaeImpresionDeParteOficialData.Apellito1TestigoBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApellido2TestigoBNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.Apellido2TestigoBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApellido2TestigoBNull() {
+                this[this.tableGetConsultaeImpresionDeParteOficialData.Apellido2TestigoBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isnumero_boletaBNull() {
+                return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.numero_boletaBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setnumero_boletaBNull() {
+                this[this.tableGetConsultaeImpresionDeParteOficialData.numero_boletaBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isclase_placaNull() {
                 return this.IsNull(this.tableGetConsultaeImpresionDeParteOficialData.clase_placaColumn);
             }
@@ -5119,6 +5378,12 @@ namespace Cosevi.SIBOAC.GetConsultaeImpresionDeParteOficialDataSetTableAdapters 
             tableMapping.ColumnMappings.Add("NombreTestigo", "NombreTestigo");
             tableMapping.ColumnMappings.Add("Apellito1Testigo", "Apellito1Testigo");
             tableMapping.ColumnMappings.Add("Apellido2Testigo", "Apellido2Testigo");
+            tableMapping.ColumnMappings.Add("TipoIdentificacionTestigoB", "TipoIdentificacionTestigoB");
+            tableMapping.ColumnMappings.Add("IdentificacionTestigoB", "IdentificacionTestigoB");
+            tableMapping.ColumnMappings.Add("NombreTestigoB", "NombreTestigoB");
+            tableMapping.ColumnMappings.Add("Apellito1TestigoB", "Apellito1TestigoB");
+            tableMapping.ColumnMappings.Add("Apellido2TestigoB", "Apellido2TestigoB");
+            tableMapping.ColumnMappings.Add("numero_boletaB", "numero_boletaB");
             tableMapping.ColumnMappings.Add("numero_boleta", "numero_boleta");
             tableMapping.ColumnMappings.Add("serie", "serie");
             tableMapping.ColumnMappings.Add("fuente", "fuente");

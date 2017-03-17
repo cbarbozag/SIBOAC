@@ -2871,6 +2871,12 @@
           <Property Type="String" Name="apellido1herido" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="apellido2herido" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="sexoherido" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="TipoIdentificacionTestigoB" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="IdentificacionTestigoB" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="NombreTestigoB" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Apellito1TestigoB" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Apellido2TestigoB" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="numero_boletaB" Nullable="true" Precision="18" Scale="0" />
           </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="203" />
@@ -4447,6 +4453,12 @@
                 <ScalarProperty Name="apellido1herido" ColumnName="apellido1herido" />
                 <ScalarProperty Name="apellido2herido" ColumnName="apellido2herido" />
                 <ScalarProperty Name="sexoherido" ColumnName="sexoherido" />
+                <ScalarProperty Name="TipoIdentificacionTestigoB" ColumnName="TipoIdentificacionTestigoB" />
+                <ScalarProperty Name="IdentificacionTestigoB" ColumnName="IdentificacionTestigoB" />
+                <ScalarProperty Name="NombreTestigoB" ColumnName="NombreTestigoB" />
+                <ScalarProperty Name="Apellito1TestigoB" ColumnName="Apellito1TestigoB" />
+                <ScalarProperty Name="Apellido2TestigoB" ColumnName="Apellido2TestigoB" />
+                <ScalarProperty Name="numero_boletaB" ColumnName="numero_boletaB" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
