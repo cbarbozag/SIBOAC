@@ -226,8 +226,7 @@ namespace Cosevi.SIBOAC.Reports
         }
 
         private void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
-        {
-            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_DescargaParteOficialData"]));
+        {            
             e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_ConsultaeImpresionDeParteOficialData"]));
         }
 
@@ -503,12 +502,6 @@ namespace Cosevi.SIBOAC.Reports
 
             switch (reporteID)
             {
-                //case "_ReimpresionDeBoletasDeCampo":
-                //    int serie = Convert.ToInt32(parametros.Split(',')[0]);
-                //    decimal numeroBoleta = Convert.ToDecimal(parametros.Split(',')[1]);
-                //    lstPDF = db.OtrosAdjuntos.Where(oa => oa.serie == serie && oa.numero_boleta == numeroBoleta && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
-
-                //    break;
 
                 case "_ConsultaeImpresionDeParteOficial":
 
