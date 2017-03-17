@@ -4708,7 +4708,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.94396cm</Height>
+              <Height>0.75875cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -4724,7 +4724,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         </TablixColumns>
                         <TablixRows>
                           <TablixRow>
-                            <Height>0.94396cm</Height>
+                            <Height>0.75875cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -4761,32 +4761,22 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               </TablixCell>
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox11">
-                                    <CanGrow>true</CanGrow>
-                                    <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value />
-                                            <Style />
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style />
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <rd:DefaultName>Textbox11</rd:DefaultName>
+                                  <Subreport Name="Subreport2">
+                                    <ReportName>SubReportInspector</ReportName>
+                                    <Parameters>
+                                      <Parameter Name="ParteOficial">
+                                        <Value>=Fields!NumeroParte.Value</Value>
+                                      </Parameter>
+                                      <Parameter Name="Identificacion">
+                                        <Value>=Fields!CodigoInspector.Value</Value>
+                                      </Parameter>
+                                    </Parameters>
                                     <Style>
                                       <Border>
-                                        <Color>LightGrey</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                       </Border>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
-                                  </Textbox>
+                                  </Subreport>
                                 </CellContents>
                               </TablixCell>
                             </TablixCells>
@@ -4806,7 +4796,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               <GroupExpressions>
                                 <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
                                 <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
-                                <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
+                                <GroupExpression>=Fields!FuenteParte.Value</GroupExpression>
                               </GroupExpressions>
                             </Group>
                           </TablixMember>
@@ -4978,7 +4968,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         <DataSetName>DataSet1</DataSetName>
         <Top>0.19509cm</Top>
         <Left>0.47312cm</Left>
-        <Height>31.51431cm</Height>
+        <Height>31.3291cm</Height>
         <Width>15.48978cm</Width>
         <Style>
           <Border>

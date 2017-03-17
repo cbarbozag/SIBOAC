@@ -27,6 +27,8 @@ namespace Cosevi.SIBOAC.Reports
                 string parametros = Request.QueryString["parametros"];
                 DataTable listaArchivos = new DataTable();
                 listaArchivos.Columns.Add("NombreArchivo");
+                DataTable listaFirmas = new DataTable();
+                listaFirmas.Columns.Add("NombreArchivo");
 
                 if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
                 {
@@ -49,13 +51,19 @@ namespace Cosevi.SIBOAC.Reports
                         var fuente = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.fuente).ToList());
                         string CodigoFuente = fuente.ToArray().FirstOrDefault() == null ? "0" : fuente.ToArray().FirstOrDefault().ToString();
 
+                        var NumeroParte = (db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta).Select(a => a.numeroparte).ToList());
+                        string NumParte = NumeroParte.ToArray().FirstOrDefault() == null ? "0" : NumeroParte.ToArray().FirstOrDefault().ToString();
+
                         var ideUsuario = (db.PERSONA.Where(a => a.Serie == serie && a.NumeroBoleta == numero_boleta).Select(a => a.identificacion).ToList());
                         string CodigoIde = ideUsuario.ToArray().FirstOrDefault() == null ? "0" : ideUsuario.ToArray().FirstOrDefault().ToString();
 
+                        var CodigoInsp = db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta && a.numeroparte == NumParte).Select(a => a.codigo_inspector).ToList();
+                        string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
+
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
                         //var path = Server.MapPath(ruta);
-                        var fileUsuario = string.Format("{0}{1}{2}-u-{3}.png", CodigoFuente, serie, numero_boleta, CodigoIde);
-                        var fileInspector = string.Format("{0}{1}{2}-i.png", CodigoFuente, serie, numero_boleta);
+                        var fileUsuario = string.Format("{0}{1}{2}-u-{3}.png", CodigoFuente, serie, NumParte, CodigoIde);
+                        var fileInspector = string.Format("{0}{1}{2}-i-{3}.png", CodigoFuente, serie, NumParte, CodInsp);
                         var fullPathUsuario = Path.Combine(ruta, fileUsuario);
                         var fullPathInspector = Path.Combine(ruta, fileInspector);
 
@@ -89,22 +97,37 @@ namespace Cosevi.SIBOAC.Reports
                         if (TipoConsulta == 1)
                         {
                             int serieParte1 = Convert.ToInt32(Parametro1);
-                            decimal numeroParte1 = Convert.ToDecimal(Parametro2);
+                            decimal numeroParte1 = Convert.ToDecimal(Parametro2);                            
 
                             var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
                             string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
                                                                                                                 
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre );                                                        
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre );
 
-                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            listaArchivos.Columns.Add("ParteOficial");
+
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];                            
 
                             foreach (string item in ext1)
                             {
-                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri);
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri, numeroParte1);
                             }
 
-                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
-                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
+                            var listFirma = (db.BOLETA.Where(a => a.serie_parteoficial == Parametro1 && a.numeroparte == Parametro2).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+                            foreach (var item in listFirma)
+                            {
+                                var NombreFirma = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, NombreFirma)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                            }
+
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
 
                         }
 
@@ -125,24 +148,42 @@ namespace Cosevi.SIBOAC.Reports
                             int serieParte2 = Convert.ToInt32(CodigoSerie2);
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);                                                                                
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                            listaArchivos.Columns.Add("ParteOficial");
 
                             string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
-                            foreach (string item in ext2)
+                            //var listaAdjuntos = ext2.Zip(CodigoNumParte2, (n, w) => new { NombreAr = n, NumPar = w });
+
+                            foreach (var item in ext2)
                             {
-                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item)).AbsoluteUri);
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item)).AbsoluteUri, CodigoNumParte2);
+                            }                            
+
+                            var listFirma = (db.BOLETA.Where(a => CodigoSerie2.Contains(a.serie_parteoficial) && CodigoNumParte2.Contains(a.numeroparte) && a.serie == serieBoleta2 && a.numero_boleta == numeroBoleta2).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+                            foreach (var item in listFirma)
+                            {
+                                var NombreFirma = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, NombreFirma)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
                             }
 
-                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
-                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            //ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
+                            //ReportViewer1.LocalReport.DataSources.Add(RDS2);
                         }
 
                         if (TipoConsulta == 3)
                         {
 
-                            var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.NumeroBoleta).ToList());
-
+                            var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.NumeroBoleta).ToList());                            
                             var seriBolet3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.Serie).ToList());
 
                             var numPartBo3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
@@ -168,8 +209,22 @@ namespace Cosevi.SIBOAC.Reports
                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.NombreAr)).AbsoluteUri, item.NumPar);
                             }
 
+                            var listFirma = (db.BOLETA.Where(a => seriePart3.Contains(a.serie_parteoficial) && numPartPar3.Contains(a.numeroparte) && seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+                            foreach (var item in listFirma)
+                            {
+                                var NombreFirma = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, NombreFirma)).AbsoluteUri,item.numeroparte,item.codigo_inspector);
+                            }
+                                                                                  
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            
                         }
 
                         if (TipoConsulta == 4)
@@ -202,8 +257,22 @@ namespace Cosevi.SIBOAC.Reports
                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.NombreAr)).AbsoluteUri, item.NumPar);
                             }
 
+                            var listFirma = (db.BOLETA.Where(a => seriePart4.Contains(a.serie_parteoficial) && numPartPar4.Contains(a.numeroparte) && seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+                            foreach (var item in listFirma)
+                            {
+                                var NombreFirma = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, NombreFirma)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                            }
+
+
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
                         }
 
                         #endregion
@@ -224,7 +293,8 @@ namespace Cosevi.SIBOAC.Reports
 
         private void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
         {            
-            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_ConsultaeImpresionDeParteOficialData"]));
+            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_ConsultaeImpresionDeParteOficialData"])); 
+            e.DataSources.Add(new ReportDataSource("FirmasDataSet", Session["_ConsultaeImpresionDeParteOficialDataFirma"]));
         }
 
         private object GetData(string reporteID, string parametros)

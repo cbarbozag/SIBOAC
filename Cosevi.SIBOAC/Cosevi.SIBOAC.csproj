@@ -342,6 +342,11 @@
     <Compile Include="Controllers\UnidadesDeAlcoholsController.cs" />
     <Compile Include="Controllers\ValidarCarroceriasController.cs" />
     <Compile Include="Controllers\VariablesParaBloqueosController.cs" />
+    <Compile Include="FirmasDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FirmasDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GetActividadOficialDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -894,6 +899,17 @@
     </None>
     <Content Include="ArchivosDataSet.xss">
       <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="FirmasDataSet.xsc">
+      <DependentUpon>FirmasDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="FirmasDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FirmasDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="FirmasDataSet.xss">
+      <DependentUpon>FirmasDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetActividadOficialDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1735,6 +1751,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\SubReportInspector.rdlc" />
     <EmbeddedResource Include="Reports\SubReportAdjuntos.rdlc" />
   </ItemGroup>
   <PropertyGroup>
@@ -1772,6 +1789,11 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' == ''" />
+  <PropertyGroup>
+    <SsdtUnitTestVersion>2.0</SsdtUnitTestVersion>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
