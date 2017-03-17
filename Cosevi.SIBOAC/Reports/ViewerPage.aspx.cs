@@ -176,37 +176,34 @@ namespace Cosevi.SIBOAC.Reports
                         {
 
                             var numeroBoleta4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3).Select(a => a.NumeroBoleta).ToList());
-                            string CodigoNumBoleta4 = Convert.ToString(numeroBoleta4.ToArray().FirstOrDefault()) == null ? "0" : numeroBoleta4.ToArray().FirstOrDefault().ToString();
 
                             var seriBolet4 = (db.VEHICULO.Where(a => a.placa == Parametro1 && a.codigo == Parametro2 && a.clase == Parametro3).Select(a => a.Serie).ToList());
-                            string CodigoSerBol4 = Convert.ToString(seriBolet4.ToArray().FirstOrDefault()) == null ? "0" : seriBolet4.ToArray().FirstOrDefault().ToString();
+                            
+                            var numeroPart4 = (db.BOLETA.Where(a => seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
+                            var numPartPar4 = (db.PARTEOFICIAL.Where(a => numeroPart4.Contains(a.NumeroParte) && a.NumeroParte != "0").Select(a => a.NumeroParte).ToList());
+                            var numPartConv4 = numPartPar4.Select(s => Convert.ToDecimal(s)).ToList();                            
 
-                            int SerieBole4 = Convert.ToInt32(CodigoSerBol4);
-                            decimal NumBole4 = Convert.ToDecimal(CodigoNumBoleta4);
+                            var seriePart4 = (db.PARTEOFICIAL.Where(a => numPartPar4.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
+                            var serParte4 = seriePart4.Select(s => Convert.ToInt32(s)).ToList();                            
 
-                            var numeroPart4 = (db.BOLETA.Where(a => a.serie == SerieBole4 && a.numero_boleta == NumBole4).Select(a => a.numeroparte).ToList());
-                            string CodigoNumParte4 = numeroPart4.ToArray().FirstOrDefault() == null ? "0" : numeroPart4.ToArray().FirstOrDefault().ToString();
+                            var fuente4 = (db.PARTEOFICIAL.Where(a => seriePart4.Contains(a.Serie) && numPartPar4.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());                            
 
-                            var seriePart4 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte4).Select(a => a.Serie).ToList());
-                            string CodigoSerie4 = seriePart4.ToArray().FirstOrDefault() == null ? "0" : seriePart4.ToArray().FirstOrDefault().ToString();
+                            var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                            var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
 
-                            var fuente4 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie4 && a.NumeroParte == CodigoNumParte4).Select(a => a.Fuente).ToList());
-                            string CodigoFuente4 = fuente4.ToArray().FirstOrDefault() == null ? "0" : fuente4.ToArray().FirstOrDefault().ToString();
-
-                            int serieParte4 = Convert.ToInt32(CodigoSerie4);
-                            decimal numeroParte4 = Convert.ToDecimal(CodigoNumParte4);
-
-                            var ext4 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente4 && oa.serie == serieParte4 && oa.numero_boleta == numeroParte4 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);                            
+                            listaArchivos.Columns.Add("ParteOficial");
 
                             string ruta4 = ConfigurationManager.AppSettings["DownloadFilePath"];
 
-                            foreach (string item in ext4)
+                            var listaAdjuntos = nombreAdjuntos4.Zip(numPartLista4, (n, w) => new { NombreAr = n, NumPar = w });
+
+                            foreach (var item in listaAdjuntos)
                             {
-                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item)).AbsoluteUri);
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.NombreAr)).AbsoluteUri, item.NumPar);
                             }
 
-                            ReportDataSource RDS2 = new ReportDataSource("ArchivoDataSet", listaArchivos);
-                            ReportViewer1.LocalReport.DataSources.Add(RDS2);
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                         }
 
                         #endregion

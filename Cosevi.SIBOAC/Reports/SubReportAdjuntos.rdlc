@@ -88,7 +88,7 @@
                     <Image Name="ImageAdj">
                       <Source>External</Source>
                       <Value>=Fields!NombreArchivo.Value</Value>
-                      <Sizing>FitProportional</Sizing>
+                      <Sizing>Fit</Sizing>
                       <ToolTip>ImagenAdju</ToolTip>
                       <Style>
                         <Border>
@@ -96,6 +96,7 @@
                         </Border>
                       </Style>
                     </Image>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
