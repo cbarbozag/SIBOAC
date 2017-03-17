@@ -96,7 +96,6 @@
                         </Border>
                       </Style>
                     </Image>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -120,7 +119,7 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>DataSet1</DataSetName>
+        <DataSetName>ArchivoDataSet</DataSetName>
         <Filters>
           <Filter>
             <FilterExpression>=Fields!ParteOficial.Value</FilterExpression>
@@ -167,7 +166,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="ArchivoDataSet">
       <Query>
         <DataSourceName>ArchivosDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
