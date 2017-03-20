@@ -12,12 +12,12 @@
               <Width>0.07938cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.30125cm</Width>
+              <Width>1.79854cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>1.31438cm</Height>
+              <Height>1.28792cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -117,9 +117,6 @@
           <TablixMembers>
             <TablixMember>
               <Group Name="Details" />
-              <Visibility>
-                <Hidden>=Fields!ParteOficial.Value&lt;&gt;Parameters!ParteOficial.Value</Hidden>
-              </Visibility>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
@@ -140,9 +137,8 @@
             </FilterValues>
           </Filter>
         </Filters>
-        <Left>1.74625cm</Left>
-        <Height>1.31438cm</Height>
-        <Width>2.46001cm</Width>
+        <Height>1.28792cm</Height>
+        <Width>1.95729cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -150,10 +146,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.51747in</Height>
+    <Height>0.50706in</Height>
     <Style />
   </Body>
-  <Width>2.23934in</Width>
+  <Width>0.77059in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

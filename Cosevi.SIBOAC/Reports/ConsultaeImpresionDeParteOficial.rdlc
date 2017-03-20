@@ -2061,7 +2061,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.69184cm</Height>
+                            <Height>0.79767cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -2077,7 +2077,7 @@
                                       </TablixColumns>
                                       <TablixRows>
                                         <TablixRow>
-                                          <Height>0.69184cm</Height>
+                                          <Height>0.79767cm</Height>
                                           <TablixCells>
                                             <TablixCell>
                                               <CellContents>
@@ -2085,19 +2085,54 @@
                                                   <TablixBody>
                                                     <TablixColumns>
                                                       <TablixColumn>
-                                                        <Width>2.32829cm</Width>
+                                                        <Width>2.46677cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
-                                                        <Width>5.70151cm</Width>
+                                                        <Width>2.45415cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
-                                                        <Width>2.6918cm</Width>
+                                                        <Width>3.38059cm</Width>
+                                                      </TablixColumn>
+                                                      <TablixColumn>
+                                                        <Width>2.42009cm</Width>
                                                       </TablixColumn>
                                                     </TablixColumns>
                                                     <TablixRows>
                                                       <TablixRow>
-                                                        <Height>0.69184cm</Height>
+                                                        <Height>0.79767cm</Height>
                                                         <TablixCells>
+                                                          <TablixCell>
+                                                            <CellContents>
+                                                              <Textbox Name="Textbox113">
+                                                                <CanGrow>true</CanGrow>
+                                                                <KeepTogether>true</KeepTogether>
+                                                                <Paragraphs>
+                                                                  <Paragraph>
+                                                                    <TextRuns>
+                                                                      <TextRun>
+                                                                        <Value>="Testigo del Parte: "+Fields!NumeroParte.Value</Value>
+                                                                        <Style>
+                                                                          <FontSize>8pt</FontSize>
+                                                                        </Style>
+                                                                      </TextRun>
+                                                                    </TextRuns>
+                                                                    <Style />
+                                                                  </Paragraph>
+                                                                </Paragraphs>
+                                                                <rd:DefaultName>Textbox113</rd:DefaultName>
+                                                                <Style>
+                                                                  <Border>
+                                                                    <Color>LightGrey</Color>
+                                                                    <Style>Solid</Style>
+                                                                  </Border>
+                                                                  <PaddingLeft>2pt</PaddingLeft>
+                                                                  <PaddingRight>2pt</PaddingRight>
+                                                                  <PaddingTop>2pt</PaddingTop>
+                                                                  <PaddingBottom>2pt</PaddingBottom>
+                                                                </Style>
+                                                              </Textbox>
+                                                            </CellContents>
+                                                          </TablixCell>
                                                           <TablixCell>
                                                             <CellContents>
                                                               <Textbox Name="Textbox18">
@@ -2107,7 +2142,7 @@
                                                                   <Paragraph>
                                                                     <TextRuns>
                                                                       <TextRun>
-                                                                        <Value>=Fields!TipoIdentificacionTestigo.Value+"-"+Fields!IdentificacionTestigo.Value</Value>
+                                                                        <Value>=Fields!TipoIdentificacionTestigo.Value+" "+Fields!IdentificacionTestigo.Value</Value>
                                                                         <Style>
                                                                           <FontSize>8pt</FontSize>
                                                                         </Style>
@@ -2164,34 +2199,23 @@
                                                           </TablixCell>
                                                           <TablixCell>
                                                             <CellContents>
-                                                              <Textbox Name="Textbox19">
-                                                                <CanGrow>true</CanGrow>
-                                                                <KeepTogether>true</KeepTogether>
-                                                                <Paragraphs>
-                                                                  <Paragraph>
-                                                                    <TextRuns>
-                                                                      <TextRun>
-                                                                        <Value />
-                                                                        <Style>
-                                                                          <FontSize>8pt</FontSize>
-                                                                        </Style>
-                                                                      </TextRun>
-                                                                    </TextRuns>
-                                                                    <Style />
-                                                                  </Paragraph>
-                                                                </Paragraphs>
-                                                                <rd:DefaultName>Textbox19</rd:DefaultName>
+                                                              <Subreport Name="Subreport4">
+                                                                <ReportName>SubReportTestigo</ReportName>
+                                                                <Parameters>
+                                                                  <Parameter Name="ParteOficial">
+                                                                    <Value>=Fields!NumeroParte.Value</Value>
+                                                                  </Parameter>
+                                                                  <Parameter Name="Identificacion">
+                                                                    <Value>=Fields!IdentificacionTestigo.Value</Value>
+                                                                  </Parameter>
+                                                                </Parameters>
                                                                 <Style>
                                                                   <Border>
                                                                     <Color>LightGrey</Color>
                                                                     <Style>Solid</Style>
                                                                   </Border>
-                                                                  <PaddingLeft>2pt</PaddingLeft>
-                                                                  <PaddingRight>2pt</PaddingRight>
-                                                                  <PaddingTop>2pt</PaddingTop>
-                                                                  <PaddingBottom>2pt</PaddingBottom>
                                                                 </Style>
-                                                              </Textbox>
+                                                              </Subreport>
                                                             </CellContents>
                                                           </TablixCell>
                                                         </TablixCells>
@@ -2200,6 +2224,7 @@
                                                   </TablixBody>
                                                   <TablixColumnHierarchy>
                                                     <TablixMembers>
+                                                      <TablixMember />
                                                       <TablixMember />
                                                       <TablixMember />
                                                       <TablixMember />
@@ -2220,6 +2245,9 @@
                                                         <TablixMembers>
                                                           <TablixMember />
                                                         </TablixMembers>
+                                                        <Visibility>
+                                                          <Hidden>=IIf(Fields!IdentificacionTestigo.Value &lt;&gt; "", false, true)</Hidden>
+                                                        </Visibility>
                                                       </TablixMember>
                                                     </TablixMembers>
                                                   </TablixRowHierarchy>
@@ -2272,40 +2300,20 @@
                               <TablixCell />
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox44">
-                                    <CanGrow>true</CanGrow>
+                                  <Rectangle Name="Rectangle1">
                                     <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value />
-                                            <Style>
-                                              <FontSize>8pt</FontSize>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style />
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <rd:DefaultName>Textbox44</rd:DefaultName>
                                     <Style>
                                       <Border>
-                                        <Color>LightGrey</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                       </Border>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
-                                  </Textbox>
+                                  </Rectangle>
                                 </CellContents>
                               </TablixCell>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.79767cm</Height>
+                            <Height>0.69184cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -2313,19 +2321,54 @@
                                     <TablixBody>
                                       <TablixColumns>
                                         <TablixColumn>
-                                          <Width>2.32829cm</Width>
+                                          <Width>2.46677cm</Width>
                                         </TablixColumn>
                                         <TablixColumn>
-                                          <Width>5.70151cm</Width>
+                                          <Width>2.45415cm</Width>
                                         </TablixColumn>
                                         <TablixColumn>
-                                          <Width>2.6918cm</Width>
+                                          <Width>3.38059cm</Width>
+                                        </TablixColumn>
+                                        <TablixColumn>
+                                          <Width>2.42009cm</Width>
                                         </TablixColumn>
                                       </TablixColumns>
                                       <TablixRows>
                                         <TablixRow>
-                                          <Height>0.79767cm</Height>
+                                          <Height>0.69184cm</Height>
                                           <TablixCells>
+                                            <TablixCell>
+                                              <CellContents>
+                                                <Textbox Name="Textbox114">
+                                                  <CanGrow>true</CanGrow>
+                                                  <KeepTogether>true</KeepTogether>
+                                                  <Paragraphs>
+                                                    <Paragraph>
+                                                      <TextRuns>
+                                                        <TextRun>
+                                                          <Value>="Boleta: "+Fields!numero_boletaB.Value</Value>
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                          </Style>
+                                                        </TextRun>
+                                                      </TextRuns>
+                                                      <Style />
+                                                    </Paragraph>
+                                                  </Paragraphs>
+                                                  <rd:DefaultName>Textbox114</rd:DefaultName>
+                                                  <Style>
+                                                    <Border>
+                                                      <Color>LightGrey</Color>
+                                                      <Style>Solid</Style>
+                                                    </Border>
+                                                    <PaddingLeft>2pt</PaddingLeft>
+                                                    <PaddingRight>2pt</PaddingRight>
+                                                    <PaddingTop>2pt</PaddingTop>
+                                                    <PaddingBottom>2pt</PaddingBottom>
+                                                  </Style>
+                                                </Textbox>
+                                              </CellContents>
+                                            </TablixCell>
                                             <TablixCell>
                                               <CellContents>
                                                 <Textbox Name="Textbox54">
@@ -2335,7 +2378,7 @@
                                                     <Paragraph>
                                                       <TextRuns>
                                                         <TextRun>
-                                                          <Value>=Fields!TipoIdentificacionTestigoB.Value+"-"+Fields!IdentificacionTestigoB.Value</Value>
+                                                          <Value>=Fields!TipoIdentificacionTestigoB.Value+" "+Fields!IdentificacionTestigoB.Value</Value>
                                                           <Style>
                                                             <FontSize>8pt</FontSize>
                                                           </Style>
@@ -2367,7 +2410,7 @@
                                                     <Paragraph>
                                                       <TextRuns>
                                                         <TextRun>
-                                                          <Value>=Fields!NombreTestigo.Value+" "+Fields!Apellito1Testigo.Value+" "+Fields!Apellido2Testigo.Value</Value>
+                                                          <Value>=Fields!NombreTestigoB.Value+" "+Fields!Apellito1TestigoB.Value+" "+Fields!Apellido2TestigoB.Value</Value>
                                                           <Style>
                                                             <FontSize>8pt</FontSize>
                                                           </Style>
@@ -2431,6 +2474,7 @@
                                         <TablixMember />
                                         <TablixMember />
                                         <TablixMember />
+                                        <TablixMember />
                                       </TablixMembers>
                                     </TablixColumnHierarchy>
                                     <TablixRowHierarchy>
@@ -2445,6 +2489,9 @@
                                               <GroupExpression>=Fields!IdentificacionTestigoB.Value</GroupExpression>
                                             </GroupExpressions>
                                           </Group>
+                                          <Visibility>
+                                            <Hidden>=IIf(Fields!IdentificacionTestigoB.Value &lt;&gt; "", false, true)</Hidden>
+                                          </Visibility>
                                         </TablixMember>
                                       </TablixMembers>
                                     </TablixRowHierarchy>
@@ -2470,34 +2517,14 @@
                               <TablixCell />
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox50">
-                                    <CanGrow>true</CanGrow>
+                                  <Rectangle Name="Rectangle2">
                                     <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value />
-                                            <Style>
-                                              <FontSize>8pt</FontSize>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style />
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <rd:DefaultName>Textbox50</rd:DefaultName>
                                     <Style>
                                       <Border>
-                                        <Color>LightGrey</Color>
-                                        <Style>Solid</Style>
+                                        <Style>None</Style>
                                       </Border>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
-                                  </Textbox>
+                                  </Rectangle>
                                 </CellContents>
                               </TablixCell>
                             </TablixCells>
@@ -3100,7 +3127,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.59633cm</Height>
+                            <Height>0.67571cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -3249,43 +3276,29 @@
                               <TablixCell />
                               <TablixCell>
                                 <CellContents>
-                                  <Textbox Name="Textbox31">
-                                    <CanGrow>true</CanGrow>
-                                    <KeepTogether>true</KeepTogether>
-                                    <Paragraphs>
-                                      <Paragraph>
-                                        <TextRuns>
-                                          <TextRun>
-                                            <Value />
-                                            <Style>
-                                              <FontSize>8pt</FontSize>
-                                              <FontWeight>Bold</FontWeight>
-                                            </Style>
-                                          </TextRun>
-                                        </TextRuns>
-                                        <Style>
-                                          <TextAlign>Left</TextAlign>
-                                        </Style>
-                                      </Paragraph>
-                                    </Paragraphs>
-                                    <rd:DefaultName>Textbox31</rd:DefaultName>
+                                  <Subreport Name="Subreport3">
+                                    <ReportName>SubReportUsuario</ReportName>
+                                    <Parameters>
+                                      <Parameter Name="ParteOficial">
+                                        <Value>=Fields!numero_boleta.Value</Value>
+                                      </Parameter>
+                                      <Parameter Name="Identificacion">
+                                        <Value>=Fields!identificacion.Value</Value>
+                                      </Parameter>
+                                    </Parameters>
                                     <Style>
                                       <Border>
                                         <Color>LightGrey</Color>
                                         <Style>Solid</Style>
                                       </Border>
-                                      <PaddingLeft>2pt</PaddingLeft>
-                                      <PaddingRight>2pt</PaddingRight>
-                                      <PaddingTop>2pt</PaddingTop>
-                                      <PaddingBottom>2pt</PaddingBottom>
                                     </Style>
-                                  </Textbox>
+                                  </Subreport>
                                 </CellContents>
                               </TablixCell>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.59633cm</Height>
+                            <Height>0.51696cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -4773,7 +4786,8 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                     </Parameters>
                                     <Style>
                                       <Border>
-                                        <Style>None</Style>
+                                        <Color>LightGrey</Color>
+                                        <Style>Solid</Style>
                                       </Border>
                                     </Style>
                                   </Subreport>

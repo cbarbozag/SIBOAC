@@ -88,13 +88,13 @@
                       <Source>External</Source>
                       <Value>=Fields!NombreArchivo.Value</Value>
                       <Sizing>Fit</Sizing>
-                      <ToolTip>ImagenAdju</ToolTip>
                       <Style>
                         <Border>
                           <Style>None</Style>
                         </Border>
                       </Style>
                     </Image>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>

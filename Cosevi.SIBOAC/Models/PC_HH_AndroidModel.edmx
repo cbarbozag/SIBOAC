@@ -968,6 +968,51 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="TESTIGO">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="apellido1" Type="varchar" MaxLength="20" />
+          <Property Name="apellido2" Type="varchar" MaxLength="20" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="200" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_nacimiento" Type="datetime" />
+          <Property Name="sexo" Type="char" MaxLength="1" />
+          <Property Name="firma_testigo" Type="varchar" MaxLength="20" />
+          <Property Name="fuente" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TESTIGOXPARTE">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numeroparte" />
+          </Key>
+          <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fuente" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="serie" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="numeroparte" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="donde" Type="varchar" MaxLength="500" />
+          <Property Name="apellido1" Type="varchar" MaxLength="20" />
+          <Property Name="apellido2" Type="varchar" MaxLength="20" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="200" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_nacimiento" Type="datetime" />
+          <Property Name="sexo" Type="char" MaxLength="1" />
+          <Property Name="firma_testigo" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="TIEMPO">
           <Key>
             <PropertyRef Name="CodTie" />
@@ -1357,6 +1402,8 @@
           <EntitySet Name="SENTIDO" EntityType="Self.SENTIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEÑALAMIENTO" EntityType="Self.SEÑALAMIENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TESTIGO" EntityType="Self.TESTIGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TESTIGOXPARTE" EntityType="Self.TESTIGOXPARTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIEMPO" EntityType="Self.TIEMPO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_IDENTIFICACION" EntityType="Self.TIPO_IDENTIFICACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_LICENCIA" EntityType="Self.TIPO_LICENCIA" Schema="dbo" store:Type="Tables" />
@@ -1641,6 +1688,8 @@
             <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
             <Parameter Name="IdUsuario" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="TESTIGOXPARTE" EntityType="PC_HH_AndroidModel.TESTIGOXPARTE" />
+          <EntitySet Name="TESTIGO" EntityType="PC_HH_AndroidModel.TESTIGO" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3113,6 +3162,51 @@
           <Property Type="String" Name="Accion" Nullable="false" MaxLength="64" />
           <Property Type="String" Name="Parametros" Nullable="true" MaxLength="500" />
         </ComplexType>
+        <EntityType Name="TESTIGOXPARTE">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numeroparte" />
+          </Key>
+          <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="serie" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="numeroparte" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="donde" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="firma_testigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TESTIGO">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="firma_testigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4702,6 +4796,45 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TESTIGOXPARTE">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TESTIGOXPARTE">
+              <MappingFragment StoreEntitySet="TESTIGOXPARTE">
+                <ScalarProperty Name="firma_testigo" ColumnName="firma_testigo" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="donde" ColumnName="donde" />
+                <ScalarProperty Name="numeroparte" ColumnName="numeroparte" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="fuente" ColumnName="fuente" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TESTIGO">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TESTIGO">
+              <MappingFragment StoreEntitySet="TESTIGO">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="fuente" ColumnName="fuente" />
+                <ScalarProperty Name="firma_testigo" ColumnName="firma_testigo" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

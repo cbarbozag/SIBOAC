@@ -118,7 +118,7 @@
             <TablixMember>
               <Group Name="Details" />
               <Visibility>
-                <Hidden>=Fields!ParteOficial.Value&lt;&gt;Parameters!ParteOficial.Value</Hidden>
+                <Hidden>=Fields!Identificacion.Value&lt;&gt;Parameters!Identificacion.Value</Hidden>
               </Visibility>
             </TablixMember>
           </TablixMembers>
@@ -140,7 +140,6 @@
             </FilterValues>
           </Filter>
         </Filters>
-        <Left>1.74625cm</Left>
         <Height>1.31438cm</Height>
         <Width>2.46001cm</Width>
         <Style>
@@ -153,7 +152,7 @@
     <Height>0.51747in</Height>
     <Style />
   </Body>
-  <Width>2.23934in</Width>
+  <Width>0.99976in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

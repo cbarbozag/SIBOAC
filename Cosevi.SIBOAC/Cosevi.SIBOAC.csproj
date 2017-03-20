@@ -726,6 +726,12 @@
       <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusPlano.cs" />
+    <Compile Include="Models\TESTIGO.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TESTIGOXPARTE.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tiempo.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -1751,6 +1757,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\SubReportTestigo.rdlc" />
+    <EmbeddedResource Include="Reports\SubReportUsuario.rdlc" />
     <EmbeddedResource Include="Reports\SubReportInspector.rdlc" />
     <EmbeddedResource Include="Reports\SubReportAdjuntos.rdlc" />
   </ItemGroup>
