@@ -2339,14 +2339,20 @@
                                           <TablixCells>
                                             <TablixCell>
                                               <CellContents>
-                                                <Textbox Name="Textbox114">
+                                                <Textbox Name="Textbox2">
                                                   <CanGrow>true</CanGrow>
                                                   <KeepTogether>true</KeepTogether>
                                                   <Paragraphs>
                                                     <Paragraph>
                                                       <TextRuns>
                                                         <TextRun>
-                                                          <Value>="Boleta: "+Fields!numero_boletaB.Value</Value>
+                                                          <Value>Testifgo de Boleta:  </Value>
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                          </Style>
+                                                        </TextRun>
+                                                        <TextRun>
+                                                          <Value>=Fields!numero_boletaB.Value</Value>
                                                           <Style>
                                                             <FontSize>8pt</FontSize>
                                                           </Style>
@@ -2355,7 +2361,7 @@
                                                       <Style />
                                                     </Paragraph>
                                                   </Paragraphs>
-                                                  <rd:DefaultName>Textbox114</rd:DefaultName>
+                                                  <rd:DefaultName>Textbox2</rd:DefaultName>
                                                   <Style>
                                                     <Border>
                                                       <Color>LightGrey</Color>
@@ -2435,34 +2441,23 @@
                                             </TablixCell>
                                             <TablixCell>
                                               <CellContents>
-                                                <Textbox Name="Textbox60">
-                                                  <CanGrow>true</CanGrow>
-                                                  <KeepTogether>true</KeepTogether>
-                                                  <Paragraphs>
-                                                    <Paragraph>
-                                                      <TextRuns>
-                                                        <TextRun>
-                                                          <Value />
-                                                          <Style>
-                                                            <FontSize>8pt</FontSize>
-                                                          </Style>
-                                                        </TextRun>
-                                                      </TextRuns>
-                                                      <Style />
-                                                    </Paragraph>
-                                                  </Paragraphs>
-                                                  <rd:DefaultName>Textbox60</rd:DefaultName>
+                                                <Subreport Name="Subreport5">
+                                                  <ReportName>SubReportTestigo</ReportName>
+                                                  <Parameters>
+                                                    <Parameter Name="ParteOficial">
+                                                      <Value>=Fields!numero_boletaB.Value</Value>
+                                                    </Parameter>
+                                                    <Parameter Name="Identificacion">
+                                                      <Value>=Fields!IdentificacionTestigoB.Value</Value>
+                                                    </Parameter>
+                                                  </Parameters>
                                                   <Style>
                                                     <Border>
                                                       <Color>LightGrey</Color>
                                                       <Style>Solid</Style>
                                                     </Border>
-                                                    <PaddingLeft>2pt</PaddingLeft>
-                                                    <PaddingRight>2pt</PaddingRight>
-                                                    <PaddingTop>2pt</PaddingTop>
-                                                    <PaddingBottom>2pt</PaddingBottom>
                                                   </Style>
-                                                </Textbox>
+                                                </Subreport>
                                               </CellContents>
                                             </TablixCell>
                                           </TablixCells>
@@ -2495,6 +2490,7 @@
                                         </TablixMember>
                                       </TablixMembers>
                                     </TablixRowHierarchy>
+                                    <DataSetName>DataSet1</DataSetName>
                                     <Filters>
                                       <Filter>
                                         <FilterExpression>=Fields!IdentificacionTestigoB.Value</FilterExpression>

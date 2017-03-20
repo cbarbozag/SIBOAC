@@ -1593,6 +1593,7 @@
       <Image Name="ImgFirmaUsuario">
         <Source>External</Source>
         <Value>=Parameters!ImagenFirmaUsuarioPath.Value</Value>
+        <Sizing>FitProportional</Sizing>
         <Top>18.83516cm</Top>
         <Left>1.0287cm</Left>
         <Height>1.5cm</Height>
@@ -1608,6 +1609,7 @@
       <Image Name="ImgFirmaInspector">
         <Source>External</Source>
         <Value>=Parameters!ImagenFirmaInspectorPath.Value</Value>
+        <Sizing>FitProportional</Sizing>
         <Top>18.83516cm</Top>
         <Left>12.17184cm</Left>
         <Height>1.5cm</Height>
