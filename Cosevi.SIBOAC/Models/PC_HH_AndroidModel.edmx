@@ -972,9 +972,6 @@
           <Key>
             <PropertyRef Name="tipo_ide" />
             <PropertyRef Name="identificacion" />
-            <PropertyRef Name="fuente" />
-            <PropertyRef Name="serie" />
-            <PropertyRef Name="numero" />
           </Key>
           <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="identificacion" Type="varchar" MaxLength="15" Nullable="false" />
@@ -986,9 +983,9 @@
           <Property Name="fecha_nacimiento" Type="datetime" />
           <Property Name="sexo" Type="char" MaxLength="1" />
           <Property Name="firma_testigo" Type="varchar" MaxLength="20" />
-          <Property Name="fuente" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="serie" Type="int" Nullable="false" />
-          <Property Name="numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fuente" Type="char" MaxLength="1" />
+          <Property Name="serie" Type="int" />
+          <Property Name="numero" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="TESTIGOXPARTE">
           <Key>
@@ -3189,9 +3186,6 @@
           <Key>
             <PropertyRef Name="tipo_ide" />
             <PropertyRef Name="identificacion" />
-            <PropertyRef Name="fuente" />
-            <PropertyRef Name="serie" />
-            <PropertyRef Name="numero" />
           </Key>
           <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
@@ -3203,9 +3197,9 @@
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
           <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="firma_testigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="serie" Type="Int32" Nullable="false" />
-          <Property Name="numero" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="fuente" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="serie" Type="Int32" />
+          <Property Name="numero" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
