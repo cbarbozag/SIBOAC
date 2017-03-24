@@ -1580,6 +1580,9 @@
         <Height>1.85329cm</Height>
         <Width>19.23838cm</Width>
         <ZIndex>31</ZIndex>
+        <Visibility>
+          <Hidden>=IIf(Fields!PiePaginaAutoridad.Value &lt;&gt; "", false, true)</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
