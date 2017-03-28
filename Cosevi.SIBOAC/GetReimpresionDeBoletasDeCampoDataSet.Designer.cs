@@ -369,6 +369,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnpuntos;
             
+            private global::System.Data.DataColumn columnDescripcionPuntos;
+            
             private global::System.Data.DataColumn columndescripcion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -766,6 +768,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionPuntosColumn {
+                get {
+                    return this.columnDescripcionPuntos;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn descripcionColumn {
                 get {
                     return this.columndescripcion;
@@ -855,6 +865,7 @@ namespace Cosevi.SIBOAC {
                         string codigo_articulo, 
                         decimal multa, 
                         int puntos, 
+                        string DescripcionPuntos, 
                         string descripcion) {
                 GetReimpresionDeBoletasDeCampoDataRow rowGetReimpresionDeBoletasDeCampoDataRow = ((GetReimpresionDeBoletasDeCampoDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -903,6 +914,7 @@ namespace Cosevi.SIBOAC {
                         codigo_articulo,
                         multa,
                         puntos,
+                        DescripcionPuntos,
                         descripcion};
                 rowGetReimpresionDeBoletasDeCampoDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReimpresionDeBoletasDeCampoDataRow);
@@ -971,6 +983,7 @@ namespace Cosevi.SIBOAC {
                 this.columncodigo_articulo = base.Columns["codigo_articulo"];
                 this.columnmulta = base.Columns["multa"];
                 this.columnpuntos = base.Columns["puntos"];
+                this.columnDescripcionPuntos = base.Columns["DescripcionPuntos"];
                 this.columndescripcion = base.Columns["descripcion"];
             }
             
@@ -1067,6 +1080,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnmulta);
                 this.columnpuntos = new global::System.Data.DataColumn("puntos", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpuntos);
+                this.columnDescripcionPuntos = new global::System.Data.DataColumn("DescripcionPuntos", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionPuntos);
                 this.columndescripcion = new global::System.Data.DataColumn("descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescripcion);
                 this.columnfuente.AllowDBNull = false;
@@ -1109,11 +1124,13 @@ namespace Cosevi.SIBOAC {
                 this.columnCodigoPlaca.MaxLength = 3;
                 this.columnPiePagina.MaxLength = 2200;
                 this.columnPiePaginaAutoridad.ReadOnly = true;
-                this.columnPiePaginaAutoridad.MaxLength = 2200;
+                this.columnPiePaginaAutoridad.MaxLength = 400;
                 this.columnfuente_parteoficial.MaxLength = 1;
                 this.columnserie_parteoficial.MaxLength = 4;
                 this.columnnumeroparte.MaxLength = 15;
                 this.columncodigo_articulo.MaxLength = 6;
+                this.columnDescripcionPuntos.ReadOnly = true;
+                this.columnDescripcionPuntos.MaxLength = 50;
                 this.columndescripcion.MaxLength = 255;
             }
             
@@ -1992,6 +2009,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DescripcionPuntos {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionPuntosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionPuntos\' in table \'GetReimpresionDeBoletasDeCampo" +
+                                "Data\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionPuntosColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string descripcion {
                 get {
                     try {
@@ -2489,6 +2523,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionPuntosNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DescripcionPuntosColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionPuntosNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DescripcionPuntosColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsdescripcionNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.descripcionColumn);
             }
@@ -2704,6 +2750,7 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("codigo_articulo", "codigo_articulo");
             tableMapping.ColumnMappings.Add("multa", "multa");
             tableMapping.ColumnMappings.Add("puntos", "puntos");
+            tableMapping.ColumnMappings.Add("DescripcionPuntos", "DescripcionPuntos");
             tableMapping.ColumnMappings.Add("descripcion", "descripcion");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -2712,9 +2759,7 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=AFARIASRV\\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security I" +
-                "nfo=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Applicati" +
-                "on Name=EntityFramework";
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PC_HH_AndroidConnectionString"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

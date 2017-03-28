@@ -117,9 +117,6 @@
           <TablixMembers>
             <TablixMember>
               <Group Name="Details" />
-              <Visibility>
-                <Hidden>=Fields!ParteOficial.Value&lt;&gt;Parameters!ParteOficial.Value</Hidden>
-              </Visibility>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>

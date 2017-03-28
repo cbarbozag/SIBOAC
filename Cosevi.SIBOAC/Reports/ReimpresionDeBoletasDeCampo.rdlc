@@ -1125,12 +1125,14 @@
                               <Value>₡ </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                             <TextRun>
                               <Value>=Fields!multa.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1255,12 +1257,14 @@
                               <Value>₡ </Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                             <TextRun>
                               <Value>=Sum(Fields!multa.Value)</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1295,7 +1299,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>="Con esta infracción acumula "  + Sum(Fields!puntos.Value).ToString() + " Puntos"</Value>
+                              <Value>=Fields!DescripcionPuntos.Value+" "  + Sum(Fields!puntos.Value).ToString() + " Puntos"</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -1318,6 +1322,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -1641,19 +1646,19 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="GetReimpresionDeBoletasDeCampoDataSet">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>62a742be-fc42-473c-9103-38f6e03175d9</rd:DataSourceID>
-    </DataSource>
     <DataSource Name="ImagenesDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>7cb88bd3-51a9-4fdd-8eda-cc4ffa467232</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="GetReimpresionDeBoletasDeCampoDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>5449aa24-0f54-4ac4-8486-c368a6d5fb72</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1843,6 +1848,10 @@
           <DataField>puntos</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="DescripcionPuntos">
+          <DataField>DescripcionPuntos</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="descripcion">
           <DataField>descripcion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1850,7 +1859,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetReimpresionDeBoletasDeCampoDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\nzamora\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetReimpresionDeBoletasDeCampoDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Carlos Barboza\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetReimpresionDeBoletasDeCampoDataSet.xsd</rd:SchemaPath>
         <rd:TableName>GetReimpresionDeBoletasDeCampoData</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

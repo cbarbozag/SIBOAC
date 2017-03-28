@@ -3007,7 +3007,7 @@
           <Property Type="String" Name="ClasePlaca" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="CodigoPlaca" Nullable="true" MaxLength="3" />
           <Property Type="String" Name="PiePagina" Nullable="true" MaxLength="2200" />
-          <Property Type="String" Name="PiePaginaAutoridad" Nullable="true" MaxLength="2200" />
+          <Property Type="String" Name="PiePaginaAutoridad" Nullable="true" MaxLength="400" />
           <Property Type="String" Name="fuente_parteoficial" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="serie_parteoficial" Nullable="true" MaxLength="4" />
           <Property Type="String" Name="numeroparte" Nullable="true" MaxLength="15" />
@@ -3015,6 +3015,7 @@
           <Property Type="Decimal" Name="multa" Nullable="true" Precision="19" />
           <Property Type="Int32" Name="puntos" Nullable="true" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DescripcionPuntos" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result1">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
@@ -4619,6 +4620,7 @@
                 <ScalarProperty Name="multa" ColumnName="multa" />
                 <ScalarProperty Name="puntos" ColumnName="puntos" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="DescripcionPuntos" ColumnName="DescripcionPuntos" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

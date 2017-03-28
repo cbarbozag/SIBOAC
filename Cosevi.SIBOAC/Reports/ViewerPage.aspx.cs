@@ -127,12 +127,17 @@ namespace Cosevi.SIBOAC.Reports
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
 
+
+                            string v_nombre = null;
                             foreach (var item in listFirma)
                             {
-                                var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
-                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
-
-                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                if (v_nombre == null)
+                                {
+                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    v_nombre = "1";
+                                }
+                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);                                
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
                             }
 
@@ -194,12 +199,16 @@ namespace Cosevi.SIBOAC.Reports
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
 
+                            string v_nombre = null;
                             foreach (var item in listFirma)
                             {
-                                var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                if (v_nombre == null)
+                                {
+                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    v_nombre = "1";
+                                }
                                 var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
-
-                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
                             }
 
@@ -229,11 +238,13 @@ namespace Cosevi.SIBOAC.Reports
                             var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.NumeroBoleta).ToList());                            
                             var seriBolet3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro1 && a.identificacion == Parametro2).Select(a => a.Serie).ToList());
 
-                            var numPartBo3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
-                            var numPartPar3 = (db.PARTEOFICIAL.Where(a => numPartBo3.Contains(a.NumeroParte)).Select(a => a.NumeroParte).ToList());
+                            var numPartBo3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta) && a.numeroparte != "0").Select(a => a.numeroparte).ToList());
+                            var serieP = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta) && a.numeroparte != "0").Select(a => a.serie_parteoficial).ToList());
+
+                            var numPartPar3 = (db.PARTEOFICIAL.Where(a => numPartBo3.Contains(a.NumeroParte) && serieP.Contains(a.Serie)).Select(a => a.NumeroParte).ToList());
                             var numPartConv3 = numPartPar3.Select(s => Convert.ToDecimal(s)).ToList();
 
-                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numPartPar3.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
+                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numPartPar3.Contains(a.NumeroParte) && serieP.Contains(a.Serie)).Select(a => a.Serie).ToList());
                             var serParte3 = seriePart3.Select(s => Convert.ToInt32(s)).ToList();
 
                             var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numPartPar3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
@@ -252,19 +263,29 @@ namespace Cosevi.SIBOAC.Reports
                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.NombreAr)).AbsoluteUri, item.NumPar);
                             }
 
-                            var listFirma = (db.BOLETA.Where(a => seriePart3.Contains(a.serie_parteoficial) && numPartPar3.Contains(a.numeroparte) && seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).ToList());
+                            var listFirma = (db.BOLETA.Where(a => seriePart3.Contains(a.serie_parteoficial) && numPartPar3.Contains(a.numeroparte) && seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).OrderBy(a => new {a.fuente_parteoficial,a.serie_parteoficial,a.numeroparte}).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart3.Contains(a.serie) && numPartPar3.Contains(a.numeroparte)).ToList());
                             var listaTestigoB = (db.TESTIGO.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero)).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
 
+                            string v_fuente = null;
+                            string v_serie = null;
+                            string v_numparte = null;
+
                             foreach (var item in listFirma)
                             {
-                                var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
-                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
-
-                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaInspector)).AbsoluteUri,item.numeroparte,item.codigo_inspector);
+                                if(v_fuente != item.fuente_parteoficial || v_serie != item.serie_parteoficial || v_numparte != item.numeroparte)
+                                {
+                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    v_fuente = item.fuente_parteoficial;
+                                    v_serie = item.serie_parteoficial;
+                                    v_numparte = item.numeroparte;
+                                }
+                                
+                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);                                
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
                             }
 
@@ -318,20 +339,31 @@ namespace Cosevi.SIBOAC.Reports
                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.NombreAr)).AbsoluteUri, item.NumPar);
                             }
 
-                            var listFirma = (db.BOLETA.Where(a => seriePart4.Contains(a.serie_parteoficial) && numPartPar4.Contains(a.numeroparte) && seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).ToList());
+                            var listFirma = (db.BOLETA.Where(a => seriePart4.Contains(a.serie_parteoficial) && numPartPar4.Contains(a.numeroparte) && seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).OrderBy(a => new { a.fuente_parteoficial, a.serie_parteoficial, a.numeroparte }).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart4.Contains(a.serie) && numPartPar4.Contains(a.numeroparte)).ToList());
                             var listaTestigoB = (db.TESTIGO.Where(a => seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero)).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
 
+                            string p_fuente = null;
+                            string p_serie = null;
+                            string p_numparte = null;
+
                             foreach (var item in listFirma)
                             {
-                                var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
-                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
+                                if (p_fuente != item.fuente_parteoficial || p_serie != item.serie_parteoficial || p_numparte != item.numeroparte)
+                                {
+                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    p_fuente = item.fuente_parteoficial;
+                                    p_serie = item.serie_parteoficial;
+                                    p_numparte = item.numeroparte;
+                                }
 
-                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+                               
                             }
 
                             foreach (var item in listaTestigoP)
