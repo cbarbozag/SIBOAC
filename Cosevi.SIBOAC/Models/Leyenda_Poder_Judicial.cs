@@ -13,48 +13,32 @@ namespace Cosevi.SIBOAC.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
 
-    public partial class Autoridad
+    public partial class Leyenda_Poder_Judicial
     {
         [DisplayName("Código de Autoridad")]
+        [StringLength(5, ErrorMessage = "El codigo no debe ser mayor a 5 caracteres.")]
         [Required(ErrorMessage = "El código es obligatorio")]
-        [StringLength(5, ErrorMessage = "El codigo no debe ser mayor a 5 caracteres")]
-        public string Id { get; set; }
+        public string codigo_autoridad { get; set; }
 
-        [DisplayName("Descripción")]
-        [StringLength(35, ErrorMessage = "La descripción no debe ser mayor a 35 caracteres")]
-        public string Descripcion { get; set; }
-
-        [DisplayName("Código de Formulario")]
-        [Required(ErrorMessage = "El código es obligatorio")]
-        public int CodigoOpcionFormulario { get; set; }
-
+        [DisplayName("Leyenda")]
+        [StringLength(400, ErrorMessage = "La leyenda no debe ser mayor a 400 caracteres")]
+        [Required(ErrorMessage = "La leyenda es obligatoria")]
+        public string leyenda { get; set; }
+        
         [DisplayName("Estado")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         [Required(ErrorMessage = "El estado es obligatorio")]
-        public string Estado { get; set; }
+        public string estado { get; set; }
 
-        //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
-        public System.DateTime FechaDeInicio { get; set; }
+        public System.DateTime fecha_inicio { get; set; }
 
-        //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de fin")]
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
-        public System.DateTime FechaDeFin { get; set; }
-
-        public string DescripcionCodigoOpcionFormulario { get; set; }
-
-
-        public IEnumerable<string> SelectedAutoridades { get; set; }
-
-
-        public IEnumerable<SelectListItem> Autoridades { get; set; }
-
+        public System.DateTime fecha_fin { get; set; }
     }
 }
-

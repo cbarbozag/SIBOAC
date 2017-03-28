@@ -13,48 +13,32 @@ namespace Cosevi.SIBOAC.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
 
-    public partial class Autoridad
+    public partial class Leyenda_Puntos
     {
-        [DisplayName("Código de Autoridad")]
+
+        [DisplayName("Código")]        
         [Required(ErrorMessage = "El código es obligatorio")]
-        [StringLength(5, ErrorMessage = "El codigo no debe ser mayor a 5 caracteres")]
-        public string Id { get; set; }
+        public int Codigo { get; set; }
 
         [DisplayName("Descripción")]
-        [StringLength(35, ErrorMessage = "La descripción no debe ser mayor a 35 caracteres")]
+        [StringLength(50, ErrorMessage = "La descripción no debe ser mayor a 50 caracteres")]
+        [Required(ErrorMessage = "La descripción es obligatoria")]
         public string Descripcion { get; set; }
-
-        [DisplayName("Código de Formulario")]
-        [Required(ErrorMessage = "El código es obligatorio")]
-        public int CodigoOpcionFormulario { get; set; }
 
         [DisplayName("Estado")]
         [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter.")]
         [Required(ErrorMessage = "El estado es obligatorio")]
         public string Estado { get; set; }
 
-        //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
-        public System.DateTime FechaDeInicio { get; set; }
+        public System.DateTime Fecha_Inicio { get; set; }
 
-        //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de fin")]
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
-        public System.DateTime FechaDeFin { get; set; }
-
-        public string DescripcionCodigoOpcionFormulario { get; set; }
-
-
-        public IEnumerable<string> SelectedAutoridades { get; set; }
-
-
-        public IEnumerable<SelectListItem> Autoridades { get; set; }
-
+        public System.DateTime Fecha_Final { get; set; }
     }
 }
-

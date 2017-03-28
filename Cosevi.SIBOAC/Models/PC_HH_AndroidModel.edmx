@@ -603,6 +603,29 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="Leyenda_Poder_Judicial">
+          <Key>
+            <PropertyRef Name="codigo_autoridad" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_fin" />
+          </Key>
+          <Property Name="codigo_autoridad" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="leyenda" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_fin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Leyenda_Puntos">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" />
+          <Property Name="Fecha_Inicio" Type="datetime" />
+          <Property Name="Fecha_Final" Type="datetime" />
+        </EntityType>
         <EntityType Name="LEYENDAPORAUTORIDAD">
           <Key>
             <PropertyRef Name="IdAutoridad" />
@@ -1371,6 +1394,8 @@
           <EntitySet Name="INCONSISTENCIA" EntityType="Self.INCONSISTENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INSPECTOR" EntityType="Self.INSPECTOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INTERSECCION" EntityType="Self.INTERSECCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leyenda_Poder_Judicial" EntityType="Self.Leyenda_Poder_Judicial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leyenda_Puntos" EntityType="Self.Leyenda_Puntos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LEYENDAPORAUTORIDAD" EntityType="Self.LEYENDAPORAUTORIDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MANIOBRA" EntityType="Self.MANIOBRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
@@ -1687,6 +1712,8 @@
           </FunctionImport>
           <EntitySet Name="TESTIGOXPARTE" EntityType="PC_HH_AndroidModel.TESTIGOXPARTE" />
           <EntitySet Name="TESTIGO" EntityType="PC_HH_AndroidModel.TESTIGO" />
+          <EntitySet Name="Leyenda_Poder_Judicial" EntityType="PC_HH_AndroidModel.Leyenda_Poder_Judicial" />
+          <EntitySet Name="Leyenda_Puntos" EntityType="PC_HH_AndroidModel.Leyenda_Puntos" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3201,6 +3228,29 @@
           <Property Name="fuente" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="serie" Type="Int32" />
           <Property Name="numero" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Leyenda_Poder_Judicial">
+          <Key>
+            <PropertyRef Name="codigo_autoridad" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_fin" />
+          </Key>
+          <Property Name="codigo_autoridad" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="leyenda" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Leyenda_Puntos">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Fecha_Inicio" Type="DateTime" Precision="3" />
+          <Property Name="Fecha_Final" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4828,6 +4878,28 @@
                 <ScalarProperty Name="apellido1" ColumnName="apellido1" />
                 <ScalarProperty Name="identificacion" ColumnName="identificacion" />
                 <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leyenda_Poder_Judicial">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Leyenda_Poder_Judicial">
+              <MappingFragment StoreEntitySet="Leyenda_Poder_Judicial">
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="leyenda" ColumnName="leyenda" />
+                <ScalarProperty Name="codigo_autoridad" ColumnName="codigo_autoridad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leyenda_Puntos">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Leyenda_Puntos">
+              <MappingFragment StoreEntitySet="Leyenda_Puntos">
+                <ScalarProperty Name="Fecha_Final" ColumnName="Fecha_Final" />
+                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -287,6 +287,8 @@
     <Compile Include="Controllers\InspectorsController.cs" />
     <Compile Include="Controllers\InterseccionsController.cs" />
     <Compile Include="Controllers\LeyendaPorAutoridadController.cs" />
+    <Compile Include="Controllers\Leyenda_Poder_JudicialController.cs" />
+    <Compile Include="Controllers\Leyenda_PuntosController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManiobrasController.cs" />
     <Compile Include="Controllers\MantenimientoRolesController.cs" />
@@ -599,6 +601,12 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LEYENDAPORAUTORIDAD.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Leyenda_Poder_Judicial.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Leyenda_Puntos.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1692,6 +1700,18 @@
     <Content Include="Views\Account\ChangePasswordConfirmation.cshtml" />
     <Content Include="Views\Reporte\_ReimpresionDeBoletasDeCampo.cshtml" />
     <Content Include="Views\Reporte\_BitacoraAplicacion.cshtml" />
+    <Content Include="Views\Leyenda_Puntos\Create.cshtml" />
+    <Content Include="Views\Leyenda_Puntos\Delete.cshtml" />
+    <Content Include="Views\Leyenda_Puntos\Details.cshtml" />
+    <Content Include="Views\Leyenda_Puntos\Edit.cshtml" />
+    <Content Include="Views\Leyenda_Puntos\Index.cshtml" />
+    <Content Include="Views\Leyenda_Poder_Judicial\Create.cshtml" />
+    <Content Include="Views\Leyenda_Poder_Judicial\Delete.cshtml" />
+    <Content Include="Views\Leyenda_Poder_Judicial\Details.cshtml" />
+    <Content Include="Views\Leyenda_Poder_Judicial\Edit.cshtml" />
+    <Content Include="Views\Leyenda_Poder_Judicial\Index.cshtml" />
+    <Content Include="Views\Leyenda_Poder_Judicial\RealDelete.cshtml" />
+    <Content Include="Views\Leyenda_Puntos\RealDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />

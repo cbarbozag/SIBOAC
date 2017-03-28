@@ -1,0 +1,108 @@
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Leyenda_Poder_Judicial>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Leyenda por Poder Judicial</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.First().codigo_autoridad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().leyenda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().fecha_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().fecha_fin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.estado == "I")
+    {
+        <tr class="warning">
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo_autoridad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.leyenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_fin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.codigo_autoridad }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.codigo_autoridad }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.codigo_autoridad }) |
+                @if (item.estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.codigo_autoridad })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo_autoridad })
+                }
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigo_autoridad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.leyenda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_fin)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.codigo_autoridad }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.codigo_autoridad }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.codigo_autoridad }) |
+                @if (item.estado == "I")
+                {
+                    @Html.ActionLink("Activar", "Delete", new { id = item.codigo_autoridad })
+                }
+                else
+                {
+                    @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo_autoridad })
+                }
+            </td>
+        </tr>
+    }
+}
+</table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
