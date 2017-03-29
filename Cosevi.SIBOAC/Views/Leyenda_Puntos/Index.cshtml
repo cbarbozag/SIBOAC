@@ -38,6 +38,9 @@
     {
         <tr class="warning">
             <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
@@ -67,6 +70,9 @@
     else
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>

@@ -28,13 +28,13 @@ namespace Cosevi.SIBOAC.Controllers
             return View(list.ToPagedList(pageNumber, pageSize));
         }
 
-        public string Verificar(string id)
+        public string Verificar(string codigo_autoridad, string estado, DateTime fecha_inicio, DateTime fecha_fin)
         {
             string mensaje = "";
-            bool exist = db.Leyenda_Poder_Judicial.Any(x => x.codigo_autoridad == id);
+            bool exist = db.Leyenda_Poder_Judicial.Any(x => x.codigo_autoridad == codigo_autoridad && x.estado == estado && x.fecha_inicio == fecha_inicio && x.fecha_fin == fecha_fin);
             if (exist)
             {
-                mensaje = "El codigo " + id + " ya esta registrado";
+                mensaje = "El codigo " + codigo_autoridad + " ya esta registrado";
             }
             return mensaje;
         }
@@ -49,13 +49,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Leyenda_Poder_Judicial/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string codigo_autoridad, string estado, DateTime fecha_inicio, DateTime fecha_fin)
         {
-            if (id == null)
+            if (codigo_autoridad == null || estado == null || fecha_inicio == null || fecha_fin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(id);
+            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(codigo_autoridad,estado,fecha_inicio,fecha_fin);
             if (leyenda_Poder_Judicial == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace Cosevi.SIBOAC.Controllers
             if (ModelState.IsValid)
             {
                 db.Leyenda_Poder_Judicial.Add(leyenda_Poder_Judicial);
-                string mensaje = Verificar(leyenda_Poder_Judicial.codigo_autoridad);
+                string mensaje = Verificar(leyenda_Poder_Judicial.codigo_autoridad, leyenda_Poder_Judicial.estado, leyenda_Poder_Judicial.fecha_inicio, leyenda_Poder_Judicial.fecha_fin);
                 if (mensaje == "")
                 {
                     mensaje = ValidarFechas(leyenda_Poder_Judicial.fecha_inicio, leyenda_Poder_Judicial.fecha_fin);
@@ -111,13 +111,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Leyenda_Poder_Judicial/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string codigo_autoridad, string estado, DateTime fecha_inicio, DateTime fecha_fin)
         {
-            if (id == null)
+            if (codigo_autoridad == null || estado == null || fecha_inicio == null || fecha_fin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(id);
+            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(codigo_autoridad, estado, fecha_inicio, fecha_fin);
             if (leyenda_Poder_Judicial == null)
             {
                 return HttpNotFound();
@@ -134,7 +134,10 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var leyendaAntes = db.Leyenda_Poder_Judicial.AsNoTracking().Where(d => d.codigo_autoridad == leyenda_Poder_Judicial.codigo_autoridad).FirstOrDefault();
+                var leyendaAntes = db.Leyenda_Poder_Judicial.AsNoTracking().Where(d => d.codigo_autoridad == leyenda_Poder_Judicial.codigo_autoridad 
+                                                                                   && d.estado == leyenda_Poder_Judicial.estado 
+                                                                                   && d.fecha_inicio == leyenda_Poder_Judicial.fecha_inicio 
+                                                                                   && d.fecha_fin == leyenda_Poder_Judicial.fecha_fin).FirstOrDefault();
                 db.Entry(leyenda_Poder_Judicial).State = EntityState.Modified;
                 string mensaje = ValidarFechas(leyenda_Poder_Judicial.fecha_inicio, leyenda_Poder_Judicial.fecha_fin);
                 if (mensaje == "")
@@ -156,13 +159,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Leyenda_Poder_Judicial/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string codigo_autoridad, string estado, DateTime fecha_inicio, DateTime fecha_fin)
         {
-            if (id == null)
+            if (codigo_autoridad == null || estado == null || fecha_inicio == null || fecha_fin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(id);
+            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(codigo_autoridad,estado,fecha_inicio,fecha_fin);
             if (leyenda_Poder_Judicial == null)
             {
                 return HttpNotFound();
@@ -173,9 +176,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: Leyenda_Poder_Judicial/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(id);
+        public ActionResult DeleteConfirmed(string codigo_autoridad, string estado, DateTime fecha_inicio, DateTime fecha_fin)
+        {            
+            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(codigo_autoridad, estado, fecha_inicio, fecha_fin);
             Leyenda_Poder_Judicial leyendaAntes = ObtenerCopia(leyenda_Poder_Judicial);
             if (leyenda_Poder_Judicial.estado == "I")
                 leyenda_Poder_Judicial.estado = "A";
@@ -187,13 +190,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: Interseccions/RealDelete/5
-        public ActionResult RealDelete(string id)
+        public ActionResult RealDelete(string codigo_autoridad, string estado, DateTime fecha_inicio, DateTime fecha_fin)
         {
-            if (id == null)
+            if (codigo_autoridad == null || estado == null || fecha_inicio == null || fecha_fin == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(id);
+            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(codigo_autoridad, estado, fecha_inicio, fecha_fin);
             if (leyenda_Poder_Judicial == null)
             {
                 return HttpNotFound();
@@ -204,9 +207,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: Interseccions/RealDelete/5
         [HttpPost, ActionName("RealDelete")]
         [ValidateAntiForgeryToken]
-        public ActionResult RealDeleteConfirmed(string id)
+        public ActionResult RealDeleteConfirmed(string codigo_autoridad, string estado, DateTime fecha_inicio, DateTime fecha_fin)
         {
-            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(id);
+            Leyenda_Poder_Judicial leyenda_Poder_Judicial = db.Leyenda_Poder_Judicial.Find(codigo_autoridad, estado, fecha_inicio, fecha_fin);
             db.Leyenda_Poder_Judicial.Remove(leyenda_Poder_Judicial);
             db.SaveChanges();
             Bitacora(leyenda_Poder_Judicial, "D", "Leyenda por Poder Judicial");

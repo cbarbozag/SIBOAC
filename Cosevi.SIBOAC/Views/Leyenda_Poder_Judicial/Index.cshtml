@@ -53,17 +53,17 @@
                 @Html.DisplayFor(modelItem => item.fecha_fin)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.codigo_autoridad }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.codigo_autoridad }) |
-                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.codigo_autoridad }) |
-                @if (item.estado == "I")
+                @Html.ActionLink("Editar", "Edit", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) |
+                @Html.ActionLink("Detalles", "Details", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) |
+                @*@if (item.estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.codigo_autoridad })
+                    @Html.ActionLink("Activar", "Delete", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin })
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo_autoridad })
-                }
+                    @Html.ActionLink("Inactivar", "Delete", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin })
+                }*@
             </td>
         </tr>
     }
@@ -86,17 +86,17 @@
                 @Html.DisplayFor(modelItem => item.fecha_fin)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.codigo_autoridad }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.codigo_autoridad }) |
-                @Html.ActionLink("Eliminar", "RealDelete", new { id = item.codigo_autoridad }) |
-                @if (item.estado == "I")
+                @Html.ActionLink("Editar", "Edit", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) |
+                @Html.ActionLink("Detalles", "Details", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) |
+                @Html.ActionLink("Eliminar", "RealDelete", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) |
+                @*@if (item.estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { id = item.codigo_autoridad })
+                    @Html.ActionLink("Activar", "Delete", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) 
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { id = item.codigo_autoridad })
-                }
+                    @Html.ActionLink("Inactivar", "Delete", new { codigo_autoridad = item.codigo_autoridad, estado = item.estado, fecha_inicio = item.fecha_inicio, fecha_fin = item.fecha_fin }) 
+                }*@
             </td>
         </tr>
     }
