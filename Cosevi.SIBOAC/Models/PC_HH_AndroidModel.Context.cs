@@ -305,7 +305,7 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
+        public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones, string usuarioSistema)
         {
             var fechaDesdeParameter = fechaDesde.HasValue ?
                 new ObjectParameter("FechaDesde", fechaDesde) :
@@ -327,7 +327,11 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("idDelegaciones", idDelegaciones) :
                 new ObjectParameter("idDelegaciones", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
+            var usuarioSistemaParameter = usuarioSistema != null ?
+                new ObjectParameter("UsuarioSistema", usuarioSistema) :
+                new ObjectParameter("UsuarioSistema", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter, usuarioSistemaParameter);
         }
     
         public virtual ObjectResult<GetReporteStatusActualPlanoData_Result> GetReporteStatusActualPlanoData(Nullable<int> statusPlano, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string delegacion, string autoridad, string usuarioSistema)

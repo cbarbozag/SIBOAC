@@ -60,5 +60,7 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<int> puntos { get; set; }
         public string descripcion { get; set; }
         public string DescripcionPuntos { get; set; }
+        public string observaciones { get; set; }
+        public string EstadoFirma { get; set; }
     }
 }

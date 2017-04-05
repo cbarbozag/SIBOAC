@@ -373,6 +373,10 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columndescripcion;
             
+            private global::System.Data.DataColumn columnobservaciones;
+            
+            private global::System.Data.DataColumn columnEstadoFirma;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GetReimpresionDeBoletasDeCampoDataDataTable() {
@@ -784,6 +788,22 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn observacionesColumn {
+                get {
+                    return this.columnobservaciones;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EstadoFirmaColumn {
+                get {
+                    return this.columnEstadoFirma;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -866,7 +886,9 @@ namespace Cosevi.SIBOAC {
                         decimal multa, 
                         int puntos, 
                         string DescripcionPuntos, 
-                        string descripcion) {
+                        string descripcion, 
+                        string observaciones, 
+                        string EstadoFirma) {
                 GetReimpresionDeBoletasDeCampoDataRow rowGetReimpresionDeBoletasDeCampoDataRow = ((GetReimpresionDeBoletasDeCampoDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fuente,
@@ -915,7 +937,9 @@ namespace Cosevi.SIBOAC {
                         multa,
                         puntos,
                         DescripcionPuntos,
-                        descripcion};
+                        descripcion,
+                        observaciones,
+                        EstadoFirma};
                 rowGetReimpresionDeBoletasDeCampoDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReimpresionDeBoletasDeCampoDataRow);
                 return rowGetReimpresionDeBoletasDeCampoDataRow;
@@ -985,6 +1009,8 @@ namespace Cosevi.SIBOAC {
                 this.columnpuntos = base.Columns["puntos"];
                 this.columnDescripcionPuntos = base.Columns["DescripcionPuntos"];
                 this.columndescripcion = base.Columns["descripcion"];
+                this.columnobservaciones = base.Columns["observaciones"];
+                this.columnEstadoFirma = base.Columns["EstadoFirma"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1084,6 +1110,10 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnDescripcionPuntos);
                 this.columndescripcion = new global::System.Data.DataColumn("descripcion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndescripcion);
+                this.columnobservaciones = new global::System.Data.DataColumn("observaciones", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnobservaciones);
+                this.columnEstadoFirma = new global::System.Data.DataColumn("EstadoFirma", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEstadoFirma);
                 this.columnfuente.AllowDBNull = false;
                 this.columnfuente.MaxLength = 1;
                 this.columnserie.AllowDBNull = false;
@@ -1132,6 +1162,9 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionPuntos.ReadOnly = true;
                 this.columnDescripcionPuntos.MaxLength = 50;
                 this.columndescripcion.MaxLength = 255;
+                this.columnobservaciones.MaxLength = 500;
+                this.columnEstadoFirma.ReadOnly = true;
+                this.columnEstadoFirma.MaxLength = 28;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2043,6 +2076,40 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string observaciones {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.observacionesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'observaciones\' in table \'GetReimpresionDeBoletasDeCampoData" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.observacionesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string EstadoFirma {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.EstadoFirmaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EstadoFirma\' in table \'GetReimpresionDeBoletasDeCampoData\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.EstadoFirmaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isfecha_hora_boletaNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn);
             }
@@ -2544,6 +2611,30 @@ namespace Cosevi.SIBOAC {
             public void SetdescripcionNull() {
                 this[this.tableGetReimpresionDeBoletasDeCampoData.descripcionColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsobservacionesNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.observacionesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetobservacionesNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.observacionesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEstadoFirmaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.EstadoFirmaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEstadoFirmaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.EstadoFirmaColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -2752,6 +2843,8 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("puntos", "puntos");
             tableMapping.ColumnMappings.Add("DescripcionPuntos", "DescripcionPuntos");
             tableMapping.ColumnMappings.Add("descripcion", "descripcion");
+            tableMapping.ColumnMappings.Add("observaciones", "observaciones");
+            tableMapping.ColumnMappings.Add("EstadoFirma", "EstadoFirma");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2759,7 +2852,9 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["PC_HH_AndroidConnectionString"].ConnectionString;
+            this._connection.ConnectionString = "Data Source=AFARIASRV\\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security I" +
+                "nfo=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Applicati" +
+                "on Name=EntityFramework";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

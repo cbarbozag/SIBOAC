@@ -1303,6 +1303,7 @@
           <Parameter Name="Valor" Type="int" Mode="In" />
           <Parameter Name="idAutoridades" Type="varchar(max)" Mode="In" />
           <Parameter Name="idDelegaciones" Type="varchar(max)" Mode="In" />
+          <Parameter Name="UsuarioSistema" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetReimpresionDeBoletasDeCampoData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="serieBoleta" Type="varchar" Mode="In" />
@@ -1662,6 +1663,7 @@
             <Parameter Name="Valor" Mode="In" Type="Int32" />
             <Parameter Name="idAutoridades" Mode="In" Type="String" />
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
+            <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetReporteStatusActualPlanoData" ReturnType="Collection(PC_HH_AndroidModel.GetReporteStatusActualPlanoData_Result)">
             <Parameter Name="StatusPlano" Mode="In" Type="Int32" />
@@ -3043,6 +3045,8 @@
           <Property Type="Int32" Name="puntos" Nullable="true" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="DescripcionPuntos" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="EstadoFirma" Nullable="false" MaxLength="28" />
         </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result1">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
@@ -4671,6 +4675,8 @@
                 <ScalarProperty Name="puntos" ColumnName="puntos" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="DescripcionPuntos" ColumnName="DescripcionPuntos" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="EstadoFirma" ColumnName="EstadoFirma" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
