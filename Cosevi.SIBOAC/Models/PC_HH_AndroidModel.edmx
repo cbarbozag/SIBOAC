@@ -3018,7 +3018,7 @@
           <Property Type="Int32" Name="tipo_carroceria" Nullable="true" />
           <Property Type="String" Name="Rev_Tecnica" Nullable="false" MaxLength="2" />
           <Property Type="String" Name="codOficinaImpugnacion" Nullable="true" MaxLength="2" />
-          <Property Type="String" Name="Parte_Oficial" Nullable="true" MaxLength="22" />
+          <Property Type="String" Name="Parte_Oficial" Nullable="true" MaxLength="26" />
           <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
           <Property Type="String" Name="DescripcionRol" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Usuario" Nullable="true" MaxLength="72" />
@@ -3046,7 +3046,15 @@
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="DescripcionPuntos" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="observaciones" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="EstadoFirma" Nullable="false" MaxLength="28" />
+          <Property Type="String" Name="EstadoFirma" Nullable="false" MaxLength="26" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Placa_Confis" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="DepositoPlaca" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Veh_Detenido" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="DepositoVehiculo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Alcohole_Realziada" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="AlcoholSensor" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NivelAcohol" Nullable="true" MaxLength="9" />
         </ComplexType>
         <ComplexType Name="GetReportePorUsuarioData_Result1">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="100" />
@@ -4677,6 +4685,14 @@
                 <ScalarProperty Name="DescripcionPuntos" ColumnName="DescripcionPuntos" />
                 <ScalarProperty Name="observaciones" ColumnName="observaciones" />
                 <ScalarProperty Name="EstadoFirma" ColumnName="EstadoFirma" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Placa_Confis" ColumnName="Placa_Confis" />
+                <ScalarProperty Name="DepositoPlaca" ColumnName="DepositoPlaca" />
+                <ScalarProperty Name="Veh_Detenido" ColumnName="Veh_Detenido" />
+                <ScalarProperty Name="DepositoVehiculo" ColumnName="DepositoVehiculo" />
+                <ScalarProperty Name="Alcohole_Realziada" ColumnName="Alcohole_Realziada" />
+                <ScalarProperty Name="AlcoholSensor" ColumnName="AlcoholSensor" />
+                <ScalarProperty Name="NivelAcohol" ColumnName="NivelAcohol" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

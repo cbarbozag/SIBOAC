@@ -305,6 +305,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnTipoDocumento;
             
+            private global::System.Data.DataColumn columnTelefono;
+            
             private global::System.Data.DataColumn columnsexo;
             
             private global::System.Data.DataColumn columnFechaNacimiento;
@@ -339,6 +341,14 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnDescripcionOficinaImpugna;
             
+            private global::System.Data.DataColumn columnPlaca_Confis;
+            
+            private global::System.Data.DataColumn columnDepositoPlaca;
+            
+            private global::System.Data.DataColumn columnVeh_Detenido;
+            
+            private global::System.Data.DataColumn columnDepositoVehiculo;
+            
             private global::System.Data.DataColumn columnNivelGases;
             
             private global::System.Data.DataColumn columnVelocidad;
@@ -352,6 +362,12 @@ namespace Cosevi.SIBOAC {
             private global::System.Data.DataColumn columnClasePlaca;
             
             private global::System.Data.DataColumn columnCodigoPlaca;
+            
+            private global::System.Data.DataColumn columnAlcohole_Realziada;
+            
+            private global::System.Data.DataColumn columnAlcoholSensor;
+            
+            private global::System.Data.DataColumn columnNivelAcohol;
             
             private global::System.Data.DataColumn columnPiePagina;
             
@@ -516,6 +532,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TelefonoColumn {
+                get {
+                    return this.columnTelefono;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn sexoColumn {
                 get {
                     return this.columnsexo;
@@ -652,6 +676,38 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Placa_ConfisColumn {
+                get {
+                    return this.columnPlaca_Confis;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DepositoPlacaColumn {
+                get {
+                    return this.columnDepositoPlaca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Veh_DetenidoColumn {
+                get {
+                    return this.columnVeh_Detenido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DepositoVehiculoColumn {
+                get {
+                    return this.columnDepositoVehiculo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn NivelGasesColumn {
                 get {
                     return this.columnNivelGases;
@@ -703,6 +759,30 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn CodigoPlacaColumn {
                 get {
                     return this.columnCodigoPlaca;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Alcohole_RealziadaColumn {
+                get {
+                    return this.columnAlcohole_Realziada;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AlcoholSensorColumn {
+                get {
+                    return this.columnAlcoholSensor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NivelAcoholColumn {
+                get {
+                    return this.columnNivelAcohol;
                 }
             }
             
@@ -853,6 +933,7 @@ namespace Cosevi.SIBOAC {
                         string Usuario, 
                         string tipo_ide, 
                         string TipoDocumento, 
+                        string Telefono, 
                         string sexo, 
                         System.DateTime FechaNacimiento, 
                         string senasDireccion, 
@@ -870,6 +951,10 @@ namespace Cosevi.SIBOAC {
                         string Rev_Tecnica, 
                         string codOficinaImpugnacion, 
                         string DescripcionOficinaImpugna, 
+                        string Placa_Confis, 
+                        string DepositoPlaca, 
+                        string Veh_Detenido, 
+                        string DepositoVehiculo, 
                         string NivelGases, 
                         int Velocidad, 
                         string CodigoInspector, 
@@ -877,6 +962,9 @@ namespace Cosevi.SIBOAC {
                         string Parte_Oficial, 
                         string ClasePlaca, 
                         string CodigoPlaca, 
+                        string Alcohole_Realziada, 
+                        string AlcoholSensor, 
+                        string NivelAcohol, 
                         string PiePagina, 
                         string PiePaginaAutoridad, 
                         string fuente_parteoficial, 
@@ -904,6 +992,7 @@ namespace Cosevi.SIBOAC {
                         Usuario,
                         tipo_ide,
                         TipoDocumento,
+                        Telefono,
                         sexo,
                         FechaNacimiento,
                         senasDireccion,
@@ -921,6 +1010,10 @@ namespace Cosevi.SIBOAC {
                         Rev_Tecnica,
                         codOficinaImpugnacion,
                         DescripcionOficinaImpugna,
+                        Placa_Confis,
+                        DepositoPlaca,
+                        Veh_Detenido,
+                        DepositoVehiculo,
                         NivelGases,
                         Velocidad,
                         CodigoInspector,
@@ -928,6 +1021,9 @@ namespace Cosevi.SIBOAC {
                         Parte_Oficial,
                         ClasePlaca,
                         CodigoPlaca,
+                        Alcohole_Realziada,
+                        AlcoholSensor,
+                        NivelAcohol,
                         PiePagina,
                         PiePaginaAutoridad,
                         fuente_parteoficial,
@@ -975,6 +1071,7 @@ namespace Cosevi.SIBOAC {
                 this.columnUsuario = base.Columns["Usuario"];
                 this.columntipo_ide = base.Columns["tipo_ide"];
                 this.columnTipoDocumento = base.Columns["TipoDocumento"];
+                this.columnTelefono = base.Columns["Telefono"];
                 this.columnsexo = base.Columns["sexo"];
                 this.columnFechaNacimiento = base.Columns["FechaNacimiento"];
                 this.columnsenasDireccion = base.Columns["senasDireccion"];
@@ -992,6 +1089,10 @@ namespace Cosevi.SIBOAC {
                 this.columnRev_Tecnica = base.Columns["Rev_Tecnica"];
                 this.columncodOficinaImpugnacion = base.Columns["codOficinaImpugnacion"];
                 this.columnDescripcionOficinaImpugna = base.Columns["DescripcionOficinaImpugna"];
+                this.columnPlaca_Confis = base.Columns["Placa_Confis"];
+                this.columnDepositoPlaca = base.Columns["DepositoPlaca"];
+                this.columnVeh_Detenido = base.Columns["Veh_Detenido"];
+                this.columnDepositoVehiculo = base.Columns["DepositoVehiculo"];
                 this.columnNivelGases = base.Columns["NivelGases"];
                 this.columnVelocidad = base.Columns["Velocidad"];
                 this.columnCodigoInspector = base.Columns["CodigoInspector"];
@@ -999,6 +1100,9 @@ namespace Cosevi.SIBOAC {
                 this.columnParte_Oficial = base.Columns["Parte_Oficial"];
                 this.columnClasePlaca = base.Columns["ClasePlaca"];
                 this.columnCodigoPlaca = base.Columns["CodigoPlaca"];
+                this.columnAlcohole_Realziada = base.Columns["Alcohole_Realziada"];
+                this.columnAlcoholSensor = base.Columns["AlcoholSensor"];
+                this.columnNivelAcohol = base.Columns["NivelAcohol"];
                 this.columnPiePagina = base.Columns["PiePagina"];
                 this.columnPiePaginaAutoridad = base.Columns["PiePaginaAutoridad"];
                 this.columnfuente_parteoficial = base.Columns["fuente_parteoficial"];
@@ -1042,6 +1146,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columntipo_ide);
                 this.columnTipoDocumento = new global::System.Data.DataColumn("TipoDocumento", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTipoDocumento);
+                this.columnTelefono = new global::System.Data.DataColumn("Telefono", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefono);
                 this.columnsexo = new global::System.Data.DataColumn("sexo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsexo);
                 this.columnFechaNacimiento = new global::System.Data.DataColumn("FechaNacimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1076,6 +1182,14 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columncodOficinaImpugnacion);
                 this.columnDescripcionOficinaImpugna = new global::System.Data.DataColumn("DescripcionOficinaImpugna", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcionOficinaImpugna);
+                this.columnPlaca_Confis = new global::System.Data.DataColumn("Placa_Confis", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlaca_Confis);
+                this.columnDepositoPlaca = new global::System.Data.DataColumn("DepositoPlaca", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepositoPlaca);
+                this.columnVeh_Detenido = new global::System.Data.DataColumn("Veh_Detenido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVeh_Detenido);
+                this.columnDepositoVehiculo = new global::System.Data.DataColumn("DepositoVehiculo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepositoVehiculo);
                 this.columnNivelGases = new global::System.Data.DataColumn("NivelGases", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNivelGases);
                 this.columnVelocidad = new global::System.Data.DataColumn("Velocidad", typeof(int), null, global::System.Data.MappingType.Element);
@@ -1090,6 +1204,12 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnClasePlaca);
                 this.columnCodigoPlaca = new global::System.Data.DataColumn("CodigoPlaca", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCodigoPlaca);
+                this.columnAlcohole_Realziada = new global::System.Data.DataColumn("Alcohole_Realziada", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAlcohole_Realziada);
+                this.columnAlcoholSensor = new global::System.Data.DataColumn("AlcoholSensor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAlcoholSensor);
+                this.columnNivelAcohol = new global::System.Data.DataColumn("NivelAcohol", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNivelAcohol);
                 this.columnPiePagina = new global::System.Data.DataColumn("PiePagina", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPiePagina);
                 this.columnPiePaginaAutoridad = new global::System.Data.DataColumn("PiePaginaAutoridad", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1130,6 +1250,8 @@ namespace Cosevi.SIBOAC {
                 this.columntipo_ide.AllowDBNull = false;
                 this.columntipo_ide.MaxLength = 2;
                 this.columnTipoDocumento.MaxLength = 40;
+                this.columnTelefono.ReadOnly = true;
+                this.columnTelefono.MaxLength = 20;
                 this.columnsexo.MaxLength = 1;
                 this.columnsenasDireccion.MaxLength = 250;
                 this.columntipo_lic.MaxLength = 2;
@@ -1145,13 +1267,27 @@ namespace Cosevi.SIBOAC {
                 this.columnRev_Tecnica.MaxLength = 2;
                 this.columncodOficinaImpugnacion.MaxLength = 2;
                 this.columnDescripcionOficinaImpugna.MaxLength = 20;
+                this.columnPlaca_Confis.ReadOnly = true;
+                this.columnPlaca_Confis.MaxLength = 2;
+                this.columnDepositoPlaca.ReadOnly = true;
+                this.columnDepositoPlaca.MaxLength = 50;
+                this.columnVeh_Detenido.ReadOnly = true;
+                this.columnVeh_Detenido.MaxLength = 2;
+                this.columnDepositoVehiculo.ReadOnly = true;
+                this.columnDepositoVehiculo.MaxLength = 50;
                 this.columnNivelGases.MaxLength = 10;
                 this.columnCodigoInspector.MaxLength = 4;
                 this.columnNombreInspector.MaxLength = 50;
                 this.columnParte_Oficial.ReadOnly = true;
-                this.columnParte_Oficial.MaxLength = 22;
+                this.columnParte_Oficial.MaxLength = 26;
                 this.columnClasePlaca.MaxLength = 3;
                 this.columnCodigoPlaca.MaxLength = 3;
+                this.columnAlcohole_Realziada.ReadOnly = true;
+                this.columnAlcohole_Realziada.MaxLength = 2;
+                this.columnAlcoholSensor.ReadOnly = true;
+                this.columnAlcoholSensor.MaxLength = 10;
+                this.columnNivelAcohol.ReadOnly = true;
+                this.columnNivelAcohol.MaxLength = 9;
                 this.columnPiePagina.MaxLength = 2200;
                 this.columnPiePaginaAutoridad.ReadOnly = true;
                 this.columnPiePaginaAutoridad.MaxLength = 400;
@@ -1164,7 +1300,7 @@ namespace Cosevi.SIBOAC {
                 this.columndescripcion.MaxLength = 255;
                 this.columnobservaciones.MaxLength = 500;
                 this.columnEstadoFirma.ReadOnly = true;
-                this.columnEstadoFirma.MaxLength = 28;
+                this.columnEstadoFirma.MaxLength = 26;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1504,6 +1640,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Telefono {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.TelefonoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Telefono\' in table \'GetReimpresionDeBoletasDeCampoData\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.TelefonoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string sexo {
                 get {
                     try {
@@ -1787,6 +1940,74 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Placa_Confis {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.Placa_ConfisColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Placa_Confis\' in table \'GetReimpresionDeBoletasDeCampoData\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.Placa_ConfisColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DepositoPlaca {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DepositoPlacaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DepositoPlaca\' in table \'GetReimpresionDeBoletasDeCampoData" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DepositoPlacaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Veh_Detenido {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.Veh_DetenidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Veh_Detenido\' in table \'GetReimpresionDeBoletasDeCampoData\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.Veh_DetenidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DepositoVehiculo {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.DepositoVehiculoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DepositoVehiculo\' in table \'GetReimpresionDeBoletasDeCampoD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.DepositoVehiculoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string NivelGases {
                 get {
                     try {
@@ -1901,6 +2122,57 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetReimpresionDeBoletasDeCampoData.CodigoPlacaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Alcohole_Realziada {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.Alcohole_RealziadaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Alcohole_Realziada\' in table \'GetReimpresionDeBoletasDeCamp" +
+                                "oData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.Alcohole_RealziadaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AlcoholSensor {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.AlcoholSensorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AlcoholSensor\' in table \'GetReimpresionDeBoletasDeCampoData" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.AlcoholSensorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NivelAcohol {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.NivelAcoholColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NivelAcohol\' in table \'GetReimpresionDeBoletasDeCampoData\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.NivelAcoholColumn] = value;
                 }
             }
             
@@ -2218,6 +2490,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTelefonoNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.TelefonoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTelefonoNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.TelefonoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IssexoNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.sexoColumn);
             }
@@ -2410,6 +2694,54 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPlaca_ConfisNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.Placa_ConfisColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPlaca_ConfisNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.Placa_ConfisColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDepositoPlacaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DepositoPlacaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDepositoPlacaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DepositoPlacaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsVeh_DetenidoNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.Veh_DetenidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetVeh_DetenidoNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.Veh_DetenidoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDepositoVehiculoNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.DepositoVehiculoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDepositoVehiculoNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.DepositoVehiculoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNivelGasesNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.NivelGasesColumn);
             }
@@ -2490,6 +2822,42 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCodigoPlacaNull() {
                 this[this.tableGetReimpresionDeBoletasDeCampoData.CodigoPlacaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAlcohole_RealziadaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.Alcohole_RealziadaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAlcohole_RealziadaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.Alcohole_RealziadaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAlcoholSensorNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.AlcoholSensorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAlcoholSensorNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.AlcoholSensorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNivelAcoholNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.NivelAcoholColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNivelAcoholNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.NivelAcoholColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2809,6 +3177,7 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Usuario", "Usuario");
             tableMapping.ColumnMappings.Add("tipo_ide", "tipo_ide");
             tableMapping.ColumnMappings.Add("TipoDocumento", "TipoDocumento");
+            tableMapping.ColumnMappings.Add("Telefono", "Telefono");
             tableMapping.ColumnMappings.Add("sexo", "sexo");
             tableMapping.ColumnMappings.Add("FechaNacimiento", "FechaNacimiento");
             tableMapping.ColumnMappings.Add("senasDireccion", "senasDireccion");
@@ -2826,6 +3195,10 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Rev_Tecnica", "Rev_Tecnica");
             tableMapping.ColumnMappings.Add("codOficinaImpugnacion", "codOficinaImpugnacion");
             tableMapping.ColumnMappings.Add("DescripcionOficinaImpugna", "DescripcionOficinaImpugna");
+            tableMapping.ColumnMappings.Add("Placa_Confis", "Placa_Confis");
+            tableMapping.ColumnMappings.Add("DepositoPlaca", "DepositoPlaca");
+            tableMapping.ColumnMappings.Add("Veh_Detenido", "Veh_Detenido");
+            tableMapping.ColumnMappings.Add("DepositoVehiculo", "DepositoVehiculo");
             tableMapping.ColumnMappings.Add("NivelGases", "NivelGases");
             tableMapping.ColumnMappings.Add("Velocidad", "Velocidad");
             tableMapping.ColumnMappings.Add("CodigoInspector", "CodigoInspector");
@@ -2833,6 +3206,9 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Parte_Oficial", "Parte_Oficial");
             tableMapping.ColumnMappings.Add("ClasePlaca", "ClasePlaca");
             tableMapping.ColumnMappings.Add("CodigoPlaca", "CodigoPlaca");
+            tableMapping.ColumnMappings.Add("Alcohole_Realziada", "Alcohole_Realziada");
+            tableMapping.ColumnMappings.Add("AlcoholSensor", "AlcoholSensor");
+            tableMapping.ColumnMappings.Add("NivelAcohol", "NivelAcohol");
             tableMapping.ColumnMappings.Add("PiePagina", "PiePagina");
             tableMapping.ColumnMappings.Add("PiePaginaAutoridad", "PiePaginaAutoridad");
             tableMapping.ColumnMappings.Add("fuente_parteoficial", "fuente_parteoficial");

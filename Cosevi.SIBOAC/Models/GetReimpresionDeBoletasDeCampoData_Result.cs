@@ -62,5 +62,13 @@ namespace Cosevi.SIBOAC.Models
         public string DescripcionPuntos { get; set; }
         public string observaciones { get; set; }
         public string EstadoFirma { get; set; }
+        public string Telefono { get; set; }
+        public string Placa_Confis { get; set; }
+        public string DepositoPlaca { get; set; }
+        public string Veh_Detenido { get; set; }
+        public string DepositoVehiculo { get; set; }
+        public string Alcohole_Realziada { get; set; }
+        public string AlcoholSensor { get; set; }
+        public string NivelAcohol { get; set; }
     }
 }

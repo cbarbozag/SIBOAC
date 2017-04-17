@@ -38,6 +38,7 @@
               <Mapping SourceColumn="Usuario" DataSetColumn="Usuario" />
               <Mapping SourceColumn="tipo_ide" DataSetColumn="tipo_ide" />
               <Mapping SourceColumn="TipoDocumento" DataSetColumn="TipoDocumento" />
+              <Mapping SourceColumn="Telefono" DataSetColumn="Telefono" />
               <Mapping SourceColumn="sexo" DataSetColumn="sexo" />
               <Mapping SourceColumn="FechaNacimiento" DataSetColumn="FechaNacimiento" />
               <Mapping SourceColumn="senasDireccion" DataSetColumn="senasDireccion" />
@@ -55,6 +56,10 @@
               <Mapping SourceColumn="Rev_Tecnica" DataSetColumn="Rev_Tecnica" />
               <Mapping SourceColumn="codOficinaImpugnacion" DataSetColumn="codOficinaImpugnacion" />
               <Mapping SourceColumn="DescripcionOficinaImpugna" DataSetColumn="DescripcionOficinaImpugna" />
+              <Mapping SourceColumn="Placa_Confis" DataSetColumn="Placa_Confis" />
+              <Mapping SourceColumn="DepositoPlaca" DataSetColumn="DepositoPlaca" />
+              <Mapping SourceColumn="Veh_Detenido" DataSetColumn="Veh_Detenido" />
+              <Mapping SourceColumn="DepositoVehiculo" DataSetColumn="DepositoVehiculo" />
               <Mapping SourceColumn="NivelGases" DataSetColumn="NivelGases" />
               <Mapping SourceColumn="Velocidad" DataSetColumn="Velocidad" />
               <Mapping SourceColumn="CodigoInspector" DataSetColumn="CodigoInspector" />
@@ -62,6 +67,9 @@
               <Mapping SourceColumn="Parte_Oficial" DataSetColumn="Parte_Oficial" />
               <Mapping SourceColumn="ClasePlaca" DataSetColumn="ClasePlaca" />
               <Mapping SourceColumn="CodigoPlaca" DataSetColumn="CodigoPlaca" />
+              <Mapping SourceColumn="Alcohole_Realziada" DataSetColumn="Alcohole_Realziada" />
+              <Mapping SourceColumn="AlcoholSensor" DataSetColumn="AlcoholSensor" />
+              <Mapping SourceColumn="NivelAcohol" DataSetColumn="NivelAcohol" />
               <Mapping SourceColumn="PiePagina" DataSetColumn="PiePagina" />
               <Mapping SourceColumn="PiePaginaAutoridad" DataSetColumn="PiePaginaAutoridad" />
               <Mapping SourceColumn="fuente_parteoficial" DataSetColumn="fuente_parteoficial" />
@@ -161,6 +169,13 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Telefono" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTelefono" msprop:Generator_ColumnPropNameInRow="Telefono" msprop:Generator_ColumnPropNameInTable="TelefonoColumn" msprop:Generator_UserColumnName="Telefono" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="sexo" msprop:Generator_ColumnVarNameInTable="columnsexo" msprop:Generator_ColumnPropNameInRow="sexo" msprop:Generator_ColumnPropNameInTable="sexoColumn" msprop:Generator_UserColumnName="sexo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -256,6 +271,34 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Placa_Confis" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPlaca_Confis" msprop:Generator_ColumnPropNameInRow="Placa_Confis" msprop:Generator_ColumnPropNameInTable="Placa_ConfisColumn" msprop:Generator_UserColumnName="Placa_Confis" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepositoPlaca" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDepositoPlaca" msprop:Generator_ColumnPropNameInRow="DepositoPlaca" msprop:Generator_ColumnPropNameInTable="DepositoPlacaColumn" msprop:Generator_UserColumnName="DepositoPlaca" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Veh_Detenido" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVeh_Detenido" msprop:Generator_ColumnPropNameInRow="Veh_Detenido" msprop:Generator_ColumnPropNameInTable="Veh_DetenidoColumn" msprop:Generator_UserColumnName="Veh_Detenido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepositoVehiculo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDepositoVehiculo" msprop:Generator_ColumnPropNameInRow="DepositoVehiculo" msprop:Generator_ColumnPropNameInTable="DepositoVehiculoColumn" msprop:Generator_UserColumnName="DepositoVehiculo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="NivelGases" msprop:Generator_ColumnVarNameInTable="columnNivelGases" msprop:Generator_ColumnPropNameInRow="NivelGases" msprop:Generator_ColumnPropNameInTable="NivelGasesColumn" msprop:Generator_UserColumnName="NivelGases" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -281,7 +324,7 @@
               <xs:element name="Parte_Oficial" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnParte_Oficial" msprop:Generator_ColumnPropNameInRow="Parte_Oficial" msprop:Generator_ColumnPropNameInTable="Parte_OficialColumn" msprop:Generator_UserColumnName="Parte_Oficial" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="22" />
+                    <xs:maxLength value="26" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -296,6 +339,27 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Alcohole_Realziada" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAlcohole_Realziada" msprop:Generator_ColumnPropNameInRow="Alcohole_Realziada" msprop:Generator_ColumnPropNameInTable="Alcohole_RealziadaColumn" msprop:Generator_UserColumnName="Alcohole_Realziada" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AlcoholSensor" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAlcoholSensor" msprop:Generator_ColumnPropNameInRow="AlcoholSensor" msprop:Generator_ColumnPropNameInTable="AlcoholSensorColumn" msprop:Generator_UserColumnName="AlcoholSensor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NivelAcohol" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNivelAcohol" msprop:Generator_ColumnPropNameInRow="NivelAcohol" msprop:Generator_ColumnPropNameInTable="NivelAcoholColumn" msprop:Generator_UserColumnName="NivelAcohol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -367,7 +431,7 @@
               <xs:element name="EstadoFirma" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEstadoFirma" msprop:Generator_ColumnPropNameInRow="EstadoFirma" msprop:Generator_ColumnPropNameInTable="EstadoFirmaColumn" msprop:Generator_UserColumnName="EstadoFirma" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="28" />
+                    <xs:maxLength value="26" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
