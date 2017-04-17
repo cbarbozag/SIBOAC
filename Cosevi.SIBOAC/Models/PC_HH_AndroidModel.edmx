@@ -188,6 +188,7 @@
           <Property Name="calle2" Type="int" />
           <Property Name="avenida2" Type="int" />
           <Property Name="kilometro" Type="int" />
+          <Property Name="por_denuncia" Type="bit" />
         </EntityType>
         <EntityType Name="CANTON">
           <Key>
@@ -2665,6 +2666,7 @@
           <Property Name="calle2" Type="Int32" />
           <Property Name="avenida2" Type="Int32" />
           <Property Name="kilometro" Type="Int32" />
+          <Property Name="por_denuncia" Type="Boolean" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -4249,6 +4251,7 @@
           <EntitySetMapping Name="BOLETA">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Boletas">
               <MappingFragment StoreEntitySet="BOLETA">
+                <ScalarProperty Name="por_denuncia" ColumnName="por_denuncia" />
                 <ScalarProperty Name="kilometro" ColumnName="kilometro" />
                 <ScalarProperty Name="avenida2" ColumnName="avenida2" />
                 <ScalarProperty Name="calle2" ColumnName="calle2" />
