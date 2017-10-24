@@ -52,6 +52,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -2940,6 +2941,7 @@
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -2978,6 +2980,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4710,6 +4713,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4819,6 +4823,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4857,6 +4862,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -4938,6 +4944,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Subreport>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4962,6 +4969,9 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                   <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
                   <GroupExpression>=Fields!FuenteParte.Value</GroupExpression>
                 </GroupExpressions>
+                <PageBreak>
+                  <BreakLocation>End</BreakLocation>
+                </PageBreak>
               </Group>
               <TablixMembers>
                 <TablixMember />
@@ -4976,6 +4986,9 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
+        <PageBreak>
+          <BreakLocation>End</BreakLocation>
+        </PageBreak>
         <Top>0.19509cm</Top>
         <Left>0.47312cm</Left>
         <Height>31.3291cm</Height>
