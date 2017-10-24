@@ -1784,18 +1784,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\SubReportTestigo.rdlc">
+    <Content Include="Reports\SubReportTestigo.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\SubReportUsuario.rdlc">
+    </Content>
+    <Content Include="Reports\SubReportUsuario.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\SubReportInspector.rdlc">
+    </Content>
+    <Content Include="Reports\SubReportInspector.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\SubReportAdjuntos.rdlc">
+    </Content>
+    <Content Include="Reports\SubReportAdjuntos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
