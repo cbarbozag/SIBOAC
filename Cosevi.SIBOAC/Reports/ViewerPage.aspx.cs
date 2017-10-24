@@ -487,6 +487,7 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
+
                             var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
                             var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
 
