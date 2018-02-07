@@ -116,8 +116,8 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro1);
                             decimal numeParte1 = Convert.ToDecimal(Parametro2);                            
 
-                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero_boleta == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);
@@ -223,7 +223,7 @@ namespace Cosevi.SIBOAC.Reports
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
                                                         
 
-                            string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta2 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
@@ -375,7 +375,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             listaArchivos.Columns.Add("ParteOficial");
 
-                            string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta3 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             var listaAdjuntos3 = nombreAdjuntos3.Zip(numPartLista3, (n, w) => new { NombreAr = n, NumPar = w });
 
@@ -493,7 +493,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             listaArchivos.Columns.Add("ParteOficial");
 
-                            string ruta4 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta4 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             var listaAdjuntos4 = nombreAdjuntos4.Zip(numPartLista4, (n, w) => new { NombreAr = n, NumPar = w });
 
