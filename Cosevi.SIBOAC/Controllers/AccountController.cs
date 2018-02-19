@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Cosevi.SIBOAC.Models;
 using System.Web.Security;
 using System.Data.Entity;
+using System.Configuration;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -98,6 +99,7 @@ namespace Cosevi.SIBOAC.Controllers
 
                         // Difference in days.
                         int diferenciaDias = ts.Days;
+                        int diasExpira = Convert.ToInt32(ConfigurationManager.AppSettings["DaysToExpire"]);
                         if (user.Activo == true)
                         { 
                             if (model.Usuario == model.Contrasena)
@@ -106,7 +108,7 @@ namespace Cosevi.SIBOAC.Controllers
                             }
                             else
                             {
-                                if (diferenciaDias >= 30)
+                                if (diferenciaDias >= diasExpira)
                                 {
                                     
                                     return RedirectToAction("ResetPassword", "Account", new { code = model.Usuario });
