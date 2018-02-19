@@ -15,10 +15,10 @@ namespace Cosevi.SIBOAC.Models
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    public partial class ARTICULO_ESPECIFICO
+    public partial class Art铆culos_Adicionales_Sugeridos
     {
-        [DisplayName("C骴igo de art韈ulo espec韋ico")]
-        [Required(ErrorMessage = "El c骴igo es obligatorio")]
+        [DisplayName("C贸digo de art铆culo espec铆fico")]
+        [Required(ErrorMessage = "El c贸digo es obligatorio")]
         public string codigo { get; set; }
 
 
@@ -42,14 +42,12 @@ namespace Cosevi.SIBOAC.Models
         public string estado { get; set; }
 
 
-        [DisplayName("C骴igo de retiro temporal")]
+        [DisplayName("C贸digo de retiro temporal")]
         public string codigo_retiro_temporal { get; set; }
 
 
-        [DisplayName("C骴igo de inmovilizaci髇")]
+        [DisplayName("C贸digo de inmovilizaci贸n")]
         public string codigo_inmovilizacion { get; set; }
 
-        [DisplayName("Observaciones")]
-        public string observacion_noaplicacion { get; set; }
     }
 }

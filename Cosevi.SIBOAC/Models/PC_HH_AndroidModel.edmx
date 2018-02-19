@@ -25,7 +25,7 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
-        <EntityType Name="ARTICULO_ESPECIFICO">
+        <EntityType Name="Artículos_Adicionales_Sugeridos">
           <Key>
             <PropertyRef Name="codigo" />
             <PropertyRef Name="conducta" />
@@ -39,7 +39,6 @@
           <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="codigo_retiro_temporal" Type="varchar" MaxLength="6" />
           <Property Name="codigo_inmovilizacion" Type="varchar" MaxLength="6" />
-          <Property Name="observacion_noaplicacion" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="ARTICULOSXDEPOSITOSBIENES">
           <Key>
@@ -189,6 +188,8 @@
           <Property Name="avenida2" Type="int" />
           <Property Name="kilometro" Type="int" />
           <Property Name="por_denuncia" Type="bit" />
+          <Property Name="NoGuardaCoordenadas" Type="bit" />
+          <Property Name="articulos_sugeridos_justificacion" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="CANTON">
           <Key>
@@ -1304,7 +1305,6 @@
           <Parameter Name="Valor" Type="int" Mode="In" />
           <Parameter Name="idAutoridades" Type="varchar(max)" Mode="In" />
           <Parameter Name="idDelegaciones" Type="varchar(max)" Mode="In" />
-          <Parameter Name="UsuarioSistema" Type="varchar" Mode="In" />
         </Function>
         <Function Name="GetReimpresionDeBoletasDeCampoData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="serieBoleta" Type="varchar" Mode="In" />
@@ -1352,7 +1352,7 @@
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ARTICULO_ESPECIFICO" EntityType="Self.ARTICULO_ESPECIFICO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artículos_Adicionales_Sugeridos" EntityType="Self.Artículos_Adicionales_Sugeridos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="Self.ARTICULOSXDEPOSITOSBIENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOXBOLETA" EntityType="Self.ARTICULOXBOLETA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AUTORIDAD" EntityType="Self.AUTORIDAD" Schema="dbo" store:Type="Tables" />
@@ -1664,7 +1664,6 @@
             <Parameter Name="Valor" Mode="In" Type="Int32" />
             <Parameter Name="idAutoridades" Mode="In" Type="String" />
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
-            <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetReporteStatusActualPlanoData" ReturnType="Collection(PC_HH_AndroidModel.GetReporteStatusActualPlanoData_Result)">
             <Parameter Name="StatusPlano" Mode="In" Type="Int32" />
@@ -1674,7 +1673,6 @@
             <Parameter Name="Autoridad" Mode="In" Type="String" />
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="ARTICULO_ESPECIFICO" EntityType="PC_HH_AndroidModel.ARTICULO_ESPECIFICO" />
           <FunctionImport Name="GetActividadOficialData" ReturnType="Collection(PC_HH_AndroidModel.GetActividadOficialData_Result)">
             <Parameter Name="Inspector" Mode="In" Type="String" />
             <Parameter Name="FechaInicio" Mode="In" Type="DateTime" />
@@ -1717,6 +1715,7 @@
           <EntitySet Name="TESTIGO" EntityType="PC_HH_AndroidModel.TESTIGO" />
           <EntitySet Name="Leyenda_Poder_Judicial" EntityType="PC_HH_AndroidModel.Leyenda_Poder_Judicial" />
           <EntitySet Name="Leyenda_Puntos" EntityType="PC_HH_AndroidModel.Leyenda_Puntos" />
+          <EntitySet Name="Artículos_Adicionales_Sugeridos" EntityType="PC_HH_AndroidModel.Artículos_Adicionales_Sugeridos" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2667,6 +2666,8 @@
           <Property Name="avenida2" Type="Int32" />
           <Property Name="kilometro" Type="Int32" />
           <Property Name="por_denuncia" Type="Boolean" />
+          <Property Name="NoGuardaCoordenadas" Type="Boolean" />
+          <Property Name="articulos_sugeridos_justificacion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -3084,22 +3085,6 @@
           <Property Type="String" Name="FechaFinal" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="StatusPlano" Nullable="false" MaxLength="20" />
         </ComplexType>
-        <EntityType Name="ARTICULO_ESPECIFICO">
-          <Key>
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="conducta" />
-            <PropertyRef Name="fecha_inicio" />
-            <PropertyRef Name="fecha_final" />
-          </Key>
-          <Property Name="codigo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fecha_final" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="codigo_retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="codigo_inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="observacion_noaplicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
         <ComplexType Name="GetActividadOficialData_Result">
           <Property Type="String" Name="Fuente" Nullable="false" MaxLength="1" />
           <Property Type="Int32" Name="Serie" Nullable="false" />
@@ -3265,6 +3250,21 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Fecha_Inicio" Type="DateTime" Precision="3" />
           <Property Name="Fecha_Final" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Artículos_Adicionales_Sugeridos">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="conducta" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_final" />
+          </Key>
+          <Property Name="codigo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_final" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="codigo_retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4251,6 +4251,8 @@
           <EntitySetMapping Name="BOLETA">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Boletas">
               <MappingFragment StoreEntitySet="BOLETA">
+                <ScalarProperty Name="articulos_sugeridos_justificacion" ColumnName="articulos_sugeridos_justificacion" />
+                <ScalarProperty Name="NoGuardaCoordenadas" ColumnName="NoGuardaCoordenadas" />
                 <ScalarProperty Name="por_denuncia" ColumnName="por_denuncia" />
                 <ScalarProperty Name="kilometro" ColumnName="kilometro" />
                 <ScalarProperty Name="avenida2" ColumnName="avenida2" />
@@ -4753,20 +4755,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="ARTICULO_ESPECIFICO">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ARTICULO_ESPECIFICO">
-              <MappingFragment StoreEntitySet="ARTICULO_ESPECIFICO">
-                <ScalarProperty Name="observacion_noaplicacion" ColumnName="observacion_noaplicacion" />
-                <ScalarProperty Name="codigo_inmovilizacion" ColumnName="codigo_inmovilizacion" />
-                <ScalarProperty Name="codigo_retiro_temporal" ColumnName="codigo_retiro_temporal" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="conducta" ColumnName="conducta" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetActividadOficialData" FunctionName="PC_HH_AndroidModel.Store.GetActividadOficialData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetActividadOficialData_Result">
@@ -4925,6 +4913,19 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artículos_Adicionales_Sugeridos">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Artículos_Adicionales_Sugeridos">
+              <MappingFragment StoreEntitySet="Artículos_Adicionales_Sugeridos">
+                <ScalarProperty Name="codigo_inmovilizacion" ColumnName="codigo_inmovilizacion" />
+                <ScalarProperty Name="codigo_retiro_temporal" ColumnName="codigo_retiro_temporal" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="conducta" ColumnName="conducta" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

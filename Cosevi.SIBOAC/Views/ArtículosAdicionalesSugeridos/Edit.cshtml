@@ -1,9 +1,10 @@
-﻿@model Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO
+﻿@model Cosevi.SIBOAC.Models.Artículos_Adicionales_Sugeridos
 
 @{
-    ViewBag.Title = "Nuevo";
+    ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
@@ -15,7 +16,6 @@
             //Limpiamos los otros dropsownlist
             if ($("#codigo").val() == 0)
             {
-                $("#Departamento").empty();
                 $("#FechaDeInicio").empty();
                 $("#FechaFin").empty();
                 $("#Conducta").append($("<option/>").val("0").text("Seleccione..."));
@@ -24,7 +24,7 @@
             }//Ejecutamos el AJAX para llamar a la acción "ObtenerDepartamento"
             $.ajax(
                 {
-                    url:'@Url.Action("ObtenerConductaCreate")',
+                    url:'@Url.Action("ObtenerConducta")',
                     type: "POST",
                     dataType: "json",
                     async:true,
@@ -97,16 +97,6 @@
         });
 
 
-
-
-
-
-        $("#FechaDeFin").change(function () {
-            if ($("#FechaDeInicio").val() == 0 || $("#FechaDeFin").val() == 0) {
-                $("#CodRetTemp").empty();
-                $("#CodRetTemp").append($("<option/>").val("0").text("Seleccione..."));
-                return;
-            }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
             $.ajax(
                 {
                     url: '@Url.Action("ObtenerArticuloRetiroTemporal")',
@@ -127,19 +117,7 @@
                         alert('Error...');
                     }
                 });
-        });
 
-
-
-
-
-
-        $("#CodRetTemp").change(function () {
-            if ($("#FechaDeInicio").val() == 0 || $("#FechaDeFin").val() == 0) {
-                $("#CodInm").empty();
-                $("#CodInm").append($("<option/>").val("0").text("Seleccione..."));
-                return;
-            }//Ejecutamos el AJAX para llamar a la acción "ObtenerLocalidad"
             $.ajax(
                 {
                     url: '@Url.Action("ObtenerArticuloInmovilizacion")',
@@ -160,7 +138,6 @@
                         alert('Error...');
                     }
                 });
-        });
     });
 
     window.onload = function () {
@@ -168,7 +145,7 @@
 
         $.ajax(
             {
-                url: '@Url.Action("ObtenerConductaCreate")',
+                url: '@Url.Action("ObtenerConducta")',
                 type: "POST",
                 dataType: "json",
                 async: true,
@@ -311,14 +288,15 @@
 </script>
 
 
-<h2>Nuevo</h2>
+
+<h2>Editar</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Artículo Específico</h4>
+        <h4>Artículo Adicional Sugerido</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -334,103 +312,119 @@
         </div>
 
 
-            <div class="form-group">
+        @*@Html.HiddenFor(model => model.codigo)*@
+
+        @*@Html.HiddenFor(model => model.conducta)
+
+            @Html.HiddenFor(model => model.fecha_inicio)
+
+            @Html.HiddenFor(model => model.fecha_final)
+
+            @Html.HiddenFor(model => model.codigo_retiro_temporal)
+
+            @Html.HiddenFor(model => model.codigo_inmovilizacion)
+
+            @Html.HiddenFor(model => model.observacion_noaplicacion)*@
+
+
+        <div class="form-group">
                 @Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("codigo", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
                 </div>
             </div>
-        
-            <div class="form-group">
-                @Html.LabelFor(model => model.conducta, "Conducta", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <select id="Conducta" name="Conducta" class="form-control"> <option value="0">Seleccione...</option> </select>
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("codigo", ViewBag.ComboArticulos as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.conducta, "Conducta", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="Conducta" name="Conducta" class="form-control"> <option value="0">Seleccione...</option> </select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_inicio, "Fecha inicial", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <select id="FechaDeInicio" name="fecha_inicio" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.fecha_inicio, "Fecha inicial", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-2">
-                    <div class="input-daterange input-group" id="datepicker"><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                        <select id="FechaDeInicio" name="fecha_inicio" class="form-control"> <option value="0">Seleccione...</option> </select>
-                    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_final, "Fecha final", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    <select id="FechaDeFin" name="fecha_final" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.fecha_final, "Fecha final", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="input-daterange input-group" id="datepicker"><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                        <select id="FechaDeFin" name="fecha_final" class="form-control"> <option value="0">Seleccione...</option> </select>
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control"} })
-                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
-                    @Html.DropDownListFor(model => model.estado,
+        <div class="form-group">
+            @Html.LabelFor(model => model.estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.estado,
                   new List<SelectListItem> {
                        new SelectListItem { Value = "A" , Text = "Activo" },
                        new SelectListItem { Value = "I" , Text = "Inactivo" }
                     },
                   new { @class = "form-control" })
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.codigo_retiro_temporal, "Código retiro temporal", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <select id="CodRetTemp" name="codigo_retiro_temporal" class="form-control"> <option value="0">Seleccione...</option> </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.codigo_inmovilizacion, "Código inmovilización", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <select id="CodInm" name="codigo_inmovilizacion" class="form-control"> <option value="0">Seleccione...</option> </select>
-                </div>
-            </div>
-
-        @*@if (@ViewData["codigo_retiro_temporal"] == null && @ViewData["codigo_inmovilizacion"] == null ) {*@
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.observacion_noaplicacion, "Observaciones", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.observacion_noaplicacion, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.observacion_noaplicacion, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        @*}*@
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Guardar" class="btn btn-primary" />
-                </div>
             </div>
         </div>
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.codigo_retiro_temporal, "Código retiro temporal", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="CodRetTemp" name="codigo_retiro_temporal" class="form-control"> <option value="0">Seleccione...</option> </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.codigo_inmovilizacion, "Código inmovilización", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="CodInm" name="codigo_inmovilizacion" class="form-control"> <option value="0">Seleccione...</option> </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
 }
 
-<div>
-    @Html.ActionLink("Regresar a la lista", "Index")
-</div>
+            <div>
+                @Html.ActionLink("Regresar a la lista", "Index")
+            </div>
 
 @section Scripts {
 <script>
         $(document).ready(
         function () {
             Calendario();
-
         });
 </script>
+
 <script>
+
         function Calendario() {
-            $('.input-daterange').datepicker({
+            $('.input-group.date').datepicker({
                 startView: 2,
                 autoclose: true,
                 orientation: 'bottom auto',
@@ -440,5 +434,4 @@
             });
         };
 </script>
-
 }

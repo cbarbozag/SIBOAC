@@ -12,7 +12,7 @@ using System.Data.Entity.Validation;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class ARTICULO_ESPECIFICOController : BaseController<ARTICULO_ESPECIFICO>
+    public class ArtículosAdicionalesSugeridosController : BaseController<Artículos_Adicionales_Sugeridos>
     {
         //private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
 
@@ -26,7 +26,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
 
             var list =
-            (from a in db.ARTICULO_ESPECIFICO
+            (from a in db.Artículos_Adicionales_Sugeridos
              join c in db.CATARTICULO
                    on new { CodigoArticulo = a.codigo, Conducta = a.conducta, fechaInicio = a.fecha_inicio, fechaFinal = a.fecha_final }
                equals new { CodigoArticulo = c.Id, Conducta = c.Conducta, fechaInicio = c.FechaDeInicio, fechaFinal = c.FechaDeFin } into c_join
@@ -39,11 +39,10 @@ namespace Cosevi.SIBOAC.Controllers
                  FechaDeFin = a.fecha_final,
                  Estado = a.estado,
                  CodigoRetiroTemporal = a.codigo_retiro_temporal,
-                 CodigoInmovilizacion = a.codigo_inmovilizacion,
-                 Observaciones = a.observacion_noaplicacion
+                 CodigoInmovilizacion = a.codigo_inmovilizacion
              }).ToList()
 
-             .Select(x => new ARTICULO_ESPECIFICO
+             .Select(x => new Artículos_Adicionales_Sugeridos
              {
                  codigo = x.CodigoArticulo,
                  conducta = x.Conducta,
@@ -51,8 +50,7 @@ namespace Cosevi.SIBOAC.Controllers
                  fecha_final = x.FechaDeFin,
                  estado = x.Estado,
                  codigo_retiro_temporal = x.CodigoRetiroTemporal,
-                 codigo_inmovilizacion = x.CodigoInmovilizacion,
-                 observacion_noaplicacion = x.Observaciones
+                 codigo_inmovilizacion = x.CodigoInmovilizacion
 
              }).OrderBy(x => (x.codigo));
 
@@ -69,12 +67,12 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
-            if (articuloEspecifico == null)
+            Artículos_Adicionales_Sugeridos ArtículosAdicionalesSugeridos = db.Artículos_Adicionales_Sugeridos.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            if (ArtículosAdicionalesSugeridos == null)
             {
                 return HttpNotFound();
             }
-            return View(articuloEspecifico);
+            return View(ArtículosAdicionalesSugeridos);
         }
 
         // GET: ARTICULO_ESPECIFICO/Create
@@ -98,29 +96,41 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codigo, conducta, fecha_inicio, fecha_final, estado, codigo_retiro_temporal, codigo_inmovilizacion, observacion_noaplicacion")] ARTICULO_ESPECIFICO articuloEspecifico)
+        public ActionResult Create([Bind(Include = "codigo, conducta, fecha_inicio, fecha_final, estado, codigo_retiro_temporal, codigo_inmovilizacion")] Artículos_Adicionales_Sugeridos ArtículosAdicionalesSugeridos)
         {
             if (ModelState.IsValid)
             {
 
-                db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
+                db.Artículos_Adicionales_Sugeridos.Add(ArtículosAdicionalesSugeridos);
 
-                string mensajeNull = validarNulos(articuloEspecifico.codigo_retiro_temporal,
-                                                  articuloEspecifico.codigo_inmovilizacion,
-                                                  articuloEspecifico.observacion_noaplicacion);
+                string mensajeNull = validarNulos(ArtículosAdicionalesSugeridos.codigo_retiro_temporal,
+                                                  ArtículosAdicionalesSugeridos.codigo_inmovilizacion);
                 if (mensajeNull == "")
                 {
 
-                    string mensaje = Verificar(articuloEspecifico.codigo,
-                                               articuloEspecifico.conducta,
-                                               articuloEspecifico.fecha_inicio,
-                                               articuloEspecifico.fecha_final);
+                    string mensaje = Verificar(ArtículosAdicionalesSugeridos.codigo,
+                                               ArtículosAdicionalesSugeridos.conducta,
+                                               ArtículosAdicionalesSugeridos.fecha_inicio,
+                                               ArtículosAdicionalesSugeridos.fecha_final,
+                                               ArtículosAdicionalesSugeridos.codigo_retiro_temporal,
+                                               ArtículosAdicionalesSugeridos.codigo_inmovilizacion
+                                               );
 
 
                     if (mensaje == "")
                     {
+                        if (ArtículosAdicionalesSugeridos.codigo_retiro_temporal == "0")
+                        {
+                            ArtículosAdicionalesSugeridos.codigo_retiro_temporal = "";
+                        }
+
+                        if (ArtículosAdicionalesSugeridos.codigo_inmovilizacion == "0")
+                        {
+                            ArtículosAdicionalesSugeridos.codigo_inmovilizacion = "";
+                        }
+
                         db.SaveChanges();
-                        Bitacora(articuloEspecifico, "I", "ARTICULO_ESPECIFICO");
+                        Bitacora(ArtículosAdicionalesSugeridos, "I", "Artículos_Adicionales_Sugeridos");
                         TempData["Type"] = "success";
                         TempData["Message"] = "El registro se realizó correctamente";
                         return RedirectToAction("Index");
@@ -135,13 +145,13 @@ namespace Cosevi.SIBOAC.Controllers
                         ViewBag.ComboArticulos = null;
                         ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
                                                                  where o.Estado == "A"
-                                                                 select new { o.Id }).ToList().Distinct(), "Id", "Id", articuloEspecifico.codigo);
+                                                                 select new { o.Id }).ToList().Distinct(), "Id", "Id", ArtículosAdicionalesSugeridos.codigo);
 
-                        ViewData["conducta"] = articuloEspecifico.conducta;
-                        ViewData["fecha_inicio"] = articuloEspecifico.fecha_inicio.ToString("dd-MM-yyyy");
-                        ViewData["fecha_final"] = articuloEspecifico.fecha_final.ToString("dd-MM-yyyy");
-                        ViewData["codigo_retiro_temporal"] = articuloEspecifico.codigo_retiro_temporal;
-                        return View(articuloEspecifico);
+                        ViewData["conducta"] = ArtículosAdicionalesSugeridos.conducta;
+                        ViewData["fecha_inicio"] = ArtículosAdicionalesSugeridos.fecha_inicio.ToString("dd-MM-yyyy");
+                        ViewData["fecha_final"] = ArtículosAdicionalesSugeridos.fecha_final.ToString("dd-MM-yyyy");
+                        ViewData["codigo_retiro_temporal"] = ArtículosAdicionalesSugeridos.codigo_retiro_temporal;
+                        return View(ArtículosAdicionalesSugeridos);
                     }
                 }
                 else
@@ -152,18 +162,18 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.ComboArticulos = null;
                     ViewBag.ComboArticulos = new SelectList((from o in db.CATARTICULO
                                                              where o.Estado == "A"
-                                                             select new { o.Id }).ToList().Distinct(), "Id", "Id", articuloEspecifico.codigo);
+                                                             select new { o.Id }).ToList().Distinct(), "Id", "Id", ArtículosAdicionalesSugeridos.codigo);
 
-                    ViewData["conducta"] = articuloEspecifico.conducta;
-                    ViewData["fecha_inicio"] = articuloEspecifico.fecha_inicio.ToString("dd-MM-yyyy");
-                    ViewData["fecha_final"] = articuloEspecifico.fecha_final.ToString("dd-MM-yyyy");
-                    ViewData["codigo_retiro_temporal"] = articuloEspecifico.codigo_retiro_temporal;
-                    return View(articuloEspecifico);
+                    ViewData["conducta"] = ArtículosAdicionalesSugeridos.conducta;
+                    ViewData["fecha_inicio"] = ArtículosAdicionalesSugeridos.fecha_inicio.ToString("dd-MM-yyyy");
+                    ViewData["fecha_final"] = ArtículosAdicionalesSugeridos.fecha_final.ToString("dd-MM-yyyy");
+                    ViewData["codigo_retiro_temporal"] = ArtículosAdicionalesSugeridos.codigo_retiro_temporal;
+                    return View(ArtículosAdicionalesSugeridos);
                 }
 
             }
 
-            return View(articuloEspecifico);
+            return View(ArtículosAdicionalesSugeridos);
         }
 
         // GET: ARTICULO_ESPECIFICO/Edit/5
@@ -193,24 +203,53 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codigo,conducta,fecha_inicio,fecha_final,estado,codigo_retiro_temporal,codigo_inmovilizacion,observacion_noaplicacion")] ARTICULO_ESPECIFICO articuloEspecifico)
+        public ActionResult Edit([Bind(Include = "codigo,conducta,fecha_inicio,fecha_final,estado,codigo_retiro_temporal,codigo_inmovilizacion")] Artículos_Adicionales_Sugeridos ArtículosAdicionalesSugeridos)
         {
             if (ModelState.IsValid)
             {
-                db.ARTICULO_ESPECIFICO.Add(articuloEspecifico);
+                db.Artículos_Adicionales_Sugeridos.Add(ArtículosAdicionalesSugeridos);
 
-                    var articuloEspecificoAntes = db.ARTICULO_ESPECIFICO.AsNoTracking().Where(d => d.codigo == articuloEspecifico.codigo &&
-                                                                          d.fecha_inicio == articuloEspecifico.fecha_inicio &&
-                                                                          d.fecha_final == articuloEspecifico.fecha_final).FirstOrDefault();
+                    var ArtículosAdicionalesSugeridosAntes = db.Artículos_Adicionales_Sugeridos.AsNoTracking().Where(d => d.codigo == ArtículosAdicionalesSugeridos.codigo &&
+                                                                          d.fecha_inicio == ArtículosAdicionalesSugeridos.fecha_inicio &&
+                                                                          d.fecha_final == ArtículosAdicionalesSugeridos.fecha_final).FirstOrDefault();
+                    
 
-                    bool saveFailed;
+                bool saveFailed;
                     do
                     {
                         saveFailed = false;
                         try
                     {
-                        db.Entry(articuloEspecifico).State = EntityState.Modified;
-                        db.SaveChanges();
+                        string mensaje = Verificar(ArtículosAdicionalesSugeridos.codigo,
+                                               ArtículosAdicionalesSugeridos.conducta,
+                                               ArtículosAdicionalesSugeridos.fecha_inicio,
+                                               ArtículosAdicionalesSugeridos.fecha_final,
+                                               ArtículosAdicionalesSugeridos.codigo_retiro_temporal,
+                                               ArtículosAdicionalesSugeridos.codigo_inmovilizacion
+                                               );
+                        if(mensaje == "")
+                        {
+                            if (ArtículosAdicionalesSugeridos.codigo_retiro_temporal == "0")
+                            {
+                                ArtículosAdicionalesSugeridos.codigo_retiro_temporal = "";
+                            }
+
+                            if (ArtículosAdicionalesSugeridos.codigo_inmovilizacion == "0")
+                            {
+                                ArtículosAdicionalesSugeridos.codigo_inmovilizacion = "";
+                            }
+
+                            db.Entry(ArtículosAdicionalesSugeridos).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            ViewBag.Type = "warning";
+                            ViewBag.Message = mensaje;
+
+                            return View(ArtículosAdicionalesSugeridos);
+                        }
+
                     }
                     catch (DbEntityValidationException e)
                     {
@@ -229,11 +268,11 @@ namespace Cosevi.SIBOAC.Controllers
                     }
                     } while (saveFailed);
 
-                    Bitacora(articuloEspecifico, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
+                    Bitacora(ArtículosAdicionalesSugeridos, "U", "Artículos_Adicionales_Sugeridos", ArtículosAdicionalesSugeridosAntes);
                     return RedirectToAction("Index");
                 }
 
-            return View(articuloEspecifico);
+            return View(ArtículosAdicionalesSugeridos);
         }
 
         // GET: ARTICULO_ESPECIFICO/Delete/5
@@ -243,12 +282,12 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
-            if (articuloEspecifico == null)
+            Artículos_Adicionales_Sugeridos ArtículosAdicionalesSugeridos = db.Artículos_Adicionales_Sugeridos.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            if (ArtículosAdicionalesSugeridos == null)
             {
                 return HttpNotFound();
             }
-            return View(articuloEspecifico);
+            return View(ArtículosAdicionalesSugeridos);
         }
 
         // POST: ARTICULO_ESPECIFICO/Delete/5
@@ -256,14 +295,14 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
         {
-            ARTICULO_ESPECIFICO articuloEspecifico = db.ARTICULO_ESPECIFICO.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
-            ARTICULO_ESPECIFICO articuloEspecificoAntes = ObtenerCopia(articuloEspecifico);
-            if (articuloEspecifico.estado == "A")
-                articuloEspecifico.estado = "I";
+            Artículos_Adicionales_Sugeridos ArtículosAdicionalesSugeridos = db.Artículos_Adicionales_Sugeridos.Find(CodArticulo, Conducta, FechaInicio, FechaFin);
+            Artículos_Adicionales_Sugeridos ArtículosAdicionalesSugeridosAntes = ObtenerCopia(ArtículosAdicionalesSugeridos);
+            if (ArtículosAdicionalesSugeridos.estado == "A")
+                ArtículosAdicionalesSugeridos.estado = "I";
             else
-                articuloEspecifico.estado = "A";
+                ArtículosAdicionalesSugeridos.estado = "A";
             db.SaveChanges();
-            Bitacora(articuloEspecifico, "U", "ARTICULO_ESPECIFICO", articuloEspecificoAntes);
+            Bitacora(ArtículosAdicionalesSugeridos, "U", "Artículos_Adicionales_Sugeridos", ArtículosAdicionalesSugeridosAntes);
             return RedirectToAction("Index");
         }
 
@@ -280,19 +319,23 @@ namespace Cosevi.SIBOAC.Controllers
 
 
 
-        public string Verificar(string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin)
+        public string Verificar(string CodArticulo, string Conducta, DateTime FechaInicio, DateTime FechaFin, string codigoRetiroTemporal, string codigoInmovilizacion)
         {
             string mensaje = "";
-            bool exist = db.ARTICULO_ESPECIFICO.Any(x => x.codigo == CodArticulo
+            bool exist = db.Artículos_Adicionales_Sugeridos.Any(x => x.codigo == CodArticulo
                                                     && x.conducta == Conducta
                                                     && x.fecha_inicio == FechaInicio
-                                                    && x.fecha_final == FechaFin);
+                                                    && x.fecha_final == FechaFin
+                                                    && x.codigo_retiro_temporal == codigoRetiroTemporal
+                                                    && x.codigo_inmovilizacion == codigoInmovilizacion);
             if (exist)
             {
                 mensaje = "El registro con los siguientes datos ya se encuentra registrados: código de artículos específicos " + CodArticulo +
                            ", Conducta " + Conducta +
                            ", Fecha inicial " + FechaInicio +
-                           ", Fecha final " + FechaFin;
+                           ", Fecha final " + FechaFin +
+                           ", Código de Retiro Temporal " + codigoRetiroTemporal +
+                           ", Código de Inmovilización " + codigoInmovilizacion;
             }
             return mensaje;
         }
@@ -300,7 +343,7 @@ namespace Cosevi.SIBOAC.Controllers
 
 
 
-        public string validarNulos(string codigoRetiroTemporal, string codigoInmovilizacion, string observacionNoAplicacion)
+        public string validarNulos(string codigoRetiroTemporal, string codigoInmovilizacion)
         {
             string mensajeValidaNull = "";
 
@@ -308,12 +351,13 @@ namespace Cosevi.SIBOAC.Controllers
                                                     && x.codigo_inmovilizacion == codigoInmovilizacion
                                                     && x.observacion_noaplicacion == observacionNoAplicacion);*/
 
-            if (codigoRetiroTemporal == "0" && codigoInmovilizacion == "0" && observacionNoAplicacion == null)
+            if (codigoRetiroTemporal == "0" && codigoInmovilizacion == "0")
             {
                 mensajeValidaNull = " Debe indicar una observación ";
             }
 
             return mensajeValidaNull;
+            
         }
 
 
@@ -385,26 +429,9 @@ namespace Cosevi.SIBOAC.Controllers
 
         public JsonResult ObtenerConducta(string CodigoArticulo)
         {
-            //var listaconducta =
-            //     (from o in db.CATARTICULO
-            //      where o.Id == CodigoArticulo && o.Estado == "A"
-            //      select new
-            //      {
-
-            //          o.Conducta
-            //      }).ToList().Distinct()
-            //.Select(x => new ClaseConducta
-            //{
-            //    Id = x.Conducta,
-            //    Nombre = x.Conducta
-            //}).Distinct();
-
-            //return Json(listaconducta, JsonRequestBehavior.AllowGet);
-
-
 
             var listaconducta =
-                 (from o in db.ARTICULO_ESPECIFICO
+                 (from o in db.Artículos_Adicionales_Sugeridos
                   where o.codigo == CodigoArticulo && o.estado == "A"
                   select new
                   {
@@ -476,7 +503,7 @@ namespace Cosevi.SIBOAC.Controllers
 
 
         public JsonResult ObtenerFechaFinal(string CodigoArticulo, string Conducta, string FechaDeInicio)
-        {
+            {
             DateTime fechaDeInicio = DateTime.Now;
             if (FechaDeInicio != "" && FechaDeInicio != null)
             {
@@ -509,30 +536,44 @@ namespace Cosevi.SIBOAC.Controllers
 
         public JsonResult ObtenerArticuloRetiroTemporal(string CodigoArticulo, string Conducta, string FechaDeInicio, string FechaDeFin)
         {
-            DateTime fechaDeInicio = DateTime.Now;
-            DateTime fechaDeFin = DateTime.Now;
-            if (FechaDeInicio != "" && FechaDeInicio != null)
-            {
-                fechaDeInicio = DateTime.Parse(FechaDeInicio);
-                fechaDeFin = DateTime.Parse(FechaDeFin);
-                // FechaDeInicio = fechaDeInicio.ToString();
-            }
+            //DateTime fechaDeInicio = DateTime.Now;
+            //DateTime fechaDeFin = DateTime.Now;
+            //if (FechaDeInicio != "" && FechaDeInicio != null)
+            //{
+            //    fechaDeInicio = DateTime.Parse(FechaDeInicio);
+            //    fechaDeFin = DateTime.Parse(FechaDeFin);
+            //    // FechaDeInicio = fechaDeInicio.ToString();
+            //}
+
+            //var listaArticuloRetiroTemporal =
+            //     (from o in db.CATARTICULO
+            //      where o.Estado == "A" && o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Conducta == Conducta
+            //      select new
+            //      {
+
+            //          o.Id
+
+            //      }).ToList()
+            //.Select(x => new ClaseArticuloRetiroTemporal
+            //{
+            //    Id = x.Id,
+            //    Nombre = x.Id
+
+            //}).Distinct();
 
             var listaArticuloRetiroTemporal =
-                 (from o in db.CATARTICULO
-                  where o.Estado == "A" && o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Conducta == Conducta
-                  select new
-                  {
+              (from c in db.CATARTICULO
+               where c.Estado == "A"
+               select new
+               {
+                   c.Id
+               }).ToList()
+               .Select(x => new ClaseArticuloRetiroTemporal
+               {
+                   Id = x.Id,
+                   Nombre = x.Id
 
-                      o.Id
-
-                  }).ToList()
-            .Select(x => new ClaseArticuloRetiroTemporal
-            {
-                Id = x.Id,
-                Nombre = x.Id
-
-            }).Distinct();
+               }).Distinct();
 
             return Json(listaArticuloRetiroTemporal, JsonRequestBehavior.AllowGet);
         }
@@ -540,32 +581,48 @@ namespace Cosevi.SIBOAC.Controllers
 
         public JsonResult ObtenerArticuloInmovilizacion(string CodigoArticulo, string Conducta, string FechaDeInicio, string FechaDeFin)
         {
-            DateTime fechaDeInicio = DateTime.Now;
-            DateTime fechaDeFin = DateTime.Now;
-            if (FechaDeInicio != "" && FechaDeInicio != null)
-            {
-                fechaDeInicio = DateTime.Parse(FechaDeInicio);
-                fechaDeFin = DateTime.Parse(FechaDeFin);
-                // FechaDeInicio = fechaDeInicio.ToString();
-            }
+            //DateTime fechaDeInicio = DateTime.Now;
+            //DateTime fechaDeFin = DateTime.Now;
+            //if (FechaDeInicio != "" && FechaDeInicio != null)
+            //{
+            //    fechaDeInicio = DateTime.Parse(FechaDeInicio);
+            //    fechaDeFin = DateTime.Parse(FechaDeFin);
+            //    // FechaDeInicio = fechaDeInicio.ToString();
+            //}
+
+            //var listaArticuloInmovilizacion =
+            //     (from o in db.CATARTICULO
+            //      where o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Estado == "A" && o.Conducta == Conducta
+            //      select new
+            //      {
+
+            //          o.Id
+
+            //      }).ToList()
+            //.Select(x => new ClaseArticuloInmovilizacion
+            //{
+            //    Id = x.Id,
+            //    Nombre = x.Id
+
+            //}).Distinct();
+
+            //return Json(listaArticuloInmovilizacion, JsonRequestBehavior.AllowGet);
 
             var listaArticuloInmovilizacion =
-                 (from o in db.CATARTICULO
-                  where o.FechaDeInicio == fechaDeInicio && o.FechaDeFin == fechaDeFin && o.Estado == "A" && o.Conducta == Conducta
-                  select new
-                  {
-
-                      o.Id
-
-                  }).ToList()
-            .Select(x => new ClaseArticuloInmovilizacion
-            {
-                Id = x.Id,
-                Nombre = x.Id
-
-            }).Distinct();
+              (from c in db.CATARTICULO
+               where c.Estado == "A"
+               select new
+               {
+                   c.Id
+               }).ToList()
+               .Select(x => new ClaseArticuloInmovilizacion
+               {
+                   Id = x.Id,
+                   Nombre = x.Id
+               }).Distinct();
 
             return Json(listaArticuloInmovilizacion, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

@@ -1,25 +1,17 @@
-﻿@model Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO
+﻿@model Cosevi.SIBOAC.Models.Artículos_Adicionales_Sugeridos
 
 @{
-    ViewBag.Title = "Inactivar";
+    ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Detalles</h2>
 
-@if (Model.estado == "A")
-            {
-    <h2>Inactivar</h2>
-}
-else
-{
-    <h2>Activar</h2>
-}
-
-<h3>¿Está seguro que desea cambiar el estado?</h3>
 <div>
-    <h4>Artículo Específico</h4>
+    <h4>Artículo Adicionales Sugeridos</h4>
     <hr />
     <dl class="dl-horizontal">
+
 
         <dt>
             @Html.DisplayNameFor(model => model.codigo)
@@ -29,7 +21,6 @@ else
             @Html.DisplayFor(model => model.codigo)
         </dd>
 
-
         <dt>
             @Html.DisplayNameFor(model => model.conducta)
         </dt>
@@ -38,10 +29,10 @@ else
             @Html.DisplayFor(model => model.conducta)
         </dd>
 
-
         <dt>
             @Html.DisplayNameFor(model => model.fecha_inicio)
         </dt>
+
 
         <dd>
             @Html.DisplayFor(model => model.fecha_inicio)
@@ -55,7 +46,6 @@ else
         <dd>
             @Html.DisplayFor(model => model.fecha_final)
         </dd>
-
 
         <dt>
             @Html.DisplayNameFor(model => model.estado)
@@ -81,30 +71,9 @@ else
             @Html.DisplayFor(model => model.codigo_inmovilizacion)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.observacion_noaplicacion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.observacion_noaplicacion)
-        </dd>
-
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            @if (Model.estado == "A")
-            {
-                <input type="submit" value="Inactivar" class="btn btn-warning" />
-            }
-            else
-            {
-                <input type="submit" value="Activar" class="btn btn-success" />
-            }
-            |
-            @Html.ActionLink("Regresar a la lista", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { CodArticulo = Model.codigo, Conducta = Model.conducta, FechaInicio = Model.fecha_inicio, FechaFin = Model.fecha_final }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

@@ -118,12 +118,12 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<VEHICULO> VEHICULO { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
         public virtual DbSet<LEYENDAPORAUTORIDAD> LEYENDAPORAUTORIDAD { get; set; }
-        public virtual DbSet<ARTICULO_ESPECIFICO> ARTICULO_ESPECIFICO { get; set; }
         public virtual DbSet<OtrosAdjuntos> OtrosAdjuntos { get; set; }
         public virtual DbSet<TESTIGOXPARTE> TESTIGOXPARTE { get; set; }
         public virtual DbSet<TESTIGO> TESTIGO { get; set; }
         public virtual DbSet<Leyenda_Poder_Judicial> Leyenda_Poder_Judicial { get; set; }
         public virtual DbSet<Leyenda_Puntos> Leyenda_Puntos { get; set; }
+        public virtual DbSet<Artículos_Adicionales_Sugeridos> Artículos_Adicionales_Sugeridos { get; set; }
     
         public virtual ObjectResult<BitacoraSIBOAC> GetBitacoraData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string nombreTabla, string usuario, string operacion)
         {
@@ -305,7 +305,7 @@ namespace Cosevi.SIBOAC.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReportePorUsuarioData_Result>("GetReportePorUsuarioData", idUsuarioParameter, fechaInicialParameter, fechaFinalParameter, usuarioSistemaParameter);
         }
     
-        public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones, string usuarioSistema)
+        public virtual ObjectResult<GetDescargaParteOficialData_Result> GetDescargaParteOficialData(Nullable<System.DateTime> fechaDesde, Nullable<System.DateTime> fechaHasta, Nullable<int> valor, string idAutoridades, string idDelegaciones)
         {
             var fechaDesdeParameter = fechaDesde.HasValue ?
                 new ObjectParameter("FechaDesde", fechaDesde) :
@@ -327,11 +327,7 @@ namespace Cosevi.SIBOAC.Models
                 new ObjectParameter("idDelegaciones", idDelegaciones) :
                 new ObjectParameter("idDelegaciones", typeof(string));
     
-            var usuarioSistemaParameter = usuarioSistema != null ?
-                new ObjectParameter("UsuarioSistema", usuarioSistema) :
-                new ObjectParameter("UsuarioSistema", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter, usuarioSistemaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDescargaParteOficialData_Result>("GetDescargaParteOficialData", fechaDesdeParameter, fechaHastaParameter, valorParameter, idAutoridadesParameter, idDelegacionesParameter);
         }
     
         public virtual ObjectResult<GetReporteStatusActualPlanoData_Result> GetReporteStatusActualPlanoData(Nullable<int> statusPlano, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string delegacion, string autoridad, string usuarioSistema)

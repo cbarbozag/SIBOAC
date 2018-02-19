@@ -243,7 +243,7 @@
     <Compile Include="Controllers\ActividadOficialController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
-    <Compile Include="Controllers\ARTICULO_ESPECIFICOController.cs" />
+    <Compile Include="Controllers\ArtículosAdicionalesSugeridosController.cs" />
     <Compile Include="Controllers\AutoridadsController.cs" />
     <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -435,7 +435,7 @@
     <Compile Include="Models\ARTICULOXBOLETA.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ARTICULO_ESPECIFICO.cs">
+    <Compile Include="Models\Artículos_Adicionales_Sugeridos.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Autoridad.cs">
@@ -1684,11 +1684,11 @@
     <Content Include="Views\Reporte\_ConsultaeImpresionDeParteOficial.cshtml" />
     <Content Include="Views\Reporte\_ReportePorUsuario.cshtml" />
     <Content Include="Views\Reporte\_ConsultaeImpresionDeBoletas.cshtml" />
-    <Content Include="Views\ARTICULO_ESPECIFICO\Create.cshtml" />
-    <Content Include="Views\ARTICULO_ESPECIFICO\Delete.cshtml" />
-    <Content Include="Views\ARTICULO_ESPECIFICO\Details.cshtml" />
-    <Content Include="Views\ARTICULO_ESPECIFICO\Edit.cshtml" />
-    <Content Include="Views\ARTICULO_ESPECIFICO\Index.cshtml" />
+    <Content Include="Views\ArtículosAdicionalesSugeridos\Create.cshtml" />
+    <Content Include="Views\ArtículosAdicionalesSugeridos\Delete.cshtml" />
+    <Content Include="Views\ArtículosAdicionalesSugeridos\Details.cshtml" />
+    <Content Include="Views\ArtículosAdicionalesSugeridos\Edit.cshtml" />
+    <Content Include="Views\ArtículosAdicionalesSugeridos\Index.cshtml" />
     <Content Include="Views\AdjuntarArchivos\_AdjuntarView.cshtml" />
     <Content Include="Views\AdjuntarArchivos\Index.cshtml" />
     <Content Include="Views\Reporte\_ReporteStatusActualPlano.cshtml" />

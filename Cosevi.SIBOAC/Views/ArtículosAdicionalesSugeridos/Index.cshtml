@@ -1,5 +1,5 @@
 ﻿
-@model PagedList.IPagedList<Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO>
+@model PagedList.IPagedList<Cosevi.SIBOAC.Models.Artículos_Adicionales_Sugeridos>
 @using PagedList.Mvc;
 
 @{
@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de Artículos Específicos</h2>
+<h2>Lista de Artículos Adicionales Sugeridos</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
@@ -41,9 +41,6 @@
         <th>
             @Html.DisplayNameFor(model => model.First().codigo_inmovilizacion)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().observacion_noaplicacion)
-        </th>
         <th></th>
     </tr>
 
@@ -76,9 +73,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.codigo_inmovilizacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observacion_noaplicacion)
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
@@ -125,9 +119,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.codigo_inmovilizacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.observacion_noaplicacion)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |

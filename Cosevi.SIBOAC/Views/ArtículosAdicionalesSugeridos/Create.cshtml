@@ -1,10 +1,9 @@
-﻿@model Cosevi.SIBOAC.Models.ARTICULO_ESPECIFICO
+﻿@model Cosevi.SIBOAC.Models.Artículos_Adicionales_Sugeridos
 
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Nuevo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
@@ -16,6 +15,7 @@
             //Limpiamos los otros dropsownlist
             if ($("#codigo").val() == 0)
             {
+                $("#Departamento").empty();
                 $("#FechaDeInicio").empty();
                 $("#FechaFin").empty();
                 $("#Conducta").append($("<option/>").val("0").text("Seleccione..."));
@@ -24,7 +24,7 @@
             }//Ejecutamos el AJAX para llamar a la acción "ObtenerDepartamento"
             $.ajax(
                 {
-                    url:'@Url.Action("ObtenerConducta")',
+                    url:'@Url.Action("ObtenerConductaCreate")',
                     type: "POST",
                     dataType: "json",
                     async:true,
@@ -98,9 +98,6 @@
 
 
 
-
-
-
         $("#FechaDeFin").change(function () {
             if ($("#FechaDeInicio").val() == 0 || $("#FechaDeFin").val() == 0) {
                 $("#CodRetTemp").empty();
@@ -168,7 +165,7 @@
 
         $.ajax(
             {
-                url: '@Url.Action("ObtenerConducta")',
+                url: '@Url.Action("ObtenerConductaCreate")',
                 type: "POST",
                 dataType: "json",
                 async: true,
@@ -311,15 +308,14 @@
 </script>
 
 
-
-<h2>Editar</h2>
+<h2>Nuevo</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Artículo Específico</h4>
+        <h4>Artículo Adicional Sugerido</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -335,38 +331,13 @@
         </div>
 
 
-        @*@Html.HiddenFor(model => model.codigo)*@
-
-        @*@Html.HiddenFor(model => model.conducta)
-
-            @Html.HiddenFor(model => model.fecha_inicio)
-
-            @Html.HiddenFor(model => model.fecha_final)
-
-            @Html.HiddenFor(model => model.codigo_retiro_temporal)
-
-            @Html.HiddenFor(model => model.codigo_inmovilizacion)
-
-            @Html.HiddenFor(model => model.observacion_noaplicacion)*@
-
-
         <div class="form-group">
-                @Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("codigo", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-        @*<div class="form-group">
             @Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("codigo", ViewBag.ComboArticulos as IEnumerable<SelectListItem>)
+                @Html.DropDownList("codigo", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
             </div>
-        </div>*@
-
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.conducta, "Conducta", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -375,11 +346,11 @@
             </div>
         </div>
 
-
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_inicio, "Fecha inicial", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <div class="input-daterange input-group" id="datepicker">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                     <select id="FechaDeInicio" name="fecha_inicio" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
@@ -388,16 +359,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_final, "Fecha final", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                <div class="input-group date"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <div class="input-daterange input-group" id="datepicker">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                     <select id="FechaDeFin" name="fecha_final" class="form-control"> <option value="0">Seleccione...</option> </select>
                 </div>
             </div>
         </div>
 
-
         <div class="form-group">
             @Html.LabelFor(model => model.estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
                 @Html.DropDownListFor(model => model.estado,
                   new List<SelectListItem> {
                        new SelectListItem { Value = "A" , Text = "Activo" },
@@ -406,7 +379,6 @@
                   new { @class = "form-control" })
             </div>
         </div>
-
 
 
 
@@ -424,13 +396,9 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.observacion_noaplicacion, "Observaciones", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.observacion_noaplicacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.observacion_noaplicacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @*@if (@ViewData["codigo_retiro_temporal"] == null && @ViewData["codigo_inmovilizacion"] == null ) {*@
+
+        @*}*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -440,22 +408,23 @@
     </div>
 }
 
-            <div>
-                @Html.ActionLink("Regresar a la lista", "Index")
-            </div>
+<div>
+    @Html.ActionLink("Regresar a la lista", "Index")
+</div>
 
 @section Scripts {
-<script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
         $(document).ready(
-        function () {
-            Calendario();
-        });
-</script>
+            function () {
+                Calendario();
 
-<script>
-
+            });
+    </script>
+    <script>
         function Calendario() {
-            $('.input-group.date').datepicker({
+            $('.input-daterange').datepicker({
                 startView: 2,
                 autoclose: true,
                 orientation: 'bottom auto',
@@ -464,5 +433,6 @@
                 format: 'dd/mm/yyyy'
             });
         };
-</script>
+    </script>
+
 }
