@@ -15,39 +15,34 @@ namespace Cosevi.SIBOAC.Models
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    public partial class Art铆culos_Adicionales_Sugeridos
+    public partial class Articulos_Adicionales_Sugeridos
     {
-        [DisplayName("C贸digo de art铆culo espec铆fico")]
-        [Required(ErrorMessage = "El c贸digo es obligatorio")]
-        public string codigo { get; set; }
 
+        [DisplayName("C骴igo de art韈ulo espec韋ico")]
+        [Required(ErrorMessage = "El c骴igo es obligatorio")]
+        public string Codigo { get; set; }
 
-        public string conducta { get; set; }
-
+        public string Conducta { get; set; }
 
         //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de inicio")]
         [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
-        public System.DateTime fecha_inicio { get; set; }
+        public System.DateTime Fecha_inicio { get; set; }
 
         //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Fecha de fin")]
         [Required(ErrorMessage = "La fecha de fin es obligatoria")]
-        public System.DateTime fecha_final { get; set; }
+        public System.DateTime Fecha_final { get; set; }
 
-        [DisplayName("Estado")]
         [Required(ErrorMessage = "El estado es obligatorio")]
-        public string estado { get; set; }
+        public string Estado { get; set; }
 
+        [DisplayName("C骴igo de retiro temporal")]
+        public string Retiro_temporal { get; set; }
 
-        [DisplayName("C贸digo de retiro temporal")]
-        public string codigo_retiro_temporal { get; set; }
-
-
-        [DisplayName("C贸digo de inmovilizaci贸n")]
-        public string codigo_inmovilizacion { get; set; }
-
+        [DisplayName("C骴igo de inmovilizaci髇")]
+        public string Inmovilizacion { get; set; }
     }
 }

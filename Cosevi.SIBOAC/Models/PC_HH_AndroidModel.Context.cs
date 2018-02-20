@@ -123,7 +123,7 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<TESTIGO> TESTIGO { get; set; }
         public virtual DbSet<Leyenda_Poder_Judicial> Leyenda_Poder_Judicial { get; set; }
         public virtual DbSet<Leyenda_Puntos> Leyenda_Puntos { get; set; }
-        public virtual DbSet<Artículos_Adicionales_Sugeridos> Artículos_Adicionales_Sugeridos { get; set; }
+        public virtual DbSet<Articulos_Adicionales_Sugeridos> Articulos_Adicionales_Sugeridos { get; set; }
     
         public virtual ObjectResult<BitacoraSIBOAC> GetBitacoraData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string nombreTabla, string usuario, string operacion)
         {

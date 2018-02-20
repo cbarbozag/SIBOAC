@@ -25,20 +25,20 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
-        <EntityType Name="Artículos_Adicionales_Sugeridos">
+        <EntityType Name="Articulos_Adicionales_Sugeridos">
           <Key>
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="conducta" />
-            <PropertyRef Name="fecha_inicio" />
-            <PropertyRef Name="fecha_final" />
+            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Conducta" />
+            <PropertyRef Name="Fecha_inicio" />
+            <PropertyRef Name="Fecha_final" />
           </Key>
-          <Property Name="codigo" Type="varchar" MaxLength="6" Nullable="false" />
-          <Property Name="conducta" Type="char" MaxLength="2" Nullable="false" />
-          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
-          <Property Name="fecha_final" Type="datetime" Nullable="false" />
-          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="codigo_retiro_temporal" Type="varchar" MaxLength="6" />
-          <Property Name="codigo_inmovilizacion" Type="varchar" MaxLength="6" />
+          <Property Name="Codigo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Conducta" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="Fecha_final" Type="datetime" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Retiro_temporal" Type="varchar" MaxLength="6" />
+          <Property Name="Inmovilizacion" Type="varchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="ARTICULOSXDEPOSITOSBIENES">
           <Key>
@@ -1352,7 +1352,7 @@
         <EntityContainer Name="PC_HH_AndroidModelStoreContainer">
           <EntitySet Name="ALINHORI" EntityType="Self.ALINHORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALINVERT" EntityType="Self.ALINVERT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Artículos_Adicionales_Sugeridos" EntityType="Self.Artículos_Adicionales_Sugeridos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Articulos_Adicionales_Sugeridos" EntityType="Self.Articulos_Adicionales_Sugeridos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOSXDEPOSITOSBIENES" EntityType="Self.ARTICULOSXDEPOSITOSBIENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ARTICULOXBOLETA" EntityType="Self.ARTICULOXBOLETA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AUTORIDAD" EntityType="Self.AUTORIDAD" Schema="dbo" store:Type="Tables" />
@@ -1715,7 +1715,7 @@
           <EntitySet Name="TESTIGO" EntityType="PC_HH_AndroidModel.TESTIGO" />
           <EntitySet Name="Leyenda_Poder_Judicial" EntityType="PC_HH_AndroidModel.Leyenda_Poder_Judicial" />
           <EntitySet Name="Leyenda_Puntos" EntityType="PC_HH_AndroidModel.Leyenda_Puntos" />
-          <EntitySet Name="Artículos_Adicionales_Sugeridos" EntityType="PC_HH_AndroidModel.Artículos_Adicionales_Sugeridos" />
+          <EntitySet Name="Articulos_Adicionales_Sugeridos" EntityType="PC_HH_AndroidModel.Articulos_Adicionales_Sugeridos" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3251,20 +3251,20 @@
           <Property Name="Fecha_Inicio" Type="DateTime" Precision="3" />
           <Property Name="Fecha_Final" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="Artículos_Adicionales_Sugeridos">
+        <EntityType Name="Articulos_Adicionales_Sugeridos">
           <Key>
-            <PropertyRef Name="codigo" />
-            <PropertyRef Name="conducta" />
-            <PropertyRef Name="fecha_inicio" />
-            <PropertyRef Name="fecha_final" />
+            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Conducta" />
+            <PropertyRef Name="Fecha_inicio" />
+            <PropertyRef Name="Fecha_final" />
           </Key>
-          <Property Name="codigo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fecha_final" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="codigo_retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="codigo_inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Conducta" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fecha_final" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4916,16 +4916,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Artículos_Adicionales_Sugeridos">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Artículos_Adicionales_Sugeridos">
-              <MappingFragment StoreEntitySet="Artículos_Adicionales_Sugeridos">
-                <ScalarProperty Name="codigo_inmovilizacion" ColumnName="codigo_inmovilizacion" />
-                <ScalarProperty Name="codigo_retiro_temporal" ColumnName="codigo_retiro_temporal" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="conducta" ColumnName="conducta" />
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <EntitySetMapping Name="Articulos_Adicionales_Sugeridos">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.Articulos_Adicionales_Sugeridos">
+              <MappingFragment StoreEntitySet="Articulos_Adicionales_Sugeridos">
+                <ScalarProperty Name="Inmovilizacion" ColumnName="Inmovilizacion" />
+                <ScalarProperty Name="Retiro_temporal" ColumnName="Retiro_temporal" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Fecha_final" ColumnName="Fecha_final" />
+                <ScalarProperty Name="Fecha_inicio" ColumnName="Fecha_inicio" />
+                <ScalarProperty Name="Conducta" ColumnName="Conducta" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
