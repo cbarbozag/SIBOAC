@@ -17,74 +17,74 @@
 
 
         <th>
-            @Html.DisplayNameFor(model => model.First().codigo)
+            @Html.DisplayNameFor(model => model.First().Codigo)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.First().conducta)
+            @Html.DisplayNameFor(model => model.First().Conducta)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.First().fecha_inicio)
+            @Html.DisplayNameFor(model => model.First().Fecha_inicio)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.First().fecha_final)
+            @Html.DisplayNameFor(model => model.First().Fecha_final)
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.First().estado)
+            @Html.DisplayNameFor(model => model.First().Estado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().codigo_retiro_temporal)
+            @Html.DisplayNameFor(model => model.First().Retiro_temporal)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().codigo_inmovilizacion)
+            @Html.DisplayNameFor(model => model.First().Inmovilizacion)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model)
 {
-    if (item.estado == "I")
+    if (item.Estado == "I")
     {
         <tr class="warning">
 
 
             <td>
-                @Html.DisplayFor(modelItem => item.codigo)
+                @Html.DisplayFor(modelItem => item.Codigo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.conducta)
+                @Html.DisplayFor(modelItem => item.Conducta)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fecha_inicio)
+                @Html.DisplayFor(modelItem => item.Fecha_inicio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fecha_final)
+                @Html.DisplayFor(modelItem => item.Fecha_final)
             </td>
 
 
         <td>
-            @Html.DisplayFor(modelItem => item.estado)
+            @Html.DisplayFor(modelItem => item.Estado)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.codigo_retiro_temporal)
+            @Html.DisplayFor(modelItem => item.Retiro_temporal)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.codigo_inmovilizacion)
+            @Html.DisplayFor(modelItem => item.Inmovilizacion)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
-            @Html.ActionLink("Detalles", "Details", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
+            @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final }) |
+            @Html.ActionLink("Detalles", "Details", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final }) |
             @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-            @if (item.estado == "I")
+            @if (item.Estado == "I")
             {
-                @Html.ActionLink("Activar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                @Html.ActionLink("Activar", "Delete", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final })
             }
             else
             {
-                @Html.ActionLink("Inactivar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                @Html.ActionLink("Inactivar", "Delete", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final })
             }
         </td>
     </tr>
@@ -96,41 +96,41 @@
 
 
             <td>
-                @Html.DisplayFor(modelItem => item.codigo)
+                @Html.DisplayFor(modelItem => item.Codigo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.conducta)
+                @Html.DisplayFor(modelItem => item.Conducta)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fecha_inicio)
+                @Html.DisplayFor(modelItem => item.Fecha_inicio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fecha_final)
+                @Html.DisplayFor(modelItem => item.Fecha_final)
             </td>
 
 
 
 
             <td>
-                @Html.DisplayFor(modelItem => item.estado)
+                @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.codigo_retiro_temporal)
+                @Html.DisplayFor(modelItem => item.Retiro_temporal)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.codigo_inmovilizacion)
+                @Html.DisplayFor(modelItem => item.Inmovilizacion)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
-                @Html.ActionLink("Detalles", "Details", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final }) |
+                @Html.ActionLink("Editar", "Edit", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final }) |
+                @Html.ActionLink("Detalles", "Details", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final }) |
                 @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                @if (item.estado == "I")
+                @if (item.Estado == "I")
                 {
-                    @Html.ActionLink("Activar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                    @Html.ActionLink("Activar", "Delete", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final })
                 }
                 else
                 {
-                    @Html.ActionLink("Inactivar", "Delete", new { CodArticulo = item.codigo, Conducta = item.conducta, FechaInicio = item.fecha_inicio, FechaFin = item.fecha_final })
+                    @Html.ActionLink("Inactivar", "Delete", new { CodArticulo = item.Codigo, Conducta = item.Conducta, FechaInicio = item.Fecha_inicio, FechaFin = item.Fecha_final })
                 }
             </td>
         </tr>

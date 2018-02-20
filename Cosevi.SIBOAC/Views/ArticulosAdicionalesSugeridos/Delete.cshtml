@@ -6,7 +6,7 @@
 }
 
 
-@if (Model.estado == "A")
+@if (Model.Estado == "A")
             {
     <h2>Inactivar</h2>
 }
@@ -22,63 +22,63 @@ else
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.codigo)
+            @Html.DisplayNameFor(model => model.Codigo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.codigo)
+            @Html.DisplayFor(model => model.Codigo)
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.conducta)
+            @Html.DisplayNameFor(model => model.Conducta)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.conducta)
+            @Html.DisplayFor(model => model.Conducta)
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha_inicio)
+            @Html.DisplayNameFor(model => model.Fecha_inicio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_inicio)
+            @Html.DisplayFor(model => model.Fecha_inicio)
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha_final)
+            @Html.DisplayNameFor(model => model.Fecha_final)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.fecha_final)
+            @Html.DisplayFor(model => model.Fecha_final)
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.estado)
+            @Html.DisplayNameFor(model => model.Estado)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.estado)
+            @Html.DisplayFor(model => model.Estado)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.codigo_retiro_temporal)
+            @Html.DisplayNameFor(model => model.Retiro_temporal)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.codigo_retiro_temporal)
+            @Html.DisplayFor(model => model.Retiro_temporal)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.codigo_inmovilizacion)
+            @Html.DisplayNameFor(model => model.Inmovilizacion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.codigo_inmovilizacion)
+            @Html.DisplayFor(model => model.Inmovilizacion)
         </dd>
 
     </dl>
@@ -87,7 +87,7 @@ else
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            @if (Model.estado == "A")
+            @if (Model.Estado == "A")
             {
                 <input type="submit" value="Inactivar" class="btn btn-warning" />
             }

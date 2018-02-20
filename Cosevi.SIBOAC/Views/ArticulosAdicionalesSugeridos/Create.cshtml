@@ -322,32 +322,32 @@
 
 
         <div class="form-group">
-            <input type="hidden" id="IdCodigo" value="@ViewData["codigo"]" />
-            <input type="hidden" id="IdConducta" value="@ViewData["conducta"]" />
-            <input type="hidden" id="IdFechaDeFin" value="@ViewData["fecha_final"]" />
-            <input type="hidden" id="IdFechaDeInicio" value="@ViewData["fecha_inicio"]" />
-            <input type="hidden" id="Idcodigo_retiro_temporal" value="@ViewData["codigo_retiro_temporal"]" />
-            <input type="hidden" id="Idcodigo_inmovilizacion" value="@ViewData["codigo_inmovilizacion"]" />
+            <input type="hidden" id="IdCodigo" value="@ViewData["Codigo"]" />
+            <input type="hidden" id="IdConducta" value="@ViewData["Conducta"]" />
+            <input type="hidden" id="IdFechaDeFin" value="@ViewData["Fecha_final"]" />
+            <input type="hidden" id="IdFechaDeInicio" value="@ViewData["Fecha_inicio"]" />
+            <input type="hidden" id="Idcodigo_retiro_temporal" value="@ViewData["Retiro_temporal"]" />
+            <input type="hidden" id="Idcodigo_inmovilizacion" value="@ViewData["Inmovilizacion"]" />
         </div>
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Codigo, " Código de artículo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("codigo", (IEnumerable<SelectListItem>)ViewBag.ComboArticulos, "Seleccione", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.conducta, "Conducta", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Conducta, "Conducta", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select id="Conducta" name="Conducta" class="form-control"> <option value="0">Seleccione...</option> </select>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fecha_inicio, "Fecha inicial", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Fecha_inicio, "Fecha inicial", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 <div class="input-daterange input-group" id="datepicker">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -357,7 +357,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fecha_final, "Fecha final", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Fecha_final, "Fecha final", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-2">
                 <div class="input-daterange input-group" id="datepicker">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -367,11 +367,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control"} })
                     @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
-                @Html.DropDownListFor(model => model.estado,
+                @Html.DropDownListFor(model => model.Estado,
                   new List<SelectListItem> {
                        new SelectListItem { Value = "A" , Text = "Activo" },
                        new SelectListItem { Value = "I" , Text = "Inactivo" }
@@ -383,14 +383,14 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.codigo_retiro_temporal, "Código retiro temporal", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Retiro_temporal, "Código retiro temporal", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select id="CodRetTemp" name="codigo_retiro_temporal" class="form-control"> <option value="0">Seleccione...</option> </select>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.codigo_inmovilizacion, "Código inmovilización", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Inmovilizacion, "Código inmovilización", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select id="CodInm" name="codigo_inmovilizacion" class="form-control"> <option value="0">Seleccione...</option> </select>
             </div>
