@@ -759,6 +759,7 @@
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="extension" Type="varchar" MaxLength="6" />
           <Property Name="consecutivo_extension" Type="int" />
+          <Property Name="linkArchivo" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="OTROTIPOTRANSPORTE">
           <Key>
@@ -3159,6 +3160,7 @@
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="extension" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="consecutivo_extension" Type="Int32" />
+          <Property Name="linkArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <ComplexType Name="GetReportePorDelegacionAutoridadData1_Result">
           <Property Type="String" Name="Reporte" Nullable="false" MaxLength="21" />
@@ -4774,6 +4776,7 @@
           <EntitySetMapping Name="OtrosAdjuntos">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.OtrosAdjuntos">
               <MappingFragment StoreEntitySet="OtrosAdjuntos">
+                <ScalarProperty Name="linkArchivo" ColumnName="linkArchivo" />
                 <ScalarProperty Name="consecutivo_extension" ColumnName="consecutivo_extension" />
                 <ScalarProperty Name="extension" ColumnName="extension" />
                 <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />

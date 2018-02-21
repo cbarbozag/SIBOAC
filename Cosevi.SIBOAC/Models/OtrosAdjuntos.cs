@@ -21,5 +21,6 @@ namespace Cosevi.SIBOAC.Models
         public System.DateTime fechaRegistro { get; set; }
         public string extension { get; set; }
         public Nullable<int> consecutivo_extension { get; set; }
+        public string linkArchivo { get; set; }
     }
 }
