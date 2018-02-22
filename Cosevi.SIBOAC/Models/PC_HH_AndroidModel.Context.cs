@@ -118,12 +118,12 @@ namespace Cosevi.SIBOAC.Models
         public virtual DbSet<VEHICULO> VEHICULO { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
         public virtual DbSet<LEYENDAPORAUTORIDAD> LEYENDAPORAUTORIDAD { get; set; }
-        public virtual DbSet<OtrosAdjuntos> OtrosAdjuntos { get; set; }
         public virtual DbSet<TESTIGOXPARTE> TESTIGOXPARTE { get; set; }
         public virtual DbSet<TESTIGO> TESTIGO { get; set; }
         public virtual DbSet<Leyenda_Poder_Judicial> Leyenda_Poder_Judicial { get; set; }
         public virtual DbSet<Leyenda_Puntos> Leyenda_Puntos { get; set; }
         public virtual DbSet<Articulos_Adicionales_Sugeridos> Articulos_Adicionales_Sugeridos { get; set; }
+        public virtual DbSet<OtrosAdjuntos> OtrosAdjuntos { get; set; }
     
         public virtual ObjectResult<BitacoraSIBOAC> GetBitacoraData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string nombreTabla, string usuario, string operacion)
         {

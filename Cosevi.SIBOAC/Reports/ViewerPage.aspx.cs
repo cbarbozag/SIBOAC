@@ -120,7 +120,7 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
-                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero_boleta == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);
                             
 
                             foreach (string item in extSvg)
@@ -142,7 +142,7 @@ namespace Cosevi.SIBOAC.Reports
                                 {
                                     fuente = CodigoFuente1,
                                     serie = serParte1,
-                                    numero_boleta = numeParte1,
+                                    numero = numeParte1,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
                                     nombre = nombre,
@@ -154,7 +154,7 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero_boleta == numeParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
 
                             listaArchivos.Columns.Add("ParteOficial");                            
 
@@ -227,7 +227,7 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
-                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
 
 
                             foreach (string item in extSvg)
@@ -249,7 +249,7 @@ namespace Cosevi.SIBOAC.Reports
                                 {
                                     fuente = CodigoFuente2,
                                     serie = serieParte2,
-                                    numero_boleta = numeroParte2,
+                                    numero = numeroParte2,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
                                     nombre = nombre,
@@ -261,7 +261,7 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
 
                             listaArchivos.Columns.Add("ParteOficial");
 
@@ -332,10 +332,10 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano3 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
-                            var extSvg3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero_boleta) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                            var extSvg3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
                             var extSvgFuente3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
                             var extSvgSerie3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
-                            var extSvgParte3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
+                            var extSvgParte3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
 
                             var listPlanos3 = extSvg3.Zip(extSvgParte3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie3, (x, z) => Tuple.Create(x.NombreAr,x.NumPar,z)).Zip(extSvgFuente3, (y,r) => Tuple.Create(y.Item1,y.Item2,y.Item3,r));
 
@@ -358,7 +358,7 @@ namespace Cosevi.SIBOAC.Reports
                                 {
                                     fuente = item.Item4,
                                     serie = item.Item3,
-                                    numero_boleta = item.Item2,
+                                    numero = item.Item2,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
                                     nombre = nombre,
@@ -370,8 +370,8 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
-                            var nombreAdjuntos3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
-                            var numPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos3.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
+                            var nombreAdjuntos3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                            var numPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
 
@@ -449,10 +449,10 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano4 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
-                            var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero_boleta) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                            var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
                             var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
                             var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
-                            var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
+                            var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
 
                             var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
 
@@ -475,7 +475,7 @@ namespace Cosevi.SIBOAC.Reports
                                 {
                                     fuente = item.Item4,
                                     serie = item.Item3,
-                                    numero_boleta = item.Item2,
+                                    numero = item.Item2,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
                                     nombre = nombre,
@@ -488,8 +488,8 @@ namespace Cosevi.SIBOAC.Reports
                             #endregion
 
 
-                            var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero_boleta) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
-                            var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero_boleta).ToList();
+                            var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                            var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
                             
@@ -860,7 +860,7 @@ namespace Cosevi.SIBOAC.Reports
                         var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro1 && a.NumeroParte == Parametro2).Select(a => a.Fuente).ToList());
                         string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
 
-                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero_boleta == numeroParte1 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
+                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero == numeroParte1 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
                     }
                     if (TipoConsulta == 2)
                     {
@@ -879,7 +879,7 @@ namespace Cosevi.SIBOAC.Reports
                         int serieParte2 = Convert.ToInt32(CodigoSerie2);
                         decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);                        
 
-                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero_boleta == numeroParte2 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();                        
+                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();                        
                     }
                     break;
             }

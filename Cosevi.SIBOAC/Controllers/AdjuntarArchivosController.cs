@@ -42,7 +42,7 @@ namespace Cosevi.SIBOAC.Controllers
                 int numSerie = Convert.ToInt32(seriet);
                 decimal numParte = Convert.ToDecimal(NumeroParteT);
 
-                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.serie == numSerie && oa.numero_boleta == numParte).ToList();
+                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.serie == numSerie && oa.numero == numParte).ToList();
 
                 ViewBag.Adjuntos = adjuntos;
 
@@ -203,7 +203,7 @@ namespace Cosevi.SIBOAC.Controllers
                             fechaRegistro = DateTime.Now,
                             fuente = fuente,
                             nombre = nombre,
-                            numero_boleta = Convert.ToDecimal(NumeroParte),
+                            numero = Convert.ToDecimal(NumeroParte),
                             serie = Convert.ToInt32(Serie)
                         });
 
@@ -239,7 +239,7 @@ namespace Cosevi.SIBOAC.Controllers
                 int numSerie = Convert.ToInt32(fileParams[1]);
                 decimal numParte = Convert.ToDecimal(fileParams[2]);
 
-                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero_boleta == numParte).FirstOrDefault();
+                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numParte).FirstOrDefault();
 
                 if (adjunto != null)
                 {

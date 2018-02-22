@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@model Cosevi.SIBOAC.Models.SIBOACUsuarios
+
 @if (Request.IsAuthenticated || true)
 {
     using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -8,7 +10,7 @@
     <ul class="nav navbar-nav navbar-right">
         <li>
             <a>
-                Hola @User.Identity.GetUserName()!
+                Usuario @User.Identity.GetUserName()                
             </a>           
             @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
         </li>

@@ -749,12 +749,12 @@
           <Key>
             <PropertyRef Name="fuente" />
             <PropertyRef Name="serie" />
-            <PropertyRef Name="numero_boleta" />
+            <PropertyRef Name="numero" />
             <PropertyRef Name="nombre" />
           </Key>
           <Property Name="fuente" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="serie" Type="int" Nullable="false" />
-          <Property Name="numero_boleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="extension" Type="varchar" MaxLength="6" />
@@ -1181,6 +1181,8 @@
         <EntityType Name="UNIDADES_ALCOHOL">
           <Key>
             <PropertyRef Name="unidad" />
+            <PropertyRef Name="fecha_inicio" />
+            <PropertyRef Name="fecha_fin" />
           </Key>
           <Property Name="unidad" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="estado" Type="nchar" MaxLength="1" Nullable="false" />
@@ -1696,7 +1698,6 @@
             <Parameter Name="idDelegaciones" Mode="In" Type="String" />
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="OtrosAdjuntos" EntityType="PC_HH_AndroidModel.OtrosAdjuntos" />
           <FunctionImport Name="GetReporteListadoMultaFijaData" ReturnType="Collection(PC_HH_AndroidModel.GetReporteListadoMultaFijaData_Result)">
             <Parameter Name="FechaDesde" Mode="In" Type="DateTime" />
             <Parameter Name="FechaHasta" Mode="In" Type="DateTime" />
@@ -1717,6 +1718,7 @@
           <EntitySet Name="Leyenda_Poder_Judicial" EntityType="PC_HH_AndroidModel.Leyenda_Poder_Judicial" />
           <EntitySet Name="Leyenda_Puntos" EntityType="PC_HH_AndroidModel.Leyenda_Puntos" />
           <EntitySet Name="Articulos_Adicionales_Sugeridos" EntityType="PC_HH_AndroidModel.Articulos_Adicionales_Sugeridos" />
+          <EntitySet Name="OtrosAdjuntos" EntityType="PC_HH_AndroidModel.OtrosAdjuntos" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2216,6 +2218,8 @@
         <EntityType Name="UnidadesDeAlcohol">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="FechaDeInicio" />
+            <PropertyRef Name="FechaDeFin" />
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
@@ -3146,22 +3150,6 @@
           <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
           <Property Type="String" Name="DescripcionAutoridad" Nullable="true" MaxLength="35" />
         </ComplexType>
-        <EntityType Name="OtrosAdjuntos">
-          <Key>
-            <PropertyRef Name="fuente" />
-            <PropertyRef Name="serie" />
-            <PropertyRef Name="numero_boleta" />
-            <PropertyRef Name="nombre" />
-          </Key>
-          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="serie" Type="Int32" Nullable="false" />
-          <Property Name="numero_boleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="extension" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="consecutivo_extension" Type="Int32" />
-          <Property Name="linkArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <ComplexType Name="GetReportePorDelegacionAutoridadData1_Result">
           <Property Type="String" Name="Reporte" Nullable="false" MaxLength="21" />
           <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />
@@ -3267,6 +3255,22 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="Inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OtrosAdjuntos">
+          <Key>
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero" />
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="extension" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="consecutivo_extension" Type="Int32" />
+          <Property Name="linkArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4773,20 +4777,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="OtrosAdjuntos">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OtrosAdjuntos">
-              <MappingFragment StoreEntitySet="OtrosAdjuntos">
-                <ScalarProperty Name="linkArchivo" ColumnName="linkArchivo" />
-                <ScalarProperty Name="consecutivo_extension" ColumnName="consecutivo_extension" />
-                <ScalarProperty Name="extension" ColumnName="extension" />
-                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
-                <ScalarProperty Name="serie" ColumnName="serie" />
-                <ScalarProperty Name="fuente" ColumnName="fuente" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetReporteListadoParteOficialData" FunctionName="PC_HH_AndroidModel.Store.GetReporteListadoParteOficialData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetReporteListadoParteOficialData_Result">
@@ -4929,6 +4919,20 @@
                 <ScalarProperty Name="Fecha_inicio" ColumnName="Fecha_inicio" />
                 <ScalarProperty Name="Conducta" ColumnName="Conducta" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtrosAdjuntos">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.OtrosAdjuntos">
+              <MappingFragment StoreEntitySet="OtrosAdjuntos">
+                <ScalarProperty Name="linkArchivo" ColumnName="linkArchivo" />
+                <ScalarProperty Name="consecutivo_extension" ColumnName="consecutivo_extension" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="fuente" ColumnName="fuente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -16,7 +16,7 @@ namespace Cosevi.SIBOAC.Models
     {
         public string fuente { get; set; }
         public int serie { get; set; }
-        public decimal numero_boleta { get; set; }
+        public decimal numero { get; set; }
         public string nombre { get; set; }
         public System.DateTime fechaRegistro { get; set; }
         public string extension { get; set; }
