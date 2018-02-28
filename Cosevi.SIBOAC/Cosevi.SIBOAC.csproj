@@ -245,6 +245,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadPorOficialController.cs" />
     <Compile Include="Controllers\ActividadOficialController.cs" />
+    <Compile Include="Controllers\AdjuntarArchivosBoletaController.cs" />
     <Compile Include="Controllers\AlineacionHorizontalsController.cs" />
     <Compile Include="Controllers\AlineacionVerticalsController.cs" />
     <Compile Include="Controllers\ArticulosAdicionalesSugeridosController.cs" />
@@ -736,6 +737,7 @@
     <Compile Include="Models\SIBOACUsuarios.cs">
       <DependentUpon>SIBOACSecurityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdjuntoBoleta.cs" />
     <Compile Include="Models\StatusPlano.cs" />
     <Compile Include="Models\TESTIGO.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
@@ -1729,6 +1731,8 @@
     <Content Include="Views\Leyenda_Poder_Judicial\Index.cshtml" />
     <Content Include="Views\Leyenda_Poder_Judicial\RealDelete.cshtml" />
     <Content Include="Views\Leyenda_Puntos\RealDelete.cshtml" />
+    <Content Include="Views\AdjuntarArchivosBoleta\_AdjuntarView.cshtml" />
+    <Content Include="Views\AdjuntarArchivosBoleta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />

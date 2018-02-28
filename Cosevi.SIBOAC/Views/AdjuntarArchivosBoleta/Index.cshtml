@@ -1,33 +1,33 @@
-﻿@model Cosevi.SIBOAC.Models.ParteOficial
+﻿@model Cosevi.SIBOAC.Models.Boletas
 
 @{
     ViewBag.Title = "Reporte";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Adjuntar Archivos a Parte Oficial</h2>
+<h2>Adjuntar Archivos a Boleta</h2>
 <br>
 <br>
 <br>
 <br>
-@using (Html.BeginForm("Index", "AdjuntarArchivos", FormMethod.Get))
+@using (Html.BeginForm("Index", "AdjuntarArchivosBoleta", FormMethod.Get))
 {
 
     <table>
         <tr>
             <th>
-                @Html.LabelFor(model => model.Serie, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.serie, htmlAttributes: new { @class = "control-label col-md-2" })
             </th>
             <td>
-                @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.serie, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.serie, "", new { @class = "text-danger" })
             </td>
             <th>
-                @Html.LabelFor(model => model.NumeroParte, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.numero_boleta, htmlAttributes: new { @class = "control-label col-md-2" })
             </th>
             <td>
-                @Html.EditorFor(model => model.NumeroParte, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumeroParte, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.numero_boleta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numero_boleta, "", new { @class = "text-danger" })
             </td>             
             <td>
             </td>
