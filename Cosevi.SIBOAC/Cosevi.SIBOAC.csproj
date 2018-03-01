@@ -242,6 +242,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="BoletaArchivosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoletaArchivosDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadPorOficialController.cs" />
     <Compile Include="Controllers\ActividadOficialController.cs" />
@@ -925,6 +930,17 @@
     </Content>
     <Content Include="FirmasDataSet.xsc">
       <DependentUpon>FirmasDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="BoletaArchivosDataSet.xsc">
+      <DependentUpon>BoletaArchivosDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="BoletaArchivosDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BoletaArchivosDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="BoletaArchivosDataSet.xss">
+      <DependentUpon>BoletaArchivosDataSet.xsd</DependentUpon>
     </Content>
     <None Include="FirmasDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1811,6 +1827,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\SubReportAdjuntos.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\SubReportAdjuntosB.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

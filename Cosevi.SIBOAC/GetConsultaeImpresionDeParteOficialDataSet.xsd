@@ -2,9 +2,8 @@
 <xs:schema id="GetConsultaeImpresionDeParteOficialDataSet" targetNamespace="http://tempuri.org/GetConsultaeImpresionDeParteOficialDataSet.xsd" xmlns:mstns="http://tempuri.org/GetConsultaeImpresionDeParteOficialDataSet.xsd" xmlns="http://tempuri.org/GetConsultaeImpresionDeParteOficialDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -127,6 +126,7 @@
               <Mapping SourceColumn="cod_distrito" DataSetColumn="cod_distrito" />
               <Mapping SourceColumn="DescripcionDistrito" DataSetColumn="DescripcionDistrito" />
               <Mapping SourceColumn="telefono" DataSetColumn="telefono" />
+              <Mapping SourceColumn="DireccionUsuario" DataSetColumn="DireccionUsuario" />
               <Mapping SourceColumn="tipo_ideherido" DataSetColumn="tipo_ideherido" />
               <Mapping SourceColumn="identificacionherido" DataSetColumn="identificacionherido" />
               <Mapping SourceColumn="nombreherido" DataSetColumn="nombreherido" />
@@ -539,13 +539,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="direccion" msprop:Generator_ColumnVarNameInTable="columndireccion" msprop:Generator_ColumnPropNameInRow="direccion" msprop:Generator_ColumnPropNameInTable="direccionColumn" msprop:Generator_UserColumnName="direccion" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="direccion" msprop:Generator_ColumnVarNameInTable="columndireccion" msprop:Generator_ColumnPropNameInRow="direccion" msprop:Generator_ColumnPropNameInTable="direccionColumn" msprop:Generator_UserColumnName="direccion" type="xs:int" minOccurs="0" />
               <xs:element name="DescripcionDireccion" msprop:Generator_ColumnVarNameInTable="columnDescripcionDireccion" msprop:Generator_ColumnPropNameInRow="DescripcionDireccion" msprop:Generator_ColumnPropNameInTable="DescripcionDireccionColumn" msprop:Generator_UserColumnName="DescripcionDireccion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -656,6 +650,13 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="DireccionUsuario" msprop:Generator_ColumnVarNameInTable="columnDireccionUsuario" msprop:Generator_ColumnPropNameInRow="DireccionUsuario" msprop:Generator_ColumnPropNameInTable="DireccionUsuarioColumn" msprop:Generator_UserColumnName="DireccionUsuario" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="tipo_ideherido" msprop:Generator_ColumnVarNameInTable="columntipo_ideherido" msprop:Generator_ColumnPropNameInRow="tipo_ideherido" msprop:Generator_ColumnPropNameInTable="tipo_ideheridoColumn" msprop:Generator_UserColumnName="tipo_ideherido" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -727,10 +728,10 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CondicionUsuario" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCondicionUsuario" msprop:Generator_ColumnPropNameInRow="CondicionUsuario" msprop:Generator_ColumnPropNameInTable="CondicionUsuarioColumn" msprop:Generator_UserColumnName="CondicionUsuario" minOccurs="0">
+              <xs:element name="CondicionUsuario" msprop:Generator_ColumnVarNameInTable="columnCondicionUsuario" msprop:Generator_ColumnPropNameInRow="CondicionUsuario" msprop:Generator_ColumnPropNameInTable="CondicionUsuarioColumn" msprop:Generator_UserColumnName="CondicionUsuario" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="5" />
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
