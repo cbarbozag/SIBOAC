@@ -99,8 +99,9 @@
             <br />
             <br />
   
-            <div class="pull-right">
+            <div class="pull-right col-md-12">
                 <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+                <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
             </div>
         </div>
     </table>
@@ -115,12 +116,19 @@
                     Calendario();
                 
                     ReportCall();
-
+                    limpiarCampos()
                 });
             </script>
 
 
             <script>
+
+                function limpiarCampos() {
+                    $('#limpiarCampos').click(function () {
+                        $('input[type="text"]').val('');
+                    });
+                }
+
 
                 function listaDelegacionesChange(obj) {
 

@@ -11,7 +11,7 @@
 
 @using (Html.BeginForm("GetConsultaeImpresionParteOficial", "Reporte", FormMethod.Get))
 {
-    <div>
+    <div id="CamposReporte">
         <div class="form-group">
             <label class="control-label col-md-2">Seleccione la opción por la que desea consultar:</label>
             <div class="col-md-10">
@@ -151,6 +151,8 @@
     <br />
     <div class="pull-right col-md-12">
         <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+
+        <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
     </div>
 }
 <br/>
@@ -184,12 +186,18 @@
             }
             prepararCampos();
             ReportCall();
+            });
+
+        $(document).ready(function () {
+            $('#limpiarCampos').click(function () {
+                $('input[type="text"]').val('');                
+            });
         });
-    </script>
+    </script>   
       
 
     <script>
-
+        
 
         function prepararCampos() {
             $(":input[type='radio']").on("change", function () {
@@ -207,7 +215,7 @@
 
 
         function limpiar() {
-            var reporte = $('#reporte');
+            var reporte = $('#ifrmReportViewer');
             reporte.empty();
         };
        
