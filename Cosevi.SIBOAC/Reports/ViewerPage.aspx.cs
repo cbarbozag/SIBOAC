@@ -161,10 +161,10 @@ namespace Cosevi.SIBOAC.Reports
                             #endregion
 
                             var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
-                            var extB1 = db.OtrosAdjuntos.Where(oa => Fuente1B.Contains(oa.fuente) && SerieBoleta1.Contains(oa.serie) && Boleta1.Contains(oa.numero) && !extensionRestringida.Contains(oa.extension));
+                            var extB1 = (db.OtrosAdjuntos.Where(oa => Fuente1B.Contains(oa.fuente) && SerieBoleta1.Contains(oa.serie) && Boleta1.Contains(oa.numero) && !extensionRestringida.Contains(oa.extension))).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
-                            listaArchivosB.Columns.Add("ParteOficial");
+                            listaArchivosB.Columns.Add("NumBoleta");
 
                             foreach (string item in ext1)
                             {
@@ -172,10 +172,9 @@ namespace Cosevi.SIBOAC.Reports
                             }
 
                             foreach (var item in extB1)
-                            {
-                                var adjuntosBoleta = string.Format("{0}-{1}-{2}-{3}.{4}", item.fuente, item.serie, item.numero, item.consecutivo_extension, item.extension);
+                            {                                
 
-                                listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta1, adjuntosBoleta)).AbsoluteUri, item.numero);
+                                listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, item.numero);
                             }
 
                             var listFirma = (db.BOLETA.Where(a => a.serie_parteoficial == Parametro1 && a.numeroparte == Parametro2).ToList());
