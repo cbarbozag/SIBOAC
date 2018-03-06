@@ -41,7 +41,7 @@ namespace Cosevi.SIBOAC.Controllers
                 int numSerie = Convert.ToInt32(seriet);
                 decimal numBoleta = Convert.ToDecimal(NumeroBoletaT);
 
-                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.serie == numSerie && oa.numero == numBoleta).ToList();
+                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.fuente == "2"  && oa.serie == numSerie && oa.numero == numBoleta).ToList();
 
                 ViewBag.Adjuntos = adjuntos;
 

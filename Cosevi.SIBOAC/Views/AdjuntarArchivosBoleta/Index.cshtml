@@ -28,13 +28,13 @@
             <td>
                 @Html.EditorFor(model => model.numero_boleta, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.numero_boleta, "", new { @class = "text-danger" })
-            </td>             
-            <td>
             </td>
+            <td></td>
             <td></td>
             <td></td>
             <td>
                 <input type="submit" value="Consultar" class="btn btn-success" />
+                <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
             </td>
         </tr>
     </table>
@@ -46,15 +46,27 @@
 {
     TempData["Type"] = null;
     TempData["Message"] = null;
-    
-        <div class="panel panel-success">
-            <div class="panel-heading">
-            </div>
-            <div class="panel-body">
-                @Html.Partial("_AdjuntarView", Model)
-            </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">
         </div>
-    
+        <div class="panel-body">
+            @Html.Partial("_AdjuntarView", Model)
+        </div>
+    </div>
+
+
+}
+
+@section Script{
+
+    <script>
+        function limpiarCampos() {
+            $('#limpiarCampos').click(function () {
+                $('input[type="text"]').val('');
+            });
+        }
+    </script>    
 
 }
 

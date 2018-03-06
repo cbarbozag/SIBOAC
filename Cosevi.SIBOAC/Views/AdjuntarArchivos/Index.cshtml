@@ -35,6 +35,7 @@
             <td></td>
             <td>
                 <input type="submit" value="Consultar" class="btn btn-success" />
+                <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
             </td>
         </tr>
     </table>
@@ -53,8 +54,17 @@
             <div class="panel-body">
                 @Html.Partial("_AdjuntarView", Model)
             </div>
-        </div>
-    
+        </div>    
+}
+
+@section Script{
+    <script>
+        function limpiarCampos() {
+            $('#limpiarCampos').click(function () {
+                $('input[type="text"]').val('');
+            });
+        }
+    </script>    
 
 }
 

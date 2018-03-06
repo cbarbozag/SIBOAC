@@ -121,8 +121,8 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro1);
                             decimal numeParte1 = Convert.ToDecimal(Parametro2);
 
-                            //string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
@@ -160,21 +160,13 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
-                            var extB1 = (db.OtrosAdjuntos.Where(oa => Fuente1B.Contains(oa.fuente) && SerieBoleta1.Contains(oa.serie) && Boleta1.Contains(oa.numero) && !extensionRestringida.Contains(oa.extension))).ToList();
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);                            
 
-                            listaArchivos.Columns.Add("ParteOficial");
-                            listaArchivosB.Columns.Add("NumBoleta");
+                            listaArchivos.Columns.Add("ParteOficial");                            
 
                             foreach (string item in ext1)
                             {
                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri, numeroParte1);
-                            }
-
-                            foreach (var item in extB1)
-                            {                                
-
-                                listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, item.numero);
                             }
 
                             var listFirma = (db.BOLETA.Where(a => a.serie_parteoficial == Parametro1 && a.numeroparte == Parametro2).ToList());
@@ -213,8 +205,7 @@ namespace Cosevi.SIBOAC.Reports
                             }
 
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
-                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
-                            Session["_ConsultaeImpresionDeParteOficialDataBoleta"] = listaArchivosB; 
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;                            
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
                             #endregion
                         }
