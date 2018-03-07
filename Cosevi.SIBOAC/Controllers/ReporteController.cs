@@ -567,6 +567,9 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Usuarios = listaUsuarios2.OrderBy(a => a.Descripcion);
                     break;
                 #endregion
+
+                case "_ReimpresionDeBoletasDeCampo":
+                    break;
                 default:
                     break;
             }

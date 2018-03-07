@@ -35,15 +35,17 @@
         function () {          
             ReportCall();
             });
+        
+    </script>
 
-        $(document).ready(function () {
+    <script>
+
+        function limpiarCampos() {
             $('#limpiarCampos').click(function () {
                 $('input[type="text"]').val('');
             });
         }
-    </script>
 
-    <script>
         function ReportCall() {
 
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
