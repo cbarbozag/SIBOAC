@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Cosevi.SIBOAC.Models
 {
-    public class AdjuntoBoleta
+    public class BoletaAdjunto
     {
         public string CodigoAutoridad { get; set; }
 
@@ -13,7 +13,7 @@ namespace Cosevi.SIBOAC.Models
 
         public Nullable<DateTime> FechaBoleta { get; set; }
 
-        public Nullable< DateTime> FechaRegistro { get; set; }
+        public Nullable<DateTime> FechaRegistro { get; set; }
 
         public int SerieBoleta { get; set; }
 
@@ -26,10 +26,10 @@ namespace Cosevi.SIBOAC.Models
         public string CodigoPlaca { get; set; }
 
         public string NumeroPlaca { get; set; }
-       
+
         public string DescripcionRol { get; set; }
 
         public Nullable<System.DateTime> FechaModificado { get; set; }
-       public string UsuarioModificaPlano { get; set; }
+        public string UsuarioModificaPlano { get; set; }
     }
 }

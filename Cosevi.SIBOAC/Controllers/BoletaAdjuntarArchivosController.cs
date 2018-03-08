@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class AdjuntarArchivosBoletaController : BaseController<AdjuntoBoleta>
+    public class BoletaAdjuntarArchivosController : BaseController<BoletaAdjunto>
     {
         //  private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
@@ -21,7 +21,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         [SessionExpire]
         public ViewResult Index(string serie, string numero_boleta, string mensaje)
-        {            
+        {
             string _mensaje = "";
             string _tipoMensaje = "";
             ViewBag.type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
@@ -41,73 +41,74 @@ namespace Cosevi.SIBOAC.Controllers
                 int numSerie = Convert.ToInt32(seriet);
                 decimal numBoleta = Convert.ToDecimal(NumeroBoletaT);
 
-                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.fuente == "2"  && oa.serie == numSerie && oa.numero == numBoleta).ToList();
+                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.serie == numSerie && oa.numero == numBoleta).ToList();
 
                 ViewBag.Adjuntos = adjuntos;
 
                 bool exist = this.db.BOLETA.Any(x => x.serie == numSerie && x.numero_boleta == numBoleta);
 
-                if (exist) { 
-
-                var list =
-                  (
-                     from b in db.BOLETA
-                     where b.serie == numSerie && b.numero_boleta == numBoleta
-                     join a in db.AUTORIDAD on new { codigo = b.codigo_autoridad_registra } equals new { codigo = a.Id } into ba_join
-                     from a in ba_join.DefaultIfEmpty()
-                     join r in db.ROLPERSONA on new { codigo = b.codrol } equals new { codigo = r.Id } into br_join
-                     from r in br_join.DefaultIfEmpty()
-                     select new
-                     {
-                         CodigoAutoridad = b.codigo_autoridad_registra,
-                         DescripcionAutoridad = a.Descripcion,
-                         FechaBoleta = b.fecha_hora_boleta,
-                         FechaRegistro = b.fecha_registro,
-                         SerieBoleta = b.serie,
-                         NumeroBoleta = b.numero_boleta,
-                         CodigoRol = b.codrol,
-                         ClasePlaca = b.clase_placa,
-                         CodigoPlaca = b.codigo_placa,
-                         NumeroPlaca = b.numero_placa,                         
-                         DescripcionRol = r.Descripcion
-                     }).ToList().Distinct()
-                  .Select(x => new AdjuntoBoleta
-                  {
-                      CodigoAutoridad = x.CodigoAutoridad,
-                      DescripcionAutoridad = x.DescripcionAutoridad,
-                      FechaBoleta = x.FechaBoleta,
-                      FechaRegistro = x.FechaRegistro,
-                      SerieBoleta = x.SerieBoleta,
-                      NumeroBoleta = x.NumeroBoleta,
-                      CodigoRol = x.CodigoRol,
-                      ClasePlaca = x.ClasePlaca,
-                      CodigoPlaca = x.CodigoPlaca,
-                      NumeroPlaca = x.NumeroPlaca,                      
-                      DescripcionRol = x.DescripcionRol
-
-                  });
-              
-
-                //Sí no trae datos es porque no existe 
-                if (list.Count() == 0 || list.FirstOrDefault() == null)
+                if (exist)
                 {
-                    _tipoMensaje = "error";
-                    _mensaje = "No se encontró información para la Boleta " + NumeroBoletaT + " " + seriet;                        
-                }
-                if (list.Count() > 0)
-                {
-                    foreach (var item in list)
+
+                    var list =
+                      (
+                         from b in db.BOLETA
+                         where b.serie == numSerie && b.numero_boleta == numBoleta
+                         join a in db.AUTORIDAD on new { codigo = b.codigo_autoridad_registra } equals new { codigo = a.Id } into ba_join
+                         from a in ba_join.DefaultIfEmpty()
+                         join r in db.ROLPERSONA on new { codigo = b.codrol } equals new { codigo = r.Id } into br_join
+                         from r in br_join.DefaultIfEmpty()
+                         select new
+                         {
+                             CodigoAutoridad = b.codigo_autoridad_registra,
+                             DescripcionAutoridad = a.Descripcion,
+                             FechaBoleta = b.fecha_hora_boleta,
+                             FechaRegistro = b.fecha_registro,
+                             SerieBoleta = b.serie,
+                             NumeroBoleta = b.numero_boleta,
+                             CodigoRol = b.codrol,
+                             ClasePlaca = b.clase_placa,
+                             CodigoPlaca = b.codigo_placa,
+                             NumeroPlaca = b.numero_placa,
+                             DescripcionRol = r.Descripcion
+                         }).ToList().Distinct()
+                      .Select(x => new BoletaAdjunto
+                      {
+                          CodigoAutoridad = x.CodigoAutoridad,
+                          DescripcionAutoridad = x.DescripcionAutoridad,
+                          FechaBoleta = x.FechaBoleta,
+                          FechaRegistro = x.FechaRegistro,
+                          SerieBoleta = x.SerieBoleta,
+                          NumeroBoleta = x.NumeroBoleta,
+                          CodigoRol = x.CodigoRol,
+                          ClasePlaca = x.ClasePlaca,
+                          CodigoPlaca = x.CodigoPlaca,
+                          NumeroPlaca = x.NumeroPlaca,
+                          DescripcionRol = x.DescripcionRol
+
+                      });
+
+
+                    //Sí no trae datos es porque no existe 
+                    if (list.Count() == 0 || list.FirstOrDefault() == null)
                     {
-
-                        Session["Datos"] = list;
-                        ViewBag.Valor = list;
-                        return View();
+                        _tipoMensaje = "error";
+                        _mensaje = "No se encontró información para la Boleta " + NumeroBoletaT + " " + seriet;
                     }
+                    if (list.Count() > 0)
+                    {
+                        foreach (var item in list)
+                        {
 
-                }
+                            Session["Datos"] = list;
+                            ViewBag.Valor = list;
+                            return View();
+                        }
+
+                    }
                 }
                 else
-                { 
+                {
                     _tipoMensaje = "error";
                     _mensaje = "No se encontró boletas asociadas al Numero de Boleta " + NumeroBoletaT + " " + seriet;
 

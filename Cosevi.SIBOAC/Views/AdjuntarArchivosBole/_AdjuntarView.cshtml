@@ -1,0 +1,181 @@
+﻿<br />
+<br />
+<br />
+<table align="center">
+    <tr>
+        <td>
+            <h1>Boleta de Campo</h1>
+        </td>
+    </tr>
+</table>
+<br />
+<br />
+
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td>Autoridad Detalle</td>
+            <td>Fecha Accidente</td>
+            <td>Fecha Descarga</td>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in ViewBag.Valor)
+    {
+        <tr>
+            <td>
+                @item.DescripcionAutoridad
+            </td>
+            <td>
+                @item.FechaBoleta
+            </td>
+            <td>
+                @item.FechaRegistro
+            </td>
+        </tr>
+        break;
+    }
+</table>
+<br />
+<br />
+
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td>Serie de Boleta</td>
+            <td>Número de Boleta</td>
+            <td>Rol de Persona</td>
+            <td>Clase de Placa</td>
+            <td>Código de Placa</td>
+            <td>Número de Placa</td>
+        </tr>
+    </thead>
+
+    @foreach (var item in ViewBag.Valor)
+    {
+
+        <tr>
+            <td>
+                @item.SerieBoleta
+            </td>
+            <td>
+                @item.NumeroBoleta
+            </td>
+            <td>
+                @item.DescripcionRol
+            </td>
+            <td>
+                @item.ClasePlaca
+            </td>
+            <td>
+                @item.CodigoPlaca
+            </td>
+            <td>
+                @item.NumeroPlaca
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<div align="center">
+    <a id="btnEliminar" href="javascript:void(0);">Eliminar seleccionados</a>
+</div>
+<table border="1" align="center">
+    <thead>
+        <tr>
+            <td></td>
+            <td>Nombre archivo</td>
+            <td>Fecha registro</td>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in ViewBag.Adjuntos)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" class="deleteSelector" value="@item.nombre" />
+            </td>
+            <td>
+                <a href="@System.String.Concat( @System.Configuration.ConfigurationManager.AppSettings["DownloadFilePath"] , @item.nombre)">
+                    @item.nombre
+                </a>
+            </td>
+            <td>
+                @item.fechaRegistro
+            </td>
+        </tr>
+    }
+</table>
+
+<h2>Adjuntar archivo</h2>
+<input type="file" id="FileUpload1" />
+<br />
+<input type="button" id="btnUpload" value="Adjuntar" class="btn btn-success" />
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#btnEliminar").click(function () {
+            var selected = $('.deleteSelector:checked'), data = {};
+            if (selected.length) {
+                selected.each(function (i) {
+                    data['fileList[' + i + ']'] = $(this).val();
+                });
+                $.post('@Url.Content("~/AdjuntarArchivosBole/DeleteFiles")', data, function(){
+                    window.location.reload(true);
+                });
+            }
+        });
+
+        $('#btnUpload').click(function () {
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#FileUpload1").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                // Adding one more key to FormData object
+                fileData.append('Serie', $("#serie").val());
+                fileData.append('NumeroBoleta', $("#numero_boleta").val());
+
+                $.ajax({
+                    url: '/AdjuntarArchivosBole/UploadFiles',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (resultData) {
+                        //if (resultData.result) {
+                            location.reload(true);
+                        //}
+                        //else {
+                        //    alert(resultData.msg);
+                        //}
+                        
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        });
+    });
+</script>
