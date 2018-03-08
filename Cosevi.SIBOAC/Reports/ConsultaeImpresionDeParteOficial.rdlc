@@ -52,6 +52,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -2940,6 +2941,7 @@
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -2978,6 +2980,7 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -3557,7 +3560,7 @@
                                             </Style>
                                           </TextRun>
                                           <TextRun>
-                                            <Value>=Fields!DireccionUsuario.Value</Value>
+                                            <Value>=Fields!DescripcionProvincia.Value+ " " +Fields!DescripcionCanton.Value +" "+Fields!DescripcionDistrito.Value</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                             </Style>
@@ -4710,6 +4713,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4819,6 +4823,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4857,6 +4862,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -4920,100 +4926,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox3">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox3</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox5">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox5</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox10">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox10</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
               <Height>5.70646cm</Height>
               <TablixCells>
                 <TablixCell>
@@ -5032,6 +4944,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Subreport>
                     <ColSpan>3</ColSpan>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -5068,7 +4981,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixMember>
           </TablixMembers>
@@ -5079,7 +4991,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </PageBreak>
         <Top>0.19509cm</Top>
         <Left>0.47312cm</Left>
-        <Height>31.9291cm</Height>
+        <Height>31.3291cm</Height>
         <Width>15.48978cm</Width>
         <Style>
           <Border>
@@ -5088,7 +5000,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>14.71687in</Height>
+    <Height>12.59809in</Height>
     <Style />
   </Body>
   <Width>6.40985in</Width>
@@ -5184,7 +5096,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>861cc60a-3424-4476-a707-6921b0f33ec4</rd:DataSourceID>
+      <rd:DataSourceID>30b01862-ece4-4c2c-a064-34b745ca7b17</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -5488,7 +5400,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Field>
         <Field Name="direccion">
           <DataField>direccion</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DescripcionDireccion">
           <DataField>DescripcionDireccion</DataField>
@@ -5594,10 +5506,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <DataField>telefono</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="DireccionUsuario">
-          <DataField>DireccionUsuario</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="tipo_ideherido">
           <DataField>tipo_ideherido</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -5677,7 +5585,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetConsultaeImpresionDeParteOficialDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\ADC-ROY\source\repos\SIBOAC\Cosevi.SIBOAC\GetConsultaeImpresionDeParteOficialDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Carlos Barboza\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetConsultaeImpresionDeParteOficialDataSet.xsd</rd:SchemaPath>
         <rd:TableName>GetConsultaeImpresionDeParteOficialData</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

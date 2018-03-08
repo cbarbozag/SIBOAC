@@ -154,8 +154,6 @@
 
         <div class="pull-right">
             <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
-
-            <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
         </div>
 
         }
@@ -170,14 +168,11 @@
             ReportCall();
 
         });
-        $(document).ready(function () {
-            $('#limpiarCampos').click(function () {
-                $('input[type="text"]').val('');
-            });
+        $(window).load(function () {
+
         });
     </script>
     <script>       
-        
         function listaDelegacionesChange(obj) {
             
             var delegacionID = obj.getAttribute('data-value');

@@ -32,8 +32,6 @@ namespace Cosevi.SIBOAC.Reports
                 string parametros = Request.QueryString["parametros"];
                 DataTable listaArchivos = new DataTable();
                 listaArchivos.Columns.Add("NombreArchivo");
-                DataTable listaArchivosB = new DataTable();
-                listaArchivosB.Columns.Add("NombreArchivo");
                 DataTable listaFirmas = new DataTable();
                 listaFirmas.Columns.Add("NombreArchivo");
                 DataTable listaPlanos = new DataTable();
@@ -113,16 +111,12 @@ namespace Cosevi.SIBOAC.Reports
                             string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
 
                             var Boleta1 = (db.BOLETA.Where(a => a.serie_parteoficial == serieParte1 && a.numeroparte == numeroParte1).Select(a => a.numero_boleta).ToList());
-
                             var SerieBoleta1 = (db.BOLETA.Where(a => a.serie_parteoficial == serieParte1 && a.numeroparte == numeroParte1).Select(a => a.serie).ToList());
-
-                            var Fuente1B = (db.BOLETA.Where(a => a.serie_parteoficial == serieParte1 && a.numeroparte == numeroParte1).Select(a => a.fuente).ToList());                            
 
                             int serParte1 = Convert.ToInt32(Parametro1);
                             decimal numeParte1 = Convert.ToDecimal(Parametro2);
 
                             string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
@@ -160,7 +154,7 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);                            
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringida.Contains(oa.extension)).Select(oa => oa.nombre);
 
                             listaArchivos.Columns.Add("ParteOficial");                            
 
@@ -205,7 +199,7 @@ namespace Cosevi.SIBOAC.Reports
                             }
 
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
-                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;                            
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
                             #endregion
                         }
@@ -573,8 +567,7 @@ namespace Cosevi.SIBOAC.Reports
 
         private void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
         {            
-            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_ConsultaeImpresionDeParteOficialData"]));
-            e.DataSources.Add(new ReportDataSource("BoletaArchivosDataSet", Session["_ConsultaeImpresionDeParteOficialDataBoleta"]));
+            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_ConsultaeImpresionDeParteOficialData"])); 
             e.DataSources.Add(new ReportDataSource("FirmasDataSet", Session["_ConsultaeImpresionDeParteOficialDataFirma"]));
         }
 

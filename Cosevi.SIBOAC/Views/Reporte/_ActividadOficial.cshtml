@@ -27,10 +27,9 @@
 <br />
     <br />
 
-    <div class="pull-right col-md-12">
-        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
-        <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
-    </div>
+<div class="pull-right">
+<input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+</div>
 }
 
 <iframe id="ifrmReportViewer" style="height:1200px; width:60%;" frameborder="0" scrolling="no"></iframe>
@@ -41,18 +40,10 @@
         function () {
             Calendario();
             ReportCall();
-            limpiarCampos();
         });
     </script>
 
     <script>
-
-        function limpiarCampos() {
-            $('#limpiarCampos').click(function () {
-                $('input[type="text"]').val('');
-            });
-        }
-
         function ReportCall() {
 
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';

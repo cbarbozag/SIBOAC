@@ -35,9 +35,9 @@ namespace Cosevi.SIBOAC.Controllers
 
                     usuarios.Insert(0, new SIBOACUsuarios() { Id = 0, Usuario = "Todos" });
                     ViewBag.Usuarios = usuarios;
-                    #endregion
+
                     break;
-                
+                #endregion
                 case "_DescargaInspector":
                   
                     #region "_DescargaInspector"
@@ -81,9 +81,9 @@ namespace Cosevi.SIBOAC.Controllers
 
                     ViewBag.Inspectores = listaInspectores.OrderBy(a => a.Descripcion);
 
-                    #endregion
+
                     break;
-                
+                #endregion
                 case "_DescargaBoleta":
 
                     break;
@@ -159,9 +159,8 @@ namespace Cosevi.SIBOAC.Controllers
                     }
 
                     ViewBag.Autoridades = listaAutoridades.OrderBy(a => a.Descripcion);
-                    #endregion
                     break;
-               
+                #endregion
                 case "_ConsultaeImpresionDeParteOficial":
                   
                     break;
@@ -567,9 +566,6 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Usuarios = listaUsuarios2.OrderBy(a => a.Descripcion);
                     break;
                 #endregion
-
-                case "_ReimpresionDeBoletasDeCampo":
-                    break;
                 default:
                     break;
             }

@@ -138,7 +138,6 @@
 
         <div class="pull-right">
             <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
-            <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
         </div>
 
 }
@@ -153,21 +152,13 @@
                 function () {                  
                     Calendario();                   
                     ReportCall();
-                    limpiarCampos();
+                
                 });
                 $(window).load(function () {                
                     
                 });
             </script>
             <script>
-
-
-                function limpiarCampos() {
-                    $('#limpiarCampos').click(function () {
-                        $('input[type="text"]').val('');
-                    });
-                }
-
                 function marcarTodosDelegacion() {
 
                     var selectedValues = [];
