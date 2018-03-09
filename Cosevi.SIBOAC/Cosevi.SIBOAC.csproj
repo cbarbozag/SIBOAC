@@ -247,7 +247,7 @@
     <Compile Include="Controllers\AutoridadsController.cs" />
     <Compile Include="Controllers\ArticulosPorDepositosDeBienesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\BoletaAdjuntarArchivosController.cs" />
+    <Compile Include="Controllers\AdjuntarArchivosBoleController.cs" />
     <Compile Include="Controllers\CantonsController.cs" />
     <Compile Include="Controllers\CaracteristicasDeUbicacionsController.cs" />
     <Compile Include="Controllers\CarrilsController.cs" />

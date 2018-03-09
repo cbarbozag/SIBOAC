@@ -151,6 +151,7 @@
     <br />
     <div class="pull-right col-md-12">
         <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
     </div>
 }
 <br/>
@@ -182,6 +183,7 @@
                  var checkedRadio = '#opc-4';
                 $(checkedRadio).show();
             }
+            limpiarCampos();
             prepararCampos();
             ReportCall();
         });
@@ -190,6 +192,12 @@
 
     <script>
 
+        function limpiarCampos() {
+            $('#limpiarCampos').click(function () {
+                $('input[type="text"]').val('');
+                //$('ifrmReportViewer').hide();
+            });
+        };
 
         function prepararCampos() {
             $(":input[type='radio']").on("change", function () {
@@ -204,13 +212,6 @@
         function cargarDatos() {
 
         };
-
-
-        function limpiar() {
-            var reporte = $('#reporte');
-            reporte.empty();
-        };
-       
 
         function ReportCall() {
 

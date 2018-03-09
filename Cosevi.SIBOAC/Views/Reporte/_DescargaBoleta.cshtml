@@ -64,6 +64,7 @@
         <br />*@
         <div class="pull-right">
             <button type="submit" id="reporte" value="Generar Reporte" class="btn btn-success">Generar Reporte</button>
+            <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
         </div>
     
 }
@@ -77,10 +78,18 @@
         function () {
             Calendario();
             ReportCall();
+            limpiarCampos();
         });
     </script>
 
     <script>
+
+        function limpiarCampos() {
+            $('#limpiarCampos').click(function () {
+                $('input[type="text"]').val('');
+            });
+        };
+
         function Calendario() {
             $('.input-daterange').datepicker({
                 startView: 2,

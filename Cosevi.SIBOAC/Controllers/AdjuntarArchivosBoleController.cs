@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Cosevi.SIBOAC.Controllers
 {
-    public class BoletaAdjuntarArchivosController : BaseController<BoletaAdjunto>
+    public class AdjuntarArchivosBoleController : BaseController<BoletaAdjunto>
     {
         //  private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();

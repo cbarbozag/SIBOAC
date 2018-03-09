@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<Cosevi.SIBOAC.Models.BitacoraSIBOAC>
-
 @{
     ViewBag.Title = "Bitácora";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Reporte Bitácora</h2>
 <h4>Filtro</h4>
 <hr />
-@{ 
+@{
     List<SelectListItem> operacionItems = new List<SelectListItem>();
     List<SelectListItem> tablaItems = new List<SelectListItem>();
     List<SelectListItem> usuarioItems = new List<SelectListItem>();
@@ -39,55 +37,66 @@
                 Nombre Tabla:
             </td>
             <td>
-                @Html.DropDownList("NombreTabla", new SelectList(tablaItems, "Value", "Text"))
+                @Html.DropDownList("NombreTabla", new SelectList(tablaItems, "Value", "Text"), new { @class = "form-control" })
             </td>
         </tr>
+        <tr></tr>
         <tr>
             <td>
                 Operación:
             </td>
             <td>
-                @Html.DropDownList("Operacion", new SelectList(operacionItems, "Value", "Text"))
+                @Html.DropDownList("Operacion", new SelectList(operacionItems, "Value", "Text"), new { @class = "form-control" })
             </td>
         </tr>
+        <tr></tr>
         <tr>
             <td>
                 Usuario:
             </td>
             <td>
-                @Html.DropDownList("Usuario", new SelectList(usuarioItems, "Value", "Text"))
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Fecha Inicio:
-            </td>
-            <td>
-                <input type="date" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
-            </td>
-            <td>
-                Fecha Fin:
-            </td>
-            <td>
-                <input type="date" name="FechaFin" value="@Request.Params["FechaFin"]" />
-            </td>
-            <td>
-                <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+                @Html.DropDownList("Usuario", new SelectList(usuarioItems, "Value", "Text"), new { @class = "form-control" })
             </td>
         </tr>
     </table>
+    <br />
+    <br />
+    <div class="form-group col-md-12">
+        <label class="control-label col-md-12">Rango de fechas</label>
+        <div class="col-md-10">
+            <div class="input-daterange input-group" id="datepicker">
+                <input id="FechaInicio" type="text" class="input-sm form-control" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
+                <span class="input-group-addon">a</span>
+                <input id="FechaFin" type="text" class="input-sm form-control" name="FechaFin" value="@Request.Params["FechaFin"]" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="pull-right">
+        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
+    </div>
 }
 <iframe id="ifrmReportViewer" style="height:1200px; width:60%;" frameborder="0" scrolling="no"></iframe>
 @section scripts
     {
     <script>
         $(document).ready(
-        function () {
-            ReportCall();
-        });
+            function () {
+                Calendario();
+                ReportCall();
+                limpiarCampos();
+            });
     </script>
-
     <script>
+
+        function limpiarCampos() {
+            $('#limpiarCampos').click(function () {
+                $('input[type="text"]').val('');
+            });
+        };
+
         function ReportCall() {
 
             var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
@@ -107,5 +116,15 @@
 
             return false;
         }
+
+        function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2,
+                autoclose: true,
+                orientation: 'bottom auto',
+                todayHighlight: true,
+                todayBtn: true
+            });
+        };
     </script>
 }
