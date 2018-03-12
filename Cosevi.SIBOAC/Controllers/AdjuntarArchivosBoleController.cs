@@ -41,11 +41,11 @@ namespace Cosevi.SIBOAC.Controllers
                 int numSerie = Convert.ToInt32(seriet);
                 decimal numBoleta = Convert.ToDecimal(NumeroBoletaT);
 
-                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.serie == numSerie && oa.numero == numBoleta).ToList();
+                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.fuente == "2" && oa.serie == numSerie && oa.numero == numBoleta).ToList();
 
                 ViewBag.Adjuntos = adjuntos;
 
-                bool exist = this.db.BOLETA.Any(x => x.serie == numSerie && x.numero_boleta == numBoleta);
+                bool exist = this.db.BOLETA.Any(x => x.fuente == "2" && x.serie == numSerie && x.numero_boleta == numBoleta);
 
                 if (exist)
                 {
@@ -136,7 +136,7 @@ namespace Cosevi.SIBOAC.Controllers
                     int serie2 = Convert.ToInt32(Serie);
                     decimal numBole2 = Convert.ToDecimal(NumeroBoleta);
 
-                    var boleta = db.BOLETA.Where(po => po.serie == serie2 && po.numero_boleta == numBole2).FirstOrDefault();
+                    var boleta = db.BOLETA.Where(po => po.fuente == "2" && po.serie == serie2 && po.numero_boleta == numBole2).FirstOrDefault();
 
                     if (boleta != null)
                     {
