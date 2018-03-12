@@ -69,8 +69,8 @@ namespace Cosevi.SIBOAC.Reports
 
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
                         //var path = Server.MapPath(ruta);
-                        var fileUsuario = string.Format("{0}{1}{2}-u-{3}.png", CodigoFuente, serie, numero_boleta, CodigoIde);
-                        var fileInspector = string.Format("{0}{1}{2}-i-{3}.png", CodigoFuente, serie, numero_boleta, CodInsp);
+                        var fileUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", CodigoFuente, serie, numero_boleta, CodigoIde);
+                        var fileInspector = string.Format("{0}-{1}-{2}-i-{3}.png", CodigoFuente, serie, numero_boleta, CodInsp);
                         var fullPathUsuario = Path.Combine(ruta, fileUsuario);
                         var fullPathInspector = Path.Combine(ruta, fileInspector);
 
@@ -177,24 +177,24 @@ namespace Cosevi.SIBOAC.Reports
                             {
                                 if (v_nombre == null)
                                 {
-                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
                                     listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
                                     v_nombre = "1";
                                 }
-                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);                                
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);                                
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
                             }
 
                             foreach (var item in listaTestigoP)
                             {
-                                var FirmaTestigoP = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
                             }
 
                             foreach (var item in listaTestigoB)
                             {
-                                var FirmaTestigoB = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
                             }
@@ -285,24 +285,24 @@ namespace Cosevi.SIBOAC.Reports
                             {
                                 if (v_nombre == null)
                                 {
-                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
                                     listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
                                     v_nombre = "1";
                                 }
-                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
                             }
 
                             foreach (var item in listaTestigoP)
                             {
-                                var FirmaTestigoP = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
                             }
 
                             foreach (var item in listaTestigoB)
                             {
-                                var FirmaTestigoB = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
                             }
@@ -400,27 +400,27 @@ namespace Cosevi.SIBOAC.Reports
                             {
                                 if(v_fuente != item.fuente_parteoficial || v_serie != item.serie_parteoficial || v_numparte != item.numeroparte)
                                 {
-                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
                                     listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
                                     v_fuente = item.fuente_parteoficial;
                                     v_serie = item.serie_parteoficial;
                                     v_numparte = item.numeroparte;
                                 }
                                 
-                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);                                
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);                                
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
                             }
 
                             foreach (var item in listaTestigoP)
                             {
-                                var FirmaTestigoP = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
                             }
 
                             foreach (var item in listaTestigoB)
                             {
-                                var FirmaTestigoB = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
                             }
@@ -518,28 +518,28 @@ namespace Cosevi.SIBOAC.Reports
                             {
                                 if (p_fuente != item.fuente_parteoficial || p_serie != item.serie_parteoficial || p_numparte != item.numeroparte)
                                 {
-                                    var FirmaInspector = string.Format("{0}{1}{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
                                     listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
                                     p_fuente = item.fuente_parteoficial;
                                     p_serie = item.serie_parteoficial;
                                     p_numparte = item.numeroparte;
                                 }
 
-                                var FirmaUsuario = string.Format("{0}{1}{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
                                
                             }
 
                             foreach (var item in listaTestigoP)
                             {
-                                var FirmaTestigoP = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
                             }
 
                             foreach (var item in listaTestigoB)
                             {
-                                var FirmaTestigoB = string.Format("{0}{1}{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
 
                                 listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
                             }
