@@ -238,6 +238,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ConsultaeImpresionDeParteOficialDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadPorOficialController.cs" />
     <Compile Include="Controllers\ActividadOficialController.cs" />
@@ -920,6 +925,17 @@
     </Content>
     <Content Include="FirmasDataSet.xsc">
       <DependentUpon>FirmasDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="ConsultaeImpresionDeParteOficialDataSet.xsc">
+      <DependentUpon>ConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ConsultaeImpresionDeParteOficialDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConsultaeImpresionDeParteOficialDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ConsultaeImpresionDeParteOficialDataSet.xss">
+      <DependentUpon>ConsultaeImpresionDeParteOficialDataSet.xsd</DependentUpon>
     </Content>
     <None Include="FirmasDataSet.xsd">
       <SubType>Designer</SubType>
