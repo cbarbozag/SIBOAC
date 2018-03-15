@@ -52,7 +52,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -525,6 +524,7 @@
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                               <Format>dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt</Format>
+                                              <Language>es-CR</Language>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
@@ -2941,7 +2941,6 @@
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -2980,7 +2979,6 @@
                       </Style>
                     </Textbox>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4713,7 +4711,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4823,7 +4820,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Tablix>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
@@ -4862,7 +4858,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -4944,7 +4939,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                       </Style>
                     </Subreport>
                     <ColSpan>3</ColSpan>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
