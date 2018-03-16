@@ -37,9 +37,9 @@
             <label class="control-label col-md-2">Rango de fechas</label>
             <div class="col-md-10">
                 <div class="input-daterange input-group" id="datepicker">
-                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" required />
+                    <input id="desde" type="text" class="input-sm form-control" name="Desde" value="@Request.Params["desde"]" required />
                     <span class="input-group-addon">a</span>
-                    <input id="hasta" type="text" class="input-sm form-control" name="hasta" value="@Request.Params["hasta"]" required />
+                    <input id="hasta" type="text" class="input-sm form-control" name="Hasta" value="@Request.Params["hasta"]" required />
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
     </table>
 }
 
-<iframe id="ifrmReportViewer" style="height:1200px; width:60%;" frameborder="0" scrolling="no"></iframe>
+<iframe id="ifrmReportViewer" style="height:1200px; width:100%;" frameborder="0" scrolling="no"></iframe>
 @section scripts{
 
     <script>

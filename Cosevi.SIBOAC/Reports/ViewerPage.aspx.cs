@@ -32,6 +32,8 @@ namespace Cosevi.SIBOAC.Reports
                 string parametros = Request.QueryString["parametros"];
                 DataTable listaArchivos = new DataTable();
                 listaArchivos.Columns.Add("NombreArchivo");
+                DataTable listaArchivosB = new DataTable();
+                listaArchivosB.Columns.Add("NombreArchivo");
                 DataTable listaFirmas = new DataTable();
                 listaFirmas.Columns.Add("NombreArchivo");
                 DataTable listaPlanos = new DataTable();
@@ -51,6 +53,8 @@ namespace Cosevi.SIBOAC.Reports
                         #region ReimpresionDeBoletasDeCampo
                         ReportViewer1.LocalReport.EnableExternalImages = true;
 
+                        string[] extensionRestringidaB = ConfigurationManager.AppSettings["ExtenException"].Split(',');
+
                         string[] param = parametros.Split(',');
                         int serie = Convert.ToInt32(param[0]);
                         decimal numero_boleta = Convert.ToDecimal(param[1]);
@@ -67,7 +71,18 @@ namespace Cosevi.SIBOAC.Reports
                         var CodigoInsp = db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta && a.numeroparte == NumParte).Select(a => a.codigo_inspector).ToList();
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
-                        string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
+                        string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+
+                        var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                        listaArchivosB.Columns.Add("NumBoleta");
+
+                        foreach (var item in adjBoleta)
+                        {
+
+                            listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, item)).AbsoluteUri, numero_boleta);
+                        }
+
                         //var path = Server.MapPath(ruta);
                         var fileUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", CodigoFuente, serie, numero_boleta, CodigoIde);
                         var fileInspector = string.Format("{0}-{1}-{2}-i-{3}.png", CodigoFuente, serie, numero_boleta, CodInsp);
@@ -85,6 +100,8 @@ namespace Cosevi.SIBOAC.Reports
                         parameters[0] = new ReportParameter("ImagenFirmaUsuarioPath", imgFirmaUsuarioPath);
                         parameters[1] = new ReportParameter("ImagenFirmaInspectorPath", imgFirmaInspectorPath);
                         ReportViewer1.LocalReport.SetParameters(parameters);
+                        this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;                        
+                        Session["_ConsultaeImpresionDeParteOficialDataBoleta"] = listaArchivosB;                        
                         #endregion
                         break;
 
@@ -560,7 +577,7 @@ namespace Cosevi.SIBOAC.Reports
                 ReportViewer1.LocalReport.Refresh();
                 ReportViewer1.ZoomMode = ZoomMode.Percent;
                 ReportViewer1.ZoomPercent = 100;
-                btnPrint.Visible = true;
+                //btnPrint.Visible = true;
                 ReportViewer1.LocalReport.EnableHyperlinks = true;
 
             }
@@ -568,6 +585,7 @@ namespace Cosevi.SIBOAC.Reports
 
         private void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
         {            
+            e.DataSources.Add(new ReportDataSource("ArchivosBoletaDataSet", Session["_ConsultaeImpresionDeParteOficialDataBoleta"]));
             e.DataSources.Add(new ReportDataSource("ArchivosDataSet", Session["_ConsultaeImpresionDeParteOficialData"])); 
             e.DataSources.Add(new ReportDataSource("FirmasDataSet", Session["_ConsultaeImpresionDeParteOficialDataFirma"]));
         }

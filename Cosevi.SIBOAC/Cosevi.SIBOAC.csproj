@@ -246,6 +246,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ArchivosBoletaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchivosBoletaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ArchivosDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -922,6 +927,17 @@
     </Content>
     <Content Include="ArchivosDataSet.xsc">
       <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="ArchivosBoletaDataSet.xsc">
+      <DependentUpon>ArchivosBoletaDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ArchivosBoletaDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ArchivosBoletaDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ArchivosBoletaDataSet.xss">
+      <DependentUpon>ArchivosBoletaDataSet.xsd</DependentUpon>
     </Content>
     <None Include="ArchivosDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1806,6 +1822,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\SubReportAdjuntos.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\AdjuntoSubReport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
