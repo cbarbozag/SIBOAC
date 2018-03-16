@@ -116,7 +116,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro1);
                             decimal numeParte1 = Convert.ToDecimal(Parametro2);
 
-                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
 
@@ -568,7 +568,7 @@ namespace Cosevi.SIBOAC.Reports
 
         private void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
         {            
-            e.DataSources.Add(new ReportDataSource("ArchivoDataSet", Session["_ConsultaeImpresionDeParteOficialData"])); 
+            e.DataSources.Add(new ReportDataSource("ArchivosDataSet", Session["_ConsultaeImpresionDeParteOficialData"])); 
             e.DataSources.Add(new ReportDataSource("FirmasDataSet", Session["_ConsultaeImpresionDeParteOficialDataFirma"]));
         }
 
