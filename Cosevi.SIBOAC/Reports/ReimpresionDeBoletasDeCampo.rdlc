@@ -2395,78 +2395,26 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Tablix Name="Tablix3">
-            <TablixBody>
-              <TablixColumns>
-                <TablixColumn>
-                  <Width>5.91654cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>5.91654cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>5.91654cm</Width>
-                </TablixColumn>
-              </TablixColumns>
-              <TablixRows>
-                <TablixRow>
-                  <Height>6.39438cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Subreport Name="Subreport1">
-                          <ReportName>AdjuntoSubReport</ReportName>
-                          <Parameters>
-                            <Parameter Name="NumBoleta">
-                              <Value>=Fields!numero_boleta.Value</Value>
-                            </Parameter>
-                          </Parameters>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                          </Style>
-                        </Subreport>
-                        <ColSpan>3</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                  </TablixCells>
-                </TablixRow>
-              </TablixRows>
-            </TablixBody>
-            <TablixColumnHierarchy>
-              <TablixMembers>
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-              </TablixMembers>
-            </TablixColumnHierarchy>
-            <TablixRowHierarchy>
-              <TablixMembers>
-                <TablixMember>
-                  <Group Name="Details2" />
-                </TablixMember>
-              </TablixMembers>
-            </TablixRowHierarchy>
-            <DataSetName>DataSet1</DataSetName>
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-            </PageBreak>
-            <Top>32.80516cm</Top>
+          <Subreport Name="Subreport1">
+            <ReportName>AdjuntoSubReport</ReportName>
+            <Parameters>
+              <Parameter Name="NumBoleta">
+                <Value>=Sum(Fields!numero_boleta.Value, "DataSet1").ToString()</Value>
+              </Parameter>
+            </Parameters>
+            <Top>32.32891cm</Top>
             <Left>0.7962cm</Left>
-            <Height>6.39438cm</Height>
-            <Width>17.74962cm</Width>
+            <Height>6.70042cm</Height>
+            <Width>17.74963cm</Width>
             <ZIndex>40</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
-          </Tablix>
+          </Subreport>
         </ReportItems>
-        <Height>15.81356in</Height>
+        <Height>15.91796in</Height>
         <Style />
       </Body>
       <Width>7.86401in</Width>

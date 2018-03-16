@@ -130,7 +130,6 @@
                           <Source>External</Source>
                           <Value>=Fields!NombreArchivo.Value</Value>
                           <Sizing>Fit</Sizing>
-                          <ToolTip>ImagenBoleta</ToolTip>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -158,15 +157,12 @@
                 <TablixMember>
                   <Group Name="Details" />
                   <Visibility>
-                    <Hidden>=Fields!ParteOficial.Value&lt;&gt;Parameters!ParteOficial.Value</Hidden>
+                    <Hidden>=Fields!NumBoleta.Value&lt;&gt;Parameters!NumBoleta.Value</Hidden>
                   </Visibility>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ArchivosBoletaDataSet</DataSetName>
-            <PageBreak>
-              <BreakLocation>StartAndEnd</BreakLocation>
-            </PageBreak>
             <Filters>
               <Filter>
                 <FilterExpression>=Fields!NumBoleta.Value</FilterExpression>
