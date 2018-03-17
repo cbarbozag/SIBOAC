@@ -163,6 +163,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ArchivosBoletaDataSet</DataSetName>
+            <PageBreak>
+              <BreakLocation>StartAndEnd</BreakLocation>
+            </PageBreak>
             <Filters>
               <Filter>
                 <FilterExpression>=Fields!NumBoleta.Value</FilterExpression>
