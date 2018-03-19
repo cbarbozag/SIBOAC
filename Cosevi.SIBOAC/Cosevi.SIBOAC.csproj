@@ -256,6 +256,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchivosDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ConsultaeImpresionParteOficial.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsultaeImpresionParteOficial.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadPorOficialController.cs" />
     <Compile Include="Controllers\ActividadOficialController.cs" />
@@ -949,6 +954,17 @@
     </Content>
     <Content Include="FirmasDataSet.xsc">
       <DependentUpon>FirmasDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="ConsultaeImpresionParteOficial.xsc">
+      <DependentUpon>ConsultaeImpresionParteOficial.xsd</DependentUpon>
+    </Content>
+    <None Include="ConsultaeImpresionParteOficial.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConsultaeImpresionParteOficial.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ConsultaeImpresionParteOficial.xss">
+      <DependentUpon>ConsultaeImpresionParteOficial.xsd</DependentUpon>
     </Content>
     <None Include="FirmasDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1827,6 +1843,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Reports\AdjuntoSubReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\ImpresionDeParteOficial.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
