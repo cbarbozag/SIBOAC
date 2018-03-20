@@ -3463,11 +3463,6 @@
                 <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.MotivoPorNoFirmar">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="PC_HH_AndroidModel.Store.GetConsultaeImpresionDeParteOficialData" />
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Obstaculo">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Obstaculo">
