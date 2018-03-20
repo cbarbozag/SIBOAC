@@ -2,8 +2,9 @@
 <xs:schema id="ConsultaeImpresionParteOficial" targetNamespace="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:mstns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -136,6 +137,11 @@
               <Mapping SourceColumn="sexoherido" DataSetColumn="sexoherido" />
               <Mapping SourceColumn="CodigoDano" DataSetColumn="CodigoDano" />
               <Mapping SourceColumn="DescripcionDano" DataSetColumn="DescripcionDano" />
+              <Mapping SourceColumn="edadherido" DataSetColumn="edadherido" />
+              <Mapping SourceColumn="codrol" DataSetColumn="codrol" />
+              <Mapping SourceColumn="DescripcionRol" DataSetColumn="DescripcionRol" />
+              <Mapping SourceColumn="codhosp" DataSetColumn="codhosp" />
+              <Mapping SourceColumn="DescripcionHospital" DataSetColumn="DescripcionHospital" />
               <Mapping SourceColumn="rev_tecnica" DataSetColumn="rev_tecnica" />
               <Mapping SourceColumn="carga" DataSetColumn="carga" />
               <Mapping SourceColumn="PortaSenal" DataSetColumn="PortaSenal" />
@@ -709,6 +715,35 @@
               </xs:element>
               <xs:element name="CodigoDano" msprop:Generator_ColumnVarNameInTable="columnCodigoDano" msprop:Generator_ColumnPropNameInRow="CodigoDano" msprop:Generator_ColumnPropNameInTable="CodigoDanoColumn" msprop:Generator_UserColumnName="CodigoDano" type="xs:int" minOccurs="0" />
               <xs:element name="DescripcionDano" msprop:Generator_ColumnVarNameInTable="columnDescripcionDano" msprop:Generator_ColumnPropNameInRow="DescripcionDano" msprop:Generator_ColumnPropNameInTable="DescripcionDanoColumn" msprop:Generator_UserColumnName="DescripcionDano" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="edadherido" msprop:Generator_ColumnVarNameInTable="columnedadherido" msprop:Generator_ColumnPropNameInRow="edadherido" msprop:Generator_ColumnPropNameInTable="edadheridoColumn" msprop:Generator_UserColumnName="edadherido" type="xs:int" minOccurs="0" />
+              <xs:element name="codrol" msprop:Generator_ColumnVarNameInTable="columncodrol" msprop:Generator_ColumnPropNameInRow="codrol" msprop:Generator_ColumnPropNameInTable="codrolColumn" msprop:Generator_UserColumnName="codrol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DescripcionRol" msprop:Generator_ColumnVarNameInTable="columnDescripcionRol" msprop:Generator_ColumnPropNameInRow="DescripcionRol" msprop:Generator_ColumnPropNameInTable="DescripcionRolColumn" msprop:Generator_UserColumnName="DescripcionRol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codhosp" msprop:Generator_ColumnVarNameInTable="columncodhosp" msprop:Generator_ColumnPropNameInRow="codhosp" msprop:Generator_ColumnPropNameInTable="codhospColumn" msprop:Generator_UserColumnName="codhosp" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DescripcionHospital" msprop:Generator_ColumnVarNameInTable="columnDescripcionHospital" msprop:Generator_ColumnPropNameInRow="DescripcionHospital" msprop:Generator_ColumnPropNameInTable="DescripcionHospitalColumn" msprop:Generator_UserColumnName="DescripcionHospital" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
