@@ -71,7 +71,7 @@ namespace Cosevi.SIBOAC.Reports
                         var CodigoInsp = db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta && a.numeroparte == NumParte).Select(a => a.codigo_inspector).ToList();
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
-                        string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+                        string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
 
                         var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
 
@@ -133,7 +133,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro1);
                             decimal numeParte1 = Convert.ToDecimal(Parametro2);
 
-                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
                             //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
 
@@ -150,8 +150,8 @@ namespace Cosevi.SIBOAC.Reports
                                 string ext = Path.GetExtension(nombrePng).Replace(".", "");
                                 int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente1, serParte1, numeParte1, maxValue.Value + 1, ext);
-                                sampleDoc.Draw().Save(Path.Combine(rutaPlano1, nombre));
+                                //string nombre = item;
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano1, nombrePng));
 
                                 var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item);
                                 svgConvertido.extension = "svgc";
@@ -163,7 +163,7 @@ namespace Cosevi.SIBOAC.Reports
                                     numero = numeParte1,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
-                                    nombre = nombre,
+                                    nombre = nombrePng,
                                     consecutivo_extension = maxValue.Value + 1
                                 });
 
@@ -257,8 +257,8 @@ namespace Cosevi.SIBOAC.Reports
                                 string ext = Path.GetExtension(nombrePng).Replace(".", "");
                                 int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, serieParte2, numeroParte2, maxValue.Value + 1, ext);
-                                sampleDoc.Draw().Save(Path.Combine(rutaPlano2, nombre));
+                                //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, serieParte2, numeroParte2, maxValue.Value + 1, ext);
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano2, nombrePng));
 
                                 var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, item);
                                 svgConvertido.extension = "svgc";
@@ -270,7 +270,7 @@ namespace Cosevi.SIBOAC.Reports
                                     numero = numeroParte2,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
-                                    nombre = nombre,
+                                    nombre = nombrePng,
                                     consecutivo_extension = maxValue.Value + 1
                                 });
 
@@ -366,8 +366,8 @@ namespace Cosevi.SIBOAC.Reports
                                 string ext = Path.GetExtension(nombrePng).Replace(".", "");
                                 int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
-                                sampleDoc.Draw().Save(Path.Combine(rutaPlano3, nombre));
+                                //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano3, nombrePng));
 
                                 var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
                                 svgConvertido.extension = "svgc";
@@ -379,7 +379,7 @@ namespace Cosevi.SIBOAC.Reports
                                     numero = item.Item2,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
-                                    nombre = nombre,
+                                    nombre = nombrePng,
                                     consecutivo_extension = maxValue.Value + 1
                                 });
 
@@ -483,8 +483,8 @@ namespace Cosevi.SIBOAC.Reports
                                 string ext = Path.GetExtension(nombrePng).Replace(".", "");
                                 int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
-                                sampleDoc.Draw().Save(Path.Combine(rutaPlano4, nombre));
+                                //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano4, nombrePng));
 
                                 var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
                                 svgConvertido.extension = "svgc";
@@ -496,7 +496,7 @@ namespace Cosevi.SIBOAC.Reports
                                     numero = item.Item2,
                                     extension = ext,
                                     fechaRegistro = DateTime.Now,
-                                    nombre = nombre,
+                                    nombre = nombrePng,
                                     consecutivo_extension = maxValue.Value + 1
                                 });
 
@@ -577,7 +577,7 @@ namespace Cosevi.SIBOAC.Reports
                 ReportViewer1.LocalReport.Refresh();
                 ReportViewer1.ZoomMode = ZoomMode.Percent;
                 ReportViewer1.ZoomPercent = 100;
-                //btnPrint.Visible = true;
+                btnPrint.Visible = true;
                 ReportViewer1.LocalReport.EnableHyperlinks = true;
 
             }

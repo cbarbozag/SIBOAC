@@ -193,7 +193,7 @@ namespace Cosevi.SIBOAC.Controllers
                             Directory.CreateDirectory(directoryPath);
                         }
 
-                        string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", fuente, Serie, NumeroBoleta, maxValue.Value + 1, ext);
+                        string nombre = String.Format("{0}-{1}-{2}-{3}-{4}", fuente, Serie, NumeroBoleta, maxValue.Value + 1, nombreArchivo);
                         nombreArchivo = Path.Combine(directoryPath, nombre);
                         file.SaveAs(nombreArchivo);
 
