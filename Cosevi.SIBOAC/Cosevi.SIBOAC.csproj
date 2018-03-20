@@ -504,6 +504,9 @@
     <Compile Include="Models\ConsecutivoNumeroMarco.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConsultaeImpresionDeParteOficialData_Result.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DanioPorHospital.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
