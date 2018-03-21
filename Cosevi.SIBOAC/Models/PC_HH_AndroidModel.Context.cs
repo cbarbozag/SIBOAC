@@ -795,6 +795,38 @@ public partial class PC_HH_AndroidEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaeImpresionDeParteOficialData2_Result>("ConsultaeImpresionDeParteOficialData2", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter, usuarioSistemaParameter);
     }
 
+
+    public virtual ObjectResult<ConsultaeImpresionDeParteOficialData3_Result> ConsultaeImpresionDeParteOficialData3(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3, string usuarioSistema)
+    {
+
+        var tipoConsultaParameter = tipoConsulta.HasValue ?
+            new ObjectParameter("TipoConsulta", tipoConsulta) :
+            new ObjectParameter("TipoConsulta", typeof(int));
+
+
+        var parametro1Parameter = parametro1 != null ?
+            new ObjectParameter("Parametro1", parametro1) :
+            new ObjectParameter("Parametro1", typeof(string));
+
+
+        var parametro2Parameter = parametro2 != null ?
+            new ObjectParameter("Parametro2", parametro2) :
+            new ObjectParameter("Parametro2", typeof(string));
+
+
+        var parametro3Parameter = parametro3 != null ?
+            new ObjectParameter("Parametro3", parametro3) :
+            new ObjectParameter("Parametro3", typeof(string));
+
+
+        var usuarioSistemaParameter = usuarioSistema != null ?
+            new ObjectParameter("UsuarioSistema", usuarioSistema) :
+            new ObjectParameter("UsuarioSistema", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaeImpresionDeParteOficialData3_Result>("ConsultaeImpresionDeParteOficialData3", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter, usuarioSistemaParameter);
+    }
+
 }
 
 }

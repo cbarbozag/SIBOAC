@@ -17,276 +17,275 @@ using System;
 public partial class ConsultaeImpresionDeParteOficialData_Result
 {
 
-    public string FuenteParte { get; set; }
+        public string FuenteParte { get; set; }
 
-    public string SerieParte { get; set; }
+        public string SerieParte { get; set; }
 
-    public string NumeroParte { get; set; }
+        public string NumeroParte { get; set; }
 
-    public string CodigoAutoridad { get; set; }
+        public string CodigoAutoridad { get; set; }
 
-    public string DescripcionAutoridad { get; set; }
+        public string DescripcionAutoridad { get; set; }
 
-    public string LugarHechos { get; set; }
+        public string LugarHechos { get; set; }
 
-    public Nullable<int> CodigoRuta { get; set; }
+        public Nullable<int> CodigoRuta { get; set; }
 
-    public string DescripcionRuta { get; set; }
+        public string DescripcionRuta { get; set; }
 
-    public Nullable<int> Kilometro { get; set; }
+        public Nullable<int> Kilometro { get; set; }
 
-    public Nullable<int> Seccion { get; set; }
+        public Nullable<int> Seccion { get; set; }
 
-    public string Avenidas { get; set; }
+        public string Avenidas { get; set; }
 
-    public string Calles { get; set; }
+        public string Calles { get; set; }
 
-    public System.DateTime FechaAccidente { get; set; }
+        public System.DateTime FechaAccidente { get; set; }
 
-    public string CodigoDelegacion { get; set; }
+        public string CodigoDelegacion { get; set; }
 
-    public string DescripcionDelegacion { get; set; }
+        public string DescripcionDelegacion { get; set; }
 
-    public string CodigoInspector { get; set; }
+        public string CodigoInspector { get; set; }
 
-    public string NombreInspector { get; set; }
+        public string NombreInspector { get; set; }
 
-    public int VelocidadAmbiente { get; set; }
+        public int VelocidadAmbiente { get; set; }
 
-    public string CodigoCarril { get; set; }
+        public string CodigoCarril { get; set; }
 
-    public string DescripcionCarril { get; set; }
+        public string DescripcionCarril { get; set; }
 
-    public int CodigoEstructura { get; set; }
+        public int CodigoEstructura { get; set; }
 
-    public string DescripcionEstructura { get; set; }
+        public string DescripcionEstructura { get; set; }
 
-    public int CodigoClaseCalzada { get; set; }
+        public int CodigoClaseCalzada { get; set; }
 
-    public string DescripcionClaseCalzada { get; set; }
+        public string DescripcionClaseCalzada { get; set; }
 
-    public int CodigoCondicionCalzada { get; set; }
+        public int CodigoCondicionCalzada { get; set; }
 
-    public string DescripcionCondicionCalzada { get; set; }
+        public string DescripcionCondicionCalzada { get; set; }
 
-    public int CodigoIluminacion { get; set; }
+        public int CodigoIluminacion { get; set; }
 
-    public string DescripcionIluminacion { get; set; }
+        public string DescripcionIluminacion { get; set; }
 
-    public Nullable<int> CodigoCaracteristicaUbicacion { get; set; }
+        public Nullable<int> CodigoCaracteristicaUbicacion { get; set; }
 
-    public string DescripcionCaracteristicaUbicacion { get; set; }
+        public string DescripcionCaracteristicaUbicacion { get; set; }
 
-    public int CodigoAlineacionVertical { get; set; }
+        public int CodigoAlineacionVertical { get; set; }
 
-    public string DescripcionVertical { get; set; }
+        public string DescripcionVertical { get; set; }
 
-    public string DescripcionTipoSenal { get; set; }
+        public string DescripcionTipoSenal { get; set; }
 
-    public string DescripcionSenalamiento { get; set; }
+        public string DescripcionSenalamiento { get; set; }
 
-    public string CodigoSentidO { get; set; }
+        public string CodigoSentidO { get; set; }
 
-    public string DescripcionSentido { get; set; }
+        public string DescripcionSentido { get; set; }
 
-    public int CodigoEstadoCalzada { get; set; }
+        public int CodigoEstadoCalzada { get; set; }
 
-    public string DescripcionEstado { get; set; }
+        public string DescripcionEstado { get; set; }
 
-    public int CodigoTiempo { get; set; }
+        public int CodigoTiempo { get; set; }
 
-    public string DescripcionTiempo { get; set; }
+        public string DescripcionTiempo { get; set; }
 
-    public int CodigoInterseccion { get; set; }
+        public int CodigoInterseccion { get; set; }
 
-    public string DescripcionInterseccion { get; set; }
+        public string DescripcionInterseccion { get; set; }
 
-    public int CodigoAlineacionHorizontal { get; set; }
+        public int CodigoAlineacionHorizontal { get; set; }
 
-    public string DescripcionHorizontal { get; set; }
+        public string DescripcionHorizontal { get; set; }
 
-    public int CodAccidente { get; set; }
+        public int CodAccidente { get; set; }
 
-    public string DescripcionTipoAccidente { get; set; }
+        public string DescripcionTipoAccidente { get; set; }
 
-    public int CodigoVehiculoCirculacion { get; set; }
+        public int CodigoVehiculoCirculacion { get; set; }
 
-    public string DescripcionVehiculoCircula { get; set; }
+        public string DescripcionVehiculoCircula { get; set; }
 
-    public int codObstaculo { get; set; }
+        public int codObstaculo { get; set; }
 
-    public string DescripcionObstaculo { get; set; }
+        public string DescripcionObstaculo { get; set; }
 
-    public string Observaciones { get; set; }
+        public string Observaciones { get; set; }
 
-    public string PlanoAccidente { get; set; }
+        public string PlanoAccidente { get; set; }
 
-    public string TipoIdentificacionTestigo { get; set; }
+        public string TipoIdentificacionTestigo { get; set; }
 
-    public string IdentificacionTestigo { get; set; }
+        public string IdentificacionTestigo { get; set; }
 
-    public string NombreTestigo { get; set; }
+        public string NombreTestigo { get; set; }
 
-    public string Apellito1Testigo { get; set; }
+        public string Apellito1Testigo { get; set; }
 
-    public string Apellido2Testigo { get; set; }
+        public string Apellido2Testigo { get; set; }
 
-    public string TipoIdentificacionTestigoB { get; set; }
+        public string TipoIdentificacionTestigoB { get; set; }
 
-    public string IdentificacionTestigoB { get; set; }
+        public string IdentificacionTestigoB { get; set; }
 
-    public string NombreTestigoB { get; set; }
+        public string NombreTestigoB { get; set; }
 
-    public string Apellito1TestigoB { get; set; }
+        public string Apellito1TestigoB { get; set; }
 
-    public string Apellido2TestigoB { get; set; }
+        public string Apellido2TestigoB { get; set; }
 
-    public Nullable<decimal> numero_boletaB { get; set; }
+        public Nullable<decimal> numero_boletaB { get; set; }
 
-    public decimal numero_boleta { get; set; }
+        public decimal numero_boleta { get; set; }
 
-    public int serie { get; set; }
+        public int serie { get; set; }
 
-    public string fuente { get; set; }
+        public string fuente { get; set; }
 
-    public string clase_placa { get; set; }
+        public string clase_placa { get; set; }
 
-    public string codigo_placa { get; set; }
+        public string codigo_placa { get; set; }
 
-    public string numero_placa { get; set; }
+        public string numero_placa { get; set; }
 
-    public string DescripcionTV { get; set; }
+        public string DescripcionTV { get; set; }
 
-    public string marca { get; set; }
+        public string marca { get; set; }
 
-    public string DescripcionMarca { get; set; }
+        public string DescripcionMarca { get; set; }
 
-    public Nullable<int> tipo_carroceria { get; set; }
+        public Nullable<int> tipo_carroceria { get; set; }
 
-    public string DescripcionCarroceria { get; set; }
+        public string DescripcionCarroceria { get; set; }
 
-    public Nullable<int> direccion { get; set; }
+        public Nullable<int> direccion { get; set; }
 
-    public string DescripcionDireccion { get; set; }
+        public string DescripcionDireccion { get; set; }
 
-    public string SegHuella { get; set; }
+        public string SegHuella { get; set; }
 
-    public Nullable<bool> SegCinturon { get; set; }
+        public Nullable<bool> SegCinturon { get; set; }
 
-    public Nullable<bool> SegSilla { get; set; }
+        public Nullable<bool> SegSilla { get; set; }
 
-    public Nullable<bool> SegBolsa { get; set; }
+        public Nullable<bool> SegBolsa { get; set; }
 
-    public Nullable<bool> SegOtro { get; set; }
+        public Nullable<bool> SegOtro { get; set; }
 
-    public Nullable<bool> SegNinguno { get; set; }
+        public Nullable<bool> SegNinguno { get; set; }
 
-    public Nullable<bool> SegNoIndica { get; set; }
+        public Nullable<bool> SegNoIndica { get; set; }
 
-    public Nullable<int> CodigoManiobra { get; set; }
+        public Nullable<int> CodigoManiobra { get; set; }
 
-    public string DescripcionManiobra { get; set; }
+        public string DescripcionManiobra { get; set; }
 
-    public Nullable<int> CodigoDispositivo { get; set; }
+        public Nullable<int> CodigoDispositivo { get; set; }
 
-    public string DescripcionDispositivo { get; set; }
+        public string DescripcionDispositivo { get; set; }
 
-    public string tipo_ide { get; set; }
+        public string tipo_ide { get; set; }
 
-    public string identificacion { get; set; }
+        public string identificacion { get; set; }
 
-    public string nombre { get; set; }
+        public string nombre { get; set; }
 
-    public string apellido1 { get; set; }
+        public string apellido1 { get; set; }
 
-    public string apellido2 { get; set; }
+        public string apellido2 { get; set; }
 
-    public Nullable<int> Edad { get; set; }
+        public Nullable<int> Edad { get; set; }
 
-    public string sexo { get; set; }
+        public string sexo { get; set; }
 
-    public Nullable<int> cod_provincia { get; set; }
+        public Nullable<int> cod_provincia { get; set; }
 
-    public string DescripcionProvincia { get; set; }
+        public string DescripcionProvincia { get; set; }
 
-    public Nullable<int> cod_canton { get; set; }
+        public Nullable<int> cod_canton { get; set; }
 
-    public string DescripcionCanton { get; set; }
+        public string DescripcionCanton { get; set; }
 
-    public Nullable<int> cod_distrito { get; set; }
+        public Nullable<int> cod_distrito { get; set; }
 
-    public string DescripcionDistrito { get; set; }
+        public string DescripcionDistrito { get; set; }
 
-    public string telefono { get; set; }
+        public string telefono { get; set; }
 
-    public string DireccionUsuario { get; set; }
+        public string DireccionUsuario { get; set; }
 
-    public string tipo_ideherido { get; set; }
+        public string tipo_ideherido { get; set; }
 
-    public string identificacionherido { get; set; }
+        public string identificacionherido { get; set; }
 
-    public string nombreherido { get; set; }
+        public string nombreherido { get; set; }
 
-    public string apellido1herido { get; set; }
+        public string apellido1herido { get; set; }
 
-    public string apellido2herido { get; set; }
+        public string apellido2herido { get; set; }
 
-    public string sexoherido { get; set; }
+        public string sexoherido { get; set; }
 
-    public Nullable<int> CodigoDano { get; set; }
+        public Nullable<int> CodigoDano { get; set; }
 
-    public string DescripcionDano { get; set; }
+        public string DescripcionDano { get; set; }
 
-    public Nullable<int> edadherido { get; set; }
+        public Nullable<int> edadherido { get; set; }
 
-    public string codrol { get; set; }
+        public string codrol { get; set; }
 
-    public string DescripcionRol { get; set; }
+        public string DescripcionRol { get; set; }
 
-    public string codhosp { get; set; }
+        public string codhosp { get; set; }
 
-    public string DescripcionHospital { get; set; }
+        public string DescripcionHospital { get; set; }
 
-    public string rev_tecnica { get; set; }
+        public string rev_tecnica { get; set; }
 
-    public string carga { get; set; }
+        public string carga { get; set; }
 
-    public string PortaSenal { get; set; }
+        public string PortaSenal { get; set; }
 
-    public string CondicionUsuario { get; set; }
+        public string CondicionUsuario { get; set; }
 
-    public string nivel_alcohol { get; set; }
+        public string nivel_alcohol { get; set; }
 
-    public string num_prueba_alcohol { get; set; }
+        public string num_prueba_alcohol { get; set; }
 
-    public string num_alcohosensor { get; set; }
+        public string num_alcohosensor { get; set; }
 
-    public string numero_vin { get; set; }
+        public string numero_vin { get; set; }
 
-    public string DescripconCodigod { get; set; }
+        public string DescripconCodigod { get; set; }
 
-    public string DescripcionCodigotd { get; set; }
+        public string DescripcionCodigotd { get; set; }
 
-    public string CondicionPersona { get; set; }
+        public string CondicionPersona { get; set; }
 
-    public int serieRelacion { get; set; }
+        public Nullable<int> serieRelacion { get; set; }
 
-    public decimal boletaRelacion { get; set; }
+        public Nullable<decimal> boletaRelacion { get; set; }
 
-    public string tipoIdRealcion { get; set; }
+        public string tipoIdRealcion { get; set; }
 
-    public string identRelacion { get; set; }
+        public string identRelacion { get; set; }
 
-    public string codigoRelacion { get; set; }
+        public string codigoRelacion { get; set; }
 
-    public string claseRelacion { get; set; }
+        public string claseRelacion { get; set; }
 
-    public string numeroRelacion { get; set; }
+        public string numeroRelacion { get; set; }
 
-    public string arcticuloRelacion { get; set; }
+        public string arcticuloRelacion { get; set; }
 
-    public string desArticuloRelacion { get; set; }
-
+        public string desArticuloRelacion { get; set; }
 
     }
 
