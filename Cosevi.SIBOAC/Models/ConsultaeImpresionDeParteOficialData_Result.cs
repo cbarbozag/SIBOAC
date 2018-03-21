@@ -287,7 +287,6 @@ public partial class ConsultaeImpresionDeParteOficialData_Result
 
     public string desArticuloRelacion { get; set; }
 
-
-    }
+}
 
 }
