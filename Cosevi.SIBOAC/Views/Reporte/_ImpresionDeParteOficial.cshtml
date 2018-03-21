@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewBag.Title = "_ImpresionDeParteOficial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Reporte Consulta e Impresión de Parte Oficial</h2>
+<h4>Filtro</h4>
+<hr />
+
+@using (Html.BeginForm("ConsultaeImpresionParteOficial", "Reporte", FormMethod.Get))
+{
+    <div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Seleccione la opción por la que desea consultar:</label>
+            <div class="col-md-10">
+                <div class="radio" id="radioButton">
+                    @if (Request.Params["opcionConsulta"] == "1")
+                    {
+                        <label><input id="radio01" type="radio" name="opcionConsulta" value="1" checked="checked">Parte Oficial</label>
+                        <br>
+                        <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                        <br>
+                        <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                        <br>
+                        <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                        <br>
+                    }
+                    else
+                    {
+                        if (Request.Params["opcionConsulta"] == "2")
+                        {
+                            <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                            <br>
+                            <label><input id="radio02" type="radio" name="opcionConsulta" value="2" checked="checked">Boleta de Citación</label>
+                            <br>
+                            <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                            <br>
+                            <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                            <br>
+                        }
+                        else
+                        {
+                            if (Request.Params["opcionConsulta"] == "3")
+                            {
+                                <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                                <br>
+                                <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                                <br>
+                                <label><input id="radio03" type="radio" name="opcionConsulta" value="3" checked="checked">Identifiación del Implicado</label>
+                                <br>
+                                <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                                <br>
+                            }
+                            else
+                            {
+                                if (Request.Params["opcionConsulta"] == "4")
+                                {
+                                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1">Parte Oficial</label>
+                                    <br>
+                                    <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                                    <br>
+                                    <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                                    <br>
+                                    <label><input id="radio04" type="radio" name="opcionConsulta" value="4" checked="checked">Placa</label>
+                                    <br>
+                                }
+                                else
+                                {
+                                    <label><input id="radio01" type="radio" name="opcionConsulta" value="1" checked>Parte Oficial</label>
+                                    <br>
+                                    <label><input id="radio02" type="radio" name="opcionConsulta" value="2">Boleta de Citación</label>
+                                    <br>
+                                    <label><input id="radio03" type="radio" name="opcionConsulta" value="3">Identifiación del Implicado</label>
+                                    <br>
+                                    <label><input id="radio04" type="radio" name="opcionConsulta" value="4">Placa</label>
+                                    <br>
+
+                                }
+                            }
+                        }
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="col-md-5" id="opc-1" style="display:none">
+            <br>
+            Serie del Parte Oficial
+            <br>
+            <input id="serieParte" type='text' name='serieParte' class="input-sm form-control" value="@Request.Params["serieParte"]"  @*size='30' maxLength='60'*@>
+            <br>
+            N° del Parte Oficial
+            <br>
+            <input id="numeroParte" type='text' name='numeroParte' class="input-sm form-control" value="@Request.Params["numeroParte"]" >
+            <br>
+        </div>
+
+        <div class="col-md-5" id="opc-2" style="display:none;">
+            <br>
+            Serie de la Boleta de Citación
+            <br>
+            <input id="serieBoleta" type='text' name='serieBoleta' class="input-sm form-control"  value="@Request.Params["serieBoleta"]" >
+            <br>
+            N° de la Boleta de Citación
+            <br>
+            <input id="numeroBoleta" type='text' name='numeroBoleta' class="input-sm form-control"  value="@Request.Params["numeroBoleta"]" >
+            <br>
+        </div>
+
+        <div class="col-md-5" id="opc-3" style="display:none;">
+            <br>
+            Tipo de Identificación
+            <br>
+            <input id="tipoId" type='text' name='tipoId' class="input-sm form-control"  value="@Request.Params["tipoId"]" >
+            <br>
+            N° Identificación del Implicado
+            <br>
+            <input id="numeroID" type='text' name='numeroID' class="input-sm form-control"  value="@Request.Params["numeroID"]" >
+            <br>
+        </div>
+
+        <div class="col-md-5" id="opc-4" style="display:none;">
+            <br>
+             Clase de Placa
+            <br>
+            <input id="clasePlaca" type='text' name='clasePlaca' class="input-sm form-control" value="@Request.Params["clasePlaca"]">
+            <br>           
+             Código de Placa
+            <br>
+            <input id="codigoPlaca" type='text' name='codigoPlaca' class="input-sm form-control"  value="@Request.Params["codigoPlaca"]">
+            <br>
+             N° de Placa
+            <br>
+            <input id="numeroPlaca" type='text' name='numeroPlaca' class="input-sm form-control" value="@Request.Params["numeroPlaca"]">
+            <br>            
+            @*Número de VIN
+            <br>
+            <input id="VIN" type='text' name='VIN' class="input-sm form-control" value="@Request.Params["VIN"]">
+            <br>*@
+        </div>
+    </div>
+
+    <br />
+    <div class="pull-right col-md-12">
+        <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
+    </div>
+}
+<br/>
+<br />
+<iframe class="col-md-12" id="ifrmReportViewer" style="height:1200px; width:100%;" frameborder="0" scrolling="auto"></iframe>
+
+
+  
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(
+        function () {
+            if ($('#radio01').prop("checked")) {
+                 var checkedRadio = '#opc-1';
+                $(checkedRadio).show();
+            }
+            if ($('#radio02').prop("checked")) {
+                var checkedRadio = '#opc-2';
+                $(checkedRadio).show();
+            }
+            if ($('#radio03').prop("checked")) {
+                 var checkedRadio = '#opc-3';
+                $(checkedRadio).show();
+            }
+            if ($('#radio04').prop("checked")) {
+                 var checkedRadio = '#opc-4';
+                $(checkedRadio).show();
+            }
+            limpiarCampos();
+            prepararCampos();
+            ReportCall();
+        });
+    </script>
+      
+
+    <script>
+
+        function limpiarCampos() {
+            $('#limpiarCampos').click(function () {
+                $('input[type="text"]').val('');
+                //$('ifrmReportViewer').hide();
+            });
+        };
+
+        function prepararCampos() {
+            $(":input[type='radio']").on("change", function () {
+                $('div[id^=opc-]').hide();
+                if ($(this).prop("checked")) {
+                    var checkedRadio = '#opc-' + $(this).val();
+                    $(checkedRadio).show();
+                }
+            });
+        };
+
+        function cargarDatos() {
+
+        };
+
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }
+    </script>
+}

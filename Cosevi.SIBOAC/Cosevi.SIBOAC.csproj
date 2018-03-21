@@ -1763,6 +1763,7 @@
     <Content Include="Views\Leyenda_Puntos\RealDelete.cshtml" />
     <Content Include="Views\AdjuntarArchivosBole\Index.cshtml" />
     <Content Include="Views\AdjuntarArchivosBole\_AdjuntarView.cshtml" />
+    <Content Include="Views\Reporte\_ImpresionDeParteOficial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />

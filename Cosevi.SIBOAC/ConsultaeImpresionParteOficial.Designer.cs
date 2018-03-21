@@ -531,6 +531,24 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnCondicionPersona;
             
+            private global::System.Data.DataColumn columnserieRelacion;
+            
+            private global::System.Data.DataColumn columnboletaRelacion;
+            
+            private global::System.Data.DataColumn columntipoIdRealcion;
+            
+            private global::System.Data.DataColumn columnidentRelacion;
+            
+            private global::System.Data.DataColumn columncodigoRelacion;
+            
+            private global::System.Data.DataColumn columnclaseRelacion;
+            
+            private global::System.Data.DataColumn columnnumeroRelacion;
+            
+            private global::System.Data.DataColumn columnarcticuloRelacion;
+            
+            private global::System.Data.DataColumn columndesArticuloRelacion;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ConsultaeImpresionDeParteOficialDataDataTable() {
@@ -1574,6 +1592,78 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn serieRelacionColumn {
+                get {
+                    return this.columnserieRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn boletaRelacionColumn {
+                get {
+                    return this.columnboletaRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn tipoIdRealcionColumn {
+                get {
+                    return this.columntipoIdRealcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn identRelacionColumn {
+                get {
+                    return this.columnidentRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn codigoRelacionColumn {
+                get {
+                    return this.columncodigoRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn claseRelacionColumn {
+                get {
+                    return this.columnclaseRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numeroRelacionColumn {
+                get {
+                    return this.columnnumeroRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn arcticuloRelacionColumn {
+                get {
+                    return this.columnarcticuloRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn desArticuloRelacionColumn {
+                get {
+                    return this.columndesArticuloRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1735,7 +1825,16 @@ namespace Cosevi.SIBOAC {
                         string numero_vin, 
                         string DescripconCodigod, 
                         string DescripcionCodigotd, 
-                        string CondicionPersona) {
+                        string CondicionPersona, 
+                        int serieRelacion, 
+                        decimal boletaRelacion, 
+                        string tipoIdRealcion, 
+                        string identRelacion, 
+                        string codigoRelacion, 
+                        string claseRelacion, 
+                        string numeroRelacion, 
+                        string arcticuloRelacion, 
+                        string desArticuloRelacion) {
                 ConsultaeImpresionDeParteOficialDataRow rowConsultaeImpresionDeParteOficialDataRow = ((ConsultaeImpresionDeParteOficialDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FuenteParte,
@@ -1863,7 +1962,16 @@ namespace Cosevi.SIBOAC {
                         numero_vin,
                         DescripconCodigod,
                         DescripcionCodigotd,
-                        CondicionPersona};
+                        CondicionPersona,
+                        serieRelacion,
+                        boletaRelacion,
+                        tipoIdRealcion,
+                        identRelacion,
+                        codigoRelacion,
+                        claseRelacion,
+                        numeroRelacion,
+                        arcticuloRelacion,
+                        desArticuloRelacion};
                 rowConsultaeImpresionDeParteOficialDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowConsultaeImpresionDeParteOficialDataRow);
                 return rowConsultaeImpresionDeParteOficialDataRow;
@@ -2012,6 +2120,15 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripconCodigod = base.Columns["DescripconCodigod"];
                 this.columnDescripcionCodigotd = base.Columns["DescripcionCodigotd"];
                 this.columnCondicionPersona = base.Columns["CondicionPersona"];
+                this.columnserieRelacion = base.Columns["serieRelacion"];
+                this.columnboletaRelacion = base.Columns["boletaRelacion"];
+                this.columntipoIdRealcion = base.Columns["tipoIdRealcion"];
+                this.columnidentRelacion = base.Columns["identRelacion"];
+                this.columncodigoRelacion = base.Columns["codigoRelacion"];
+                this.columnclaseRelacion = base.Columns["claseRelacion"];
+                this.columnnumeroRelacion = base.Columns["numeroRelacion"];
+                this.columnarcticuloRelacion = base.Columns["arcticuloRelacion"];
+                this.columndesArticuloRelacion = base.Columns["desArticuloRelacion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2269,6 +2386,24 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnDescripcionCodigotd);
                 this.columnCondicionPersona = new global::System.Data.DataColumn("CondicionPersona", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCondicionPersona);
+                this.columnserieRelacion = new global::System.Data.DataColumn("serieRelacion", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnserieRelacion);
+                this.columnboletaRelacion = new global::System.Data.DataColumn("boletaRelacion", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnboletaRelacion);
+                this.columntipoIdRealcion = new global::System.Data.DataColumn("tipoIdRealcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntipoIdRealcion);
+                this.columnidentRelacion = new global::System.Data.DataColumn("identRelacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidentRelacion);
+                this.columncodigoRelacion = new global::System.Data.DataColumn("codigoRelacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodigoRelacion);
+                this.columnclaseRelacion = new global::System.Data.DataColumn("claseRelacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnclaseRelacion);
+                this.columnnumeroRelacion = new global::System.Data.DataColumn("numeroRelacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumeroRelacion);
+                this.columnarcticuloRelacion = new global::System.Data.DataColumn("arcticuloRelacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnarcticuloRelacion);
+                this.columndesArticuloRelacion = new global::System.Data.DataColumn("desArticuloRelacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndesArticuloRelacion);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnFuenteParte,
                                 this.columnSerieParte,
@@ -2426,6 +2561,13 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionCodigotd.MaxLength = 50;
                 this.columnCondicionPersona.ReadOnly = true;
                 this.columnCondicionPersona.MaxLength = 50;
+                this.columntipoIdRealcion.MaxLength = 2;
+                this.columnidentRelacion.MaxLength = 15;
+                this.columncodigoRelacion.MaxLength = 3;
+                this.columnclaseRelacion.MaxLength = 3;
+                this.columnnumeroRelacion.MaxLength = 20;
+                this.columnarcticuloRelacion.MaxLength = 6;
+                this.columndesArticuloRelacion.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4464,6 +4606,159 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int serieRelacion {
+                get {
+                    try {
+                        return ((int)(this[this.tableConsultaeImpresionDeParteOficialData.serieRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'serieRelacion\' in table \'ConsultaeImpresionDeParteOficialDa" +
+                                "ta\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.serieRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal boletaRelacion {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableConsultaeImpresionDeParteOficialData.boletaRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'boletaRelacion\' in table \'ConsultaeImpresionDeParteOficialD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.boletaRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string tipoIdRealcion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.tipoIdRealcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tipoIdRealcion\' in table \'ConsultaeImpresionDeParteOficialD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.tipoIdRealcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string identRelacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.identRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'identRelacion\' in table \'ConsultaeImpresionDeParteOficialDa" +
+                                "ta\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.identRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string codigoRelacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.codigoRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'codigoRelacion\' in table \'ConsultaeImpresionDeParteOficialD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.codigoRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string claseRelacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.claseRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'claseRelacion\' in table \'ConsultaeImpresionDeParteOficialDa" +
+                                "ta\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.claseRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string numeroRelacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.numeroRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numeroRelacion\' in table \'ConsultaeImpresionDeParteOficialD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.numeroRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string arcticuloRelacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.arcticuloRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'arcticuloRelacion\' in table \'ConsultaeImpresionDeParteOfici" +
+                                "alData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.arcticuloRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string desArticuloRelacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.desArticuloRelacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'desArticuloRelacion\' in table \'ConsultaeImpresionDeParteOfi" +
+                                "cialData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.desArticuloRelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCodigoAutoridadNull() {
                 return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.CodigoAutoridadColumn);
             }
@@ -5481,6 +5776,114 @@ namespace Cosevi.SIBOAC {
             public void SetCondicionPersonaNull() {
                 this[this.tableConsultaeImpresionDeParteOficialData.CondicionPersonaColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsserieRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.serieRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetserieRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.serieRelacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsboletaRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.boletaRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetboletaRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.boletaRelacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IstipoIdRealcionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.tipoIdRealcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SettipoIdRealcionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.tipoIdRealcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsidentRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.identRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetidentRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.identRelacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IscodigoRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.codigoRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetcodigoRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.codigoRelacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsclaseRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.claseRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetclaseRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.claseRelacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumeroRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.numeroRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumeroRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.numeroRelacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsarcticuloRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.arcticuloRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetarcticuloRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.arcticuloRelacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdesArticuloRelacionNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.desArticuloRelacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdesArticuloRelacionNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.desArticuloRelacionColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -5768,6 +6171,15 @@ namespace Cosevi.SIBOAC.ConsultaeImpresionParteOficialTableAdapters {
             tableMapping.ColumnMappings.Add("DescripconCodigod", "DescripconCodigod");
             tableMapping.ColumnMappings.Add("DescripcionCodigotd", "DescripcionCodigotd");
             tableMapping.ColumnMappings.Add("CondicionPersona", "CondicionPersona");
+            tableMapping.ColumnMappings.Add("serieRelacion", "serieRelacion");
+            tableMapping.ColumnMappings.Add("boletaRelacion", "boletaRelacion");
+            tableMapping.ColumnMappings.Add("tipoIdRealcion", "tipoIdRealcion");
+            tableMapping.ColumnMappings.Add("identRelacion", "identRelacion");
+            tableMapping.ColumnMappings.Add("codigoRelacion", "codigoRelacion");
+            tableMapping.ColumnMappings.Add("claseRelacion", "claseRelacion");
+            tableMapping.ColumnMappings.Add("numeroRelacion", "numeroRelacion");
+            tableMapping.ColumnMappings.Add("arcticuloRelacion", "arcticuloRelacion");
+            tableMapping.ColumnMappings.Add("desArticuloRelacion", "desArticuloRelacion");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

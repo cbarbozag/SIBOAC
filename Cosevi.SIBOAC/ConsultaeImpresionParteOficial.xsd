@@ -2,9 +2,8 @@
 <xs:schema id="ConsultaeImpresionParteOficial" targetNamespace="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:mstns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -153,6 +152,15 @@
               <Mapping SourceColumn="DescripconCodigod" DataSetColumn="DescripconCodigod" />
               <Mapping SourceColumn="DescripcionCodigotd" DataSetColumn="DescripcionCodigotd" />
               <Mapping SourceColumn="CondicionPersona" DataSetColumn="CondicionPersona" />
+              <Mapping SourceColumn="serieRelacion" DataSetColumn="serieRelacion" />
+              <Mapping SourceColumn="boletaRelacion" DataSetColumn="boletaRelacion" />
+              <Mapping SourceColumn="tipoIdRealcion" DataSetColumn="tipoIdRealcion" />
+              <Mapping SourceColumn="identRelacion" DataSetColumn="identRelacion" />
+              <Mapping SourceColumn="codigoRelacion" DataSetColumn="codigoRelacion" />
+              <Mapping SourceColumn="claseRelacion" DataSetColumn="claseRelacion" />
+              <Mapping SourceColumn="numeroRelacion" DataSetColumn="numeroRelacion" />
+              <Mapping SourceColumn="arcticuloRelacion" DataSetColumn="arcticuloRelacion" />
+              <Mapping SourceColumn="desArticuloRelacion" DataSetColumn="desArticuloRelacion" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -824,6 +832,57 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="serieRelacion" msprop:Generator_ColumnVarNameInTable="columnserieRelacion" msprop:Generator_ColumnPropNameInRow="serieRelacion" msprop:Generator_ColumnPropNameInTable="serieRelacionColumn" msprop:Generator_UserColumnName="serieRelacion" type="xs:int" minOccurs="0" />
+              <xs:element name="boletaRelacion" msprop:Generator_ColumnVarNameInTable="columnboletaRelacion" msprop:Generator_ColumnPropNameInRow="boletaRelacion" msprop:Generator_ColumnPropNameInTable="boletaRelacionColumn" msprop:Generator_UserColumnName="boletaRelacion" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tipoIdRealcion" msprop:Generator_ColumnVarNameInTable="columntipoIdRealcion" msprop:Generator_ColumnPropNameInRow="tipoIdRealcion" msprop:Generator_ColumnPropNameInTable="tipoIdRealcionColumn" msprop:Generator_UserColumnName="tipoIdRealcion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="identRelacion" msprop:Generator_ColumnVarNameInTable="columnidentRelacion" msprop:Generator_ColumnPropNameInRow="identRelacion" msprop:Generator_ColumnPropNameInTable="identRelacionColumn" msprop:Generator_UserColumnName="identRelacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codigoRelacion" msprop:Generator_ColumnVarNameInTable="columncodigoRelacion" msprop:Generator_ColumnPropNameInRow="codigoRelacion" msprop:Generator_ColumnPropNameInTable="codigoRelacionColumn" msprop:Generator_UserColumnName="codigoRelacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="claseRelacion" msprop:Generator_ColumnVarNameInTable="columnclaseRelacion" msprop:Generator_ColumnPropNameInRow="claseRelacion" msprop:Generator_ColumnPropNameInTable="claseRelacionColumn" msprop:Generator_UserColumnName="claseRelacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numeroRelacion" msprop:Generator_ColumnVarNameInTable="columnnumeroRelacion" msprop:Generator_ColumnPropNameInRow="numeroRelacion" msprop:Generator_ColumnPropNameInTable="numeroRelacionColumn" msprop:Generator_UserColumnName="numeroRelacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="arcticuloRelacion" msprop:Generator_ColumnVarNameInTable="columnarcticuloRelacion" msprop:Generator_ColumnPropNameInRow="arcticuloRelacion" msprop:Generator_ColumnPropNameInTable="arcticuloRelacionColumn" msprop:Generator_UserColumnName="arcticuloRelacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="desArticuloRelacion" msprop:Generator_ColumnVarNameInTable="columndesArticuloRelacion" msprop:Generator_ColumnPropNameInRow="desArticuloRelacion" msprop:Generator_ColumnPropNameInTable="desArticuloRelacionColumn" msprop:Generator_UserColumnName="desArticuloRelacion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

@@ -570,6 +570,471 @@ namespace Cosevi.SIBOAC.Reports
                         #endregion
                         break;
 
+                    case "_ImpresionDeParteOficial":
+                        #region ImpresionDeParteOficial
+                        ReportViewer1.LocalReport.EnableExternalImages = true;
+
+                        string[] param23 = parametros.Split(',');
+                        int TipoConsulta2 = Convert.ToInt32(param23[0]);
+                        string Parametro4 = param23[1];
+                        string Parametro5 = param23[2];
+                        string Parametro6 = param23[3];
+                        //string Parametro4 = param2[4];
+
+                        string[] extensionRestringidaIPO = ConfigurationManager.AppSettings["ExtenException"].Split(',');
+
+                        if (TipoConsulta2 == 1)
+                        {
+                            #region Consulta 1
+                            string serieParte1 = Parametro4;
+                            string numeroParte1 = Parametro5;
+
+                            var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro4 && a.NumeroParte == Parametro5).Select(a => a.Fuente).ToList());
+                            string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
+
+                            var Boleta1 = (db.BOLETA.Where(a => a.serie_parteoficial == serieParte1 && a.numeroparte == numeroParte1).Select(a => a.numero_boleta).ToList());
+                            var SerieBoleta1 = (db.BOLETA.Where(a => a.serie_parteoficial == serieParte1 && a.numeroparte == numeroParte1).Select(a => a.serie).ToList());
+
+                            int serParte1 = Convert.ToInt32(Parametro4);
+                            decimal numeParte1 = Convert.ToDecimal(Parametro5);
+
+                            //string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
+
+                            #region Convertir SVG a PNG
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);
+
+
+                            foreach (string item in extSvg)
+                            {
+                                string filePath = Path.Combine(rutaPlano1, item);
+                                var sampleDoc = SvgDocument.Open(filePath);
+                                string nombrePng = item.Replace(".svg", ".png");
+
+                                string ext = Path.GetExtension(nombrePng).Replace(".", "");
+                                int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                //string nombre = item;
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano1, nombrePng));
+
+                                var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item);
+                                svgConvertido.extension = "svgc";
+
+                                dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                {
+                                    fuente = CodigoFuente1,
+                                    serie = serParte1,
+                                    numero = numeParte1,
+                                    extension = ext,
+                                    fechaRegistro = DateTime.Now,
+                                    nombre = nombrePng,
+                                    consecutivo_extension = maxValue.Value + 1
+                                });
+
+                                dbPivot.SaveChanges();
+
+                            }
+                            #endregion
+
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                            listaArchivos.Columns.Add("ParteOficial");
+
+                            foreach (string item in ext1)
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri, numeroParte1);
+                            }
+
+                            var listFirma = (db.BOLETA.Where(a => a.serie_parteoficial == Parametro4 && a.numeroparte == Parametro5).ToList());
+                            var listaTestigoP = (db.TESTIGOXPARTE.Where(a => a.serie == Parametro4 && a.numeroparte == Parametro5).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => SerieBoleta1.Contains(a.serie) && Boleta1.Contains(a.numero)).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+
+                            string v_nombre = null;
+                            foreach (var item in listFirma)
+                            {
+                                if (v_nombre == null)
+                                {
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    v_nombre = "1";
+                                }
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+                            }
+
+                            foreach (var item in listaTestigoP)
+                            {
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
+                            }
+
+                            foreach (var item in listaTestigoB)
+                            {
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                            }
+
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            #endregion
+                        }
+
+                        if (TipoConsulta2 == 2)
+                        {
+                            #region Consulta 2
+                            int serieBoleta2 = Convert.ToInt32(Parametro4);
+                            decimal numeroBoleta2 = Convert.ToDecimal(Parametro5);
+
+                            var numeroPart2 = (db.BOLETA.Where(a => a.serie == serieBoleta2 && a.numero_boleta == numeroBoleta2).Select(a => a.numeroparte).ToList());
+                            string CodigoNumParte2 = numeroPart2.ToArray().FirstOrDefault() == null ? "0" : numeroPart2.ToArray().FirstOrDefault().ToString();
+
+                            var seriePart2 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte2).Select(a => a.Serie).ToList());
+                            string CodigoSerie2 = seriePart2.ToArray().FirstOrDefault() == null ? "0" : seriePart2.ToArray().FirstOrDefault().ToString();
+
+                            var fuente2 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie2 && a.NumeroParte == CodigoNumParte2).Select(a => a.Fuente).ToList());
+                            string CodigoFuente2 = fuente2.ToArray().FirstOrDefault() == null ? "0" : fuente2.ToArray().FirstOrDefault().ToString();
+
+                            int serieParte2 = Convert.ToInt32(CodigoSerie2);
+                            decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
+
+
+                            string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
+
+                            #region Convertir SVG a PNG
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
+
+
+                            foreach (string item in extSvg)
+                            {
+                                string filePath = Path.Combine(rutaPlano2, item);
+                                var sampleDoc = SvgDocument.Open(filePath);
+                                string nombrePng = item.Replace(".svg", ".png");
+
+                                string ext = Path.GetExtension(nombrePng).Replace(".", "");
+                                int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, serieParte2, numeroParte2, maxValue.Value + 1, ext);
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano2, nombrePng));
+
+                                var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, item);
+                                svgConvertido.extension = "svgc";
+
+                                dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                {
+                                    fuente = CodigoFuente2,
+                                    serie = serieParte2,
+                                    numero = numeroParte2,
+                                    extension = ext,
+                                    fechaRegistro = DateTime.Now,
+                                    nombre = nombrePng,
+                                    consecutivo_extension = maxValue.Value + 1
+                                });
+
+                                dbPivot.SaveChanges();
+
+                            }
+                            #endregion
+
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                            listaArchivos.Columns.Add("ParteOficial");
+
+                            //var listaAdjuntos = ext2.Zip(CodigoNumParte2, (n, w) => new { NombreAr = n, NumPar = w });
+
+                            foreach (var item in ext2)
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item)).AbsoluteUri, CodigoNumParte2);
+                            }
+
+                            var listFirma = (db.BOLETA.Where(a => CodigoSerie2.Contains(a.serie_parteoficial) && CodigoNumParte2.Contains(a.numeroparte) && a.serie == serieBoleta2 && a.numero_boleta == numeroBoleta2).ToList());
+                            var listaTestigoP = (db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => a.serie == serieBoleta2 && a.numero == numeroBoleta2).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+                            string v_nombre = null;
+                            foreach (var item in listFirma)
+                            {
+                                if (v_nombre == null)
+                                {
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    v_nombre = "1";
+                                }
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+                            }
+
+                            foreach (var item in listaTestigoP)
+                            {
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
+                            }
+
+                            foreach (var item in listaTestigoB)
+                            {
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                            }
+
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            #endregion
+                        }
+
+                        if (TipoConsulta2 == 3)
+                        {
+                            #region Consulta 3
+                            var numeroBoleta3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro4 && a.identificacion == Parametro5).Select(a => a.NumeroBoleta).ToList());
+                            var seriBolet3 = (db.PERSONA.Where(a => a.tipo_ide == Parametro4 && a.identificacion == Parametro5).Select(a => a.Serie).ToList());
+
+                            var numPartBo3 = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta) && a.numeroparte != "0").Select(a => a.numeroparte).ToList());
+                            var serieP = (db.BOLETA.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta) && a.numeroparte != "0").Select(a => a.serie_parteoficial).ToList());
+
+                            var numPartPar3 = (db.PARTEOFICIAL.Where(a => numPartBo3.Contains(a.NumeroParte) && serieP.Contains(a.Serie)).Select(a => a.NumeroParte).ToList());
+                            var numPartConv3 = numPartPar3.Select(s => Convert.ToDecimal(s)).ToList();
+
+                            var seriePart3 = (db.PARTEOFICIAL.Where(a => numPartPar3.Contains(a.NumeroParte) && serieP.Contains(a.Serie)).Select(a => a.Serie).ToList());
+                            var serParte3 = seriePart3.Select(s => Convert.ToInt32(s)).ToList();
+
+                            var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numPartPar3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
+
+                            string rutaPlano3 = ConfigurationManager.AppSettings["UploadFilePath"];
+
+                            #region Convertir SVG a PNG
+                            var extSvg3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                            var extSvgFuente3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                            var extSvgSerie3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                            var extSvgParte3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                            var listPlanos3 = extSvg3.Zip(extSvgParte3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie3, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente3, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+
+                            foreach (var item in listPlanos3)
+                            {
+                                string filePath = Path.Combine(rutaPlano3, item.Item1);
+                                var sampleDoc = SvgDocument.Open(filePath);
+                                string nombrePng = item.Item1.Replace(".svg", ".png");
+
+                                string ext = Path.GetExtension(nombrePng).Replace(".", "");
+                                int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano3, nombrePng));
+
+                                var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
+                                svgConvertido.extension = "svgc";
+
+                                dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                {
+                                    fuente = item.Item4,
+                                    serie = item.Item3,
+                                    numero = item.Item2,
+                                    extension = ext,
+                                    fechaRegistro = DateTime.Now,
+                                    nombre = nombrePng,
+                                    consecutivo_extension = maxValue.Value + 1
+                                });
+
+                                dbPivot.SaveChanges();
+
+                            }
+                            #endregion
+
+                            var nombreAdjuntos3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                            var numPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                            listaArchivos.Columns.Add("ParteOficial");
+
+                            string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
+
+                            var listaAdjuntos3 = nombreAdjuntos3.Zip(numPartLista3, (n, w) => new { NombreAr = n, NumPar = w });
+
+                            foreach (var item in listaAdjuntos3)
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.NombreAr)).AbsoluteUri, item.NumPar);
+                            }
+
+                            var listFirma = (db.BOLETA.Where(a => seriePart3.Contains(a.serie_parteoficial) && numPartPar3.Contains(a.numeroparte) && seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).OrderBy(a => new { a.fuente_parteoficial, a.serie_parteoficial, a.numeroparte }).ToList());
+                            var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart3.Contains(a.serie) && numPartPar3.Contains(a.numeroparte)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero)).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+                            string v_fuente = null;
+                            string v_serie = null;
+                            string v_numparte = null;
+
+                            foreach (var item in listFirma)
+                            {
+                                if (v_fuente != item.fuente_parteoficial || v_serie != item.serie_parteoficial || v_numparte != item.numeroparte)
+                                {
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    v_fuente = item.fuente_parteoficial;
+                                    v_serie = item.serie_parteoficial;
+                                    v_numparte = item.numeroparte;
+                                }
+
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+                            }
+
+                            foreach (var item in listaTestigoP)
+                            {
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
+                            }
+
+                            foreach (var item in listaTestigoB)
+                            {
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta3, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                            }
+
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            #endregion
+                        }
+
+                        if (TipoConsulta2 == 4)
+                        {
+                            #region Consulta 4
+                            var numeroBoleta4 = (db.VEHICULO.Where(a => a.placa == Parametro4 && a.codigo == Parametro5 && a.clase == Parametro6).Select(a => a.NumeroBoleta).ToList());
+
+                            var seriBolet4 = (db.VEHICULO.Where(a => a.placa == Parametro4 && a.codigo == Parametro5 && a.clase == Parametro6).Select(a => a.Serie).ToList());
+
+                            var numeroPart4 = (db.BOLETA.Where(a => seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).Select(a => a.numeroparte).ToList());
+                            var numPartPar4 = (db.PARTEOFICIAL.Where(a => numeroPart4.Contains(a.NumeroParte) && a.NumeroParte != "0").Select(a => a.NumeroParte).ToList());
+                            var numPartConv4 = numPartPar4.Select(s => Convert.ToDecimal(s)).ToList();
+
+                            var seriePart4 = (db.PARTEOFICIAL.Where(a => numPartPar4.Contains(a.NumeroParte)).Select(a => a.Serie).ToList());
+                            var serParte4 = seriePart4.Select(s => Convert.ToInt32(s)).ToList();
+
+                            var fuente4 = (db.PARTEOFICIAL.Where(a => seriePart4.Contains(a.Serie) && numPartPar4.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
+
+                            string rutaPlano4 = ConfigurationManager.AppSettings["UploadFilePath"];
+
+                            #region Convertir SVG a PNG
+                            var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                            var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                            var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                            var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                            var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+
+                            foreach (var item in listPlanos4)
+                            {
+                                string filePath = Path.Combine(rutaPlano4, item.Item1);
+                                var sampleDoc = SvgDocument.Open(filePath);
+                                string nombrePng = item.Item1.Replace(".svg", ".png");
+
+                                string ext = Path.GetExtension(nombrePng).Replace(".", "");
+                                int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
+                                sampleDoc.Draw().Save(Path.Combine(rutaPlano4, nombrePng));
+
+                                var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
+                                svgConvertido.extension = "svgc";
+
+                                dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                {
+                                    fuente = item.Item4,
+                                    serie = item.Item3,
+                                    numero = item.Item2,
+                                    extension = ext,
+                                    fechaRegistro = DateTime.Now,
+                                    nombre = nombrePng,
+                                    consecutivo_extension = maxValue.Value + 1
+                                });
+
+                                dbPivot.SaveChanges();
+
+                            }
+                            #endregion
+
+
+                            var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                            var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                            listaArchivos.Columns.Add("ParteOficial");
+
+                            string ruta4 = ConfigurationManager.AppSettings["DownloadFilePath"];
+
+                            var listaAdjuntos4 = nombreAdjuntos4.Zip(numPartLista4, (n, w) => new { NombreAr = n, NumPar = w });
+
+                            foreach (var item in listaAdjuntos4)
+                            {
+                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.NombreAr)).AbsoluteUri, item.NumPar);
+                            }
+
+                            var listFirma = (db.BOLETA.Where(a => seriePart4.Contains(a.serie_parteoficial) && numPartPar4.Contains(a.numeroparte) && seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).OrderBy(a => new { a.fuente_parteoficial, a.serie_parteoficial, a.numeroparte }).ToList());
+                            var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart4.Contains(a.serie) && numPartPar4.Contains(a.numeroparte)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero)).ToList());
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
+                            string p_fuente = null;
+                            string p_serie = null;
+                            string p_numparte = null;
+
+                            foreach (var item in listFirma)
+                            {
+                                if (p_fuente != item.fuente_parteoficial || p_serie != item.serie_parteoficial || p_numparte != item.numeroparte)
+                                {
+                                    var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                    p_fuente = item.fuente_parteoficial;
+                                    p_serie = item.serie_parteoficial;
+                                    p_numparte = item.numeroparte;
+                                }
+
+                                var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+
+                            }
+
+                            foreach (var item in listaTestigoP)
+                            {
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
+                            }
+
+                            foreach (var item in listaTestigoB)
+                            {
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+
+                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta4, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                            }
+
+                            this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+                            Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
+                            Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            #endregion
+                        }
+
+                        #endregion
+                        break;
+
 
                 }
                 ReportDataSource RDS = new ReportDataSource("DataSet1", GetData(reporteID, parametros));
@@ -636,6 +1101,9 @@ namespace Cosevi.SIBOAC.Reports
                     break;
                 case "_ReimpresionDeBoletasDeCampo":
                     result = GetReimpresionDeBoletasDeCampoData(parametros);
+                    break;
+                case "_ImpresionDeParteOficial":
+                    result = ConsultaeImpresionDeParteOficialData(parametros);
                     break;
                 default:
                     break;
@@ -763,6 +1231,28 @@ namespace Cosevi.SIBOAC.Reports
             }
             db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
             var lista = db.GetConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3, usuarioSistema).ToList();
+            return lista;
+        }
+
+        private List<ConsultaeImpresionDeParteOficialData_Result> ConsultaeImpresionDeParteOficialData(string parametros)
+        {
+            var usuarioSistema = User.Identity.Name;
+
+            string[] param = parametros.Split(',');
+            int TipoConsulta = Convert.ToInt32(param[0]);
+            string Parametro1 = param[1];
+            string Parametro2 = param[2];
+            string Parametro3 = param[3];
+            //string Parametro4 = param[4];
+
+            if (Parametro3 == "null")
+            {
+                db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
+                var lista1 = db.ConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0", usuarioSistema).ToList();
+                return lista1;
+            }
+            db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
+            var lista = db.ConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3, usuarioSistema).ToList();
             return lista;
         }
 
@@ -899,6 +1389,45 @@ namespace Cosevi.SIBOAC.Reports
                         decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);                        
 
                         lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();                        
+                    }
+                    break;
+
+                case "_ImpresionDeParteOficial":
+
+                    string[] parame2 = parametros.Split(',');
+                    int TipoConsulta2 = Convert.ToInt32(parame2[0]);
+                    string Parametro4 = parame2[1];
+                    string Parametro5 = parame2[2];
+                    string Parametro6 = parame2[3];
+
+                    if (TipoConsulta2 == 1)
+                    {
+                        int serieParte1 = Convert.ToInt32(Parametro4);
+                        decimal numeroParte1 = Convert.ToDecimal(Parametro5);
+
+                        var fuente1 = (db.PARTEOFICIAL.Where(a => a.Serie == Parametro4 && a.NumeroParte == Parametro5).Select(a => a.Fuente).ToList());
+                        string CodigoFuente1 = fuente1.ToArray().FirstOrDefault() == null ? "0" : fuente1.ToArray().FirstOrDefault().ToString();
+
+                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serieParte1 && oa.numero == numeroParte1 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
+                    }
+                    if (TipoConsulta2 == 2)
+                    {
+                        int serieBoleta2 = Convert.ToInt32(Parametro4);
+                        decimal numeroBoleta2 = Convert.ToDecimal(Parametro5);
+
+                        var numeroPart2 = (db.BOLETA.Where(a => a.serie == serieBoleta2 && a.numero_boleta == numeroBoleta2).Select(a => a.numeroparte).ToList());
+                        string CodigoNumParte2 = numeroPart2.ToArray().FirstOrDefault() == null ? "0" : numeroPart2.ToArray().FirstOrDefault().ToString();
+
+                        var seriePart2 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == CodigoNumParte2).Select(a => a.Serie).ToList());
+                        string CodigoSerie2 = seriePart2.ToArray().FirstOrDefault() == null ? "0" : seriePart2.ToArray().FirstOrDefault().ToString();
+
+                        var fuente2 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie2 && a.NumeroParte == CodigoNumParte2).Select(a => a.Fuente).ToList());
+                        string CodigoFuente2 = fuente2.ToArray().FirstOrDefault() == null ? "0" : fuente2.ToArray().FirstOrDefault().ToString();
+
+                        int serieParte2 = Convert.ToInt32(CodigoSerie2);
+                        decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
+
+                        lstPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "PDF").Select(oa => oa.nombre).ToList();
                     }
                     break;
             }

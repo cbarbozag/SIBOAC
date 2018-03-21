@@ -161,9 +161,14 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Autoridades = listaAutoridades.OrderBy(a => a.Descripcion);
                     break;
                 #endregion
+
                 case "_ConsultaeImpresionDeParteOficial":
                   
                     break;
+
+                case "_ImpresionDeParteOficial":
+                    break;
+
                 case "_ReportePorUsuario":
                
                     #region "Reporte Por Usuario"
@@ -708,7 +713,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         #endregion
 
-        #region ConsultaeImpresionParteOficialData
+        #region GetConsultaeImpresionParteOficialData
         private List<GetConsultaeImpresionDeParteOficialData_Result> GetConsultaeImpresionParteOficialData( int idRadio,  string serieParte,
              string numeroParte,  int? serieBoleta,  decimal? numeroBoleta,  string tipoId,
              string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca)
@@ -1440,6 +1445,82 @@ namespace Cosevi.SIBOAC.Controllers
 
             return lista;
         }
+        #endregion
+
+        #region ImpresionParteOficialData
+        private List<ConsultaeImpresionDeParteOficialData_Result> ConsultaeImpresionDeParteOficialData_Result(int idRadio, string serieParte,
+             string numeroParte, int? serieBoleta, decimal? numeroBoleta, string tipoId,
+             string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca)
+        {
+            var usuarioSistema = User.Identity.Name;
+
+            if (idRadio == 1) // Consulta por parte oficial
+            {
+                db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
+                var lista1 = db.ConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(), null, usuarioSistema).ToList();
+                return lista1;
+            }
+            if (idRadio == 2)//consulta por Boleta de citación
+            {
+                db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
+                var lista2 = db.ConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte, null, usuarioSistema).ToList();
+
+                return lista2;
+            }
+            if (idRadio == 3)//Indentificación del implicado
+            {
+                db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
+                var lista3 = db.ConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null, usuarioSistema).ToList();
+                return lista3;
+            }
+            if (idRadio == 4)//Placa
+            {
+                db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
+                var lista4 = db.ConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca, usuarioSistema).ToList();
+                return lista4;
+            }
+
+            return null;
+        }
+
+        public ActionResult ConsultaeImpresionParteOficial([FromUri] int opcionConsulta, [FromUri] string serieParte,
+            [FromUri] string numeroParte, [FromUri] int? serieBoleta, [FromUri] decimal? numeroBoleta, [FromUri] string tipoId,
+            [FromUri] string numeroID, [FromUri] string numeroPlaca, [FromUri] string codigoPlaca, [FromUri] string clasePlaca)
+        {
+
+            string reporteID = "_ImpresionDeParteOficial";
+            string nombreReporte = "ImpresionDeParteOficial";
+            string parametros = "";
+            if (opcionConsulta == 1)
+            {
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieParte, numeroParte, "null");
+            }
+            if (opcionConsulta == 2)
+            {
+
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), serieBoleta.ToString(), numeroBoleta.ToString(), "null");
+            }
+            if (opcionConsulta == 3)
+            {
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), tipoId, numeroID, "null");
+
+            }
+            if (opcionConsulta == 4)
+            {
+                parametros = String.Format("{0},{1},{2},{3}", opcionConsulta.ToString(), numeroPlaca, codigoPlaca, clasePlaca);
+
+
+            }
+
+
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
+
+            return View("_ImpresionDeParteOficial");
+        }
+
         #endregion
 
     }

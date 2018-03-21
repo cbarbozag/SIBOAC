@@ -269,6 +269,25 @@ public partial class ConsultaeImpresionDeParteOficialData_Result
 
     public string CondicionPersona { get; set; }
 
-}
+    public int serieRelacion { get; set; }
+
+    public decimal boletaRelacion { get; set; }
+
+    public string tipoIdRealcion { get; set; }
+
+    public string identRelacion { get; set; }
+
+    public string codigoRelacion { get; set; }
+
+    public string claseRelacion { get; set; }
+
+    public string numeroRelacion { get; set; }
+
+    public string arcticuloRelacion { get; set; }
+
+    public string desArticuloRelacion { get; set; }
+
+
+    }
 
 }
