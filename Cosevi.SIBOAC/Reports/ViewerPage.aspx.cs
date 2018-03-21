@@ -598,8 +598,8 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro4);
                             decimal numeParte1 = Convert.ToDecimal(Parametro5);
 
-                            //string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
 
                             #region Convertir SVG a PNG
