@@ -107,9 +107,40 @@
 </table>
 
 <h2>Adjuntar archivo</h2>
-<input type="file" id="FileUpload1" />
-<br />
-<input type="button" id="btnUpload" value="Adjuntar" class="btn btn-success" />
+
+@if (ViewBag.EstadoPlano != null)
+{
+    if (ViewBag.EstadoPlano == "1" || ViewBag.EstadoPlano == "2" || ViewBag.EstadoPlano == "4" || ViewBag.EstadoPlano == "5")
+    {
+        <input type="file" id="FileUpload1" />
+        <br />
+        <input type="button" id="btnUpload" value="Adjuntar" class="btn btn-success" />
+
+    }
+    if (ViewBag.EstadoPlano == "3") // puede actualizarse
+    {
+        <div class="row">
+            <div class="col-md-12"></div>
+            <div class="col-md-12">
+                <h3>¿Desea agregar este archivo como plano del Parte Oficial?</h3>
+            </div>
+            <div class="col-md-12"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12"></div>
+            <div class="col-md-12">
+                <label><input id="radio02" type="radio" name="EntregoPlano" value="0" checked="checked">No</label>
+                <label><input id="radio01" type="radio" name="EntregoPlano" value="1">Si</label>
+            </div>
+        </div>
+
+        <input type="file" id="FileUpload1" />
+        <br />
+        <input type="button" id="btnUpload" value="Adjuntar" class="btn btn-success" />
+
+    }
+}
 
 
 
@@ -149,6 +180,7 @@
                 // Adding one more key to FormData object
                 fileData.append('Serie', $("#Serie").val());
                 fileData.append('NumeroParte', $("#NumeroParte").val());
+                fileData.append('EntregoPlano', $('input:radio[name=EntregoPlano]:checked').val());
 
                 $.ajax({
                     url: '/AdjuntarArchivos/UploadFiles',
@@ -163,7 +195,7 @@
                         //else {
                         //    alert(resultData.msg);
                         //}
-                        
+
                     },
                     error: function (err) {
                         alert(err.statusText);
