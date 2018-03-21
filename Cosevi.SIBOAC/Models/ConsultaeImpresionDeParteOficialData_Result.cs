@@ -269,9 +269,9 @@ public partial class ConsultaeImpresionDeParteOficialData_Result
 
     public string CondicionPersona { get; set; }
 
-    public int serieRelacion { get; set; }
+    public Nullable<int> serieRelacion { get; set; }
 
-    public decimal boletaRelacion { get; set; }
+    public Nullable<decimal> boletaRelacion { get; set; }
 
     public string tipoIdRealcion { get; set; }
 

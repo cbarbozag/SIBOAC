@@ -2086,10 +2086,10 @@
                                                   <TablixBody>
                                                     <TablixColumns>
                                                       <TablixColumn>
-                                                        <Width>2.52642cm</Width>
+                                                        <Width>2.90622cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
-                                                        <Width>2.5138cm</Width>
+                                                        <Width>2.134cm</Width>
                                                       </TablixColumn>
                                                       <TablixColumn>
                                                         <Width>3.44024cm</Width>
@@ -2111,13 +2111,29 @@
                                                                   <Paragraph>
                                                                     <TextRuns>
                                                                       <TextRun>
-                                                                        <Value>="Testigo del Parte: "+Fields!NumeroParte.Value</Value>
+                                                                        <Value>Testigo del Parte:</Value>
+                                                                        <Style>
+                                                                          <FontSize>8pt</FontSize>
+                                                                          <FontWeight>Bold</FontWeight>
+                                                                        </Style>
+                                                                      </TextRun>
+                                                                    </TextRuns>
+                                                                    <Style>
+                                                                      <TextAlign>Center</TextAlign>
+                                                                    </Style>
+                                                                  </Paragraph>
+                                                                  <Paragraph>
+                                                                    <TextRuns>
+                                                                      <TextRun>
+                                                                        <Value>=Fields!NumeroParte.Value</Value>
                                                                         <Style>
                                                                           <FontSize>8pt</FontSize>
                                                                         </Style>
                                                                       </TextRun>
                                                                     </TextRuns>
-                                                                    <Style />
+                                                                    <Style>
+                                                                      <TextAlign>Center</TextAlign>
+                                                                    </Style>
                                                                   </Paragraph>
                                                                 </Paragraphs>
                                                                 <rd:DefaultName>Textbox113</rd:DefaultName>
@@ -2143,13 +2159,29 @@
                                                                   <Paragraph>
                                                                     <TextRuns>
                                                                       <TextRun>
+                                                                        <Value>Identificación</Value>
+                                                                        <Style>
+                                                                          <FontSize>8pt</FontSize>
+                                                                          <FontWeight>Bold</FontWeight>
+                                                                        </Style>
+                                                                      </TextRun>
+                                                                    </TextRuns>
+                                                                    <Style>
+                                                                      <TextAlign>Center</TextAlign>
+                                                                    </Style>
+                                                                  </Paragraph>
+                                                                  <Paragraph>
+                                                                    <TextRuns>
+                                                                      <TextRun>
                                                                         <Value>=Fields!TipoIdentificacionTestigo.Value+" "+Fields!IdentificacionTestigo.Value</Value>
                                                                         <Style>
                                                                           <FontSize>8pt</FontSize>
                                                                         </Style>
                                                                       </TextRun>
                                                                     </TextRuns>
-                                                                    <Style />
+                                                                    <Style>
+                                                                      <TextAlign>Center</TextAlign>
+                                                                    </Style>
                                                                   </Paragraph>
                                                                 </Paragraphs>
                                                                 <rd:DefaultName>Textbox18</rd:DefaultName>
@@ -2175,13 +2207,29 @@
                                                                   <Paragraph>
                                                                     <TextRuns>
                                                                       <TextRun>
+                                                                        <Value>Nombre</Value>
+                                                                        <Style>
+                                                                          <FontSize>8pt</FontSize>
+                                                                          <FontWeight>Bold</FontWeight>
+                                                                        </Style>
+                                                                      </TextRun>
+                                                                    </TextRuns>
+                                                                    <Style>
+                                                                      <TextAlign>Center</TextAlign>
+                                                                    </Style>
+                                                                  </Paragraph>
+                                                                  <Paragraph>
+                                                                    <TextRuns>
+                                                                      <TextRun>
                                                                         <Value>=Fields!NombreTestigo.Value+" "+Fields!Apellito1Testigo.Value+" "+Fields!Apellido2Testigo.Value</Value>
                                                                         <Style>
                                                                           <FontSize>8pt</FontSize>
                                                                         </Style>
                                                                       </TextRun>
                                                                     </TextRuns>
-                                                                    <Style />
+                                                                    <Style>
+                                                                      <TextAlign>Center</TextAlign>
+                                                                    </Style>
                                                                   </Paragraph>
                                                                 </Paragraphs>
                                                                 <rd:DefaultName>IdentificacionTestigo</rd:DefaultName>
@@ -2322,10 +2370,10 @@
                                     <TablixBody>
                                       <TablixColumns>
                                         <TablixColumn>
-                                          <Width>2.52642cm</Width>
+                                          <Width>2.90622cm</Width>
                                         </TablixColumn>
                                         <TablixColumn>
-                                          <Width>2.5138cm</Width>
+                                          <Width>2.134cm</Width>
                                         </TablixColumn>
                                         <TablixColumn>
                                           <Width>3.44024cm</Width>
@@ -2347,7 +2395,14 @@
                                                     <Paragraph>
                                                       <TextRuns>
                                                         <TextRun>
-                                                          <Value>Testifgo de Boleta:  </Value>
+                                                          <Value>Testifgo de Boleta: </Value>
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                            <FontWeight>Bold</FontWeight>
+                                                          </Style>
+                                                        </TextRun>
+                                                        <TextRun>
+                                                          <Value xml:space="preserve"> </Value>
                                                           <Style>
                                                             <FontSize>8pt</FontSize>
                                                           </Style>
@@ -2359,7 +2414,9 @@
                                                           </Style>
                                                         </TextRun>
                                                       </TextRuns>
-                                                      <Style />
+                                                      <Style>
+                                                        <TextAlign>Center</TextAlign>
+                                                      </Style>
                                                     </Paragraph>
                                                   </Paragraphs>
                                                   <rd:DefaultName>Textbox2</rd:DefaultName>
@@ -2385,13 +2442,29 @@
                                                     <Paragraph>
                                                       <TextRuns>
                                                         <TextRun>
+                                                          <Value>Identificación</Value>
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                            <FontWeight>Bold</FontWeight>
+                                                          </Style>
+                                                        </TextRun>
+                                                      </TextRuns>
+                                                      <Style>
+                                                        <TextAlign>Center</TextAlign>
+                                                      </Style>
+                                                    </Paragraph>
+                                                    <Paragraph>
+                                                      <TextRuns>
+                                                        <TextRun>
                                                           <Value>=Fields!TipoIdentificacionTestigoB.Value+" "+Fields!IdentificacionTestigoB.Value</Value>
                                                           <Style>
                                                             <FontSize>8pt</FontSize>
                                                           </Style>
                                                         </TextRun>
                                                       </TextRuns>
-                                                      <Style />
+                                                      <Style>
+                                                        <TextAlign>Center</TextAlign>
+                                                      </Style>
                                                     </Paragraph>
                                                   </Paragraphs>
                                                   <rd:DefaultName>Textbox54</rd:DefaultName>
@@ -2417,13 +2490,29 @@
                                                     <Paragraph>
                                                       <TextRuns>
                                                         <TextRun>
+                                                          <Value>Nombre</Value>
+                                                          <Style>
+                                                            <FontSize>8pt</FontSize>
+                                                            <FontWeight>Bold</FontWeight>
+                                                          </Style>
+                                                        </TextRun>
+                                                      </TextRuns>
+                                                      <Style>
+                                                        <TextAlign>Center</TextAlign>
+                                                      </Style>
+                                                    </Paragraph>
+                                                    <Paragraph>
+                                                      <TextRuns>
+                                                        <TextRun>
                                                           <Value>=Fields!NombreTestigoB.Value+" "+Fields!Apellito1TestigoB.Value+" "+Fields!Apellido2TestigoB.Value</Value>
                                                           <Style>
                                                             <FontSize>8pt</FontSize>
                                                           </Style>
                                                         </TextRun>
                                                       </TextRuns>
-                                                      <Style />
+                                                      <Style>
+                                                        <TextAlign>Center</TextAlign>
+                                                      </Style>
                                                     </Paragraph>
                                                   </Paragraphs>
                                                   <rd:DefaultName>Textbox58</rd:DefaultName>
@@ -3864,27 +3953,29 @@
                           <TablixMember>
                             <Group Name="Details9">
                               <GroupExpressions>
-                                <GroupExpression>=Fields!FuenteParte.Value</GroupExpression>
-                                <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
-                                <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
-                                <GroupExpression>=Fields!identRelacion.Value</GroupExpression>
+                                <GroupExpression>=Fields!serieRelacion.Value</GroupExpression>
+                                <GroupExpression>=Fields!boletaRelacion.Value</GroupExpression>
                               </GroupExpressions>
                             </Group>
                             <TablixMembers>
                               <TablixMember />
                             </TablixMembers>
-                            <Visibility>
-                              <Hidden>=IIf(Fields!identRelacion.Value &lt;&gt; "", false, true)</Hidden>
-                            </Visibility>
                           </TablixMember>
                         </TablixMembers>
                       </TablixRowHierarchy>
                       <Filters>
                         <Filter>
-                          <FilterExpression>=Fields!identRelacion.Value</FilterExpression>
+                          <FilterExpression>=Fields!serieRelacion.Value</FilterExpression>
                           <Operator>Equal</Operator>
                           <FilterValues>
-                            <FilterValue>=Fields!identRelacion.Value</FilterValue>
+                            <FilterValue>=Fields!serieRelacion.Value</FilterValue>
+                          </FilterValues>
+                        </Filter>
+                        <Filter>
+                          <FilterExpression>=Fields!boletaRelacion.Value</FilterExpression>
+                          <Operator>Equal</Operator>
+                          <FilterValues>
+                            <FilterValue>=Fields!boletaRelacion.Value</FilterValue>
                           </FilterValues>
                         </Filter>
                       </Filters>
@@ -6188,6 +6279,15 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         <PageBreak>
           <BreakLocation>End</BreakLocation>
         </PageBreak>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!boletaRelacion.Value</FilterExpression>
+            <Operator>Equal</Operator>
+            <FilterValues>
+              <FilterValue>=Fields!boletaRelacion.Value</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
         <Top>0.19509cm</Top>
         <Left>0.47312cm</Left>
         <Height>36.48931cm</Height>
