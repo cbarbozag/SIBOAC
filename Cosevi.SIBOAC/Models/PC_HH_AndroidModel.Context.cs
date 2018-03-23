@@ -414,28 +414,6 @@ public partial class PC_HH_AndroidEntities : DbContext
     }
 
 
-    public virtual ObjectResult<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string serieBoleta, string numeroBoleta, string usuarioSistema)
-    {
-
-        var serieBoletaParameter = serieBoleta != null ?
-            new ObjectParameter("serieBoleta", serieBoleta) :
-            new ObjectParameter("serieBoleta", typeof(string));
-
-
-        var numeroBoletaParameter = numeroBoleta != null ?
-            new ObjectParameter("numeroBoleta", numeroBoleta) :
-            new ObjectParameter("numeroBoleta", typeof(string));
-
-
-        var usuarioSistemaParameter = usuarioSistema != null ?
-            new ObjectParameter("UsuarioSistema", usuarioSistema) :
-            new ObjectParameter("UsuarioSistema", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter, usuarioSistemaParameter);
-    }
-
-
     public virtual ObjectResult<GetReportePorUsuarioData_Result> GetReportePorUsuarioData(string idUsuario, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal, string usuarioSistema)
     {
 
