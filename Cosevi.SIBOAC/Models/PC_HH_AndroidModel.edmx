@@ -1013,6 +1013,20 @@
           <Property Name="serie" Type="int" />
           <Property Name="numero" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
+        <EntityType Name="TESTIGOXBOLETA">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="identificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fuente" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="TESTIGOXPARTE">
           <Key>
             <PropertyRef Name="tipo_ide" />
@@ -1437,6 +1451,7 @@
           <EntitySet Name="SEÑALAMIENTO" EntityType="Self.SEÑALAMIENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TESTIGO" EntityType="Self.TESTIGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TESTIGOXBOLETA" EntityType="Self.TESTIGOXBOLETA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TESTIGOXPARTE" EntityType="Self.TESTIGOXPARTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIEMPO" EntityType="Self.TIEMPO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_IDENTIFICACION" EntityType="Self.TIPO_IDENTIFICACION" Schema="dbo" store:Type="Tables" />
@@ -1733,6 +1748,7 @@
             <Parameter Name="Parametro3" Mode="In" Type="String" />
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="TESTIGOXBOLETA" EntityType="PC_HH_AndroidModel.TESTIGOXBOLETA" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3423,6 +3439,20 @@
           <Property Type="String" Name="arcticuloRelacion" Nullable="true" MaxLength="6" />
           <Property Type="String" Name="desArticuloRelacion" Nullable="true" MaxLength="255" />
         </ComplexType>
+        <EntityType Name="TESTIGOXBOLETA">
+          <Key>
+            <PropertyRef Name="tipo_ide" />
+            <PropertyRef Name="identificacion" />
+            <PropertyRef Name="fuente" />
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero" />
+          </Key>
+          <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5228,6 +5258,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TESTIGOXBOLETA">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TESTIGOXBOLETA">
+              <MappingFragment StoreEntitySet="TESTIGOXBOLETA">
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="fuente" ColumnName="fuente" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

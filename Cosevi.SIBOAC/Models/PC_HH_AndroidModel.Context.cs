@@ -229,6 +229,8 @@ public partial class PC_HH_AndroidEntities : DbContext
 
     public virtual DbSet<OtrosAdjuntos> OtrosAdjuntos { get; set; }
 
+    public virtual DbSet<TESTIGOXBOLETA> TESTIGOXBOLETA { get; set; }
+
 
     public virtual ObjectResult<BitacoraSIBOAC> GetBitacoraData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string nombreTabla, string usuario, string operacion)
     {
