@@ -13,6 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing.Imaging;
 using Svg;
+using System.Data.SqlClient;
 
 namespace Cosevi.SIBOAC.Reports
 {
@@ -601,6 +602,7 @@ namespace Cosevi.SIBOAC.Reports
                             string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
                             //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
+
 
                             #region Convertir SVG a PNG
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);

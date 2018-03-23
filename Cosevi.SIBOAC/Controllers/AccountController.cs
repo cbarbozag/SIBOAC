@@ -256,19 +256,43 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                MembershipUser userFor;
+                using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
+                    var userF = sdb.SIBOACUsuarios.Where(a => a.Email == model.Email).FirstOrDefault();
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                    if (userF != null)
+                    {
+                        userFor = Membership.GetUser(userF.Usuario);
+                    }
+                    else
+                    {
+                        userFor = null;                        
+                        // Don't reveal that the user does not exist or is not confirmed
+                        //return View("ForgotPasswordConfirmation");
+                    }
+
+                    if (userFor != null)
+                    {
+                        string code = await UserManager.GeneratePasswordResetTokenAsync(userF.Usuario);
+                        var callbackUrl = Url.Action("ChangePassword", "Account", new { userId = userF.Usuario, code = code }, protocol: Request.Url.Scheme);
+                        await UserManager.SendEmailAsync(userF.Usuario, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                    }
+                }
+                //var user = await UserManager.FindByNameAsync(model.Email);
+                //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                //{
+                //    // Don't reveal that the user does not exist or is not confirmed
+                //    return View("ForgotPasswordConfirmation");
+                //}
+
+                //// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                //// Send an email with this link
+                //// string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                //// var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
+                //// await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //// return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form

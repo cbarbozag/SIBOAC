@@ -158,10 +158,6 @@ namespace Cosevi.SIBOAC.Controllers
                             {
                                 parteOficial.StatusPlano = 4;
                             }
-                            else
-                            {
-                                parteOficial.StatusPlano = 5;
-                            }
                             parteOficial.fecha_entrega = DateTime.Now;
                             var Inspector = (dbs.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.Usuario).ToList());
                             var codigo = User.Identity.Name;
@@ -212,7 +208,10 @@ namespace Cosevi.SIBOAC.Controllers
                                 return Json(new { result = false, msg = "Extensión no válida." });
                             }
 
-                            int? maxValue = db.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                            int serie2 = Convert.ToInt32(Serie);
+                            decimal numero2 = Convert.ToDecimal(NumeroParte);
+
+                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
 
                             string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
