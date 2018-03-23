@@ -83,6 +83,15 @@ namespace Cosevi.SIBOAC.Reports
 
                             listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, item)).AbsoluteUri, numero_boleta);
                         }
+                        //var tipoId = (db.tes);
+                        var TestigoB = (db.TESTIGO.Where(a => a.serie == serie && a.numero == numero_boleta).ToList());
+
+                        foreach (var item in TestigoB)
+                        {
+                            var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+
+                            listaFirmas.Rows.Add(new Uri(Path.Combine(ruta, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                        }
 
                         //var path = Server.MapPath(ruta);
                         var fileUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", CodigoFuente, serie, numero_boleta, CodigoIde);

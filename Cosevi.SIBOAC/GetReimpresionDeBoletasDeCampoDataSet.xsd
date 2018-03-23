@@ -2,15 +2,16 @@
 <xs:schema id="GetReimpresionDeBoletasDeCampoDataSet" targetNamespace="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:mstns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection ConnectionStringObject="Data Source=AFARIASRV\SQLEXPRESS;Initial Catalog=PC_HH_Android;Persist Security Info=True;User ID=sa;Password=ADCMovil123;MultipleActiveResultSets=True;Application Name=EntityFramework" IsAppSettingsProperty="false" Modifier="Assembly" Name="SIBOACSecurityEntities (Cosevi.SIBOAC)" ParameterPrefix="@" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetReimpresionDeBoletasDeCampoDataTableAdapter" GeneratorDataComponentClassName="GetReimpresionDeBoletasDeCampoDataTableAdapter" Name="GetReimpresionDeBoletasDeCampoData" UserDataComponentName="GetReimpresionDeBoletasDeCampoDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="SIBOACSecurityEntities (Cosevi.SIBOAC)" DbObjectName="PC_HH_Android.dbo.GetReimpresionDeBoletasDeCampoData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="PC_HH_AndroidConnectionString (Web.config)" DbObjectName="PC_HH_Android.dbo.GetReimpresionDeBoletasDeCampoData" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.GetReimpresionDeBoletasDeCampoData</CommandText>
@@ -82,6 +83,9 @@
               <Mapping SourceColumn="descripcion" DataSetColumn="descripcion" />
               <Mapping SourceColumn="observaciones" DataSetColumn="observaciones" />
               <Mapping SourceColumn="EstadoFirma" DataSetColumn="EstadoFirma" />
+              <Mapping SourceColumn="nombreTestigo" DataSetColumn="nombreTestigo" />
+              <Mapping SourceColumn="idenTestigo" DataSetColumn="idenTestigo" />
+              <Mapping SourceColumn="telTestigo" DataSetColumn="telTestigo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -432,6 +436,27 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="26" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombreTestigo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnombreTestigo" msprop:Generator_ColumnPropNameInRow="nombreTestigo" msprop:Generator_ColumnPropNameInTable="nombreTestigoColumn" msprop:Generator_UserColumnName="nombreTestigo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="92" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="idenTestigo" msprop:Generator_ColumnVarNameInTable="columnidenTestigo" msprop:Generator_ColumnPropNameInRow="idenTestigo" msprop:Generator_ColumnPropNameInTable="idenTestigoColumn" msprop:Generator_UserColumnName="idenTestigo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="telTestigo" msprop:Generator_ColumnVarNameInTable="columntelTestigo" msprop:Generator_ColumnPropNameInRow="telTestigo" msprop:Generator_ColumnPropNameInTable="telTestigoColumn" msprop:Generator_UserColumnName="telTestigo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

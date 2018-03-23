@@ -245,10 +245,22 @@
           <DataField>EstadoFirma</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="nombreTestigo">
+          <DataField>nombreTestigo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idenTestigo">
+          <DataField>idenTestigo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="telTestigo">
+          <DataField>telTestigo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetReimpresionDeBoletasDeCampoDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Carlos Barboza\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetReimpresionDeBoletasDeCampoDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\ADC-ROY\source\repos\SIBOAC\Cosevi.SIBOAC\GetReimpresionDeBoletasDeCampoDataSet.xsd</rd:SchemaPath>
         <rd:TableName>GetReimpresionDeBoletasDeCampoData</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -2569,7 +2581,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Nombre:</Value>
+                                  <Value>Nombre: </Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=First(Fields!nombreTestigo.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
@@ -2581,7 +2600,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Identificación:</Value>
+                                  <Value>Identificación: </Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=First(Fields!idenTestigo.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
@@ -2593,7 +2619,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Telefono:</Value>
+                                  <Value>Telefono: </Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=First(Fields!telTestigo.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
@@ -2626,7 +2659,7 @@
                               <Value>=Fields!numero_boleta.Value</Value>
                             </Parameter>
                             <Parameter Name="Identificacion">
-                              <Value>=Fields!IdentificacionTestigoB.Value</Value>
+                              <Value>=Fields!idenTestigo.Value</Value>
                             </Parameter>
                           </Parameters>
                           <Style>
@@ -2636,7 +2669,6 @@
                             </Border>
                           </Style>
                         </Subreport>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
