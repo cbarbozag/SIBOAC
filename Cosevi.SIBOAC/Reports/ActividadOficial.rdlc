@@ -51,7 +51,7 @@
         <Top>0.9525cm</Top>
         <Left>6.05516cm</Left>
         <Height>3.0988cm</Height>
-        <Width>14.73858cm</Width>
+        <Width>17.57527cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -90,7 +90,7 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.08208cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.71978cm</Width>
@@ -108,7 +108,7 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.08208cm</Width>
+              <Width>4.14041cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -579,7 +579,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ClasePlaca.Value</Value>
+                              <Value>=Replace(Fields!ClasePlaca.Value,"SC"," ")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -609,7 +609,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!CodigoPlaca.Value</Value>
+                              <Value>=Replace(Fields!CodigoPlaca.Value,"SC"," ")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -782,7 +782,7 @@
         <Top>5.81766cm</Top>
         <Left>0.635cm</Left>
         <Height>1.59688cm</Height>
-        <Width>21.35501cm</Width>
+        <Width>22.99543cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -806,7 +806,7 @@
     <Height>9.13433cm</Height>
     <Style />
   </Body>
-  <Width>22.69846cm</Width>
+  <Width>25.23846cm</Width>
   <Page>
     <PageFooter>
       <Height>2cm</Height>
@@ -829,7 +829,7 @@
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
           <Top>0.86995cm</Top>
-          <Left>19.49001cm</Left>
+          <Left>21.13043cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
           <Style>

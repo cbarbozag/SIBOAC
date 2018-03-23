@@ -3953,13 +3953,19 @@
                           <TablixMember>
                             <Group Name="Details9">
                               <GroupExpressions>
-                                <GroupExpression>=Fields!serieRelacion.Value</GroupExpression>
-                                <GroupExpression>=Fields!boletaRelacion.Value</GroupExpression>
+                                <GroupExpression>=Fields!FuenteParte.Value</GroupExpression>
+                                <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
+                                <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
+                                <GroupExpression>=Fields!tipoIdRealcion.Value</GroupExpression>
+                                <GroupExpression>=Fields!identRelacion.Value</GroupExpression>
                               </GroupExpressions>
                             </Group>
                             <TablixMembers>
                               <TablixMember />
                             </TablixMembers>
+                            <Visibility>
+                              <Hidden>=IIf(Fields!identRelacion.Value &lt;&gt; "", false, true)</Hidden>
+                            </Visibility>
                           </TablixMember>
                         </TablixMembers>
                       </TablixRowHierarchy>
@@ -3968,17 +3974,10 @@
                       </PageBreak>
                       <Filters>
                         <Filter>
-                          <FilterExpression>=Fields!serieRelacion.Value</FilterExpression>
+                          <FilterExpression>=Fields!identRelacion.Value</FilterExpression>
                           <Operator>Equal</Operator>
                           <FilterValues>
-                            <FilterValue>=Fields!serieRelacion.Value</FilterValue>
-                          </FilterValues>
-                        </Filter>
-                        <Filter>
-                          <FilterExpression>=Fields!boletaRelacion.Value</FilterExpression>
-                          <Operator>Equal</Operator>
-                          <FilterValues>
-                            <FilterValue>=Fields!boletaRelacion.Value</FilterValue>
+                            <FilterValue>=Fields!identRelacion.Value</FilterValue>
                           </FilterValues>
                         </Filter>
                       </Filters>
@@ -6255,13 +6254,10 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
             <TablixMember>
               <Group Name="Details6">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
-                  <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
                   <GroupExpression>=Fields!FuenteParte.Value</GroupExpression>
+                  <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
+                  <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
                 </GroupExpressions>
-                <PageBreak>
-                  <BreakLocation>End</BreakLocation>
-                </PageBreak>
               </Group>
               <TablixMembers>
                 <TablixMember />
