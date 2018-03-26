@@ -15,6 +15,7 @@ using System.Drawing.Imaging;
 using Svg;
 using System.Data.SqlClient;
 
+
 namespace Cosevi.SIBOAC.Reports
 {
     public partial class ViewerPage : System.Web.UI.Page
@@ -73,6 +74,53 @@ namespace Cosevi.SIBOAC.Reports
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
                         string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+                        string rutaIIS = ConfigurationManager.AppSettings["DownloadFilePath"];
+
+                        //Adjuntos sistema Viejo
+                        #region Ajuntos Viejos
+
+                        var IdTestigoV = db.TESTIGOXBOLETA.Where(a => a.serie == serie && a.numero == numero_boleta).Select(a => a.identificacion).ToList();
+
+                        SqlConnection connection = new SqlConnection("server=DESKTOP-LAMOTPV\\MSSQLSERVER2016; database=PC_HH_Android ; integrated security = true");
+
+                        foreach (var item in IdTestigoV)
+                        {
+                            connection.Open();
+                            //Especificamos la consulta que nos devuelve la imagen
+                            SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                    "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                    "and Tipo=@tipo and Identificacion=@ident",
+                                                    connection);
+                            //Especificamos el parámetro ID de la consulta
+                            cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1);
+                            cmdSelect.Parameters["@fuente"].Value = CodigoFuente;
+
+                            cmdSelect.Parameters.Add("@serie", SqlDbType.Int);
+                            cmdSelect.Parameters["@serie"].Value = serie;
+
+                            cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10);
+                            cmdSelect.Parameters["@numero"].Value = numero_boleta;
+
+                            cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1);
+                            cmdSelect.Parameters["@tipo"].Value = "t";
+
+                            cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15);
+                            cmdSelect.Parameters["@ident"].Value = item;
+                            ;
+
+                            //Ejecutamos un Scalar para recuperar sólo la imagen
+                            byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla
+
+                            //string strfn = Server.MapPath("~/UploadFile/" + Convert.ToString(DateTime.Now.ToFileTime()));
+                            string strfn = Server.MapPath("~/UploadFile/" + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-t-" + item + ".png");
+                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                            fs.Write(barrImg, 0, barrImg.Length);
+                            fs.Flush();
+                            fs.Close();
+                        }
+                        #endregion
 
                         var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
 
