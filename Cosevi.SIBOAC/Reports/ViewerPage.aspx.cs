@@ -72,25 +72,32 @@ namespace Cosevi.SIBOAC.Reports
                         var CodigoInsp = db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta && a.numeroparte == NumParte).Select(a => a.codigo_inspector).ToList();
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
-                        string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
+                        string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
 
                         var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
 
                         listaArchivosB.Columns.Add("NumBoleta");
 
+                        //Adjuntar archivos
                         foreach (var item in adjBoleta)
                         {
 
                             listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, item)).AbsoluteUri, numero_boleta);
                         }
-                        //var tipoId = (db.tes);
-                        var TestigoB = (db.TESTIGO.Where(a => a.serie == serie && a.numero == numero_boleta).ToList());
+
+                        //Adjuntar Firma Testigo
+                        var tipoITestigo = db.TESTIGOXBOLETA.Where(a => a.serie == serie && a.numero == numero_boleta).Select(a => a.tipo_ide).ToList();
+                        var IdTestigo = db.TESTIGOXBOLETA.Where(a => a.serie == serie && a.numero == numero_boleta).Select(a => a.identificacion).ToList();
+                        var TestigoB = (db.TESTIGO.Where(a => tipoITestigo.Contains(a.tipo_ide) && IdTestigo.Contains(a.identificacion)).ToList());
+
+                        listaFirmas.Columns.Add("ParteOficial");
+                        listaFirmas.Columns.Add("Identificacion");
 
                         foreach (var item in TestigoB)
                         {
-                            var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+                            var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", CodigoFuente, serie, numero_boleta, item.identificacion);
 
-                            listaFirmas.Rows.Add(new Uri(Path.Combine(ruta, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                            listaFirmas.Rows.Add(new Uri(Path.Combine(ruta, FirmaTestigoB)).AbsoluteUri, numero_boleta, item.identificacion);
                         }
 
                         //var path = Server.MapPath(ruta);
@@ -110,8 +117,10 @@ namespace Cosevi.SIBOAC.Reports
                         parameters[0] = new ReportParameter("ImagenFirmaUsuarioPath", imgFirmaUsuarioPath);
                         parameters[1] = new ReportParameter("ImagenFirmaInspectorPath", imgFirmaInspectorPath);
                         ReportViewer1.LocalReport.SetParameters(parameters);
+
                         this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;                        
-                        Session["_ConsultaeImpresionDeParteOficialDataBoleta"] = listaArchivosB;                        
+                        Session["_ConsultaeImpresionDeParteOficialDataBoleta"] = listaArchivosB;
+                        Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
                         #endregion
                         break;
 
@@ -193,7 +202,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             var listFirma = (db.BOLETA.Where(a => a.serie_parteoficial == Parametro1 && a.numeroparte == Parametro2).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => a.serie == Parametro1 && a.numeroparte == Parametro2).ToList());
-                            var listaTestigoB = (db.TESTIGO.Where(a => SerieBoleta1.Contains(a.serie) && Boleta1.Contains(a.numero)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => SerieBoleta1.Contains(a.serie.GetValueOrDefault()) && Boleta1.Contains(a.numero.GetValueOrDefault())).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
@@ -414,7 +423,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             var listFirma = (db.BOLETA.Where(a => seriePart3.Contains(a.serie_parteoficial) && numPartPar3.Contains(a.numeroparte) && seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).OrderBy(a => new {a.fuente_parteoficial,a.serie_parteoficial,a.numeroparte}).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart3.Contains(a.serie) && numPartPar3.Contains(a.numeroparte)).ToList());
-                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet3.Contains(a.serie.GetValueOrDefault()) && numeroBoleta3.Contains(a.numero.GetValueOrDefault())).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
@@ -532,7 +541,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             var listFirma = (db.BOLETA.Where(a => seriePart4.Contains(a.serie_parteoficial) && numPartPar4.Contains(a.numeroparte) && seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).OrderBy(a => new { a.fuente_parteoficial, a.serie_parteoficial, a.numeroparte }).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart4.Contains(a.serie) && numPartPar4.Contains(a.numeroparte)).ToList());
-                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet4.Contains(a.serie.GetValueOrDefault()) && numeroBoleta4.Contains(a.numero.GetValueOrDefault())).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
@@ -659,7 +668,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             var listFirma = (db.BOLETA.Where(a => a.serie_parteoficial == Parametro4 && a.numeroparte == Parametro5).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => a.serie == Parametro4 && a.numeroparte == Parametro5).ToList());
-                            var listaTestigoB = (db.TESTIGO.Where(a => SerieBoleta1.Contains(a.serie) && Boleta1.Contains(a.numero)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => SerieBoleta1.Contains(a.serie.GetValueOrDefault()) && Boleta1.Contains(a.numero.GetValueOrDefault())).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
@@ -880,7 +889,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             var listFirma = (db.BOLETA.Where(a => seriePart3.Contains(a.serie_parteoficial) && numPartPar3.Contains(a.numeroparte) && seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero_boleta)).OrderBy(a => new { a.fuente_parteoficial, a.serie_parteoficial, a.numeroparte }).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart3.Contains(a.serie) && numPartPar3.Contains(a.numeroparte)).ToList());
-                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet3.Contains(a.serie) && numeroBoleta3.Contains(a.numero)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet3.Contains(a.serie.GetValueOrDefault()) && numeroBoleta3.Contains(a.numero.GetValueOrDefault())).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
@@ -998,7 +1007,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             var listFirma = (db.BOLETA.Where(a => seriePart4.Contains(a.serie_parteoficial) && numPartPar4.Contains(a.numeroparte) && seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero_boleta)).OrderBy(a => new { a.fuente_parteoficial, a.serie_parteoficial, a.numeroparte }).ToList());
                             var listaTestigoP = (db.TESTIGOXPARTE.Where(a => seriePart4.Contains(a.serie) && numPartPar4.Contains(a.numeroparte)).ToList());
-                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet4.Contains(a.serie) && numeroBoleta4.Contains(a.numero)).ToList());
+                            var listaTestigoB = (db.TESTIGO.Where(a => seriBolet4.Contains(a.serie.GetValueOrDefault()) && numeroBoleta4.Contains(a.numero.GetValueOrDefault())).ToList());
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");

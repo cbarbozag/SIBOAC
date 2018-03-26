@@ -25,7 +25,7 @@ namespace Cosevi.SIBOAC.Models
         public string sexo { get; set; }
         public string firma_testigo { get; set; }
         public string fuente { get; set; }
-        public int serie { get; set; }
-        public decimal numero { get; set; }
+        public int? serie { get; set; }
+        public decimal? numero { get; set; }
     }
 }

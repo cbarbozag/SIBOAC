@@ -1199,8 +1199,8 @@
             </Style>
           </Textbox>
           <Line Name="Line3">
-            <Top>27.86476cm</Top>
-            <Left>0.79622cm</Left>
+            <Top>30.48414cm</Top>
+            <Left>0.79626cm</Left>
             <Height>0cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>22</ZIndex>
@@ -1229,8 +1229,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePagina</rd:DefaultName>
-            <Top>28.00587cm</Top>
-            <Left>0.79622cm</Left>
+            <Top>30.62525cm</Top>
+            <Left>0.79626cm</Left>
             <Height>1.82544cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>23</ZIndex>
@@ -1262,8 +1262,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePaginaAutoridad</rd:DefaultName>
-            <Top>29.97242cm</Top>
-            <Left>0.79622cm</Left>
+            <Top>32.59179cm</Top>
+            <Left>0.79626cm</Left>
             <Height>1.85329cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>24</ZIndex>
@@ -1723,7 +1723,11 @@
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
-                  <Group Name="Details" />
+                  <Group Name="Details">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!codigo_articulo.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
                   <TablixMembers>
                     <TablixMember />
                   </TablixMembers>
@@ -2430,7 +2434,7 @@
                           <ReportName>AdjuntoSubReport</ReportName>
                           <Parameters>
                             <Parameter Name="NumBoleta">
-                              <Value>=Sum(Fields!numero_boleta.Value, "DataSet1").ToString()</Value>
+                              <Value>=Fields!numero_boleta.Value</Value>
                             </Parameter>
                           </Parameters>
                           <ZIndex>40</ZIndex>
@@ -2441,6 +2445,7 @@
                           </Style>
                         </Subreport>
                         <ColSpan>3</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -2460,9 +2465,6 @@
               <TablixMembers>
                 <TablixMember>
                   <Group Name="Details2">
-                    <GroupExpressions>
-                      <GroupExpression>=Fields!numero_boleta.Value</GroupExpression>
-                    </GroupExpressions>
                     <PageBreak>
                       <BreakLocation>End</BreakLocation>
                     </PageBreak>
@@ -2501,7 +2503,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox30">
+                        <Textbox Name="Textbox3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2518,7 +2520,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox30</rd:DefaultName>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2534,7 +2536,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox33">
+                        <Textbox Name="Textbox19">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2553,7 +2555,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2581,33 +2583,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Nombre: </Value>
+                                  <Value>Nombre:</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=First(Fields!nombreTestigo.Value, "DataSet1")</Value>
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Identificación: </Value>
-                                  <Style>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>=First(Fields!idenTestigo.Value, "DataSet1")</Value>
+                                  <Value>=Fields!nombreTestigo.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
@@ -2619,14 +2609,47 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Telefono: </Value>
+                                  <Value>Identificación:</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=First(Fields!telTestigo.Value, "DataSet1")</Value>
+                                  <Value>=Fields!idenTestigo.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Telefono:</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!telTestigo.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Normal</FontWeight>
@@ -2684,19 +2707,47 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="Details3" />
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details3">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!idenTestigo.Value</GroupExpression>
+                    </GroupExpressions>
+                    <Filters>
+                      <Filter>
+                        <FilterExpression>=Fields!idenTestigo.Value</FilterExpression>
+                        <Operator>Equal</Operator>
+                        <FilterValues>
+                          <FilterValue>=Fields!idenTestigo.Value</FilterValue>
+                        </FilterValues>
+                      </Filter>
+                    </Filters>
+                  </Group>
                   <TablixMembers>
-                    <TablixMember />
                     <TablixMember />
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <Top>32.59349cm</Top>
+            <DataSetName>DataSet1</DataSetName>
+            <Filters>
+              <Filter>
+                <FilterExpression>=Fields!idenTestigo.Value</FilterExpression>
+                <Operator>Equal</Operator>
+                <FilterValues>
+                  <FilterValue>=Fields!idenTestigo.Value</FilterValue>
+                </FilterValues>
+              </Filter>
+            </Filters>
+            <Top>28.0428cm</Top>
             <Left>0.7962cm</Left>
             <Height>1.99375cm</Height>
             <Width>17.74962cm</Width>
             <ZIndex>41</ZIndex>
+            <Visibility>
+              <Hidden>=IIf(Fields!idenTestigo.Value &lt;&gt; "", false, true)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
