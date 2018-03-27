@@ -565,6 +565,23 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="IMAGENES">
+          <Key>
+            <PropertyRef Name="Fuente" />
+            <PropertyRef Name="Serie" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Tipo" />
+            <PropertyRef Name="Identificacion" />
+            <PropertyRef Name="tipo_ide" />
+          </Key>
+          <Property Name="Fuente" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Serie" Type="int" Nullable="false" />
+          <Property Name="Numero" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Imagen" Type="image" Nullable="false" />
+          <Property Name="Identificacion" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="INCONSISTENCIA">
           <Key>
             <PropertyRef Name="codigo" />
@@ -1417,6 +1434,7 @@
           <EntitySet Name="HORASLABORALES" EntityType="Self.HORASLABORALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOSPITAL" EntityType="Self.HOSPITAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ILUMINACION" EntityType="Self.ILUMINACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMAGENES" EntityType="Self.IMAGENES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INCONSISTENCIA" EntityType="Self.INCONSISTENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INSPECTOR" EntityType="Self.INSPECTOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INTERSECCION" EntityType="Self.INTERSECCION" Schema="dbo" store:Type="Tables" />
@@ -1749,6 +1767,7 @@
             <Parameter Name="numeroBoleta" Mode="In" Type="String" />
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="IMAGENES" EntityType="PC_HH_AndroidModel.IMAGENES" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3456,6 +3475,23 @@
           <Property Type="String" Name="idenTestigo" Nullable="true" MaxLength="15" />
           <Property Type="String" Name="telTestigo" Nullable="true" MaxLength="20" />
         </ComplexType>
+        <EntityType Name="IMAGENES">
+          <Key>
+            <PropertyRef Name="Fuente" />
+            <PropertyRef Name="Serie" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Tipo" />
+            <PropertyRef Name="Identificacion" />
+            <PropertyRef Name="tipo_ide" />
+          </Key>
+          <Property Name="Fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Serie" Type="Int32" Nullable="false" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Imagen" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5275,6 +5311,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="IMAGENES">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.IMAGENES">
+              <MappingFragment StoreEntitySet="IMAGENES">
+                <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+                <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="Fuente" ColumnName="Fuente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

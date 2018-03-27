@@ -1173,7 +1173,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Sum(Fields!Velocidad.Value, "DataSet1")+"km/h"</Value>
+                    <Value>=Fields!Velocidad.Value.ToString()+" km/h"</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -2445,7 +2445,6 @@
                           </Style>
                         </Subreport>
                         <ColSpan>3</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
