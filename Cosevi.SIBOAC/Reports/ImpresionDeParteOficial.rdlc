@@ -3763,7 +3763,7 @@
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!serieRelacion.Value.ToString()+"-"+Fields!boletaRelacion.Value.ToString()</Value>
+                                            <Value>=Fields!serieRelacion.Value+"-"+Fields!boletaRelacion.Value</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                               <FontWeight>Normal</FontWeight>
@@ -3812,7 +3812,7 @@
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!tipoIdRealcion.Value.ToString()+" - "+Fields!identRelacion.Value.ToString()</Value>
+                                            <Value>=Fields!tipoIdRealcion.Value+" - "+Fields!identRelacion.Value</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                               <FontWeight>Normal</FontWeight>
@@ -3963,9 +3963,6 @@
                             <TablixMembers>
                               <TablixMember />
                             </TablixMembers>
-                            <Visibility>
-                              <Hidden>=IIf(Fields!identRelacion.Value &lt;&gt; "", false, true)</Hidden>
-                            </Visibility>
                           </TablixMember>
                         </TablixMembers>
                       </TablixRowHierarchy>
