@@ -1133,12 +1133,16 @@ namespace Cosevi.SIBOAC.Reports
                             var fuente2 = (db.PARTEOFICIAL.Where(a => a.Serie == CodigoSerie2 && a.NumeroParte == CodigoNumParte2).Select(a => a.Fuente).ToList());
                             string CodigoFuente2 = fuente2.ToArray().FirstOrDefault() == null ? "0" : fuente2.ToArray().FirstOrDefault().ToString();
 
+                            var serBole2 = (db.BOLETA.Where(a => a.fuente_parteoficial == CodigoFuente2 && a.serie_parteoficial == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.serie).ToList());
+                            var numBole2 = (db.BOLETA.Where(a => a.fuente_parteoficial == CodigoFuente2 && a.serie_parteoficial == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.numero_boleta).ToList());
+
                             int serieParte2 = Convert.ToInt32(CodigoSerie2);
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
 
-                            string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta2 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string rutaV2 = ConfigurationManager.AppSettings["RutaVirtual"];
 
                             #region Convertir SVG a PNG
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
@@ -1175,50 +1179,281 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
+                            #region Adjuntos
+
                             var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
 
                             listaArchivos.Columns.Add("ParteOficial");
-
-                            //var listaAdjuntos = ext2.Zip(CodigoNumParte2, (n, w) => new { NombreAr = n, NumPar = w });
 
                             foreach (var item in ext2)
                             {
                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item)).AbsoluteUri, CodigoNumParte2);
                             }
 
-                            var listFirma = (db.BOLETA.Where(a => CodigoSerie2.Contains(a.serie_parteoficial) && CodigoNumParte2.Contains(a.numeroparte) && a.serie == serieBoleta2 && a.numero_boleta == numeroBoleta2).ToList());
-                            var listaTestigoP = (db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).ToList());
-                            var listaTestigoB = (db.TESTIGO.Where(a => a.serie == serieBoleta2 && a.numero == numeroBoleta2).ToList());
+                            if (ext2.Count() == 0)
+                            {
+
+                                SqlConnection connection = new SqlConnection(connectionString);
+                                connection.Open();
+
+                                var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente2 && a.Serie == serieParte2 && a.Numero == CodigoNumParte2).ToList();
+                                int contador = 1;
+                                foreach (var adjFinal in adj)
+                                {
+                                    //Especificamos la consulta que nos devuelve la imagen
+                                    SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                            "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                            "and Tipo=@tipo and Identificacion=@ident",
+                                                            connection);
+                                    //Especificamos el parámetro ID de la consulta
+                                    cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente2;
+                                    cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serieParte2;
+                                    cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = CodigoNumParte2;
+                                    cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "a";
+                                    cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15).Value = adjFinal.Identificacion;
+
+                                    //Ejecutamos un Scalar para recuperar sólo la imagen
+                                    byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                    var existeA = string.Format("{0}-{1}-{2}-a-{3}.png", CodigoFuente2, serieParte2, CodigoNumParte2, adjFinal.Identificacion.Trim());
+                                    string existeAdj = @"" + rutaPlano2 + "\\" + existeA;
+
+                                    if (System.IO.File.Exists(existeAdj))
+                                    {
+
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, existeA)).AbsoluteUri, CodigoNumParte2);
+
+                                    }
+                                    else
+                                    {
+                                        if (barrImg != null)
+                                        {
+                                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                            string strfn = Server.MapPath(rutaV2 + CodigoFuente2.ToString() + "-" + serieParte2.ToString() + "-" + CodigoNumParte2.ToString() + "-a-" + adjFinal.Identificacion.Trim() + ".png");
+
+                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                            fs.Write(barrImg, 0, barrImg.Length);
+                                            fs.Flush();
+                                            fs.Close();
+                                        }
+
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, existeA)).AbsoluteUri, CodigoNumParte2);
+
+                                        contador++;
+                                    }
+
+                                }
+                            }
+                            #endregion
 
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
 
+                            #region Firma testigos Parte
+
+                            var TipoidTP = db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.tipo_ide).ToList();
+                            var IdTP = db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.identificacion).ToList();
+                            var firmaTP = (db.TESTIGO.Where(a => TipoidTP.Contains(a.tipo_ide) && IdTP.Contains(a.identificacion)).ToList());
+
+                            foreach (var item in firmaTP)
+                            {
+                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", CodigoFuente2, CodigoSerie2, CodigoNumParte2, item.identificacion);
+
+                                string existeT = @"" + rutaPlano2 + "\\" + FirmaTestigoP;
+
+                                if (System.IO.File.Exists(existeT))
+                                {
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoP)).AbsoluteUri, CodigoNumParte2, item.identificacion);
+                                }
+                                else
+                                {
+                                    SqlConnection connection = new SqlConnection(connectionString);
+                                    connection.Open();
+
+                                    //Especificamos la consulta que nos devuelve la imagen
+                                    SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                            "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                            "and Tipo=@tipo and Identificacion=@ident",
+                                                            connection);
+                                    //Especificamos el parámetro ID de la consulta
+                                    cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente2;
+                                    cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = CodigoSerie2;
+                                    cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = CodigoNumParte2;
+                                    cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "t";
+                                    cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15).Value = item.identificacion;
+
+                                    //Ejecutamos un Scalar para recuperar sólo la imagen
+                                    byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                    if (barrImg != null)
+                                    {
+                                        //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                        string strfn = Server.MapPath(rutaV2 + CodigoFuente2.ToString() + "-" + CodigoSerie2.ToString() + "-" + CodigoNumParte2.ToString() + "-t-" + item.identificacion + ".png");
+
+                                        FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                        fs.Write(barrImg, 0, barrImg.Length);
+                                        fs.Flush();
+                                        fs.Close();
+                                    }
+
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoP)).AbsoluteUri, CodigoNumParte2, item.identificacion);
+                                }
+
+                            }
+
+                            #endregion
+
+                            #region Firma testigos Boleta
+
+                            var firmaTB = db.TESTIGOXBOLETA.Where(a => serBole2.Contains(a.serie) && numBole2.Contains(a.numero)).ToList();
+
+                            foreach (var item in firmaTB)
+                            {
+                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
+
+                                string existeT = @"" + rutaPlano2 + "\\" + FirmaTestigoB;
+
+                                if (System.IO.File.Exists(existeT))
+                                {
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                                }
+                                else
+                                {
+                                    SqlConnection connection = new SqlConnection(connectionString);
+                                    connection.Open();
+
+                                    //Especificamos la consulta que nos devuelve la imagen
+                                    SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                            "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                            "and Tipo=@tipo and Identificacion=@ident",
+                                                            connection);
+                                    //Especificamos el parámetro ID de la consulta
+                                    cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = item.fuente;
+                                    cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = item.serie;
+                                    cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = item.numero;
+                                    cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "t";
+                                    cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15).Value = item.identificacion;
+
+                                    //Ejecutamos un Scalar para recuperar sólo la imagen
+                                    byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                    if (barrImg != null)
+                                    {
+                                        //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                        string strfn = Server.MapPath(rutaV2 + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero.ToString() + "-t-" + item.identificacion + ".png");
+
+                                        FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                        fs.Write(barrImg, 0, barrImg.Length);
+                                        fs.Flush();
+                                        fs.Close();
+                                    }
+
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
+                                }
+                            }
+                            #endregion
+
+                            #region Firma Inspector
+
+                            var listFirma = (db.BOLETA.Where(a => a.serie_parteoficial == CodigoSerie2 && a.numeroparte == CodigoNumParte2).ToList());
                             string v_nombre = null;
                             foreach (var item in listFirma)
                             {
                                 if (v_nombre == null)
                                 {
                                     var FirmaInspector = string.Format("{0}-{1}-{2}-i-{3}.png", item.fuente, item.serie, item.numero_boleta, item.codigo_inspector);
-                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
-                                    v_nombre = "1";
+
+                                    string existeT = @"" + rutaPlano2 + "\\" + FirmaInspector;
+
+                                    if (System.IO.File.Exists(existeT))
+                                    {
+                                        listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                        v_nombre = "1";
+                                    }
+                                    else
+                                    {
+                                        SqlConnection connection = new SqlConnection(connectionString);
+                                        connection.Open();
+
+                                        //Especificamos la consulta que nos devuelve la imagen
+                                        SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                                "where Numero=@numero " +
+                                                                "and Tipo=@tipo",
+                                                                connection);
+                                        //Especificamos el parámetro ID de la consulta
+                                        cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = item.codigo_inspector;
+                                        cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "i";
+
+
+                                        //Ejecutamos un Scalar para recuperar sólo la imagen
+                                        byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                        if (barrImg != null)
+                                        {
+                                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                            string strfn = Server.MapPath(rutaV2 + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero_boleta.ToString() + "-i-" + item.codigo_inspector + ".png");
+
+                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                            fs.Write(barrImg, 0, barrImg.Length);
+                                            fs.Flush();
+                                            fs.Close();
+                                        }
+
+                                        listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaInspector)).AbsoluteUri, item.numeroparte, item.codigo_inspector);
+                                        v_nombre = "1";
+                                    }
                                 }
+                            }
+                            #endregion
+
+                            #region Fimra Usuario
+
+                            foreach (var item in listFirma)
+                            {
                                 var FirmaUsuario = string.Format("{0}-{1}-{2}-u-{3}.png", item.fuente, item.serie, item.numero_boleta, item.identificacion);
-                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+
+                                string existeT = @"" + rutaPlano2 + "\\" + FirmaUsuario;
+
+                                if (System.IO.File.Exists(existeT))
+                                {
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+                                }
+                                else
+                                {
+                                    SqlConnection connection = new SqlConnection(connectionString);
+                                    connection.Open();
+
+                                    //Especificamos la consulta que nos devuelve la imagen
+                                    SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                            "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                            "and Tipo=@tipo",
+                                                            connection);
+                                    //Especificamos el parámetro ID de la consulta
+                                    cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = item.fuente;
+                                    cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = item.serie;
+                                    cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = item.numero_boleta;
+                                    cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "F";
+
+                                    //Ejecutamos un Scalar para recuperar sólo la imagen
+                                    byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                    if (barrImg != null)
+                                    {
+                                        //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                        string strfn = Server.MapPath(rutaV2 + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero_boleta.ToString() + "-u-" + item.identificacion + ".png");
+
+                                        FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                        fs.Write(barrImg, 0, barrImg.Length);
+                                        fs.Flush();
+                                        fs.Close();
+                                    }
+
+                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaUsuario)).AbsoluteUri, item.numero_boleta, item.identificacion);
+
+                                }
                             }
 
-                            foreach (var item in listaTestigoP)
-                            {
-                                var FirmaTestigoP = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numeroparte, item.identificacion);
-
-                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoP)).AbsoluteUri, item.numeroparte, item.identificacion);
-                            }
-
-                            foreach (var item in listaTestigoB)
-                            {
-                                var FirmaTestigoB = string.Format("{0}-{1}-{2}-t-{3}.png", item.fuente, item.serie, item.numero, item.identificacion);
-
-                                listaFirmas.Rows.Add(new Uri(Path.Combine(ruta2, FirmaTestigoB)).AbsoluteUri, item.numero, item.identificacion);
-                            }
+                            #endregion                        
 
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
