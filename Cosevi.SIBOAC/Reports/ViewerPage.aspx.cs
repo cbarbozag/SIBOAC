@@ -24,6 +24,8 @@ namespace Cosevi.SIBOAC.Reports
 
         private PC_HH_AndroidEntities dbPivot = new PC_HH_AndroidEntities();
 
+        string connectionString = ConfigurationManager.AppSettings["AbrirConexionBD"];
+
         private SIBOACSecurityEntities dbSecurity = new SIBOACSecurityEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -73,8 +75,11 @@ namespace Cosevi.SIBOAC.Reports
                         var CodigoInsp = db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta && a.numeroparte == NumParte).Select(a => a.codigo_inspector).ToList();
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
-                        string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
-                        string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];                        
+                        string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
+                        string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];
+                        string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];
+
+                        
 
                         #region Firmas Testigos
 
@@ -97,11 +102,11 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             else
                             {
-                                    SqlConnection connection = new SqlConnection("server=DESKTOP-LAMOTPV\\MSSQLSERVER2016; database=PC_HH_Android ; integrated security = true");
-         
-                                    connection.Open();
-                                    //Especificamos la consulta que nos devuelve la imagen
-                                    SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                SqlConnection connection = new SqlConnection(connectionString);
+                                connection.Open();
+
+                                //Especificamos la consulta que nos devuelve la imagen
+                                SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                             "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
                                                             "and Tipo=@tipo and Identificacion=@ident",
                                                             connection);
@@ -116,7 +121,7 @@ namespace Cosevi.SIBOAC.Reports
                                     byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
 
                                     //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                    string strfn = Server.MapPath("~/UploadFile/" + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-t-" + item.identificacion + ".png");
+                                    string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-t-" + item.identificacion + ".png");
 
                                     FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                     fs.Write(barrImg, 0, barrImg.Length);
@@ -133,11 +138,64 @@ namespace Cosevi.SIBOAC.Reports
                         var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
 
                         listaArchivosB.Columns.Add("NumBoleta");
-
-                        //Adjuntar archivos
+                       
                         foreach (var item in adjBoleta)
                         {
                             listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, item)).AbsoluteUri, numero_boleta);
+                        }
+
+                        if (adjBoleta.Count() == 0)
+                        {
+                            SqlConnection connection = new SqlConnection(connectionString);
+                            connection.Open();
+
+                            var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente && a.Serie == serie && a.Numero == param[1]).ToList();
+                            int contador = 1;
+                            foreach (var adjFinal in adj)
+                            {
+                                //Especificamos la consulta que nos devuelve la imagen
+                                SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                        "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                        "and Tipo=@tipo and Identificacion=@ident",
+                                                        connection);
+                                //Especificamos el parámetro ID de la consulta
+                                cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente;
+                                cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serie;
+                                cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = param[1];
+                                cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "a";
+                                cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15).Value = adjFinal.Identificacion;
+
+                                //Ejecutamos un Scalar para recuperar sólo la imagen
+                                byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                var existeA = string.Format("{0}-{1}-{2}-a-{3}.png", CodigoFuente, serie, param[1], adjFinal.Identificacion.Trim());
+                                string existeAdj = @"" + rutaServer + "\\" + existeA;
+
+                                if (System.IO.File.Exists(existeAdj))
+                                {
+
+                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
+
+                                }
+                                else
+                                {
+                                    if (barrImg != null)
+                                    {
+                                        //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                        string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + param[1].ToString() + "-a-" + adjFinal.Identificacion.Trim() + ".png");
+
+                                        FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                        fs.Write(barrImg, 0, barrImg.Length);
+                                        fs.Flush();
+                                        fs.Close();
+                                    }
+
+                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
+
+                                    contador++;
+                                }
+
+                            }
                         }
                         #endregion
 
@@ -158,9 +216,9 @@ namespace Cosevi.SIBOAC.Reports
                         }
                         else
                         {
-                            SqlConnection connection = new SqlConnection("server=DESKTOP-LAMOTPV\\MSSQLSERVER2016; database=PC_HH_Android ; integrated security = true");
-
+                            SqlConnection connection = new SqlConnection(connectionString);
                             connection.Open();
+
                             //Especificamos la consulta que nos devuelve la imagen
                             SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                     "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
@@ -177,7 +235,7 @@ namespace Cosevi.SIBOAC.Reports
                             byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
 
                             //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                            string strfn = Server.MapPath("~/UploadFile/" + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-u-" + CodigoIde + ".png");
+                            string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-u-" + CodigoIde + ".png");
 
                             FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                             fs.Write(barrImg, 0, barrImg.Length);
@@ -205,9 +263,9 @@ namespace Cosevi.SIBOAC.Reports
                         }
                         else
                         {
-                            SqlConnection connection = new SqlConnection("server=DESKTOP-LAMOTPV\\MSSQLSERVER2016; database=PC_HH_Android ; integrated security = true");
-
+                            SqlConnection connection = new SqlConnection(connectionString);
                             connection.Open();
+
                             //Especificamos la consulta que nos devuelve la imagen
                             SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                     "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
@@ -224,7 +282,7 @@ namespace Cosevi.SIBOAC.Reports
                             byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
 
                             //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                            string strfn = Server.MapPath("~/UploadFile/" + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-i-" + CodInsp + ".png");
+                            string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-i-" + CodInsp + ".png");
 
                             FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                             fs.Write(barrImg, 0, barrImg.Length);
@@ -739,9 +797,10 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro4);
                             decimal numeParte1 = Convert.ToDecimal(Parametro5);
 
-                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
                             //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
 
 
                             #region Convertir SVG a PNG
@@ -790,9 +849,9 @@ namespace Cosevi.SIBOAC.Reports
                             }
 
                             if (ext1.Count()==0)
-                            {
-                                SqlConnection connection = new SqlConnection("server=10.10.10.6; database=PC_HH_Cosevi ; user id=adcMovil; password=m0v1lpc4");
+                            {                                
                                 
+                                SqlConnection connection = new SqlConnection(connectionString);                                
                                 connection.Open();
 
                                 var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente1 && a.Serie == serParte1 && a.Numero == numeroParte1).ToList();
@@ -828,7 +887,7 @@ namespace Cosevi.SIBOAC.Reports
                                         if (barrImg != null)
                                         {
                                             //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                            string strfn = Server.MapPath("~/UploadFile/" + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-a-" + adjFinal.Identificacion.Trim() + ".png");
+                                            string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-a-" + adjFinal.Identificacion.Trim() + ".png");
 
                                             FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                             fs.Write(barrImg, 0, barrImg.Length);
@@ -866,9 +925,9 @@ namespace Cosevi.SIBOAC.Reports
                                 }
                                 else
                                 {
-                                    SqlConnection connection = new SqlConnection("server=10.10.10.6; database=PC_HH_Cosevi ; user id=adcMovil; password=m0v1lpc4");
-
+                                    SqlConnection connection = new SqlConnection(connectionString);
                                     connection.Open();
+
                                     //Especificamos la consulta que nos devuelve la imagen
                                     SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                             "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
@@ -887,7 +946,7 @@ namespace Cosevi.SIBOAC.Reports
                                     if (barrImg != null)
                                     {
                                         //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                        string strfn = Server.MapPath("~/UploadFile/" + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-t-" + item.identificacion + ".png");
+                                        string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-t-" + item.identificacion + ".png");
 
                                         FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                         fs.Write(barrImg, 0, barrImg.Length);
@@ -917,9 +976,9 @@ namespace Cosevi.SIBOAC.Reports
                                 }
                                 else
                                 {
-                                    SqlConnection connection = new SqlConnection("server=10.10.10.6; database=PC_HH_Cosevi ; user id=adcMovil; password=m0v1lpc4");
-
+                                    SqlConnection connection = new SqlConnection(connectionString);
                                     connection.Open();
+
                                     //Especificamos la consulta que nos devuelve la imagen
                                     SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                             "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
@@ -938,7 +997,7 @@ namespace Cosevi.SIBOAC.Reports
                                     if (barrImg != null)
                                     {
                                         //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                        string strfn = Server.MapPath("~/UploadFile/" + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero.ToString() + "-t-" + item.identificacion + ".png");
+                                        string strfn = Server.MapPath(rutaV + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero.ToString() + "-t-" + item.identificacion + ".png");
 
                                         FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                         fs.Write(barrImg, 0, barrImg.Length);
@@ -971,9 +1030,9 @@ namespace Cosevi.SIBOAC.Reports
                                     }
                                     else
                                     {
-                                        SqlConnection connection = new SqlConnection("server=10.10.10.6; database=PC_HH_Cosevi ; user id=adcMovil; password=m0v1lpc4");
-
+                                        SqlConnection connection = new SqlConnection(connectionString);
                                         connection.Open();
+
                                         //Especificamos la consulta que nos devuelve la imagen
                                         SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                                 "where Numero=@numero " +
@@ -990,7 +1049,7 @@ namespace Cosevi.SIBOAC.Reports
                                         if (barrImg != null)
                                         {
                                             //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                            string strfn = Server.MapPath("~/UploadFile/" + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero_boleta.ToString() + "-i-" + item.codigo_inspector + ".png");
+                                            string strfn = Server.MapPath(rutaV + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero_boleta.ToString() + "-i-" + item.codigo_inspector + ".png");
 
                                             FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                             fs.Write(barrImg, 0, barrImg.Length);
@@ -1019,9 +1078,9 @@ namespace Cosevi.SIBOAC.Reports
                                 }
                                 else
                                 {
-                                    SqlConnection connection = new SqlConnection("server=10.10.10.6; database=PC_HH_Cosevi ; user id=adcMovil; password=m0v1lpc4");
-
+                                    SqlConnection connection = new SqlConnection(connectionString);
                                     connection.Open();
+
                                     //Especificamos la consulta que nos devuelve la imagen
                                     SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                             "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
@@ -1039,7 +1098,7 @@ namespace Cosevi.SIBOAC.Reports
                                     if (barrImg!=null)
                                     {
                                         //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                        string strfn = Server.MapPath("~/UploadFile/" + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero_boleta.ToString() + "-u-" + item.identificacion + ".png");
+                                        string strfn = Server.MapPath(rutaV + item.fuente.ToString() + "-" + item.serie.ToString() + "-" + item.numero_boleta.ToString() + "-u-" + item.identificacion + ".png");
 
                                         FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                         fs.Write(barrImg, 0, barrImg.Length);
