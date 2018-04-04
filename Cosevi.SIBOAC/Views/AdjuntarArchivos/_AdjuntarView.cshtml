@@ -110,14 +110,14 @@
 
 @if (ViewBag.EstadoPlano != null)
 {
-    if (ViewBag.EstadoPlano == "1" || ViewBag.EstadoPlano == "2" || ViewBag.EstadoPlano == "4" || ViewBag.EstadoPlano == "5")
+    if (ViewBag.EstadoPlano == "1" || ViewBag.EstadoPlano == "2" || ViewBag.EstadoPlano == "5")
     {
         <input type="file" id="FileUpload1" />
         <br />
         <input type="button" id="btnUpload" value="Adjuntar" class="btn btn-success" />
 
     }
-    if (ViewBag.EstadoPlano == "3") // puede actualizarse
+    if (ViewBag.EstadoPlano == "3" || ViewBag.EstadoPlano == "4") // puede actualizarse
     {
         <div class="row">
             <div class="col-md-12"></div>
