@@ -777,8 +777,7 @@ namespace Cosevi.SIBOAC.Reports
                         int TipoConsulta2 = Convert.ToInt32(param23[0]);
                         string Parametro4 = param23[1];
                         string Parametro5 = param23[2];
-                        string Parametro6 = param23[3];
-                        //string Parametro4 = param2[4];
+                        string Parametro6 = param23[3];                        
 
                         string[] extensionRestringidaIPO = ConfigurationManager.AppSettings["ExtenException"].Split(',');
 
@@ -802,6 +801,70 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
 
+                            #region Planos
+
+                            var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                            listaPlanos.Columns.Add("ParteOficial");
+
+                            foreach (var itmeP in listPlanos)
+                            {
+                                listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, itmeP)).AbsoluteUri, numeroParte1);
+                            }
+
+                            if (listPlanos.Count() == 0)
+                            {
+                                SqlConnection connection = new SqlConnection(connectionString);
+                                connection.Open();
+
+                                var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente1 && a.Serie == serParte1 && a.Numero == numeroParte1 && a.Tipo == "C").ToList();
+                                int contador = 1;
+                                foreach (var adjFinal in adj)
+                                {
+                                    //Especificamos la consulta que nos devuelve la imagen
+                                    SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                            "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                            "and Tipo=@tipo",
+                                                            connection);
+                                    //Especificamos el parámetro ID de la consulta
+                                    cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente1;
+                                    cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = Parametro4;
+                                    cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = Parametro5;
+                                    cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "C";
+
+                                    //Ejecutamos un Scalar para recuperar sólo la imagen
+                                    byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                    var existeA = string.Format("{0}-{1}-{2}-p-{3}.png", CodigoFuente1, Parametro4, Parametro5, adjFinal.Identificacion.Trim());
+                                    string existeAdj = @"" + rutaPlano1 + "\\" + existeA;
+
+                                    if (System.IO.File.Exists(existeAdj))
+                                    {
+
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
+
+                                    }
+                                    else
+                                    {
+                                        if (barrImg != null)
+                                        {
+                                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                            string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-p-" + adjFinal.Identificacion.Trim() + ".png");
+
+                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                            fs.Write(barrImg, 0, barrImg.Length);
+                                            fs.Flush();
+                                            fs.Close();
+                                        }
+
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
+
+                                        contador++;
+                                    }
+
+                                }
+                            }
+                            #endregion
 
                             #region Convertir SVG a PNG
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);
@@ -1115,6 +1178,7 @@ namespace Cosevi.SIBOAC.Reports
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;
                             #endregion
                         }
 
@@ -2192,6 +2256,8 @@ namespace Cosevi.SIBOAC.Reports
             e.DataSources.Add(new ReportDataSource("ArchivosBoletaDataSet", Session["_ConsultaeImpresionDeParteOficialDataBoleta"]));
             e.DataSources.Add(new ReportDataSource("ArchivosDataSet", Session["_ConsultaeImpresionDeParteOficialData"])); 
             e.DataSources.Add(new ReportDataSource("FirmasDataSet", Session["_ConsultaeImpresionDeParteOficialDataFirma"]));
+            e.DataSources.Add(new ReportDataSource("PlanosDataSet", Session["_ConsultaeImpresionDeParteOficialDataPnano"]));
+            
         }
 
         private object GetData(string reporteID, string parametros)
