@@ -12,6 +12,8 @@ using Cosevi.SIBOAC.Models;
 using System.Web.Security;
 using System.Data.Entity;
 using System.Configuration;
+using System.Net.Mail;
+using System.Net;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -240,6 +242,68 @@ namespace Cosevi.SIBOAC.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
+        private string GenerateRandomPassword(int length)
+        {
+            string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-*&#+";
+            char[] chars = new char[length];
+            Random rd = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
+            }
+            return new string(chars);
+        }
+
+        private void SendEMail(string emailid, string subject, string body)
+        {
+            MailMessage msg = new MailMessage();
+
+            msg.To.Add(emailid);
+            msg.From = new MailAddress("frogreportesdospinos@gmail.com");
+            msg.Sender = new MailAddress("frogreportesdospinos@gmail.com");
+          
+
+            string strHostName = string.Empty;
+            strHostName = Dns.GetHostName();
+
+            msg.Subject = subject;
+            msg.IsBodyHtml = true;
+            msg.Body = body;
+
+            SmtpClient client = new SmtpClient();
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.EnableSsl = true;
+            client.Host = "smtp.gmail.com";
+            client.Port = Convert.ToInt32("587");//587;//25;
+
+            NetworkCredential credentials = new NetworkCredential("frogreportesdospinos@gmail.com", "FrOgDoSpInOs_123");
+            client.UseDefaultCredentials = false;
+            client.Credentials = credentials;
+
+            client.Send(msg);
+
+            //System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+            //client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            //client.EnableSsl = true;
+            //client.Host = "smtp.gmail.com";
+            //client.Port = 587;
+
+
+            //System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("frogreportesdospinos@gmail.com", "FrOgDoSpInOs_123");
+            //client.UseDefaultCredentials = false;
+            //client.Credentials = credentials;
+
+            //System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            //msg.From = new MailAddress("frogreportesdospinos@gmail.com");
+            //msg.To.Add(new MailAddress(emailid));
+
+            //msg.Subject = subject;
+            //msg.IsBodyHtml = true;
+            //msg.Body = body;
+
+            //client.Send(msg);
+        }
+
         //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
@@ -255,50 +319,61 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            
+            using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
             {
-                //MembershipUser userFor;
-                //using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
-                //{
-                //    var userF = sdb.SIBOACUsuarios.Where(a => a.Email == model.Email).FirstOrDefault();
+                var user = sdb.SIBOACUsuarios.Where(a => a.Email.Equals(model.Email)).FirstOrDefault();
+                //var user = await UserManager.FindByNameAsync(model.Code);
 
-                //    if (userF != null)
-                //    {
-                //        userFor = Membership.GetUser(userF.Usuario);
-                //    }
-                //    else
-                //    {
-                //        userFor = null;                        
-                //        // Don't reveal that the user does not exist or is not confirmed
-                //        //return View("ForgotPasswordConfirmation");
-                //    }
-
-                //    if (userFor != null)
-                //    {
-                //        string code = await UserManager.GeneratePasswordResetTokenAsync(userF.Usuario);
-                //        var callbackUrl = Url.Action("ChangePassword", "Account", new { userId = userF.Usuario, code = code }, protocol: Request.Url.Scheme);
-                //        await UserManager.SendEmailAsync(userF.Usuario, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                //        return RedirectToAction("ForgotPasswordConfirmation", "Account");
-                //    }
-                //}
-                //var user = await UserManager.FindByEmailAsync(model.Email);
-                var user = await dbs.SIBOACUsuarios.FindAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Identificacion)))
+                if (user == null)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
+                    // Don't reveal that the user does not exist
+                    //return RedirectToAction("ResetPasswordConfirmation", "Account");
+                    ModelState.AddModelError("", "¡El correo electronico que has indicado no pertenece a ninguna cuenta!");
+                    return View();
+                }else
+                {
+                    try
+                    {
+                        
+                        string newpassword = GenerateRandomPassword(6);
+                        
+                        //get user emailid                        
+                        var emailid = (from i in dbs.SIBOACUsuarios
+                                       where i.Usuario == user.Usuario
+                                       select i.Email).FirstOrDefault();
+                        //send email
+                        string subject = "Nueva Contraseña";
+                        string body = "<b>Bienvenido(a): </b>"+user.Nombre+ "<br/><br/> Hemos recibido una petición de nueva contraseña del usuario: " + user.Usuario+ "<br/>Nueva contraseña: <br/><br/>" + newpassword; //edit it
+                        try
+                        {
+                            SendEMail(emailid, subject, body);
+                            TempData["Message"] = "Email enviado!";
+                            ViewBag.Type = "success";
+                            ViewBag.Message = "Email enviado!";
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Identificacion);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Identificacion, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Identificacion, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                            user.Contrasena = newpassword;
+                            sdb.Entry(user).State = EntityState.Modified;
+                            sdb.SaveChanges();
+
+                            return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                        }
+                        catch (Exception ex)
+                        {
+                            TempData["Message"] = "Ocurrió un problema mientras se enviaba el email." + ex.Message;
+                            ViewBag.Type = "warning";
+                            ViewBag.Message = "Ocurrió un problema mientras se enviaba el email" + "("+ex.Message+")";
+                            return RedirectToAction("Login", "Account");                    
+                        }                        
+                        
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                }                
+
+                return View();
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+
         }
 
         //
@@ -396,10 +471,6 @@ namespace Cosevi.SIBOAC.Controllers
         {
             return View();
         }
-
-
-
-
 
 
         //
