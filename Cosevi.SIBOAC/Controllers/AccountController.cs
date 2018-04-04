@@ -14,6 +14,8 @@ using System.Data.Entity;
 using System.Configuration;
 using System.Net.Mail;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -260,11 +262,7 @@ namespace Cosevi.SIBOAC.Controllers
 
             msg.To.Add(emailid);
             msg.From = new MailAddress("frogreportesdospinos@gmail.com");
-            msg.Sender = new MailAddress("frogreportesdospinos@gmail.com");
-          
-
-            string strHostName = string.Empty;
-            strHostName = Dns.GetHostName();
+            msg.Sender = new MailAddress("frogreportesdospinos@gmail.com");          
 
             msg.Subject = subject;
             msg.IsBodyHtml = true;
@@ -280,28 +278,13 @@ namespace Cosevi.SIBOAC.Controllers
             client.UseDefaultCredentials = false;
             client.Credentials = credentials;
 
+            //ServicePointManager.ServerCertificateValidationCallback =
+            //            delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+            //            {
+            //                return true;
+            //            };
+
             client.Send(msg);
-
-            //System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
-            //client.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            //client.EnableSsl = true;
-            //client.Host = "smtp.gmail.com";
-            //client.Port = 587;
-
-
-            //System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("frogreportesdospinos@gmail.com", "FrOgDoSpInOs_123");
-            //client.UseDefaultCredentials = false;
-            //client.Credentials = credentials;
-
-            //System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-            //msg.From = new MailAddress("frogreportesdospinos@gmail.com");
-            //msg.To.Add(new MailAddress(emailid));
-
-            //msg.Subject = subject;
-            //msg.IsBodyHtml = true;
-            //msg.Body = body;
-
-            //client.Send(msg);
         }
 
         //
@@ -323,19 +306,16 @@ namespace Cosevi.SIBOAC.Controllers
             using (SIBOACSecurityEntities sdb = new SIBOACSecurityEntities())
             {
                 var user = sdb.SIBOACUsuarios.Where(a => a.Email.Equals(model.Email)).FirstOrDefault();
-                //var user = await UserManager.FindByNameAsync(model.Code);
 
                 if (user == null)
                 {
-                    // Don't reveal that the user does not exist
-                    //return RedirectToAction("ResetPasswordConfirmation", "Account");
+        
                     ModelState.AddModelError("", "¡El correo electronico que has indicado no pertenece a ninguna cuenta!");
                     return View();
                 }else
                 {
                     try
-                    {
-                        
+                    {                        
                         string newpassword = GenerateRandomPassword(6);
                         
                         //get user emailid                        
@@ -344,7 +324,7 @@ namespace Cosevi.SIBOAC.Controllers
                                        select i.Email).FirstOrDefault();
                         //send email
                         string subject = "Nueva Contraseña";
-                        string body = "<b>Bienvenido(a): </b>"+user.Nombre+ "<br/><br/> Hemos recibido una petición de nueva contraseña del usuario: " + user.Usuario+ "<br/>Nueva contraseña: <br/><br/>" + newpassword; //edit it
+                        string body = "<b>Bienvenido(a): </b>"+user.Nombre+ "<br/><br/> Hemos recibido una petición de nueva contraseña del usuario: " + user.Usuario+ "<br/>Nueva contraseña: <br/><br/>" + newpassword+ "<br/><br/><br/><br/>Sistemas de Boletas y Acciodentes<br/>COSEVI"; //edit it
                         try
                         {
                             SendEMail(emailid, subject, body);
