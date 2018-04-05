@@ -324,7 +324,7 @@ namespace Cosevi.SIBOAC.Controllers
                                        select i.Email).FirstOrDefault();
                         //send email
                         string subject = "Nueva Contraseña";
-                        string body = "<b>Bienvenido(a): </b>"+user.Nombre+ "<br/><br/> Hemos recibido una petición de nueva contraseña del usuario: " + user.Usuario+ "<br/>Nueva contraseña: <br/><br/>" + newpassword+ "<br/><br/><br/><br/>Sistemas de Boletas y Acciodentes<br/>COSEVI"; //edit it
+                        string body = "<b>Bienvenido(a): </b>"+user.Nombre+ "<br/><br/> Hemos recibido una petición de nueva contraseña del usuario: " + user.Usuario+ "<br/><br/>Nueva contraseña: <br/><br/>" + newpassword+ "<br/><br/><br/><br/><b>Sistemas de Boletas y Acciodentes<br/>COSEVI</b>"; //edit it
                         try
                         {
                             SendEMail(emailid, subject, body);
@@ -336,6 +336,7 @@ namespace Cosevi.SIBOAC.Controllers
                             sdb.Entry(user).State = EntityState.Modified;
                             sdb.SaveChanges();
 
+                            FormsAuthentication.SignOut();
                             return RedirectToAction("ForgotPasswordConfirmation", "Account");
                         }
                         catch (Exception ex)
@@ -428,7 +429,8 @@ namespace Cosevi.SIBOAC.Controllers
                         sdb.Entry(user).State = EntityState.Modified;
                         sdb.SaveChanges();
 
-                        return RedirectToAction("ChangePasswordConfirmation", "Account");
+                        FormsAuthentication.SignOut();                        
+                        return RedirectToAction("ChangePasswordConfirmation", "Account");                        
                     }
                     else
                     {
@@ -511,6 +513,7 @@ namespace Cosevi.SIBOAC.Controllers
                         sdb.Entry(user).State = EntityState.Modified;
                         sdb.SaveChanges();
 
+                        FormsAuthentication.SignOut();
                         return RedirectToAction("ResetPasswordConfirmation", "Account");
                     }
                     else

@@ -796,7 +796,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro4);
                             decimal numeParte1 = Convert.ToDecimal(Parametro5);
 
-                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
@@ -818,7 +818,6 @@ namespace Cosevi.SIBOAC.Reports
                                 connection.Open();
 
                                 var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente1 && a.Serie == serParte1 && a.Numero == numeroParte1 && a.Tipo == "C").ToList();
-                                int contador = 1;
                                 foreach (var adjFinal in adj)
                                 {
                                     //Especificamos la consulta que nos devuelve la imagen
@@ -840,9 +839,7 @@ namespace Cosevi.SIBOAC.Reports
 
                                     if (System.IO.File.Exists(existeAdj))
                                     {
-
                                         listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
-
                                     }
                                     else
                                     {
@@ -856,10 +853,7 @@ namespace Cosevi.SIBOAC.Reports
                                             fs.Flush();
                                             fs.Close();
                                         }
-
                                         listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
-
-                                        contador++;
                                     }
 
                                 }
@@ -868,7 +862,6 @@ namespace Cosevi.SIBOAC.Reports
 
                             #region Convertir SVG a PNG
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);
-
 
                             foreach (string item in extSvg)
                             {
@@ -902,7 +895,7 @@ namespace Cosevi.SIBOAC.Reports
                             #endregion
 
                             #region Ajuntos 1
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
 
                             listaArchivos.Columns.Add("ParteOficial");
 
@@ -917,8 +910,7 @@ namespace Cosevi.SIBOAC.Reports
                                 SqlConnection connection = new SqlConnection(connectionString);                                
                                 connection.Open();
 
-                                var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente1 && a.Serie == serParte1 && a.Numero == numeroParte1).ToList();
-                                int contador = 1;
+                                var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente1 && a.Serie == serParte1 && a.Numero == numeroParte1 && a.Tipo == "A").ToList();
                                 foreach (var adjFinal in adj)
                                 {
                                     //Especificamos la consulta que nos devuelve la imagen
@@ -941,9 +933,7 @@ namespace Cosevi.SIBOAC.Reports
 
                                     if (System.IO.File.Exists(existeAdj))
                                     {
-
                                         listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
-
                                     }
                                     else
                                     {                                       
@@ -957,12 +947,8 @@ namespace Cosevi.SIBOAC.Reports
                                             fs.Flush();
                                             fs.Close();
                                         }
-
                                         listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
-
-                                        contador++;
-                                    }
-                                    
+                                    }                                    
                                 }                                
                             }
                             #endregion
@@ -1016,7 +1002,6 @@ namespace Cosevi.SIBOAC.Reports
                                         fs.Flush();
                                         fs.Close();
                                     }
-
                                     listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaTestigoP)).AbsoluteUri, Parametro5, item.identificacion);
                                 }                                 
                                 
@@ -1207,6 +1192,64 @@ namespace Cosevi.SIBOAC.Reports
                             string ruta2 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV2 = ConfigurationManager.AppSettings["RutaVirtual"];
+
+                            #region Planos
+
+                            var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                            listaPlanos.Columns.Add("ParteOficial");
+
+                            foreach (var itmeP in listPlanos)
+                            {
+                                listaPlanos.Rows.Add(new Uri(Path.Combine(ruta2, itmeP)).AbsoluteUri, CodigoNumParte2);
+                            }
+
+                            if (listPlanos.Count() == 0)
+                            {
+                                SqlConnection connection = new SqlConnection(connectionString);
+                                connection.Open();
+
+                                var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente2 && a.Serie == serieParte2 && a.Numero == CodigoNumParte2 && a.Tipo == "C").ToList();
+                                foreach (var adjFinal in adj)
+                                {
+                                    //Especificamos la consulta que nos devuelve la imagen
+                                    SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                            "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                            "and Tipo=@tipo",
+                                                            connection);
+                                    //Especificamos el parámetro ID de la consulta
+                                    cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente2;
+                                    cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serieParte2;
+                                    cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = CodigoNumParte2;
+                                    cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "C";
+
+                                    //Ejecutamos un Scalar para recuperar sólo la imagen
+                                    byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                    var existeA = string.Format("{0}-{1}-{2}-p-{3}.png", CodigoFuente2, serieParte2, CodigoNumParte2, adjFinal.Identificacion.Trim());
+                                    string existeAdj = @"" + rutaPlano2 + "\\" + existeA;
+
+                                    if (System.IO.File.Exists(existeAdj))
+                                    {
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta2, existeA)).AbsoluteUri, CodigoNumParte2);
+                                    }
+                                    else
+                                    {
+                                        if (barrImg != null)
+                                        {
+                                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                            string strfn = Server.MapPath(rutaV2 + CodigoFuente2.ToString() + "-" + serieParte2.ToString() + "-" + CodigoNumParte2.ToString() + "-p-" + adjFinal.Identificacion.Trim() + ".png");
+
+                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                            fs.Write(barrImg, 0, barrImg.Length);
+                                            fs.Flush();
+                                            fs.Close();
+                                        }
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta2, existeA)).AbsoluteUri, CodigoNumParte2);
+                                    }
+                                }
+                            }
+                            #endregion
 
                             #region Convertir SVG a PNG
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
@@ -1543,13 +1586,75 @@ namespace Cosevi.SIBOAC.Reports
                                 var seriePart3 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == lisPart3.numeroparte && a.Serie == lisPart3.serie_parteoficial).Select(a => a.Serie).ToList());
                                 var serParte3 = seriePart3.Select(s => Convert.ToInt32(s)).ToList();
 
-                                var fuente3 = (db.PARTEOFICIAL.Where(a => seriePart3.Contains(a.Serie) && numPartPar3.Contains(a.NumeroParte)).Select(a => a.Fuente).ToList());
+                                var fuente3 = (db.PARTEOFICIAL.Where(a => a.Serie == lisPart3.serie_parteoficial && a.NumeroParte == lisPart3.numeroparte).Select(a => a.Fuente).ToList());
 
                                 string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
                                 string rutaPlano3 = ConfigurationManager.AppSettings["UploadFilePath"];
                                 string rutaV3 = ConfigurationManager.AppSettings["RutaVirtual"];
 
                                 var resultAdjParte = fuente3.Zip(serParte3, (e1, e2) => new { e1, e2 }).Zip(numPartPar3, (z1, e3) => Tuple.Create(z1.e1, z1.e2, e3));
+
+                                #region Planos
+
+                                int serieP = Convert.ToInt32(lisPart3.serie_parteoficial);
+                                decimal numP = Convert.ToDecimal(lisPart3.numeroparte);
+
+                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart3.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                                listaPlanos.Columns.Add("ParteOficial");
+
+                                foreach (var itmeP in listPlanos)
+                                {
+                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, itmeP)).AbsoluteUri, numP);
+                                }
+
+                                if (listPlanos.Count() == 0)
+                                {
+                                    SqlConnection connection = new SqlConnection(connectionString);
+                                    connection.Open();
+
+                                    var adj = db.IMAGENES.Where(a => a.Fuente == lisPart3.fuente_parteoficial && a.Serie == serieP && a.Numero == lisPart3.numeroparte && a.Tipo == "C").ToList();
+                                    foreach (var adjFinal in adj)
+                                    {
+                                        //Especificamos la consulta que nos devuelve la imagen
+                                        SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                                "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                                "and Tipo=@tipo",
+                                                                connection);
+                                        //Especificamos el parámetro ID de la consulta
+                                        cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = lisPart3.fuente_parteoficial;
+                                        cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serieP;
+                                        cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = lisPart3.numeroparte;
+                                        cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "C";
+
+                                        //Ejecutamos un Scalar para recuperar sólo la imagen
+                                        byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                        var existeA = string.Format("{0}-{1}-{2}-p-{3}.png", lisPart3.fuente_parteoficial, serieP, lisPart3.numeroparte, adjFinal.Identificacion.Trim());
+                                        string existeAdj = @"" + rutaPlano3 + "\\" + existeA;
+
+                                        if (System.IO.File.Exists(existeAdj))
+                                        {
+                                            listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, existeA)).AbsoluteUri, numP);
+                                        }
+                                        else
+                                        {
+                                            if (barrImg != null)
+                                            {
+                                                //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                                string strfn = Server.MapPath(rutaV3 + lisPart3.fuente_parteoficial.ToString() + "-" + serieP.ToString() + "-" + lisPart3.numeroparte.ToString() + "-p-" + adjFinal.Identificacion.Trim() + ".png");
+
+                                                FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                                fs.Write(barrImg, 0, barrImg.Length);
+                                                fs.Flush();
+                                                fs.Close();
+                                            }
+                                            listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, existeA)).AbsoluteUri, numP);
+                                        }
+
+                                    }
+                                }
+                                #endregion
 
                                 #region Convertir SVG a PNG
 
@@ -1903,6 +2008,68 @@ namespace Cosevi.SIBOAC.Reports
                                 string rutaV4 = ConfigurationManager.AppSettings["RutaVirtual"];
 
                                 var resultAdjParte = fuente4.Zip(serParte4, (e1, e2) => new { e1, e2 }).Zip(numPartPar4, (z1, e3) => Tuple.Create(z1.e1, z1.e2, e3));
+
+                                #region Planos
+
+                                int serieP = Convert.ToInt32(lisPart4.serie_parteoficial);
+                                decimal numP = Convert.ToDecimal(lisPart4.numeroparte);
+
+                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart4.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+
+                                listaPlanos.Columns.Add("ParteOficial");
+
+                                foreach (var itmeP in listPlanos)
+                                {
+                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, itmeP)).AbsoluteUri, numP);
+                                }
+
+                                if (listPlanos.Count() == 0)
+                                {
+                                    SqlConnection connection = new SqlConnection(connectionString);
+                                    connection.Open();
+
+                                    var adj = db.IMAGENES.Where(a => a.Fuente == lisPart4.fuente_parteoficial && a.Serie == serieP && a.Numero == lisPart4.numeroparte && a.Tipo == "C").ToList();
+                                    foreach (var adjFinal in adj)
+                                    {
+                                        //Especificamos la consulta que nos devuelve la imagen
+                                        SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
+                                                                "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
+                                                                "and Tipo=@tipo",
+                                                                connection);
+                                        //Especificamos el parámetro ID de la consulta
+                                        cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = lisPart4.fuente_parteoficial;
+                                        cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serieP;
+                                        cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = lisPart4.numeroparte;
+                                        cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "C";
+
+                                        //Ejecutamos un Scalar para recuperar sólo la imagen
+                                        byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
+
+                                        var existeA = string.Format("{0}-{1}-{2}-p-{3}.png", lisPart4.fuente_parteoficial, serieP, lisPart4.numeroparte, adjFinal.Identificacion.Trim());
+                                        string existeAdj = @"" + rutaPlano4 + "\\" + existeA;
+
+                                        if (System.IO.File.Exists(existeAdj))
+                                        {
+                                            listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, existeA)).AbsoluteUri, numP);
+                                        }
+                                        else
+                                        {
+                                            if (barrImg != null)
+                                            {
+                                                //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                                string strfn = Server.MapPath(rutaV4 + lisPart4.fuente_parteoficial.ToString() + "-" + serieP.ToString() + "-" + lisPart4.numeroparte.ToString() + "-p-" + adjFinal.Identificacion.Trim() + ".png");
+
+                                                FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                                fs.Write(barrImg, 0, barrImg.Length);
+                                                fs.Flush();
+                                                fs.Close();
+                                            }
+                                            listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, existeA)).AbsoluteUri, numP);
+                                        }
+
+                                    }
+                                }
+                                #endregion
 
                                 #region Convertir SVG a PNG
                                 var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
