@@ -258,11 +258,15 @@ namespace Cosevi.SIBOAC.Controllers
 
         private void SendEMail(string emailid, string subject, string body)
         {
+
+            string EmailFrom = ConfigurationManager.AppSettings["EmailFrom"];
+            string PassEmailFrom = ConfigurationManager.AppSettings["PassEmailFrom"];
+
             MailMessage msg = new MailMessage();
 
             msg.To.Add(emailid);
-            msg.From = new MailAddress("frogreportesdospinos@gmail.com");
-            msg.Sender = new MailAddress("frogreportesdospinos@gmail.com");          
+            msg.From = new MailAddress(EmailFrom, "no-replay@gmail.com");
+            msg.Sender = new MailAddress(EmailFrom);          
 
             msg.Subject = subject;
             msg.IsBodyHtml = true;
@@ -274,7 +278,7 @@ namespace Cosevi.SIBOAC.Controllers
             client.Host = "smtp.gmail.com";
             client.Port = Convert.ToInt32("587");//587;//25;
 
-            NetworkCredential credentials = new NetworkCredential("frogreportesdospinos@gmail.com", "FrOgDoSpInOs_123");
+            NetworkCredential credentials = new NetworkCredential(EmailFrom, PassEmailFrom);
             client.UseDefaultCredentials = false;
             client.Credentials = credentials;
 
@@ -324,7 +328,10 @@ namespace Cosevi.SIBOAC.Controllers
                                        select i.Email).FirstOrDefault();
                         //send email
                         string subject = "Nueva Contraseña";
-                        string body = "<b>Bienvenido(a): </b>"+user.Nombre+ "<br/><br/> Hemos recibido una petición de nueva contraseña del usuario: " + user.Usuario+ "<br/><br/>Nueva contraseña: <br/><br/>" + newpassword+ "<br/><br/><br/><br/><b>Sistemas de Boletas y Acciodentes<br/>COSEVI</b>"; //edit it
+                        string body = "<b>Bienvenido(a): </b>"+user.Nombre+ "<br/><br/> Hemos recibido una petición de nueva contraseña del usuario: " 
+                                      + user.Usuario+ "<br/><br/>Nueva contraseña: <br/><br/>" + newpassword
+                                      + "<br/><br/><br/><br/><b>__________________________________________________________<br/>"
+                                      +"Sistema de Boletas y Accidentes<br/>COSEVI</b>";
                         try
                         {
                             SendEMail(emailid, subject, body);

@@ -796,7 +796,7 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro4);
                             decimal numeParte1 = Convert.ToDecimal(Parametro5);
 
-                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
                             //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
@@ -814,7 +814,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             if (listPlanos.Count() == 0)
                             {
-                                SqlConnection connection = new SqlConnection(connectionString);
+                                SqlConnection connection = new SqlConnection(connectionString);                                
                                 connection.Open();
 
                                 var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente1 && a.Serie == serParte1 && a.Numero == numeroParte1 && a.Tipo == "C").ToList();
@@ -1189,7 +1189,7 @@ namespace Cosevi.SIBOAC.Reports
                             decimal numeroParte2 = Convert.ToDecimal(CodigoNumParte2);
 
 
-                            string ruta2 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
                             string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV2 = ConfigurationManager.AppSettings["RutaVirtual"];
 

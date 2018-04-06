@@ -3763,7 +3763,7 @@
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!serieRelacion.Value+"-"+Fields!boletaRelacion.Value</Value>
+                                            <Value>=Fields!serieRelacion.Value.ToString()+"-"+Fields!boletaRelacion.Value.ToString()</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                               <FontWeight>Normal</FontWeight>
@@ -3963,6 +3963,9 @@
                             <TablixMembers>
                               <TablixMember />
                             </TablixMembers>
+                            <Visibility>
+                              <Hidden>=IIf(Fields!tipoIdRealcion.Value &lt;&gt; "", false, true)</Hidden>
+                            </Visibility>
                           </TablixMember>
                         </TablixMembers>
                       </TablixRowHierarchy>
@@ -6213,7 +6216,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>5.70646cm</Height>
+              <Height>4.19834cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -6330,7 +6333,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>16.21042cm</Height>
+              <Height>6.05042cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -6372,6 +6375,9 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                   <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
                   <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
                 </GroupExpressions>
+                <PageBreak>
+                  <BreakLocation>End</BreakLocation>
+                </PageBreak>
               </Group>
               <TablixMembers>
                 <TablixMember />
@@ -6405,7 +6411,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Filters>
         <Top>0.19509cm</Top>
         <Left>0.47312cm</Left>
-        <Height>53.29973cm</Height>
+        <Height>41.63161cm</Height>
         <Width>15.8079cm</Width>
         <Style>
           <Border>
@@ -6414,7 +6420,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>21.20309in</Height>
+    <Height>16.61976in</Height>
     <Style />
   </Body>
   <Width>6.54527in</Width>

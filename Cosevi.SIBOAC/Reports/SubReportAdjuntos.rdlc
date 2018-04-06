@@ -163,9 +163,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ArchivosDataSet</DataSetName>
-            <PageBreak>
-              <BreakLocation>StartAndEnd</BreakLocation>
-            </PageBreak>
             <Filters>
               <Filter>
                 <FilterExpression>=Fields!ParteOficial.Value</FilterExpression>
