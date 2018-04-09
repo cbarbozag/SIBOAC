@@ -29,6 +29,8 @@ namespace Cosevi.SIBOAC.Controllers
 
         public AccountController()
         {
+            ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
+            ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -261,12 +263,16 @@ namespace Cosevi.SIBOAC.Controllers
 
             string EmailFrom = ConfigurationManager.AppSettings["EmailFrom"];
             string PassEmailFrom = ConfigurationManager.AppSettings["PassEmailFrom"];
+            string UserNameEmailFrom = ConfigurationManager.AppSettings["UserNameEmailFrom"];
+            string PortEmailFrom = ConfigurationManager.AppSettings["PortEmailFrom"];
+            string HostEmailFrom = ConfigurationManager.AppSettings["HostEmailFrom"];            
 
             MailMessage msg = new MailMessage();
 
             msg.To.Add(emailid);
-            msg.From = new MailAddress(EmailFrom, "no-replay@gmail.com");
-            msg.Sender = new MailAddress(EmailFrom);          
+            msg.From = new MailAddress(EmailFrom, "no-reply@csv.go.cr");
+            msg.Sender = new MailAddress(EmailFrom,"no-reply@csv.go.cr");
+            //msg.Headers.Add("Sender", "no-reply@csv.go.cr");
 
             msg.Subject = subject;
             msg.IsBodyHtml = true;
@@ -274,19 +280,13 @@ namespace Cosevi.SIBOAC.Controllers
 
             SmtpClient client = new SmtpClient();
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.EnableSsl = true;
-            client.Host = "smtp.gmail.com";
-            client.Port = Convert.ToInt32("587");//587;//25;
+            client.EnableSsl = false;
+            client.Host = HostEmailFrom;
+            client.Port = Convert.ToInt32(PortEmailFrom);//587;//25;
 
-            NetworkCredential credentials = new NetworkCredential(EmailFrom, PassEmailFrom);
+            NetworkCredential credentials = new NetworkCredential(UserNameEmailFrom, PassEmailFrom);
             client.UseDefaultCredentials = false;
             client.Credentials = credentials;
-
-            //ServicePointManager.ServerCertificateValidationCallback =
-            //            delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-            //            {
-            //                return true;
-            //            };
 
             client.Send(msg);
         }
@@ -348,10 +348,11 @@ namespace Cosevi.SIBOAC.Controllers
                         }
                         catch (Exception ex)
                         {
-                            TempData["Message"] = "Ocurrió un problema mientras se enviaba el email." + ex.Message;
+                            //TempData["Message"] = "Ocurrió un problema mientras se enviaba el email." + ex.Message;
                             ViewBag.Type = "warning";
-                            ViewBag.Message = "Ocurrió un problema mientras se enviaba el email" + "("+ex.Message+")";
-                            return RedirectToAction("Login", "Account");                    
+                            ViewBag.Message = "Ocurrió un problema mientras se enviaba el email" + "(" + ex.Message + ")";
+                            return RedirectToAction("Login", "Account");
+
                         }                        
                         
                     }
