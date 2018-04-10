@@ -861,35 +861,46 @@ namespace Cosevi.SIBOAC.Reports
                             #endregion
 
                             #region Convertir SVG a PNG
-                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").Select(oa => oa.nombre);
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
 
-                            foreach (string item in extSvg)
+                            foreach (var item in extSvg)
                             {
-                                string filePath = Path.Combine(rutaPlano1, item);
-                                var sampleDoc = SvgDocument.Open(filePath);
-                                string nombrePng = item.Replace(".svg", ".png");
+                                string filePath = Path.Combine(rutaPlano1, item.nombre);
 
-                                string ext = Path.GetExtension(nombrePng).Replace(".", "");
-                                int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                                var existeSVG = item.nombre;
+                                string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
 
-                                //string nombre = item;
-                                sampleDoc.Draw().Save(Path.Combine(rutaPlano1, nombrePng));
-
-                                var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item);
-                                svgConvertido.extension = "svgc";
-
-                                dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                if (System.IO.File.Exists(existeAdjS))
                                 {
-                                    fuente = CodigoFuente1,
-                                    serie = serParte1,
-                                    numero = numeParte1,
-                                    extension = ext,
-                                    fechaRegistro = DateTime.Now,
-                                    nombre = nombrePng,
-                                    consecutivo_extension = maxValue.Value + 1
-                                });
+                                    string nombrePng = item.nombre.Replace(".svg", ".png");
+                                    string strfn = Server.MapPath(rutaV + existeSVG);
+                                    FileStream fs = new FileStream(strfn, FileMode.Open, FileAccess.Read);
+                                    byte[] bytes = new byte[fs.Length];
+                                    //byte[] barrImg = System.IO.File.ReadAllBytes(strfn);
+                                    string strfn2 = Server.MapPath(rutaV + nombrePng);
+                                    FileStream fs2 = new FileStream(strfn2, FileMode.CreateNew, FileAccess.Write);
+                                    fs2.Write(bytes, 0, (int)bytes.Length);
+                                    fs2.Flush();
+                                    fs2.Close();
 
-                                dbPivot.SaveChanges();
+                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
+                                    svgConvertido.extension = "svgc";
+
+                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                    {
+                                        fuente = CodigoFuente1,
+                                        serie = serParte1,
+                                        numero = numeParte1,
+                                        extension = "png",
+                                        fechaRegistro = DateTime.Now,
+                                        nombre = nombrePng,
+                                        consecutivo_extension = maxValue.Value + 1
+                                    });
+
+                                    dbPivot.SaveChanges();
+                                }
 
                             }
                             #endregion
