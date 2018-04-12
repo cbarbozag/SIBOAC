@@ -77,9 +77,7 @@ namespace Cosevi.SIBOAC.Reports
 
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
                         string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];
-                        string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];
-
-                        
+                        string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];                        
 
                         #region Firmas Testigos
 
@@ -120,18 +118,24 @@ namespace Cosevi.SIBOAC.Reports
                                     //Ejecutamos un Scalar para recuperar sólo la imagen
                                     byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
 
-                                    //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                    string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-t-" + item.identificacion + ".png");
+                                    if (barrImg != null)
+                                    {
+                                        //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                        string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-t-" + item.identificacion + ".png");
 
-                                    FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
-                                    fs.Write(barrImg, 0, barrImg.Length);
-                                    fs.Flush();
-                                    fs.Close();
+                                        FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                        fs.Write(barrImg, 0, barrImg.Length);
+                                        fs.Flush();
+                                        fs.Close();
 
-                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta, FirmaTestigoB)).AbsoluteUri, numero_boleta, item.identificacion);
+                                        listaFirmas.Rows.Add(new Uri(Path.Combine(ruta, FirmaTestigoB)).AbsoluteUri, numero_boleta, item.identificacion);
+                                }
+                                    
                             }
                         }
                         #endregion                                              
+
+                        string numero_B = Convert.ToString(numero_boleta);
 
                         #region Adjuntar archivos
 
@@ -149,7 +153,7 @@ namespace Cosevi.SIBOAC.Reports
                             SqlConnection connection = new SqlConnection(connectionString);
                             connection.Open();
 
-                            var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente && a.Serie == serie && a.Numero == param[1]).ToList();
+                            var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente && a.Serie == serie && a.Numero == numero_B).ToList();
                             int contador = 1;
                             foreach (var adjFinal in adj)
                             {
@@ -188,11 +192,11 @@ namespace Cosevi.SIBOAC.Reports
                                         fs.Write(barrImg, 0, barrImg.Length);
                                         fs.Flush();
                                         fs.Close();
-                                    }
 
-                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
 
-                                    contador++;
+                                        contador++;
+                                    }                                    
                                 }
 
                             }
@@ -234,18 +238,21 @@ namespace Cosevi.SIBOAC.Reports
                             //Ejecutamos un Scalar para recuperar sólo la imagen
                             byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
 
-                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                            string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-u-" + CodigoIde + ".png");
+                            if (barrImg != null)
+                            {
+                                //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-u-" + CodigoIde + ".png");
 
-                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
-                            fs.Write(barrImg, 0, barrImg.Length);
-                            fs.Flush();
-                            fs.Close();
+                                FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                fs.Write(barrImg, 0, barrImg.Length);
+                                fs.Flush();
+                                fs.Close();                               
+                            }
 
                             var fullPathUsuario = Path.Combine(ruta, fileUsuario);
-
                             string imgFirmaUsuarioPath = new Uri(fullPathUsuario).AbsoluteUri;
-                            parameters[0] = new ReportParameter("ImagenFirmaUsuarioPath", imgFirmaUsuarioPath);                            
+                            parameters[0] = new ReportParameter("ImagenFirmaUsuarioPath", imgFirmaUsuarioPath);
+
                         }
                         #endregion
 
@@ -281,17 +288,21 @@ namespace Cosevi.SIBOAC.Reports
                             //Ejecutamos un Scalar para recuperar sólo la imagen
                             byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
 
-                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                            string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-i-" + CodInsp + ".png");
+                            if (barrImg != null)
+                            {
+                                //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                string strfn = Server.MapPath(rutaVi + CodigoFuente.ToString() + "-" + serie.ToString() + "-" + numero_boleta.ToString() + "-i-" + CodInsp + ".png");
 
-                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
-                            fs.Write(barrImg, 0, barrImg.Length);
-                            fs.Flush();
-                            fs.Close();
+                                FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                fs.Write(barrImg, 0, barrImg.Length);
+                                fs.Flush();
+                                fs.Close();                                
+                            }
 
                             var fullPathInspector = Path.Combine(ruta, fileInspector);
                             string imgFirmaInspectorPath = new Uri(fullPathInspector).AbsoluteUri;
                             parameters[1] = new ReportParameter("ImagenFirmaInspectorPath", imgFirmaInspectorPath);
+
                         }
 
                         #endregion
@@ -801,6 +812,59 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
 
+                            #region Convertir SVG a PNG
+
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
+
+                            foreach (var item in extSvg)
+                            {
+                                string filePath = Path.Combine(rutaPlano1, item.nombre);
+
+                                var existeSVG = item.nombre;
+                                string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
+                                string nombrePng = item.nombre.Replace(".svg", ".png");
+
+                                string strfn = Server.MapPath(rutaV + existeSVG);
+                                string strfn2 = Server.MapPath(rutaV + nombrePng);
+
+                                if (System.IO.File.Exists(existeAdjS))
+                                {
+                                    var sampleDoc = SvgDocument.Open(strfn);
+                                    sampleDoc.Draw().Save(strfn2);
+
+                                    //string nombrePng = item.nombre.Replace(".svg", ".png");
+                                    //string strfn = Server.MapPath(rutaV + existeSVG);
+                                    //FileStream fs = new FileStream(strfn, FileMode.Open, FileAccess.Read);
+                                    //byte[] bytes = new byte[fs.Length];
+                                    ////byte[] barrImg = System.IO.File.ReadAllBytes(strfn);
+                                    //string strfn2 = Server.MapPath(rutaV + nombrePng);
+                                    //FileStream fs2 = new FileStream(strfn2, FileMode.CreateNew, FileAccess.Write);
+                                    //fs2.Write(bytes, 0, (int)bytes.Length);
+                                    //fs2.Flush();
+                                    //fs2.Close();
+
+                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
+                                    svgConvertido.extension = "svgc";
+
+                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                    {
+                                        fuente = CodigoFuente1,
+                                        serie = serParte1,
+                                        numero = numeParte1,
+                                        extension = "png",
+                                        fechaRegistro = DateTime.Now,
+                                        nombre = nombrePng,
+                                        consecutivo_extension = maxValue.Value + 1
+                                    });
+
+                                    dbPivot.SaveChanges();
+                                }
+
+                            }
+                            #endregion
+
                             #region Planos
 
                             var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
@@ -859,52 +923,7 @@ namespace Cosevi.SIBOAC.Reports
                                 }
                             }
                             #endregion
-
-                            #region Convertir SVG a PNG
-                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
-
-                            foreach (var item in extSvg)
-                            {
-                                string filePath = Path.Combine(rutaPlano1, item.nombre);
-
-                                var existeSVG = item.nombre;
-                                string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
-
-                                if (System.IO.File.Exists(existeAdjS))
-                                {
-                                    string nombrePng = item.nombre.Replace(".svg", ".png");
-                                    string strfn = Server.MapPath(rutaV + existeSVG);
-                                    FileStream fs = new FileStream(strfn, FileMode.Open, FileAccess.Read);
-                                    byte[] bytes = new byte[fs.Length];
-                                    //byte[] barrImg = System.IO.File.ReadAllBytes(strfn);
-                                    string strfn2 = Server.MapPath(rutaV + nombrePng);
-                                    FileStream fs2 = new FileStream(strfn2, FileMode.CreateNew, FileAccess.Write);
-                                    fs2.Write(bytes, 0, (int)bytes.Length);
-                                    fs2.Flush();
-                                    fs2.Close();
-
-                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
-
-                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
-                                    svgConvertido.extension = "svgc";
-
-                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                    {
-                                        fuente = CodigoFuente1,
-                                        serie = serParte1,
-                                        numero = numeParte1,
-                                        extension = "png",
-                                        fechaRegistro = DateTime.Now,
-                                        nombre = nombrePng,
-                                        consecutivo_extension = maxValue.Value + 1
-                                    });
-
-                                    dbPivot.SaveChanges();
-                                }
-
-                            }
-                            #endregion
-
+                            
                             #region Ajuntos 1
                             var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
 
@@ -1012,8 +1031,10 @@ namespace Cosevi.SIBOAC.Reports
                                         fs.Write(barrImg, 0, barrImg.Length);
                                         fs.Flush();
                                         fs.Close();
+
+                                        listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaTestigoP)).AbsoluteUri, Parametro5, item.identificacion);
                                     }
-                                    listaFirmas.Rows.Add(new Uri(Path.Combine(ruta1, FirmaTestigoP)).AbsoluteUri, Parametro5, item.identificacion);
+                                    
                                 }                                 
                                 
                             }
