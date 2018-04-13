@@ -95,6 +95,7 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.ARTICULOXBOLETA" Width="1.5" PointX="20.375" PointY="5.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.VEHICULO" Width="1.5" PointX="20.375" PointY="9.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.USUARIO" Width="1.5" PointX="10.375" PointY="22.25" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.LEYENDAPORAUTORIDAD" Width="1.5" PointX="10.375" PointY="15.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TESTIGOXPARTE" Width="1.5" PointX="20.375" PointY="20.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TESTIGO" Width="1.5" PointX="20.375" PointY="15.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.Leyenda_Poder_Judicial" Width="1.5" PointX="22.375" PointY="0.75" />

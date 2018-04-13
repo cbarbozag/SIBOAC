@@ -1,0 +1,65 @@
+﻿@model Cosevi.SIBOAC.Models.LEYENDAPORAUTORIDAD
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Configuración de Leyenda por Autoridad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAutoridad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdAutoridad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionAutoridad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionAutoridad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PiePagina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PiePagina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Fin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdAutoridad }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

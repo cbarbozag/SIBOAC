@@ -215,6 +215,8 @@ public partial class PC_HH_AndroidEntities : DbContext
 
     public virtual DbSet<USUARIO> USUARIO { get; set; }
 
+    public virtual DbSet<LEYENDAPORAUTORIDAD> LEYENDAPORAUTORIDAD { get; set; }
+
     public virtual DbSet<TESTIGOXPARTE> TESTIGOXPARTE { get; set; }
 
     public virtual DbSet<TESTIGO> TESTIGO { get; set; }
