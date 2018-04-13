@@ -32,6 +32,8 @@ public partial class IMAGENES
 
     public string tipo_ide { get; set; }
 
+    public Nullable<System.DateTime> fechaRegistro { get; set; }
+
 }
 
 }

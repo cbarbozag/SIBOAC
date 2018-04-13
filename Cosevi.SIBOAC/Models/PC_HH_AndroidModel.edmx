@@ -581,6 +581,7 @@
           <Property Name="Imagen" Type="image" Nullable="false" />
           <Property Name="Identificacion" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" />
         </EntityType>
         <EntityType Name="INCONSISTENCIA">
           <Key>
@@ -776,7 +777,7 @@
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
           <Property Name="extension" Type="varchar" MaxLength="6" />
           <Property Name="consecutivo_extension" Type="int" />
-          <Property Name="linkArchivo" Type="varchar" MaxLength="100" />
+          <Property Name="linkArchivo" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="OTROTIPOTRANSPORTE">
           <Key>
@@ -3260,7 +3261,7 @@
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="extension" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="consecutivo_extension" Type="Int32" />
-          <Property Name="linkArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="linkArchivo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
         <ComplexType Name="ConsultaeImpresionDeParteOficialData_Result">
           <Property Type="String" Name="FuenteParte" Nullable="false" MaxLength="1" />
@@ -3491,6 +3492,7 @@
           <Property Name="Imagen" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
           <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -5314,6 +5316,7 @@
           <EntitySetMapping Name="IMAGENES">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.IMAGENES">
               <MappingFragment StoreEntitySet="IMAGENES">
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
                 <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
