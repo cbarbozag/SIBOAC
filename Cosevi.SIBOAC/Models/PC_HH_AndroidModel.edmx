@@ -87,6 +87,8 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+          <Property Name="fiscalia" Type="bit" />
+          <Property Name="transito" Type="bit" />
         </EntityType>
         <EntityType Name="BitacoraSIBOAC">
           <Key>
@@ -188,7 +190,7 @@
           <Property Name="avenida2" Type="int" />
           <Property Name="kilometro" Type="int" />
           <Property Name="por_denuncia" Type="bit" />
-          <Property Name="NoGuardaCoordenadas" Type="bit" />
+          <Property Name="noGuardaCoordenadas" Type="bit" />
           <Property Name="articulos_sugeridos_justificacion" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="CANTON">
@@ -318,6 +320,8 @@
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
+          <Property Name="fiscalia" Type="bit" />
+          <Property Name="transito" Type="bit" />
         </EntityType>
         <EntityType Name="DAÑOXHOSPITAL">
           <Key>
@@ -428,7 +432,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IMEI" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
-          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="DISPXROLPERSONA">
           <Key>
@@ -581,6 +585,7 @@
           <Property Name="Imagen" Type="image" Nullable="false" />
           <Property Name="Identificacion" Type="char" MaxLength="15" Nullable="false" />
           <Property Name="tipo_ide" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="fechaRegistro" Type="datetime" />
         </EntityType>
         <EntityType Name="INCONSISTENCIA">
           <Key>
@@ -644,16 +649,6 @@
           <Property Name="Estado" Type="char" MaxLength="1" />
           <Property Name="Fecha_Inicio" Type="datetime" />
           <Property Name="Fecha_Final" Type="datetime" />
-        </EntityType>
-        <EntityType Name="LEYENDAPORAUTORIDAD">
-          <Key>
-            <PropertyRef Name="IdAutoridad" />
-          </Key>
-          <Property Name="IdAutoridad" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="PiePagina" Type="nvarchar" MaxLength="2200" Nullable="false" />
-          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Fecha_Inicio" Type="datetime" Nullable="false" />
-          <Property Name="Fecha_Fin" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MANIOBRA">
           <Key>
@@ -774,9 +769,9 @@
           <Property Name="numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="60" Nullable="false" />
           <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="linkArchivo" Type="varchar" MaxLength="256" />
           <Property Name="extension" Type="varchar" MaxLength="6" />
           <Property Name="consecutivo_extension" Type="int" />
-          <Property Name="linkArchivo" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="OTROTIPOTRANSPORTE">
           <Key>
@@ -831,7 +826,7 @@
           <Property Name="numeroHH" Type="int" />
           <Property Name="fechaexportacionHH" Type="datetime" />
           <Property Name="impresion" Type="bit" />
-          <Property Name="Observaciones" Type="varchar" MaxLength="180" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="500" />
           <Property Name="plano_generado" Type="bit" />
           <Property Name="fecha_entrega" Type="datetime" />
           <Property Name="usuario_entregaPlano" Type="nvarchar" MaxLength="50" />
@@ -1287,6 +1282,558 @@
           <Property Name="NumeroBoleta" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Serie" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Articulos_Adicionales_Sugeridos_CATARTICULO">
+          <End Role="CATARTICULO" Type="Self.CATARTICULO" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Articulos_Adicionales_Sugeridos" Type="Self.Articulos_Adicionales_Sugeridos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CATARTICULO">
+              <PropertyRef Name="codigo" />
+              <PropertyRef Name="conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Principal>
+            <Dependent Role="Articulos_Adicionales_Sugeridos">
+              <PropertyRef Name="Codigo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="Fecha_inicio" />
+              <PropertyRef Name="Fecha_final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO">
+          <End Role="CATARTICULO" Type="Self.CATARTICULO" Multiplicity="1" />
+          <End Role="ARTICULOSXDEPOSITOSBIENES" Type="Self.ARTICULOSXDEPOSITOSBIENES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATARTICULO">
+              <PropertyRef Name="codigo" />
+              <PropertyRef Name="conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Principal>
+            <Dependent Role="ARTICULOSXDEPOSITOSBIENES">
+              <PropertyRef Name="CodArticulo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1">
+          <End Role="CATARTICULO" Type="Self.CATARTICULO" Multiplicity="1" />
+          <End Role="ARTICULOSXDEPOSITOSBIENES" Type="Self.ARTICULOSXDEPOSITOSBIENES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATARTICULO">
+              <PropertyRef Name="codigo" />
+              <PropertyRef Name="conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Principal>
+            <Dependent Role="ARTICULOSXDEPOSITOSBIENES">
+              <PropertyRef Name="CodArticulo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2">
+          <End Role="CATARTICULO" Type="Self.CATARTICULO" Multiplicity="1" />
+          <End Role="ARTICULOSXDEPOSITOSBIENES" Type="Self.ARTICULOSXDEPOSITOSBIENES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATARTICULO">
+              <PropertyRef Name="codigo" />
+              <PropertyRef Name="conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Principal>
+            <Dependent Role="ARTICULOSXDEPOSITOSBIENES">
+              <PropertyRef Name="CodArticulo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes">
+          <End Role="DEPOSITOBIENES" Type="Self.DEPOSITOBIENES" Multiplicity="1" />
+          <End Role="ARTICULOSXDEPOSITOSBIENES" Type="Self.ARTICULOSXDEPOSITOSBIENES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPOSITOBIENES">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="ARTICULOSXDEPOSITOSBIENES">
+              <PropertyRef Name="CodDepositoBienes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticulosXDepositosBienes_OPCIONFORMULARIO">
+          <End Role="OPCIONFORMULARIO" Type="Self.OPCIONFORMULARIO" Multiplicity="1" />
+          <End Role="ARTICULOSXDEPOSITOSBIENES" Type="Self.ARTICULOSXDEPOSITOSBIENES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPCIONFORMULARIO">
+              <PropertyRef Name="codformulario" />
+            </Principal>
+            <Dependent Role="ARTICULOSXDEPOSITOSBIENES">
+              <PropertyRef Name="CodFormulario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOXBOLETA_BOLETA">
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="1" />
+          <End Role="ARTICULOXBOLETA" Type="Self.ARTICULOXBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOLETA">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numero_boleta" />
+            </Principal>
+            <Dependent Role="ARTICULOXBOLETA">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numero_boleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOXBOLETA_CATARTICULO">
+          <End Role="CATARTICULO" Type="Self.CATARTICULO" Multiplicity="1" />
+          <End Role="ARTICULOXBOLETA" Type="Self.ARTICULOXBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATARTICULO">
+              <PropertyRef Name="codigo" />
+              <PropertyRef Name="conducta" />
+              <PropertyRef Name="fecha_inicio" />
+              <PropertyRef Name="fecha_final" />
+            </Principal>
+            <Dependent Role="ARTICULOXBOLETA">
+              <PropertyRef Name="codigo_articulo" />
+              <PropertyRef Name="conducta" />
+              <PropertyRef Name="Fecha_Inicio" />
+              <PropertyRef Name="Fecha_Final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOLETA_ROLPERSONA">
+          <End Role="ROLPERSONA" Type="Self.ROLPERSONA" Multiplicity="0..1" />
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLPERSONA">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="BOLETA">
+              <PropertyRef Name="codrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOLETA_RUTA">
+          <End Role="RUTA" Type="Self.RUTA" Multiplicity="0..1" />
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RUTA">
+              <PropertyRef Name="ruta" />
+            </Principal>
+            <Dependent Role="BOLETA">
+              <PropertyRef Name="codigo_ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAÑOXHOSPITAL_DAÑO">
+          <End Role="DAÑO" Type="Self.DAÑO" Multiplicity="1" />
+          <End Role="DAÑOXHOSPITAL" Type="Self.DAÑOXHOSPITAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAÑO">
+              <PropertyRef Name="CodDaño" />
+            </Principal>
+            <Dependent Role="DAÑOXHOSPITAL">
+              <PropertyRef Name="coddaño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLETIPODAÑO_TIPODANO">
+          <End Role="TIPODANO" Type="Self.TIPODANO" Multiplicity="1" />
+          <End Role="DETALLETIPODAÑO" Type="Self.DETALLETIPODAÑO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPODANO">
+              <PropertyRef Name="codigod" />
+            </Principal>
+            <Dependent Role="DETALLETIPODAÑO">
+              <PropertyRef Name="codigod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE">
+          <End Role="TIPOSEÑALEXISTE" Type="Self.TIPOSEÑALEXISTE" Multiplicity="1" />
+          <End Role="DETALLETIPOSEÑAL" Type="Self.DETALLETIPOSEÑAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOSEÑALEXISTE">
+              <PropertyRef Name="codigose" />
+            </Principal>
+            <Dependent Role="DETALLETIPOSEÑAL">
+              <PropertyRef Name="codigose" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DISPXROLPERSONA_DISPOSITIVO">
+          <End Role="DISPOSITIVO" Type="Self.DISPOSITIVO" Multiplicity="1" />
+          <End Role="DISPXROLPERSONA" Type="Self.DISPXROLPERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DISPOSITIVO">
+              <PropertyRef Name="CodDis" />
+            </Principal>
+            <Dependent Role="DISPXROLPERSONA">
+              <PropertyRef Name="CodDisp" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DISPXROLPERSONA_ROLPERSONA">
+          <End Role="ROLPERSONA" Type="Self.ROLPERSONA" Multiplicity="1" />
+          <End Role="DISPXROLPERSONA" Type="Self.DISPXROLPERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLPERSONA">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="DISPXROLPERSONA">
+              <PropertyRef Name="CodRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DIVISION_CANTON">
+          <End Role="CANTON" Type="Self.CANTON" Multiplicity="1" />
+          <End Role="DIVISION" Type="Self.DIVISION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CANTON">
+              <PropertyRef Name="CodCan" />
+            </Principal>
+            <Dependent Role="DIVISION">
+              <PropertyRef Name="Canton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DIVISION_OFICINAIMPUGNA">
+          <End Role="OFICINAIMPUGNA" Type="Self.OFICINAIMPUGNA" Multiplicity="1" />
+          <End Role="DIVISION" Type="Self.DIVISION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OFICINAIMPUGNA">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DIVISION">
+              <PropertyRef Name="Impugnacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_ALINHORI">
+          <End Role="ALINHORI" Type="Self.ALINHORI" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ALINHORI">
+              <PropertyRef Name="CodAli" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="horizontal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CARACUBI">
+          <End Role="CARACUBI" Type="Self.CARACUBI" Multiplicity="0..1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARACUBI">
+              <PropertyRef Name="CodUbi" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodUbi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CARRIL">
+          <End Role="CARRIL" Type="Self.CARRIL" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARRIL">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="codcarril" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CIRCULACION">
+          <End Role="CIRCULACION" Type="Self.CIRCULACION" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CIRCULACION">
+              <PropertyRef Name="CodCir" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodCir" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CONDCALZADA">
+          <End Role="CONDCALZADA" Type="Self.CONDCALZADA" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONDCALZADA">
+              <PropertyRef Name="CodCCal" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodCCal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_ESTCALZADA">
+          <End Role="ESTCALZADA" Type="Self.ESTCALZADA" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTCALZADA">
+              <PropertyRef Name="CodECal" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodECal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_ESTRUCTURA">
+          <End Role="ESTRUCTURA" Type="Self.ESTRUCTURA" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTRUCTURA">
+              <PropertyRef Name="CodEst" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodEst" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_ILUMINACION">
+          <End Role="ILUMINACION" Type="Self.ILUMINACION" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ILUMINACION">
+              <PropertyRef Name="CodIlu" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodIlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_INTERSECCION">
+          <End Role="INTERSECCION" Type="Self.INTERSECCION" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INTERSECCION">
+              <PropertyRef Name="CodInt" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodInt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_OBSTACULO">
+          <End Role="OBSTACULO" Type="Self.OBSTACULO" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OBSTACULO">
+              <PropertyRef Name="CodObs" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodObs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_PEATON">
+          <End Role="PEATON" Type="Self.PEATON" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PEATON">
+              <PropertyRef Name="CodPea" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodPea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_SENTIDO">
+          <End Role="SENTIDO" Type="Self.SENTIDO" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SENTIDO">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="codsen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_TIEMPO">
+          <End Role="TIEMPO" Type="Self.TIEMPO" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIEMPO">
+              <PropertyRef Name="CodTie" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodTie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_TIPOACCIDENTE">
+          <End Role="TIPOACCIDENTE" Type="Self.TIPOACCIDENTE" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOACCIDENTE">
+              <PropertyRef Name="CodAcc" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodAcc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_TIPOCALZADA">
+          <End Role="TIPOCALZADA" Type="Self.TIPOCALZADA" Multiplicity="1" />
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOCALZADA">
+              <PropertyRef Name="CodTCal" />
+            </Principal>
+            <Dependent Role="PARTEOFICIAL">
+              <PropertyRef Name="CodTCal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERSONA_ESTCIVIL">
+          <End Role="ESTCIVIL" Type="Self.ESTCIVIL" Multiplicity="0..1" />
+          <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESTCIVIL">
+              <PropertyRef Name="estcivil" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="estcivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLPERSONA_VEHICULO_ROLPERSONA">
+          <End Role="ROLPERSONA" Type="Self.ROLPERSONA" Multiplicity="1" />
+          <End Role="ROLPERSONA_VEHICULO" Type="Self.ROLPERSONA_VEHICULO" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ROLPERSONA">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="ROLPERSONA_VEHICULO">
+              <PropertyRef Name="codigo_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TESTIGOXBOLETA_BOLETA">
+          <End Role="BOLETA" Type="Self.BOLETA" Multiplicity="1" />
+          <End Role="TESTIGOXBOLETA" Type="Self.TESTIGOXBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BOLETA">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numero_boleta" />
+            </Principal>
+            <Dependent Role="TESTIGOXBOLETA">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestigoxBoleta_Testigo">
+          <End Role="TESTIGO" Type="Self.TESTIGO" Multiplicity="1" />
+          <End Role="TESTIGOXBOLETA" Type="Self.TESTIGOXBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TESTIGO">
+              <PropertyRef Name="tipo_ide" />
+              <PropertyRef Name="identificacion" />
+            </Principal>
+            <Dependent Role="TESTIGOXBOLETA">
+              <PropertyRef Name="tipo_ide" />
+              <PropertyRef Name="identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TESTIGOXPARTE_PARTEOFICIAL">
+          <End Role="PARTEOFICIAL" Type="Self.PARTEOFICIAL" Multiplicity="1" />
+          <End Role="TESTIGOXPARTE" Type="Self.TESTIGOXPARTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARTEOFICIAL">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numeroparte" />
+            </Principal>
+            <Dependent Role="TESTIGOXPARTE">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numeroparte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TESTIGOXPARTE_TESTIGO">
+          <End Role="TESTIGO" Type="Self.TESTIGO" Multiplicity="1" />
+          <End Role="TESTIGOXPARTE" Type="Self.TESTIGOXPARTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TESTIGO">
+              <PropertyRef Name="tipo_ide" />
+              <PropertyRef Name="identificacion" />
+            </Principal>
+            <Dependent Role="TESTIGOXPARTE">
+              <PropertyRef Name="tipo_ide" />
+              <PropertyRef Name="identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION">
+          <End Role="TIPO_IDENTIFICACION" Type="Self.TIPO_IDENTIFICACION" Multiplicity="1" />
+          <End Role="TIPOSXDOCUMENTO" Type="Self.TIPOSXDOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_IDENTIFICACION">
+              <PropertyRef Name="tipo_ide" />
+            </Principal>
+            <Dependent Role="TIPOSXDOCUMENTO">
+              <PropertyRef Name="codigot" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPOSXDOCUMENTO_TIPODOCUMENTO">
+          <End Role="TIPODOCUMENTO" Type="Self.TIPODOCUMENTO" Multiplicity="1" />
+          <End Role="TIPOSXDOCUMENTO" Type="Self.TIPOSXDOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPODOCUMENTO">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="TIPOSXDOCUMENTO">
+              <PropertyRef Name="codigod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_CARROCERIA">
+          <End Role="CARROCERIA" Type="Self.CARROCERIA" Multiplicity="0..1" />
+          <End Role="VEHICULO" Type="Self.VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARROCERIA">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="VEHICULO">
+              <PropertyRef Name="tipo_carroceria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_TIPOVEH">
+          <End Role="TIPOVEH" Type="Self.TIPOVEH" Multiplicity="0..1" />
+          <End Role="VEHICULO" Type="Self.VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPOVEH">
+              <PropertyRef Name="CodVeh" />
+            </Principal>
+            <Dependent Role="VEHICULO">
+              <PropertyRef Name="codveh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="ConsultaeImpresionDeParteOficialData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TipoConsulta" Type="int" Mode="In" />
           <Parameter Name="Parametro1" Type="varchar" Mode="In" />
@@ -1440,7 +1987,6 @@
           <EntitySet Name="INTERSECCION" EntityType="Self.INTERSECCION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Leyenda_Poder_Judicial" EntityType="Self.Leyenda_Poder_Judicial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Leyenda_Puntos" EntityType="Self.Leyenda_Puntos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LEYENDAPORAUTORIDAD" EntityType="Self.LEYENDAPORAUTORIDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MANIOBRA" EntityType="Self.MANIOBRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOTIVONOFIRMA" EntityType="Self.MOTIVONOFIRMA" Schema="dbo" store:Type="Tables" />
@@ -1490,6 +2036,174 @@
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Articulos_Adicionales_Sugeridos_CATARTICULO" Association="Self.FK_Articulos_Adicionales_Sugeridos_CATARTICULO">
+            <End Role="CATARTICULO" EntitySet="CATARTICULO" />
+            <End Role="Articulos_Adicionales_Sugeridos" EntitySet="Articulos_Adicionales_Sugeridos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO" Association="Self.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO">
+            <End Role="CATARTICULO" EntitySet="CATARTICULO" />
+            <End Role="ARTICULOSXDEPOSITOSBIENES" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1" Association="Self.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1">
+            <End Role="CATARTICULO" EntitySet="CATARTICULO" />
+            <End Role="ARTICULOSXDEPOSITOSBIENES" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2" Association="Self.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2">
+            <End Role="CATARTICULO" EntitySet="CATARTICULO" />
+            <End Role="ARTICULOSXDEPOSITOSBIENES" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes" Association="Self.FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes">
+            <End Role="DEPOSITOBIENES" EntitySet="DEPOSITOBIENES" />
+            <End Role="ARTICULOSXDEPOSITOSBIENES" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticulosXDepositosBienes_OPCIONFORMULARIO" Association="Self.FK_ArticulosXDepositosBienes_OPCIONFORMULARIO">
+            <End Role="OPCIONFORMULARIO" EntitySet="OPCIONFORMULARIO" />
+            <End Role="ARTICULOSXDEPOSITOSBIENES" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOXBOLETA_BOLETA" Association="Self.FK_ARTICULOXBOLETA_BOLETA">
+            <End Role="BOLETA" EntitySet="BOLETA" />
+            <End Role="ARTICULOXBOLETA" EntitySet="ARTICULOXBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOXBOLETA_CATARTICULO" Association="Self.FK_ARTICULOXBOLETA_CATARTICULO">
+            <End Role="CATARTICULO" EntitySet="CATARTICULO" />
+            <End Role="ARTICULOXBOLETA" EntitySet="ARTICULOXBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOLETA_ROLPERSONA" Association="Self.FK_BOLETA_ROLPERSONA">
+            <End Role="ROLPERSONA" EntitySet="ROLPERSONA" />
+            <End Role="BOLETA" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOLETA_RUTA" Association="Self.FK_BOLETA_RUTA">
+            <End Role="RUTA" EntitySet="RUTA" />
+            <End Role="BOLETA" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAÑOXHOSPITAL_DAÑO" Association="Self.FK_DAÑOXHOSPITAL_DAÑO">
+            <End Role="DAÑO" EntitySet="DAÑO" />
+            <End Role="DAÑOXHOSPITAL" EntitySet="DAÑOXHOSPITAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLETIPODAÑO_TIPODANO" Association="Self.FK_DETALLETIPODAÑO_TIPODANO">
+            <End Role="TIPODANO" EntitySet="TIPODANO" />
+            <End Role="DETALLETIPODAÑO" EntitySet="DETALLETIPODAÑO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE" Association="Self.FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE">
+            <End Role="TIPOSEÑALEXISTE" EntitySet="TIPOSEÑALEXISTE" />
+            <End Role="DETALLETIPOSEÑAL" EntitySet="DETALLETIPOSEÑAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DISPXROLPERSONA_DISPOSITIVO" Association="Self.FK_DISPXROLPERSONA_DISPOSITIVO">
+            <End Role="DISPOSITIVO" EntitySet="DISPOSITIVO" />
+            <End Role="DISPXROLPERSONA" EntitySet="DISPXROLPERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DISPXROLPERSONA_ROLPERSONA" Association="Self.FK_DISPXROLPERSONA_ROLPERSONA">
+            <End Role="ROLPERSONA" EntitySet="ROLPERSONA" />
+            <End Role="DISPXROLPERSONA" EntitySet="DISPXROLPERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DIVISION_CANTON" Association="Self.FK_DIVISION_CANTON">
+            <End Role="CANTON" EntitySet="CANTON" />
+            <End Role="DIVISION" EntitySet="DIVISION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DIVISION_OFICINAIMPUGNA" Association="Self.FK_DIVISION_OFICINAIMPUGNA">
+            <End Role="OFICINAIMPUGNA" EntitySet="OFICINAIMPUGNA" />
+            <End Role="DIVISION" EntitySet="DIVISION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_ALINHORI" Association="Self.FK_PARTEOFICIAL_ALINHORI">
+            <End Role="ALINHORI" EntitySet="ALINHORI" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CARACUBI" Association="Self.FK_PARTEOFICIAL_CARACUBI">
+            <End Role="CARACUBI" EntitySet="CARACUBI" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CARRIL" Association="Self.FK_PARTEOFICIAL_CARRIL">
+            <End Role="CARRIL" EntitySet="CARRIL" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CIRCULACION" Association="Self.FK_PARTEOFICIAL_CIRCULACION">
+            <End Role="CIRCULACION" EntitySet="CIRCULACION" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CONDCALZADA" Association="Self.FK_PARTEOFICIAL_CONDCALZADA">
+            <End Role="CONDCALZADA" EntitySet="CONDCALZADA" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_ESTCALZADA" Association="Self.FK_PARTEOFICIAL_ESTCALZADA">
+            <End Role="ESTCALZADA" EntitySet="ESTCALZADA" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_ESTRUCTURA" Association="Self.FK_PARTEOFICIAL_ESTRUCTURA">
+            <End Role="ESTRUCTURA" EntitySet="ESTRUCTURA" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_ILUMINACION" Association="Self.FK_PARTEOFICIAL_ILUMINACION">
+            <End Role="ILUMINACION" EntitySet="ILUMINACION" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_INTERSECCION" Association="Self.FK_PARTEOFICIAL_INTERSECCION">
+            <End Role="INTERSECCION" EntitySet="INTERSECCION" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_OBSTACULO" Association="Self.FK_PARTEOFICIAL_OBSTACULO">
+            <End Role="OBSTACULO" EntitySet="OBSTACULO" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_PEATON" Association="Self.FK_PARTEOFICIAL_PEATON">
+            <End Role="PEATON" EntitySet="PEATON" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_SENTIDO" Association="Self.FK_PARTEOFICIAL_SENTIDO">
+            <End Role="SENTIDO" EntitySet="SENTIDO" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_TIEMPO" Association="Self.FK_PARTEOFICIAL_TIEMPO">
+            <End Role="TIEMPO" EntitySet="TIEMPO" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_TIPOACCIDENTE" Association="Self.FK_PARTEOFICIAL_TIPOACCIDENTE">
+            <End Role="TIPOACCIDENTE" EntitySet="TIPOACCIDENTE" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_TIPOCALZADA" Association="Self.FK_PARTEOFICIAL_TIPOCALZADA">
+            <End Role="TIPOCALZADA" EntitySet="TIPOCALZADA" />
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERSONA_ESTCIVIL" Association="Self.FK_PERSONA_ESTCIVIL">
+            <End Role="ESTCIVIL" EntitySet="ESTCIVIL" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLPERSONA_VEHICULO_ROLPERSONA" Association="Self.FK_ROLPERSONA_VEHICULO_ROLPERSONA">
+            <End Role="ROLPERSONA" EntitySet="ROLPERSONA" />
+            <End Role="ROLPERSONA_VEHICULO" EntitySet="ROLPERSONA_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TESTIGOXBOLETA_BOLETA" Association="Self.FK_TESTIGOXBOLETA_BOLETA">
+            <End Role="BOLETA" EntitySet="BOLETA" />
+            <End Role="TESTIGOXBOLETA" EntitySet="TESTIGOXBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestigoxBoleta_Testigo" Association="Self.FK_TestigoxBoleta_Testigo">
+            <End Role="TESTIGO" EntitySet="TESTIGO" />
+            <End Role="TESTIGOXBOLETA" EntitySet="TESTIGOXBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TESTIGOXPARTE_PARTEOFICIAL" Association="Self.FK_TESTIGOXPARTE_PARTEOFICIAL">
+            <End Role="PARTEOFICIAL" EntitySet="PARTEOFICIAL" />
+            <End Role="TESTIGOXPARTE" EntitySet="TESTIGOXPARTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TESTIGOXPARTE_TESTIGO" Association="Self.FK_TESTIGOXPARTE_TESTIGO">
+            <End Role="TESTIGO" EntitySet="TESTIGO" />
+            <End Role="TESTIGOXPARTE" EntitySet="TESTIGOXPARTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION" Association="Self.FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION">
+            <End Role="TIPO_IDENTIFICACION" EntitySet="TIPO_IDENTIFICACION" />
+            <End Role="TIPOSXDOCUMENTO" EntitySet="TIPOSXDOCUMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPOSXDOCUMENTO_TIPODOCUMENTO" Association="Self.FK_TIPOSXDOCUMENTO_TIPODOCUMENTO">
+            <End Role="TIPODOCUMENTO" EntitySet="TIPODOCUMENTO" />
+            <End Role="TIPOSXDOCUMENTO" EntitySet="TIPOSXDOCUMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_CARROCERIA" Association="Self.FK_Vehiculo_CARROCERIA">
+            <End Role="CARROCERIA" EntitySet="CARROCERIA" />
+            <End Role="VEHICULO" EntitySet="VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_TIPOVEH" Association="Self.FK_Vehiculo_TIPOVEH">
+            <End Role="TIPOVEH" EntitySet="TIPOVEH" />
+            <End Role="VEHICULO" EntitySet="VEHICULO" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1504,6 +2218,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PERSONA" Relationship="PC_HH_AndroidModel.FK_PERSONA_ESTCIVIL" FromRole="EstadoCivil" ToRole="PERSONA" />
         </EntityType>
         <EntityType Name="Iluminacion">
           <Key>
@@ -1514,6 +2229,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ILUMINACION" FromRole="Iluminacion" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="Maniobra">
           <Key>
@@ -1544,6 +2260,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_OBSTACULO" FromRole="Obstaculo" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="OficinaParaImpugnar">
           <Key>
@@ -1554,6 +2271,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DIVISION" Relationship="PC_HH_AndroidModel.FK_DIVISION_OFICINAIMPUGNA" FromRole="OficinaParaImpugnar" ToRole="Division" />
         </EntityType>
         <EntityType Name="RolDePersonaPorVehiculo">
           <Key>
@@ -1564,6 +2282,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ROLPERSONA" Relationship="PC_HH_AndroidModel.FK_ROLPERSONA_VEHICULO_ROLPERSONA" FromRole="RolDePersonaPorVehiculo" ToRole="RolPorPersona" />
         </EntityType>
         <EntityContainer Name="PC_HH_AndroidEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EstadoCivil" EntityType="PC_HH_AndroidModel.EstadoCivil" />
@@ -1768,6 +2487,166 @@
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="IMAGENES" EntityType="PC_HH_AndroidModel.IMAGENES" />
+          <AssociationSet Name="FK_PARTEOFICIAL_ALINHORI" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ALINHORI">
+            <End Role="AlineacionHorizontal" EntitySet="ALINHORI" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulos_Adicionales_Sugeridos_CATARTICULO" Association="PC_HH_AndroidModel.FK_Articulos_Adicionales_Sugeridos_CATARTICULO">
+            <End Role="CatalogoDeArticulos" EntitySet="CATARTICULO" />
+            <End Role="Articulos_Adicionales_Sugeridos" EntitySet="Articulos_Adicionales_Sugeridos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO" Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO">
+            <End Role="CatalogoDeArticulos" EntitySet="CATARTICULO" />
+            <End Role="ArticulosPorDepositosDeBienes" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1" Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1">
+            <End Role="CatalogoDeArticulos" EntitySet="CATARTICULO" />
+            <End Role="ArticulosPorDepositosDeBienes" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2" Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2">
+            <End Role="CatalogoDeArticulos" EntitySet="CATARTICULO" />
+            <End Role="ArticulosPorDepositosDeBienes" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes" Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes">
+            <End Role="DepositosBienes" EntitySet="DEPOSITOBIENES" />
+            <End Role="ArticulosPorDepositosDeBienes" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticulosXDepositosBienes_OPCIONFORMULARIO" Association="PC_HH_AndroidModel.FK_ArticulosXDepositosBienes_OPCIONFORMULARIO">
+            <End Role="OpcionDeFormulario" EntitySet="OPCIONFORMULARIO" />
+            <End Role="ArticulosPorDepositosDeBienes" EntitySet="ARTICULOSXDEPOSITOSBIENES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOXBOLETA_BOLETA" Association="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_BOLETA">
+            <End Role="Boletas" EntitySet="BOLETA" />
+            <End Role="ARTICULOXBOLETA" EntitySet="ARTICULOXBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTICULOXBOLETA_CATARTICULO" Association="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_CATARTICULO">
+            <End Role="CatalogoDeArticulos" EntitySet="CATARTICULO" />
+            <End Role="ARTICULOXBOLETA" EntitySet="ARTICULOXBOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOLETA_ROLPERSONA" Association="PC_HH_AndroidModel.FK_BOLETA_ROLPERSONA">
+            <End Role="RolPorPersona" EntitySet="ROLPERSONA" />
+            <End Role="Boletas" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BOLETA_RUTA" Association="PC_HH_AndroidModel.FK_BOLETA_RUTA">
+            <End Role="Ruta" EntitySet="Ruta" />
+            <End Role="Boletas" EntitySet="BOLETA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DIVISION_CANTON" Association="PC_HH_AndroidModel.FK_DIVISION_CANTON">
+            <End Role="Canton" EntitySet="CANTON" />
+            <End Role="Division" EntitySet="DIVISION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CARACUBI" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARACUBI">
+            <End Role="CaracteristicasDeUbicacion" EntitySet="CARACUBI" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CARRIL" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARRIL">
+            <End Role="Carril" EntitySet="CARRIL" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_CARROCERIA" Association="PC_HH_AndroidModel.FK_Vehiculo_CARROCERIA">
+            <End Role="Carroceria" EntitySet="CARROCERIA" />
+            <End Role="VEHICULO" EntitySet="VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CIRCULACION" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CIRCULACION">
+            <End Role="Circulacion" EntitySet="CIRCULACION" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_CONDCALZADA" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CONDCALZADA">
+            <End Role="CondicionDeLaCalzada" EntitySet="CONDCALZADA" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAÑOXHOSPITAL_DAÑO" Association="PC_HH_AndroidModel.FK_DAÑOXHOSPITAL_DAÑO">
+            <End Role="Dano" EntitySet="DAÑO" />
+            <End Role="DanioPorHospital" EntitySet="DAÑOXHOSPITAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLETIPODAÑO_TIPODANO" Association="PC_HH_AndroidModel.FK_DETALLETIPODAÑO_TIPODANO">
+            <End Role="TIPODANO" EntitySet="TIPODANO" />
+            <End Role="DetallePorTipoDanio" EntitySet="DETALLETIPODAÑO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE" Association="PC_HH_AndroidModel.FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE">
+            <End Role="TipoDeSenalExistente" EntitySet="TIPOSEÑALEXISTE" />
+            <End Role="DetallePorTipoSenial" EntitySet="DETALLETIPOSEÑAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DIVISION_OFICINAIMPUGNA" Association="PC_HH_AndroidModel.FK_DIVISION_OFICINAIMPUGNA">
+            <End Role="OficinaParaImpugnar" EntitySet="OficinaParaImpugnars" />
+            <End Role="Division" EntitySet="DIVISION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_ESTCALZADA" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTCALZADA">
+            <End Role="EstadoDeLaCalzada" EntitySet="ESTCALZADA" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERSONA_ESTCIVIL" Association="PC_HH_AndroidModel.FK_PERSONA_ESTCIVIL">
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_ESTRUCTURA" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTRUCTURA">
+            <End Role="TipoDeEstructura" EntitySet="ESTRUCTURA" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_ILUMINACION" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ILUMINACION">
+            <End Role="Iluminacion" EntitySet="Iluminacion" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_INTERSECCION" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_INTERSECCION">
+            <End Role="Interseccion" EntitySet="INTERSECCION" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_OBSTACULO" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_OBSTACULO">
+            <End Role="Obstaculo" EntitySet="Obstaculo" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_PEATON" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_PEATON">
+            <End Role="Peaton" EntitySet="Peaton" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_SENTIDO" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_SENTIDO">
+            <End Role="Sentido" EntitySet="SENTIDO" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_TIEMPO" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIEMPO">
+            <End Role="Tiempo" EntitySet="Tiempo" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_TIPOACCIDENTE" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOACCIDENTE">
+            <End Role="TipoDeAccidente" EntitySet="TIPOACCIDENTE" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTEOFICIAL_TIPOCALZADA" Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOCALZADA">
+            <End Role="TipoDeCalzada" EntitySet="TIPOCALZADA" />
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TESTIGOXPARTE_PARTEOFICIAL" Association="PC_HH_AndroidModel.FK_TESTIGOXPARTE_PARTEOFICIAL">
+            <End Role="ParteOficial" EntitySet="PARTEOFICIAL" />
+            <End Role="TESTIGOXPARTE" EntitySet="TESTIGOXPARTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLPERSONA_VEHICULO_ROLPERSONA" Association="PC_HH_AndroidModel.FK_ROLPERSONA_VEHICULO_ROLPERSONA">
+            <End Role="RolPorPersona" EntitySet="ROLPERSONA" />
+            <End Role="RolDePersonaPorVehiculo" EntitySet="RolDePersonaPorVehiculoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TESTIGOXPARTE_TESTIGO" Association="PC_HH_AndroidModel.FK_TESTIGOXPARTE_TESTIGO">
+            <End Role="TESTIGO" EntitySet="TESTIGO" />
+            <End Role="TESTIGOXPARTE" EntitySet="TESTIGOXPARTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION" Association="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION">
+            <End Role="TipoDeIdentificacion" EntitySet="TIPO_IDENTIFICACION" />
+            <End Role="TiposPorDocumento" EntitySet="TIPOSXDOCUMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPOSXDOCUMENTO_TIPODOCUMENTO" Association="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPODOCUMENTO">
+            <End Role="TipoDeDocumento" EntitySet="TIPODOCUMENTO" />
+            <End Role="TiposPorDocumento" EntitySet="TIPOSXDOCUMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_TIPOVEH" Association="PC_HH_AndroidModel.FK_Vehiculo_TIPOVEH">
+            <End Role="TipoDeVehiculo" EntitySet="TIPOVEH" />
+            <End Role="VEHICULO" EntitySet="VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="DISPXROLPERSONA1" Association="PC_HH_AndroidModel.DISPXROLPERSONA">
+            <End Role="Dispositivo" EntitySet="Dispositivoes1" />
+            <End Role="RolPorPersona" EntitySet="ROLPERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="TESTIGOXBOLETA1" Association="PC_HH_AndroidModel.TESTIGOXBOLETA1">
+            <End Role="Boletas" EntitySet="BOLETA" />
+            <End Role="TESTIGO" EntitySet="TESTIGO" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -1778,6 +2657,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ROLPERSONA" Relationship="PC_HH_AndroidModel.DISPXROLPERSONA" FromRole="Dispositivo" ToRole="RolPorPersona" />
         </EntityType>
         <EntityType Name="Hospital">
           <Key>
@@ -1826,6 +2706,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTCALZADA" FromRole="EstadoDeLaCalzada" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="TipoDeEstructura">
           <Key>
@@ -1836,6 +2717,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTRUCTURA" FromRole="TipoDeEstructura" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="OpcionDeFormulario">
           <Key>
@@ -1846,6 +2728,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ARTICULOSXDEPOSITOSBIENES" Relationship="PC_HH_AndroidModel.FK_ArticulosXDepositosBienes_OPCIONFORMULARIO" FromRole="OpcionDeFormulario" ToRole="ArticulosPorDepositosDeBienes" />
         </EntityType>
         <EntityType Name="OpcionesDelPlano">
           <Key>
@@ -1886,6 +2769,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_SENTIDO" FromRole="Sentido" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="Senalamiento">
           <Key>
@@ -1914,6 +2798,7 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Indice" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="TIPOSXDOCUMENTO" Relationship="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION" FromRole="TipoDeIdentificacion" ToRole="TiposPorDocumento" />
         </EntityType>
         <EntityType Name="TipoDeLicencia">
           <Key>
@@ -1934,6 +2819,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="VEHICULO" Relationship="PC_HH_AndroidModel.FK_Vehiculo_TIPOVEH" FromRole="TipoDeVehiculo" ToRole="VEHICULO" />
         </EntityType>
         <EntityType Name="Peaton">
           <Key>
@@ -1944,6 +2830,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_PEATON" FromRole="Peaton" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="Revision">
           <Key>
@@ -1961,6 +2848,9 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BOLETA" Relationship="PC_HH_AndroidModel.FK_BOLETA_ROLPERSONA" FromRole="RolPorPersona" ToRole="Boletas" />
+          <NavigationProperty Name="ROLPERSONA_VEHICULO" Relationship="PC_HH_AndroidModel.FK_ROLPERSONA_VEHICULO_ROLPERSONA" FromRole="RolPorPersona" ToRole="RolDePersonaPorVehiculo" />
+          <NavigationProperty Name="DISPOSITIVO" Relationship="PC_HH_AndroidModel.DISPXROLPERSONA" FromRole="RolPorPersona" ToRole="Dispositivo" />
         </EntityType>
         <EntityType Name="Ruta">
           <Key>
@@ -1972,6 +2862,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BOLETA" Relationship="PC_HH_AndroidModel.FK_BOLETA_RUTA" FromRole="Ruta" ToRole="Boletas" />
         </EntityType>
         <EntityType Name="Tiempo">
           <Key>
@@ -1982,6 +2873,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIEMPO" FromRole="Tiempo" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="TipoDeAccidente">
           <Key>
@@ -1992,6 +2884,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOACCIDENTE" FromRole="TipoDeAccidente" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="TipoDeCalzada">
           <Key>
@@ -2002,6 +2895,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOCALZADA" FromRole="TipoDeCalzada" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="TipoDeDocumento">
           <Key>
@@ -2012,6 +2906,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TIPOSXDOCUMENTO" Relationship="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPODOCUMENTO" FromRole="TipoDeDocumento" ToRole="TiposPorDocumento" />
         </EntityType>
         <EntityType Name="TipoIdDeVehiculo">
           <Key>
@@ -2032,6 +2927,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DETALLETIPOSEÑAL" Relationship="PC_HH_AndroidModel.FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE" FromRole="TipoDeSenalExistente" ToRole="DetallePorTipoSenial" />
         </EntityType>
         <EntityType Name="ClaseDePlaca">
           <Key>
@@ -2060,6 +2956,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CONDCALZADA" FromRole="CondicionDeLaCalzada" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="CondicionDeLaPersona">
           <Key>
@@ -2080,6 +2977,9 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <Property Name="fiscalia" Type="Boolean" />
+          <Property Name="transito" Type="Boolean" />
+          <NavigationProperty Name="DAÑOXHOSPITAL" Relationship="PC_HH_AndroidModel.FK_DAÑOXHOSPITAL_DAÑO" FromRole="Dano" ToRole="DanioPorHospital" />
         </EntityType>
         <EntityType Name="Delegacion">
           <Key>
@@ -2130,6 +3030,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ALINHORI" FromRole="AlineacionHorizontal" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="AlineacionVertical">
           <Key>
@@ -2150,6 +3051,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DIVISION" Relationship="PC_HH_AndroidModel.FK_DIVISION_CANTON" FromRole="Canton" ToRole="Division" />
         </EntityType>
         <EntityType Name="CaracteristicasDeUbicacion">
           <Key>
@@ -2160,6 +3062,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARACUBI" FromRole="CaracteristicasDeUbicacion" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="Carril">
           <Key>
@@ -2170,6 +3073,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARRIL" FromRole="Carril" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="Carroceria">
           <Key>
@@ -2180,6 +3084,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="VEHICULO" Relationship="PC_HH_AndroidModel.FK_Vehiculo_CARROCERIA" FromRole="Carroceria" ToRole="VEHICULO" />
         </EntityType>
         <EntityType Name="Circulacion">
           <Key>
@@ -2190,6 +3095,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CIRCULACION" FromRole="Circulacion" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -2255,6 +3161,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_INTERSECCION" FromRole="Interseccion" ToRole="ParteOficial" />
         </EntityType>
         <EntityType Name="NombreDeMenu">
           <Key>
@@ -2291,7 +3198,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IMEI" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <EntityType Name="HorasLaborales">
           <Key>
@@ -2365,6 +3272,11 @@
           <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="CATARTICULO" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO" FromRole="ArticulosPorDepositosDeBienes" ToRole="CatalogoDeArticulos" />
+          <NavigationProperty Name="CATARTICULO1" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1" FromRole="ArticulosPorDepositosDeBienes" ToRole="CatalogoDeArticulos" />
+          <NavigationProperty Name="CATARTICULO2" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2" FromRole="ArticulosPorDepositosDeBienes" ToRole="CatalogoDeArticulos" />
+          <NavigationProperty Name="DEPOSITOBIENES" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes" FromRole="ArticulosPorDepositosDeBienes" ToRole="DepositosBienes" />
+          <NavigationProperty Name="OPCIONFORMULARIO" Relationship="PC_HH_AndroidModel.FK_ArticulosXDepositosBienes_OPCIONFORMULARIO" FromRole="ArticulosPorDepositosDeBienes" ToRole="OpcionDeFormulario" />
         </EntityType>
         <EntityType Name="Autoridad">
           <Key>
@@ -2377,6 +3289,8 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <Property Name="fiscalia" Type="Boolean" />
+          <Property Name="transito" Type="Boolean" />
         </EntityType>
         <EntityType Name="CatalogoDeArticulos">
           <Key>
@@ -2394,6 +3308,11 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Puntos" Type="Int32" Nullable="false" />
           <Property Name="Totalidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Articulos_Adicionales_Sugeridos" Relationship="PC_HH_AndroidModel.FK_Articulos_Adicionales_Sugeridos_CATARTICULO" FromRole="CatalogoDeArticulos" ToRole="Articulos_Adicionales_Sugeridos" />
+          <NavigationProperty Name="ARTICULOSXDEPOSITOSBIENES" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO" FromRole="CatalogoDeArticulos" ToRole="ArticulosPorDepositosDeBienes" />
+          <NavigationProperty Name="ARTICULOSXDEPOSITOSBIENES1" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1" FromRole="CatalogoDeArticulos" ToRole="ArticulosPorDepositosDeBienes" />
+          <NavigationProperty Name="ARTICULOSXDEPOSITOSBIENES2" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2" FromRole="CatalogoDeArticulos" ToRole="ArticulosPorDepositosDeBienes" />
+          <NavigationProperty Name="ARTICULOXBOLETA" Relationship="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_CATARTICULO" FromRole="CatalogoDeArticulos" ToRole="ARTICULOXBOLETA" />
           </EntityType>
         <EntityType Name="DanioPorHospital">
           <Key>
@@ -2405,6 +3324,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAÑO" Relationship="PC_HH_AndroidModel.FK_DAÑOXHOSPITAL_DAÑO" FromRole="DanioPorHospital" ToRole="Dano" />
         </EntityType>
         <EntityType Name="DetallePorTipoDanio">
           <Key>
@@ -2417,6 +3337,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TIPODANO" Relationship="PC_HH_AndroidModel.FK_DETALLETIPODAÑO_TIPODANO" FromRole="DetallePorTipoDanio" ToRole="TIPODANO" />
         </EntityType>
         <EntityType Name="DetallePorTipoSenial">
           <Key>
@@ -2429,6 +3350,7 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TIPOSEÑALEXISTE" Relationship="PC_HH_AndroidModel.FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE" FromRole="DetallePorTipoSenial" ToRole="TipoDeSenalExistente" />
         </EntityType>
         <EntityType Name="DispositivoPorRolPersona">
           <Key>
@@ -2450,6 +3372,8 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CANTON1" Relationship="PC_HH_AndroidModel.FK_DIVISION_CANTON" FromRole="Division" ToRole="Canton" />
+          <NavigationProperty Name="OFICINAIMPUGNA" Relationship="PC_HH_AndroidModel.FK_DIVISION_OFICINAIMPUGNA" FromRole="Division" ToRole="OficinaParaImpugnar" />
         </EntityType>
         <EntityType Name="OpcionFormularioPorArticulo">
           <Key>
@@ -2500,6 +3424,8 @@
           <Property Name="Estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="FechaDeInicio" Type="DateTime" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TIPO_IDENTIFICACION" Relationship="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION" FromRole="TiposPorDocumento" ToRole="TipoDeIdentificacion" />
+          <NavigationProperty Name="TIPODOCUMENTO" Relationship="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPODOCUMENTO" FromRole="TiposPorDocumento" ToRole="TipoDeDocumento" />
         </EntityType>
         <EntityType Name="ValidarCarroceria">
           <Key>
@@ -2559,6 +3485,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ARTICULOSXDEPOSITOSBIENES" Relationship="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes" FromRole="DepositosBienes" ToRole="ArticulosPorDepositosDeBienes" />
         </EntityType>
         <EntityType Name="TIPODANO">
           <Key>
@@ -2566,6 +3493,7 @@
           </Key>
           <Property Name="codigod" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="descripcion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DETALLETIPODAÑO" Relationship="PC_HH_AndroidModel.FK_DETALLETIPODAÑO_TIPODANO" FromRole="TIPODANO" ToRole="DetallePorTipoDanio" />
         </EntityType>
         <EntityType Name="BitacoraSIBOAC">
           <Key>
@@ -2622,7 +3550,7 @@
           <Property Name="numeroHH" Type="Int32" />
           <Property Name="fechaexportacionHH" Type="DateTime" Precision="3" />
           <Property Name="Impresion" Type="Boolean" />
-          <Property Name="Observaciones" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="plano_generado" Type="Boolean" />
           <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
           <Property Name="usuario_entregaPlano" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2631,6 +3559,22 @@
           <Property Name="fecha_entregacorte" Type="DateTime" Precision="3" />
           <Property Name="usuario_entregacorte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AmbienteEnCampo" Type="Boolean" />
+          <NavigationProperty Name="ALINHORI" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ALINHORI" FromRole="ParteOficial" ToRole="AlineacionHorizontal" />
+          <NavigationProperty Name="CARACUBI" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARACUBI" FromRole="ParteOficial" ToRole="CaracteristicasDeUbicacion" />
+          <NavigationProperty Name="CARRIL" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARRIL" FromRole="ParteOficial" ToRole="Carril" />
+          <NavigationProperty Name="CIRCULACION" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CIRCULACION" FromRole="ParteOficial" ToRole="Circulacion" />
+          <NavigationProperty Name="CONDCALZADA" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_CONDCALZADA" FromRole="ParteOficial" ToRole="CondicionDeLaCalzada" />
+          <NavigationProperty Name="ESTCALZADA" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTCALZADA" FromRole="ParteOficial" ToRole="EstadoDeLaCalzada" />
+          <NavigationProperty Name="ESTRUCTURA" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTRUCTURA" FromRole="ParteOficial" ToRole="TipoDeEstructura" />
+          <NavigationProperty Name="ILUMINACION" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_ILUMINACION" FromRole="ParteOficial" ToRole="Iluminacion" />
+          <NavigationProperty Name="INTERSECCION" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_INTERSECCION" FromRole="ParteOficial" ToRole="Interseccion" />
+          <NavigationProperty Name="OBSTACULO" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_OBSTACULO" FromRole="ParteOficial" ToRole="Obstaculo" />
+          <NavigationProperty Name="PEATON" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_PEATON" FromRole="ParteOficial" ToRole="Peaton" />
+          <NavigationProperty Name="SENTIDO" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_SENTIDO" FromRole="ParteOficial" ToRole="Sentido" />
+          <NavigationProperty Name="TIEMPO" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIEMPO" FromRole="ParteOficial" ToRole="Tiempo" />
+          <NavigationProperty Name="TIPOACCIDENTE" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOACCIDENTE" FromRole="ParteOficial" ToRole="TipoDeAccidente" />
+          <NavigationProperty Name="TIPOCALZADA" Relationship="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOCALZADA" FromRole="ParteOficial" ToRole="TipoDeCalzada" />
+          <NavigationProperty Name="TESTIGOXPARTE" Relationship="PC_HH_AndroidModel.FK_TESTIGOXPARTE_PARTEOFICIAL" FromRole="ParteOficial" ToRole="TESTIGOXPARTE" />
         </EntityType>
         <EntityType Name="Boletas">
           <Key>
@@ -2722,6 +3666,11 @@
           <Property Name="por_denuncia" Type="Boolean" />
           <Property Name="NoGuardaCoordenadas" Type="Boolean" />
           <Property Name="articulos_sugeridos_justificacion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="noGuardaCoordenadas" Type="Boolean" />
+          <NavigationProperty Name="ARTICULOXBOLETA" Relationship="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_BOLETA" FromRole="Boletas" ToRole="ARTICULOXBOLETA" />
+          <NavigationProperty Name="ROLPERSONA" Relationship="PC_HH_AndroidModel.FK_BOLETA_ROLPERSONA" FromRole="Boletas" ToRole="RolPorPersona" />
+          <NavigationProperty Name="RUTA" Relationship="PC_HH_AndroidModel.FK_BOLETA_RUTA" FromRole="Boletas" ToRole="Ruta" />
+          <NavigationProperty Name="TESTIGO" Relationship="PC_HH_AndroidModel.TESTIGOXBOLETA1" FromRole="Boletas" ToRole="TESTIGO" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -2759,6 +3708,7 @@
           <Property Name="clase_vehiculo_colision" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="codigo_vehiculo_colision" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="placa_vehiculo_colision" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ESTCIVIL1" Relationship="PC_HH_AndroidModel.FK_PERSONA_ESTCIVIL" FromRole="PERSONA" ToRole="EstadoCivil" />
         </EntityType>
         <EntityType Name="GENERALES">
           <Key>
@@ -2798,6 +3748,8 @@
           <Property Name="serie" Type="Int32" Nullable="false" />
           <Property Name="numero_boleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="multa" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="BOLETA" Relationship="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_BOLETA" FromRole="ARTICULOXBOLETA" ToRole="Boletas" />
+          <NavigationProperty Name="CATARTICULO" Relationship="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_CATARTICULO" FromRole="ARTICULOXBOLETA" ToRole="CatalogoDeArticulos" />
         </EntityType>
         <EntityType Name="VEHICULO">
           <Key>
@@ -2824,6 +3776,8 @@
           <Property Name="codveh" Type="Int32" />
           <Property Name="NumeroBoleta" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Serie" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CARROCERIA" Relationship="PC_HH_AndroidModel.FK_Vehiculo_CARROCERIA" FromRole="VEHICULO" ToRole="Carroceria" />
+          <NavigationProperty Name="TIPOVEH" Relationship="PC_HH_AndroidModel.FK_Vehiculo_TIPOVEH" FromRole="VEHICULO" ToRole="TipoDeVehiculo" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -3188,6 +4142,8 @@
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
           <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="firma_testigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PARTEOFICIAL" Relationship="PC_HH_AndroidModel.FK_TESTIGOXPARTE_PARTEOFICIAL" FromRole="TESTIGOXPARTE" ToRole="ParteOficial" />
+          <NavigationProperty Name="TESTIGO" Relationship="PC_HH_AndroidModel.FK_TESTIGOXPARTE_TESTIGO" FromRole="TESTIGOXPARTE" ToRole="TESTIGO" />
         </EntityType>
         <EntityType Name="TESTIGO">
           <Key>
@@ -3207,6 +4163,8 @@
           <Property Name="fuente" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="serie" Type="Int32" />
           <Property Name="numero" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="TESTIGOXPARTE" Relationship="PC_HH_AndroidModel.FK_TESTIGOXPARTE_TESTIGO" FromRole="TESTIGO" ToRole="TESTIGOXPARTE" />
+          <NavigationProperty Name="BOLETA" Relationship="PC_HH_AndroidModel.TESTIGOXBOLETA1" FromRole="TESTIGO" ToRole="Boletas" />
         </EntityType>
         <EntityType Name="Leyenda_Poder_Judicial">
           <Key>
@@ -3245,6 +4203,7 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Retiro_temporal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="Inmovilizacion" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CATARTICULO" Relationship="PC_HH_AndroidModel.FK_Articulos_Adicionales_Sugeridos_CATARTICULO" FromRole="Articulos_Adicionales_Sugeridos" ToRole="CatalogoDeArticulos" />
         </EntityType>
         <EntityType Name="OtrosAdjuntos">
           <Key>
@@ -3260,7 +4219,7 @@
           <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="extension" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="consecutivo_extension" Type="Int32" />
-          <Property Name="linkArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="linkArchivo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
         <ComplexType Name="ConsultaeImpresionDeParteOficialData_Result">
           <Property Type="String" Name="FuenteParte" Nullable="false" MaxLength="1" />
@@ -3491,7 +4450,514 @@
           <Property Name="Imagen" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
           <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="fechaRegistro" Type="DateTime" Precision="3" />
         </EntityType>
+        <Association Name="FK_PARTEOFICIAL_ALINHORI">
+          <End Type="PC_HH_AndroidModel.AlineacionHorizontal" Role="AlineacionHorizontal" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlineacionHorizontal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="horizontal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulos_Adicionales_Sugeridos_CATARTICULO">
+          <End Type="PC_HH_AndroidModel.CatalogoDeArticulos" Role="CatalogoDeArticulos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PC_HH_AndroidModel.Articulos_Adicionales_Sugeridos" Role="Articulos_Adicionales_Sugeridos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoDeArticulos">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Principal>
+            <Dependent Role="Articulos_Adicionales_Sugeridos">
+              <PropertyRef Name="Codigo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="Fecha_inicio" />
+              <PropertyRef Name="Fecha_final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO">
+          <End Type="PC_HH_AndroidModel.CatalogoDeArticulos" Role="CatalogoDeArticulos" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ArticulosPorDepositosDeBienes" Role="ArticulosPorDepositosDeBienes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoDeArticulos">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Principal>
+            <Dependent Role="ArticulosPorDepositosDeBienes">
+              <PropertyRef Name="CodigoArticulo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1">
+          <End Type="PC_HH_AndroidModel.CatalogoDeArticulos" Role="CatalogoDeArticulos" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ArticulosPorDepositosDeBienes" Role="ArticulosPorDepositosDeBienes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoDeArticulos">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Principal>
+            <Dependent Role="ArticulosPorDepositosDeBienes">
+              <PropertyRef Name="CodigoArticulo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2">
+          <End Type="PC_HH_AndroidModel.CatalogoDeArticulos" Role="CatalogoDeArticulos" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ArticulosPorDepositosDeBienes" Role="ArticulosPorDepositosDeBienes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoDeArticulos">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Principal>
+            <Dependent Role="ArticulosPorDepositosDeBienes">
+              <PropertyRef Name="CodigoArticulo" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes">
+          <End Type="PC_HH_AndroidModel.DepositosBienes" Role="DepositosBienes" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ArticulosPorDepositosDeBienes" Role="ArticulosPorDepositosDeBienes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DepositosBienes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticulosPorDepositosDeBienes">
+              <PropertyRef Name="CodigoDepositosBienes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticulosXDepositosBienes_OPCIONFORMULARIO">
+          <End Type="PC_HH_AndroidModel.OpcionDeFormulario" Role="OpcionDeFormulario" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ArticulosPorDepositosDeBienes" Role="ArticulosPorDepositosDeBienes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OpcionDeFormulario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticulosPorDepositosDeBienes">
+              <PropertyRef Name="CodigoOpcionFormulario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOXBOLETA_BOLETA">
+          <End Type="PC_HH_AndroidModel.Boletas" Role="Boletas" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ARTICULOXBOLETA" Role="ARTICULOXBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Boletas">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numero_boleta" />
+            </Principal>
+            <Dependent Role="ARTICULOXBOLETA">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numero_boleta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTICULOXBOLETA_CATARTICULO">
+          <End Type="PC_HH_AndroidModel.CatalogoDeArticulos" Role="CatalogoDeArticulos" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ARTICULOXBOLETA" Role="ARTICULOXBOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoDeArticulos">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Conducta" />
+              <PropertyRef Name="FechaDeInicio" />
+              <PropertyRef Name="FechaDeFin" />
+            </Principal>
+            <Dependent Role="ARTICULOXBOLETA">
+              <PropertyRef Name="codigo_articulo" />
+              <PropertyRef Name="conducta" />
+              <PropertyRef Name="Fecha_Inicio" />
+              <PropertyRef Name="Fecha_Final" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOLETA_ROLPERSONA">
+          <End Type="PC_HH_AndroidModel.RolPorPersona" Role="RolPorPersona" Multiplicity="0..1" />
+          <End Type="PC_HH_AndroidModel.Boletas" Role="Boletas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RolPorPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boletas">
+              <PropertyRef Name="codrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BOLETA_RUTA">
+          <End Type="PC_HH_AndroidModel.Ruta" Role="Ruta" Multiplicity="0..1" />
+          <End Type="PC_HH_AndroidModel.Boletas" Role="Boletas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ruta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Boletas">
+              <PropertyRef Name="codigo_ruta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DIVISION_CANTON">
+          <End Type="PC_HH_AndroidModel.Canton" Role="Canton" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.Division" Role="Division" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Division">
+              <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CARACUBI">
+          <End Type="PC_HH_AndroidModel.CaracteristicasDeUbicacion" Role="CaracteristicasDeUbicacion" Multiplicity="0..1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaracteristicasDeUbicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodUbi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CARRIL">
+          <End Type="PC_HH_AndroidModel.Carril" Role="Carril" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carril">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="codcarril" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_CARROCERIA">
+          <End Type="PC_HH_AndroidModel.Carroceria" Role="Carroceria" Multiplicity="0..1" />
+          <End Type="PC_HH_AndroidModel.VEHICULO" Role="VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carroceria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VEHICULO">
+              <PropertyRef Name="tipo_carroceria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CIRCULACION">
+          <End Type="PC_HH_AndroidModel.Circulacion" Role="Circulacion" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circulacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodCir" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_CONDCALZADA">
+          <End Type="PC_HH_AndroidModel.CondicionDeLaCalzada" Role="CondicionDeLaCalzada" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CondicionDeLaCalzada">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodCCal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAÑOXHOSPITAL_DAÑO">
+          <End Type="PC_HH_AndroidModel.Dano" Role="Dano" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.DanioPorHospital" Role="DanioPorHospital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dano">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DanioPorHospital">
+              <PropertyRef Name="IdDanio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLETIPODAÑO_TIPODANO">
+          <End Type="PC_HH_AndroidModel.TIPODANO" Role="TIPODANO" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.DetallePorTipoDanio" Role="DetallePorTipoDanio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPODANO">
+              <PropertyRef Name="codigod" />
+            </Principal>
+            <Dependent Role="DetallePorTipoDanio">
+              <PropertyRef Name="CodigoDanio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE">
+          <End Type="PC_HH_AndroidModel.TipoDeSenalExistente" Role="TipoDeSenalExistente" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.DetallePorTipoSenial" Role="DetallePorTipoSenial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeSenalExistente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetallePorTipoSenial">
+              <PropertyRef Name="CodigoTipoSenial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DIVISION_OFICINAIMPUGNA">
+          <End Type="PC_HH_AndroidModel.OficinaParaImpugnar" Role="OficinaParaImpugnar" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.Division" Role="Division" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OficinaParaImpugnar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Division">
+              <PropertyRef Name="CodigoOficinaImpugna" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_ESTCALZADA">
+          <End Type="PC_HH_AndroidModel.EstadoDeLaCalzada" Role="EstadoDeLaCalzada" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoDeLaCalzada">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodECal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERSONA_ESTCIVIL">
+          <End Type="PC_HH_AndroidModel.EstadoCivil" Role="EstadoCivil" Multiplicity="0..1" />
+          <End Type="PC_HH_AndroidModel.PERSONA" Role="PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCivil">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="estcivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_ESTRUCTURA">
+          <End Type="PC_HH_AndroidModel.TipoDeEstructura" Role="TipoDeEstructura" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeEstructura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodEst" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_ILUMINACION">
+          <End Type="PC_HH_AndroidModel.Iluminacion" Role="Iluminacion" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Iluminacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodIlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_INTERSECCION">
+          <End Type="PC_HH_AndroidModel.Interseccion" Role="Interseccion" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Interseccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodInt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_OBSTACULO">
+          <End Type="PC_HH_AndroidModel.Obstaculo" Role="Obstaculo" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obstaculo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodObs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_PEATON">
+          <End Type="PC_HH_AndroidModel.Peaton" Role="Peaton" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Peaton">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodPea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_SENTIDO">
+          <End Type="PC_HH_AndroidModel.Sentido" Role="Sentido" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sentido">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="codsen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_TIEMPO">
+          <End Type="PC_HH_AndroidModel.Tiempo" Role="Tiempo" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tiempo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodTie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_TIPOACCIDENTE">
+          <End Type="PC_HH_AndroidModel.TipoDeAccidente" Role="TipoDeAccidente" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeAccidente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodAcc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PARTEOFICIAL_TIPOCALZADA">
+          <End Type="PC_HH_AndroidModel.TipoDeCalzada" Role="TipoDeCalzada" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeCalzada">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParteOficial">
+              <PropertyRef Name="CodTCal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TESTIGOXPARTE_PARTEOFICIAL">
+          <End Type="PC_HH_AndroidModel.ParteOficial" Role="ParteOficial" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.TESTIGOXPARTE" Role="TESTIGOXPARTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ParteOficial">
+              <PropertyRef Name="Fuente" />
+              <PropertyRef Name="Serie" />
+              <PropertyRef Name="NumeroParte" />
+            </Principal>
+            <Dependent Role="TESTIGOXPARTE">
+              <PropertyRef Name="fuente" />
+              <PropertyRef Name="serie" />
+              <PropertyRef Name="numeroparte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ROLPERSONA_VEHICULO_ROLPERSONA">
+          <End Type="PC_HH_AndroidModel.RolPorPersona" Role="RolPorPersona" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.RolDePersonaPorVehiculo" Role="RolDePersonaPorVehiculo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RolPorPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolDePersonaPorVehiculo">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TESTIGOXPARTE_TESTIGO">
+          <End Type="PC_HH_AndroidModel.TESTIGO" Role="TESTIGO" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.TESTIGOXPARTE" Role="TESTIGOXPARTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TESTIGO">
+              <PropertyRef Name="tipo_ide" />
+              <PropertyRef Name="identificacion" />
+            </Principal>
+            <Dependent Role="TESTIGOXPARTE">
+              <PropertyRef Name="tipo_ide" />
+              <PropertyRef Name="identificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION">
+          <End Type="PC_HH_AndroidModel.TipoDeIdentificacion" Role="TipoDeIdentificacion" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.TiposPorDocumento" Role="TiposPorDocumento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeIdentificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposPorDocumento">
+              <PropertyRef Name="CodigoTipoDeIdentificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPOSXDOCUMENTO_TIPODOCUMENTO">
+          <End Type="PC_HH_AndroidModel.TipoDeDocumento" Role="TipoDeDocumento" Multiplicity="1" />
+          <End Type="PC_HH_AndroidModel.TiposPorDocumento" Role="TiposPorDocumento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeDocumento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposPorDocumento">
+              <PropertyRef Name="CodigoTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_TIPOVEH">
+          <End Type="PC_HH_AndroidModel.TipoDeVehiculo" Role="TipoDeVehiculo" Multiplicity="0..1" />
+          <End Type="PC_HH_AndroidModel.VEHICULO" Role="VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoDeVehiculo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VEHICULO">
+              <PropertyRef Name="codveh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DISPXROLPERSONA">
+          <End Type="PC_HH_AndroidModel.Dispositivo" Role="Dispositivo" Multiplicity="*" />
+          <End Type="PC_HH_AndroidModel.RolPorPersona" Role="RolPorPersona" Multiplicity="*" />
+        </Association>
+        <Association Name="TESTIGOXBOLETA1">
+          <End Type="PC_HH_AndroidModel.Boletas" Role="Boletas" Multiplicity="*" />
+          <End Type="PC_HH_AndroidModel.TESTIGO" Role="TESTIGO" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3911,6 +5377,8 @@
           <EntitySetMapping Name="DAÑO">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Dano">
               <MappingFragment StoreEntitySet="DAÑO">
+                <ScalarProperty Name="transito" ColumnName="transito" />
+                <ScalarProperty Name="fiscalia" ColumnName="fiscalia" />
                 <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
                 <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="Estado" ColumnName="estado" />
@@ -4222,6 +5690,8 @@
           <EntitySetMapping Name="AUTORIDAD">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Autoridad">
               <MappingFragment StoreEntitySet="AUTORIDAD">
+                <ScalarProperty Name="transito" ColumnName="transito" />
+                <ScalarProperty Name="fiscalia" ColumnName="fiscalia" />
                 <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
                 <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="Estado" ColumnName="estado" />
@@ -4477,8 +5947,8 @@
           <EntitySetMapping Name="BOLETA">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Boletas">
               <MappingFragment StoreEntitySet="BOLETA">
+                <ScalarProperty Name="noGuardaCoordenadas" ColumnName="noGuardaCoordenadas" />
                 <ScalarProperty Name="articulos_sugeridos_justificacion" ColumnName="articulos_sugeridos_justificacion" />
-                <ScalarProperty Name="NoGuardaCoordenadas" ColumnName="NoGuardaCoordenadas" />
                 <ScalarProperty Name="por_denuncia" ColumnName="por_denuncia" />
                 <ScalarProperty Name="kilometro" ColumnName="kilometro" />
                 <ScalarProperty Name="avenida2" ColumnName="avenida2" />
@@ -4679,17 +6149,6 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetBitacoraData" FunctionName="PC_HH_AndroidModel.Store.GetBitacoraData">
           </FunctionImportMapping>
-          <EntitySetMapping Name="LEYENDAPORAUTORIDAD">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.LEYENDAPORAUTORIDAD">
-              <MappingFragment StoreEntitySet="LEYENDAPORAUTORIDAD">
-                <ScalarProperty Name="Fecha_Fin" ColumnName="Fecha_Fin" />
-                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="PiePagina" ColumnName="PiePagina" />
-                <ScalarProperty Name="IdAutoridad" ColumnName="IdAutoridad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetDescargaBoletaData" FunctionName="PC_HH_AndroidModel.Store.GetDescargaBoletaData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetDescargaBoletaData_Result">
@@ -5314,6 +6773,7 @@
           <EntitySetMapping Name="IMAGENES">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.IMAGENES">
               <MappingFragment StoreEntitySet="IMAGENES">
+                <ScalarProperty Name="fechaRegistro" ColumnName="fechaRegistro" />
                 <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
                 <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
@@ -5324,6 +6784,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="DISPXROLPERSONA1" TypeName="PC_HH_AndroidModel.DISPXROLPERSONA" StoreEntitySet="DISPXROLPERSONA">
+            <EndProperty Name="RolPorPersona">
+              <ScalarProperty Name="Id" ColumnName="CodRol" />
+            </EndProperty>
+            <EndProperty Name="Dispositivo">
+              <ScalarProperty Name="Id" ColumnName="CodDisp" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TESTIGOXBOLETA1" TypeName="PC_HH_AndroidModel.TESTIGOXBOLETA1" StoreEntitySet="TESTIGOXBOLETA">
+            <EndProperty Name="TESTIGO">
+              <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+              <ScalarProperty Name="tipo_ide" ColumnName="tipo_ide" />
+            </EndProperty>
+            <EndProperty Name="Boletas">
+              <ScalarProperty Name="numero_boleta" ColumnName="numero" />
+              <ScalarProperty Name="serie" ColumnName="serie" />
+              <ScalarProperty Name="fuente" ColumnName="fuente" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

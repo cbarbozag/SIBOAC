@@ -807,8 +807,8 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro4);
                             decimal numeParte1 = Convert.ToDecimal(Parametro5);
 
-                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            //string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
 
@@ -827,7 +827,7 @@ namespace Cosevi.SIBOAC.Reports
                                 string strfn = Server.MapPath(rutaV + existeSVG);
                                 string strfn2 = Server.MapPath(rutaV + nombrePng);
 
-                                if (System.IO.File.Exists(existeAdjS))
+                                if (System.IO.File.Exists(strfn))
                                 {
                                     var sampleDoc = SvgDocument.Open(strfn);
                                     sampleDoc.Draw().Save(strfn2);
@@ -859,9 +859,8 @@ namespace Cosevi.SIBOAC.Reports
                                         consecutivo_extension = maxValue.Value + 1
                                     });
 
-                                    dbPivot.SaveChanges();
+                                    dbPivot.SaveChanges();                                    
                                 }
-
                             }
                             #endregion
 

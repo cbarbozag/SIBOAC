@@ -104,6 +104,46 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.OtrosAdjuntos" Width="1.5" PointX="12.375" PointY="19.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TESTIGOXBOLETA" Width="1.5" PointX="22.375" PointY="6.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.IMAGENES" Width="1.5" PointX="22.375" PointY="9.75" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ALINHORI" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_Articulos_Adicionales_Sugeridos_CATARTICULO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO1" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_CATARTICULO2" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULOSXDEPOSITOSBIENES_DepositoBienes" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ArticulosXDepositosBienes_OPCIONFORMULARIO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_BOLETA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ARTICULOXBOLETA_CATARTICULO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_BOLETA_ROLPERSONA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_BOLETA_RUTA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_DIVISION_CANTON" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARACUBI" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CARRIL" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_Vehiculo_CARROCERIA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CIRCULACION" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_CONDCALZADA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_DAÑOXHOSPITAL_DAÑO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_DETALLETIPODAÑO_TIPODANO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_DETALLETIPOSEÑAL_TIPOSEÑALEXISTE" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_DIVISION_OFICINAIMPUGNA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTCALZADA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PERSONA_ESTCIVIL" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ESTRUCTURA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_ILUMINACION" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_INTERSECCION" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_OBSTACULO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_PEATON" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_SENTIDO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIEMPO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOACCIDENTE" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_PARTEOFICIAL_TIPOCALZADA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_TESTIGOXPARTE_PARTEOFICIAL" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_ROLPERSONA_VEHICULO_ROLPERSONA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_TESTIGOXPARTE_TESTIGO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPO_IDENTIFICACION" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_TIPOSXDOCUMENTO_TIPODOCUMENTO" />
+        <AssociationConnector Association="PC_HH_AndroidModel.FK_Vehiculo_TIPOVEH" />
+        <AssociationConnector Association="PC_HH_AndroidModel.DISPXROLPERSONA" />
+        <AssociationConnector Association="PC_HH_AndroidModel.TESTIGOXBOLETA1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
