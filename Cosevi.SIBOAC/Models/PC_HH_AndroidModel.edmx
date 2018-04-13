@@ -2382,7 +2382,6 @@
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="Operacion" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="LEYENDAPORAUTORIDAD" EntityType="PC_HH_AndroidModel.LEYENDAPORAUTORIDAD" />
           <FunctionImport Name="GetDescargaBoletaData" ReturnType="Collection(PC_HH_AndroidModel.GetDescargaBoletaData_Result)">
             <Parameter Name="TipoFecha" Mode="In" Type="Int32" />
             <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
@@ -3797,16 +3796,6 @@
           <Property Name="Reportes" Type="Boolean" />
           <Property Name="Modifica" Type="Boolean" />
           <Property Name="Imprimeparte" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="LEYENDAPORAUTORIDAD">
-          <Key>
-            <PropertyRef Name="IdAutoridad" />
-          </Key>
-          <Property Name="IdAutoridad" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="PiePagina" Type="String" Nullable="false" MaxLength="2200" FixedLength="false" Unicode="true" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Fecha_Fin" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <ComplexType Name="GetDescargaBoletaData_Result">
           <Property Type="DateTime" Name="fecha_descarga" Nullable="true" Precision="23" />
