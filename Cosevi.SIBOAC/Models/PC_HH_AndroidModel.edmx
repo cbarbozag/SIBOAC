@@ -1044,6 +1044,15 @@
           <Property Name="fuente" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="serie" Type="int" Nullable="false" />
           <Property Name="numero" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="donde" Type="varchar" MaxLength="500" />
+          <Property Name="apellido1" Type="varchar" MaxLength="20" />
+          <Property Name="apellido2" Type="varchar" MaxLength="20" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="200" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="fecha_nacimiento" Type="datetime" />
+          <Property Name="sexo" Type="char" MaxLength="1" />
+          <Property Name="firma_testigo" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TESTIGOXPARTE">
           <Key>
@@ -3413,6 +3422,15 @@
           <Property Name="fuente" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="serie" Type="Int32" Nullable="false" />
           <Property Name="numero" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="donde" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="firma_testigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <ComplexType Name="GetReimpresionDeBoletasDeCampoData_Result">
           <Property Type="String" Name="fuente" Nullable="false" MaxLength="1" />
@@ -5239,6 +5257,15 @@
           <EntitySetMapping Name="TESTIGOXBOLETA">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.TESTIGOXBOLETA">
               <MappingFragment StoreEntitySet="TESTIGOXBOLETA">
+                <ScalarProperty Name="firma_testigo" ColumnName="firma_testigo" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="donde" ColumnName="donde" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
                 <ScalarProperty Name="serie" ColumnName="serie" />
                 <ScalarProperty Name="fuente" ColumnName="fuente" />

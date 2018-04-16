@@ -28,6 +28,24 @@ public partial class TESTIGOXBOLETA
 
     public decimal numero { get; set; }
 
+    public string donde { get; set; }
+
+    public string apellido1 { get; set; }
+
+    public string apellido2 { get; set; }
+
+    public string nombre { get; set; }
+
+    public string direccion { get; set; }
+
+    public string telefono { get; set; }
+
+    public Nullable<System.DateTime> fecha_nacimiento { get; set; }
+
+    public string sexo { get; set; }
+
+    public string firma_testigo { get; set; }
+
 }
 
 }
