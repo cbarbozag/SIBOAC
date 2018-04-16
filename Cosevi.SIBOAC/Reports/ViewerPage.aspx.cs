@@ -14,7 +14,8 @@ using System.Web.UI.WebControls;
 using System.Drawing.Imaging;
 using Svg;
 using System.Data.SqlClient;
-
+using System.Text;
+using System.Xml;
 
 namespace Cosevi.SIBOAC.Reports
 {
@@ -807,62 +808,74 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro4);
                             decimal numeParte1 = Convert.ToDecimal(Parametro5);
 
-                            //string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
 
                             #region Convertir SVG a PNG
 
-                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
+                            //var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
 
-                            foreach (var item in extSvg)
-                            {
-                                string filePath = Path.Combine(rutaPlano1, item.nombre);
+                            //foreach (var item in extSvg)
+                            //{
+                            //    string filePath = Path.Combine(rutaPlano1, item.nombre);
 
-                                var existeSVG = item.nombre;
-                                string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
-                                string nombrePng = item.nombre.Replace(".svg", ".png");
+                            //    var existeSVG = item.nombre;
+                            //    string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
+                            //    string nombrePng = item.nombre.Replace(".svg", ".png");
 
-                                string strfn = Server.MapPath(rutaV + existeSVG);
-                                string strfn2 = Server.MapPath(rutaV + nombrePng);
+                            //    string strfn = Server.MapPath(rutaV + existeSVG);
+                            //    string strfn2 = Server.MapPath(rutaV + nombrePng);
 
-                                if (System.IO.File.Exists(existeAdjS))
-                                {
-                                    var sampleDoc = SvgDocument.Open(strfn);
-                                    sampleDoc.Draw().Save(strfn2);
+                            //    if (System.IO.File.Exists(existeAdjS))
+                            //    {
+                            //            //string chartTitle = strfn;
+                            //        XmlDocument xd = new XmlDocument();
+                            //        xd.XmlResolver = null;
+                            //            //string chartSvg = "<svg><text x=\"1\" y=\"15\" font-size=\"14\" font-weight='bold' font-family=\"Arial\" ><tspan x=\"458\" dy=\"10\"> " + chartTitle + "</tspan></text></svg>";                                    
+                            //        xd.Load(existeAdjS);
+                            //            //XmlDeclaration obj = xd.CreateXmlDeclaration("1.0", "ISO-8859-1", "yes");
+                            //            //XmlElement root = xd.DocumentElement;
+                            //            //xd.InsertBefore(obj, root);
+                            //        var svgGraph = Svg.SvgDocument.Open(xd);
+                            //        var bitmap = svgGraph.Draw();
+                            //        bitmap.Save(strfn2);
 
-                                    //string nombrePng = item.nombre.Replace(".svg", ".png");
-                                    //string strfn = Server.MapPath(rutaV + existeSVG);
-                                    //FileStream fs = new FileStream(strfn, FileMode.Open, FileAccess.Read);
-                                    //byte[] bytes = new byte[fs.Length];
-                                    ////byte[] barrImg = System.IO.File.ReadAllBytes(strfn);
-                                    //string strfn2 = Server.MapPath(rutaV + nombrePng);
-                                    //FileStream fs2 = new FileStream(strfn2, FileMode.CreateNew, FileAccess.Write);
-                                    //fs2.Write(bytes, 0, (int)bytes.Length);
-                                    //fs2.Flush();
-                                    //fs2.Close();
+                            //        //var sampleDoc = SvgDocument.Open(strfn);
+                            //        //sampleDoc.Draw().Save(strfn2);
 
-                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                            //        //string nombrePng = item.nombre.Replace(".svg", ".png");
+                            //        //string strfn = Server.MapPath(rutaV + existeSVG);
+                            //        //FileStream fs = new FileStream(strfn, FileMode.Open, FileAccess.Read);
+                            //        //byte[] bytes = new byte[fs.Length];
+                            //        ////byte[] barrImg = System.IO.File.ReadAllBytes(strfn);
+                            //        //string strfn2 = Server.MapPath(rutaV + nombrePng);
+                            //        //FileStream fs2 = new FileStream(strfn2, FileMode.CreateNew, FileAccess.Write);
+                            //        //fs2.Write(bytes, 0, (int)bytes.Length);
+                            //        //fs2.Flush();
+                            //        //fs2.Close();
 
-                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
-                                    svgConvertido.extension = "svgc";
+                            //        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                    {
-                                        fuente = CodigoFuente1,
-                                        serie = serParte1,
-                                        numero = numeParte1,
-                                        extension = "png",
-                                        fechaRegistro = DateTime.Now,
-                                        nombre = nombrePng,
-                                        consecutivo_extension = maxValue.Value + 1
-                                    });
+                            //        var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
+                            //        svgConvertido.extension = "svgc";
 
-                                    dbPivot.SaveChanges();
-                                }
+                            //        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                            //        {
+                            //            fuente = CodigoFuente1,
+                            //            serie = serParte1,
+                            //            numero = numeParte1,
+                            //            extension = "png",
+                            //            fechaRegistro = DateTime.Now,
+                            //            nombre = nombrePng,
+                            //            consecutivo_extension = maxValue.Value + 1
+                            //        });
 
-                            }
+                            //        dbPivot.SaveChanges();
+                            //    }
+
+                            //}
                             #endregion
 
                             #region Planos
@@ -988,9 +1001,10 @@ namespace Cosevi.SIBOAC.Reports
 
                             #region Firmas Testigos P                            
 
-                            var TipoidTP = db.TESTIGOXPARTE.Where(a => a.serie == Parametro4 && a.numeroparte == Parametro5).Select(a => a.tipo_ide).ToList();
-                            var IdTP = db.TESTIGOXPARTE.Where(a => a.serie == Parametro4 && a.numeroparte == Parametro5).Select(a => a.identificacion).ToList();
-                            var firmaTP = (db.TESTIGO.Where(a => TipoidTP.Contains(a.tipo_ide) && IdTP.Contains(a.identificacion)).ToList());
+                            //var TipoidTP = db.TESTIGOXPARTE.Where(a => a.serie == Parametro4 && a.numeroparte == Parametro5).Select(a => a.tipo_ide).ToList();
+                            //var IdTP = db.TESTIGOXPARTE.Where(a => a.serie == Parametro4 && a.numeroparte == Parametro5).Select(a => a.identificacion).ToList();
+
+                            var firmaTP = (db.TESTIGOXPARTE.Where(a => a.serie == Parametro4 && a.numeroparte == Parametro5).ToList());
 
                             foreach (var item in firmaTP)
                             {
@@ -1284,38 +1298,38 @@ namespace Cosevi.SIBOAC.Reports
                             #endregion
 
                             #region Convertir SVG a PNG
-                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
+                            //var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
 
 
-                            foreach (string item in extSvg)
-                            {
-                                string filePath = Path.Combine(rutaPlano2, item);
-                                var sampleDoc = SvgDocument.Open(filePath);
-                                string nombrePng = item.Replace(".svg", ".png");
+                            //foreach (string item in extSvg)
+                            //{
+                            //    string filePath = Path.Combine(rutaPlano2, item);
+                            //    var sampleDoc = SvgDocument.Open(filePath);
+                            //    string nombrePng = item.Replace(".svg", ".png");
 
-                                string ext = Path.GetExtension(nombrePng).Replace(".", "");
-                                int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                            //    string ext = Path.GetExtension(nombrePng).Replace(".", "");
+                            //    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, serieParte2, numeroParte2, maxValue.Value + 1, ext);
-                                sampleDoc.Draw().Save(Path.Combine(rutaPlano2, nombrePng));
+                            //    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, serieParte2, numeroParte2, maxValue.Value + 1, ext);
+                            //    sampleDoc.Draw().Save(Path.Combine(rutaPlano2, nombrePng));
 
-                                var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, item);
-                                svgConvertido.extension = "svgc";
+                            //    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, item);
+                            //    svgConvertido.extension = "svgc";
 
-                                dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                {
-                                    fuente = CodigoFuente2,
-                                    serie = serieParte2,
-                                    numero = numeroParte2,
-                                    extension = ext,
-                                    fechaRegistro = DateTime.Now,
-                                    nombre = nombrePng,
-                                    consecutivo_extension = maxValue.Value + 1
-                                });
+                            //    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                            //    {
+                            //        fuente = CodigoFuente2,
+                            //        serie = serieParte2,
+                            //        numero = numeroParte2,
+                            //        extension = ext,
+                            //        fechaRegistro = DateTime.Now,
+                            //        nombre = nombrePng,
+                            //        consecutivo_extension = maxValue.Value + 1
+                            //    });
 
-                                dbPivot.SaveChanges();
+                            //    dbPivot.SaveChanges();
 
-                            }
+                            //}
                             #endregion
 
                             #region Adjuntos
@@ -1386,9 +1400,9 @@ namespace Cosevi.SIBOAC.Reports
 
                             #region Firma testigos Parte
 
-                            var TipoidTP = db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.tipo_ide).ToList();
-                            var IdTP = db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.identificacion).ToList();
-                            var firmaTP = (db.TESTIGO.Where(a => TipoidTP.Contains(a.tipo_ide) && IdTP.Contains(a.identificacion)).ToList());
+                            //var TipoidTP = db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.tipo_ide).ToList();
+                            //var IdTP = db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).Select(a => a.identificacion).ToList();
+                            var firmaTP = (db.TESTIGOXPARTE.Where(a => a.serie == CodigoSerie2 && a.numeroparte == CodigoNumParte2).ToList());
 
                             foreach (var item in firmaTP)
                             {
@@ -1690,42 +1704,42 @@ namespace Cosevi.SIBOAC.Reports
 
                                 #region Convertir SVG a PNG
 
-                                var extSvg3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
-                                var extSvgFuente3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
-                                var extSvgSerie3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
-                                var extSvgParte3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+                                //var extSvg3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                                //var extSvgFuente3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                                //var extSvgSerie3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                                //var extSvgParte3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
 
-                                var listPlanos3 = extSvg3.Zip(extSvgParte3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie3, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente3, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+                                //var listPlanos3 = extSvg3.Zip(extSvgParte3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie3, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente3, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
 
-                                foreach (var item in listPlanos3)
-                                {
-                                    string filePath = Path.Combine(rutaPlano3, item.Item1);
-                                    var sampleDoc = SvgDocument.Open(filePath);
-                                    string nombrePng = item.Item1.Replace(".svg", ".png");
+                                //foreach (var item in listPlanos3)
+                                //{
+                                //    string filePath = Path.Combine(rutaPlano3, item.Item1);
+                                //    var sampleDoc = SvgDocument.Open(filePath);
+                                //    string nombrePng = item.Item1.Replace(".svg", ".png");
 
-                                    string ext = Path.GetExtension(nombrePng).Replace(".", "");
-                                    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                                //    string ext = Path.GetExtension(nombrePng).Replace(".", "");
+                                //    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
-                                    sampleDoc.Draw().Save(Path.Combine(rutaPlano3, nombrePng));
+                                //    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
+                                //    sampleDoc.Draw().Save(Path.Combine(rutaPlano3, nombrePng));
 
-                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
-                                    svgConvertido.extension = "svgc";
+                                //    var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
+                                //    svgConvertido.extension = "svgc";
 
-                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                    {
-                                        fuente = item.Item4,
-                                        serie = item.Item3,
-                                        numero = item.Item2,
-                                        extension = ext,
-                                        fechaRegistro = DateTime.Now,
-                                        nombre = nombrePng,
-                                        consecutivo_extension = maxValue.Value + 1
-                                    });
+                                //    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                //    {
+                                //        fuente = item.Item4,
+                                //        serie = item.Item3,
+                                //        numero = item.Item2,
+                                //        extension = ext,
+                                //        fechaRegistro = DateTime.Now,
+                                //        nombre = nombrePng,
+                                //        consecutivo_extension = maxValue.Value + 1
+                                //    });
 
-                                    dbPivot.SaveChanges();
+                                //    dbPivot.SaveChanges();
 
-                                }
+                                //}
                                 #endregion
 
                                 #region Adjuntos
@@ -1798,9 +1812,9 @@ namespace Cosevi.SIBOAC.Reports
                                 foreach (var item3 in resultAdjParte)
                                 {
                                     string ser3 = Convert.ToString(item3.Item2);
-                                    var TipoidTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.tipo_ide).ToList());
-                                    var IdTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.identificacion).ToList());
-                                    var firmaTP = (db.TESTIGO.Where(a => TipoidTP.Contains(a.tipo_ide) && IdTP.Contains(a.identificacion)).ToList());
+                                    //var TipoidTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.tipo_ide).ToList());
+                                    //var IdTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.identificacion).ToList());
+                                    var firmaTP = (db.TESTIGOXPARTE.Where(a => ser3.Contains(a.serie) && item3.Item3.Contains(a.numeroparte)).ToList());
 
                                     foreach (var item in firmaTP)
                                     {
@@ -2104,42 +2118,42 @@ namespace Cosevi.SIBOAC.Reports
                                 #endregion
 
                                 #region Convertir SVG a PNG
-                                var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
-                                var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
-                                var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
-                                var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+                                //var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                                //var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                                //var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                                //var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
 
-                                var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+                                //var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
 
-                                foreach (var item in listPlanos4)
-                                {
-                                    string filePath = Path.Combine(rutaPlano4, item.Item1);
-                                    var sampleDoc = SvgDocument.Open(filePath);
-                                    string nombrePng = item.Item1.Replace(".svg", ".png");
+                                //foreach (var item in listPlanos4)
+                                //{
+                                //    string filePath = Path.Combine(rutaPlano4, item.Item1);
+                                //    var sampleDoc = SvgDocument.Open(filePath);
+                                //    string nombrePng = item.Item1.Replace(".svg", ".png");
 
-                                    string ext = Path.GetExtension(nombrePng).Replace(".", "");
-                                    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                                //    string ext = Path.GetExtension(nombrePng).Replace(".", "");
+                                //    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
-                                    sampleDoc.Draw().Save(Path.Combine(rutaPlano4, nombrePng));
+                                //    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
+                                //    sampleDoc.Draw().Save(Path.Combine(rutaPlano4, nombrePng));
 
-                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
-                                    svgConvertido.extension = "svgc";
+                                //    var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
+                                //    svgConvertido.extension = "svgc";
 
-                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                    {
-                                        fuente = item.Item4,
-                                        serie = item.Item3,
-                                        numero = item.Item2,
-                                        extension = ext,
-                                        fechaRegistro = DateTime.Now,
-                                        nombre = nombrePng,
-                                        consecutivo_extension = maxValue.Value + 1
-                                    });
+                                //    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                //    {
+                                //        fuente = item.Item4,
+                                //        serie = item.Item3,
+                                //        numero = item.Item2,
+                                //        extension = ext,
+                                //        fechaRegistro = DateTime.Now,
+                                //        nombre = nombrePng,
+                                //        consecutivo_extension = maxValue.Value + 1
+                                //    });
 
-                                    dbPivot.SaveChanges();
+                                //    dbPivot.SaveChanges();
 
-                                }
+                                //}
                                 #endregion
 
                                 #region Adjuntos
@@ -2216,9 +2230,9 @@ namespace Cosevi.SIBOAC.Reports
                                 foreach (var item3 in resultAdjParte)
                                 {
                                     string ser3 = Convert.ToString(item3.Item2);
-                                    var TipoidTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.tipo_ide).ToList());
-                                    var IdTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.identificacion).ToList());
-                                    var firmaTP = (db.TESTIGO.Where(a => TipoidTP.Contains(a.tipo_ide) && IdTP.Contains(a.identificacion)).ToList());
+                                    //var TipoidTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.tipo_ide).ToList());
+                                    //var IdTP = (db.TESTIGOXPARTE.Where(a => a.serie == ser3 && a.numeroparte == item3.Item3).Select(a => a.identificacion).ToList());
+                                    var firmaTP = (db.TESTIGOXPARTE.Where(a => ser3.Contains(a.serie) && item3.Item3.Contains(a.numeroparte)).ToList());
 
                                     foreach (var item in firmaTP)
                                     {
