@@ -28,6 +28,12 @@ namespace Cosevi.SIBOAC.Reports
         string connectionString = ConfigurationManager.AppSettings["AbrirConexionBD"];
 
         private SIBOACSecurityEntities dbSecurity = new SIBOACSecurityEntities();
+
+        /// <summary>
+        /// Método de logica para crear y agregar los firmas y adjuntos a los reportes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,7 +49,7 @@ namespace Cosevi.SIBOAC.Reports
                 listaFirmas.Columns.Add("NombreArchivo");
                 DataTable listaPlanos = new DataTable();
                 listaPlanos.Columns.Add("NombreArchivo");
-
+                
                 if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
                 {
                     return;
@@ -51,7 +57,7 @@ namespace Cosevi.SIBOAC.Reports
 
                 ReportViewer1.Reset();
                 ReportViewer1.LocalReport.ReportPath = Server.MapPath(String.Format("~/Reports/{0}.rdlc", nombreReporte));
-
+                
                 switch (reporteID)
                 {
                     case "_ReimpresionDeBoletasDeCampo":
@@ -815,78 +821,71 @@ namespace Cosevi.SIBOAC.Reports
 
                             #region Convertir SVG a PNG
 
-                            //var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
 
-                            //foreach (var item in extSvg)
-                            //{
-                            //    string filePath = Path.Combine(rutaPlano1, item.nombre);
+                            foreach (var item in extSvg)
+                            {
+                                var existeSVG = item.nombre;
+                                string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
+                                string nombrePng = item.nombre.Replace(".svg", ".png");
 
-                            //    var existeSVG = item.nombre;
-                            //    string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
-                            //    string nombrePng = item.nombre.Replace(".svg", ".png");
+                                string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + nombrePng);
 
-                            //    string strfn = Server.MapPath(rutaV + existeSVG);
-                            //    string strfn2 = Server.MapPath(rutaV + nombrePng);
+                                if (System.IO.File.Exists(existeAdjS))
+                                {
 
-                            //    if (System.IO.File.Exists(existeAdjS))
-                            //    {
-                            //            //string chartTitle = strfn;
-                            //        XmlDocument xd = new XmlDocument();
-                            //        xd.XmlResolver = null;
-                            //            //string chartSvg = "<svg><text x=\"1\" y=\"15\" font-size=\"14\" font-weight='bold' font-family=\"Arial\" ><tspan x=\"458\" dy=\"10\"> " + chartTitle + "</tspan></text></svg>";                                    
-                            //        xd.Load(existeAdjS);
-                            //            //XmlDeclaration obj = xd.CreateXmlDeclaration("1.0", "ISO-8859-1", "yes");
-                            //            //XmlElement root = xd.DocumentElement;
-                            //            //xd.InsertBefore(obj, root);
-                            //        var svgGraph = Svg.SvgDocument.Open(xd);
-                            //        var bitmap = svgGraph.Draw();
-                            //        bitmap.Save(strfn2);
+                                    var sampleDoc = SvgDocument.Open(existeAdjS);                                        
+                                    sampleDoc.Draw().Save(strfn);
 
-                            //        //var sampleDoc = SvgDocument.Open(strfn);
-                            //        //sampleDoc.Draw().Save(strfn2);
+                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                            //        //string nombrePng = item.nombre.Replace(".svg", ".png");
-                            //        //string strfn = Server.MapPath(rutaV + existeSVG);
-                            //        //FileStream fs = new FileStream(strfn, FileMode.Open, FileAccess.Read);
-                            //        //byte[] bytes = new byte[fs.Length];
-                            //        ////byte[] barrImg = System.IO.File.ReadAllBytes(strfn);
-                            //        //string strfn2 = Server.MapPath(rutaV + nombrePng);
-                            //        //FileStream fs2 = new FileStream(strfn2, FileMode.CreateNew, FileAccess.Write);
-                            //        //fs2.Write(bytes, 0, (int)bytes.Length);
-                            //        //fs2.Flush();
-                            //        //fs2.Close();
+                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
+                                    svgConvertido.extension = "svgc";
 
-                            //        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                    {
+                                        fuente = CodigoFuente1,
+                                        serie = serParte1,
+                                        numero = numeParte1,
+                                        extension = "png",
+                                        fechaRegistro = DateTime.Now,
+                                        nombre = nombrePng,
+                                        consecutivo_extension = maxValue.Value + 1
+                                    });
 
-                            //        var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
-                            //        svgConvertido.extension = "svgc";
+                                    dbPivot.SaveChanges();
+                                }
 
-                            //        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                            //        {
-                            //            fuente = CodigoFuente1,
-                            //            serie = serParte1,
-                            //            numero = numeParte1,
-                            //            extension = "png",
-                            //            fechaRegistro = DateTime.Now,
-                            //            nombre = nombrePng,
-                            //            consecutivo_extension = maxValue.Value + 1
-                            //        });
-
-                            //        dbPivot.SaveChanges();
-                            //    }
-
-                            //}
+                            }
                             #endregion
 
                             #region Planos
 
-                            var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                             listaPlanos.Columns.Add("ParteOficial");
 
                             foreach (var itmeP in listPlanos)
                             {
-                                listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, itmeP)).AbsoluteUri, numeroParte1);
+                                
+                                if (itmeP.extension.Contains("c"))
+                                {
+                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, itmeP.nombre)).AbsoluteUri, numeroParte1);
+                                }
+                                else
+                                {
+                                    string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + itmeP.nombre);
+
+                                    System.Drawing.Bitmap bitmap1;
+                                    bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn);
+                                    bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                    bitmap1.Save(strfn);
+
+                                    var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, itmeP.nombre);
+                                    PlanoConvertido.extension = itmeP.extension + "c";
+
+                                    dbPivot.SaveChanges();
+                                }                                                                
                             }
 
                             if (listPlanos.Count() == 0)
@@ -925,11 +924,20 @@ namespace Cosevi.SIBOAC.Reports
                                             //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
                                             string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-p-" + adjFinal.Identificacion.Trim() + ".png");
 
-                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
-                                            fs.Write(barrImg, 0, barrImg.Length);
+                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);                                            
+                                            fs.Write(barrImg, 0, barrImg.Length);                                            
                                             fs.Flush();
                                             fs.Close();
-                                        }
+                                            
+                                            string strfn2 = Path.Combine(@"" + rutaPlano1 + "\\" + existeA);
+
+                                            System.Drawing.Bitmap bitmap1;
+                                            bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
+                                            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                            bitmap1.Save(strfn2);
+
+                                        }                   
+                                        
                                         listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
                                     }
 
@@ -1239,15 +1247,71 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV2 = ConfigurationManager.AppSettings["RutaVirtual"];
 
+                            #region Convertir SVG a PNG
+
+                            var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").ToList();
+
+                            foreach (var item in extSvg)
+                            {
+                                var existeSVG = item.nombre;
+                                string existeAdjS = @"" + rutaPlano2 + "\\" + existeSVG;
+                                string nombrePng = item.nombre.Replace(".svg", ".png");
+
+                                string strfn = Path.Combine(@"" + rutaPlano2 + "\\" + nombrePng);
+
+                                if (System.IO.File.Exists(existeAdjS))
+                                {
+                                    var sampleDoc = SvgDocument.Open(existeAdjS);
+                                    sampleDoc.Draw().Save(strfn);
+
+                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, item);
+                                    svgConvertido.extension = "svgc";
+
+                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                    {
+                                        fuente = CodigoFuente2,
+                                        serie = serieParte2,
+                                        numero = numeroParte2,
+                                        extension = "png",
+                                        fechaRegistro = DateTime.Now,
+                                        nombre = nombrePng,
+                                        consecutivo_extension = maxValue.Value + 1
+                                    });
+
+                                    dbPivot.SaveChanges();
+                                }
+
+                            }
+                            #endregion
+
                             #region Planos
 
-                            var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                             listaPlanos.Columns.Add("ParteOficial");
 
                             foreach (var itmeP in listPlanos)
                             {
-                                listaPlanos.Rows.Add(new Uri(Path.Combine(ruta2, itmeP)).AbsoluteUri, CodigoNumParte2);
+                                if (itmeP.extension.Contains("c"))
+                                {
+                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta2, itmeP.nombre)).AbsoluteUri, CodigoNumParte2);
+                                }
+                                else
+                                {
+                                    string strfn = Path.Combine(@"" + rutaPlano2 + "\\" + itmeP.nombre);
+
+                                    System.Drawing.Bitmap bitmap1;
+                                    bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn);
+                                    bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                    bitmap1.Save(strfn);
+
+                                    var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, itmeP.nombre);
+                                    PlanoConvertido.extension = itmeP.extension + "c";
+
+                                    dbPivot.SaveChanges();
+                                }                                
                             }
 
                             if (listPlanos.Count() == 0)
@@ -1290,46 +1354,18 @@ namespace Cosevi.SIBOAC.Reports
                                             fs.Write(barrImg, 0, barrImg.Length);
                                             fs.Flush();
                                             fs.Close();
+
+                                            string strfn2 = Path.Combine(@"" + rutaPlano2 + "\\" + existeA);
+
+                                            System.Drawing.Bitmap bitmap1;
+                                            bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
+                                            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                            bitmap1.Save(strfn2);
                                         }
                                         listaPlanos.Rows.Add(new Uri(Path.Combine(ruta2, existeA)).AbsoluteUri, CodigoNumParte2);
                                     }
                                 }
                             }
-                            #endregion
-
-                            #region Convertir SVG a PNG
-                            //var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").Select(oa => oa.nombre);
-
-
-                            //foreach (string item in extSvg)
-                            //{
-                            //    string filePath = Path.Combine(rutaPlano2, item);
-                            //    var sampleDoc = SvgDocument.Open(filePath);
-                            //    string nombrePng = item.Replace(".svg", ".png");
-
-                            //    string ext = Path.GetExtension(nombrePng).Replace(".", "");
-                            //    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
-
-                            //    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", CodigoFuente2, serieParte2, numeroParte2, maxValue.Value + 1, ext);
-                            //    sampleDoc.Draw().Save(Path.Combine(rutaPlano2, nombrePng));
-
-                            //    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, item);
-                            //    svgConvertido.extension = "svgc";
-
-                            //    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                            //    {
-                            //        fuente = CodigoFuente2,
-                            //        serie = serieParte2,
-                            //        numero = numeroParte2,
-                            //        extension = ext,
-                            //        fechaRegistro = DateTime.Now,
-                            //        nombre = nombrePng,
-                            //        consecutivo_extension = maxValue.Value + 1
-                            //    });
-
-                            //    dbPivot.SaveChanges();
-
-                            //}
                             #endregion
 
                             #region Adjuntos
@@ -1640,18 +1676,80 @@ namespace Cosevi.SIBOAC.Reports
 
                                 var resultAdjParte = fuente3.Zip(serParte3, (e1, e2) => new { e1, e2 }).Zip(numPartPar3, (z1, e3) => Tuple.Create(z1.e1, z1.e2, e3));
 
+
+                                #region Convertir SVG a PNG
+
+                                var extSvg3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                                var extSvgFuente3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                                var extSvgSerie3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                                var extSvgParte3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                                var listPlanos3 = extSvg3.Zip(extSvgParte3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie3, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente3, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+
+                                foreach (var item in listPlanos3)
+                                {
+                                    var existeSVG = item.Item1;
+                                    string existeAdjS = @"" + rutaPlano3 + "\\" + existeSVG;
+                                    string nombrePng = item.Item1.Replace(".svg", ".png");
+
+                                    string strfn = Path.Combine(@"" + rutaPlano3 + "\\" + nombrePng);
+
+                                    if (System.IO.File.Exists(existeAdjS))
+                                    {
+                                        var sampleDoc = SvgDocument.Open(existeAdjS);
+                                        sampleDoc.Draw().Save(strfn);
+
+                                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.Item3 && oa.numero == item.Item2 && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                        var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
+                                        svgConvertido.extension = "svgc";
+
+                                        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                        {
+                                            fuente = item.Item4,
+                                            serie = item.Item3,
+                                            numero = item.Item2,
+                                            extension = "png",
+                                            fechaRegistro = DateTime.Now,
+                                            nombre = nombrePng,
+                                            consecutivo_extension = maxValue.Value + 1
+                                        });
+
+                                        dbPivot.SaveChanges();
+                                    }
+
+                                }
+                                #endregion
+
                                 #region Planos
 
                                 int serieP = Convert.ToInt32(lisPart3.serie_parteoficial);
                                 decimal numP = Convert.ToDecimal(lisPart3.numeroparte);
 
-                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart3.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart3.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                                 listaPlanos.Columns.Add("ParteOficial");
 
                                 foreach (var itmeP in listPlanos)
                                 {
-                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, itmeP)).AbsoluteUri, numP);
+                                    if (itmeP.extension.Contains("c"))
+                                    {
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, itmeP.nombre)).AbsoluteUri, numP);
+                                    }
+                                    else
+                                    {
+                                        string strfn = Path.Combine(@"" + rutaPlano3 + "\\" + itmeP.nombre);
+
+                                        System.Drawing.Bitmap bitmap1;
+                                        bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn);
+                                        bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                        bitmap1.Save(strfn);
+
+                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(lisPart3.fuente_parteoficial, serieP, numP, itmeP.nombre);
+                                        PlanoConvertido.extension = itmeP.extension + "c";
+
+                                        dbPivot.SaveChanges();
+                                    }                                    
                                 }
 
                                 if (listPlanos.Count() == 0)
@@ -1694,52 +1792,19 @@ namespace Cosevi.SIBOAC.Reports
                                                 fs.Write(barrImg, 0, barrImg.Length);
                                                 fs.Flush();
                                                 fs.Close();
+
+                                                string strfn2 = Path.Combine(@"" + rutaPlano3 + "\\" + existeA);
+
+                                                System.Drawing.Bitmap bitmap1;
+                                                bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
+                                                bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                bitmap1.Save(strfn2);
                                             }
                                             listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, existeA)).AbsoluteUri, numP);
                                         }
 
                                     }
                                 }
-                                #endregion
-
-                                #region Convertir SVG a PNG
-
-                                //var extSvg3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
-                                //var extSvgFuente3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
-                                //var extSvgSerie3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
-                                //var extSvgParte3 = db.OtrosAdjuntos.Where(oa => extSvg3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
-
-                                //var listPlanos3 = extSvg3.Zip(extSvgParte3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie3, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente3, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
-
-                                //foreach (var item in listPlanos3)
-                                //{
-                                //    string filePath = Path.Combine(rutaPlano3, item.Item1);
-                                //    var sampleDoc = SvgDocument.Open(filePath);
-                                //    string nombrePng = item.Item1.Replace(".svg", ".png");
-
-                                //    string ext = Path.GetExtension(nombrePng).Replace(".", "");
-                                //    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
-
-                                //    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
-                                //    sampleDoc.Draw().Save(Path.Combine(rutaPlano3, nombrePng));
-
-                                //    var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
-                                //    svgConvertido.extension = "svgc";
-
-                                //    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                //    {
-                                //        fuente = item.Item4,
-                                //        serie = item.Item3,
-                                //        numero = item.Item2,
-                                //        extension = ext,
-                                //        fechaRegistro = DateTime.Now,
-                                //        nombre = nombrePng,
-                                //        consecutivo_extension = maxValue.Value + 1
-                                //    });
-
-                                //    dbPivot.SaveChanges();
-
-                                //}
                                 #endregion
 
                                 #region Adjuntos
@@ -2060,13 +2125,30 @@ namespace Cosevi.SIBOAC.Reports
                                 int serieP = Convert.ToInt32(lisPart4.serie_parteoficial);
                                 decimal numP = Convert.ToDecimal(lisPart4.numeroparte);
 
-                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart4.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart4.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                                 listaPlanos.Columns.Add("ParteOficial");
 
                                 foreach (var itmeP in listPlanos)
                                 {
-                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, itmeP)).AbsoluteUri, numP);
+                                    if (itmeP.extension.Contains("c"))
+                                    {
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, itmeP.nombre)).AbsoluteUri, numP);
+                                    }
+                                    else
+                                    {
+                                        string strfn = Path.Combine(@"" + rutaPlano4 + "\\" + itmeP.nombre);
+
+                                        System.Drawing.Bitmap bitmap1;
+                                        bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn);
+                                        bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                        bitmap1.Save(strfn);
+
+                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(lisPart4.fuente_parteoficial, serieP, numP, itmeP.nombre);
+                                        PlanoConvertido.extension = itmeP.extension + "c";
+
+                                        dbPivot.SaveChanges();
+                                    }                                    
                                 }
 
                                 if (listPlanos.Count() == 0)
@@ -2109,6 +2191,13 @@ namespace Cosevi.SIBOAC.Reports
                                                 fs.Write(barrImg, 0, barrImg.Length);
                                                 fs.Flush();
                                                 fs.Close();
+
+                                                string strfn2 = Path.Combine(@"" + rutaPlano4 + "\\" + existeA);
+
+                                                System.Drawing.Bitmap bitmap1;
+                                                bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
+                                                bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                bitmap1.Save(strfn2);
                                             }
                                             listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, existeA)).AbsoluteUri, numP);
                                         }
@@ -2118,42 +2207,46 @@ namespace Cosevi.SIBOAC.Reports
                                 #endregion
 
                                 #region Convertir SVG a PNG
-                                //var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
-                                //var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
-                                //var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
-                                //var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+                                var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                                var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                                var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                                var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
 
-                                //var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+                                var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
 
-                                //foreach (var item in listPlanos4)
-                                //{
-                                //    string filePath = Path.Combine(rutaPlano4, item.Item1);
-                                //    var sampleDoc = SvgDocument.Open(filePath);
-                                //    string nombrePng = item.Item1.Replace(".svg", ".png");
+                                foreach (var item in listPlanos4)
+                                {
+                                    var existeSVG = item.Item1;
+                                    string existeAdjS = @"" + rutaPlano4 + "\\" + existeSVG;
+                                    string nombrePng = item.Item1.Replace(".svg", ".png");
 
-                                //    string ext = Path.GetExtension(nombrePng).Replace(".", "");
-                                //    int? maxValue = dbPivot.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                                    string strfn = Path.Combine(@"" + rutaPlano4 + "\\" + nombrePng);
 
-                                //    //string nombre = String.Format("{0}-{1}-{2}-{3}.{4}", item.Item4, item.Item3, item.Item2, maxValue.Value + 1, ext);
-                                //    sampleDoc.Draw().Save(Path.Combine(rutaPlano4, nombrePng));
+                                    if (System.IO.File.Exists(existeAdjS))
+                                    {
 
-                                //    var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
-                                //    svgConvertido.extension = "svgc";
+                                        var sampleDoc = SvgDocument.Open(existeAdjS);
+                                        sampleDoc.Draw().Save(strfn);
 
-                                //    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                //    {
-                                //        fuente = item.Item4,
-                                //        serie = item.Item3,
-                                //        numero = item.Item2,
-                                //        extension = ext,
-                                //        fechaRegistro = DateTime.Now,
-                                //        nombre = nombrePng,
-                                //        consecutivo_extension = maxValue.Value + 1
-                                //    });
+                                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.Item3 && oa.numero == item.Item2 && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
 
-                                //    dbPivot.SaveChanges();
+                                        var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
+                                        svgConvertido.extension = "svgc";
 
-                                //}
+                                        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                        {
+                                            fuente = item.Item4,
+                                            serie = item.Item3,
+                                            numero = item.Item2,
+                                            extension = "png",
+                                            fechaRegistro = DateTime.Now,
+                                            nombre = nombrePng,
+                                            consecutivo_extension = maxValue.Value + 1
+                                        });
+
+                                        dbPivot.SaveChanges();
+                                    }
+                                }
                                 #endregion
 
                                 #region Adjuntos
@@ -2464,6 +2557,11 @@ namespace Cosevi.SIBOAC.Reports
             }
         }
 
+        /// <summary>
+        /// Método para enviar los parametros a los subReportes 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LocalReport_SubreportProcessing(object sender, SubreportProcessingEventArgs e)
         {            
             e.DataSources.Add(new ReportDataSource("ArchivosBoletaDataSet", Session["_ConsultaeImpresionDeParteOficialDataBoleta"]));
@@ -2473,6 +2571,12 @@ namespace Cosevi.SIBOAC.Reports
             
         }
 
+        /// <summary>
+        /// Método de obtener el ID del Reporte
+        /// </summary>
+        /// <param name="reporteID"></param>
+        /// <param name="parametros"></param>
+        /// <returns></returns>
         private object GetData(string reporteID, string parametros)
         {
             object result = null;
@@ -2531,6 +2635,11 @@ namespace Cosevi.SIBOAC.Reports
         }
 
         #region Datos
+        /// <summary>
+        /// Métodos donde se envian los parametros o datos por lo cual el usuario consulta cada uno de los repotes.
+        /// </summary>
+        /// <param name="parametros"></param>
+        /// <returns></returns>
         private List<BitacoraSIBOAC> GetBitacoraData(string parametros)
         {
             string[] param = parametros.Split(',');
@@ -2761,7 +2870,11 @@ namespace Cosevi.SIBOAC.Reports
 
         #endregion
 
-
+        /// <summary>
+        /// Este método es para el evento del boton de imprimir el repote en el cual se le adjunta a la impresion los PDF asosicados al reporte.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnPrint_Click(object sender, EventArgs e)
         {
             string reporteID = Request.QueryString["reporteID"];
