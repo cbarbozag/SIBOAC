@@ -39,6 +39,7 @@
                 <Value>Ministerio de Obras Públicas y Transporte  </Value>
                 <Style>
                   <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -52,6 +53,7 @@
                 <Value>Dirección General de la Policía de Tránsito</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -65,7 +67,7 @@
                 <Value>Reporte por Delegación y/o Autoridad Judicial</Value>
                 <Style>
                   <FontSize>14pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -90,7 +92,7 @@
         </Paragraphs>
         <rd:DefaultName>ReportName</rd:DefaultName>
         <Top>0.49389cm</Top>
-        <Left>7.23543cm</Left>
+        <Left>8.74355cm</Left>
         <Height>2.50541cm</Height>
         <Width>12.97972cm</Width>
         <ZIndex>1</ZIndex>
@@ -111,13 +113,13 @@
               <Width>1.07567cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.53427cm</Width>
+              <Width>2.31819cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.09959cm</Width>
+              <Width>2.37369cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.93656cm</Width>
+              <Width>3.19641cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.29937cm</Width>
@@ -129,28 +131,28 @@
               <Width>2.59613cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.11635cm</Width>
+              <Width>4.30993cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.96545cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.08447cm</Width>
+              <Width>0.98521cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.85177cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.05802cm</Width>
+              <Width>1.03156cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.80667cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.04479cm</Width>
+              <Width>0.99187cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01833cm</Width>
+              <Width>0.96541cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -646,7 +648,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>serie</rd:DefaultName>
@@ -676,7 +680,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>numeroparte</rd:DefaultName>
@@ -713,7 +719,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>numero_boleta</rd:DefaultName>
@@ -745,7 +753,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>fecha_registro</rd:DefaultName>
@@ -775,7 +785,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>codigo_delegacion</rd:DefaultName>
@@ -805,7 +817,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>codigo_autoridad_registra</rd:DefaultName>
@@ -835,7 +849,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Identificacion</rd:DefaultName>
@@ -865,7 +881,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>NombreCompleto</rd:DefaultName>
@@ -891,11 +909,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Replace(Fields!clase_placa.Value,"SC"," ")</Value>
+                              <Value>=Replace(Fields!clase_placa.Value,"SC","")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>clase_placa</rd:DefaultName>
@@ -921,11 +941,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Replace(Fields!codigo_placa.Value,"SC"," ")</Value>
+                              <Value>=Replace(Fields!codigo_placa.Value,"SC","")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>codigo_placa</rd:DefaultName>
@@ -940,6 +962,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -955,7 +978,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>numero_placa</rd:DefaultName>
@@ -985,7 +1010,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>CP</rd:DefaultName>
@@ -1015,7 +1042,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>PC</rd:DefaultName>
@@ -1045,7 +1074,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>VD</rd:DefaultName>
@@ -1075,7 +1106,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>PE</rd:DefaultName>
@@ -1133,10 +1166,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>6.77926cm</Top>
-        <Left>0.635cm</Left>
+        <Top>5.5801cm</Top>
+        <Left>0.6068cm</Left>
         <Height>1.2cm</Height>
-        <Width>22.55608cm</Width>
+        <Width>25.83597cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -1159,8 +1192,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
-        <Top>8.31384cm</Top>
-        <Left>20.10578cm</Left>
+        <Top>7.11468cm</Top>
+        <Left>23.34337cm</Left>
         <Height>0.6cm</Height>
         <Width>3.0853cm</Width>
         <ZIndex>3</ZIndex>
@@ -1191,8 +1224,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox52</rd:DefaultName>
-        <Top>8.31384cm</Top>
-        <Left>16.32703cm</Left>
+        <Top>7.11468cm</Top>
+        <Left>19.56462cm</Left>
         <Height>0.6cm</Height>
         <Width>3.58447cm</Width>
         <ZIndex>4</ZIndex>
@@ -1221,8 +1254,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox53</rd:DefaultName>
-        <Top>9.09023cm</Top>
-        <Left>20.10578cm</Left>
+        <Top>7.89107cm</Top>
+        <Left>23.34337cm</Left>
         <Height>0.6cm</Height>
         <Width>3.0853cm</Width>
         <ZIndex>5</ZIndex>
@@ -1253,8 +1286,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox54</rd:DefaultName>
-        <Top>9.09023cm</Top>
-        <Left>16.32703cm</Left>
+        <Top>7.89107cm</Top>
+        <Left>19.56462cm</Left>
         <Height>0.6cm</Height>
         <Width>3.58447cm</Width>
         <ZIndex>6</ZIndex>
@@ -1284,9 +1317,9 @@
         </Paragraphs>
         <rd:DefaultName>ExecutionTime</rd:DefaultName>
         <Top>4.46828cm</Top>
-        <Left>17.72546cm</Left>
+        <Left>19.59282cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>4.92087cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -1341,10 +1374,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>4.46828cm</Top>
-        <Left>0.635cm</Left>
+        <Top>3.69189cm</Top>
+        <Left>2.50236cm</Left>
         <Height>0.6cm</Height>
-        <Width>13.15165cm</Width>
+        <Width>14.31582cm</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -1374,7 +1407,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>4.46828cm</Top>
-        <Left>13.96303cm</Left>
+        <Left>15.83039cm</Left>
         <Height>0.6cm</Height>
         <Width>3.58604cm</Width>
         <ZIndex>9</ZIndex>
@@ -1411,8 +1444,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>5.4737cm</Top>
-        <Left>0.635cm</Left>
+        <Top>4.46828cm</Top>
+        <Left>2.50236cm</Left>
         <Height>0.6cm</Height>
         <Width>13.15165cm</Width>
         <ZIndex>10</ZIndex>
@@ -1427,10 +1460,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>10.91557cm</Height>
+    <Height>9.08995cm</Height>
     <Style />
   </Body>
-  <Width>23.79578cm</Width>
+  <Width>27.07661cm</Width>
   <Page>
     <PageFooter>
       <Height>2.27542cm</Height>
@@ -1452,8 +1485,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0.97cm</Top>
-          <Left>22.014cm</Left>
+          <Top>0.6525cm</Top>
+          <Left>25.27979cm</Left>
           <Height>0.6cm</Height>
           <Width>1.17708cm</Width>
           <Style>
@@ -1481,8 +1514,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
-          <Top>0.97cm</Top>
-          <Left>20.60761cm</Left>
+          <Top>0.6525cm</Top>
+          <Left>23.8734cm</Left>
           <Height>0.6cm</Height>
           <Width>1.33583cm</Width>
           <ZIndex>1</ZIndex>
@@ -1505,8 +1538,8 @@
     </PageFooter>
     <PageHeight>21.59cm</PageHeight>
     <PageWidth>27.94cm</PageWidth>
-    <LeftMargin>1cm</LeftMargin>
-    <RightMargin>1cm</RightMargin>
+    <LeftMargin>0cm</LeftMargin>
+    <RightMargin>0cm</RightMargin>
     <TopMargin>0cm</TopMargin>
     <BottomMargin>0cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>

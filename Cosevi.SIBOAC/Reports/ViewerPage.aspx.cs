@@ -30,7 +30,7 @@ namespace Cosevi.SIBOAC.Reports
         private SIBOACSecurityEntities dbSecurity = new SIBOACSecurityEntities();
 
         /// <summary>
-        /// Método de logica para crear y agregar los firmas y adjuntos a los reportes
+        /// Método de logica para adjuntar imágenes, firmas, planos, función de botones especiales 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2572,10 +2572,10 @@ namespace Cosevi.SIBOAC.Reports
         }
 
         /// <summary>
-        /// Método de obtener el ID del Reporte
+        /// Método de obtener el ID del Reporte que desea consultar
         /// </summary>
-        /// <param name="reporteID"></param>
-        /// <param name="parametros"></param>
+        /// <param name="reporteID"> Id del reporte a consultar</param>
+        /// <param name="parametros">Parametros por los cuales quiere consultar</param>
         /// <returns></returns>
         private object GetData(string reporteID, string parametros)
         {
@@ -2636,7 +2636,7 @@ namespace Cosevi.SIBOAC.Reports
 
         #region Datos
         /// <summary>
-        /// Métodos donde se envian los parametros o datos por lo cual el usuario consulta cada uno de los repotes.
+        /// Métodos donde se envian al Procedimiento almacenado los parametros o datos por lo cual el usuario consulta cada uno de los repotes.
         /// </summary>
         /// <param name="parametros"></param>
         /// <returns></returns>
