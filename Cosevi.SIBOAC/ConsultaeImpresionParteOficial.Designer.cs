@@ -1979,6 +1979,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ConsultaeImpresionDeParteOficialDataRow FindByFuenteParteSerieParteNumeroPartenumero_boletaseriefuente(string FuenteParte, string SerieParte, string NumeroParte, decimal numero_boleta, int serie, string fuente) {
+                return ((ConsultaeImpresionDeParteOficialDataRow)(this.Rows.Find(new object[] {
+                            FuenteParte,
+                            SerieParte,
+                            NumeroParte,
+                            numero_boleta,
+                            serie,
+                            fuente})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 ConsultaeImpresionDeParteOficialDataDataTable cln = ((ConsultaeImpresionDeParteOficialDataDataTable)(base.Clone()));
                 cln.InitVars();
@@ -2408,11 +2420,9 @@ namespace Cosevi.SIBOAC {
                                 this.columnFuenteParte,
                                 this.columnSerieParte,
                                 this.columnNumeroParte,
-                                this.columnTipoIdentificacionTestigoB,
-                                this.columnIdentificacionTestigoB,
                                 this.columnnumero_boleta,
                                 this.columnserie,
-                                this.columnfuente}, false));
+                                this.columnfuente}, true));
                 this.columnFuenteParte.AllowDBNull = false;
                 this.columnFuenteParte.MaxLength = 1;
                 this.columnSerieParte.AllowDBNull = false;
@@ -2489,16 +2499,27 @@ namespace Cosevi.SIBOAC {
                 this.columnObservaciones.MaxLength = 180;
                 this.columnPlanoAccidente.ReadOnly = true;
                 this.columnPlanoAccidente.MaxLength = 20;
+                this.columnTipoIdentificacionTestigo.ReadOnly = true;
                 this.columnTipoIdentificacionTestigo.MaxLength = 2;
+                this.columnIdentificacionTestigo.ReadOnly = true;
                 this.columnIdentificacionTestigo.MaxLength = 15;
+                this.columnNombreTestigo.ReadOnly = true;
                 this.columnNombreTestigo.MaxLength = 50;
+                this.columnApellito1Testigo.ReadOnly = true;
                 this.columnApellito1Testigo.MaxLength = 20;
+                this.columnApellido2Testigo.ReadOnly = true;
                 this.columnApellido2Testigo.MaxLength = 20;
+                this.columnTipoIdentificacionTestigoB.ReadOnly = true;
                 this.columnTipoIdentificacionTestigoB.MaxLength = 2;
+                this.columnIdentificacionTestigoB.ReadOnly = true;
                 this.columnIdentificacionTestigoB.MaxLength = 15;
+                this.columnNombreTestigoB.ReadOnly = true;
                 this.columnNombreTestigoB.MaxLength = 50;
+                this.columnApellito1TestigoB.ReadOnly = true;
                 this.columnApellito1TestigoB.MaxLength = 20;
+                this.columnApellido2TestigoB.ReadOnly = true;
                 this.columnApellido2TestigoB.MaxLength = 20;
+                this.columnnumero_boletaB.ReadOnly = true;
                 this.columnnumero_boleta.AllowDBNull = false;
                 this.columnserie.AllowDBNull = false;
                 this.columnfuente.AllowDBNull = false;

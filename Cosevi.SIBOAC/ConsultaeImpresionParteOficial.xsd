@@ -2,8 +2,9 @@
 <xs:schema id="ConsultaeImpresionParteOficial" targetNamespace="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:mstns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -431,77 +432,77 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TipoIdentificacionTestigo" msprop:Generator_ColumnVarNameInTable="columnTipoIdentificacionTestigo" msprop:Generator_ColumnPropNameInRow="TipoIdentificacionTestigo" msprop:Generator_ColumnPropNameInTable="TipoIdentificacionTestigoColumn" msprop:Generator_UserColumnName="TipoIdentificacionTestigo" minOccurs="0">
+              <xs:element name="TipoIdentificacionTestigo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTipoIdentificacionTestigo" msprop:Generator_ColumnPropNameInRow="TipoIdentificacionTestigo" msprop:Generator_ColumnPropNameInTable="TipoIdentificacionTestigoColumn" msprop:Generator_UserColumnName="TipoIdentificacionTestigo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IdentificacionTestigo" msprop:Generator_ColumnVarNameInTable="columnIdentificacionTestigo" msprop:Generator_ColumnPropNameInRow="IdentificacionTestigo" msprop:Generator_ColumnPropNameInTable="IdentificacionTestigoColumn" msprop:Generator_UserColumnName="IdentificacionTestigo" minOccurs="0">
+              <xs:element name="IdentificacionTestigo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIdentificacionTestigo" msprop:Generator_ColumnPropNameInRow="IdentificacionTestigo" msprop:Generator_ColumnPropNameInTable="IdentificacionTestigoColumn" msprop:Generator_UserColumnName="IdentificacionTestigo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="15" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NombreTestigo" msprop:Generator_ColumnVarNameInTable="columnNombreTestigo" msprop:Generator_ColumnPropNameInRow="NombreTestigo" msprop:Generator_ColumnPropNameInTable="NombreTestigoColumn" msprop:Generator_UserColumnName="NombreTestigo" minOccurs="0">
+              <xs:element name="NombreTestigo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNombreTestigo" msprop:Generator_ColumnPropNameInRow="NombreTestigo" msprop:Generator_ColumnPropNameInTable="NombreTestigoColumn" msprop:Generator_UserColumnName="NombreTestigo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Apellito1Testigo" msprop:Generator_ColumnVarNameInTable="columnApellito1Testigo" msprop:Generator_ColumnPropNameInRow="Apellito1Testigo" msprop:Generator_ColumnPropNameInTable="Apellito1TestigoColumn" msprop:Generator_UserColumnName="Apellito1Testigo" minOccurs="0">
+              <xs:element name="Apellito1Testigo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnApellito1Testigo" msprop:Generator_ColumnPropNameInRow="Apellito1Testigo" msprop:Generator_ColumnPropNameInTable="Apellito1TestigoColumn" msprop:Generator_UserColumnName="Apellito1Testigo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Apellido2Testigo" msprop:Generator_ColumnVarNameInTable="columnApellido2Testigo" msprop:Generator_ColumnPropNameInRow="Apellido2Testigo" msprop:Generator_ColumnPropNameInTable="Apellido2TestigoColumn" msprop:Generator_UserColumnName="Apellido2Testigo" minOccurs="0">
+              <xs:element name="Apellido2Testigo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnApellido2Testigo" msprop:Generator_ColumnPropNameInRow="Apellido2Testigo" msprop:Generator_ColumnPropNameInTable="Apellido2TestigoColumn" msprop:Generator_UserColumnName="Apellido2Testigo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="TipoIdentificacionTestigoB" msprop:Generator_ColumnVarNameInTable="columnTipoIdentificacionTestigoB" msprop:Generator_ColumnPropNameInRow="TipoIdentificacionTestigoB" msprop:Generator_ColumnPropNameInTable="TipoIdentificacionTestigoBColumn" msprop:Generator_UserColumnName="TipoIdentificacionTestigoB" minOccurs="0">
+              <xs:element name="TipoIdentificacionTestigoB" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTipoIdentificacionTestigoB" msprop:Generator_ColumnPropNameInRow="TipoIdentificacionTestigoB" msprop:Generator_ColumnPropNameInTable="TipoIdentificacionTestigoBColumn" msprop:Generator_UserColumnName="TipoIdentificacionTestigoB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IdentificacionTestigoB" msprop:Generator_ColumnVarNameInTable="columnIdentificacionTestigoB" msprop:Generator_ColumnPropNameInRow="IdentificacionTestigoB" msprop:Generator_ColumnPropNameInTable="IdentificacionTestigoBColumn" msprop:Generator_UserColumnName="IdentificacionTestigoB" minOccurs="0">
+              <xs:element name="IdentificacionTestigoB" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIdentificacionTestigoB" msprop:Generator_ColumnPropNameInRow="IdentificacionTestigoB" msprop:Generator_ColumnPropNameInTable="IdentificacionTestigoBColumn" msprop:Generator_UserColumnName="IdentificacionTestigoB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="15" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NombreTestigoB" msprop:Generator_ColumnVarNameInTable="columnNombreTestigoB" msprop:Generator_ColumnPropNameInRow="NombreTestigoB" msprop:Generator_ColumnPropNameInTable="NombreTestigoBColumn" msprop:Generator_UserColumnName="NombreTestigoB" minOccurs="0">
+              <xs:element name="NombreTestigoB" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNombreTestigoB" msprop:Generator_ColumnPropNameInRow="NombreTestigoB" msprop:Generator_ColumnPropNameInTable="NombreTestigoBColumn" msprop:Generator_UserColumnName="NombreTestigoB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Apellito1TestigoB" msprop:Generator_ColumnVarNameInTable="columnApellito1TestigoB" msprop:Generator_ColumnPropNameInRow="Apellito1TestigoB" msprop:Generator_ColumnPropNameInTable="Apellito1TestigoBColumn" msprop:Generator_UserColumnName="Apellito1TestigoB" minOccurs="0">
+              <xs:element name="Apellito1TestigoB" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnApellito1TestigoB" msprop:Generator_ColumnPropNameInRow="Apellito1TestigoB" msprop:Generator_ColumnPropNameInTable="Apellito1TestigoBColumn" msprop:Generator_UserColumnName="Apellito1TestigoB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Apellido2TestigoB" msprop:Generator_ColumnVarNameInTable="columnApellido2TestigoB" msprop:Generator_ColumnPropNameInRow="Apellido2TestigoB" msprop:Generator_ColumnPropNameInTable="Apellido2TestigoBColumn" msprop:Generator_UserColumnName="Apellido2TestigoB" minOccurs="0">
+              <xs:element name="Apellido2TestigoB" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnApellido2TestigoB" msprop:Generator_ColumnPropNameInRow="Apellido2TestigoB" msprop:Generator_ColumnPropNameInTable="Apellido2TestigoBColumn" msprop:Generator_UserColumnName="Apellido2TestigoB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="numero_boletaB" msprop:Generator_ColumnVarNameInTable="columnnumero_boletaB" msprop:Generator_ColumnPropNameInRow="numero_boletaB" msprop:Generator_ColumnPropNameInTable="numero_boletaBColumn" msprop:Generator_UserColumnName="numero_boletaB" type="xs:decimal" minOccurs="0" />
+              <xs:element name="numero_boletaB" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnumero_boletaB" msprop:Generator_ColumnPropNameInRow="numero_boletaB" msprop:Generator_ColumnPropNameInTable="numero_boletaBColumn" msprop:Generator_UserColumnName="numero_boletaB" type="xs:decimal" minOccurs="0" />
               <xs:element name="numero_boleta" msprop:Generator_ColumnVarNameInTable="columnnumero_boleta" msprop:Generator_ColumnPropNameInRow="numero_boleta" msprop:Generator_ColumnPropNameInTable="numero_boletaColumn" msprop:Generator_UserColumnName="numero_boleta" type="xs:decimal" />
               <xs:element name="serie" msprop:Generator_ColumnVarNameInTable="columnserie" msprop:Generator_ColumnPropNameInRow="serie" msprop:Generator_ColumnPropNameInTable="serieColumn" msprop:Generator_UserColumnName="serie" type="xs:int" />
               <xs:element name="fuente" msprop:Generator_ColumnVarNameInTable="columnfuente" msprop:Generator_ColumnPropNameInRow="fuente" msprop:Generator_ColumnPropNameInTable="fuenteColumn" msprop:Generator_UserColumnName="fuente">
@@ -891,13 +892,11 @@
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1">
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ConsultaeImpresionDeParteOficialData" />
       <xs:field xpath="mstns:FuenteParte" />
       <xs:field xpath="mstns:SerieParte" />
       <xs:field xpath="mstns:NumeroParte" />
-      <xs:field xpath="mstns:TipoIdentificacionTestigoB" />
-      <xs:field xpath="mstns:IdentificacionTestigoB" />
       <xs:field xpath="mstns:numero_boleta" />
       <xs:field xpath="mstns:serie" />
       <xs:field xpath="mstns:fuente" />
