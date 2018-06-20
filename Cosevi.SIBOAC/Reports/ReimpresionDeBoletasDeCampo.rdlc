@@ -870,7 +870,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Replace(Fields!ClasePlaca.Value,"SC"," "))+ " " +First(Replace(Fields!CodigoPlaca.Value,"SC"," "))+ " "+ First(Fields!numero_placa.Value)</Value>
+                    <Value>=First(Fields!ClasePlaca.Value)+ " " +First(Fields!CodigoPlaca.Value)+ " "+ First(Fields!numero_placa.Value)</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>

@@ -158,11 +158,11 @@ namespace Cosevi.SIBOAC.Controllers
                             {
                                 parteOficial.StatusPlano = 6;
                             }
-                            parteOficial.fecha_entrega = DateTime.Now;
-                            var Inspector = (dbs.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.Usuario).ToList());
-                            var codigo = User.Identity.Name;
-                            codigo = Inspector.ToArray().FirstOrDefault() == null ? null : Inspector.ToArray().FirstOrDefault().ToString();
-                            parteOficial.usuario_entregaPlano = codigo;
+                            //parteOficial.fecha_entrega = DateTime.Now;
+                            //var Inspector = (dbs.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.Usuario).ToList());
+                            //var codigo = User.Identity.Name;
+                            //codigo = Inspector.ToArray().FirstOrDefault() == null ? null : Inspector.ToArray().FirstOrDefault().ToString();
+                            //parteOficial.usuario_entregaPlano = codigo;
 
 
                         }

@@ -579,7 +579,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Replace(Fields!ClasePlaca.Value,"SC"," ")</Value>
+                              <Value>=Fields!ClasePlaca.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -609,7 +609,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Replace(Fields!CodigoPlaca.Value,"SC"," ")</Value>
+                              <Value>=Fields!CodigoPlaca.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -782,7 +782,7 @@
         <Top>5.81766cm</Top>
         <Left>0.635cm</Left>
         <Height>1.59688cm</Height>
-        <Width>22.99543cm</Width>
+        <Width>22.99542cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>

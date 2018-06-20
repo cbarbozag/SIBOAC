@@ -885,6 +885,8 @@ namespace Cosevi.SIBOAC.Reports
                                     PlanoConvertido.extension = itmeP.extension + "c";
 
                                     dbPivot.SaveChanges();
+
+                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, itmeP.nombre)).AbsoluteUri, numeroParte1);
                                 }                                                                
                             }
 
@@ -1311,6 +1313,8 @@ namespace Cosevi.SIBOAC.Reports
                                     PlanoConvertido.extension = itmeP.extension + "c";
 
                                     dbPivot.SaveChanges();
+
+                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta2, itmeP.nombre)).AbsoluteUri, CodigoNumParte2);
                                 }                                
                             }
 
@@ -1749,6 +1753,8 @@ namespace Cosevi.SIBOAC.Reports
                                         PlanoConvertido.extension = itmeP.extension + "c";
 
                                         dbPivot.SaveChanges();
+
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, itmeP.nombre)).AbsoluteUri, numP);
                                     }                                    
                                 }
 
@@ -2148,6 +2154,8 @@ namespace Cosevi.SIBOAC.Reports
                                         PlanoConvertido.extension = itmeP.extension + "c";
 
                                         dbPivot.SaveChanges();
+
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, itmeP.nombre)).AbsoluteUri, numP);
                                     }                                    
                                 }
 

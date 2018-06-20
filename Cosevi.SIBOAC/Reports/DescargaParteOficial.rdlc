@@ -909,7 +909,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Replace(Fields!clase_placa.Value,"SC","")</Value>
+                              <Value>=Fields!clase_placa.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -941,7 +941,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Replace(Fields!codigo_placa.Value,"SC","")</Value>
+                              <Value>=Fields!codigo_placa.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -962,7 +962,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

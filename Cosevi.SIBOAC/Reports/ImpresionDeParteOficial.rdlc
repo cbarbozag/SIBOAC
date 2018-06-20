@@ -4423,7 +4423,7 @@
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Replace(Fields!clase_placa.Value,"SC","")</Value>
+                                            <Value>=Fields!clase_placa.Value</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                             </Style>
@@ -4457,7 +4457,7 @@
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Replace(Fields!codigo_placa.Value,"SC","")</Value>
+                                            <Value>=Fields!codigo_placa.Value</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                             </Style>
