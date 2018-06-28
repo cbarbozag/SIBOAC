@@ -83,6 +83,7 @@ namespace Cosevi.SIBOAC.Reports
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
+                        //string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];                        
 
@@ -276,21 +277,19 @@ namespace Cosevi.SIBOAC.Reports
                             parameters[1] = new ReportParameter("ImagenFirmaInspectorPath", imgFirmaInspectorPath);
                         }
                         else
-                        {
+                        {                           
+
                             SqlConnection connection = new SqlConnection(connectionString);
                             connection.Open();
 
                             //Especificamos la consulta que nos devuelve la imagen
                             SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
-                                                    "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
-                                                    "and Tipo=@tipo and Identificacion=@ident",
+                                                    "where Numero=@numero " +
+                                                    "and Tipo=@tipo",
                                                     connection);
                             //Especificamos el parámetro ID de la consulta
-                            cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente;
-                            cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serie;
-                            cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = numero_boleta;
-                            cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "i";
-                            cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15).Value = CodInsp;
+                            cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = CodInsp;
+                            cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "I";
 
                             //Ejecutamos un Scalar para recuperar sólo la imagen
                             byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
@@ -879,7 +878,7 @@ namespace Cosevi.SIBOAC.Reports
                                     System.Drawing.Bitmap bitmap1;
                                     bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn);
                                     bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-                                    bitmap1.Save(strfn);
+                                    bitmap1.Save(strfn);                                    
 
                                     var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, itmeP.nombre);
                                     PlanoConvertido.extension = itmeP.extension + "c";
@@ -948,13 +947,48 @@ namespace Cosevi.SIBOAC.Reports
                             #endregion
                             
                             #region Ajuntos 1
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
 
-                            foreach (string item in ext1)
+                            foreach (var item in ext1)
                             {
-                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item)).AbsoluteUri, numeroParte1);
+                                if (item.extension.Contains("c"))
+                                {
+                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1);
+                                }
+                                else
+                                {
+                                    string existeAdj = @"" + rutaPlano1 + "\\" + item.nombre;
+
+                                    Stream stream = File.OpenRead(existeAdj);
+                                    System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
+
+                                    int width = sourceImage.Width;
+                                    int height = sourceImage.Height;
+                                    stream.Close();
+
+                                    if (width > height)
+                                    {
+
+                                        System.Drawing.Bitmap bitmap1;
+                                        bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                        bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                        bitmap1.Save(existeAdj);
+
+                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
+                                        PlanoConvertido.extension = item.extension + "c";
+
+                                        dbPivot.SaveChanges();
+
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1);
+                                    }
+                                    else
+                                    {
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1);
+                                    }
+                                }
+                                                        
                             }
 
                             if (ext1.Count()==0)
@@ -997,8 +1031,14 @@ namespace Cosevi.SIBOAC.Reports
 
                                             FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                             fs.Write(barrImg, 0, barrImg.Length);
-                                            fs.Flush();
+                                            fs.Flush();                                            
                                             fs.Close();
+
+                                            System.Drawing.Bitmap bitmap1;
+                                            bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                            bitmap1.Save(existeAdj);
+
                                         }
                                         listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
                                     }                                    
@@ -1374,13 +1414,47 @@ namespace Cosevi.SIBOAC.Reports
 
                             #region Adjuntos
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre);
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
 
                             foreach (var item in ext2)
                             {
-                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item)).AbsoluteUri, CodigoNumParte2);
+                                if (item.extension.Contains("c"))
+                                {
+                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item.nombre)).AbsoluteUri, numeroParte2);
+                                }
+                                else
+                                {
+                                    string existeAdj = @"" + rutaPlano2 + "\\" + item.nombre;
+
+                                    Stream stream = File.OpenRead(existeAdj);
+                                    System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
+
+                                    int width = sourceImage.Width;
+                                    int height = sourceImage.Height;
+                                    stream.Close();
+
+                                    if (width > height)
+                                    {
+
+                                        System.Drawing.Bitmap bitmap1;
+                                        bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                        bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                        bitmap1.Save(existeAdj);
+
+                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, item.nombre);
+                                        PlanoConvertido.extension = item.extension + "c";
+
+                                        dbPivot.SaveChanges();
+
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item.nombre)).AbsoluteUri, numeroParte2);
+                                    }
+                                    else
+                                    {
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item.nombre)).AbsoluteUri, numeroParte2);
+                                    }
+                                }
                             }
 
                             if (ext2.Count() == 0)
@@ -1426,6 +1500,11 @@ namespace Cosevi.SIBOAC.Reports
                                             fs.Write(barrImg, 0, barrImg.Length);
                                             fs.Flush();
                                             fs.Close();
+
+                                            System.Drawing.Bitmap bitmap1;
+                                            bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                            bitmap1.Save(existeAdj);
                                         }
 
                                         listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, existeA)).AbsoluteUri, CodigoNumParte2);
@@ -1817,13 +1896,51 @@ namespace Cosevi.SIBOAC.Reports
 
                                 var nombreAdjuntos3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
                                 var numPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
-                                
+                                var extPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos3.Contains(oa.nombre)).Select(oa => oa.extension).ToList();
 
-                                var listaAdjuntos3 = nombreAdjuntos3.Zip(numPartLista3, (n, w) => new { NombreAr = n, NumPar = w });
+                                var listaAdjuntos3 = nombreAdjuntos3.Zip(numPartLista3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extPartLista3, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z));
 
                                 foreach (var item in listaAdjuntos3)
-                                {
-                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.NombreAr)).AbsoluteUri, item.NumPar);
+                                {                                    
+
+                                    if (item.Item3.Contains("c"))
+                                    {
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.Item1)).AbsoluteUri, item.Item2);
+                                    }
+                                    else
+                                    {
+                                        foreach (var item3 in resultAdjParte)
+                                        {
+                                            string existeAdj = @"" + rutaPlano3 + "\\" + item.Item1;
+
+                                            Stream stream = File.OpenRead(existeAdj);
+                                            System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
+
+                                            int width = sourceImage.Width;
+                                            int height = sourceImage.Height;
+                                            stream.Close();
+
+                                            if (width > height)
+                                            {
+
+                                                System.Drawing.Bitmap bitmap1;
+                                                bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                                bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                bitmap1.Save(existeAdj);
+
+                                                var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(item3.Item1, item3.Item2, item3, item.Item1);
+                                                PlanoConvertido.extension = item.Item3 + "c";
+
+                                                dbPivot.SaveChanges();
+
+                                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.Item1)).AbsoluteUri, item.Item2);
+                                            }
+                                            else
+                                            {
+                                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.Item1)).AbsoluteUri, item.Item2);
+                                            }
+                                        }
+                                    }
                                 }
 
                                 if (listaAdjuntos3.Count() == 0)
@@ -1868,6 +1985,11 @@ namespace Cosevi.SIBOAC.Reports
                                                     fs.Write(barrImg, 0, barrImg.Length);
                                                     fs.Flush();
                                                     fs.Close();
+
+                                                    System.Drawing.Bitmap bitmap1;
+                                                    bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                                    bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                    bitmap1.Save(existeAdj);
                                                 }
 
                                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, existeA)).AbsoluteUri, item2.Item3);
@@ -2261,14 +2383,52 @@ namespace Cosevi.SIBOAC.Reports
 
                                 var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
                                 var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+                                var extPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.extension).ToList();
 
                                 listaArchivos.Columns.Add("ParteOficial");
-
-                                var listaAdjuntos4 = nombreAdjuntos4.Zip(numPartLista4, (n, w) => new { NombreAr = n, NumPar = w });
+                                
+                                var listaAdjuntos4 = nombreAdjuntos4.Zip(numPartLista4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extPartLista4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z));
 
                                 foreach (var item in listaAdjuntos4)
-                                {
-                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.NombreAr)).AbsoluteUri, item.NumPar);
+                                {                                    
+                                    if (item.Item3.Contains("c"))
+                                    {
+                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.Item1)).AbsoluteUri, item.Item2);                                        
+                                    }
+                                    else
+                                    {
+                                        foreach (var item3 in resultAdjParte)
+                                        {
+                                            string existeAdj = @"" + rutaPlano4 + "\\" + item.Item1;
+
+                                            Stream stream = File.OpenRead(existeAdj);
+                                            System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
+
+                                            int width = sourceImage.Width;
+                                            int height = sourceImage.Height;
+                                            stream.Close();
+
+                                            if (width > height)
+                                            {
+
+                                                System.Drawing.Bitmap bitmap1;
+                                                bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                                bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                bitmap1.Save(existeAdj);
+
+                                                var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(item3.Item1, item3.Item2, item3, item.Item1);
+                                                PlanoConvertido.extension = item.Item3 + "c";
+
+                                                dbPivot.SaveChanges();
+
+                                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.Item1)).AbsoluteUri, item.Item2);
+                                            }
+                                            else
+                                            {
+                                                listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.Item1)).AbsoluteUri, item.Item2);
+                                            }
+                                        }
+                                    }
                                 }
 
                                 if (listaAdjuntos4.Count() == 0)
@@ -2313,6 +2473,11 @@ namespace Cosevi.SIBOAC.Reports
                                                     fs.Write(barrImg, 0, barrImg.Length);
                                                     fs.Flush();
                                                     fs.Close();
+
+                                                    System.Drawing.Bitmap bitmap1;
+                                                    bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                                    bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                    bitmap1.Save(existeAdj);
                                                 }
 
                                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, existeA)).AbsoluteUri, item2.Item3);

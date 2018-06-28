@@ -87,12 +87,12 @@
                   <Width>0.07938cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>13.53312cm</Width>
+                  <Width>19.14229cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>5.44188cm</Height>
+                  <Height>11.42146cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -176,8 +176,8 @@
               </Filter>
             </Filters>
             <Top>1.3462cm</Top>
-            <Height>5.44188cm</Height>
-            <Width>13.6125cm</Width>
+            <Height>11.42146cm</Height>
+            <Width>19.22167cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -186,17 +186,17 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.83333in</Height>
+        <Height>5.19792in</Height>
         <Style />
       </Body>
-      <Width>6.34884in</Width>
+      <Width>7.70301in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
-        <LeftMargin>2cm</LeftMargin>
-        <RightMargin>2cm</RightMargin>
-        <TopMargin>2cm</TopMargin>
-        <BottomMargin>2cm</BottomMargin>
+        <LeftMargin>1cm</LeftMargin>
+        <RightMargin>1cm</RightMargin>
+        <TopMargin>1cm</TopMargin>
+        <BottomMargin>1cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>

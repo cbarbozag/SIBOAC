@@ -225,6 +225,8 @@ namespace Cosevi.SIBOAC.Controllers
                             nombreArchivo = Path.Combine(directoryPath, nombre);
                             file.SaveAs(nombreArchivo);
 
+                            string link = @"" + directoryPath + "\\" + nombre;
+
                             db.OtrosAdjuntos.Add(new OtrosAdjuntos
                             {
                                 consecutivo_extension = maxValue.Value + 1,
@@ -233,7 +235,8 @@ namespace Cosevi.SIBOAC.Controllers
                                 fuente = fuente,
                                 nombre = nombre,
                                 numero = Convert.ToDecimal(NumeroParte),
-                                serie = Convert.ToInt32(Serie)
+                                serie = Convert.ToInt32(Serie),
+                                linkArchivo = link
                             });
 
                             db.SaveChanges();
@@ -305,6 +308,8 @@ namespace Cosevi.SIBOAC.Controllers
                             nombreArchivo = Path.Combine(directoryPath, nombre);
                             file.SaveAs(nombreArchivo);
 
+                            string link = @"" + directoryPath + "\\" + nombre;
+
                             db.OtrosAdjuntos.Add(new OtrosAdjuntos
                             {
                                 consecutivo_extension = maxValue.Value + 1,
@@ -313,7 +318,8 @@ namespace Cosevi.SIBOAC.Controllers
                                 fuente = fuente,
                                 nombre = nombre,
                                 numero = Convert.ToDecimal(NumeroParte),
-                                serie = Convert.ToInt32(Serie)
+                                serie = Convert.ToInt32(Serie),
+                                linkArchivo = link
                             });
 
                             db.SaveChanges();
