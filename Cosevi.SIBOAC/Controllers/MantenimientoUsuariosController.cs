@@ -19,14 +19,24 @@ namespace Cosevi.SIBOAC.Controllers
 
         // GET: MantenimientoUsuarios
         [SessionExpire]
-        public ActionResult Index(int ? page)
+        public ActionResult Index(int ? page, string searchString)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
-           
+            var list = from s in dbs.SIBOACUsuarios.ToList().OrderBy(s => s.Activo) select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                list = list.Where(s => s.Usuario.Contains(searchString)
+                                        || s.Identificacion.Contains(searchString)
+                                        || s.Nombre.Contains(searchString)
+                                        || s.Email.Contains(searchString)
+                                        || s.codigo.Contains(searchString));
+            }
+
             int pageSize = 20;
             int pageNumber = (page ?? 1);
-            return View(dbs.SIBOACUsuarios.ToList().ToPagedList(pageNumber, pageSize));            
+            return View(list.ToPagedList(pageNumber, pageSize));            
           
         }
 
