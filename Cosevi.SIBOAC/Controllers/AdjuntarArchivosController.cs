@@ -15,9 +15,10 @@ namespace Cosevi.SIBOAC.Controllers
 {
     public class AdjuntarArchivosController : BaseController<StatusPlano>
     {
-        //  private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
-        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
-        // GET: StatusPlano
+        private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
+        private PC_HH_AndroidEntities dbpivot = new PC_HH_AndroidEntities();
+        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();         
+        // GET: StatusPlano       
 
         [SessionExpire]
         public ViewResult Index(string serie, string NumeroParte, string mensaje)
@@ -359,14 +360,28 @@ namespace Cosevi.SIBOAC.Controllers
 
                 var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numParte && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).FirstOrDefault();
 
-                if (adjunto != null)
+                db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
                 {
-                    string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
-                    System.IO.File.Delete(Path.Combine(directoryPath, item));
+                    serie = Convert.ToString(adjunto.serie),
+                    numero = Convert.ToString(adjunto.numero),
+                    tipo = "Parte Oficial",
+                    funcion = "Eliminó Adjunto",
+                    usuario = User.Identity.Name,
+                    fechaHora = DateTime.Now,
+                    nombreArchivo = adjunto.nombre
+                });
+                db.SaveChanges();
 
+                if (adjunto != null)
+                {                    
+
+                    string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
+                    System.IO.File.Delete(Path.Combine(directoryPath, item));                    
                     db.OtrosAdjuntos.Remove(adjunto);
-                    db.SaveChanges();
+                    db.SaveChanges();                                        
+                    
                 }
+                                
             }
 
             return Json(new { result = true });
