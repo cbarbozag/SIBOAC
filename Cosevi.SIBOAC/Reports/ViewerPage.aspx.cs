@@ -947,7 +947,7 @@ namespace Cosevi.SIBOAC.Reports
                             #endregion
                             
                             #region Ajuntos 1
-                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
+                            var ext1 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
 
@@ -1414,7 +1414,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             #region Adjuntos
 
-                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
+                            var ext2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                             listaArchivos.Columns.Add("ParteOficial");
 
@@ -1894,7 +1894,7 @@ namespace Cosevi.SIBOAC.Reports
 
                                 #region Adjuntos
 
-                                var nombreAdjuntos3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                                var nombreAdjuntos3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
                                 var numPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos3.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
                                 var extPartLista3 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos3.Contains(oa.nombre)).Select(oa => oa.extension).ToList();
 
@@ -2381,7 +2381,7 @@ namespace Cosevi.SIBOAC.Reports
 
                                 #region Adjuntos
 
-                                var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
+                                var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
                                 var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
                                 var extPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.extension).ToList();
 

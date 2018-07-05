@@ -1012,6 +1012,26 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PC_HH_Android.dbo.SIBOACBITADJUNTOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SIBOACBITADJUNTOS">
+          <Key>
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero" />
+            <PropertyRef Name="tipo" />
+            <PropertyRef Name="funcion" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="fechaHora" />
+            <PropertyRef Name="nombreArchivo" />
+          </Key>
+          <Property Name="serie" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="numero" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="funcion" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fechaHora" Type="datetime" Nullable="false" />
+          <Property Name="nombreArchivo" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
         <EntityType Name="TESTIGO">
           <Key>
             <PropertyRef Name="tipo_ide" />
@@ -1500,6 +1520,17 @@
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIBOACBITADJUNTOS" EntityType="Self.SIBOACBITADJUNTOS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SIBOACBITADJUNTOS].[serie] AS [serie], 
+    [SIBOACBITADJUNTOS].[numero] AS [numero], 
+    [SIBOACBITADJUNTOS].[tipo] AS [tipo], 
+    [SIBOACBITADJUNTOS].[funcion] AS [funcion], 
+    [SIBOACBITADJUNTOS].[usuario] AS [usuario], 
+    [SIBOACBITADJUNTOS].[fechaHora] AS [fechaHora], 
+    [SIBOACBITADJUNTOS].[nombreArchivo] AS [nombreArchivo]
+    FROM [dbo].[SIBOACBITADJUNTOS] AS [SIBOACBITADJUNTOS]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1778,6 +1809,7 @@
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="IMAGENES" EntityType="PC_HH_AndroidModel.IMAGENES" />
+          <EntitySet Name="SIBOACBITADJUNTOS" EntityType="PC_HH_AndroidModel.SIBOACBITADJUNTOS" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3511,6 +3543,24 @@
           <Property Name="Identificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="false" />
           <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="fechaRegistro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SIBOACBITADJUNTOS">
+          <Key>
+            <PropertyRef Name="serie" />
+            <PropertyRef Name="numero" />
+            <PropertyRef Name="tipo" />
+            <PropertyRef Name="funcion" />
+            <PropertyRef Name="usuario" />
+            <PropertyRef Name="fechaHora" />
+            <PropertyRef Name="nombreArchivo" />
+          </Key>
+          <Property Name="serie" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="numero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="funcion" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nombreArchivo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -5351,6 +5401,19 @@
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Serie" ColumnName="Serie" />
                 <ScalarProperty Name="Fuente" ColumnName="Fuente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIBOACBITADJUNTOS">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACBITADJUNTOS">
+              <MappingFragment StoreEntitySet="SIBOACBITADJUNTOS">
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
+                <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="funcion" ColumnName="funcion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

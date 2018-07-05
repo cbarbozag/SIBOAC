@@ -104,6 +104,7 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.OtrosAdjuntos" Width="1.5" PointX="12.375" PointY="19.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TESTIGOXBOLETA" Width="1.5" PointX="22.375" PointY="6.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.IMAGENES" Width="1.5" PointX="22.375" PointY="9.75" />
+        <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACBITADJUNTOS" Width="1.5" PointX="22.375" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

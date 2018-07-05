@@ -42,7 +42,7 @@ namespace Cosevi.SIBOAC.Controllers
                 int numSerie = Convert.ToInt32(seriet);
                 decimal numParte = Convert.ToDecimal(NumeroParteT);
 
-                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.serie == numSerie && oa.numero == numParte).ToList();
+                var adjuntos = db.OtrosAdjuntos.Where(oa => oa.serie == numSerie && oa.numero == numParte && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).ToList();
 
                 ViewBag.Adjuntos = adjuntos;
 
@@ -211,7 +211,7 @@ namespace Cosevi.SIBOAC.Controllers
                             int serie2 = Convert.ToInt32(Serie);
                             decimal numero2 = Convert.ToDecimal(NumeroParte);
 
-                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && String.Compare(oa.extension, ext, false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
 
 
                             string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
@@ -294,7 +294,7 @@ namespace Cosevi.SIBOAC.Controllers
                             int serie2 = Convert.ToInt32(Serie);
                             decimal numero2 = Convert.ToDecimal(NumeroParte);
 
-                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && String.Compare(oa.extension, ext, false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && String.Compare(oa.extension, ext, false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
 
 
                             string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
@@ -357,7 +357,7 @@ namespace Cosevi.SIBOAC.Controllers
                 int numSerie = Convert.ToInt32(fileParams[1]);
                 decimal numParte = Convert.ToDecimal(fileParams[2]);
 
-                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numParte).FirstOrDefault();
+                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numParte && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).FirstOrDefault();
 
                 if (adjunto != null)
                 {
