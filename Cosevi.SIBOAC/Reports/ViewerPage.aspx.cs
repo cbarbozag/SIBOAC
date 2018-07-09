@@ -147,7 +147,7 @@ namespace Cosevi.SIBOAC.Reports
 
                         #region Adjuntar archivos
 
-                        var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
+                        var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
 
                         listaArchivosB.Columns.Add("NumBoleta");
                        
@@ -2800,6 +2800,8 @@ namespace Cosevi.SIBOAC.Reports
                 case "_ImpresionDeParteOficial":
                     result = ConsultaeImpresionDeParteOficialData(parametros);
                     break;
+                //case "_BitacoraAplicacion":
+                    
                 default:
                     break;
             }

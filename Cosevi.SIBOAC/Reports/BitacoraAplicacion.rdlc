@@ -45,20 +45,6 @@
               <TextAlign>Center</TextAlign>
             </Style>
           </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Reporte de Bítacora de Consultas en la Aplicación</Value>
-                <Style>
-                  <FontSize>14pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
         </Paragraphs>
         <rd:DefaultName>ReportName</rd:DefaultName>
         <Top>0.70556cm</Top>
@@ -536,7 +522,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Bitácora de la Aplicación de Reportes Web COSEVI</Value>
+                <Value>Bitácora de Consultas de Reportes en la Aplicación</Value>
                 <Style>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -548,9 +534,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
         <Top>4.11523cm</Top>
-        <Left>6.45266cm</Left>
-        <Height>0.6cm</Height>
-        <Width>11.7075cm</Width>
+        <Left>8.09393cm</Left>
+        <Height>0.65292cm</Height>
+        <Width>10.72854cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>

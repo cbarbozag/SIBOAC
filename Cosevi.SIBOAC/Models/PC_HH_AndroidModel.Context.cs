@@ -233,6 +233,8 @@ public partial class PC_HH_AndroidEntities : DbContext
 
     public virtual DbSet<IMAGENES> IMAGENES { get; set; }
 
+    public virtual DbSet<SIBOACBITADJUNTOS> SIBOACBITADJUNTOS { get; set; }
+
 
     public virtual ObjectResult<BitacoraSIBOAC> GetBitacoraData(Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, string nombreTabla, string usuario, string operacion)
     {
@@ -733,6 +735,48 @@ public partial class PC_HH_AndroidEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter, usuarioSistemaParameter);
+    }
+
+
+    public virtual ObjectResult<GetBitacoraAdjuntos_Result> GetBitacoraAdjuntos(string tipoConsulta1, string tipoConsulta2, string tipo, string serie, string numero, Nullable<System.DateTime> fechaInicial, Nullable<System.DateTime> fechaFinal)
+    {
+
+        var tipoConsulta1Parameter = tipoConsulta1 != null ?
+            new ObjectParameter("TipoConsulta1", tipoConsulta1) :
+            new ObjectParameter("TipoConsulta1", typeof(string));
+
+
+        var tipoConsulta2Parameter = tipoConsulta2 != null ?
+            new ObjectParameter("TipoConsulta2", tipoConsulta2) :
+            new ObjectParameter("TipoConsulta2", typeof(string));
+
+
+        var tipoParameter = tipo != null ?
+            new ObjectParameter("Tipo", tipo) :
+            new ObjectParameter("Tipo", typeof(string));
+
+
+        var serieParameter = serie != null ?
+            new ObjectParameter("Serie", serie) :
+            new ObjectParameter("Serie", typeof(string));
+
+
+        var numeroParameter = numero != null ?
+            new ObjectParameter("numero", numero) :
+            new ObjectParameter("numero", typeof(string));
+
+
+        var fechaInicialParameter = fechaInicial.HasValue ?
+            new ObjectParameter("FechaInicial", fechaInicial) :
+            new ObjectParameter("FechaInicial", typeof(System.DateTime));
+
+
+        var fechaFinalParameter = fechaFinal.HasValue ?
+            new ObjectParameter("FechaFinal", fechaFinal) :
+            new ObjectParameter("FechaFinal", typeof(System.DateTime));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBitacoraAdjuntos_Result>("GetBitacoraAdjuntos", tipoConsulta1Parameter, tipoConsulta2Parameter, tipoParameter, serieParameter, numeroParameter, fechaInicialParameter, fechaFinalParameter);
     }
 
 }

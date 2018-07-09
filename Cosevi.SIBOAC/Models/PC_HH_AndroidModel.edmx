@@ -1012,8 +1012,19 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PC_HH_Android.dbo.SIBOACBITADJUNTOS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SIBOACBITADJUNTOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="serie" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="numero" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="funcion" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fechaHora" Type="datetime" Nullable="false" />
+          <Property Name="nombreArchivo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="TESTIGO">
           <Key>
             <PropertyRef Name="tipo_ide" />
@@ -1312,6 +1323,15 @@ warning 6002: The table/view 'PC_HH_Android.dbo.SIBOACBITADJUNTOS' does not have
           <Parameter Name="FechaFin" Type="datetime" Mode="In" />
           <Parameter Name="UsuarioSistema" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="GetBitacoraAdjuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TipoConsulta1" Type="varchar" Mode="In" />
+          <Parameter Name="TipoConsulta2" Type="varchar" Mode="In" />
+          <Parameter Name="Tipo" Type="varchar" Mode="In" />
+          <Parameter Name="Serie" Type="varchar" Mode="In" />
+          <Parameter Name="numero" Type="varchar" Mode="In" />
+          <Parameter Name="FechaInicial" Type="datetime" Mode="In" />
+          <Parameter Name="FechaFinal" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="GetBitacoraData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FechaInicio" Type="datetime" Mode="In" />
           <Parameter Name="FechaFin" Type="datetime" Mode="In" />
@@ -1480,6 +1500,7 @@ warning 6002: The table/view 'PC_HH_Android.dbo.SIBOACBITADJUNTOS' does not have
           <EntitySet Name="SENTIDO" EntityType="Self.SENTIDO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEÑALAMIENTO" EntityType="Self.SEÑALAMIENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEXO" EntityType="Self.SEXO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIBOACBITADJUNTOS" EntityType="Self.SIBOACBITADJUNTOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TESTIGO" EntityType="Self.TESTIGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TESTIGOXBOLETA" EntityType="Self.TESTIGOXBOLETA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TESTIGOXPARTE" EntityType="Self.TESTIGOXPARTE" Schema="dbo" store:Type="Tables" />
@@ -1780,6 +1801,16 @@ warning 6002: The table/view 'PC_HH_Android.dbo.SIBOACBITADJUNTOS' does not have
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="IMAGENES" EntityType="PC_HH_AndroidModel.IMAGENES" />
+          <EntitySet Name="SIBOACBITADJUNTOS" EntityType="PC_HH_AndroidModel.SIBOACBITADJUNTOS" />
+          <FunctionImport Name="GetBitacoraAdjuntos" ReturnType="Collection(PC_HH_AndroidModel.GetBitacoraAdjuntos_Result)">
+            <Parameter Name="TipoConsulta1" Mode="In" Type="String" />
+            <Parameter Name="TipoConsulta2" Mode="In" Type="String" />
+            <Parameter Name="Tipo" Mode="In" Type="String" />
+            <Parameter Name="Serie" Mode="In" Type="String" />
+            <Parameter Name="numero" Mode="In" Type="String" />
+            <Parameter Name="FechaInicial" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3514,6 +3545,29 @@ warning 6002: The table/view 'PC_HH_Android.dbo.SIBOACBITADJUNTOS' does not have
           <Property Name="tipo_ide" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="fechaRegistro" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="SIBOACBITADJUNTOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="serie" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="numero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="funcion" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nombreArchivo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <ComplexType Name="GetBitacoraAdjuntos_Result">
+          <Property Type="String" Name="serie" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="funcion" Nullable="false" MaxLength="36" />
+          <Property Type="DateTime" Name="fechaHora" Nullable="false" Precision="23" />
+          <Property Type="String" Name="nombreArchivo" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="usuario" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="100" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5356,6 +5410,34 @@ warning 6002: The table/view 'PC_HH_Android.dbo.SIBOACBITADJUNTOS' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SIBOACBITADJUNTOS">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.SIBOACBITADJUNTOS">
+              <MappingFragment StoreEntitySet="SIBOACBITADJUNTOS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
+                <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="funcion" ColumnName="funcion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetBitacoraAdjuntos" FunctionName="PC_HH_AndroidModel.Store.GetBitacoraAdjuntos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PC_HH_AndroidModel.GetBitacoraAdjuntos_Result">
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="funcion" ColumnName="funcion" />
+                <ScalarProperty Name="fechaHora" ColumnName="fechaHora" />
+                <ScalarProperty Name="nombreArchivo" ColumnName="nombreArchivo" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

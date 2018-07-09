@@ -571,6 +571,10 @@ namespace Cosevi.SIBOAC.Controllers
                     ViewBag.Usuarios = listaUsuarios2.OrderBy(a => a.Descripcion);
                     break;
                 #endregion
+
+                case "_BitacoraAdjuntos":
+
+                    break;
                 default:
                     break;
             }
@@ -1520,8 +1524,62 @@ namespace Cosevi.SIBOAC.Controllers
 
             return View("_ImpresionDeParteOficial");
         }
-
         #endregion
+
+        //#region Bitacora de Aplicacion
+        //public ActionResult GetBitacoraAdjuntos(string tipoConsulta1, string tipoConsulta2, DateTime? desde, DateTime? hasta, string serie, string numero)
+        //{
+        //    string reporteID = "_BitacoraAdjuntos";
+        //    string nombreReporte = "BitacoraAdjuntos";
+    
+        //    string parametros = "";
+
+        //    if (tipoConsulta1 == "1" && tipoConsulta2 == "1")
+        //    {
+        //        parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, tipoConsulta2, desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), serie, numero);
+        //    }
+        //    if (tipoConsulta1 == "1" && tipoConsulta2 == null)
+        //    {
+        //        parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, "", desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), "", "");
+        //    }
+        //    if (tipoConsulta1 == null && tipoConsulta2 == "1")
+        //    {
+        //        parametros = String.Format("{0},{1},{2},{3},{4}", "", tipoConsulta2, "null", "null", serie, numero);
+        //    }
+
+        //    ViewBag.ReporteID = reporteID;
+        //    ViewBag.NombreReporte = nombreReporte;
+        //    ViewBag.Parametros = parametros;
+        //    GetData(reporteID);
+
+        //    return View("_BitacoraAdjuntos");
+        //}
+
+        //private List<GetBitacoraAdjuntos_Result> GetBitacoraAdjuntosData(string tipoconsulta1, string tipoconsulta2, DateTime desde, DateTime hasta, string serie, string numero)
+        //{
+
+        //    if (tipoconsulta1 == "1" && tipoconsulta2 == "1")
+        //    {
+        //        var lista = db.GetBitacoraAdjuntos(tipoconsulta1, tipoconsulta2, desde, hasta, serie, numero).ToList();
+        //        return lista;
+        //    }
+
+        //    if (tipoconsulta1 == "1" && tipoconsulta2 == "")
+        //    {
+        //        var lista2 = db.GetBitacoraAdjuntos(tipoconsulta1, null, desde, hasta, null, null).ToList();
+        //        return lista2;
+        //    }
+
+        //    if (tipoconsulta1 == "" && tipoconsulta2 == "1")
+        //    {
+        //        var lista = db.GetBitacoraDeAplicacion(null, tipoconsulta2, null, null, serie, numero).ToList();
+        //        return lista;
+        //    }
+
+        //    return null;
+
+        //}
+        //#endregion
 
     }
 }

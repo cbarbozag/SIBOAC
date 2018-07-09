@@ -1,0 +1,143 @@
+﻿@model IEnumerable <Cosevi.SIBOAC.Models.SIBOACUsuarios>
+@{
+    ViewBag.Title = "_BitacoraAdjuntos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Bitácoras de Adjuntos</h2>
+<h4>Filtro</h4>
+<hr />
+@using (Html.BeginForm("GetBitacoraAdjuntos", "Reporte", FormMethod.Get))
+{
+    <table border="0">
+        <div class="form-group">
+            <div class="col-md-12 pull-left">
+                <div class="checkbox">
+                    <label>
+                        <input name="tipoConsulta1" id="tipoConsulta1" type="checkbox" value="1" onclick="boxDisable1(datepicker, $(this));">Por Fecha: 
+                    </label>
+                </div>
+            </div>
+            <br />
+            <br />
+            @*<input name="tipoConsulta1" id="tipoConsulta1" type="checkbox" value="1" class="control-label"> Reporte por fecha:*@                      
+            <label class="control-label col-md-2">Rango de fechas</label>
+            <div class="col-md-7">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" disabled/>
+                    <span class="input-group-addon">a</span>
+                    <input id="hasta" type="text" class="input-sm form-control" name="hasta"  value="@Request.Params["hasta"]" disabled/>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 pull-left">
+                        <div class="checkbox">
+                            <label>
+                                <input name="tipoConsulta2" id="tipoConsulta2" type="checkbox" value="1" onclick="boxDisable2($(this));"> Por Parte Oficial o Boleta de Campo:
+                            </label>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label col-md-1"> Serie:</label>
+                        <div class="col-md-4">
+                            <input type="text" name="Serie" class="form-control" value="@Request.Params["Serie"]" />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label col-md-1"> Número Parte Oficial o Boleta:</label>
+                        <div class="col-md-4">
+                            <input type="text" name="Numero" class="form-control" value="@Request.Params["Numero"]" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />           
+            </div>
+            <br />
+            <br />                       
+            <div class="pull-right">
+                <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+            </div>
+        </div>
+    </table>
+}
+
+<iframe id="ifrmReportViewer" style="height:1200px; width:100%;" frameborder="0" scrolling="no"></iframe>
+@section scripts{    
+
+    <script>
+        $(document).ready(
+        function () {            
+            Calendario();
+            ReportCall();            
+        });
+    </script>
+
+    <script>
+
+        function ReportCall() {
+
+            var url = '/Reports/ViewerPage.aspx?reporteID=@ViewBag.ReporteID&nombreReporte=@ViewBag.NombreReporte&parametros=@ViewBag.Parametros';
+
+            var myFrame = document.getElementById('ifrmReportViewer');
+            if (myFrame !== null) {
+                if (myFrame.src) {
+                    myFrame.src = url;
+                }
+                else if (myFrame.contentWindow !== null && myFrame.contentWindow.location !== null) {
+                    myFrame.contentWindow.location = url;
+                }
+                else {
+                    myFrame.setAttribute('src', url);
+                }
+            }
+
+            return false;
+        }
+
+             function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2,
+                autoclose: true,
+                orientation: 'bottom auto',
+                todayHighlight: true,
+                todayBtn: true
+            });
+             };
+
+             function boxDisable1(e, t) {
+                 if (t.is(':checked')) {
+                     $(e).find('input').removeAttr('disabled');
+                 } else {
+                     $(e).find('input').attr('disabled', true);
+                 }
+             }
+
+             function boxDisable2(t) {
+                 var items = document.getElementsByClassName('list-group-item');
+                 if (t.is(':checked')) {
+                     for (var i = 0; i < items.length; i++) {
+                             $(items[i]).removeClass('disabled');                     
+                     }
+                 } else {
+                     for (var i = 0; i < items.length; i++) {
+                         $(items[i]).removeClass('active');
+                         if (!$(items[i]).hasClass('disabled')) {
+                             $(items[i]).addClass('disabled')
+                         }
+                     }
+                 }
+             }               
+    </script>
+}

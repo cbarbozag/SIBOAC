@@ -183,7 +183,7 @@ namespace Cosevi.SIBOAC.Controllers
                             return Json(new { result = false, msg = "Extensión no válida." });
                         }
 
-                        int? maxValue = db.OtrosAdjuntos.Where(oa => String.Compare(oa.extension, ext, false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numBole2 && String.Compare(oa.extension, ext, false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
 
 
                         string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
@@ -209,6 +209,17 @@ namespace Cosevi.SIBOAC.Controllers
                             numero = Convert.ToDecimal(NumeroBoleta),
                             serie = Convert.ToInt32(Serie),
                             linkArchivo = link
+                        });
+
+                        db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                        {
+                            serie = Convert.ToString(Serie),
+                            numero = Convert.ToString(NumeroBoleta),
+                            tipo = "Boleta",
+                            funcion = "Agregó Adjunto",
+                            usuario = User.Identity.Name,
+                            fechaHora = DateTime.Now,
+                            nombreArchivo = nombre
                         });
 
                         db.SaveChanges();
@@ -241,20 +252,33 @@ namespace Cosevi.SIBOAC.Controllers
                 string[] fileParams = item.Split('-');
                 string fuente = fileParams[0];
                 int numSerie = Convert.ToInt32(fileParams[1]);
-                decimal numBoleta = Convert.ToDecimal(fileParams[2]);
+                decimal numBoleta = Convert.ToDecimal(fileParams[2]);                                
 
-                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numBoleta && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).FirstOrDefault();
+                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numBoleta && oa.nombre == item && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).FirstOrDefault();
 
                 if (adjunto != null)
                 {
                     string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
                     System.IO.File.Delete(Path.Combine(directoryPath, item));
 
+                    db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                    {
+                        serie = Convert.ToString(adjunto.serie),
+                        numero = Convert.ToString(adjunto.numero),
+                        tipo = "Boleta",
+                        funcion = "Eliminó Adjunto",
+                        usuario = User.Identity.Name,
+                        fechaHora = DateTime.Now,
+                        nombreArchivo = adjunto.nombre
+                    });
+
                     db.OtrosAdjuntos.Remove(adjunto);
                     db.SaveChanges();
                 }
             }
 
+            TempData["Type"] = "warning";
+            TempData["Message"] = "Se eliminó correctamente.";
             return Json(new { result = true });
         }
     }

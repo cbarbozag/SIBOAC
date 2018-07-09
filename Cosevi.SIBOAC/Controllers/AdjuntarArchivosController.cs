@@ -240,6 +240,17 @@ namespace Cosevi.SIBOAC.Controllers
                                 linkArchivo = link
                             });
 
+                            db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                            {
+                                serie = Convert.ToString(Serie),
+                                numero = Convert.ToString(NumeroParte),
+                                tipo = "Parte Oficial",
+                                funcion = "Agregó Plano",
+                                usuario = User.Identity.Name,
+                                fechaHora = DateTime.Now,
+                                nombreArchivo = nombre
+                            });
+
                             db.SaveChanges();
 
                         }
@@ -323,6 +334,17 @@ namespace Cosevi.SIBOAC.Controllers
                                 linkArchivo = link
                             });
 
+                            db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                            {
+                                serie = Convert.ToString(Serie),
+                                numero = Convert.ToString(NumeroParte),
+                                tipo = "Parte Oficial",
+                                funcion = "Agregó Adjunto",
+                                usuario = User.Identity.Name,
+                                fechaHora = DateTime.Now,
+                                nombreArchivo = nombre
+                            });
+
                             db.SaveChanges();
 
                         }
@@ -357,34 +379,58 @@ namespace Cosevi.SIBOAC.Controllers
                 string fuente = fileParams[0];
                 int numSerie = Convert.ToInt32(fileParams[1]);
                 decimal numParte = Convert.ToDecimal(fileParams[2]);
+                string esPlano = fileParams[3];                
 
-                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numParte && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).FirstOrDefault();
+                var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numParte && oa.nombre == item && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).FirstOrDefault();
 
-                db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                if (esPlano == "p")
                 {
-                    serie = Convert.ToString(adjunto.serie),
-                    numero = Convert.ToString(adjunto.numero),
-                    tipo = "Parte Oficial",
-                    funcion = "Eliminó Adjunto",
-                    usuario = User.Identity.Name,
-                    fechaHora = DateTime.Now,
-                    nombreArchivo = adjunto.nombre
-                });
-                db.SaveChanges();
+                    if (adjunto != null)
+                    {
+                        db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                        {
+                            serie = Convert.ToString(adjunto.serie),
+                            numero = Convert.ToString(adjunto.numero),
+                            tipo = "Parte Oficial",
+                            funcion = "Eliminó Plano",
+                            usuario = User.Identity.Name,
+                            fechaHora = DateTime.Now,
+                            nombreArchivo = adjunto.nombre
+                        });
 
-                if (adjunto != null)
-                {                    
+                        string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
+                        System.IO.File.Delete(Path.Combine(directoryPath, item));
+                        db.OtrosAdjuntos.Remove(adjunto);
+                        db.SaveChanges();
 
-                    string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
-                    System.IO.File.Delete(Path.Combine(directoryPath, item));                    
-                    db.OtrosAdjuntos.Remove(adjunto);
-                    db.SaveChanges();                                        
-                    
+                    }
                 }
-                                
-            }
+                else
+                {
+                    if (adjunto != null)
+                    {
+                        db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                        {
+                            serie = Convert.ToString(adjunto.serie),
+                            numero = Convert.ToString(adjunto.numero),
+                            tipo = "Parte Oficial",
+                            funcion = "Eliminó Adjunto",
+                            usuario = User.Identity.Name,
+                            fechaHora = DateTime.Now,
+                            nombreArchivo = adjunto.nombre
+                        });
 
-            return Json(new { result = true });
+                        string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
+                        System.IO.File.Delete(Path.Combine(directoryPath, item));
+                        db.OtrosAdjuntos.Remove(adjunto);
+                        db.SaveChanges();
+
+                    }
+                }                                                             
+            }
+            TempData["Type"] = "warning";
+            TempData["Message"] = "Se eliminó correctamente.";
+            return Json(new { result = true, msg = "Se eliminó correctamente." });
         }
     }
 }
