@@ -2800,8 +2800,10 @@ namespace Cosevi.SIBOAC.Reports
                 case "_ImpresionDeParteOficial":
                     result = ConsultaeImpresionDeParteOficialData(parametros);
                     break;
-                //case "_BitacoraAplicacion":
-                    
+                case "_BitacoraAdjuntos":
+                    result = GetBitacoraAdjuntosData(parametros);
+                    break;
+
                 default:
                     break;
             }
@@ -3040,6 +3042,42 @@ namespace Cosevi.SIBOAC.Reports
             string NumeroBoleta = param[1];
 
             var lista = db.GetReimpresionDeBoletasDeCampoData(Serie, NumeroBoleta, usuarioSistema).ToList();
+            return lista;
+        }
+
+        private List<GetBitacoraAdjuntos_Result> GetBitacoraAdjuntosData(string parametros)
+        {
+            Nullable<DateTime> fechaInicio;
+            Nullable<DateTime> fechaFin;
+
+            string[] param = parametros.Split(',');
+            string tipoConsulta1 = param[0];
+            string tipoConsulta2 = param[1];
+            string TipoAdjunto = param[2];
+                      
+
+            if (param[3] != "null")
+            {
+                fechaInicio = Convert.ToDateTime(param[3]);
+            }
+            else
+            {
+                fechaInicio = null;
+            }
+            if (param[4] != "null")
+            {
+                fechaFin = Convert.ToDateTime(param[4]);
+            }
+            else
+            {
+                fechaFin = null;
+            }
+            
+
+            string serie = param[5];
+            string numero = param[6];
+
+            var lista = db.GetBitacoraAdjuntos(tipoConsulta1, tipoConsulta2, TipoAdjunto, serie, numero, fechaInicio, fechaFin).ToList();
             return lista;
         }
 

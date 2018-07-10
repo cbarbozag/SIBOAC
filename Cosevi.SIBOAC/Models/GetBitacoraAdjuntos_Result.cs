@@ -31,8 +31,8 @@ public partial class GetBitacoraAdjuntos_Result
 
     public string usuario { get; set; }
 
-    public string Nombre { get; set; }
+    public string Nombre { get; set; }   
 
-}
+    }
 
 }

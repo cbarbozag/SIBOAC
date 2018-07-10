@@ -1,4 +1,4 @@
-﻿@model IEnumerable <Cosevi.SIBOAC.Models.SIBOACUsuarios>
+﻿@model IEnumerable <Cosevi.SIBOAC.Models.SIBOACBITADJUNTOS>
 @{
     ViewBag.Title = "_BitacoraAdjuntos";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -44,20 +44,29 @@
                             </label>
                         </div>
                     </div>
-                    <br />
-                    <br />
-                    <div class="form-group">
-                        <label class="control-label col-md-1"> Serie:</label>
-                        <div class="col-md-4">
-                            <input type="text" name="Serie" class="form-control" value="@Request.Params["Serie"]" />
+                    <div>
+                        <label class="control-label col-md-1"> Opción:</label>
+                        <div id="tipoAdjuntoclass">
+                            <select id="tipoAdjunto" name="TipoAdjunto" class="form-control" value="@Request.Params["TipoAdjunto"]" disabled>
+                                <option value="Parte Oficial">Parte Oficial</option>
+                                <option value="Boleta">Boleta</option>
+                            </select>
                         </div>
                     </div>
                     <br />
                     <br />
-                    <div class="form-group">
-                        <label class="control-label col-md-1"> Número Parte Oficial o Boleta:</label>
+                    <div>
+                        <label class="control-label col-md-1"> Serie:</label>
                         <div class="col-md-4">
-                            <input type="text" name="Numero" class="form-control" value="@Request.Params["Numero"]" />
+                            <input id="serie" type="text" name="Serie" class="input-sm form-control" value="@Request.Params["Serie"]" disabled />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div>
+                        <label class="control-label col-md-1"> Número:</label>
+                        <div class="col-md-4">
+                            <input id="numero" type="text" name="Numero" class="input-sm form-control" value="@Request.Params["Numero"]" disabled />
                         </div>
                     </div>
                 </div>
@@ -80,7 +89,7 @@
         $(document).ready(
         function () {            
             Calendario();
-            ReportCall();            
+            ReportCall();             
         });
     </script>
 
@@ -106,38 +115,35 @@
             return false;
         }
 
-             function Calendario() {
-            $('.input-daterange').datepicker({
-                startView: 2,
-                autoclose: true,
-                orientation: 'bottom auto',
-                todayHighlight: true,
-                todayBtn: true
-            });
-             };
+            function Calendario() {
+        $('.input-daterange').datepicker({
+            startView: 2,
+            autoclose: true,
+            orientation: 'bottom auto',
+            todayHighlight: true,
+            todayBtn: true
+        });
+            };
 
-             function boxDisable1(e, t) {
-                 if (t.is(':checked')) {
-                     $(e).find('input').removeAttr('disabled');
-                 } else {
-                     $(e).find('input').attr('disabled', true);
-                 }
-             }
+            function boxDisable1(e, t) {
+                if (t.is(':checked')) {
+                    $(e).find('input').removeAttr('disabled');
+                } else {
+                    $(e).find('input').attr('disabled', true);
+                }
+            }
 
-             function boxDisable2(t) {
-                 var items = document.getElementsByClassName('list-group-item');
-                 if (t.is(':checked')) {
-                     for (var i = 0; i < items.length; i++) {
-                             $(items[i]).removeClass('disabled');                     
-                     }
-                 } else {
-                     for (var i = 0; i < items.length; i++) {
-                         $(items[i]).removeClass('active');
-                         if (!$(items[i]).hasClass('disabled')) {
-                             $(items[i]).addClass('disabled')
-                         }
-                     }
-                 }
-             }               
+            function boxDisable2(t) {
+                if (t.is(':checked')) {
+                    document.getElementById('tipoAdjunto').disabled = false;                       
+                    document.getElementById('serie').disabled = false;
+                    document.getElementById('numero').disabled = false;
+                } else {
+                    document.getElementById('tipoAdjunto').disabled = true;
+                    document.getElementById('serie').disabled = true;
+                    document.getElementById('numero').disabled = true;
+                }
+            }
+
     </script>
 }

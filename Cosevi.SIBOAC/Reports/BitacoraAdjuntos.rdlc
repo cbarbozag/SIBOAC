@@ -9,25 +9,25 @@
               <Width>1.25646cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.23542cm</Width>
+              <Width>1.91792cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.15604cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.10854cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.94979cm</Width>
+              <Width>4.23271cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.26188cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>5.17229cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.58479cm</Width>
+              <Width>6.6275cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -305,7 +305,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!serie.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -335,7 +337,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!numero.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -365,7 +369,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!tipo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -395,7 +401,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!funcion.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -425,7 +433,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!fechaHora.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -455,7 +465,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!usuario.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -485,7 +497,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Nombre.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -507,21 +521,23 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Nombre1">
+                    <Textbox Name="nombreArchivo">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Nombre.Value</Value>
-                              <Style />
+                              <Value>=Fields!nombreArchivo.Value</Value>
+                              <Style>
+                                <FontSize>9pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Nombre1</rd:DefaultName>
+                      <rd:DefaultName>nombreArchivo</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -561,11 +577,11 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>GetBitacoraAdjuntosDataSet</DataSetName>
+        <DataSetName>DataSet1</DataSetName>
         <Top>4.33599cm</Top>
         <Left>0.34078cm</Left>
         <Height>1.2cm</Height>
-        <Width>19.44437cm</Width>
+        <Width>26.73334cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -576,9 +592,9 @@
         <Source>Embedded</Source>
         <Value>cosevi</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>0.53594cm</Top>
+        <Top>0.8799cm</Top>
         <Left>0.34078cm</Left>
-        <Height>2.63729cm</Height>
+        <Height>1.92292cm</Height>
         <Width>4.70145cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -665,7 +681,7 @@
         <Top>4.04495cm</Top>
         <Left>0.34078cm</Left>
         <Height>0cm</Height>
-        <Width>19.44437cm</Width>
+        <Width>20.10584cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -677,7 +693,7 @@
     <Height>3.3125in</Height>
     <Style />
   </Body>
-  <Width>8.09375in</Width>
+  <Width>10.85788in</Width>
   <Page>
     <PageFooter>
       <Height>1.69333cm</Height>
@@ -700,7 +716,7 @@
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
           <Top>0.36146cm</Top>
-          <Left>18.60808cm</Left>
+          <Left>19.26954cm</Left>
           <Height>0.6cm</Height>
           <Width>1.17708cm</Width>
           <Style>
@@ -729,7 +745,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
           <Top>0.36146cm</Top>
-          <Left>17.20169cm</Left>
+          <Left>17.86315cm</Left>
           <Height>0.6cm</Height>
           <Width>1.33583cm</Width>
           <ZIndex>1</ZIndex>
@@ -750,8 +766,8 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>27.94cm</PageHeight>
-    <PageWidth>21.59cm</PageWidth>
+    <PageHeight>21.59cm</PageHeight>
+    <PageWidth>27.94cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
     <TopMargin>0cm</TopMargin>
@@ -770,7 +786,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="GetBitacoraAdjuntosDataSet">
+    <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>GetBitacoraAdjuntosDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>

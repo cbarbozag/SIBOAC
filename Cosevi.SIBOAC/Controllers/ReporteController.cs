@@ -573,8 +573,8 @@ namespace Cosevi.SIBOAC.Controllers
                 #endregion
 
                 case "_BitacoraAdjuntos":
-
                     break;
+
                 default:
                     break;
             }
@@ -1526,60 +1526,60 @@ namespace Cosevi.SIBOAC.Controllers
         }
         #endregion
 
-        //#region Bitacora de Aplicacion
-        //public ActionResult GetBitacoraAdjuntos(string tipoConsulta1, string tipoConsulta2, DateTime? desde, DateTime? hasta, string serie, string numero)
-        //{
-        //    string reporteID = "_BitacoraAdjuntos";
-        //    string nombreReporte = "BitacoraAdjuntos";
-    
-        //    string parametros = "";
+        #region Bitacora de Aplicacion
+        public ActionResult GetBitacoraAdjuntos(string tipoConsulta1, string tipoConsulta2, string TipoAdjunto, DateTime? desde, DateTime? hasta, string Serie, string Numero)
+        {
+            string reporteID = "_BitacoraAdjuntos";
+            string nombreReporte = "BitacoraAdjuntos";
 
-        //    if (tipoConsulta1 == "1" && tipoConsulta2 == "1")
-        //    {
-        //        parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, tipoConsulta2, desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), serie, numero);
-        //    }
-        //    if (tipoConsulta1 == "1" && tipoConsulta2 == null)
-        //    {
-        //        parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, "", desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), "", "");
-        //    }
-        //    if (tipoConsulta1 == null && tipoConsulta2 == "1")
-        //    {
-        //        parametros = String.Format("{0},{1},{2},{3},{4}", "", tipoConsulta2, "null", "null", serie, numero);
-        //    }
+            string parametros = "";
 
-        //    ViewBag.ReporteID = reporteID;
-        //    ViewBag.NombreReporte = nombreReporte;
-        //    ViewBag.Parametros = parametros;
-        //    GetData(reporteID);
+            if (tipoConsulta1 == "1" && tipoConsulta2 == "1")
+            {
+                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", tipoConsulta1, tipoConsulta2, TipoAdjunto, desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), Serie, Numero);
+            }
+            if (tipoConsulta1 == "1" && tipoConsulta2 == null)
+            {
+                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", tipoConsulta1, "", TipoAdjunto, desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), "", "");
+            }
+            if (tipoConsulta1 == null && tipoConsulta2 == "1")
+            {
+                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", "", tipoConsulta2, TipoAdjunto, "null", "null", Serie, Numero);
+            }
 
-        //    return View("_BitacoraAdjuntos");
-        //}
+            ViewBag.ReporteID = reporteID;
+            ViewBag.NombreReporte = nombreReporte;
+            ViewBag.Parametros = parametros;
+            GetData(reporteID);
 
-        //private List<GetBitacoraAdjuntos_Result> GetBitacoraAdjuntosData(string tipoconsulta1, string tipoconsulta2, DateTime desde, DateTime hasta, string serie, string numero)
-        //{
+            return View("_BitacoraAdjuntos");
+        }
 
-        //    if (tipoconsulta1 == "1" && tipoconsulta2 == "1")
-        //    {
-        //        var lista = db.GetBitacoraAdjuntos(tipoconsulta1, tipoconsulta2, desde, hasta, serie, numero).ToList();
-        //        return lista;
-        //    }
+        private List<GetBitacoraAdjuntos_Result> GetBitacoraAdjuntosData(string tipoconsulta1, string tipoconsulta2, string TipoAdjunto, DateTime desde, DateTime hasta, string serie, string numero)
+        {
 
-        //    if (tipoconsulta1 == "1" && tipoconsulta2 == "")
-        //    {
-        //        var lista2 = db.GetBitacoraAdjuntos(tipoconsulta1, null, desde, hasta, null, null).ToList();
-        //        return lista2;
-        //    }
+            if (tipoconsulta1 == "1" && tipoconsulta2 == "1")
+            {
+                var lista = db.GetBitacoraAdjuntos(tipoconsulta1, tipoconsulta2, TipoAdjunto , serie, numero, desde, hasta).ToList();
+                return lista;
+            }
 
-        //    if (tipoconsulta1 == "" && tipoconsulta2 == "1")
-        //    {
-        //        var lista = db.GetBitacoraDeAplicacion(null, tipoconsulta2, null, null, serie, numero).ToList();
-        //        return lista;
-        //    }
+            if (tipoconsulta1 == "1" && tipoconsulta2 == "")
+            {
+                var lista2 = db.GetBitacoraAdjuntos(tipoconsulta1, null, TipoAdjunto, null, null, desde, hasta).ToList();
+                return lista2;
+            }
 
-        //    return null;
+            if (tipoconsulta1 == "" && tipoconsulta2 == "1")
+            {
+                var lista = db.GetBitacoraAdjuntos(null, tipoconsulta2, TipoAdjunto, serie, numero, null, null).ToList();
+                return lista;
+            }
 
-        //}
-        //#endregion
+            return null;
+
+        }
+        #endregion
 
     }
 }

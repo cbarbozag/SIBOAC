@@ -403,6 +403,18 @@ namespace Cosevi.SIBOAC.Controllers
                         db.OtrosAdjuntos.Remove(adjunto);
                         db.SaveChanges();
 
+                        string serie = fileParams[1];
+                        string numero = fileParams[2];
+                        var queryStatusPlano =
+                             from parteOficial in db.PARTEOFICIAL
+                             where
+                               parteOficial.Serie == serie && parteOficial.NumeroParte == numero
+                             select parteOficial;
+                        foreach (var parteOficial in queryStatusPlano)
+                        {                            
+                                parteOficial.StatusPlano = 3;                                                    
+                        }
+                        db.SaveChanges();
                     }
                 }
                 else

@@ -1903,9 +1903,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\BitacoraAdjuntos.rdlc" />
-    <EmbeddedResource Include="Reports\SubReportPlanos.rdlc">
+    <Content Include="Reports\SubReportPlanos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
