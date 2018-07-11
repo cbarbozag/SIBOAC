@@ -30,7 +30,6 @@
 <hr />
 @using (Html.BeginForm("GetBitacoraAplicacion", "Reporte", FormMethod.Get))
 {
-    <table border="0">
         <div class="form-group">
             <div class="col-md-12 pull-left">
                 <div class="checkbox">
@@ -42,7 +41,7 @@
             <br />
             <br />
             @*<input name="tipoConsulta1" id="tipoConsulta1" type="checkbox" value="1" class="control-label"> Reporte por fecha:*@                      
-            <label class="control-label col-md-2">Rango de fechas</label>
+            <label class="control-label col-md-12">Rango de fechas</label>
             <div class="col-md-7">
                 <div class="input-daterange input-group" id="datepicker">
                     <input id="desde" type="text" class="input-sm form-control" name="desde" value="@Request.Params["desde"]" disabled/>
@@ -52,54 +51,46 @@
             </div>
         </div>
         <br />
-        <br />
-        <br />
-        <div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-md-12 pull-left">
-                        <div class="checkbox">
-                            <label>
-                                <input name="tipoConsulta2" id="tipoConsulta2" type="checkbox" value="1" onclick="boxDisable2($(this));"> Reporte por usuario:
-                            </label>
-                        </div>
-                    </div>
-                    <br />
-                    <br />                                    
-                    <label class="control-label col-md-2">Usuarios</label>
-                    <p>
-                        <input type="text" id="searchTerm" name="searchTerm" onkeyup="doSearch()" placeholder="Buscar..">
-                    </p>
-                    <div class="col-max col-md-6 text-center">
-                        <select name="listaUsuarios" id="listaUsu" class="list-group" data-toggle="items">
-                            @foreach (var item in ViewBag.Usuarios)
-                            {
-                                if (item.Seleccionado == true)
-                                {
-                                    <option value="@item.Id" selected>@item.Usuario</option>
-                                }
-                                else
-                                {
-                                    <option value="@item.Id">@item.Usuario</option>
-                                }
-                            }
-
-                        </select>
-                    </div>                    
+        <br />  
+        <div class="form-group">
+            <div class="col-md-12 pull-left">
+                <div class="checkbox">
+                    <label>
+                        <input name="tipoConsulta2" id="tipoConsulta2" type="checkbox" value="1" onclick="boxDisable2($(this));"> Reporte por usuario:
+                    </label>
                 </div>
-                <br />
-                <br />           
             </div>
             <br />
-            <br />                       
-            <div class="pull-right">
-                <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+            <br /> 
+            <div class="form-group">
+                <label class="control-label col-md-1">Usuarios</label>
+                <input class="form-control" style="width: 25%" type="text" id="searchTerm" name="searchTerm" onkeyup="doSearch()" placeholder="Buscar..">
             </div>
+            <div class="col-max col-md-6 text-center" style="">
+                <select name="listaUsuarios" id="listaUsu" class="list-group" data-toggle="items">
+                    @foreach (var item in ViewBag.Usuarios)
+                    {
+                        if (item.Seleccionado == true)
+                        {
+                            <option value="@item.Id" selected>@item.Usuario</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Usuario</option>
+                        }
+                    }
+
+                </select>
+            </div>                    
         </div>
-    </table>
+        <br />
+        <br />                                           
+        <div class=" col-md-12 pull-left" style="margin-top :3%">
+            <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
+        </div>        
 }
 
-<iframe id="ifrmReportViewer" style="height:1200px; width:100%;" frameborder="0" scrolling="no"></iframe>
+<iframe id="ifrmReportViewer" style="height:1200px; width:100%; margin-top :3%" frameborder="0" scrolling="no" ></iframe>
 @section scripts{    
 
     <script>

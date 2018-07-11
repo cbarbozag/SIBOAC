@@ -6216,7 +6216,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>8.27293cm</Height>
+              <Height>1.02335cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -6333,7 +6333,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>7.95542cm</Height>
+              <Height>1.0498cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -6409,9 +6409,9 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
             </FilterValues>
           </Filter>
         </Filters>
-        <Top>0.19509cm</Top>
-        <Left>0.47312cm</Left>
-        <Height>47.76995cm</Height>
+        <Top>0.27446cm</Top>
+        <Left>1.17145cm</Left>
+        <Height>33.61474cm</Height>
         <Width>18.6654cm</Width>
         <Style>
           <Border>
@@ -6420,13 +6420,13 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>18.98804in</Height>
+    <Height>13.46721in</Height>
     <Style />
   </Body>
-  <Width>7.71194in</Width>
+  <Width>8.11819in</Width>
   <Page>
     <PageHeader>
-      <Height>1.46995cm</Height>
+      <Height>1.81391cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -6468,7 +6468,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
             </Textbox>
           </ReportItems>
           <KeepTogether>true</KeepTogether>
-          <Top>0.10766cm</Top>
+          <Top>0.29287cm</Top>
           <Left>14.71289cm</Left>
           <Height>0.93896cm</Height>
           <Width>3.65834cm</Width>
@@ -6484,7 +6484,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <Source>Embedded</Source>
           <Value>cosevi</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.10766cm</Top>
+          <Top>0.29287cm</Top>
           <Left>0.44664cm</Left>
           <Height>1.30937cm</Height>
           <Width>4.41041cm</Width>
@@ -6504,7 +6504,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
     </PageHeader>
     <PageHeight>27.94cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>
-    <LeftMargin>1cm</LeftMargin>
+    <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
     <TopMargin>0cm</TopMargin>
     <BottomMargin>0cm</BottomMargin>

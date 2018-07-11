@@ -31,10 +31,25 @@
 @using (Html.BeginForm("GetBitacora", "Reporte", FormMethod.Get))
 {
     <input type="hidden" name="TipoReporte" id="TipoReporte" value="false" />
-    <table border="0">
+
+    <div class="form-group">
+        <div class="col-md-12 pull-left">
+            <label class="control-label col-md-12">Rango de fechas</label>
+            <div class="col-md-7">
+                <div class="input-daterange input-group" id="datepicker">
+                    <input id="FechaInicio" type="text" class="input-sm form-control" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
+                    <span class="input-group-addon">a</span>
+                    <input id="FechaFin" type="text" class="input-sm form-control" name="FechaFin" value="@Request.Params["FechaFin"]" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <table border="0" style="margin-top: 5%">
         <tr>
             <td>
-                Nombre Tabla:
+                Nombre de la Tabla:
             </td>
             <td>
                 @Html.DropDownList("NombreTabla", new SelectList(tablaItems, "Value", "Text"), new { @class = "form-control" })
@@ -61,19 +76,7 @@
     </table>
     <br />
     <br />
-    <div class="form-group col-md-12">
-        <label class="control-label col-md-12">Rango de fechas</label>
-        <div class="col-md-10">
-            <div class="input-daterange input-group" id="datepicker">
-                <input id="FechaInicio" type="text" class="input-sm form-control" name="FechaInicio" value="@Request.Params["FechaInicio"]" />
-                <span class="input-group-addon">a</span>
-                <input id="FechaFin" type="text" class="input-sm form-control" name="FechaFin" value="@Request.Params["FechaFin"]" />
-            </div>
-        </div>
-    </div>
-    <br />
-    <br />
-    <div class="pull-right">
+    <div class="pull-left">
         <input type="submit" id="reporte" value="Generar Reporte" class="btn btn-success" />
         <button id="limpiarCampos" type="button" class="btn btn-danger">Limpiar</button>
     </div>
