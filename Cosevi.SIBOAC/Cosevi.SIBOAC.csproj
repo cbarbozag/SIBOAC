@@ -251,6 +251,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchivosBoletaDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="OtrosAdjuntosDataSet.Designer.cs">
+      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ArchivosDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -968,6 +973,17 @@
     </None>
     <Content Include="ArchivosBoletaDataSet.xss">
       <DependentUpon>ArchivosBoletaDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="OtrosAdjuntosDataSet.xsc">
+      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="OtrosAdjuntosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OtrosAdjuntosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="OtrosAdjuntosDataSet.xss">
+      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
     </Content>
     <None Include="ArchivosDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1902,7 +1918,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\BitacoraAdjuntos.rdlc" />
+    <Content Include="Reports\BitacoraAdjuntos.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Reports\SubReportPlanos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

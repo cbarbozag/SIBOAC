@@ -689,7 +689,7 @@
                       <ActionInfo>
                         <Actions>
                           <Action>
-                            <Hyperlink>="http://localhost:61645/Reporte/GetConsultaeImpresionParteOficial?opcionConsulta=1&amp;serieParte="+ Fields!serie.Value +"&amp;numeroParte="+ Fields!numeroparte.Value +"&amp;serieBoleta=&amp;numeroBoleta=&amp;tipoId=&amp;numeroID=&amp;numeroPlaca=&amp;codigoPlaca=&amp;clasePlaca=&amp;VIN="</Hyperlink>
+                            <Hyperlink>="http://granja:150/Reporte/ConsultaeImpresionParteOficial?opcionConsulta=1&amp;serieParte="+ Fields!serie.Value +"&amp;numeroParte="+ Fields!numeroparte.Value +"&amp;serieBoleta=&amp;numeroBoleta=&amp;tipoId=&amp;numeroID=&amp;numeroPlaca=&amp;codigoPlaca=&amp;clasePlaca=&amp;VIN="</Hyperlink>
                           </Action>
                         </Actions>
                       </ActionInfo>
@@ -704,6 +704,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

@@ -85,7 +85,47 @@ namespace Cosevi.SIBOAC.Reports
                         string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
                         //string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];
-                        string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];                        
+                        string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];
+
+                        #region Convertir SVG
+
+                        var extSvgB = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && oa.extension == "SVG").ToList();
+
+                        foreach (var item in extSvgB)
+                        {
+                            var existeSVG = item.nombre;
+                            string existeAdjS = @"" + rutaServer + "\\" + existeSVG;
+                            string nombrePng = item.nombre.Replace(".svg", ".png");
+
+                            string strfn = Path.Combine(@"" + rutaServer + "\\" + nombrePng);
+
+                            if (System.IO.File.Exists(existeAdjS))
+                            {
+
+                                var sampleDoc = SvgDocument.Open(existeAdjS);
+                                sampleDoc.Draw().Save(strfn);
+
+                                int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+
+                                var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente, serie, numero_boleta, item.nombre);
+                                svgConvertido.extension = "svgc";
+
+                                dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                {
+                                    fuente = CodigoFuente,
+                                    serie = serie,
+                                    numero = numero_boleta,
+                                    extension = "png",
+                                    fechaRegistro = DateTime.Now,
+                                    nombre = nombrePng,
+                                    consecutivo_extension = maxValue.Value + 1
+                                });
+
+                                dbPivot.SaveChanges();
+                            }
+
+                        }
+                        #endregion
 
                         #region Firmas Testigos
 
@@ -836,7 +876,7 @@ namespace Cosevi.SIBOAC.Reports
                                     var sampleDoc = SvgDocument.Open(existeAdjS);                                        
                                     sampleDoc.Draw().Save(strfn);
 
-                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
 
                                     var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
                                     svgConvertido.extension = "svgc";
@@ -1742,6 +1782,8 @@ namespace Cosevi.SIBOAC.Reports
                             listaFirmas.Columns.Add("ParteOficial");
                             listaFirmas.Columns.Add("Identificacion");
 
+                            listaPlanos.Columns.Add("ParteOficial");
+
                             foreach (var lisPart3 in listaPartes3)
                             {
                                 
@@ -1754,6 +1796,7 @@ namespace Cosevi.SIBOAC.Reports
                                 var fuente3 = (db.PARTEOFICIAL.Where(a => a.Serie == lisPart3.serie_parteoficial && a.NumeroParte == lisPart3.numeroparte).Select(a => a.Fuente).ToList());
 
                                 string ruta3 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                                //string ruta3 = ConfigurationManager.AppSettings["UploadFilePath"];
                                 string rutaPlano3 = ConfigurationManager.AppSettings["UploadFilePath"];
                                 string rutaV3 = ConfigurationManager.AppSettings["RutaVirtual"];
 
@@ -1809,9 +1852,7 @@ namespace Cosevi.SIBOAC.Reports
                                 int serieP = Convert.ToInt32(lisPart3.serie_parteoficial);
                                 decimal numP = Convert.ToDecimal(lisPart3.numeroparte);
 
-                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart3.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
-
-                                listaPlanos.Columns.Add("ParteOficial");
+                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart3.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();                                
 
                                 foreach (var itmeP in listPlanos)
                                 {
@@ -1828,12 +1869,12 @@ namespace Cosevi.SIBOAC.Reports
                                         bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                         bitmap1.Save(strfn);
 
-                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(lisPart3.fuente_parteoficial, serieP, numP, itmeP.nombre);
+                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(lisPart3.fuente_parteoficial, itmeP.serie, itmeP.numero, itmeP.nombre);
                                         PlanoConvertido.extension = itmeP.extension + "c";
 
                                         dbPivot.SaveChanges();
 
-                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, itmeP.nombre)).AbsoluteUri, numP);
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta3, itmeP.nombre)).AbsoluteUri, itmeP.numero);
                                     }                                    
                                 }
 
@@ -1928,7 +1969,7 @@ namespace Cosevi.SIBOAC.Reports
                                                 bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                                 bitmap1.Save(existeAdj);
 
-                                                var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(item3.Item1, item3.Item2, item3, item.Item1);
+                                                var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(item3.Item1, item3.Item2, Convert.ToInt32(item3.Item3), item.Item1);
                                                 PlanoConvertido.extension = item.Item3 + "c";
 
                                                 dbPivot.SaveChanges();
@@ -2221,6 +2262,7 @@ namespace Cosevi.SIBOAC.Reports
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;
                             #endregion
                         }
 
@@ -2416,7 +2458,7 @@ namespace Cosevi.SIBOAC.Reports
                                                 bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                                 bitmap1.Save(existeAdj);
 
-                                                var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(item3.Item1, item3.Item2, item3, item.Item1);
+                                                var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(item3.Item1, item3.Item2, Convert.ToInt32(item3.Item3), item.Item1);
                                                 PlanoConvertido.extension = item.Item3 + "c";
 
                                                 dbPivot.SaveChanges();
@@ -2711,6 +2753,7 @@ namespace Cosevi.SIBOAC.Reports
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;
                             #endregion
                         }
 

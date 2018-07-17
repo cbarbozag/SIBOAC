@@ -6245,7 +6245,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox10">
+                    <Textbox Name="NumeroParte">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -6259,7 +6259,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox10</rd:DefaultName>
+                      <rd:DefaultName>NumeroParte</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -6270,6 +6270,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -6397,9 +6398,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <PageBreak>
-          <BreakLocation>End</BreakLocation>
-        </PageBreak>
         <Filters>
           <Filter>
             <FilterExpression>=Fields!boletaRelacion.Value</FilterExpression>
@@ -6411,7 +6409,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Filters>
         <Top>0.27446cm</Top>
         <Left>1.17145cm</Left>
-        <Height>33.61474cm</Height>
+        <Height>33.61475cm</Height>
         <Width>18.6654cm</Width>
         <Style>
           <Border>
