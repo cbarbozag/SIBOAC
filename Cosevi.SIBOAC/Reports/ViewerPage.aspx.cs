@@ -49,7 +49,9 @@ namespace Cosevi.SIBOAC.Reports
                 listaFirmas.Columns.Add("NombreArchivo");
                 DataTable listaPlanos = new DataTable();
                 listaPlanos.Columns.Add("NombreArchivo");
-                
+                DataTable listaOtrosArchivos = new DataTable();
+                listaOtrosArchivos.Columns.Add("NombreArchivo");
+
                 if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
                 {
                     return;
@@ -837,6 +839,7 @@ namespace Cosevi.SIBOAC.Reports
                         string Parametro6 = param23[3];                        
 
                         string[] extensionRestringidaIPO = ConfigurationManager.AppSettings["ExtenException"].Split(',');
+                        string[] otrosAdjuntos = ConfigurationManager.AppSettings["ListOtrosAjuntos"].Split(',');
 
                         if (TipoConsulta2 == 1)
                         {
@@ -857,6 +860,18 @@ namespace Cosevi.SIBOAC.Reports
                             //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
+
+                            #region Otros Adjuntos
+                            var otrosAdj = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
+
+                            listaOtrosArchivos.Columns.Add("ParteOficial");
+                            listaOtrosArchivos.Columns.Add("Identificacion");
+
+                            foreach (var item in otrosAdj)
+                            {
+                                listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1, item.nombre);
+                            }
+                            #endregion
 
                             #region Convertir SVG a PNG
 
@@ -1300,6 +1315,7 @@ namespace Cosevi.SIBOAC.Reports
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
                             Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;
+                            Session["_ConsultaeImpresionDeParteOficialDataOtrosAdjuntos"] = listaOtrosArchivos;
                             #endregion
                         }
 
@@ -1328,6 +1344,18 @@ namespace Cosevi.SIBOAC.Reports
                             string ruta2 = ConfigurationManager.AppSettings["DownloadFilePath"];
                             string rutaPlano2 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV2 = ConfigurationManager.AppSettings["RutaVirtual"];
+
+                            #region Otros Adjuntos
+                            var otrosAdj2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
+
+                            listaOtrosArchivos.Columns.Add("ParteOficial");
+                            listaOtrosArchivos.Columns.Add("Identificacion");
+
+                            foreach (var item in otrosAdj2)
+                            {
+                                listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item.nombre)).AbsoluteUri, numeroParte2, item.nombre);
+                            }
+                            #endregion
 
                             #region Convertir SVG a PNG
 
@@ -1766,6 +1794,8 @@ namespace Cosevi.SIBOAC.Reports
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                            Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;
+                            Session["_ConsultaeImpresionDeParteOficialDataOtrosAdjuntos"] = listaOtrosArchivos;
                             #endregion
                         }
 
@@ -1802,6 +1832,17 @@ namespace Cosevi.SIBOAC.Reports
 
                                 var resultAdjParte = fuente3.Zip(serParte3, (e1, e2) => new { e1, e2 }).Zip(numPartPar3, (z1, e3) => Tuple.Create(z1.e1, z1.e2, e3));
 
+                                #region Otros Adjuntos
+                                var otrosAdj3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();                                
+
+                                listaOtrosArchivos.Columns.Add("ParteOficial");
+                                listaOtrosArchivos.Columns.Add("Identificacion");
+
+                                foreach (var item in otrosAdj3)
+                                {
+                                    listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.nombre)).AbsoluteUri, item.numero, item.nombre);
+                                }
+                                #endregion
 
                                 #region Convertir SVG a PNG
 
@@ -2262,7 +2303,8 @@ namespace Cosevi.SIBOAC.Reports
                             this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
-                            Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;
+                            Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;                            
+                            Session["_ConsultaeImpresionDeParteOficialDataOtrosAdjuntos"] = listaOtrosArchivos;
                             #endregion
                         }
 
@@ -2289,6 +2331,18 @@ namespace Cosevi.SIBOAC.Reports
                                 string rutaV4 = ConfigurationManager.AppSettings["RutaVirtual"];
 
                                 var resultAdjParte = fuente4.Zip(serParte4, (e1, e2) => new { e1, e2 }).Zip(numPartPar4, (z1, e3) => Tuple.Create(z1.e1, z1.e2, e3));
+
+                                #region Otros Adjuntos
+                                var otrosAdj4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
+
+                                listaOtrosArchivos.Columns.Add("ParteOficial");
+                                listaOtrosArchivos.Columns.Add("Identificacion");
+
+                                foreach (var item in otrosAdj4)
+                                {
+                                    listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.nombre)).AbsoluteUri, item.numero, item.nombre);
+                                }
+                                #endregion
 
                                 #region Planos
 
@@ -2754,6 +2808,7 @@ namespace Cosevi.SIBOAC.Reports
                             Session["_ConsultaeImpresionDeParteOficialData"] = listaArchivos;
                             Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
                             Session["_ConsultaeImpresionDeParteOficialDataPnano"] = listaPlanos;
+                            Session["_ConsultaeImpresionDeParteOficialDataOtrosAdjuntos"] = listaOtrosArchivos;
                             #endregion
                         }
 
@@ -2784,7 +2839,9 @@ namespace Cosevi.SIBOAC.Reports
             e.DataSources.Add(new ReportDataSource("ArchivosDataSet", Session["_ConsultaeImpresionDeParteOficialData"])); 
             e.DataSources.Add(new ReportDataSource("FirmasDataSet", Session["_ConsultaeImpresionDeParteOficialDataFirma"]));
             e.DataSources.Add(new ReportDataSource("PlanosDataSet", Session["_ConsultaeImpresionDeParteOficialDataPnano"]));
-            
+            e.DataSources.Add(new ReportDataSource("OtrosAdjuntosDataSet", Session["_ConsultaeImpresionDeParteOficialDataOtrosAdjuntos"]));            
+
+
         }
 
         /// <summary>

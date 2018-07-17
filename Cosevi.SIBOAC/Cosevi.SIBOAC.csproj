@@ -251,11 +251,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ArchivosBoletaDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="OtrosAdjuntosDataSet.Designer.cs">
-      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="ArchivosDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -849,6 +844,11 @@
     <Compile Include="Models\VEHICULO.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OtrosAdjuntosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PC_HH_AndroidDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -973,17 +973,6 @@
     </None>
     <Content Include="ArchivosBoletaDataSet.xss">
       <DependentUpon>ArchivosBoletaDataSet.xsd</DependentUpon>
-    </Content>
-    <Content Include="OtrosAdjuntosDataSet.xsc">
-      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="OtrosAdjuntosDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>OtrosAdjuntosDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="OtrosAdjuntosDataSet.xss">
-      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
     </Content>
     <None Include="ArchivosDataSet.xsd">
       <SubType>Designer</SubType>
@@ -1176,6 +1165,17 @@
     </None>
     <Content Include="ImagenesDataSet.xss">
       <DependentUpon>ImagenesDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="OtrosAdjuntosDataSet.xsc">
+      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="OtrosAdjuntosDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OtrosAdjuntosDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="OtrosAdjuntosDataSet.xss">
+      <DependentUpon>OtrosAdjuntosDataSet.xsd</DependentUpon>
     </Content>
     <None Include="PC_HH_AndroidDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -1922,6 +1922,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\SubReportPlanos.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\SubReportOtrosAdjuntos.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
