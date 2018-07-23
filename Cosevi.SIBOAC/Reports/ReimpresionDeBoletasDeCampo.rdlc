@@ -277,9 +277,9 @@
             <Value>cosevi</Value>
             <Sizing>FitProportional</Sizing>
             <Top>0.44593cm</Top>
-            <Left>13.51806cm</Left>
+            <Left>13.22702cm</Left>
             <Height>3.08185cm</Height>
-            <Width>6.45653cm</Width>
+            <Width>6.19195cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -477,7 +477,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Fields!Usuario.Value, "DataSet1")</Value>
+                    <Value>=IIf(First(Fields!codigo_delegacion.Value, "DataSet1") = "AU", "Usuario no Suministrado", First(Fields!Usuario.Value, "DataSet1"))</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -561,7 +561,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Fields!sexo.Value, "DataSet1")</Value>
+                    <Value>=IIf(First(Fields!codigo_delegacion.Value, "DataSet1") = "AU", "Sexo no Suministrado", First(Fields!sexo.Value, "DataSet1"))</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -574,7 +574,7 @@
             <Top>6.64878cm</Top>
             <Left>0.79622cm</Left>
             <Height>0.45861cm</Height>
-            <Width>2.5cm</Width>
+            <Width>8.63831cm</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -606,7 +606,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Fields!FechaNacimiento.Value, "DataSet1")</Value>
+                    <Value>=IIf(First(Fields!codigo_delegacion.Value, "DataSet1") = "AU", "Fecha no Suministrada", Format(First(Fields!FechaNacimiento.Value, "DataSet1"),"dd/MM/yyyy HH:mm:ss"))</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -696,7 +696,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Fields!tipo_lic.Value, "DataSet1")</Value>
+                    <Value>=IIf(First(Fields!codigo_delegacion.Value, "DataSet1") = "AU", "Información no Suministrada", First(Fields!tipo_lic.Value, "DataSet1"))</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -741,7 +741,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Fields!tipo_ide.Value+" " + Fields!Identificacion.Value</Value>
+                    <Value>=IIf(First(Fields!codigo_delegacion.Value, "DataSet1") = "AU", "Identificación no Suministrada", Fields!tipo_ide.Value+" " + Fields!Identificacion.Value)</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -831,7 +831,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=Sum(Fields!kilometro.Value, "DataSet1")</Value>
+                    <Value>=IIf(First(Fields!kilometro.Value, "DataSet1") = "8888", "No aplica", First(Fields!kilometro.Value, "DataSet1"))</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -842,7 +842,7 @@
             </Paragraphs>
             <rd:DefaultName>kilometro</rd:DefaultName>
             <Top>10.79586cm</Top>
-            <Left>0.79621cm</Left>
+            <Left>0.79626cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>13</ZIndex>
@@ -881,7 +881,7 @@
             </Paragraphs>
             <rd:DefaultName>ClasePlaca</rd:DefaultName>
             <Top>13.85704cm</Top>
-            <Left>0.79621cm</Left>
+            <Left>0.79626cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>14</ZIndex>
@@ -1199,8 +1199,8 @@
             </Style>
           </Textbox>
           <Line Name="Line3">
-            <Top>30.48414cm</Top>
-            <Left>0.79626cm</Left>
+            <Top>30.03655cm</Top>
+            <Left>0.79633cm</Left>
             <Height>0cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>22</ZIndex>
@@ -1229,8 +1229,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePagina</rd:DefaultName>
-            <Top>30.62525cm</Top>
-            <Left>0.79626cm</Left>
+            <Top>30.17766cm</Top>
+            <Left>0.79633cm</Left>
             <Height>1.82544cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>23</ZIndex>
@@ -1262,8 +1262,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePaginaAutoridad</rd:DefaultName>
-            <Top>32.59179cm</Top>
-            <Left>0.79626cm</Left>
+            <Top>32.1442cm</Top>
+            <Left>0.79633cm</Left>
             <Height>1.85329cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>24</ZIndex>
@@ -1286,9 +1286,12 @@
             <Sizing>FitProportional</Sizing>
             <Top>23.62371cm</Top>
             <Left>2.06081cm</Left>
-            <Height>2.61503cm</Height>
-            <Width>6.42125cm</Width>
+            <Height>2.00649cm</Height>
+            <Width>6.15667cm</Width>
             <ZIndex>25</ZIndex>
+            <Visibility>
+              <Hidden>=IIf(Parameters!ImagenFirmaUsuarioPath.Value &lt;&gt; "", false, true)</Hidden>
+            </Visibility>
             <ToolTip>Firma Usuario</ToolTip>
             <Style>
               <Border>
@@ -1302,8 +1305,8 @@
             <Sizing>FitProportional</Sizing>
             <Top>23.62371cm</Top>
             <Left>11.30437cm</Left>
-            <Height>2.57975cm</Height>
-            <Width>6.42125cm</Width>
+            <Height>2.00649cm</Height>
+            <Width>6.36833cm</Width>
             <ZIndex>26</ZIndex>
             <Style>
               <Border>
@@ -1918,8 +1921,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>26.37985cm</Top>
-            <Left>0.79622cm</Left>
+            <Top>25.93226cm</Top>
+            <Left>0.79629cm</Left>
             <Height>1.2cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>28</ZIndex>
@@ -1936,7 +1939,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!fuente.Value, "DataSet1").ToString()+" - "+First(Fields!serie.Value, "DataSet1").ToString()+" - "+First(Fields!numero_boleta.Value, "DataSet1").ToString()+" - "+First(Fields!fecha_hora_boleta.Value, "DataSet1").ToString()</Value>
+                    <Value>=First(Fields!fuente.Value, "DataSet1").ToString()+" - "+First(Fields!serie.Value, "DataSet1").ToString()+" - "+First(Fields!numero_boleta.Value, "DataSet1").ToString()+" - "+Format(First(Fields!fecha_hora_boleta.Value, "DataSet1"),"dd/MM/yyyy HH:mm:ss").ToString()</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1947,9 +1950,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox90</rd:DefaultName>
             <Top>2.06898cm</Top>
-            <Left>3.79957cm</Left>
+            <Left>3.79955cm</Left>
             <Height>0.6cm</Height>
-            <Width>9.06708cm</Width>
+            <Width>9.28636cm</Width>
             <ZIndex>29</ZIndex>
             <Style>
               <Border>
@@ -1981,7 +1984,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Fields!Telefono.Value, "DataSet1").ToString()</Value>
+                    <Value>=IIf(First(Fields!codigo_delegacion.Value, "DataSet1") = "AU", "No registrado", First(Fields!Telefono.Value, "DataSet1").ToString())</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -2386,7 +2389,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Fields!fuente_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!serie_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!numeroparte.Value, "DataSet1").ToString()</Value>
+                    <Value>=IIf(First(Fields!numeroparte.Value, "DataSet1") = "", "No Aplica", First(Fields!fuente_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!serie_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!numeroparte.Value, "DataSet1").ToString())</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -2426,7 +2429,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>8.27291cm</Height>
+                  <Height>1.92291cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2472,13 +2475,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-            </PageBreak>
-            <Top>35.50391cm</Top>
-            <Left>0.79624cm</Left>
-            <Height>8.27291cm</Height>
-            <Width>17.74962cm</Width>
+            <Top>34.39486cm</Top>
+            <Left>0.79634cm</Left>
+            <Height>1.92291cm</Height>
+            <Width>17.7496cm</Width>
             <ZIndex>40</ZIndex>
             <Style>
               <Border>
@@ -2739,8 +2739,8 @@
                 </FilterValues>
               </Filter>
             </Filters>
-            <Top>28.0428cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>27.59521cm</Top>
+            <Left>0.79627cm</Left>
             <Height>1.99375cm</Height>
             <Width>17.74962cm</Width>
             <ZIndex>41</ZIndex>
@@ -2754,17 +2754,17 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>17.78255in</Height>
+        <Height>14.40755in</Height>
         <Style />
       </Body>
-      <Width>7.86401in</Width>
+      <Width>7.82235in</Width>
       <Page>
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>
-        <LeftMargin>0.5cm</LeftMargin>
-        <RightMargin>0.5cm</RightMargin>
-        <TopMargin>0.5cm</TopMargin>
-        <BottomMargin>0.5cm</BottomMargin>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>
