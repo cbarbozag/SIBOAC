@@ -189,13 +189,49 @@ namespace Cosevi.SIBOAC.Reports
 
                         #region Adjuntar archivos
 
-                        var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaB.Contains(oa.extension)).Select(oa => oa.nombre);
+                        var adjBoleta = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaB.Contains(oa.extension)).ToList();
 
                         listaArchivosB.Columns.Add("NumBoleta");
                        
                         foreach (var item in adjBoleta)
-                        {
-                            listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, item)).AbsoluteUri, numero_boleta);
+                        {                            
+
+                            if (item.extension.Contains("c"))
+                            {
+                                listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, item.nombre)).AbsoluteUri, numero_boleta);
+                            }
+                            else
+                            {
+                                string existeAdj = @"" + rutaServer + "\\" + item.nombre;
+
+                                Stream stream = File.OpenRead(existeAdj);
+                                System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
+
+                                int width = sourceImage.Width;
+                                int height = sourceImage.Height;
+                                stream.Close();
+
+                                if (width > height)
+                                {
+
+                                    System.Drawing.Bitmap bitmap1;
+                                    bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                    bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                    bitmap1.Save(existeAdj);
+
+                                    var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente, serie, numero_boleta, item.nombre);
+                                    PlanoConvertido.extension = item.extension + "c";
+
+                                    dbPivot.SaveChanges();
+
+                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, item.nombre)).AbsoluteUri, numero_boleta);
+                                }
+                                else
+                                {
+                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, item.nombre)).AbsoluteUri, numero_boleta);
+                                }
+                            }
+
                         }
 
                         if (adjBoleta.Count() == 0)
@@ -242,6 +278,11 @@ namespace Cosevi.SIBOAC.Reports
                                         fs.Write(barrImg, 0, barrImg.Length);
                                         fs.Flush();
                                         fs.Close();
+
+                                        System.Drawing.Bitmap bitmap1;
+                                        bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                        bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                        bitmap1.Save(existeAdj);
 
                                         listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
 
