@@ -10,6 +10,9 @@ using Cosevi.SIBOAC.Models;
 using PagedList;
 using System.Data.Entity.Validation;
 using System.Web.Security;
+using System.Configuration;
+using System.IO;
+
 
 namespace Cosevi.SIBOAC.Controllers
 {
@@ -113,21 +116,29 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (SIBOACRoles != null)
-                {
-                    var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
-                                       select a;
-
-                    foreach (var i in query_where2)
-                    {
-                        sIBOACUsuarios.SIBOACRoles.Add(i);
-                    }
-                }
-                sIBOACUsuarios.Contrasena = sIBOACUsuarios.Usuario;
-                dbs.SIBOACUsuarios.Add(sIBOACUsuarios);
+                                
                 string mensaje = Verificar(sIBOACUsuarios.Usuario.ToString());
                 if (mensaje == "")
                 {
+                    if (SIBOACRoles != null)
+                    {
+                        var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
+                                           select a;
+
+                        foreach (var i in query_where2)
+                        {
+                            sIBOACUsuarios.SIBOACRoles.Add(i);
+                        }
+                    }
+
+                    sIBOACUsuarios.Contrasena = sIBOACUsuarios.Usuario;
+                    dbs.SIBOACUsuarios.Add(sIBOACUsuarios);
+
+                    if (sIBOACUsuarios.codigo == null)
+                    {
+                        sIBOACUsuarios.codigo = "000";
+                    }
+
                     sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
                     sIBOACUsuarios.UltimoIngreso = DateTime.Now;
                     dbs.SaveChanges();
@@ -373,6 +384,47 @@ namespace Cosevi.SIBOAC.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult UploadFiles()
+        {
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                        HttpFileCollectionBase files = Request.Files;
+                        for (int i = 0; i < files.Count; i++)
+                        {
+                            HttpPostedFileBase file = files[i];
+
+                        //    MemoryStream excelStream = new MemoryStream();
+                        //   file.InputStream.CopyTo(excelStream);
+
+                        Stream stream = file.InputStream;
+                        
+                                                
+
+                    }
+
+                    TempData["Type"] = "success";
+                    TempData["Message"] = "Plantilla Cargada Exitosamente";
+
+                    return Json(new { result = true, msg = "Plantilla Cargada Exitosamente" });
+                }
+                catch (Exception ex)
+                {
+                    TempData["Type"] = "error";
+                    TempData["Message"] = "Ocurrió un error. Detalles: " + ex.Message;
+                    return Json(new { result = false, msg = "Ocurrió un error. Detalles: " + ex.Message });
+                }
+            }
+            else
+            {
+                TempData["Type"] = "warning";
+                TempData["Message"] = "No hay archivo seleccionado.";
+                return Json(new { result = false, msg = "No hay archivo seleccionado." });
+            }
         }
 
     }

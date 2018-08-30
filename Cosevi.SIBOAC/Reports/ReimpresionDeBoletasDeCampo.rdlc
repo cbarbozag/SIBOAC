@@ -2241,7 +2241,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Alcoholemia Realziada:</Value>
+                    <Value>Alcoholemia Realizada:</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2478,7 +2478,7 @@
             <Top>34.39486cm</Top>
             <Left>0.79634cm</Left>
             <Height>1.92291cm</Height>
-            <Width>17.7496cm</Width>
+            <Width>17.74962cm</Width>
             <ZIndex>40</ZIndex>
             <Style>
               <Border>

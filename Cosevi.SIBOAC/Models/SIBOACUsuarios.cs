@@ -22,7 +22,10 @@ namespace Cosevi.SIBOAC.Models
         }
     
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "El email es obligatorio")]
         public string Email { get; set; }
+
         public string Contrasena { get; set; }
 
         [Required(ErrorMessage = "El Nombre es obligatorio")]
@@ -33,15 +36,19 @@ namespace Cosevi.SIBOAC.Models
 
         [StringLength(4, ErrorMessage = "El código no debe ser mayor a 4 caracteres")]
         public string codigo { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime FechaDeActualizacionClave { get; set; }
+
         public Nullable<bool> Activo { get; set; }
 
         [StringLength(16, ErrorMessage = "La identificación no debe ser mayor a 16 caracteres")]
         [Required(ErrorMessage = "La Identificación es obligatoria")]
         public string Identificacion { get; set; }
+
         public string LugarTrabajo { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime UltimoIngreso { get; set; }

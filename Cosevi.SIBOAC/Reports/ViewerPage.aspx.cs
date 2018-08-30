@@ -239,7 +239,7 @@ namespace Cosevi.SIBOAC.Reports
                             SqlConnection connection = new SqlConnection(connectionString);
                             connection.Open();
 
-                            var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente && a.Serie == serie && a.Numero == numero_B).ToList();
+                            var adj = db.IMAGENES.Where(a => a.Fuente == CodigoFuente && a.Serie == serie && a.Numero == numero_B && a.Tipo == "A").ToList();
                             int contador = 1;
                             foreach (var adjFinal in adj)
                             {
@@ -252,7 +252,7 @@ namespace Cosevi.SIBOAC.Reports
                                 cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente;
                                 cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serie;
                                 cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = param[1];
-                                cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "a";
+                                cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "A";
                                 cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15).Value = adjFinal.Identificacion;
 
                                 //Ejecutamos un Scalar para recuperar sólo la imagen
@@ -317,14 +317,13 @@ namespace Cosevi.SIBOAC.Reports
                             //Especificamos la consulta que nos devuelve la imagen
                             SqlCommand cmdSelect = new SqlCommand("select Imagen from IMAGENES " +
                                                     "where Fuente=@fuente and Serie=@serie and Numero=@numero " +
-                                                    "and Tipo=@tipo and Identificacion=@ident",
+                                                    "and Tipo=@tipo",
                                                     connection);
                             //Especificamos el parámetro ID de la consulta
                             cmdSelect.Parameters.Add("@fuente", SqlDbType.Char, 1).Value = CodigoFuente;
                             cmdSelect.Parameters.Add("@serie", SqlDbType.Int).Value = serie;
                             cmdSelect.Parameters.Add("@numero", SqlDbType.Char, 10).Value = numero_boleta;
-                            cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "u";
-                            cmdSelect.Parameters.Add("@ident", SqlDbType.Char, 15).Value = CodigoIde;
+                            cmdSelect.Parameters.Add("@tipo", SqlDbType.Char, 1).Value = "F";                            
 
                             //Ejecutamos un Scalar para recuperar sólo la imagen
                             byte[] barrImg = (byte[])cmdSelect.ExecuteScalar();
