@@ -52,7 +52,9 @@ namespace Cosevi.SIBOAC.Reports
                 DataTable listaOtrosArchivos = new DataTable();
                 listaOtrosArchivos.Columns.Add("NombreArchivo");
 
-                if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(parametros))
+                string[] paramValida = parametros.Split(',');
+
+                if (String.IsNullOrEmpty(reporteID) || String.IsNullOrEmpty(nombreReporte) || String.IsNullOrEmpty(paramValida[0]) || String.IsNullOrEmpty(paramValida[1]))
                 {
                     return;
                 }

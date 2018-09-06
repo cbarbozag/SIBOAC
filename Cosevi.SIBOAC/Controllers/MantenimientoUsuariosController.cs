@@ -12,13 +12,17 @@ using System.Data.Entity.Validation;
 using System.Web.Security;
 using System.Configuration;
 using System.IO;
-
+using ExcelDataReader;
+using System.Data.SqlClient;
+using System.Collections;
 
 namespace Cosevi.SIBOAC.Controllers
 {
     public class MantenimientoUsuariosController : BaseController<SIBOACUsuarios>
     {
         private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
+
+        string connectionString = ConfigurationManager.AppSettings["AbrirConexionBD"];
 
         // GET: MantenimientoUsuarios
         [SessionExpire]
@@ -387,23 +391,81 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadFiles()
+        public ActionResult UploadFiles(SIBOACUsuarios sIBOACUsuarios)
         {
             if (Request.Files.Count > 0)
             {
                 try
                 {
-                        HttpFileCollectionBase files = Request.Files;
-                        for (int i = 0; i < files.Count; i++)
-                        {
-                            HttpPostedFileBase file = files[i];
+                    HttpFileCollectionBase files = Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        HttpPostedFileBase file = files[i];
 
                         //    MemoryStream excelStream = new MemoryStream();
                         //   file.InputStream.CopyTo(excelStream);
 
                         Stream stream = file.InputStream;
-                        
-                                                
+
+                        IExcelDataReader reader = null;
+
+                        if (file.FileName.EndsWith(".xls"))
+                        {
+                            reader = ExcelReaderFactory.CreateBinaryReader(stream);
+
+                        }
+                        else if(file.FileName.EndsWith(".xlsx"))
+                        {
+                            reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("File", "This file format is not supported");
+                            return View();
+                        }
+
+                        var conf = new ExcelDataSetConfiguration
+                        {
+                            ConfigureDataTable = _ => new ExcelDataTableConfiguration
+                            {
+                                UseHeaderRow = true
+                            }
+                        };
+
+                        SqlConnection connection = new SqlConnection(connectionString);
+                        connection.Open();
+
+                        var dataSet = reader.AsDataSet(conf);
+                        var dataTable = dataSet.Tables[0];
+
+                        int row = 0;
+                        int col = 0;
+
+                        for (var k = row; k < dataTable.Rows.Count; k++)
+                        {
+                            ArrayList usuarioP = new ArrayList();
+                            for (var j = col; j < dataTable.Columns.Count; j++)
+                            {
+                                usuarioP.Add(dataTable.Rows[k][j]);
+                            }
+
+                            dbs.SIBOACUsuarios.Add(new SIBOACUsuarios
+                            {
+                                Usuario = Convert.ToString(usuarioP[0]),
+                                Email = Convert.ToString(usuarioP[1]),
+                                Contrasena = Convert.ToString(usuarioP[0]),
+                                Nombre = Convert.ToString(usuarioP[2]),
+                                codigo = "000",
+                                FechaDeActualizacionClave = DateTime.Now,
+                                Activo = Convert.ToBoolean(1),
+                                Identificacion = Convert.ToString(usuarioP[0]),
+                                LugarTrabajo = Convert.ToString(usuarioP[3]),
+                                UltimoIngreso = DateTime.Now
+                            });
+
+                            dbs.SaveChanges();
+                        }
+
 
                     }
 

@@ -171,3 +171,62 @@
 </table>
 Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<br />
+<br />
+<h4>Cargar Usuarios por Plantilla</h4>
+<br />
+<input type="file" id="FileUpload1" />
+<br />
+<br />
+<br />
+<input type="button" id="btnUpload" value="Cargar Plantilla" class="btn btn-warning" />
+
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#btnUpload').click(function () {
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#FileUpload1").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                $.ajax({
+                    url: '/MantenimientoUsuarios/UploadFiles',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (resultData) {
+                        //if (resultData.result) {
+                        location.reload(true);
+                        //}
+                        //else {
+                        //    alert(resultData.msg);
+                        //}
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        });
+    });
+</script>
+
+
+
