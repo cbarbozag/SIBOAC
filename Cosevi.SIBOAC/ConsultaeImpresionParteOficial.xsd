@@ -114,6 +114,10 @@
               <Mapping SourceColumn="DescripcionManiobra" DataSetColumn="DescripcionManiobra" />
               <Mapping SourceColumn="CodigoDispositivo" DataSetColumn="CodigoDispositivo" />
               <Mapping SourceColumn="DescripcionDispositivo" DataSetColumn="DescripcionDispositivo" />
+              <Mapping SourceColumn="CodigoDano" DataSetColumn="CodigoDano" />
+              <Mapping SourceColumn="DescripcionDano" DataSetColumn="DescripcionDano" />
+              <Mapping SourceColumn="codrol" DataSetColumn="codrol" />
+              <Mapping SourceColumn="DescripcionRol" DataSetColumn="DescripcionRol" />
               <Mapping SourceColumn="tipo_ide" DataSetColumn="tipo_ide" />
               <Mapping SourceColumn="identificacion" DataSetColumn="identificacion" />
               <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
@@ -593,6 +597,28 @@
               </xs:element>
               <xs:element name="CodigoDispositivo" msprop:Generator_ColumnVarNameInTable="columnCodigoDispositivo" msprop:Generator_ColumnPropNameInRow="CodigoDispositivo" msprop:Generator_ColumnPropNameInTable="CodigoDispositivoColumn" msprop:Generator_UserColumnName="CodigoDispositivo" type="xs:int" minOccurs="0" />
               <xs:element name="DescripcionDispositivo" msprop:Generator_ColumnVarNameInTable="columnDescripcionDispositivo" msprop:Generator_ColumnPropNameInRow="DescripcionDispositivo" msprop:Generator_ColumnPropNameInTable="DescripcionDispositivoColumn" msprop:Generator_UserColumnName="DescripcionDispositivo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CodigoDano" msprop:Generator_ColumnVarNameInTable="columnCodigoDano" msprop:Generator_ColumnPropNameInRow="CodigoDano" msprop:Generator_ColumnPropNameInTable="CodigoDanoColumn" msprop:Generator_UserColumnName="CodigoDano" type="xs:int" minOccurs="0" />
+              <xs:element name="DescripcionDano" msprop:Generator_ColumnVarNameInTable="columnDescripcionDano" msprop:Generator_ColumnPropNameInRow="DescripcionDano" msprop:Generator_ColumnPropNameInTable="DescripcionDanoColumn" msprop:Generator_UserColumnName="DescripcionDano" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codrol" msprop:Generator_ColumnVarNameInTable="columncodrol" msprop:Generator_ColumnPropNameInRow="codrol" msprop:Generator_ColumnPropNameInTable="codrolColumn" msprop:Generator_UserColumnName="codrol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DescripcionRol" msprop:Generator_ColumnVarNameInTable="columnDescripcionRol" msprop:Generator_ColumnPropNameInRow="DescripcionRol" msprop:Generator_ColumnPropNameInTable="DescripcionRolColumn" msprop:Generator_UserColumnName="DescripcionRol" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
