@@ -6992,22 +6992,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
           <DataField>DescripcionDispositivo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CodigoDano">
-          <DataField>CodigoDano</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="DescripcionDano">
-          <DataField>DescripcionDano</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="codrol">
-          <DataField>codrol</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescripcionRol">
-          <DataField>DescripcionRol</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="tipo_ide">
           <DataField>tipo_ide</DataField>
           <rd:TypeName>System.String</rd:TypeName>
