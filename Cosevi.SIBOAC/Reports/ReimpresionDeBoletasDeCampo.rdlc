@@ -101,36 +101,12 @@
           <DataField>kilometro</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="numero_placa">
-          <DataField>numero_placa</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="codveh">
           <DataField>codveh</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="DescripcionTipoAutomovil">
           <DataField>DescripcionTipoAutomovil</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="tipo_carroceria">
-          <DataField>tipo_carroceria</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="DescripcionCarroceria">
-          <DataField>DescripcionCarroceria</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="marca">
-          <DataField>marca</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DescripcionMarca">
-          <DataField>DescripcionMarca</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Rev_Tecnica">
-          <DataField>Rev_Tecnica</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="codOficinaImpugnacion">
@@ -157,6 +133,14 @@
           <DataField>DepositoVehiculo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="conductor_detenido">
+          <DataField>conductor_detenido</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="licencia_confiscada">
+          <DataField>licencia_confiscada</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="NivelGases">
           <DataField>NivelGases</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -175,14 +159,6 @@
         </Field>
         <Field Name="Parte_Oficial">
           <DataField>Parte_Oficial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ClasePlaca">
-          <DataField>ClasePlaca</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CodigoPlaca">
-          <DataField>CodigoPlaca</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Alcohole_Realziada">
@@ -215,7 +191,7 @@
         </Field>
         <Field Name="numeroparte">
           <DataField>numeroparte</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="codigo_articulo">
           <DataField>codigo_articulo</DataField>
@@ -241,10 +217,6 @@
           <DataField>observaciones</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="EstadoFirma">
-          <DataField>EstadoFirma</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="nombreTestigo">
           <DataField>nombreTestigo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -255,6 +227,54 @@
         </Field>
         <Field Name="telTestigo">
           <DataField>telTestigo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="tipoidevehiculo">
+          <DataField>tipoidevehiculo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EstadoFirma">
+          <DataField>EstadoFirma</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClasePlaca">
+          <DataField>ClasePlaca</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CodigoPlaca">
+          <DataField>CodigoPlaca</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="numero_placa">
+          <DataField>numero_placa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DescripcionTV">
+          <DataField>DescripcionTV</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="marca">
+          <DataField>marca</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DescripcionMarca">
+          <DataField>DescripcionMarca</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="tipo_carroceria">
+          <DataField>tipo_carroceria</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DescripcionCarroceria">
+          <DataField>DescripcionCarroceria</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Rev_Tecnica">
+          <DataField>Rev_Tecnica</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="numero_vin">
+          <DataField>numero_vin</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -293,9 +313,37 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Reporte por Reimpresión de Boletas de Campo</Value>
+                    <Value>MINISTERIO DE OBRAS PÚBLICAS Y TRANSPORTE</Value>
                     <Style>
-                      <FontSize>14pt</FontSize>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>DIRECCIÓN GENERAL DE LA POLICÍA DE TRANSITO</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>BOLETA DE CITACIÓN</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -308,7 +356,7 @@
             <rd:DefaultName>Textbox8</rd:DefaultName>
             <Top>0.44593cm</Top>
             <Left>0.79624cm</Left>
-            <Height>1.44666cm</Height>
+            <Height>1.65833cm</Height>
             <Width>13.6197cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -526,8 +574,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TipoDocumento</rd:DefaultName>
-            <Top>6.04878cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>5.55461cm</Top>
+            <Left>0.79634cm</Left>
             <Height>0.52944cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>6</ZIndex>
@@ -571,8 +619,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>sexo</rd:DefaultName>
-            <Top>6.64878cm</Top>
-            <Left>0.79622cm</Left>
+            <Top>6.08405cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.45861cm</Height>
             <Width>8.63831cm</Width>
             <ZIndex>7</ZIndex>
@@ -616,7 +664,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>FechaNacimiento</rd:DefaultName>
-            <Top>5.55461cm</Top>
+            <Top>6.57794cm</Top>
             <Left>0.7962cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
@@ -661,8 +709,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>senasDireccion</rd:DefaultName>
-            <Top>7.70739cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>7.10739cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.52944cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>9</ZIndex>
@@ -706,8 +754,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>tipo_lic</rd:DefaultName>
-            <Top>8.73982cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>8.24565cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>10</ZIndex>
@@ -751,8 +799,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Identificacion</rd:DefaultName>
-            <Top>9.73698cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>8.74863cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.49417cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>11</ZIndex>
@@ -796,8 +844,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>lugar_hechos</rd:DefaultName>
-            <Top>10.26642cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>9.80753cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.49417cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>12</ZIndex>
@@ -841,8 +889,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>kilometro</rd:DefaultName>
-            <Top>10.79586cm</Top>
-            <Left>0.79626cm</Left>
+            <Top>10.33698cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>13</ZIndex>
@@ -880,8 +928,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClasePlaca</rd:DefaultName>
-            <Top>13.85704cm</Top>
-            <Left>0.79626cm</Left>
+            <Top>10.83115cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>14</ZIndex>
@@ -925,8 +973,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionTipoAutomovil</rd:DefaultName>
-            <Top>14.35121cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>11.3606cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>15</ZIndex>
@@ -970,8 +1018,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionCarroceria</rd:DefaultName>
-            <Top>14.85419cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>11.86358cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.47681cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>16</ZIndex>
@@ -1009,8 +1057,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionMarca</rd:DefaultName>
-            <Top>15.331cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>12.34039cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>17</ZIndex>
@@ -1048,8 +1096,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Rev_Tecnica</rd:DefaultName>
-            <Top>9.20753cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>12.87866cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>18</ZIndex>
@@ -1093,8 +1141,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionOficinaImpugna</rd:DefaultName>
-            <Top>11.32531cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>13.84851cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.49417cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>19</ZIndex>
@@ -1138,8 +1186,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>NivelGases</rd:DefaultName>
-            <Top>18.27429cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>19.3854cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.45889cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>20</ZIndex>
@@ -1183,8 +1231,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Velocidad</rd:DefaultName>
-            <Top>18.76845cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>19.87956cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>21</ZIndex>
@@ -1199,8 +1247,8 @@
             </Style>
           </Textbox>
           <Line Name="Line3">
-            <Top>30.03655cm</Top>
-            <Left>0.79633cm</Left>
+            <Top>31.24214cm</Top>
+            <Left>0.79648cm</Left>
             <Height>0cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>22</ZIndex>
@@ -1229,8 +1277,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePagina</rd:DefaultName>
-            <Top>30.17766cm</Top>
-            <Left>0.79633cm</Left>
+            <Top>31.38325cm</Top>
+            <Left>0.79648cm</Left>
             <Height>1.82544cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>23</ZIndex>
@@ -1262,8 +1310,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePaginaAutoridad</rd:DefaultName>
-            <Top>32.1442cm</Top>
-            <Left>0.79633cm</Left>
+            <Top>33.34979cm</Top>
+            <Left>0.79648cm</Left>
             <Height>1.85329cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>24</ZIndex>
@@ -1284,8 +1332,8 @@
             <Source>External</Source>
             <Value>=Parameters!ImagenFirmaUsuarioPath.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>23.62371cm</Top>
-            <Left>2.06081cm</Left>
+            <Top>24.8293cm</Top>
+            <Left>2.06096cm</Left>
             <Height>2.00649cm</Height>
             <Width>6.15667cm</Width>
             <ZIndex>25</ZIndex>
@@ -1303,8 +1351,8 @@
             <Source>External</Source>
             <Value>=Parameters!ImagenFirmaInspectorPath.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>23.62371cm</Top>
-            <Left>11.30437cm</Left>
+            <Top>24.8293cm</Top>
+            <Left>11.30452cm</Left>
             <Height>2.00649cm</Height>
             <Width>6.36833cm</Width>
             <ZIndex>26</ZIndex>
@@ -1747,8 +1795,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>20.27491cm</Top>
-            <Left>0.79622cm</Left>
+            <Top>21.4805cm</Top>
+            <Left>0.79637cm</Left>
             <Height>3cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>27</ZIndex>
@@ -1921,8 +1969,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>25.93226cm</Top>
-            <Left>0.79629cm</Left>
+            <Top>27.13785cm</Top>
+            <Left>0.79644cm</Left>
             <Height>1.2cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>28</ZIndex>
@@ -1949,8 +1997,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox90</rd:DefaultName>
-            <Top>2.06898cm</Top>
-            <Left>3.79955cm</Left>
+            <Top>2.28065cm</Top>
+            <Left>3.76427cm</Left>
             <Height>0.6cm</Height>
             <Width>9.28636cm</Width>
             <ZIndex>29</ZIndex>
@@ -1994,8 +2042,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>7.14267cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>9.27808cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>30</ZIndex>
@@ -2039,8 +2087,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>8.27211cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>7.70738cm</Top>
+            <Left>0.7962cm</Left>
             <Height>0.46771cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>31</ZIndex>
@@ -2084,8 +2132,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>11.85475cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>16.4246cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.47624cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>32</ZIndex>
@@ -2129,8 +2177,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>12.331cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>16.90085cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>33</ZIndex>
@@ -2174,8 +2222,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>12.86871cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>14.92475cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>34</ZIndex>
@@ -2219,8 +2267,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>13.36287cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>15.41891cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>35</ZIndex>
@@ -2264,8 +2312,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>16.73076cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>17.84187cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>36</ZIndex>
@@ -2309,8 +2357,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>17.19846cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>18.30957cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.52062cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>37</ZIndex>
@@ -2354,8 +2402,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox17</rd:DefaultName>
-            <Top>17.75437cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>18.86548cm</Top>
+            <Left>0.79636cm</Left>
             <Height>0.48464cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>38</ZIndex>
@@ -2389,7 +2437,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=IIf(First(Fields!numeroparte.Value, "DataSet1") = "", "No Aplica", First(Fields!fuente_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!serie_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!numeroparte.Value, "DataSet1").ToString())</Value>
+                    <Value>=IIf(First(Fields!numeroparte.Value, "DataSet1") = "0", "No Aplica", First(Fields!fuente_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!serie_parteoficial.Value, "DataSet1").ToString()+" - "+First(Fields!numeroparte.Value, "DataSet1").ToString())</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -2399,11 +2447,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>19.27144cm</Top>
-            <Left>0.79622cm</Left>
+            <Top>20.38255cm</Top>
+            <Left>0.79637cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>39</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!numeroparte.Value, "DataSet1") = 0,True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2475,8 +2526,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>34.39486cm</Top>
-            <Left>0.79634cm</Left>
+            <Top>35.60045cm</Top>
+            <Left>0.79649cm</Left>
             <Height>1.92291cm</Height>
             <Width>17.74962cm</Width>
             <ZIndex>40</ZIndex>
@@ -2739,8 +2790,8 @@
                 </FilterValues>
               </Filter>
             </Filters>
-            <Top>27.59521cm</Top>
-            <Left>0.79627cm</Left>
+            <Top>28.8008cm</Top>
+            <Left>0.79642cm</Left>
             <Height>1.99375cm</Height>
             <Width>17.74962cm</Width>
             <ZIndex>41</ZIndex>
@@ -2753,8 +2804,93 @@
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox20">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Conductor Detenido:</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!conductor_detenido.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>14.41324cm</Top>
+            <Left>0.79636cm</Left>
+            <Height>0.47624cm</Height>
+            <Width>8.63833cm</Width>
+            <ZIndex>42</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox21">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Licencia Confiscada:</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!licencia_confiscada.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>15.91308cm</Top>
+            <Left>0.79636cm</Left>
+            <Height>0.47624cm</Height>
+            <Width>8.63833cm</Width>
+            <ZIndex>43</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>14.40755in</Height>
+        <Height>14.98047in</Height>
         <Style />
       </Body>
       <Width>7.82235in</Width>

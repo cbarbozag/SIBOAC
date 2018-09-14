@@ -59,21 +59,9 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public Nullable<int> kilometro { get; set; }
 
-    public string numero_placa { get; set; }
-
     public Nullable<int> codveh { get; set; }
 
     public string DescripcionTipoAutomovil { get; set; }
-
-    public Nullable<int> tipo_carroceria { get; set; }
-
-    public string DescripcionCarroceria { get; set; }
-
-    public string marca { get; set; }
-
-    public string DescripcionMarca { get; set; }
-
-    public string Rev_Tecnica { get; set; }
 
     public string codOficinaImpugnacion { get; set; }
 
@@ -87,6 +75,10 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public string DepositoVehiculo { get; set; }
 
+    public string conductor_detenido { get; set; }
+
+    public string licencia_confiscada { get; set; }
+
     public string NivelGases { get; set; }
 
     public Nullable<int> Velocidad { get; set; }
@@ -96,10 +88,6 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
     public string NombreInspector { get; set; }
 
     public string Parte_Oficial { get; set; }
-
-    public string ClasePlaca { get; set; }
-
-    public string CodigoPlaca { get; set; }
 
     public string Alcohole_Realziada { get; set; }
 
@@ -115,7 +103,7 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public string serie_parteoficial { get; set; }
 
-    public string numeroparte { get; set; }
+    public Nullable<int> numeroparte { get; set; }
 
     public string codigo_articulo { get; set; }
 
@@ -129,13 +117,35 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public string observaciones { get; set; }
 
-    public string EstadoFirma { get; set; }
-
     public string nombreTestigo { get; set; }
 
     public string idenTestigo { get; set; }
 
     public string telTestigo { get; set; }
+
+    public string tipoidevehiculo { get; set; }
+
+    public string EstadoFirma { get; set; }
+
+    public string ClasePlaca { get; set; }
+
+    public string CodigoPlaca { get; set; }
+
+    public string numero_placa { get; set; }
+
+    public string DescripcionTV { get; set; }
+
+    public string marca { get; set; }
+
+    public string DescripcionMarca { get; set; }
+
+    public Nullable<int> tipo_carroceria { get; set; }
+
+    public string DescripcionCarroceria { get; set; }
+
+    public string Rev_Tecnica { get; set; }
+
+    public string numero_vin { get; set; }
 
 }
 

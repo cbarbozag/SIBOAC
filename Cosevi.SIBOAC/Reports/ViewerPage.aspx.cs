@@ -86,8 +86,8 @@ namespace Cosevi.SIBOAC.Reports
                         var CodigoInsp = db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta && a.numeroparte == NumParte).Select(a => a.codigo_inspector).ToList();
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
-                        string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
-                        //string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+                        //string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
+                        string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];
 

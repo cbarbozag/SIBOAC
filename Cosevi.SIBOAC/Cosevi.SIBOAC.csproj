@@ -1112,9 +1112,9 @@
       <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
     </Content>
     <None Include="GetReimpresionDeBoletasDeCampoDataSet.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GetReimpresionDeBoletasDeCampoDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <Content Include="GetReimpresionDeBoletasDeCampoDataSet.xss">
       <DependentUpon>GetReimpresionDeBoletasDeCampoDataSet.xsd</DependentUpon>
