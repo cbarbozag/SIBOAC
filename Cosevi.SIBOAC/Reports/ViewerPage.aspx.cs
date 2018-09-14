@@ -266,7 +266,7 @@ namespace Cosevi.SIBOAC.Reports
                                 if (System.IO.File.Exists(existeAdj))
                                 {
 
-                                    listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
+                                    listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
 
                                 }
                                 else
@@ -286,7 +286,7 @@ namespace Cosevi.SIBOAC.Reports
                                         bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                         bitmap1.Save(existeAdj);
 
-                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
+                                        listaArchivosB.Rows.Add(new Uri(Path.Combine(ruta, existeA)).AbsoluteUri, numero_boleta);
 
                                         contador++;
                                     }                                    

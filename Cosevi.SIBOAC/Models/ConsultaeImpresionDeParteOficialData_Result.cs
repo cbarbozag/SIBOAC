@@ -191,6 +191,14 @@ public partial class ConsultaeImpresionDeParteOficialData_Result
 
     public string DescripcionDispositivo { get; set; }
 
+    public Nullable<int> CodigoDano { get; set; }
+
+    public string DescripcionDano { get; set; }
+
+    public string codrol { get; set; }
+
+    public string DescripcionRol { get; set; }
+
     public string tipo_ide { get; set; }
 
     public string identificacion { get; set; }
@@ -233,19 +241,31 @@ public partial class ConsultaeImpresionDeParteOficialData_Result
 
     public string sexoherido { get; set; }
 
-    public Nullable<int> CodigoDano { get; set; }
+    public Nullable<int> CodigoDanoH { get; set; }
 
-    public string DescripcionDano { get; set; }
+    public string DescripcionDanoH { get; set; }
 
     public Nullable<int> edadherido { get; set; }
 
-    public string codrol { get; set; }
+    public string codRolHerido { get; set; }
 
-    public string DescripcionRol { get; set; }
+    public string DescripcionRolH { get; set; }
 
     public string codhosp { get; set; }
 
     public string DescripcionHospital { get; set; }
+
+    public Nullable<decimal> boletaHerido { get; set; }
+
+    public Nullable<int> serieHerido { get; set; }
+
+    public string fuenteHerido { get; set; }
+
+    public string nivelAlcohoH { get; set; }
+
+    public string numPrueAlcoholH { get; set; }
+
+    public string alcoholSensorH { get; set; }
 
     public string rev_tecnica { get; set; }
 

@@ -2,9 +2,8 @@
 <xs:schema id="ConsultaeImpresionParteOficial" targetNamespace="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:mstns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns="http://tempuri.org/ConsultaeImpresionParteOficial.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -114,6 +113,10 @@
               <Mapping SourceColumn="DescripcionManiobra" DataSetColumn="DescripcionManiobra" />
               <Mapping SourceColumn="CodigoDispositivo" DataSetColumn="CodigoDispositivo" />
               <Mapping SourceColumn="DescripcionDispositivo" DataSetColumn="DescripcionDispositivo" />
+              <Mapping SourceColumn="CodigoDano" DataSetColumn="CodigoDano" />
+              <Mapping SourceColumn="DescripcionDano" DataSetColumn="DescripcionDano" />
+              <Mapping SourceColumn="codrol" DataSetColumn="codrol" />
+              <Mapping SourceColumn="DescripcionRol" DataSetColumn="DescripcionRol" />
               <Mapping SourceColumn="tipo_ide" DataSetColumn="tipo_ide" />
               <Mapping SourceColumn="identificacion" DataSetColumn="identificacion" />
               <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
@@ -135,13 +138,19 @@
               <Mapping SourceColumn="apellido1herido" DataSetColumn="apellido1herido" />
               <Mapping SourceColumn="apellido2herido" DataSetColumn="apellido2herido" />
               <Mapping SourceColumn="sexoherido" DataSetColumn="sexoherido" />
-              <Mapping SourceColumn="CodigoDano" DataSetColumn="CodigoDano" />
-              <Mapping SourceColumn="DescripcionDano" DataSetColumn="DescripcionDano" />
+              <Mapping SourceColumn="CodigoDanoH" DataSetColumn="CodigoDanoH" />
+              <Mapping SourceColumn="DescripcionDanoH" DataSetColumn="DescripcionDanoH" />
               <Mapping SourceColumn="edadherido" DataSetColumn="edadherido" />
-              <Mapping SourceColumn="codrol" DataSetColumn="codrol" />
-              <Mapping SourceColumn="DescripcionRol" DataSetColumn="DescripcionRol" />
+              <Mapping SourceColumn="codRolHerido" DataSetColumn="codRolHerido" />
+              <Mapping SourceColumn="DescripcionRolH" DataSetColumn="DescripcionRolH" />
               <Mapping SourceColumn="codhosp" DataSetColumn="codhosp" />
               <Mapping SourceColumn="DescripcionHospital" DataSetColumn="DescripcionHospital" />
+              <Mapping SourceColumn="boletaHerido" DataSetColumn="boletaHerido" />
+              <Mapping SourceColumn="serieHerido" DataSetColumn="serieHerido" />
+              <Mapping SourceColumn="fuenteHerido" DataSetColumn="fuenteHerido" />
+              <Mapping SourceColumn="nivelAlcohoH" DataSetColumn="nivelAlcohoH" />
+              <Mapping SourceColumn="numPrueAlcoholH" DataSetColumn="numPrueAlcoholH" />
+              <Mapping SourceColumn="alcoholSensorH" DataSetColumn="alcoholSensorH" />
               <Mapping SourceColumn="rev_tecnica" DataSetColumn="rev_tecnica" />
               <Mapping SourceColumn="carga" DataSetColumn="carga" />
               <Mapping SourceColumn="PortaSenal" DataSetColumn="PortaSenal" />
@@ -599,6 +608,28 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="CodigoDano" msprop:Generator_ColumnVarNameInTable="columnCodigoDano" msprop:Generator_ColumnPropNameInRow="CodigoDano" msprop:Generator_ColumnPropNameInTable="CodigoDanoColumn" msprop:Generator_UserColumnName="CodigoDano" type="xs:int" minOccurs="0" />
+              <xs:element name="DescripcionDano" msprop:Generator_ColumnVarNameInTable="columnDescripcionDano" msprop:Generator_ColumnPropNameInRow="DescripcionDano" msprop:Generator_ColumnPropNameInTable="DescripcionDanoColumn" msprop:Generator_UserColumnName="DescripcionDano" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="codrol" msprop:Generator_ColumnVarNameInTable="columncodrol" msprop:Generator_ColumnPropNameInRow="codrol" msprop:Generator_ColumnPropNameInTable="codrolColumn" msprop:Generator_UserColumnName="codrol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DescripcionRol" msprop:Generator_ColumnVarNameInTable="columnDescripcionRol" msprop:Generator_ColumnPropNameInRow="DescripcionRol" msprop:Generator_ColumnPropNameInTable="DescripcionRolColumn" msprop:Generator_UserColumnName="DescripcionRol" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="tipo_ide" msprop:Generator_ColumnVarNameInTable="columntipo_ide" msprop:Generator_ColumnPropNameInRow="tipo_ide" msprop:Generator_ColumnPropNameInTable="tipo_ideColumn" msprop:Generator_UserColumnName="tipo_ide">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -722,8 +753,8 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CodigoDano" msprop:Generator_ColumnVarNameInTable="columnCodigoDano" msprop:Generator_ColumnPropNameInRow="CodigoDano" msprop:Generator_ColumnPropNameInTable="CodigoDanoColumn" msprop:Generator_UserColumnName="CodigoDano" type="xs:int" minOccurs="0" />
-              <xs:element name="DescripcionDano" msprop:Generator_ColumnVarNameInTable="columnDescripcionDano" msprop:Generator_ColumnPropNameInRow="DescripcionDano" msprop:Generator_ColumnPropNameInTable="DescripcionDanoColumn" msprop:Generator_UserColumnName="DescripcionDano" minOccurs="0">
+              <xs:element name="CodigoDanoH" msprop:Generator_ColumnVarNameInTable="columnCodigoDanoH" msprop:Generator_ColumnPropNameInRow="CodigoDanoH" msprop:Generator_ColumnPropNameInTable="CodigoDanoHColumn" msprop:Generator_UserColumnName="CodigoDanoH" type="xs:int" minOccurs="0" />
+              <xs:element name="DescripcionDanoH" msprop:Generator_ColumnVarNameInTable="columnDescripcionDanoH" msprop:Generator_ColumnPropNameInRow="DescripcionDanoH" msprop:Generator_ColumnPropNameInTable="DescripcionDanoHColumn" msprop:Generator_UserColumnName="DescripcionDanoH" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -731,14 +762,14 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="edadherido" msprop:Generator_ColumnVarNameInTable="columnedadherido" msprop:Generator_ColumnPropNameInRow="edadherido" msprop:Generator_ColumnPropNameInTable="edadheridoColumn" msprop:Generator_UserColumnName="edadherido" type="xs:int" minOccurs="0" />
-              <xs:element name="codrol" msprop:Generator_ColumnVarNameInTable="columncodrol" msprop:Generator_ColumnPropNameInRow="codrol" msprop:Generator_ColumnPropNameInTable="codrolColumn" msprop:Generator_UserColumnName="codrol" minOccurs="0">
+              <xs:element name="codRolHerido" msprop:Generator_ColumnVarNameInTable="columncodRolHerido" msprop:Generator_ColumnPropNameInRow="codRolHerido" msprop:Generator_ColumnPropNameInTable="codRolHeridoColumn" msprop:Generator_UserColumnName="codRolHerido" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DescripcionRol" msprop:Generator_ColumnVarNameInTable="columnDescripcionRol" msprop:Generator_ColumnPropNameInRow="DescripcionRol" msprop:Generator_ColumnPropNameInTable="DescripcionRolColumn" msprop:Generator_UserColumnName="DescripcionRol" minOccurs="0">
+              <xs:element name="DescripcionRolH" msprop:Generator_ColumnVarNameInTable="columnDescripcionRolH" msprop:Generator_ColumnPropNameInRow="DescripcionRolH" msprop:Generator_ColumnPropNameInTable="DescripcionRolHColumn" msprop:Generator_UserColumnName="DescripcionRolH" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -756,6 +787,36 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="boletaHerido" msprop:Generator_ColumnVarNameInTable="columnboletaHerido" msprop:Generator_ColumnPropNameInRow="boletaHerido" msprop:Generator_ColumnPropNameInTable="boletaHeridoColumn" msprop:Generator_UserColumnName="boletaHerido" type="xs:decimal" minOccurs="0" />
+              <xs:element name="serieHerido" msprop:Generator_ColumnVarNameInTable="columnserieHerido" msprop:Generator_ColumnPropNameInRow="serieHerido" msprop:Generator_ColumnPropNameInTable="serieHeridoColumn" msprop:Generator_UserColumnName="serieHerido" type="xs:int" minOccurs="0" />
+              <xs:element name="fuenteHerido" msprop:Generator_ColumnVarNameInTable="columnfuenteHerido" msprop:Generator_ColumnPropNameInRow="fuenteHerido" msprop:Generator_ColumnPropNameInTable="fuenteHeridoColumn" msprop:Generator_UserColumnName="fuenteHerido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nivelAlcohoH" msprop:Generator_ColumnVarNameInTable="columnnivelAlcohoH" msprop:Generator_ColumnPropNameInRow="nivelAlcohoH" msprop:Generator_ColumnPropNameInTable="nivelAlcohoHColumn" msprop:Generator_UserColumnName="nivelAlcohoH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="numPrueAlcoholH" msprop:Generator_ColumnVarNameInTable="columnnumPrueAlcoholH" msprop:Generator_ColumnPropNameInRow="numPrueAlcoholH" msprop:Generator_ColumnPropNameInTable="numPrueAlcoholHColumn" msprop:Generator_UserColumnName="numPrueAlcoholH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="alcoholSensorH" msprop:Generator_ColumnVarNameInTable="columnalcoholSensorH" msprop:Generator_ColumnPropNameInRow="alcoholSensorH" msprop:Generator_ColumnPropNameInTable="alcoholSensorHColumn" msprop:Generator_UserColumnName="alcoholSensorH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -892,7 +953,7 @@
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+    <xs:unique name="Constraint1">
       <xs:selector xpath=".//mstns:ConsultaeImpresionDeParteOficialData" />
       <xs:field xpath="mstns:FuenteParte" />
       <xs:field xpath="mstns:SerieParte" />
@@ -900,6 +961,7 @@
       <xs:field xpath="mstns:numero_boleta" />
       <xs:field xpath="mstns:serie" />
       <xs:field xpath="mstns:fuente" />
+      <xs:field xpath="mstns:codRolHerido" />
     </xs:unique>
   </xs:element>
 </xs:schema>

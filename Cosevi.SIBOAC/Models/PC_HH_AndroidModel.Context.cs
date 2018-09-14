@@ -684,38 +684,6 @@ public partial class PC_HH_AndroidEntities : DbContext
     }
 
 
-    public virtual ObjectResult<ConsultaeImpresionDeParteOficialData_Result> ConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3, string usuarioSistema)
-    {
-
-        var tipoConsultaParameter = tipoConsulta.HasValue ?
-            new ObjectParameter("TipoConsulta", tipoConsulta) :
-            new ObjectParameter("TipoConsulta", typeof(int));
-
-
-        var parametro1Parameter = parametro1 != null ?
-            new ObjectParameter("Parametro1", parametro1) :
-            new ObjectParameter("Parametro1", typeof(string));
-
-
-        var parametro2Parameter = parametro2 != null ?
-            new ObjectParameter("Parametro2", parametro2) :
-            new ObjectParameter("Parametro2", typeof(string));
-
-
-        var parametro3Parameter = parametro3 != null ?
-            new ObjectParameter("Parametro3", parametro3) :
-            new ObjectParameter("Parametro3", typeof(string));
-
-
-        var usuarioSistemaParameter = usuarioSistema != null ?
-            new ObjectParameter("UsuarioSistema", usuarioSistema) :
-            new ObjectParameter("UsuarioSistema", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaeImpresionDeParteOficialData_Result>("ConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter, usuarioSistemaParameter);
-    }
-
-
     public virtual ObjectResult<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string serieBoleta, string numeroBoleta, string usuarioSistema)
     {
 
@@ -777,6 +745,38 @@ public partial class PC_HH_AndroidEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBitacoraAdjuntos_Result>("GetBitacoraAdjuntos", tipoConsulta1Parameter, tipoConsulta2Parameter, tipoParameter, serieParameter, numeroParameter, fechaInicialParameter, fechaFinalParameter);
+    }
+
+
+    public virtual ObjectResult<ConsultaeImpresionDeParteOficialData_Result> ConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3, string usuarioSistema)
+    {
+
+        var tipoConsultaParameter = tipoConsulta.HasValue ?
+            new ObjectParameter("TipoConsulta", tipoConsulta) :
+            new ObjectParameter("TipoConsulta", typeof(int));
+
+
+        var parametro1Parameter = parametro1 != null ?
+            new ObjectParameter("Parametro1", parametro1) :
+            new ObjectParameter("Parametro1", typeof(string));
+
+
+        var parametro2Parameter = parametro2 != null ?
+            new ObjectParameter("Parametro2", parametro2) :
+            new ObjectParameter("Parametro2", typeof(string));
+
+
+        var parametro3Parameter = parametro3 != null ?
+            new ObjectParameter("Parametro3", parametro3) :
+            new ObjectParameter("Parametro3", typeof(string));
+
+
+        var usuarioSistemaParameter = usuarioSistema != null ?
+            new ObjectParameter("UsuarioSistema", usuarioSistema) :
+            new ObjectParameter("UsuarioSistema", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaeImpresionDeParteOficialData_Result>("ConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter, usuarioSistemaParameter);
     }
 
 }

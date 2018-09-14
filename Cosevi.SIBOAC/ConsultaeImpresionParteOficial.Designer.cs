@@ -453,6 +453,14 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnDescripcionDispositivo;
             
+            private global::System.Data.DataColumn columnCodigoDano;
+            
+            private global::System.Data.DataColumn columnDescripcionDano;
+            
+            private global::System.Data.DataColumn columncodrol;
+            
+            private global::System.Data.DataColumn columnDescripcionRol;
+            
             private global::System.Data.DataColumn columntipo_ide;
             
             private global::System.Data.DataColumn columnidentificacion;
@@ -495,19 +503,31 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnsexoherido;
             
-            private global::System.Data.DataColumn columnCodigoDano;
+            private global::System.Data.DataColumn columnCodigoDanoH;
             
-            private global::System.Data.DataColumn columnDescripcionDano;
+            private global::System.Data.DataColumn columnDescripcionDanoH;
             
             private global::System.Data.DataColumn columnedadherido;
             
-            private global::System.Data.DataColumn columncodrol;
+            private global::System.Data.DataColumn columncodRolHerido;
             
-            private global::System.Data.DataColumn columnDescripcionRol;
+            private global::System.Data.DataColumn columnDescripcionRolH;
             
             private global::System.Data.DataColumn columncodhosp;
             
             private global::System.Data.DataColumn columnDescripcionHospital;
+            
+            private global::System.Data.DataColumn columnboletaHerido;
+            
+            private global::System.Data.DataColumn columnserieHerido;
+            
+            private global::System.Data.DataColumn columnfuenteHerido;
+            
+            private global::System.Data.DataColumn columnnivelAlcohoH;
+            
+            private global::System.Data.DataColumn columnnumPrueAlcoholH;
+            
+            private global::System.Data.DataColumn columnalcoholSensorH;
             
             private global::System.Data.DataColumn columnrev_tecnica;
             
@@ -1280,6 +1300,38 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CodigoDanoColumn {
+                get {
+                    return this.columnCodigoDano;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DescripcionDanoColumn {
+                get {
+                    return this.columnDescripcionDano;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn codrolColumn {
+                get {
+                    return this.columncodrol;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DescripcionRolColumn {
+                get {
+                    return this.columnDescripcionRol;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn tipo_ideColumn {
                 get {
                     return this.columntipo_ide;
@@ -1448,17 +1500,17 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CodigoDanoColumn {
+            public global::System.Data.DataColumn CodigoDanoHColumn {
                 get {
-                    return this.columnCodigoDano;
+                    return this.columnCodigoDanoH;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DescripcionDanoColumn {
+            public global::System.Data.DataColumn DescripcionDanoHColumn {
                 get {
-                    return this.columnDescripcionDano;
+                    return this.columnDescripcionDanoH;
                 }
             }
             
@@ -1472,17 +1524,17 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn codrolColumn {
+            public global::System.Data.DataColumn codRolHeridoColumn {
                 get {
-                    return this.columncodrol;
+                    return this.columncodRolHerido;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DescripcionRolColumn {
+            public global::System.Data.DataColumn DescripcionRolHColumn {
                 get {
-                    return this.columnDescripcionRol;
+                    return this.columnDescripcionRolH;
                 }
             }
             
@@ -1499,6 +1551,54 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn DescripcionHospitalColumn {
                 get {
                     return this.columnDescripcionHospital;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn boletaHeridoColumn {
+                get {
+                    return this.columnboletaHerido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn serieHeridoColumn {
+                get {
+                    return this.columnserieHerido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn fuenteHeridoColumn {
+                get {
+                    return this.columnfuenteHerido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn nivelAlcohoHColumn {
+                get {
+                    return this.columnnivelAlcohoH;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numPrueAlcoholHColumn {
+                get {
+                    return this.columnnumPrueAlcoholH;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn alcoholSensorHColumn {
+                get {
+                    return this.columnalcoholSensorH;
                 }
             }
             
@@ -1787,6 +1887,10 @@ namespace Cosevi.SIBOAC {
                         string DescripcionManiobra, 
                         int CodigoDispositivo, 
                         string DescripcionDispositivo, 
+                        int CodigoDano, 
+                        string DescripcionDano, 
+                        string codrol, 
+                        string DescripcionRol, 
                         string tipo_ide, 
                         string identificacion, 
                         string nombre, 
@@ -1808,13 +1912,19 @@ namespace Cosevi.SIBOAC {
                         string apellido1herido, 
                         string apellido2herido, 
                         string sexoherido, 
-                        int CodigoDano, 
-                        string DescripcionDano, 
+                        int CodigoDanoH, 
+                        string DescripcionDanoH, 
                         int edadherido, 
-                        string codrol, 
-                        string DescripcionRol, 
+                        string codRolHerido, 
+                        string DescripcionRolH, 
                         string codhosp, 
                         string DescripcionHospital, 
+                        decimal boletaHerido, 
+                        int serieHerido, 
+                        string fuenteHerido, 
+                        string nivelAlcohoH, 
+                        string numPrueAlcoholH, 
+                        string alcoholSensorH, 
                         string rev_tecnica, 
                         string carga, 
                         string PortaSenal, 
@@ -1924,6 +2034,10 @@ namespace Cosevi.SIBOAC {
                         DescripcionManiobra,
                         CodigoDispositivo,
                         DescripcionDispositivo,
+                        CodigoDano,
+                        DescripcionDano,
+                        codrol,
+                        DescripcionRol,
                         tipo_ide,
                         identificacion,
                         nombre,
@@ -1945,13 +2059,19 @@ namespace Cosevi.SIBOAC {
                         apellido1herido,
                         apellido2herido,
                         sexoherido,
-                        CodigoDano,
-                        DescripcionDano,
+                        CodigoDanoH,
+                        DescripcionDanoH,
                         edadherido,
-                        codrol,
-                        DescripcionRol,
+                        codRolHerido,
+                        DescripcionRolH,
                         codhosp,
                         DescripcionHospital,
+                        boletaHerido,
+                        serieHerido,
+                        fuenteHerido,
+                        nivelAlcohoH,
+                        numPrueAlcoholH,
+                        alcoholSensorH,
                         rev_tecnica,
                         carga,
                         PortaSenal,
@@ -1975,18 +2095,6 @@ namespace Cosevi.SIBOAC {
                 rowConsultaeImpresionDeParteOficialDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowConsultaeImpresionDeParteOficialDataRow);
                 return rowConsultaeImpresionDeParteOficialDataRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ConsultaeImpresionDeParteOficialDataRow FindByFuenteParteSerieParteNumeroPartenumero_boletaseriefuente(string FuenteParte, string SerieParte, string NumeroParte, decimal numero_boleta, int serie, string fuente) {
-                return ((ConsultaeImpresionDeParteOficialDataRow)(this.Rows.Find(new object[] {
-                            FuenteParte,
-                            SerieParte,
-                            NumeroParte,
-                            numero_boleta,
-                            serie,
-                            fuente})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2093,6 +2201,10 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionManiobra = base.Columns["DescripcionManiobra"];
                 this.columnCodigoDispositivo = base.Columns["CodigoDispositivo"];
                 this.columnDescripcionDispositivo = base.Columns["DescripcionDispositivo"];
+                this.columnCodigoDano = base.Columns["CodigoDano"];
+                this.columnDescripcionDano = base.Columns["DescripcionDano"];
+                this.columncodrol = base.Columns["codrol"];
+                this.columnDescripcionRol = base.Columns["DescripcionRol"];
                 this.columntipo_ide = base.Columns["tipo_ide"];
                 this.columnidentificacion = base.Columns["identificacion"];
                 this.columnnombre = base.Columns["nombre"];
@@ -2114,13 +2226,19 @@ namespace Cosevi.SIBOAC {
                 this.columnapellido1herido = base.Columns["apellido1herido"];
                 this.columnapellido2herido = base.Columns["apellido2herido"];
                 this.columnsexoherido = base.Columns["sexoherido"];
-                this.columnCodigoDano = base.Columns["CodigoDano"];
-                this.columnDescripcionDano = base.Columns["DescripcionDano"];
+                this.columnCodigoDanoH = base.Columns["CodigoDanoH"];
+                this.columnDescripcionDanoH = base.Columns["DescripcionDanoH"];
                 this.columnedadherido = base.Columns["edadherido"];
-                this.columncodrol = base.Columns["codrol"];
-                this.columnDescripcionRol = base.Columns["DescripcionRol"];
+                this.columncodRolHerido = base.Columns["codRolHerido"];
+                this.columnDescripcionRolH = base.Columns["DescripcionRolH"];
                 this.columncodhosp = base.Columns["codhosp"];
                 this.columnDescripcionHospital = base.Columns["DescripcionHospital"];
+                this.columnboletaHerido = base.Columns["boletaHerido"];
+                this.columnserieHerido = base.Columns["serieHerido"];
+                this.columnfuenteHerido = base.Columns["fuenteHerido"];
+                this.columnnivelAlcohoH = base.Columns["nivelAlcohoH"];
+                this.columnnumPrueAlcoholH = base.Columns["numPrueAlcoholH"];
+                this.columnalcoholSensorH = base.Columns["alcoholSensorH"];
                 this.columnrev_tecnica = base.Columns["rev_tecnica"];
                 this.columncarga = base.Columns["carga"];
                 this.columnPortaSenal = base.Columns["PortaSenal"];
@@ -2320,6 +2438,14 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnCodigoDispositivo);
                 this.columnDescripcionDispositivo = new global::System.Data.DataColumn("DescripcionDispositivo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcionDispositivo);
+                this.columnCodigoDano = new global::System.Data.DataColumn("CodigoDano", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodigoDano);
+                this.columnDescripcionDano = new global::System.Data.DataColumn("DescripcionDano", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionDano);
+                this.columncodrol = new global::System.Data.DataColumn("codrol", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodrol);
+                this.columnDescripcionRol = new global::System.Data.DataColumn("DescripcionRol", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionRol);
                 this.columntipo_ide = new global::System.Data.DataColumn("tipo_ide", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntipo_ide);
                 this.columnidentificacion = new global::System.Data.DataColumn("identificacion", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2362,20 +2488,32 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnapellido2herido);
                 this.columnsexoherido = new global::System.Data.DataColumn("sexoherido", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsexoherido);
-                this.columnCodigoDano = new global::System.Data.DataColumn("CodigoDano", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCodigoDano);
-                this.columnDescripcionDano = new global::System.Data.DataColumn("DescripcionDano", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionDano);
+                this.columnCodigoDanoH = new global::System.Data.DataColumn("CodigoDanoH", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodigoDanoH);
+                this.columnDescripcionDanoH = new global::System.Data.DataColumn("DescripcionDanoH", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionDanoH);
                 this.columnedadherido = new global::System.Data.DataColumn("edadherido", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnedadherido);
-                this.columncodrol = new global::System.Data.DataColumn("codrol", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncodrol);
-                this.columnDescripcionRol = new global::System.Data.DataColumn("DescripcionRol", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDescripcionRol);
+                this.columncodRolHerido = new global::System.Data.DataColumn("codRolHerido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncodRolHerido);
+                this.columnDescripcionRolH = new global::System.Data.DataColumn("DescripcionRolH", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcionRolH);
                 this.columncodhosp = new global::System.Data.DataColumn("codhosp", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodhosp);
                 this.columnDescripcionHospital = new global::System.Data.DataColumn("DescripcionHospital", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcionHospital);
+                this.columnboletaHerido = new global::System.Data.DataColumn("boletaHerido", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnboletaHerido);
+                this.columnserieHerido = new global::System.Data.DataColumn("serieHerido", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnserieHerido);
+                this.columnfuenteHerido = new global::System.Data.DataColumn("fuenteHerido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfuenteHerido);
+                this.columnnivelAlcohoH = new global::System.Data.DataColumn("nivelAlcohoH", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnivelAlcohoH);
+                this.columnnumPrueAlcoholH = new global::System.Data.DataColumn("numPrueAlcoholH", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumPrueAlcoholH);
+                this.columnalcoholSensorH = new global::System.Data.DataColumn("alcoholSensorH", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnalcoholSensorH);
                 this.columnrev_tecnica = new global::System.Data.DataColumn("rev_tecnica", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrev_tecnica);
                 this.columncarga = new global::System.Data.DataColumn("carga", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2422,7 +2560,8 @@ namespace Cosevi.SIBOAC {
                                 this.columnNumeroParte,
                                 this.columnnumero_boleta,
                                 this.columnserie,
-                                this.columnfuente}, true));
+                                this.columnfuente,
+                                this.columncodRolHerido}, false));
                 this.columnFuenteParte.AllowDBNull = false;
                 this.columnFuenteParte.MaxLength = 1;
                 this.columnSerieParte.AllowDBNull = false;
@@ -2543,6 +2682,9 @@ namespace Cosevi.SIBOAC {
                 this.columnSegHuella.MaxLength = 6;
                 this.columnDescripcionManiobra.MaxLength = 50;
                 this.columnDescripcionDispositivo.MaxLength = 50;
+                this.columnDescripcionDano.MaxLength = 50;
+                this.columncodrol.MaxLength = 2;
+                this.columnDescripcionRol.MaxLength = 50;
                 this.columntipo_ide.AllowDBNull = false;
                 this.columntipo_ide.MaxLength = 2;
                 this.columnidentificacion.AllowDBNull = false;
@@ -2562,11 +2704,15 @@ namespace Cosevi.SIBOAC {
                 this.columnapellido1herido.MaxLength = 20;
                 this.columnapellido2herido.MaxLength = 20;
                 this.columnsexoherido.MaxLength = 1;
-                this.columnDescripcionDano.MaxLength = 50;
-                this.columncodrol.MaxLength = 2;
-                this.columnDescripcionRol.MaxLength = 50;
+                this.columnDescripcionDanoH.MaxLength = 50;
+                this.columncodRolHerido.MaxLength = 2;
+                this.columnDescripcionRolH.MaxLength = 50;
                 this.columncodhosp.MaxLength = 3;
                 this.columnDescripcionHospital.MaxLength = 50;
+                this.columnfuenteHerido.MaxLength = 1;
+                this.columnnivelAlcohoH.MaxLength = 9;
+                this.columnnumPrueAlcoholH.MaxLength = 10;
+                this.columnalcoholSensorH.MaxLength = 10;
                 this.columnrev_tecnica.ReadOnly = true;
                 this.columnrev_tecnica.MaxLength = 1;
                 this.columncarga.MaxLength = 1;
@@ -3976,6 +4122,74 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int CodigoDano {
+                get {
+                    try {
+                        return ((int)(this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CodigoDano\' in table \'ConsultaeImpresionDeParteOficialData\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DescripcionDano {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionDano\' in table \'ConsultaeImpresionDeParteOficial" +
+                                "Data\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string codrol {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.codrolColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'codrol\' in table \'ConsultaeImpresionDeParteOficialData\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.codrolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DescripcionRol {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionRol\' in table \'ConsultaeImpresionDeParteOficialD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string tipo_ide {
                 get {
                     return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.tipo_ideColumn]));
@@ -4321,35 +4535,35 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int CodigoDano {
+            public int CodigoDanoH {
                 get {
                     try {
-                        return ((int)(this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn]));
+                        return ((int)(this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoHColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CodigoDano\' in table \'ConsultaeImpresionDeParteOficialData\'" +
-                                " is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CodigoDanoH\' in table \'ConsultaeImpresionDeParteOficialData" +
+                                "\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn] = value;
+                    this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoHColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DescripcionDano {
+            public string DescripcionDanoH {
                 get {
                     try {
-                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn]));
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoHColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionDano\' in table \'ConsultaeImpresionDeParteOficial" +
-                                "Data\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionDanoH\' in table \'ConsultaeImpresionDeParteOficia" +
+                                "lData\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn] = value;
+                    this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoHColumn] = value;
                 }
             }
             
@@ -4372,35 +4586,35 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string codrol {
+            public string codRolHerido {
                 get {
                     try {
-                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.codrolColumn]));
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.codRolHeridoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'codrol\' in table \'ConsultaeImpresionDeParteOficialData\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'codRolHerido\' in table \'ConsultaeImpresionDeParteOficialDat" +
+                                "a\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableConsultaeImpresionDeParteOficialData.codrolColumn] = value;
+                    this[this.tableConsultaeImpresionDeParteOficialData.codRolHeridoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DescripcionRol {
+            public string DescripcionRolH {
                 get {
                     try {
-                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn]));
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolHColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionRol\' in table \'ConsultaeImpresionDeParteOficialD" +
-                                "ata\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DescripcionRolH\' in table \'ConsultaeImpresionDeParteOficial" +
+                                "Data\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn] = value;
+                    this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolHColumn] = value;
                 }
             }
             
@@ -4435,6 +4649,108 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableConsultaeImpresionDeParteOficialData.DescripcionHospitalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal boletaHerido {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableConsultaeImpresionDeParteOficialData.boletaHeridoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'boletaHerido\' in table \'ConsultaeImpresionDeParteOficialDat" +
+                                "a\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.boletaHeridoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int serieHerido {
+                get {
+                    try {
+                        return ((int)(this[this.tableConsultaeImpresionDeParteOficialData.serieHeridoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'serieHerido\' in table \'ConsultaeImpresionDeParteOficialData" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.serieHeridoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string fuenteHerido {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.fuenteHeridoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fuenteHerido\' in table \'ConsultaeImpresionDeParteOficialDat" +
+                                "a\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.fuenteHeridoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string nivelAlcohoH {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.nivelAlcohoHColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'nivelAlcohoH\' in table \'ConsultaeImpresionDeParteOficialDat" +
+                                "a\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.nivelAlcohoHColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string numPrueAlcoholH {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.numPrueAlcoholHColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numPrueAlcoholH\' in table \'ConsultaeImpresionDeParteOficial" +
+                                "Data\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.numPrueAlcoholHColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string alcoholSensorH {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.alcoholSensorHColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'alcoholSensorH\' in table \'ConsultaeImpresionDeParteOficialD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.alcoholSensorHColumn] = value;
                 }
             }
             
@@ -5356,6 +5672,54 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCodigoDanoNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCodigoDanoNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDescripcionDanoNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDescripcionDanoNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IscodrolNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.codrolColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetcodrolNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.codrolColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDescripcionRolNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDescripcionRolNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsnombreNull() {
                 return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.nombreColumn);
             }
@@ -5584,26 +5948,26 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsCodigoDanoNull() {
-                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn);
+            public bool IsCodigoDanoHNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.CodigoDanoHColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetCodigoDanoNull() {
-                this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoColumn] = global::System.Convert.DBNull;
+            public void SetCodigoDanoHNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.CodigoDanoHColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDescripcionDanoNull() {
-                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn);
+            public bool IsDescripcionDanoHNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoHColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDescripcionDanoNull() {
-                this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoColumn] = global::System.Convert.DBNull;
+            public void SetDescripcionDanoHNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.DescripcionDanoHColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5620,26 +5984,26 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IscodrolNull() {
-                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.codrolColumn);
+            public bool IscodRolHeridoNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.codRolHeridoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetcodrolNull() {
-                this[this.tableConsultaeImpresionDeParteOficialData.codrolColumn] = global::System.Convert.DBNull;
+            public void SetcodRolHeridoNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.codRolHeridoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDescripcionRolNull() {
-                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn);
+            public bool IsDescripcionRolHNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.DescripcionRolHColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDescripcionRolNull() {
-                this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn] = global::System.Convert.DBNull;
+            public void SetDescripcionRolHNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolHColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5664,6 +6028,78 @@ namespace Cosevi.SIBOAC {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetDescripcionHospitalNull() {
                 this[this.tableConsultaeImpresionDeParteOficialData.DescripcionHospitalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsboletaHeridoNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.boletaHeridoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetboletaHeridoNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.boletaHeridoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsserieHeridoNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.serieHeridoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetserieHeridoNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.serieHeridoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsfuenteHeridoNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.fuenteHeridoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetfuenteHeridoNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.fuenteHeridoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnivelAlcohoHNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.nivelAlcohoHColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnivelAlcohoHNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.nivelAlcohoHColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumPrueAlcoholHNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.numPrueAlcoholHColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumPrueAlcoholHNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.numPrueAlcoholHColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsalcoholSensorHNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.alcoholSensorHColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetalcoholSensorHNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.alcoholSensorHColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6153,6 +6589,10 @@ namespace Cosevi.SIBOAC.ConsultaeImpresionParteOficialTableAdapters {
             tableMapping.ColumnMappings.Add("DescripcionManiobra", "DescripcionManiobra");
             tableMapping.ColumnMappings.Add("CodigoDispositivo", "CodigoDispositivo");
             tableMapping.ColumnMappings.Add("DescripcionDispositivo", "DescripcionDispositivo");
+            tableMapping.ColumnMappings.Add("CodigoDano", "CodigoDano");
+            tableMapping.ColumnMappings.Add("DescripcionDano", "DescripcionDano");
+            tableMapping.ColumnMappings.Add("codrol", "codrol");
+            tableMapping.ColumnMappings.Add("DescripcionRol", "DescripcionRol");
             tableMapping.ColumnMappings.Add("tipo_ide", "tipo_ide");
             tableMapping.ColumnMappings.Add("identificacion", "identificacion");
             tableMapping.ColumnMappings.Add("nombre", "nombre");
@@ -6174,13 +6614,19 @@ namespace Cosevi.SIBOAC.ConsultaeImpresionParteOficialTableAdapters {
             tableMapping.ColumnMappings.Add("apellido1herido", "apellido1herido");
             tableMapping.ColumnMappings.Add("apellido2herido", "apellido2herido");
             tableMapping.ColumnMappings.Add("sexoherido", "sexoherido");
-            tableMapping.ColumnMappings.Add("CodigoDano", "CodigoDano");
-            tableMapping.ColumnMappings.Add("DescripcionDano", "DescripcionDano");
+            tableMapping.ColumnMappings.Add("CodigoDanoH", "CodigoDanoH");
+            tableMapping.ColumnMappings.Add("DescripcionDanoH", "DescripcionDanoH");
             tableMapping.ColumnMappings.Add("edadherido", "edadherido");
-            tableMapping.ColumnMappings.Add("codrol", "codrol");
-            tableMapping.ColumnMappings.Add("DescripcionRol", "DescripcionRol");
+            tableMapping.ColumnMappings.Add("codRolHerido", "codRolHerido");
+            tableMapping.ColumnMappings.Add("DescripcionRolH", "DescripcionRolH");
             tableMapping.ColumnMappings.Add("codhosp", "codhosp");
             tableMapping.ColumnMappings.Add("DescripcionHospital", "DescripcionHospital");
+            tableMapping.ColumnMappings.Add("boletaHerido", "boletaHerido");
+            tableMapping.ColumnMappings.Add("serieHerido", "serieHerido");
+            tableMapping.ColumnMappings.Add("fuenteHerido", "fuenteHerido");
+            tableMapping.ColumnMappings.Add("nivelAlcohoH", "nivelAlcohoH");
+            tableMapping.ColumnMappings.Add("numPrueAlcoholH", "numPrueAlcoholH");
+            tableMapping.ColumnMappings.Add("alcoholSensorH", "alcoholSensorH");
             tableMapping.ColumnMappings.Add("rev_tecnica", "rev_tecnica");
             tableMapping.ColumnMappings.Add("carga", "carga");
             tableMapping.ColumnMappings.Add("PortaSenal", "PortaSenal");
