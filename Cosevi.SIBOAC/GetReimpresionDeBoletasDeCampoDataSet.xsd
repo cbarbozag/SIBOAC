@@ -28,6 +28,7 @@
               <Mapping SourceColumn="serie" DataSetColumn="serie" />
               <Mapping SourceColumn="numero_boleta" DataSetColumn="numero_boleta" />
               <Mapping SourceColumn="fecha_hora_boleta" DataSetColumn="fecha_hora_boleta" />
+              <Mapping SourceColumn="por_denuncia" DataSetColumn="por_denuncia" />
               <Mapping SourceColumn="codigo_delegacion" DataSetColumn="codigo_delegacion" />
               <Mapping SourceColumn="DescripcionDelegacion" DataSetColumn="DescripcionDelegacion" />
               <Mapping SourceColumn="codigo_autoridad_registra" DataSetColumn="codigo_autoridad_registra" />
@@ -113,6 +114,7 @@
               <xs:element name="serie" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnserie" msprop:Generator_ColumnPropNameInRow="serie" msprop:Generator_ColumnPropNameInTable="serieColumn" msprop:Generator_UserColumnName="serie" type="xs:int" minOccurs="0" />
               <xs:element name="numero_boleta" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnumero_boleta" msprop:Generator_ColumnPropNameInRow="numero_boleta" msprop:Generator_ColumnPropNameInTable="numero_boletaColumn" msprop:Generator_UserColumnName="numero_boleta" type="xs:decimal" minOccurs="0" />
               <xs:element name="fecha_hora_boleta" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnfecha_hora_boleta" msprop:Generator_ColumnPropNameInRow="fecha_hora_boleta" msprop:Generator_ColumnPropNameInTable="fecha_hora_boletaColumn" msprop:Generator_UserColumnName="fecha_hora_boleta" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="por_denuncia" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpor_denuncia" msprop:Generator_ColumnPropNameInRow="por_denuncia" msprop:Generator_ColumnPropNameInTable="por_denunciaColumn" msprop:Generator_UserColumnName="por_denuncia" type="xs:int" minOccurs="0" />
               <xs:element name="codigo_delegacion" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columncodigo_delegacion" msprop:Generator_ColumnPropNameInRow="codigo_delegacion" msprop:Generator_ColumnPropNameInTable="codigo_delegacionColumn" msprop:Generator_UserColumnName="codigo_delegacion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

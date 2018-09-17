@@ -33,6 +33,10 @@
           <DataField>fecha_hora_boleta</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="por_denuncia">
+          <DataField>por_denuncia</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="codigo_delegacion">
           <DataField>codigo_delegacion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -396,12 +400,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionDelegacion</rd:DefaultName>
-            <Top>3.54266cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>4.13384cm</Top>
+            <Left>0.79796cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>2</ZIndex>
@@ -441,12 +447,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionAutoridad</rd:DefaultName>
-            <Top>4.07211cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>4.62801cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.52944cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>3</ZIndex>
@@ -486,12 +494,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionRol</rd:DefaultName>
-            <Top>4.60156cm</Top>
-            <Left>0.79621cm</Left>
+            <Top>5.15745cm</Top>
+            <Left>0.79798cm</Left>
             <Height>0.45888cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>4</ZIndex>
@@ -531,12 +541,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Usuario</rd:DefaultName>
-            <Top>5.06044cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>5.65161cm</Top>
+            <Left>0.79798cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>5</ZIndex>
@@ -570,12 +582,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TipoDocumento</rd:DefaultName>
-            <Top>5.55461cm</Top>
-            <Left>0.79634cm</Left>
+            <Top>6.18106cm</Top>
+            <Left>0.79798cm</Left>
             <Height>0.52944cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>6</ZIndex>
@@ -615,12 +629,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>sexo</rd:DefaultName>
-            <Top>6.08405cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>6.74578cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.45861cm</Height>
             <Width>8.63831cm</Width>
             <ZIndex>7</ZIndex>
@@ -660,12 +676,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>FechaNacimiento</rd:DefaultName>
-            <Top>6.57794cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>7.23967cm</Top>
+            <Left>0.79798cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>8</ZIndex>
@@ -705,12 +723,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>senasDireccion</rd:DefaultName>
-            <Top>7.10739cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>7.76911cm</Top>
+            <Left>0.79798cm</Left>
             <Height>0.52944cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>9</ZIndex>
@@ -750,12 +770,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>tipo_lic</rd:DefaultName>
-            <Top>8.24565cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>8.83682cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>10</ZIndex>
@@ -795,12 +817,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Identificacion</rd:DefaultName>
-            <Top>8.74863cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>9.33981cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.49417cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>11</ZIndex>
@@ -840,12 +864,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>lugar_hechos</rd:DefaultName>
-            <Top>9.80753cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>10.3987cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.49417cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>12</ZIndex>
@@ -885,12 +911,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>kilometro</rd:DefaultName>
-            <Top>10.33698cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>10.92815cm</Top>
+            <Left>0.79754cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>13</ZIndex>
@@ -924,12 +952,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClasePlaca</rd:DefaultName>
-            <Top>10.83115cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>11.4576cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>14</ZIndex>
@@ -969,12 +999,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionTipoAutomovil</rd:DefaultName>
-            <Top>11.3606cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>11.95177cm</Top>
+            <Left>0.79754cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>15</ZIndex>
@@ -1014,12 +1046,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionCarroceria</rd:DefaultName>
-            <Top>11.86358cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>12.45476cm</Top>
+            <Left>0.79754cm</Left>
             <Height>0.47681cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>16</ZIndex>
@@ -1053,12 +1087,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionMarca</rd:DefaultName>
-            <Top>12.34039cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>12.96684cm</Top>
+            <Left>0.79754cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>17</ZIndex>
@@ -1092,12 +1128,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Rev_Tecnica</rd:DefaultName>
-            <Top>12.87866cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>13.46983cm</Top>
+            <Left>0.79754cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>18</ZIndex>
@@ -1137,12 +1175,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DescripcionOficinaImpugna</rd:DefaultName>
-            <Top>13.84851cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>14.49288cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.49417cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>19</ZIndex>
@@ -1182,12 +1222,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>NivelGases</rd:DefaultName>
-            <Top>19.3854cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>20.02976cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.45889cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>20</ZIndex>
@@ -1227,12 +1269,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Velocidad</rd:DefaultName>
-            <Top>19.87956cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>20.55921cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>21</ZIndex>
@@ -1247,8 +1291,8 @@
             </Style>
           </Textbox>
           <Line Name="Line3">
-            <Top>31.24214cm</Top>
-            <Left>0.79648cm</Left>
+            <Top>31.70985cm</Top>
+            <Left>0.79778cm</Left>
             <Height>0cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>22</ZIndex>
@@ -1277,8 +1321,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePagina</rd:DefaultName>
-            <Top>31.38325cm</Top>
-            <Left>0.79648cm</Left>
+            <Top>31.85096cm</Top>
+            <Left>0.79778cm</Left>
             <Height>1.82544cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>23</ZIndex>
@@ -1310,8 +1354,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePaginaAutoridad</rd:DefaultName>
-            <Top>33.34979cm</Top>
-            <Left>0.79648cm</Left>
+            <Top>33.8175cm</Top>
+            <Left>0.79778cm</Left>
             <Height>1.85329cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>24</ZIndex>
@@ -1332,8 +1376,8 @@
             <Source>External</Source>
             <Value>=Parameters!ImagenFirmaUsuarioPath.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>24.8293cm</Top>
-            <Left>2.06096cm</Left>
+            <Top>25.29701cm</Top>
+            <Left>2.06226cm</Left>
             <Height>2.00649cm</Height>
             <Width>6.15667cm</Width>
             <ZIndex>25</ZIndex>
@@ -1351,8 +1395,8 @@
             <Source>External</Source>
             <Value>=Parameters!ImagenFirmaInspectorPath.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>24.8293cm</Top>
-            <Left>11.30452cm</Left>
+            <Top>25.29701cm</Top>
+            <Left>11.30582cm</Left>
             <Height>2.00649cm</Height>
             <Width>6.36833cm</Width>
             <ZIndex>26</ZIndex>
@@ -1795,8 +1839,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>21.4805cm</Top>
-            <Left>0.79637cm</Left>
+            <Top>21.94821cm</Top>
+            <Left>0.79767cm</Left>
             <Height>3cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>27</ZIndex>
@@ -1969,8 +2013,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>27.13785cm</Top>
-            <Left>0.79644cm</Left>
+            <Top>27.60556cm</Top>
+            <Left>0.79774cm</Left>
             <Height>1.2cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>28</ZIndex>
@@ -2038,12 +2082,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>9.27808cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>9.86925cm</Top>
+            <Left>0.79754cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>30</ZIndex>
@@ -2083,12 +2129,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>7.70738cm</Top>
-            <Left>0.7962cm</Left>
+            <Top>8.33383cm</Top>
+            <Left>0.79798cm</Left>
             <Height>0.46771cm</Height>
             <Width>16.25833cm</Width>
             <ZIndex>31</ZIndex>
@@ -2128,12 +2176,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>16.4246cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>17.00724cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.47624cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>32</ZIndex>
@@ -2173,12 +2223,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>16.90085cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>17.48348cm</Top>
+            <Left>0.79883cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>33</ZIndex>
@@ -2218,12 +2270,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>14.92475cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>15.49857cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>34</ZIndex>
@@ -2263,12 +2317,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>15.41891cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>16.00155cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>35</ZIndex>
@@ -2308,12 +2364,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>17.84187cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>18.3804cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>36</ZIndex>
@@ -2353,12 +2411,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>18.30957cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>18.88339cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.52062cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>37</ZIndex>
@@ -2398,12 +2458,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox17</rd:DefaultName>
-            <Top>18.86548cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>19.47457cm</Top>
+            <Left>0.79883cm</Left>
             <Height>0.48464cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>38</ZIndex>
@@ -2443,12 +2505,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>20.38255cm</Top>
-            <Left>0.79637cm</Left>
+            <Top>21.09748cm</Top>
+            <Left>0.79624cm</Left>
             <Height>0.46771cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>39</ZIndex>
@@ -2526,8 +2590,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>35.60045cm</Top>
-            <Left>0.79649cm</Left>
+            <Top>36.06816cm</Top>
+            <Left>0.79779cm</Left>
             <Height>1.92291cm</Height>
             <Width>17.74962cm</Width>
             <ZIndex>40</ZIndex>
@@ -2790,8 +2854,8 @@
                 </FilterValues>
               </Filter>
             </Filters>
-            <Top>28.8008cm</Top>
-            <Left>0.79642cm</Left>
+            <Top>29.26851cm</Top>
+            <Left>0.79772cm</Left>
             <Height>1.99375cm</Height>
             <Width>17.74962cm</Width>
             <ZIndex>41</ZIndex>
@@ -2830,12 +2894,14 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>14.41324cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>15.02233cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.47624cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>42</ZIndex>
@@ -2870,15 +2936,55 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>15.91308cm</Top>
-            <Left>0.79636cm</Left>
+            <Top>16.531cm</Top>
+            <Left>0.79842cm</Left>
             <Height>0.47624cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>43</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="DescripcionDelegacion2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!por_denuncia.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>DescripcionDelegacion</rd:DefaultName>
+            <Top>3.63967cm</Top>
+            <Left>0.79884cm</Left>
+            <Height>0.49417cm</Height>
+            <Width>8.63833cm</Width>
+            <ZIndex>44</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!por_denuncia.Value, "DataSet1") = 0,True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>

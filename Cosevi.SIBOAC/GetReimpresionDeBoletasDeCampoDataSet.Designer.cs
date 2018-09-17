@@ -287,6 +287,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnfecha_hora_boleta;
             
+            private global::System.Data.DataColumn columnpor_denuncia;
+            
             private global::System.Data.DataColumn columncodigo_delegacion;
             
             private global::System.Data.DataColumn columnDescripcionDelegacion;
@@ -471,6 +473,14 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn fecha_hora_boletaColumn {
                 get {
                     return this.columnfecha_hora_boleta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn por_denunciaColumn {
+                get {
+                    return this.columnpor_denuncia;
                 }
             }
             
@@ -1004,6 +1014,7 @@ namespace Cosevi.SIBOAC {
                         int serie, 
                         decimal numero_boleta, 
                         System.DateTime fecha_hora_boleta, 
+                        int por_denuncia, 
                         string codigo_delegacion, 
                         string DescripcionDelegacion, 
                         string codigo_autoridad_registra, 
@@ -1071,6 +1082,7 @@ namespace Cosevi.SIBOAC {
                         serie,
                         numero_boleta,
                         fecha_hora_boleta,
+                        por_denuncia,
                         codigo_delegacion,
                         DescripcionDelegacion,
                         codigo_autoridad_registra,
@@ -1158,6 +1170,7 @@ namespace Cosevi.SIBOAC {
                 this.columnserie = base.Columns["serie"];
                 this.columnnumero_boleta = base.Columns["numero_boleta"];
                 this.columnfecha_hora_boleta = base.Columns["fecha_hora_boleta"];
+                this.columnpor_denuncia = base.Columns["por_denuncia"];
                 this.columncodigo_delegacion = base.Columns["codigo_delegacion"];
                 this.columnDescripcionDelegacion = base.Columns["DescripcionDelegacion"];
                 this.columncodigo_autoridad_registra = base.Columns["codigo_autoridad_registra"];
@@ -1232,6 +1245,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnnumero_boleta);
                 this.columnfecha_hora_boleta = new global::System.Data.DataColumn("fecha_hora_boleta", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnfecha_hora_boleta);
+                this.columnpor_denuncia = new global::System.Data.DataColumn("por_denuncia", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpor_denuncia);
                 this.columncodigo_delegacion = new global::System.Data.DataColumn("codigo_delegacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncodigo_delegacion);
                 this.columnDescripcionDelegacion = new global::System.Data.DataColumn("DescripcionDelegacion", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1359,6 +1374,7 @@ namespace Cosevi.SIBOAC {
                 this.columnserie.ReadOnly = true;
                 this.columnnumero_boleta.ReadOnly = true;
                 this.columnfecha_hora_boleta.ReadOnly = true;
+                this.columnpor_denuncia.ReadOnly = true;
                 this.columncodigo_delegacion.ReadOnly = true;
                 this.columncodigo_delegacion.MaxLength = 2;
                 this.columnDescripcionDelegacion.ReadOnly = true;
@@ -1678,6 +1694,23 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetReimpresionDeBoletasDeCampoData.fecha_hora_boletaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int por_denuncia {
+                get {
+                    try {
+                        return ((int)(this[this.tableGetReimpresionDeBoletasDeCampoData.por_denunciaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'por_denuncia\' in table \'GetReimpresionDeBoletasDeCampoData\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.por_denunciaColumn] = value;
                 }
             }
             
@@ -2768,6 +2801,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Ispor_denunciaNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.por_denunciaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setpor_denunciaNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.por_denunciaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Iscodigo_delegacionNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.codigo_delegacionColumn);
             }
@@ -3662,6 +3707,7 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("serie", "serie");
             tableMapping.ColumnMappings.Add("numero_boleta", "numero_boleta");
             tableMapping.ColumnMappings.Add("fecha_hora_boleta", "fecha_hora_boleta");
+            tableMapping.ColumnMappings.Add("por_denuncia", "por_denuncia");
             tableMapping.ColumnMappings.Add("codigo_delegacion", "codigo_delegacion");
             tableMapping.ColumnMappings.Add("DescripcionDelegacion", "DescripcionDelegacion");
             tableMapping.ColumnMappings.Add("codigo_autoridad_registra", "codigo_autoridad_registra");
