@@ -3521,7 +3521,7 @@
           <Property Type="Int32" Name="serie" Nullable="false" />
           <Property Type="Decimal" Name="numero_boleta" Nullable="false" Precision="18" Scale="0" />
           <Property Type="DateTime" Name="fecha_hora_boleta" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="por_denuncia" Nullable="true" />
+          <Property Type="String" Name="por_denunciaSTR" Nullable="false" MaxLength="29" />
           <Property Type="String" Name="codigo_delegacion" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="DescripcionDelegacion" Nullable="true" MaxLength="35" />
           <Property Type="String" Name="codigo_autoridad_registra" Nullable="true" MaxLength="5" />
@@ -5405,7 +5405,7 @@
                 <ScalarProperty Name="serie" ColumnName="serie" />
                 <ScalarProperty Name="numero_boleta" ColumnName="numero_boleta" />
                 <ScalarProperty Name="fecha_hora_boleta" ColumnName="fecha_hora_boleta" />
-                <ScalarProperty Name="por_denuncia" ColumnName="por_denuncia" />
+                <ScalarProperty Name="por_denunciaSTR" ColumnName="por_denunciaSTR" />
                 <ScalarProperty Name="codigo_delegacion" ColumnName="codigo_delegacion" />
                 <ScalarProperty Name="DescripcionDelegacion" ColumnName="DescripcionDelegacion" />
                 <ScalarProperty Name="codigo_autoridad_registra" ColumnName="codigo_autoridad_registra" />

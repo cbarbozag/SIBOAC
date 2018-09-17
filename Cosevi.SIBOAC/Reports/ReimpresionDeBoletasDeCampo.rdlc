@@ -33,9 +33,9 @@
           <DataField>fecha_hora_boleta</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="por_denuncia">
-          <DataField>por_denuncia</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="por_denunciaSTR">
+          <DataField>por_denunciaSTR</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="codigo_delegacion">
           <DataField>codigo_delegacion</DataField>
@@ -732,7 +732,7 @@
             <Top>7.76911cm</Top>
             <Left>0.79798cm</Left>
             <Height>0.52944cm</Height>
-            <Width>16.25833cm</Width>
+            <Width>8.63919cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -824,9 +824,9 @@
             </Paragraphs>
             <rd:DefaultName>Identificacion</rd:DefaultName>
             <Top>9.33981cm</Top>
-            <Left>0.79842cm</Left>
+            <Left>0.79624cm</Left>
             <Height>0.49417cm</Height>
-            <Width>16.25833cm</Width>
+            <Width>8.63833cm</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -873,7 +873,7 @@
             <Top>10.3987cm</Top>
             <Left>0.79842cm</Left>
             <Height>0.49417cm</Height>
-            <Width>16.25833cm</Width>
+            <Width>8.63875cm</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -1182,9 +1182,9 @@
             </Paragraphs>
             <rd:DefaultName>DescripcionOficinaImpugna</rd:DefaultName>
             <Top>14.49288cm</Top>
-            <Left>0.79842cm</Left>
+            <Left>0.79624cm</Left>
             <Height>0.49417cm</Height>
-            <Width>16.25833cm</Width>
+            <Width>8.63833cm</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -2088,8 +2088,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>9.86925cm</Top>
-            <Left>0.79754cm</Left>
+            <Top>9.90453cm</Top>
+            <Left>0.79884cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>30</ZIndex>
@@ -2138,7 +2138,7 @@
             <Top>8.33383cm</Top>
             <Left>0.79798cm</Left>
             <Height>0.46771cm</Height>
-            <Width>16.25833cm</Width>
+            <Width>8.63919cm</Width>
             <ZIndex>31</ZIndex>
             <Style>
               <Border>
@@ -2481,6 +2481,7 @@
           </Textbox>
           <Textbox Name="Textbox18">
             <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
@@ -2957,14 +2958,15 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="DescripcionDelegacion2">
+          <Textbox Name="PorDenunciaSTR">
             <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!por_denuncia.Value, "DataSet1")</Value>
+                    <Value>=First(Fields!por_denunciaSTR.Value, "DataSet1")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2976,14 +2978,13 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>DescripcionDelegacion</rd:DefaultName>
             <Top>3.63967cm</Top>
             <Left>0.79884cm</Left>
             <Height>0.49417cm</Height>
             <Width>8.63833cm</Width>
             <ZIndex>44</ZIndex>
             <Visibility>
-              <Hidden>=IIF(First(Fields!por_denuncia.Value, "DataSet1") = 0,True,False)</Hidden>
+              <Hidden>=IIF(First(Fields!por_denunciaSTR.Value, "DataSet1") = "0",True,False)</Hidden>
             </Visibility>
             <Style>
               <Border>

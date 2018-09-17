@@ -25,7 +25,7 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public Nullable<System.DateTime> fecha_hora_boleta { get; set; }
 
-    public Nullable<int> por_denuncia { get; set; }
+    public string por_denunciaSTR { get; set; }
 
     public string codigo_delegacion { get; set; }
 
