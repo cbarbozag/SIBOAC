@@ -1915,11 +1915,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Reports\AdjuntoSubReport.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Reports\ImpresionDeParteOficial.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

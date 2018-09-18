@@ -6615,9 +6615,6 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                   <GroupExpression>=Fields!SerieParte.Value</GroupExpression>
                   <GroupExpression>=Fields!NumeroParte.Value</GroupExpression>
                 </GroupExpressions>
-                <PageBreak>
-                  <BreakLocation>Between</BreakLocation>
-                </PageBreak>
               </Group>
               <TablixMembers>
                 <TablixMember />

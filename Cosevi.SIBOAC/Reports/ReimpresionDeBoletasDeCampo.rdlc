@@ -2573,79 +2573,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Tablix Name="Tablix3">
-            <TablixBody>
-              <TablixColumns>
-                <TablixColumn>
-                  <Width>5.91654cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>5.91654cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>5.91654cm</Width>
-                </TablixColumn>
-              </TablixColumns>
-              <TablixRows>
-                <TablixRow>
-                  <Height>1.92291cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Subreport Name="Subreport1">
-                          <ReportName>AdjuntoSubReport</ReportName>
-                          <Parameters>
-                            <Parameter Name="NumBoleta">
-                              <Value>=Fields!numero_boleta.Value</Value>
-                            </Parameter>
-                          </Parameters>
-                          <ZIndex>40</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                          </Style>
-                        </Subreport>
-                        <ColSpan>3</ColSpan>
-                        <rd:Selected>true</rd:Selected>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                  </TablixCells>
-                </TablixRow>
-              </TablixRows>
-            </TablixBody>
-            <TablixColumnHierarchy>
-              <TablixMembers>
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-              </TablixMembers>
-            </TablixColumnHierarchy>
-            <TablixRowHierarchy>
-              <TablixMembers>
-                <TablixMember>
-                  <Group Name="Details2">
-                    <PageBreak>
-                      <BreakLocation>End</BreakLocation>
-                    </PageBreak>
-                  </Group>
-                </TablixMember>
-              </TablixMembers>
-            </TablixRowHierarchy>
-            <DataSetName>DataSet1</DataSetName>
-            <Top>36.06816cm</Top>
-            <Left>0.79779cm</Left>
-            <Height>1.92291cm</Height>
-            <Width>17.74962cm</Width>
-            <ZIndex>40</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Tablix>
           <Tablix Name="Tablix6">
             <TablixBody>
               <TablixColumns>
@@ -2903,7 +2830,7 @@
             <Left>0.79772cm</Left>
             <Height>1.99375cm</Height>
             <Width>17.74962cm</Width>
-            <ZIndex>41</ZIndex>
+            <ZIndex>40</ZIndex>
             <Visibility>
               <Hidden>=IIf(Fields!idenTestigo.Value &lt;&gt; "", false, true)</Hidden>
             </Visibility>
@@ -2949,7 +2876,7 @@
             <Left>0.79884cm</Left>
             <Height>0.47624cm</Height>
             <Width>16.87573cm</Width>
-            <ZIndex>42</ZIndex>
+            <ZIndex>41</ZIndex>
             <Visibility>
               <Hidden>=IIF(First(Fields!TipoDocumento.Value, "DataSet1")="Conductor Ausente",True,IIF(First(Fields!conductor_detenido.Value, "DataSet1")="NO",true,false))</Hidden>
             </Visibility>
@@ -2994,7 +2921,7 @@
             <Left>0.79925cm</Left>
             <Height>0.47624cm</Height>
             <Width>16.87573cm</Width>
-            <ZIndex>43</ZIndex>
+            <ZIndex>42</ZIndex>
             <Visibility>
               <Hidden>=IIF(First(Fields!licencia_confiscada.Value, "DataSet1")="NO",true,false)</Hidden>
             </Visibility>
@@ -3032,7 +2959,7 @@
             <Left>0.79624cm</Left>
             <Height>0.49417cm</Height>
             <Width>16.87791cm</Width>
-            <ZIndex>44</ZIndex>
+            <ZIndex>43</ZIndex>
             <Visibility>
               <Hidden>=IIF(First(Fields!por_denunciaSTR.Value, "DataSet1") = "0",True,False)</Hidden>
             </Visibility>
@@ -3046,8 +2973,26 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Subreport Name="Subreport1">
+            <ReportName>AdjuntoSubReport</ReportName>
+            <Parameters>
+              <Parameter Name="NumBoleta">
+                <Value>=First(Fields!numero_boleta.Value, "DataSet1")</Value>
+              </Parameter>
+            </Parameters>
+            <Top>36.40349cm</Top>
+            <Left>0.79624cm</Left>
+            <Height>3.71062cm</Height>
+            <Width>17.75103cm</Width>
+            <ZIndex>44</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
         </ReportItems>
-        <Height>15.14714in</Height>
+        <Height>16.09504in</Height>
         <Style />
       </Body>
       <Width>7.80152in</Width>
