@@ -3534,6 +3534,7 @@
           <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="sexo" Nullable="true" MaxLength="1" />
           <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" Precision="23" />
+          <Property Type="String" Name="personaDireccion" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="senasDireccion" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="tipo_lic" Nullable="true" MaxLength="2" />
           <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="15" />
@@ -5418,6 +5419,7 @@
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="personaDireccion" ColumnName="personaDireccion" />
                 <ScalarProperty Name="senasDireccion" ColumnName="senasDireccion" />
                 <ScalarProperty Name="tipo_lic" ColumnName="tipo_lic" />
                 <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />

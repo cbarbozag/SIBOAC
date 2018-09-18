@@ -212,7 +212,9 @@ namespace Cosevi.SIBOAC.Controllers
                             int serie2 = Convert.ToInt32(Serie);
                             decimal numero2 = Convert.ToDecimal(NumeroParte);
 
-                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && String.Compare(oa.extension, ext, false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+                            string extConv = ext + "c";
+
+                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && (String.Compare(oa.extension, ext, false) == 0 || String.Compare(oa.extension, extConv, false) == 0) && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
 
 
                             string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
@@ -306,7 +308,9 @@ namespace Cosevi.SIBOAC.Controllers
                             int serie2 = Convert.ToInt32(Serie);
                             decimal numero2 = Convert.ToDecimal(NumeroParte);
 
-                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && String.Compare(oa.extension, ext, false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+                            string extConv = ext + "c";
+
+                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && (String.Compare(oa.extension, ext, false) == 0 || String.Compare(oa.extension, extConv, false) == 0) && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
 
 
                             string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];

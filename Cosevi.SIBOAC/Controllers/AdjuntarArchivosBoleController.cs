@@ -86,7 +86,7 @@ namespace Cosevi.SIBOAC.Controllers
                           NumeroPlaca = x.NumeroPlaca,
                           DescripcionRol = x.DescripcionRol
 
-                      });
+                      }).Distinct();
 
 
                     //Sí no trae datos es porque no existe 
@@ -183,7 +183,9 @@ namespace Cosevi.SIBOAC.Controllers
                             return Json(new { result = false, msg = "Extensión no válida." });
                         }
 
-                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numBole2 && String.Compare(oa.extension, ext, false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+                        string extConv = ext + "c";
+
+                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numBole2 && (String.Compare(oa.extension, ext, false) == 0 || String.Compare(oa.extension, extConv, false) == 0) && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
 
 
                         string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];

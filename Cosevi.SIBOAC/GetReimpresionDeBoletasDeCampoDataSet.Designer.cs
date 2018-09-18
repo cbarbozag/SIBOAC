@@ -313,6 +313,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnFechaNacimiento;
             
+            private global::System.Data.DataColumn columnpersonaDireccion;
+            
             private global::System.Data.DataColumn columnsenasDireccion;
             
             private global::System.Data.DataColumn columntipo_lic;
@@ -577,6 +579,14 @@ namespace Cosevi.SIBOAC {
             public global::System.Data.DataColumn FechaNacimientoColumn {
                 get {
                     return this.columnFechaNacimiento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn personaDireccionColumn {
+                get {
+                    return this.columnpersonaDireccion;
                 }
             }
             
@@ -1027,6 +1037,7 @@ namespace Cosevi.SIBOAC {
                         string Telefono, 
                         string sexo, 
                         System.DateTime FechaNacimiento, 
+                        string personaDireccion, 
                         string senasDireccion, 
                         string tipo_lic, 
                         string Identificacion, 
@@ -1095,6 +1106,7 @@ namespace Cosevi.SIBOAC {
                         Telefono,
                         sexo,
                         FechaNacimiento,
+                        personaDireccion,
                         senasDireccion,
                         tipo_lic,
                         Identificacion,
@@ -1183,6 +1195,7 @@ namespace Cosevi.SIBOAC {
                 this.columnTelefono = base.Columns["Telefono"];
                 this.columnsexo = base.Columns["sexo"];
                 this.columnFechaNacimiento = base.Columns["FechaNacimiento"];
+                this.columnpersonaDireccion = base.Columns["personaDireccion"];
                 this.columnsenasDireccion = base.Columns["senasDireccion"];
                 this.columntipo_lic = base.Columns["tipo_lic"];
                 this.columnIdentificacion = base.Columns["Identificacion"];
@@ -1271,6 +1284,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnsexo);
                 this.columnFechaNacimiento = new global::System.Data.DataColumn("FechaNacimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaNacimiento);
+                this.columnpersonaDireccion = new global::System.Data.DataColumn("personaDireccion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpersonaDireccion);
                 this.columnsenasDireccion = new global::System.Data.DataColumn("senasDireccion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnsenasDireccion);
                 this.columntipo_lic = new global::System.Data.DataColumn("tipo_lic", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1399,6 +1414,8 @@ namespace Cosevi.SIBOAC {
                 this.columnsexo.ReadOnly = true;
                 this.columnsexo.MaxLength = 1;
                 this.columnFechaNacimiento.ReadOnly = true;
+                this.columnpersonaDireccion.ReadOnly = true;
+                this.columnpersonaDireccion.MaxLength = 200;
                 this.columnsenasDireccion.ReadOnly = true;
                 this.columnsenasDireccion.MaxLength = 250;
                 this.columntipo_lic.ReadOnly = true;
@@ -1916,6 +1933,23 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableGetReimpresionDeBoletasDeCampoData.FechaNacimientoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string personaDireccion {
+                get {
+                    try {
+                        return ((string)(this[this.tableGetReimpresionDeBoletasDeCampoData.personaDireccionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'personaDireccion\' in table \'GetReimpresionDeBoletasDeCampoD" +
+                                "ata\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.personaDireccionColumn] = value;
                 }
             }
             
@@ -2958,6 +2992,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IspersonaDireccionNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.personaDireccionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetpersonaDireccionNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.personaDireccionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IssenasDireccionNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.senasDireccionColumn);
             }
@@ -3721,6 +3767,7 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Telefono", "Telefono");
             tableMapping.ColumnMappings.Add("sexo", "sexo");
             tableMapping.ColumnMappings.Add("FechaNacimiento", "FechaNacimiento");
+            tableMapping.ColumnMappings.Add("personaDireccion", "personaDireccion");
             tableMapping.ColumnMappings.Add("senasDireccion", "senasDireccion");
             tableMapping.ColumnMappings.Add("tipo_lic", "tipo_lic");
             tableMapping.ColumnMappings.Add("Identificacion", "Identificacion");

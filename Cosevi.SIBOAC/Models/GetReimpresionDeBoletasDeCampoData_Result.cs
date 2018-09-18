@@ -51,6 +51,8 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public Nullable<System.DateTime> FechaNacimiento { get; set; }
 
+    public string personaDireccion { get; set; }
+
     public string senasDireccion { get; set; }
 
     public string tipo_lic { get; set; }

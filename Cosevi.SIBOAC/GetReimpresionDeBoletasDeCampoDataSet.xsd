@@ -2,8 +2,9 @@
 <xs:schema id="GetReimpresionDeBoletasDeCampoDataSet" targetNamespace="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:mstns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -41,6 +42,7 @@
               <Mapping SourceColumn="Telefono" DataSetColumn="Telefono" />
               <Mapping SourceColumn="sexo" DataSetColumn="sexo" />
               <Mapping SourceColumn="FechaNacimiento" DataSetColumn="FechaNacimiento" />
+              <Mapping SourceColumn="personaDireccion" DataSetColumn="personaDireccion" />
               <Mapping SourceColumn="senasDireccion" DataSetColumn="senasDireccion" />
               <Mapping SourceColumn="tipo_lic" DataSetColumn="tipo_lic" />
               <Mapping SourceColumn="Identificacion" DataSetColumn="Identificacion" />
@@ -199,6 +201,13 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="FechaNacimiento" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFechaNacimiento" msprop:Generator_ColumnPropNameInRow="FechaNacimiento" msprop:Generator_ColumnPropNameInTable="FechaNacimientoColumn" msprop:Generator_UserColumnName="FechaNacimiento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="personaDireccion" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpersonaDireccion" msprop:Generator_ColumnPropNameInRow="personaDireccion" msprop:Generator_ColumnPropNameInTable="personaDireccionColumn" msprop:Generator_UserColumnName="personaDireccion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="senasDireccion" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnsenasDireccion" msprop:Generator_ColumnPropNameInRow="senasDireccion" msprop:Generator_ColumnPropNameInTable="senasDireccionColumn" msprop:Generator_UserColumnName="senasDireccion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
