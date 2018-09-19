@@ -51,7 +51,7 @@
                   <Width>0.07938cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>18.93062cm</Width>
+                  <Width>18.85125cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -194,7 +194,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>23.00126cm</Height>
+                  <Height>23.84793cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -285,8 +285,12 @@
               </Filter>
             </Filters>
             <Top>0.25561cm</Top>
-            <Height>24.20126cm</Height>
-            <Width>19.01cm</Width>
+            <Left>0.32428cm</Left>
+            <Height>25.04793cm</Height>
+            <Width>18.93063cm</Width>
+            <Visibility>
+              <Hidden>=IIF(Fields!ParteOficial.Value=Parameters!ParteOficial.Value,false,true)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -294,7 +298,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>9.62869in</Height>
+        <Height>10.06282in</Height>
         <Style />
       </Body>
       <Width>7.68484in</Width>

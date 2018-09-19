@@ -19,7 +19,7 @@ namespace Cosevi.SIBOAC.Models
     {
         public string fuente { get; set; }
         [DisplayName("Serie")]
-        [Range(0, int.MaxValue, ErrorMessage = "Solo se permiten números")]
+        //[Range(0, int.MaxValue, ErrorMessage = "Solo se permiten números")]
         public int serie { get; set; }
         [DisplayName("Número Boleta")]
         public decimal numero_boleta { get; set; }

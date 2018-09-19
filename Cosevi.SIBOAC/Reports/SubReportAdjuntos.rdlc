@@ -48,10 +48,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.11907cm</Width>
+                  <Width>0.07938cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>19.04969cm</Width>
+                  <Width>18.79833cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -60,7 +60,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox2">
+                        <Textbox Name="Textbox24">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -74,7 +74,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <rd:DefaultName>Textbox24</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -90,7 +90,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox3">
+                        <Textbox Name="Textbox25">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -112,7 +112,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <rd:DefaultName>Textbox25</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -132,7 +132,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox1">
+                        <Textbox Name="Textbox21">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -146,7 +146,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <rd:DefaultName>Textbox21</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -162,7 +162,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox4">
+                        <Textbox Name="Textbox22">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -170,15 +170,13 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
+                                  <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <rd:DefaultName>Textbox22</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -194,7 +192,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>22.80115cm</Height>
+                  <Height>23.69813cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -257,32 +255,25 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Visibility>
-                    <Hidden>=IIf(Fields!ParteOficial.Value = Parameters!ParteOficial.Value, false, true)</Hidden>
-                  </Visibility>
+                  <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
-                <TablixMember />
                 <TablixMember>
-                  <Visibility>
-                    <Hidden>=Fields!ParteOficial.Value&lt;&gt;Parameters!ParteOficial.Value</Hidden>
-                  </Visibility>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <KeepTogether>true</KeepTogether>
             <DataSetName>ArchivosDataSet</DataSetName>
-            <Filters>
-              <Filter>
-                <FilterExpression>=Fields!ParteOficial.Value</FilterExpression>
-                <Operator>Equal</Operator>
-                <FilterValues>
-                  <FilterValue>=Parameters!ParteOficial.Value</FilterValue>
-                </FilterValues>
-              </Filter>
-            </Filters>
-            <Top>0.34988cm</Top>
-            <Height>24.00115cm</Height>
-            <Width>19.16876cm</Width>
+            <Top>0.36724cm</Top>
+            <Left>0.36724cm</Left>
+            <Height>24.89813cm</Height>
+            <Width>18.87771cm</Width>
+            <Visibility>
+              <Hidden>=IIF(Fields!ParteOficial.Value = Parameters!ParteOficial.Value,false,true)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -290,10 +281,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>9.64246in</Height>
+        <Height>10.07324in</Height>
         <Style />
       </Body>
-      <Width>7.70833in</Width>
+      <Width>7.69791in</Width>
       <Page>
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>

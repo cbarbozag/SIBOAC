@@ -1337,8 +1337,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePagina</rd:DefaultName>
-            <Top>31.85096cm</Top>
-            <Left>0.79778cm</Left>
+            <Top>32.19492cm</Top>
+            <Left>0.8012cm</Left>
             <Height>1.82544cm</Height>
             <Width>17.74961cm</Width>
             <ZIndex>23</ZIndex>
@@ -1370,8 +1370,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>PiePaginaAutoridad</rd:DefaultName>
-            <Top>33.78223cm</Top>
-            <Left>0.79778cm</Left>
+            <Top>34.12619cm</Top>
+            <Left>0.8012cm</Left>
             <Height>1.85329cm</Height>
             <Width>17.7496cm</Width>
             <ZIndex>24</ZIndex>
@@ -2974,15 +2974,15 @@
             </Style>
           </Textbox>
           <Subreport Name="Subreport1">
-            <ReportName>AdjuntoSubReport</ReportName>
+            <ReportName>SubAdjuntoBoleta</ReportName>
             <Parameters>
               <Parameter Name="NumBoleta">
                 <Value>=First(Fields!numero_boleta.Value, "DataSet1")</Value>
               </Parameter>
             </Parameters>
-            <Top>36.40349cm</Top>
-            <Left>0.79624cm</Left>
-            <Height>3.71062cm</Height>
+            <Top>36.74745cm</Top>
+            <Left>0.79966cm</Left>
+            <Height>0.2975cm</Height>
             <Width>17.75103cm</Width>
             <ZIndex>44</ZIndex>
             <Style>
@@ -2991,11 +2991,29 @@
               </Border>
             </Style>
           </Subreport>
+          <Subreport Name="Subreport2">
+            <ReportName>OtrosAdjuntosBoleta</ReportName>
+            <Parameters>
+              <Parameter Name="NumBoleta">
+                <Value>=First(Fields!numero_boleta.Value, "DataSet1")</Value>
+              </Parameter>
+            </Parameters>
+            <Top>37.15078cm</Top>
+            <Left>0.80474cm</Left>
+            <Height>0.32396cm</Height>
+            <Width>17.74607cm</Width>
+            <ZIndex>45</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
         </ReportItems>
-        <Height>16.09504in</Height>
+        <Height>14.85546in</Height>
         <Style />
       </Body>
-      <Width>7.80152in</Width>
+      <Width>7.78069in</Width>
       <Page>
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>

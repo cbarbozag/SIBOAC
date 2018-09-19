@@ -69,6 +69,7 @@ namespace Cosevi.SIBOAC.Reports
                         ReportViewer1.LocalReport.EnableExternalImages = true;
 
                         string[] extensionRestringidaB = ConfigurationManager.AppSettings["ExtenException"].Split(',');
+                        string[] otrosAdjuntosB = ConfigurationManager.AppSettings["ListOtrosAjuntos"].Split(',');
 
                         string[] param = parametros.Split(',');
                         int serie = Convert.ToInt32(param[0]);
@@ -90,6 +91,18 @@ namespace Cosevi.SIBOAC.Reports
                         string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];
+
+                        #region Otros Adjuntos
+                        var otrosAdjBole = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente && oa.serie == serie && oa.numero == numero_boleta && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntosB.Contains(oa.extension)).ToList();
+
+                        listaOtrosArchivos.Columns.Add("ParteOficial");
+                        listaOtrosArchivos.Columns.Add("Identificacion");
+
+                        foreach (var item in otrosAdjBole)
+                        {
+                            listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta, item.nombre)).AbsoluteUri, numero_boleta, item.nombre);
+                        }
+                        #endregion
 
                         #region Convertir SVG
 
@@ -402,6 +415,7 @@ namespace Cosevi.SIBOAC.Reports
                         this.ReportViewer1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;                        
                         Session["_ConsultaeImpresionDeParteOficialDataBoleta"] = listaArchivosB;
                         Session["_ConsultaeImpresionDeParteOficialDataFirma"] = listaFirmas;
+                        Session["_ConsultaeImpresionDeParteOficialDataOtrosAdjuntos"] = listaOtrosArchivos;
                         #endregion
                         break;
 
