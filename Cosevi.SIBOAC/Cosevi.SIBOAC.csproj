@@ -1933,8 +1933,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\OtrosAdjuntosBoleta.rdlc" />
-    <EmbeddedResource Include="Reports\SubAdjuntoBoleta.rdlc" />
+    <Content Include="Reports\OtrosAdjuntosBoleta.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\SubAdjuntoBoleta.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -87,8 +87,8 @@ namespace Cosevi.SIBOAC.Reports
                         var CodigoInsp = db.BOLETA.Where(a => a.serie == serie && a.numero_boleta == numero_boleta && a.numeroparte == NumParte).Select(a => a.codigo_inspector).ToList();
                         string CodInsp = CodigoInsp.ToArray().FirstOrDefault() == null ? "0" : CodigoInsp.ToArray().FirstOrDefault().ToString();
 
-                        //string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
-                        string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
+                        string ruta = ConfigurationManager.AppSettings["DownloadFilePath"];
+                        //string ruta = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaServer = ConfigurationManager.AppSettings["UploadFilePath"];
                         string rutaVi = ConfigurationManager.AppSettings["RutaVirtual"];
 
@@ -912,8 +912,8 @@ namespace Cosevi.SIBOAC.Reports
                             int serParte1 = Convert.ToInt32(Parametro4);
                             decimal numeParte1 = Convert.ToDecimal(Parametro5);
 
-                            //string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
-                            string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
+                            string ruta1 = ConfigurationManager.AppSettings["DownloadFilePath"];
+                            //string ruta1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
 
@@ -1870,6 +1870,9 @@ namespace Cosevi.SIBOAC.Reports
 
                             listaPlanos.Columns.Add("ParteOficial");
 
+                            listaOtrosArchivos.Columns.Add("ParteOficial");
+                            listaOtrosArchivos.Columns.Add("Identificacion");
+
                             foreach (var lisPart3 in listaPartes3)
                             {
                                 
@@ -1890,10 +1893,7 @@ namespace Cosevi.SIBOAC.Reports
 
                                 #region Otros Adjuntos
                                 var otrosAdj3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();                                
-
-                                listaOtrosArchivos.Columns.Add("ParteOficial");
-                                listaOtrosArchivos.Columns.Add("Identificacion");
-
+                                
                                 foreach (var item in otrosAdj3)
                                 {
                                     listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.nombre)).AbsoluteUri, item.numero, item.nombre);
@@ -2372,6 +2372,16 @@ namespace Cosevi.SIBOAC.Reports
 
                             var listaPartes4 = (db.BOLETA.Where(a => a.numero_placa == Parametro4 && a.codigo_placa == Parametro5 && a.clase_placa == Parametro6 && a.fuente_parteoficial == "4").ToList());
 
+                            listaOtrosArchivos.Columns.Add("ParteOficial");
+                            listaOtrosArchivos.Columns.Add("Identificacion");
+
+                            listaPlanos.Columns.Add("ParteOficial");
+
+                            listaArchivos.Columns.Add("ParteOficial");
+
+                            listaFirmas.Columns.Add("ParteOficial");
+                            listaFirmas.Columns.Add("Identificacion");
+
                             foreach (var lisPart4 in listaPartes4)
                             {
                                 var numPartPar4 = (db.PARTEOFICIAL.Where(a => a.NumeroParte == lisPart4.numeroparte && a.Serie == lisPart4.serie_parteoficial).Select(a => a.NumeroParte).ToList());
@@ -2389,10 +2399,7 @@ namespace Cosevi.SIBOAC.Reports
                                 var resultAdjParte = fuente4.Zip(serParte4, (e1, e2) => new { e1, e2 }).Zip(numPartPar4, (z1, e3) => Tuple.Create(z1.e1, z1.e2, e3));
 
                                 #region Otros Adjuntos
-                                var otrosAdj4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
-
-                                listaOtrosArchivos.Columns.Add("ParteOficial");
-                                listaOtrosArchivos.Columns.Add("Identificacion");
+                                var otrosAdj4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();                       
 
                                 foreach (var item in otrosAdj4)
                                 {
@@ -2405,9 +2412,7 @@ namespace Cosevi.SIBOAC.Reports
                                 int serieP = Convert.ToInt32(lisPart4.serie_parteoficial);
                                 decimal numP = Convert.ToDecimal(lisPart4.numeroparte);
 
-                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart4.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
-
-                                listaPlanos.Columns.Add("ParteOficial");
+                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart4.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();                             
 
                                 foreach (var itmeP in listPlanos)
                                 {
@@ -2535,9 +2540,7 @@ namespace Cosevi.SIBOAC.Reports
 
                                 var nombreAdjuntos4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && !extensionRestringidaIPO.Contains(oa.extension)).Select(oa => oa.nombre).ToList();
                                 var numPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
-                                var extPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.extension).ToList();
-
-                                listaArchivos.Columns.Add("ParteOficial");
+                                var extPartLista4 = db.OtrosAdjuntos.Where(oa => nombreAdjuntos4.Contains(oa.nombre)).Select(oa => oa.extension).ToList();                                
                                 
                                 var listaAdjuntos4 = nombreAdjuntos4.Zip(numPartLista4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extPartLista4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z));
 
@@ -2639,10 +2642,7 @@ namespace Cosevi.SIBOAC.Reports
                                     }
                                 }
                                 #endregion
-
-                                listaFirmas.Columns.Add("ParteOficial");
-                                listaFirmas.Columns.Add("Identificacion");
-
+                                
                                 #region Firmas Testigos P
 
                                 foreach (var item3 in resultAdjParte)

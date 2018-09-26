@@ -234,6 +234,49 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox6">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Fecha:   </Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                            <TextRun>
+                              <Value>=Fields!Fecha.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox6</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>2</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox3">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -421,14 +464,10 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Fecha:   </Value>
+                            <Value />
                             <Style>
                               <FontWeight>Bold</FontWeight>
                             </Style>
-                          </TextRun>
-                          <TextRun>
-                            <Value>=Fields!Fecha.Value</Value>
-                            <Style />
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -499,6 +538,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixMember>
           </TablixMembers>
@@ -506,7 +546,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>5.85114cm</Top>
         <Left>2.91042cm</Left>
-        <Height>2.4cm</Height>
+        <Height>3cm</Height>
         <Width>18.55958cm</Width>
         <ZIndex>6</ZIndex>
         <Style>

@@ -1202,6 +1202,9 @@
             <Height>0.49417cm</Height>
             <Width>16.87791cm</Width>
             <ZIndex>19</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!numeroparte.Value, "DataSet1") = 0,True,IIF(First(Fields!DescripcionOficinaImpugna.Value, "DataSet1")="No indica",true,false))</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>

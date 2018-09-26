@@ -1374,11 +1374,11 @@ namespace Cosevi.SIBOAC.Controllers
             }
             if (tipoConsulta1 == "1" && tipoConsulta2 == null)
             {
-                parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, "", desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), "");
+                parametros = String.Format("{0},{1},{2},{3},{4}", tipoConsulta1, "0", desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), "null");
             }
             if (tipoConsulta1 == null && tipoConsulta2 == "1")
             {
-                parametros = String.Format("{0},{1},{2},{3},{4}", "", tipoConsulta2, "null", "null", idUsuarios);
+                parametros = String.Format("{0},{1},{2},{3},{4}", "0", tipoConsulta2, "null", "null", idUsuarios);
             }
 
             ViewBag.ReporteID = reporteID;
@@ -1452,32 +1452,32 @@ namespace Cosevi.SIBOAC.Controllers
         #endregion
 
         #region ImpresionParteOficialData
-        private List<ConsultaeImpresionDeParteOficialData_Result> ConsultaeImpresionDeParteOficialData_Result(int idRadio, string serieParte,
+        private List<ConsultaeImpresionDeParteOficialData_Result> ConsultaeImpresionDeParteOficialData_Result(int opcionConsulta, string serieParte,
              string numeroParte, int? serieBoleta, decimal? numeroBoleta, string tipoId,
              string numeroID, string numeroPlaca, string codigoPlaca, string clasePlaca)
         {
             var usuarioSistema = User.Identity.Name;
 
-            if (idRadio == 1) // Consulta por parte oficial
+            if (opcionConsulta == 1) // Consulta por parte oficial
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista1 = db.ConsultaeImpresionDeParteOficialData(1, serieBoleta.ToString(), numeroBoleta.ToString(), null, usuarioSistema).ToList();
+                var lista1 = db.ConsultaeImpresionDeParteOficialData(1, serieParte, numeroParte, null, usuarioSistema).ToList();
                 return lista1;
             }
-            if (idRadio == 2)//consulta por Boleta de citación
+            if (opcionConsulta == 2)//consulta por Boleta de citación
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista2 = db.ConsultaeImpresionDeParteOficialData(2, serieParte, numeroParte, null, usuarioSistema).ToList();
+                var lista2 = db.ConsultaeImpresionDeParteOficialData(2, serieBoleta.ToString(), numeroBoleta.ToString(), null, usuarioSistema).ToList();
 
                 return lista2;
             }
-            if (idRadio == 3)//Indentificación del implicado
+            if (opcionConsulta == 3)//Indentificación del implicado
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
                 var lista3 = db.ConsultaeImpresionDeParteOficialData(3, tipoId, numeroID, null, usuarioSistema).ToList();
                 return lista3;
             }
-            if (idRadio == 4)//Placa
+            if (opcionConsulta == 4)//Placa
             {
                 db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
                 var lista4 = db.ConsultaeImpresionDeParteOficialData(4, numeroPlaca, codigoPlaca, clasePlaca, usuarioSistema).ToList();
@@ -1536,15 +1536,15 @@ namespace Cosevi.SIBOAC.Controllers
 
             if (tipoConsulta1 == "1" && tipoConsulta2 == "1")
             {
-                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", tipoConsulta1, tipoConsulta2, TipoAdjunto, desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), Serie, Numero);
+                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", tipoConsulta1, tipoConsulta2, TipoAdjunto, desde?.ToString("yyyy-MM-dd"), hasta?.ToString("yyyy-MM-dd"), Serie, Numero);
             }
             if (tipoConsulta1 == "1" && tipoConsulta2 == null)
             {
-                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", tipoConsulta1, "", TipoAdjunto, desde?.ToString("dd-MM-yyyy"), hasta?.ToString("dd-MM-yyyy"), "", "");
+                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", tipoConsulta1, "0", TipoAdjunto, desde?.ToString("yyyy-MM-dd"), hasta?.ToString("yyyy-MM-dd"), "null", "null");
             }
             if (tipoConsulta1 == null && tipoConsulta2 == "1")
             {
-                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", "", tipoConsulta2, TipoAdjunto, "null", "null", Serie, Numero);
+                parametros = String.Format("{0},{1},{2},{3},{4},{5},{6}", "0", tipoConsulta2, TipoAdjunto, "null", "null", Serie, Numero);
             }
 
             ViewBag.ReporteID = reporteID;
