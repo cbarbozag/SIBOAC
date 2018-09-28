@@ -1760,7 +1760,9 @@
     <Content Include="Views\MantenimientoUsuarios\Delete.cshtml" />
     <Content Include="Views\MantenimientoUsuarios\Details.cshtml" />
     <Content Include="Views\MantenimientoUsuarios\Edit.cshtml" />
-    <Content Include="Views\MantenimientoUsuarios\Index.cshtml" />
+    <Content Include="Views\MantenimientoUsuarios\Index.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\MantenimientoRoles\Create.cshtml" />
     <Content Include="Views\MantenimientoRoles\Delete.cshtml" />
     <Content Include="Views\MantenimientoRoles\Details.cshtml" />

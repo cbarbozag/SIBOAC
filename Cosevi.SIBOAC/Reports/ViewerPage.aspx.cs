@@ -374,7 +374,7 @@ namespace Cosevi.SIBOAC.Reports
                             parameters[1] = new ReportParameter("ImagenFirmaInspectorPath", imgFirmaInspectorPath);
                         }
                         else
-                        {                           
+                        {
 
                             SqlConnection connection = new SqlConnection(connectionString);
                             connection.Open();
@@ -399,7 +399,7 @@ namespace Cosevi.SIBOAC.Reports
                                 FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
                                 fs.Write(barrImg, 0, barrImg.Length);
                                 fs.Flush();
-                                fs.Close();                                
+                                fs.Close();
                             }
 
                             var fullPathInspector = Path.Combine(ruta, fileInspector);

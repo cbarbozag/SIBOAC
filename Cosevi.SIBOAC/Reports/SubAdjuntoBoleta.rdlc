@@ -60,72 +60,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox1</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox2">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox2</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox24">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -258,7 +192,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>23.38063cm</Height>
+                  <Height>23.67167cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -302,6 +236,7 @@
                             </Border>
                           </Style>
                         </Image>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -321,9 +256,6 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                </TablixMember>
-                <TablixMember>
                   <Visibility>
                     <Hidden>=IIF(Fields!NumBoleta.Value=Parameters!NumBoleta.Value,false,true)</Hidden>
                   </Visibility>
@@ -334,9 +266,6 @@
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details" />
-                  <Visibility>
-                    <Hidden>=IIF(Fields!NumBoleta.Value=Parameters!NumBoleta.Value,false,true)</Hidden>
-                  </Visibility>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
@@ -344,7 +273,7 @@
             <DataSetName>ArchivosBoletaDataSet</DataSetName>
             <Top>0.42333cm</Top>
             <Left>0.29104cm</Left>
-            <Height>25.18063cm</Height>
+            <Height>24.87167cm</Height>
             <Width>18.90417cm</Width>
             <Visibility>
               <Hidden>=IIF(Fields!NumBoleta.Value = Parameters!NumBoleta.Value,false,true)</Hidden>
@@ -356,10 +285,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>10.17405in</Height>
+        <Height>10.05947in</Height>
         <Style />
       </Body>
-      <Width>7.703in</Width>
+      <Width>7.69258in</Width>
       <Page>
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>

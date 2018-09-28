@@ -160,7 +160,7 @@
                               </Style>
                             </TextRun>
                             <TextRun>
-                              <Value>=Fields!codigo_delegacion.Value</Value>
+                              <Value>=Fields!DescripcionDelegacion.Value</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -533,21 +533,21 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="fecha">
+                                      <Textbox Name="Fecha">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!fecha.Value</Value>
+                                                <Value>=Fields!Fecha.Value</Value>
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>fecha</rd:DefaultName>
+                                        <rd:DefaultName>Fecha</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -646,7 +646,7 @@
                           </TablixRowHierarchy>
                           <DataSetName>DataSet1</DataSetName>
                           <Height>1.2cm</Height>
-                          <Width>20.41105cm</Width>
+                          <Width>20.41104cm</Width>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -928,7 +928,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>724167e6-d192-4c75-827b-204d5865a982</rd:DataSourceID>
+      <rd:DataSourceID>92be7515-c797-4e48-a0de-fbb2565a1bb6</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -962,10 +962,6 @@
           <DataField>codigo_autoridad_registra</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="fecha">
-          <DataField>fecha</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="fecha_descarga">
           <DataField>fecha_descarga</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -974,10 +970,22 @@
           <DataField>dias</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="Fecha">
+          <DataField>Fecha</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DescripcionDelegacion">
+          <DataField>DescripcionDelegacion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DescripcionAutoridad">
+          <DataField>DescripcionAutoridad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetReporteListadoParteOficialDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\nzamora\Source\Repos\SIBOAC\Cosevi.SIBOAC\GetReporteListadoParteOficialDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\ADC-ROY\source\repos\SIBOAC\Cosevi.SIBOAC\GetReporteListadoParteOficialDataSet.xsd</rd:SchemaPath>
         <rd:TableName>GetReporteListadoParteOficialData</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
