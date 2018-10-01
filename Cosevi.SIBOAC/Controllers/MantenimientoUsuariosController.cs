@@ -449,23 +449,40 @@ namespace Cosevi.SIBOAC.Controllers
                                 usuarioP.Add(dataTable.Rows[k][j]);
                             }
 
-                            dbs.SIBOACUsuarios.Add(new SIBOACUsuarios
+                            string mensajePlantilla = "";
+                            string usuarioPla = Convert.ToString(usuarioP[0]);
+                            bool exist = dbs.SIBOACUsuarios.Any(x => x.Usuario == usuarioPla);
+
+                            if (exist)
                             {
-                                Usuario = Convert.ToString(usuarioP[0]),
-                                Email = Convert.ToString(usuarioP[1]),
-                                Contrasena = Convert.ToString(usuarioP[0]),
-                                Nombre = Convert.ToString(usuarioP[2]),
-                                codigo = "000",
-                                FechaDeActualizacionClave = DateTime.Now,
-                                Activo = Convert.ToBoolean(1),
-                                Identificacion = Convert.ToString(usuarioP[0]),
-                                LugarTrabajo = Convert.ToString(usuarioP[3]),
-                                UltimoIngreso = DateTime.Now
-                            });
+                                mensajePlantilla = "El usuario con la Cédula: " + Convert.ToString(usuarioP[0]) + " ya existe, verifique y vuelva a cargar la plantilla";
 
-                            dbs.SaveChanges();
+                                TempData["Type"] = "error";
+                                TempData["Message"] = mensajePlantilla;
+
+                                return Json(new { result = true, msg = mensajePlantilla });
+                            }
+                            else
+                            {
+                                dbs.SIBOACUsuarios.Add(new SIBOACUsuarios
+                                {
+                                    Usuario = Convert.ToString(usuarioP[0]),
+                                    Email = Convert.ToString(usuarioP[1]),
+                                    Contrasena = Convert.ToString(usuarioP[0]),
+                                    Nombre = Convert.ToString(usuarioP[2]),
+                                    codigo = "000",
+                                    FechaDeActualizacionClave = DateTime.Now,
+                                    Activo = Convert.ToBoolean(1),
+                                    Identificacion = Convert.ToString(usuarioP[0]),
+                                    LugarTrabajo = Convert.ToString(usuarioP[3]),
+                                    UltimoIngreso = DateTime.Now
+                                });
+
+                                dbs.SaveChanges();
+                            }
+
+                            
                         }
-
 
                     }
 

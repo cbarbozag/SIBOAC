@@ -726,6 +726,28 @@ public partial class PC_HH_AndroidEntities : DbContext
     }
 
 
+    public virtual ObjectResult<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string serieBoleta, string numeroBoleta, string usuarioSistema)
+    {
+
+        var serieBoletaParameter = serieBoleta != null ?
+            new ObjectParameter("serieBoleta", serieBoleta) :
+            new ObjectParameter("serieBoleta", typeof(string));
+
+
+        var numeroBoletaParameter = numeroBoleta != null ?
+            new ObjectParameter("numeroBoleta", numeroBoleta) :
+            new ObjectParameter("numeroBoleta", typeof(string));
+
+
+        var usuarioSistemaParameter = usuarioSistema != null ?
+            new ObjectParameter("UsuarioSistema", usuarioSistema) :
+            new ObjectParameter("UsuarioSistema", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter, usuarioSistemaParameter);
+    }
+
+
     public virtual ObjectResult<ConsultaeImpresionDeParteOficialData_Result> ConsultaeImpresionDeParteOficialData(Nullable<int> tipoConsulta, string parametro1, string parametro2, string parametro3, string usuarioSistema)
     {
 
@@ -755,28 +777,6 @@ public partial class PC_HH_AndroidEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultaeImpresionDeParteOficialData_Result>("ConsultaeImpresionDeParteOficialData", tipoConsultaParameter, parametro1Parameter, parametro2Parameter, parametro3Parameter, usuarioSistemaParameter);
-    }
-
-
-    public virtual ObjectResult<GetReimpresionDeBoletasDeCampoData_Result> GetReimpresionDeBoletasDeCampoData(string serieBoleta, string numeroBoleta, string usuarioSistema)
-    {
-
-        var serieBoletaParameter = serieBoleta != null ?
-            new ObjectParameter("serieBoleta", serieBoleta) :
-            new ObjectParameter("serieBoleta", typeof(string));
-
-
-        var numeroBoletaParameter = numeroBoleta != null ?
-            new ObjectParameter("numeroBoleta", numeroBoleta) :
-            new ObjectParameter("numeroBoleta", typeof(string));
-
-
-        var usuarioSistemaParameter = usuarioSistema != null ?
-            new ObjectParameter("UsuarioSistema", usuarioSistema) :
-            new ObjectParameter("UsuarioSistema", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetReimpresionDeBoletasDeCampoData_Result>("GetReimpresionDeBoletasDeCampoData", serieBoletaParameter, numeroBoletaParameter, usuarioSistemaParameter);
     }
 
 }

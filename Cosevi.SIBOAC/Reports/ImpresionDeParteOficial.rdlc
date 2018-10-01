@@ -4277,7 +4277,7 @@
                         </TablixColumns>
                         <TablixRows>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -4387,7 +4387,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -4535,7 +4535,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.63311cm</Height>
+                            <Height>0.5962cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -4712,7 +4712,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.47436cm</Height>
+                            <Height>0.43745cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -4918,7 +4918,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5004,7 +5004,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5105,7 +5105,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5250,7 +5250,7 @@
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5359,7 +5359,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5460,7 +5460,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5605,7 +5605,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5725,7 +5725,60 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
+                            <TablixCells>
+                              <TablixCell>
+                                <CellContents>
+                                  <Textbox Name="Textbox10">
+                                    <CanGrow>true</CanGrow>
+                                    <KeepTogether>true</KeepTogether>
+                                    <Paragraphs>
+                                      <Paragraph>
+                                        <TextRuns>
+                                          <TextRun>
+                                            <Value>Observaciones: </Value>
+                                            <Style>
+                                              <FontSize>8pt</FontSize>
+                                              <FontWeight>Bold</FontWeight>
+                                            </Style>
+                                          </TextRun>
+                                          <TextRun>
+                                            <Value>=Fields!observacionesBole.Value</Value>
+                                            <Style>
+                                              <FontSize>8pt</FontSize>
+                                              <FontWeight>Normal</FontWeight>
+                                            </Style>
+                                          </TextRun>
+                                        </TextRuns>
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
+                                      </Paragraph>
+                                    </Paragraphs>
+                                    <rd:DefaultName>Textbox10</rd:DefaultName>
+                                    <Style>
+                                      <Border>
+                                        <Color>LightGrey</Color>
+                                        <Style>Solid</Style>
+                                      </Border>
+                                      <PaddingLeft>2pt</PaddingLeft>
+                                      <PaddingRight>2pt</PaddingRight>
+                                      <PaddingTop>2pt</PaddingTop>
+                                      <PaddingBottom>2pt</PaddingBottom>
+                                    </Style>
+                                  </Textbox>
+                                  <ColSpan>6</ColSpan>
+                                </CellContents>
+                              </TablixCell>
+                              <TablixCell />
+                              <TablixCell />
+                              <TablixCell />
+                              <TablixCell />
+                              <TablixCell />
+                            </TablixCells>
+                          </TablixRow>
+                          <TablixRow>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5772,7 +5825,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -5788,7 +5841,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                       </TablixColumns>
                                       <TablixRows>
                                         <TablixRow>
-                                          <Height>0.55373cm</Height>
+                                          <Height>0.51682cm</Height>
                                           <TablixCells>
                                             <TablixCell>
                                               <CellContents>
@@ -5895,7 +5948,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                             </TablixCells>
                           </TablixRow>
                           <TablixRow>
-                            <Height>0.55373cm</Height>
+                            <Height>0.51682cm</Height>
                             <TablixCells>
                               <TablixCell>
                                 <CellContents>
@@ -6099,6 +6152,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                               </GroupExpressions>
                             </Group>
                             <TablixMembers>
+                              <TablixMember />
                               <TablixMember />
                               <TablixMember />
                               <TablixMember />
@@ -6940,6 +6994,10 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
         </Field>
         <Field Name="DescripcionRol">
           <DataField>DescripcionRol</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="observacionesBole">
+          <DataField>observacionesBole</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="tipo_ide">

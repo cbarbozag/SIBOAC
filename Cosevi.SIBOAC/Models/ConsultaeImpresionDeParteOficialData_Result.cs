@@ -199,6 +199,8 @@ public partial class ConsultaeImpresionDeParteOficialData_Result
 
     public string DescripcionRol { get; set; }
 
+    public string observacionesBole { get; set; }
+
     public string tipo_ide { get; set; }
 
     public string identificacion { get; set; }

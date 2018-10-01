@@ -461,6 +461,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnDescripcionRol;
             
+            private global::System.Data.DataColumn columnobservacionesBole;
+            
             private global::System.Data.DataColumn columntipo_ide;
             
             private global::System.Data.DataColumn columnidentificacion;
@@ -1332,6 +1334,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn observacionesBoleColumn {
+                get {
+                    return this.columnobservacionesBole;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn tipo_ideColumn {
                 get {
                     return this.columntipo_ide;
@@ -1891,6 +1901,7 @@ namespace Cosevi.SIBOAC {
                         string DescripcionDano, 
                         string codrol, 
                         string DescripcionRol, 
+                        string observacionesBole, 
                         string tipo_ide, 
                         string identificacion, 
                         string nombre, 
@@ -2038,6 +2049,7 @@ namespace Cosevi.SIBOAC {
                         DescripcionDano,
                         codrol,
                         DescripcionRol,
+                        observacionesBole,
                         tipo_ide,
                         identificacion,
                         nombre,
@@ -2205,6 +2217,7 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionDano = base.Columns["DescripcionDano"];
                 this.columncodrol = base.Columns["codrol"];
                 this.columnDescripcionRol = base.Columns["DescripcionRol"];
+                this.columnobservacionesBole = base.Columns["observacionesBole"];
                 this.columntipo_ide = base.Columns["tipo_ide"];
                 this.columnidentificacion = base.Columns["identificacion"];
                 this.columnnombre = base.Columns["nombre"];
@@ -2446,6 +2459,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columncodrol);
                 this.columnDescripcionRol = new global::System.Data.DataColumn("DescripcionRol", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescripcionRol);
+                this.columnobservacionesBole = new global::System.Data.DataColumn("observacionesBole", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnobservacionesBole);
                 this.columntipo_ide = new global::System.Data.DataColumn("tipo_ide", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntipo_ide);
                 this.columnidentificacion = new global::System.Data.DataColumn("identificacion", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2685,6 +2700,7 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionDano.MaxLength = 50;
                 this.columncodrol.MaxLength = 2;
                 this.columnDescripcionRol.MaxLength = 50;
+                this.columnobservacionesBole.MaxLength = 500;
                 this.columntipo_ide.AllowDBNull = false;
                 this.columntipo_ide.MaxLength = 2;
                 this.columnidentificacion.AllowDBNull = false;
@@ -4185,6 +4201,23 @@ namespace Cosevi.SIBOAC {
                 }
                 set {
                     this[this.tableConsultaeImpresionDeParteOficialData.DescripcionRolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string observacionesBole {
+                get {
+                    try {
+                        return ((string)(this[this.tableConsultaeImpresionDeParteOficialData.observacionesBoleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'observacionesBole\' in table \'ConsultaeImpresionDeParteOfici" +
+                                "alData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableConsultaeImpresionDeParteOficialData.observacionesBoleColumn] = value;
                 }
             }
             
@@ -5720,6 +5753,18 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsobservacionesBoleNull() {
+                return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.observacionesBoleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetobservacionesBoleNull() {
+                this[this.tableConsultaeImpresionDeParteOficialData.observacionesBoleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsnombreNull() {
                 return this.IsNull(this.tableConsultaeImpresionDeParteOficialData.nombreColumn);
             }
@@ -6593,6 +6638,7 @@ namespace Cosevi.SIBOAC.ConsultaeImpresionParteOficialTableAdapters {
             tableMapping.ColumnMappings.Add("DescripcionDano", "DescripcionDano");
             tableMapping.ColumnMappings.Add("codrol", "codrol");
             tableMapping.ColumnMappings.Add("DescripcionRol", "DescripcionRol");
+            tableMapping.ColumnMappings.Add("observacionesBole", "observacionesBole");
             tableMapping.ColumnMappings.Add("tipo_ide", "tipo_ide");
             tableMapping.ColumnMappings.Add("identificacion", "identificacion");
             tableMapping.ColumnMappings.Add("nombre", "nombre");

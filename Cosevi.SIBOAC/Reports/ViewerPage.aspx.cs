@@ -3103,14 +3103,13 @@ namespace Cosevi.SIBOAC.Reports
             string Parametro1 = param[1];
             string Parametro2 = param[2];
             string Parametro3 = param[3];
-            //string Parametro4 = param[4];
 
-            if (Parametro3 == "null")
-            {
-                db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
-                var lista1 = db.ConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0", usuarioSistema).ToList();
-                return lista1;
-            }
+            //if (Parametro3 == "null")
+            //{
+            //    db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
+            //    var lista1 = db.ConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, "-0", usuarioSistema).ToList();
+            //    return lista1;
+            //}
             db.Database.CommandTimeout = Convert.ToInt32(ConfigurationManager.AppSettings["CommandTimeout"]);
             var lista = db.ConsultaeImpresionDeParteOficialData(TipoConsulta, Parametro1, Parametro2, Parametro3, usuarioSistema).ToList();
             return lista;
