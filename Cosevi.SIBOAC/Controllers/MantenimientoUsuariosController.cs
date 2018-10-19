@@ -477,13 +477,10 @@ namespace Cosevi.SIBOAC.Controllers
                                     LugarTrabajo = Convert.ToString(usuarioP[3]),
                                     UltimoIngreso = DateTime.Now
                                 });
-
-                                dbs.SaveChanges();
-                            }
-
-                            
+                                
+                            }                            
                         }
-
+                        dbs.SaveChanges();
                     }
 
                     TempData["Type"] = "success";

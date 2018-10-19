@@ -285,6 +285,10 @@
           <DataField>numero_vin</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TOTALM">
+          <DataField>TOTALM</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>GetReimpresionDeBoletasDeCampoDataSet</rd:DataSetName>
@@ -1716,7 +1720,15 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Sum(Fields!multa.Value)</Value>
+                                  <Value>=First(Fields!TOTALM.Value, "DataSet1")</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>#,0.00;(#,0.00)</Format>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -2245,7 +2257,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=First(Fields!DepositoPlaca.Value, "DataSet1").ToString()</Value>
+                    <Value>=First(Fields!DepositoPlaca.Value, "DataSet1")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -2900,7 +2912,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Licencia Confiscada:</Value>
+                    <Value>Licencia Confiscada: </Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2910,7 +2922,7 @@
                     <Value>=First(Fields!licencia_confiscada.Value, "DataSet1")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -2920,8 +2932,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>16.60155cm</Top>
-            <Left>0.79925cm</Left>
+            <Top>16.56628cm</Top>
+            <Left>0.79624cm</Left>
             <Height>0.47624cm</Height>
             <Width>16.87573cm</Width>
             <ZIndex>42</ZIndex>

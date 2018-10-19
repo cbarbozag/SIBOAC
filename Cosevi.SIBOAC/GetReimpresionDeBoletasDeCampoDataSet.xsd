@@ -2,9 +2,8 @@
 <xs:schema id="GetReimpresionDeBoletasDeCampoDataSet" targetNamespace="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:mstns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -92,6 +91,7 @@
               <Mapping SourceColumn="DescripcionCarroceria" DataSetColumn="DescripcionCarroceria" />
               <Mapping SourceColumn="Rev_Tecnica" DataSetColumn="Rev_Tecnica" />
               <Mapping SourceColumn="numero_vin" DataSetColumn="numero_vin" />
+              <Mapping SourceColumn="TOTALM" DataSetColumn="TOTALM" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -248,7 +248,7 @@
               <xs:element name="codOficinaImpugnacion" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columncodOficinaImpugnacion" msprop:Generator_ColumnPropNameInRow="codOficinaImpugnacion" msprop:Generator_ColumnPropNameInTable="codOficinaImpugnacionColumn" msprop:Generator_UserColumnName="codOficinaImpugnacion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="2" />
+                    <xs:maxLength value="9" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -509,6 +509,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="TOTALM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTALM" msprop:Generator_ColumnPropNameInRow="TOTALM" msprop:Generator_ColumnPropNameInTable="TOTALMColumn" msprop:Generator_UserColumnName="TOTALM" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

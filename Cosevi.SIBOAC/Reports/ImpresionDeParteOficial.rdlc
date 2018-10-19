@@ -4828,7 +4828,7 @@
                                             </Style>
                                           </TextRun>
                                           <TextRun>
-                                            <Value>=Fields!Edad.Value</Value>
+                                            <Value>=IIF(Fields!Edad.Value = 999,"No indica",Fields!Edad.Value)</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                             </Style>

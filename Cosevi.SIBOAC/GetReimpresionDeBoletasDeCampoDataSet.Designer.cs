@@ -413,6 +413,8 @@ namespace Cosevi.SIBOAC {
             
             private global::System.Data.DataColumn columnnumero_vin;
             
+            private global::System.Data.DataColumn columnTOTALM;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public GetReimpresionDeBoletasDeCampoDataDataTable() {
@@ -984,6 +986,14 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TOTALMColumn {
+                get {
+                    return this.columnTOTALM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1086,7 +1096,8 @@ namespace Cosevi.SIBOAC {
                         int tipo_carroceria, 
                         string DescripcionCarroceria, 
                         string Rev_Tecnica, 
-                        string numero_vin) {
+                        string numero_vin, 
+                        decimal TOTALM) {
                 GetReimpresionDeBoletasDeCampoDataRow rowGetReimpresionDeBoletasDeCampoDataRow = ((GetReimpresionDeBoletasDeCampoDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fuente,
@@ -1155,7 +1166,8 @@ namespace Cosevi.SIBOAC {
                         tipo_carroceria,
                         DescripcionCarroceria,
                         Rev_Tecnica,
-                        numero_vin};
+                        numero_vin,
+                        TOTALM};
                 rowGetReimpresionDeBoletasDeCampoDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetReimpresionDeBoletasDeCampoDataRow);
                 return rowGetReimpresionDeBoletasDeCampoDataRow;
@@ -1245,6 +1257,7 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionCarroceria = base.Columns["DescripcionCarroceria"];
                 this.columnRev_Tecnica = base.Columns["Rev_Tecnica"];
                 this.columnnumero_vin = base.Columns["numero_vin"];
+                this.columnTOTALM = base.Columns["TOTALM"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1384,6 +1397,8 @@ namespace Cosevi.SIBOAC {
                 base.Columns.Add(this.columnRev_Tecnica);
                 this.columnnumero_vin = new global::System.Data.DataColumn("numero_vin", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumero_vin);
+                this.columnTOTALM = new global::System.Data.DataColumn("TOTALM", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTOTALM);
                 this.columnfuente.ReadOnly = true;
                 this.columnfuente.MaxLength = 1;
                 this.columnserie.ReadOnly = true;
@@ -1429,7 +1444,7 @@ namespace Cosevi.SIBOAC {
                 this.columnDescripcionTipoAutomovil.ReadOnly = true;
                 this.columnDescripcionTipoAutomovil.MaxLength = 50;
                 this.columncodOficinaImpugnacion.ReadOnly = true;
-                this.columncodOficinaImpugnacion.MaxLength = 2;
+                this.columncodOficinaImpugnacion.MaxLength = 9;
                 this.columnDescripcionOficinaImpugna.ReadOnly = true;
                 this.columnDescripcionOficinaImpugna.MaxLength = 20;
                 this.columnPlaca_Confis.ReadOnly = true;
@@ -1507,6 +1522,7 @@ namespace Cosevi.SIBOAC {
                 this.columnRev_Tecnica.MaxLength = 9;
                 this.columnnumero_vin.ReadOnly = true;
                 this.columnnumero_vin.MaxLength = 20;
+                this.columnTOTALM.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2788,6 +2804,23 @@ namespace Cosevi.SIBOAC {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TOTALM {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableGetReimpresionDeBoletasDeCampoData.TOTALMColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TOTALM\' in table \'GetReimpresionDeBoletasDeCampoData\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableGetReimpresionDeBoletasDeCampoData.TOTALMColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsfuenteNull() {
                 return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.fuenteColumn);
             }
@@ -3589,6 +3622,18 @@ namespace Cosevi.SIBOAC {
             public void Setnumero_vinNull() {
                 this[this.tableGetReimpresionDeBoletasDeCampoData.numero_vinColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTOTALMNull() {
+                return this.IsNull(this.tableGetReimpresionDeBoletasDeCampoData.TOTALMColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTOTALMNull() {
+                this[this.tableGetReimpresionDeBoletasDeCampoData.TOTALMColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -3817,6 +3862,7 @@ namespace Cosevi.SIBOAC.GetReimpresionDeBoletasDeCampoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("DescripcionCarroceria", "DescripcionCarroceria");
             tableMapping.ColumnMappings.Add("Rev_Tecnica", "Rev_Tecnica");
             tableMapping.ColumnMappings.Add("numero_vin", "numero_vin");
+            tableMapping.ColumnMappings.Add("TOTALM", "TOTALM");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

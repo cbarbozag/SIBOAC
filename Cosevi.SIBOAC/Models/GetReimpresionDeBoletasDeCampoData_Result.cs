@@ -151,6 +151,8 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public string numero_vin { get; set; }
 
+    public Nullable<decimal> TOTALM { get; set; }
+
 }
 
 }
