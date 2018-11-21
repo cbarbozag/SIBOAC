@@ -832,7 +832,7 @@
           <Property Name="numeroHH" Type="int" />
           <Property Name="fechaexportacionHH" Type="datetime" />
           <Property Name="impresion" Type="bit" />
-          <Property Name="Observaciones" Type="varchar" MaxLength="180" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="500" />
           <Property Name="plano_generado" Type="bit" />
           <Property Name="fecha_entrega" Type="datetime" />
           <Property Name="usuario_entregaPlano" Type="nvarchar" MaxLength="50" />
@@ -2665,7 +2665,7 @@
           <Property Name="numeroHH" Type="Int32" />
           <Property Name="fechaexportacionHH" Type="DateTime" Precision="3" />
           <Property Name="Impresion" Type="Boolean" />
-          <Property Name="Observaciones" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="plano_generado" Type="Boolean" />
           <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
           <Property Name="usuario_entregaPlano" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
