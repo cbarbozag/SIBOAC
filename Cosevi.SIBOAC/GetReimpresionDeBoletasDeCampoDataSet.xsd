@@ -2,8 +2,9 @@
 <xs:schema id="GetReimpresionDeBoletasDeCampoDataSet" targetNamespace="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:mstns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns="http://tempuri.org/GetReimpresionDeBoletasDeCampoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PC_HH_AndroidConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PC_HH_AndroidConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PC_HH_AndroidConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
@@ -51,7 +52,9 @@
               <Mapping SourceColumn="DescripcionTipoAutomovil" DataSetColumn="DescripcionTipoAutomovil" />
               <Mapping SourceColumn="codOficinaImpugnacion" DataSetColumn="codOficinaImpugnacion" />
               <Mapping SourceColumn="DescripcionOficinaImpugna" DataSetColumn="DescripcionOficinaImpugna" />
-              <Mapping SourceColumn="Placa_Confis" DataSetColumn="Placa_Confis" />
+              <Mapping SourceColumn="CantMetal" DataSetColumn="CantMetal" />
+              <Mapping SourceColumn="CantPapel" DataSetColumn="CantPapel" />
+              <Mapping SourceColumn="CantPermiso" DataSetColumn="CantPermiso" />
               <Mapping SourceColumn="DepositoPlaca" DataSetColumn="DepositoPlaca" />
               <Mapping SourceColumn="Veh_Detenido" DataSetColumn="Veh_Detenido" />
               <Mapping SourceColumn="DepositoVehiculo" DataSetColumn="DepositoVehiculo" />
@@ -259,13 +262,9 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Placa_Confis" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPlaca_Confis" msprop:Generator_ColumnPropNameInRow="Placa_Confis" msprop:Generator_ColumnPropNameInTable="Placa_ConfisColumn" msprop:Generator_UserColumnName="Placa_Confis" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="CantMetal" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCantMetal" msprop:Generator_ColumnPropNameInRow="CantMetal" msprop:Generator_ColumnPropNameInTable="CantMetalColumn" msprop:Generator_UserColumnName="CantMetal" type="xs:short" minOccurs="0" />
+              <xs:element name="CantPapel" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCantPapel" msprop:Generator_ColumnPropNameInRow="CantPapel" msprop:Generator_ColumnPropNameInTable="CantPapelColumn" msprop:Generator_UserColumnName="CantPapel" type="xs:short" minOccurs="0" />
+              <xs:element name="CantPermiso" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCantPermiso" msprop:Generator_ColumnPropNameInRow="CantPermiso" msprop:Generator_ColumnPropNameInTable="CantPermisoColumn" msprop:Generator_UserColumnName="CantPermiso" type="xs:short" minOccurs="0" />
               <xs:element name="DepositoPlaca" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDepositoPlaca" msprop:Generator_ColumnPropNameInRow="DepositoPlaca" msprop:Generator_ColumnPropNameInTable="DepositoPlacaColumn" msprop:Generator_UserColumnName="DepositoPlaca" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

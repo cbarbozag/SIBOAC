@@ -71,7 +71,11 @@ public partial class GetReimpresionDeBoletasDeCampoData_Result
 
     public string DescripcionOficinaImpugna { get; set; }
 
-    public string Placa_Confis { get; set; }
+    public Nullable<short> CantMetal { get; set; }
+
+    public Nullable<short> CantPapel { get; set; }
+
+    public Nullable<short> CantPermiso { get; set; }
 
     public string DepositoPlaca { get; set; }
 

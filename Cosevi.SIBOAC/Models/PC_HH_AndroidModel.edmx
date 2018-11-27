@@ -3545,7 +3545,9 @@
           <Property Type="String" Name="DescripcionTipoAutomovil" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="codOficinaImpugnacion" Nullable="true" MaxLength="9" />
           <Property Type="String" Name="DescripcionOficinaImpugna" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Placa_Confis" Nullable="false" MaxLength="2" />
+          <Property Type="Int16" Name="CantMetal" Nullable="true" />
+          <Property Type="Int16" Name="CantPapel" Nullable="true" />
+          <Property Type="Int16" Name="CantPermiso" Nullable="true" />
           <Property Type="String" Name="DepositoPlaca" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Veh_Detenido" Nullable="false" MaxLength="2" />
           <Property Type="String" Name="DepositoVehiculo" Nullable="true" MaxLength="50" />
@@ -5432,7 +5434,9 @@
                 <ScalarProperty Name="DescripcionTipoAutomovil" ColumnName="DescripcionTipoAutomovil" />
                 <ScalarProperty Name="codOficinaImpugnacion" ColumnName="codOficinaImpugnacion" />
                 <ScalarProperty Name="DescripcionOficinaImpugna" ColumnName="DescripcionOficinaImpugna" />
-                <ScalarProperty Name="Placa_Confis" ColumnName="Placa_Confis" />
+                <ScalarProperty Name="CantMetal" ColumnName="CantMetal" />
+                <ScalarProperty Name="CantPapel" ColumnName="CantPapel" />
+                <ScalarProperty Name="CantPermiso" ColumnName="CantPermiso" />
                 <ScalarProperty Name="DepositoPlaca" ColumnName="DepositoPlaca" />
                 <ScalarProperty Name="Veh_Detenido" ColumnName="Veh_Detenido" />
                 <ScalarProperty Name="DepositoVehiculo" ColumnName="DepositoVehiculo" />

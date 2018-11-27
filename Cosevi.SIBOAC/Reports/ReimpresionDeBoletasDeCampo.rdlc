@@ -125,9 +125,17 @@
           <DataField>DescripcionOficinaImpugna</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Placa_Confis">
-          <DataField>Placa_Confis</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="CantMetal">
+          <DataField>CantMetal</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="CantPapel">
+          <DataField>CantPapel</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
+        </Field>
+        <Field Name="CantPermiso">
+          <DataField>CantPermiso</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
         </Field>
         <Field Name="DepositoPlaca">
           <DataField>DepositoPlaca</DataField>
@@ -1207,7 +1215,7 @@
             <Width>16.87791cm</Width>
             <ZIndex>19</ZIndex>
             <Visibility>
-              <Hidden>=IIF(First(Fields!numeroparte.Value, "DataSet1") = 0,True,IIF(First(Fields!DescripcionOficinaImpugna.Value, "DataSet1")="No indica",true,false))</Hidden>
+              <Hidden>=IIF(First(Fields!numeroparte.Value, "DataSet1") &lt;&gt; 0,True,IIF(First(Fields!DescripcionOficinaImpugna.Value, "DataSet1")="No indica",true,false))</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -2194,22 +2202,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Placa Confiscada:</Value>
+                    <Value>Placa Confiscada</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value xml:space="preserve"> </Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=First(Fields!Placa_Confis.Value, "DataSet1").ToString()</Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -2222,10 +2218,10 @@
             <Top>17.07779cm</Top>
             <Left>0.79925cm</Left>
             <Height>0.47624cm</Height>
-            <Width>16.87573cm</Width>
+            <Width>2.61469cm</Width>
             <ZIndex>32</ZIndex>
             <Visibility>
-              <Hidden>=IIF(First(Fields!Placa_Confis.Value, "DataSet1")="NO",true,false)</Hidden>
+              <Hidden>=IIF(First(Fields!CantMetal.Value, "DataSet1") = 0 and First(Fields!CantPapel.Value, "DataSet1") = 0 and First(Fields!CantPermiso.Value, "DataSet1") = 0,true,false)</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -2275,7 +2271,7 @@
             <Width>16.87532cm</Width>
             <ZIndex>33</ZIndex>
             <Visibility>
-              <Hidden>=IIF(First(Fields!Placa_Confis.Value, "DataSet1")="NO",true,false)</Hidden>
+              <Hidden>=IIF(First(Fields!CantMetal.Value, "DataSet1") = 0 and First(Fields!CantPapel.Value, "DataSet1") = 0 and First(Fields!CantPermiso.Value, "DataSet1") = 0,true,false)</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -3024,6 +3020,141 @@
               </Border>
             </Style>
           </Subreport>
+          <Textbox Name="Textbox22">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Metal: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!CantMetal.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>17.04251cm</Top>
+            <Left>3.801cm</Left>
+            <Height>0.47624cm</Height>
+            <Width>2.05907cm</Width>
+            <ZIndex>46</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!CantMetal.Value, "DataSet1") = 0, True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox23">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Papel: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!CantMetal.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>17.07779cm</Top>
+            <Left>6.15986cm</Left>
+            <Height>0.47624cm</Height>
+            <Width>2.05907cm</Width>
+            <ZIndex>47</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!CantPapel.Value, "DataSet1") = 0, True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox24">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Permisos: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!CantMetal.Value, "DataSet1")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>17.0778cm</Top>
+            <Left>8.50798cm</Left>
+            <Height>0.47624cm</Height>
+            <Width>2.72053cm</Width>
+            <ZIndex>48</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!CantPermiso.Value, "DataSet1") = 0 , True, False)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>14.85546in</Height>
         <Style />
