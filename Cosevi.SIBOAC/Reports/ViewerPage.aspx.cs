@@ -935,35 +935,45 @@ namespace Cosevi.SIBOAC.Reports
 
                             foreach (var item in extSvg)
                             {
-                                var existeSVG = item.nombre;
-                                string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
-                                string nombrePng = item.nombre.Replace(".svg", ".png");
-
-                                string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + nombrePng);
-
-                                if (System.IO.File.Exists(existeAdjS))
+                                try
                                 {
+                                    var existeSVG = item.nombre;
+                                    string existeAdjS = @"" + rutaPlano1 + "\\" + existeSVG;
+                                    string nombrePng = item.nombre.Replace(".svg", ".png");
 
-                                    var sampleDoc = SvgDocument.Open(existeAdjS);                                        
-                                    sampleDoc.Draw().Save(strfn);
+                                    string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + nombrePng);
 
-                                    int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+                                    string link = @"" + rutaPlano1 + "\\" + nombrePng;
 
-                                    var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
-                                    svgConvertido.extension = "svgc";
-
-                                    dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                    if (System.IO.File.Exists(existeAdjS))
                                     {
-                                        fuente = CodigoFuente1,
-                                        serie = serParte1,
-                                        numero = numeParte1,
-                                        extension = "png",
-                                        fechaRegistro = DateTime.Now,
-                                        nombre = nombrePng,
-                                        consecutivo_extension = maxValue.Value + 1
-                                    });
 
-                                    dbPivot.SaveChanges();
+                                        var sampleDoc = SvgDocument.Open(existeAdjS);
+                                        sampleDoc.Draw().Save(strfn);
+
+                                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.serie && oa.numero == item.numero && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+
+                                        var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
+                                        svgConvertido.extension = "svgc";
+
+                                        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                        {
+                                            fuente = CodigoFuente1,
+                                            serie = serParte1,
+                                            numero = numeParte1,
+                                            extension = "png",
+                                            fechaRegistro = DateTime.Now,
+                                            nombre = nombrePng,
+                                            consecutivo_extension = maxValue.Value + 1,
+                                            linkArchivo = link
+                                        });
+
+                                        dbPivot.SaveChanges();
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("An error occurred: '{0}'", ex);
                                 }
 
                             }
@@ -984,19 +994,26 @@ namespace Cosevi.SIBOAC.Reports
                                 }
                                 else
                                 {
-                                    string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + itmeP.nombre);
+                                    try
+                                    {                                    
+                                        string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + itmeP.nombre);
 
-                                    System.Drawing.Bitmap bitmap1;
-                                    bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn);
-                                    bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-                                    bitmap1.Save(strfn);                                    
+                                        System.Drawing.Bitmap bitmap1;
+                                        bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn);
+                                        bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                        bitmap1.Save(strfn);                                    
 
-                                    var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, itmeP.nombre);
-                                    PlanoConvertido.extension = itmeP.extension + "c";
+                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, itmeP.nombre);
+                                        PlanoConvertido.extension = itmeP.extension + "c";
 
-                                    dbPivot.SaveChanges();
+                                        dbPivot.SaveChanges();
 
-                                    listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, itmeP.nombre)).AbsoluteUri, numeroParte1);
+                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, itmeP.nombre)).AbsoluteUri, numeroParte1);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("An error occurred: '{0}'", ex);
+                                    }
                                 }                                                                
                             }
 
@@ -1031,26 +1048,33 @@ namespace Cosevi.SIBOAC.Reports
                                     }
                                     else
                                     {
-                                        if (barrImg != null)
-                                        {
-                                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                            string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-p-" + adjFinal.Identificacion.Trim() + ".png");
+                                        try
+                                        { 
+                                            if (barrImg != null)
+                                            {
+                                                //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                                string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-p-" + adjFinal.Identificacion.Trim() + ".png");
 
-                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);                                            
-                                            fs.Write(barrImg, 0, barrImg.Length);                                            
-                                            fs.Flush();
-                                            fs.Close();
+                                                FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);                                            
+                                                fs.Write(barrImg, 0, barrImg.Length);                                            
+                                                fs.Flush();
+                                                fs.Close();
                                             
-                                            string strfn2 = Path.Combine(@"" + rutaPlano1 + "\\" + existeA);
+                                                string strfn2 = Path.Combine(@"" + rutaPlano1 + "\\" + existeA);
 
-                                            System.Drawing.Bitmap bitmap1;
-                                            bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
-                                            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-                                            bitmap1.Save(strfn2);
+                                                System.Drawing.Bitmap bitmap1;
+                                                bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
+                                                bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                bitmap1.Save(strfn2);
 
-                                        }                   
+                                            }                   
                                         
-                                        listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
+                                            listaPlanos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Console.WriteLine("An error occurred: '{0}'", ex);
+                                        }
                                     }
 
                                 }
@@ -1070,33 +1094,40 @@ namespace Cosevi.SIBOAC.Reports
                                 }
                                 else
                                 {
-                                    string existeAdj = @"" + rutaPlano1 + "\\" + item.nombre;
-
-                                    Stream stream = File.OpenRead(existeAdj);
-                                    System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
-
-                                    int width = sourceImage.Width;
-                                    int height = sourceImage.Height;
-                                    stream.Close();
-
-                                    if (width > height)
+                                    try
                                     {
+                                        string existeAdj = @"" + rutaPlano1 + "\\" + item.nombre;
 
-                                        System.Drawing.Bitmap bitmap1;
-                                        bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
-                                        bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-                                        bitmap1.Save(existeAdj);
+                                        Stream stream = File.OpenRead(existeAdj);
+                                        System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
 
-                                        var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
-                                        PlanoConvertido.extension = item.extension + "c";
+                                        int width = sourceImage.Width;
+                                        int height = sourceImage.Height;
+                                        stream.Close();
 
-                                        dbPivot.SaveChanges();
+                                        if (width > height)
+                                        {
 
-                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1);
+                                            System.Drawing.Bitmap bitmap1;
+                                            bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                            bitmap1.Save(existeAdj);
+
+                                            var PlanoConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, item.nombre);
+                                            PlanoConvertido.extension = item.extension + "c";
+
+                                            dbPivot.SaveChanges();
+
+                                            listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1);
+                                        }
+                                        else
+                                        {
+                                            listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1);
+                                        }
                                     }
-                                    else
+                                    catch (Exception ex)
                                     {
-                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1);
+                                        Console.WriteLine("An error occurred: '{0}'", ex);
                                     }
                                 }
                                                         
@@ -1134,24 +1165,30 @@ namespace Cosevi.SIBOAC.Reports
                                         listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
                                     }
                                     else
-                                    {                                       
-                                        if (barrImg != null)
-                                        {
-                                            //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
-                                            string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-a-" + adjFinal.Identificacion.Trim() + ".png");
+                                    {   try
+                                        { 
+                                            if (barrImg != null)
+                                            {
+                                                //Grabamos la imagen al disco (en un directorio accesible desde IIS) para poder servirla                            
+                                                string strfn = Server.MapPath(rutaV + CodigoFuente1.ToString() + "-" + Parametro4.ToString() + "-" + Parametro5.ToString() + "-a-" + adjFinal.Identificacion.Trim() + ".png");
 
-                                            FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
-                                            fs.Write(barrImg, 0, barrImg.Length);
-                                            fs.Flush();                                            
-                                            fs.Close();
+                                                FileStream fs = new FileStream(strfn, FileMode.CreateNew, FileAccess.Write);
+                                                fs.Write(barrImg, 0, barrImg.Length);
+                                                fs.Flush();                                            
+                                                fs.Close();
 
-                                            System.Drawing.Bitmap bitmap1;
-                                            bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
-                                            bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-                                            bitmap1.Save(existeAdj);
+                                                System.Drawing.Bitmap bitmap1;
+                                                bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
+                                                bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+                                                bitmap1.Save(existeAdj);
 
+                                            }
+                                            listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
                                         }
-                                        listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
+                                        catch (Exception ex)
+                                        {
+                                            Console.WriteLine("An error occurred: '{0}'", ex);
+                                        }
                                     }                                    
                                 }                                
                             }
@@ -1425,6 +1462,8 @@ namespace Cosevi.SIBOAC.Reports
 
                                 string strfn = Path.Combine(@"" + rutaPlano2 + "\\" + nombrePng);
 
+                                string link = @"" + rutaPlano2 + "\\" + nombrePng;
+
                                 if (System.IO.File.Exists(existeAdjS))
                                 {
                                     var sampleDoc = SvgDocument.Open(existeAdjS);
@@ -1443,7 +1482,8 @@ namespace Cosevi.SIBOAC.Reports
                                         extension = "png",
                                         fechaRegistro = DateTime.Now,
                                         nombre = nombrePng,
-                                        consecutivo_extension = maxValue.Value + 1
+                                        consecutivo_extension = maxValue.Value + 1,
+                                        linkArchivo = link
                                     });
 
                                     dbPivot.SaveChanges();
@@ -1917,6 +1957,8 @@ namespace Cosevi.SIBOAC.Reports
 
                                     string strfn = Path.Combine(@"" + rutaPlano3 + "\\" + nombrePng);
 
+                                    string link = @"" + rutaPlano3 + "\\" + nombrePng;
+
                                     if (System.IO.File.Exists(existeAdjS))
                                     {
                                         var sampleDoc = SvgDocument.Open(existeAdjS);
@@ -1935,7 +1977,8 @@ namespace Cosevi.SIBOAC.Reports
                                             extension = "png",
                                             fechaRegistro = DateTime.Now,
                                             nombre = nombrePng,
-                                            consecutivo_extension = maxValue.Value + 1
+                                            consecutivo_extension = maxValue.Value + 1,
+                                            linkArchivo = link
                                         });
 
                                         dbPivot.SaveChanges();
@@ -2509,6 +2552,8 @@ namespace Cosevi.SIBOAC.Reports
 
                                     string strfn = Path.Combine(@"" + rutaPlano4 + "\\" + nombrePng);
 
+                                    string link = @"" + rutaPlano4 + "\\" + nombrePng;
+
                                     if (System.IO.File.Exists(existeAdjS))
                                     {
 
@@ -2528,7 +2573,8 @@ namespace Cosevi.SIBOAC.Reports
                                             extension = "png",
                                             fechaRegistro = DateTime.Now,
                                             nombre = nombrePng,
-                                            consecutivo_extension = maxValue.Value + 1
+                                            consecutivo_extension = maxValue.Value + 1,
+                                            linkArchivo = link
                                         });
 
                                         dbPivot.SaveChanges();
