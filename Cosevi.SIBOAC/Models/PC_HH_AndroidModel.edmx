@@ -190,8 +190,6 @@
           <Property Name="por_denuncia" Type="bit" />
           <Property Name="NoGuardaCoordenadas" Type="bit" />
           <Property Name="articulos_sugeridos_justificacion" Type="nvarchar" MaxLength="300" />
-          <Property Name="Tipo_Examen" Type="int" />
-          <Property Name="Tipo_Conductor" Type="int" />
         </EntityType>
         <EntityType Name="CANTON">
           <Key>
@@ -513,24 +511,6 @@
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="alcmin" Type="float" Nullable="false" />
           <Property Name="alcmax" Type="float" Nullable="false" />
-          <Property Name="estado" Type="char" MaxLength="1" />
-          <Property Name="fecha_inicio" Type="datetime" />
-          <Property Name="fecha_fin" Type="datetime" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PC_HH_Android.dbo.ExamenNivelAlcohol' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ExamenNivelAlcohol">
-          <Key>
-            <PropertyRef Name="codexa" />
-          </Key>
-          <Property Name="codexa" Type="int" Nullable="false" />
-          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
-          <Property Name="alcmin_aire" Type="float" />
-          <Property Name="alcmax_aire" Type="float" />
-          <Property Name="alcmin_sangre" Type="float" />
-          <Property Name="alcmax_sangre" Type="float" />
-          <Property Name="tipo_conductor" Type="int" />
-          <Property Name="articulo_sugerido" Type="varchar" MaxLength="30" />
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
@@ -1158,15 +1138,6 @@ warning 6002: The table/view 'PC_HH_Android.dbo.ExamenNivelAlcohol' does not hav
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="TIPOCONDUCTOR">
-          <Property Name="codigo" Type="int" />
-          <Property Name="descripcion" Type="varchar" MaxLength="100" />
-          <Property Name="estado" Type="char" MaxLength="1" />
-          <Property Name="fecha_inicio" Type="datetime" />
-          <Property Name="fecha_fin" Type="datetime" />
-        </EntityType>-->
         <EntityType Name="TIPODANO">
           <Key>
             <PropertyRef Name="codigod" />
@@ -1271,8 +1242,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
           <Property Name="estado" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
           <Property Name="fecha_fin" Type="datetime" Nullable="false" />
-          <Property Name="ID" Type="int" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -1554,21 +1523,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ExamenNivelAlcohol" EntityType="Self.ExamenNivelAlcohol" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ExamenNivelAlcohol].[codexa] AS [codexa], 
-    [ExamenNivelAlcohol].[descripcion] AS [descripcion], 
-    [ExamenNivelAlcohol].[alcmin_aire] AS [alcmin_aire], 
-    [ExamenNivelAlcohol].[alcmax_aire] AS [alcmax_aire], 
-    [ExamenNivelAlcohol].[alcmin_sangre] AS [alcmin_sangre], 
-    [ExamenNivelAlcohol].[alcmax_sangre] AS [alcmax_sangre], 
-    [ExamenNivelAlcohol].[tipo_conductor] AS [tipo_conductor], 
-    [ExamenNivelAlcohol].[articulo_sugerido] AS [articulo_sugerido], 
-    [ExamenNivelAlcohol].[estado] AS [estado], 
-    [ExamenNivelAlcohol].[fecha_inicio] AS [fecha_inicio], 
-    [ExamenNivelAlcohol].[fecha_fin] AS [fecha_fin]
-    FROM [dbo].[ExamenNivelAlcohol] AS [ExamenNivelAlcohol]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1857,7 +1811,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
             <Parameter Name="numeroBoleta" Mode="In" Type="String" />
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="ExamenNivelAlcohol" EntityType="PC_HH_AndroidModel.ExamenNivelAlcohol" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -2364,8 +2317,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ID" Type="Int32" />
-          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VariablesParaBloqueo">
           <Key>
@@ -2814,8 +2765,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
           <Property Name="por_denuncia" Type="Boolean" />
           <Property Name="NoGuardaCoordenadas" Type="Boolean" />
           <Property Name="articulos_sugeridos_justificacion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Tipo_Examen" Type="Int32" />
-          <Property Name="Tipo_Conductor" Type="Int32" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -3640,22 +3589,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
           <Property Type="String" Name="numero_vin" Nullable="true" MaxLength="20" />
           <Property Type="Decimal" Name="TOTALM" Nullable="true" Precision="19" />
         </ComplexType>
-        <EntityType Name="ExamenNivelAlcohol">
-          <Key>
-            <PropertyRef Name="codexa" />
-          </Key>
-          <Property Name="codexa" Type="Int32" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="alcmin_aire" Type="Double" />
-          <Property Name="alcmax_aire" Type="Double" />
-          <Property Name="alcmin_sangre" Type="Double" />
-          <Property Name="alcmax_sangre" Type="Double" />
-          <Property Name="tipo_conductor" Type="Int32" />
-          <Property Name="articulo_sugerido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4286,8 +4219,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
           <EntitySetMapping Name="UNIDADES_ALCOHOL">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.UnidadesDeAlcohol">
               <MappingFragment StoreEntitySet="UNIDADES_ALCOHOL">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
                 <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="Estado" ColumnName="estado" />
@@ -4643,8 +4574,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
           <EntitySetMapping Name="BOLETA">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Boletas">
               <MappingFragment StoreEntitySet="BOLETA">
-                <ScalarProperty Name="Tipo_Conductor" ColumnName="Tipo_Conductor" />
-                <ScalarProperty Name="Tipo_Examen" ColumnName="Tipo_Examen" />
                 <ScalarProperty Name="articulos_sugeridos_justificacion" ColumnName="articulos_sugeridos_justificacion" />
                 <ScalarProperty Name="NoGuardaCoordenadas" ColumnName="NoGuardaCoordenadas" />
                 <ScalarProperty Name="por_denuncia" ColumnName="por_denuncia" />
@@ -5551,23 +5480,6 @@ warning 6013: The table/view 'PC_HH_Android.dbo.TIPOCONDUCTOR' does not have a p
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="ExamenNivelAlcohol">
-            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ExamenNivelAlcohol">
-              <MappingFragment StoreEntitySet="ExamenNivelAlcohol">
-                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
-                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="articulo_sugerido" ColumnName="articulo_sugerido" />
-                <ScalarProperty Name="tipo_conductor" ColumnName="tipo_conductor" />
-                <ScalarProperty Name="alcmax_sangre" ColumnName="alcmax_sangre" />
-                <ScalarProperty Name="alcmin_sangre" ColumnName="alcmin_sangre" />
-                <ScalarProperty Name="alcmax_aire" ColumnName="alcmax_aire" />
-                <ScalarProperty Name="alcmin_aire" ColumnName="alcmin_aire" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="codexa" ColumnName="codexa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

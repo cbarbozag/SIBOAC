@@ -105,7 +105,6 @@
         <EntityTypeShape EntityType="PC_HH_AndroidModel.TESTIGOXBOLETA" Width="1.5" PointX="22.375" PointY="6.75" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.IMAGENES" Width="1.5" PointX="22.375" PointY="11" />
         <EntityTypeShape EntityType="PC_HH_AndroidModel.SIBOACBITADJUNTOS" Width="1.5" PointX="22.375" PointY="14.75" />
-        <EntityTypeShape EntityType="PC_HH_AndroidModel.ExamenNivelAlcohol" Width="1.5" PointX="22.375" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
