@@ -21,7 +21,7 @@ namespace Cosevi.SIBOAC.Controllers
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
 
-            var list = db.UNIDADES_ALCOHOL.ToList();
+            var list = from s in db.UNIDADES_ALCOHOL.ToList().OrderBy(s => s.Codigo) select s; ;
 
             int pageSize = 20;
             int pageNumber = (page ?? 1);
@@ -49,13 +49,13 @@ namespace Cosevi.SIBOAC.Controllers
 
 
         // GET: UnidadesDeAlcohols/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string id, DateTime? FechaIni, DateTime? FechaFin)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
+            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id, FechaIni, FechaFin);
             if (unidadesDeAlcohol == null)
             {
                 return HttpNotFound();
@@ -74,7 +74,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] UnidadesDeAlcohol unidadesDeAlcohol)
+        public ActionResult Create([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin,Codigo,Descripcion")] UnidadesDeAlcohol unidadesDeAlcohol)
         {
             if (ModelState.IsValid)
             {
@@ -113,13 +113,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: UnidadesDeAlcohols/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id, DateTime? FechaIni, DateTime? FechaFin)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
+            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id, FechaIni, FechaFin);
             if (unidadesDeAlcohol == null)
             {
                 return HttpNotFound();
@@ -132,7 +132,7 @@ namespace Cosevi.SIBOAC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin")] UnidadesDeAlcohol unidadesDeAlcohol)
+        public ActionResult Edit([Bind(Include = "Id,Estado,FechaDeInicio,FechaDeFin,Codigo,Descripcion")] UnidadesDeAlcohol unidadesDeAlcohol)
         {
             if (ModelState.IsValid)
             {
@@ -159,13 +159,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: UnidadesDeAlcohols/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(string id, DateTime? FechaIni, DateTime? FechaFin)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
+            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id, FechaIni, FechaFin);
             if (unidadesDeAlcohol == null)
             {
                 return HttpNotFound();
@@ -176,9 +176,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: UnidadesDeAlcohols/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id, DateTime? FechaIni, DateTime? FechaFin)
         {
-            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
+            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id, FechaIni, FechaFin);
             UnidadesDeAlcohol unidadesDeAlcoholAntes = ObtenerCopia(unidadesDeAlcohol);
             if (unidadesDeAlcohol.Estado == "I")
                 unidadesDeAlcohol.Estado = "A";
@@ -190,13 +190,13 @@ namespace Cosevi.SIBOAC.Controllers
         }
 
         // GET: UnidadesDeAlcohols/RealDelete/5
-        public ActionResult RealDelete(string id)
+        public ActionResult RealDelete(string id, DateTime? FechaIni, DateTime? FechaFin)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
+            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id, FechaIni, FechaFin);
             if (unidadesDeAlcohol == null)
             {
                 return HttpNotFound();
@@ -207,9 +207,9 @@ namespace Cosevi.SIBOAC.Controllers
         // POST: UnidadesDeAlcohols/RealDelete/5
         [HttpPost, ActionName("RealDelete")]
         [ValidateAntiForgeryToken]
-        public ActionResult RealDeleteConfirmed(string id)
+        public ActionResult RealDeleteConfirmed(string id, DateTime? FechaIni, DateTime? FechaFin)
         {
-            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id);
+            UnidadesDeAlcohol unidadesDeAlcohol = db.UNIDADES_ALCOHOL.Find(id, FechaIni, FechaFin);
             db.UNIDADES_ALCOHOL.Remove(unidadesDeAlcohol);
             db.SaveChanges();
             Bitacora(unidadesDeAlcohol, "D", "UNIDADES_ALCOHOL");

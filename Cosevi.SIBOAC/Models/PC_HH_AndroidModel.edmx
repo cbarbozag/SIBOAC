@@ -190,6 +190,8 @@
           <Property Name="por_denuncia" Type="bit" />
           <Property Name="NoGuardaCoordenadas" Type="bit" />
           <Property Name="articulos_sugeridos_justificacion" Type="nvarchar" MaxLength="300" />
+          <Property Name="Tipo_Examen" Type="int" />
+          <Property Name="Tipo_Conductor" Type="int" />
         </EntityType>
         <EntityType Name="CANTON">
           <Key>
@@ -1242,6 +1244,8 @@
           <Property Name="estado" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
           <Property Name="fecha_fin" Type="datetime" Nullable="false" />
+          <Property Name="ID" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -2317,6 +2321,8 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="FechaDeInicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaDeFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Codigo" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VariablesParaBloqueo">
           <Key>
@@ -2765,6 +2771,8 @@
           <Property Name="por_denuncia" Type="Boolean" />
           <Property Name="NoGuardaCoordenadas" Type="Boolean" />
           <Property Name="articulos_sugeridos_justificacion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo_Examen" Type="Int32" />
+          <Property Name="Tipo_Conductor" Type="Int32" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -4219,6 +4227,8 @@
           <EntitySetMapping Name="UNIDADES_ALCOHOL">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.UnidadesDeAlcohol">
               <MappingFragment StoreEntitySet="UNIDADES_ALCOHOL">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="ID" />
                 <ScalarProperty Name="FechaDeFin" ColumnName="fecha_fin" />
                 <ScalarProperty Name="FechaDeInicio" ColumnName="fecha_inicio" />
                 <ScalarProperty Name="Estado" ColumnName="estado" />
@@ -4574,6 +4584,8 @@
           <EntitySetMapping Name="BOLETA">
             <EntityTypeMapping TypeName="PC_HH_AndroidModel.Boletas">
               <MappingFragment StoreEntitySet="BOLETA">
+                <ScalarProperty Name="Tipo_Conductor" ColumnName="Tipo_Conductor" />
+                <ScalarProperty Name="Tipo_Examen" ColumnName="Tipo_Examen" />
                 <ScalarProperty Name="articulos_sugeridos_justificacion" ColumnName="articulos_sugeridos_justificacion" />
                 <ScalarProperty Name="NoGuardaCoordenadas" ColumnName="NoGuardaCoordenadas" />
                 <ScalarProperty Name="por_denuncia" ColumnName="por_denuncia" />
