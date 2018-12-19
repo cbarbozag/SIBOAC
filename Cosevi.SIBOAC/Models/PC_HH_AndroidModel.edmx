@@ -517,6 +517,24 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PC_HH_Android.dbo.ExamenNivelAlcohol' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExamenNivelAlcohol">
+          <Key>
+            <PropertyRef Name="codexa" />
+          </Key>
+          <Property Name="codexa" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="alcmin_aire" Type="float" />
+          <Property Name="alcmax_aire" Type="float" />
+          <Property Name="alcmin_sangre" Type="float" />
+          <Property Name="alcmax_sangre" Type="float" />
+          <Property Name="tipo_conductor" Type="int" />
+          <Property Name="articulo_sugerido" Type="varchar" MaxLength="30" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="GENERALES">
           <Key>
             <PropertyRef Name="Inspector" />
@@ -1140,6 +1158,16 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
+        <EntityType Name="TIPOCONDUCTOR">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_fin" Type="datetime" />
+        </EntityType>
         <EntityType Name="TIPODANO">
           <Key>
             <PropertyRef Name="codigod" />
@@ -1511,6 +1539,7 @@
           <EntitySet Name="TIPO_LICENCIA" EntityType="Self.TIPO_LICENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOACCIDENTE" EntityType="Self.TIPOACCIDENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOCALZADA" EntityType="Self.TIPOCALZADA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPOCONDUCTOR" EntityType="Self.TIPOCONDUCTOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPODANO" EntityType="Self.TIPODANO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPODOCUMENTO" EntityType="Self.TIPODOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOIDEVEHICULO" EntityType="Self.TIPOIDEVEHICULO" Schema="dbo" store:Type="Tables" />
@@ -1525,6 +1554,21 @@
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamenNivelAlcohol" EntityType="Self.ExamenNivelAlcohol" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExamenNivelAlcohol].[codexa] AS [codexa], 
+    [ExamenNivelAlcohol].[descripcion] AS [descripcion], 
+    [ExamenNivelAlcohol].[alcmin_aire] AS [alcmin_aire], 
+    [ExamenNivelAlcohol].[alcmax_aire] AS [alcmax_aire], 
+    [ExamenNivelAlcohol].[alcmin_sangre] AS [alcmin_sangre], 
+    [ExamenNivelAlcohol].[alcmax_sangre] AS [alcmax_sangre], 
+    [ExamenNivelAlcohol].[tipo_conductor] AS [tipo_conductor], 
+    [ExamenNivelAlcohol].[articulo_sugerido] AS [articulo_sugerido], 
+    [ExamenNivelAlcohol].[estado] AS [estado], 
+    [ExamenNivelAlcohol].[fecha_inicio] AS [fecha_inicio], 
+    [ExamenNivelAlcohol].[fecha_fin] AS [fecha_fin]
+    FROM [dbo].[ExamenNivelAlcohol] AS [ExamenNivelAlcohol]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1813,6 +1857,8 @@
             <Parameter Name="numeroBoleta" Mode="In" Type="String" />
             <Parameter Name="UsuarioSistema" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="TIPOCONDUCTOR" EntityType="PC_HH_AndroidModel.TIPOCONDUCTOR" />
+          <EntitySet Name="ExamenNivelAlcohol" EntityType="PC_HH_AndroidModel.ExamenNivelAlcohol" />
           </EntityContainer>
         <EntityType Name="Dispositivo">
           <Key>
@@ -3593,6 +3639,32 @@
           <Property Type="String" Name="numero_vin" Nullable="true" MaxLength="20" />
           <Property Type="Decimal" Name="TOTALM" Nullable="true" Precision="19" />
         </ComplexType>
+        <EntityType Name="TIPOCONDUCTOR">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExamenNivelAlcohol">
+          <Key>
+            <PropertyRef Name="codexa" />
+          </Key>
+          <Property Name="codexa" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="alcmin_aire" Type="Double" />
+          <Property Name="alcmax_aire" Type="Double" />
+          <Property Name="alcmin_sangre" Type="Double" />
+          <Property Name="alcmax_sangre" Type="Double" />
+          <Property Name="tipo_conductor" Type="Int32" />
+          <Property Name="articulo_sugerido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5488,6 +5560,34 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TIPOCONDUCTOR">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.TIPOCONDUCTOR">
+              <MappingFragment StoreEntitySet="TIPOCONDUCTOR">
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamenNivelAlcohol">
+            <EntityTypeMapping TypeName="PC_HH_AndroidModel.ExamenNivelAlcohol">
+              <MappingFragment StoreEntitySet="ExamenNivelAlcohol">
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="articulo_sugerido" ColumnName="articulo_sugerido" />
+                <ScalarProperty Name="tipo_conductor" ColumnName="tipo_conductor" />
+                <ScalarProperty Name="alcmax_sangre" ColumnName="alcmax_sangre" />
+                <ScalarProperty Name="alcmin_sangre" ColumnName="alcmin_sangre" />
+                <ScalarProperty Name="alcmax_aire" ColumnName="alcmax_aire" />
+                <ScalarProperty Name="alcmin_aire" ColumnName="alcmin_aire" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codexa" ColumnName="codexa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

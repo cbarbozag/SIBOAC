@@ -576,6 +576,9 @@
     <Compile Include="Models\Examen.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExamenNivelAlcohol.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GENERALES.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
@@ -792,6 +795,9 @@
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tiempo.cs">
+      <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPOCONDUCTOR.cs">
       <DependentUpon>PC_HH_AndroidModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TIPODANO.cs">
