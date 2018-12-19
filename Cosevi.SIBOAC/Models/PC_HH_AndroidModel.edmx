@@ -1237,8 +1237,6 @@
         <EntityType Name="UNIDADES_ALCOHOL">
           <Key>
             <PropertyRef Name="unidad" />
-            <PropertyRef Name="fecha_inicio" />
-            <PropertyRef Name="fecha_fin" />
           </Key>
           <Property Name="unidad" Type="nvarchar" MaxLength="6" Nullable="false" />
           <Property Name="estado" Type="nchar" MaxLength="1" Nullable="false" />
@@ -2314,8 +2312,6 @@
         <EntityType Name="UnidadesDeAlcohol">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="FechaDeInicio" />
-            <PropertyRef Name="FechaDeFin" />
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
