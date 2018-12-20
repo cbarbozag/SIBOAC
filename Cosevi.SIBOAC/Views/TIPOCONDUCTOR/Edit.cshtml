@@ -1,0 +1,104 @@
+﻿@model Cosevi.SIBOAC.Models.TIPOCONDUCTOR
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Tipo Conductor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.codigo)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.codigo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.codigo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })*@
+                @Html.DropDownListFor(model => model.estado,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "A" , Text = "Activo" },
+                       new SelectListItem { Value = "I" , Text = "Inactivo" }
+                    },
+                  new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_inicio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <div class="input-daterange input-group" id="datepicker"><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    @Html.EditorFor(model => model.fecha_inicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fecha_inicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_fin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <div class="input-daterange input-group" id="datepicker"><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    @Html.EditorFor(model => model.fecha_fin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fecha_fin, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar a la lista", "Index")
+</div>
+
+@section Scripts {
+<script>
+        $(document).ready(
+        function () {
+            Calendario();
+
+        });
+</script>
+<script>
+        function Calendario() {
+            $('.input-daterange').datepicker({
+                startView: 2,
+                autoclose: true,
+                orientation: 'bottom auto',
+                todayHighlight: true,
+                todayBtn: true,
+                format: 'dd/mm/yyyy'
+            });
+        };
+</script>
+
+}

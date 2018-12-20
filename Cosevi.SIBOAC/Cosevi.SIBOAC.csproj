@@ -1848,6 +1848,12 @@
     <Content Include="Views\ExamenNivelAlcohol\Edit.cshtml" />
     <Content Include="Views\ExamenNivelAlcohol\Index.cshtml" />
     <Content Include="Views\ExamenNivelAlcohol\RealDelete.cshtml" />
+    <Content Include="Views\TIPOCONDUCTOR\Create.cshtml" />
+    <Content Include="Views\TIPOCONDUCTOR\Delete.cshtml" />
+    <Content Include="Views\TIPOCONDUCTOR\Details.cshtml" />
+    <Content Include="Views\TIPOCONDUCTOR\Edit.cshtml" />
+    <Content Include="Views\TIPOCONDUCTOR\Index.cshtml" />
+    <Content Include="Views\TIPOCONDUCTOR\RealDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />

@@ -1,4 +1,4 @@
-﻿@model Cosevi.SIBOAC.Models.ExamenNivelAlcohol
+﻿@model Cosevi.SIBOAC.Models.TIPOCONDUCTOR
 
 @{
     ViewBag.Title = "Inactivar";
@@ -16,63 +16,48 @@ else
 
 <h3>¿Está seguro que desea cambiar el estado?</h3>
 <div>
-    <h4>Examen Nivel de Alcohol</h4>
+    <h4>Tipo Conductor</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.codexa)
+            @Html.DisplayNameFor(model => model.codigo)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.codexa)
+            @Html.DisplayFor(model => model.codigo)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.descripcion)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.descripcion)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.alcmin_aire)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.alcmin_aire)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.alcmax_aire)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.alcmax_aire)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.alcmin_sangre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.alcmin_sangre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.alcmax_sangre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.alcmax_sangre)
-        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.estado)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.estado)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.fecha_inicio)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.fecha_inicio)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.fecha_fin)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.fecha_fin)
         </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

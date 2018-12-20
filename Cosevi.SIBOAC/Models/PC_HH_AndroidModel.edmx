@@ -517,8 +517,6 @@
           <Property Name="fecha_inicio" Type="datetime" />
           <Property Name="fecha_fin" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PC_HH_Android.dbo.ExamenNivelAlcohol' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExamenNivelAlcohol">
           <Key>
             <PropertyRef Name="codexa" />
@@ -1492,6 +1490,7 @@ warning 6002: The table/view 'PC_HH_Android.dbo.ExamenNivelAlcohol' does not hav
           <EntitySet Name="ESTCIVIL" EntityType="Self.ESTCIVIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTRUCTURA" EntityType="Self.ESTRUCTURA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EXAMEN" EntityType="Self.EXAMEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamenNivelAlcohol" EntityType="Self.ExamenNivelAlcohol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GENERALES" EntityType="Self.GENERALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HORASLABORALES" EntityType="Self.HORASLABORALES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOSPITAL" EntityType="Self.HOSPITAL" Schema="dbo" store:Type="Tables" />
@@ -1554,21 +1553,6 @@ warning 6002: The table/view 'PC_HH_Android.dbo.ExamenNivelAlcohol' does not hav
           <EntitySet Name="VALIDARCARROCERIA" EntityType="Self.VALIDARCARROCERIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VARIABLESBLOQUEO" EntityType="Self.VARIABLESBLOQUEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VEHICULO" EntityType="Self.VEHICULO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ExamenNivelAlcohol" EntityType="Self.ExamenNivelAlcohol" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ExamenNivelAlcohol].[codexa] AS [codexa], 
-    [ExamenNivelAlcohol].[descripcion] AS [descripcion], 
-    [ExamenNivelAlcohol].[alcmin_aire] AS [alcmin_aire], 
-    [ExamenNivelAlcohol].[alcmax_aire] AS [alcmax_aire], 
-    [ExamenNivelAlcohol].[alcmin_sangre] AS [alcmin_sangre], 
-    [ExamenNivelAlcohol].[alcmax_sangre] AS [alcmax_sangre], 
-    [ExamenNivelAlcohol].[tipo_conductor] AS [tipo_conductor], 
-    [ExamenNivelAlcohol].[articulo_sugerido] AS [articulo_sugerido], 
-    [ExamenNivelAlcohol].[estado] AS [estado], 
-    [ExamenNivelAlcohol].[fecha_inicio] AS [fecha_inicio], 
-    [ExamenNivelAlcohol].[fecha_fin] AS [fecha_fin]
-    FROM [dbo].[ExamenNivelAlcohol] AS [ExamenNivelAlcohol]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
