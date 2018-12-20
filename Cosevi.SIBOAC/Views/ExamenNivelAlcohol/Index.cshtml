@@ -1,0 +1,165 @@
+﻿@model PagedList.IPagedList<Cosevi.SIBOAC.Models.ExamenNivelAlcohol>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Examen Nivel de Alcohol</h2>
+
+<p>
+    @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().codexa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().alcmin_aire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().alcmax_aire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().alcmin_sangre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().alcmax_sangre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().tipo_conductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().articulo_sugerido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().FechaDeInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().FechaDeFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if(item.estado=="I")
+    { 
+    <tr class="warning">
+        <td>
+            @Html.DisplayFor(modelItem => item.codexa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmin_aire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmax_aire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmin_sangre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmax_sangre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_conductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.articulo_sugerido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_fin)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.codexa }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.codexa }) |
+            @Html.ActionLink("Eliminar", "RealDelete", new { id = item.codexa }) |
+            @if (item.estado == "I")
+            {
+                @Html.ActionLink("Activar", "Delete", new { id = item.codexa })
+            }
+            else
+            {
+                @Html.ActionLink("Inactivar", "Delete", new { id = item.codexa })
+            }
+        </td>
+    </tr>
+    }
+    else
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codexa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmin_aire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmax_aire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmin_sangre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alcmax_sangre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_conductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.articulo_sugerido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_fin)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.codexa }) |
+            @Html.ActionLink("Detalle", "Details", new { id = item.codexa }) |
+            @Html.ActionLink("Eliminar", "RealDelete", new { id = item.codexa }) |
+            @if (item.estado == "I")
+            {
+                @Html.ActionLink("Activar", "Delete", new { id = item.codexa })
+            }
+            else
+            {
+                @Html.ActionLink("Inactivar", "Delete", new { id = item.codexa })
+            }
+        </td>
+
+    </tr>
+    }
+}
+
+</table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+

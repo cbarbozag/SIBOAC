@@ -307,6 +307,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\EstadoCivilsController.cs" />
     <Compile Include="Controllers\EstadoDeLaCalzadasController.cs" />
+    <Compile Include="Controllers\ExamenNivelAlcoholController.cs" />
     <Compile Include="Controllers\ExamenController.cs" />
     <Compile Include="Controllers\GeneralesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -351,6 +352,7 @@
     <Compile Include="Controllers\SenalamientoesController.cs" />
     <Compile Include="Controllers\SentidoesController.cs" />
     <Compile Include="Controllers\SessionExpireAttribute.cs" />
+    <Compile Include="Controllers\TIPOCONDUCTORController.cs" />
     <Compile Include="Controllers\SexoesController.cs" />
     <Compile Include="Controllers\SIBOACMenuOpcionesController.cs" />
     <Compile Include="Controllers\SIBOACUsuariosController.cs" />
@@ -1840,6 +1842,12 @@
     <Content Include="Views\AdjuntarArchivosBole\_AdjuntarView.cshtml" />
     <Content Include="Views\Reporte\_ImpresionDeParteOficial.cshtml" />
     <Content Include="Views\Reporte\_BitacoraAdjuntos.cshtml" />
+    <Content Include="Views\ExamenNivelAlcohol\Create.cshtml" />
+    <Content Include="Views\ExamenNivelAlcohol\Delete.cshtml" />
+    <Content Include="Views\ExamenNivelAlcohol\Details.cshtml" />
+    <Content Include="Views\ExamenNivelAlcohol\Edit.cshtml" />
+    <Content Include="Views\ExamenNivelAlcohol\Index.cshtml" />
+    <Content Include="Views\ExamenNivelAlcohol\RealDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />

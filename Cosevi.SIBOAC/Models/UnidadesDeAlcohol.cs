@@ -21,8 +21,8 @@ namespace Cosevi.SIBOAC.Models
 {
 
         [DisplayName("Unidad")]
-        [StringLength(6, ErrorMessage = "El código no debe ser mayor a 6 caracteres")]
-        [Required(ErrorMessage = "El código es obligatorio")]
+        [StringLength(6, ErrorMessage = "La unidad no debe ser mayor a 6 caracteres")]
+        [Required(ErrorMessage = "La unidad es obligatoria")]
         public string Id { get; set; }
 
         [DisplayName("Estado")]

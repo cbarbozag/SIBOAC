@@ -14,19 +14,33 @@ namespace Cosevi.SIBOAC.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class TIPOCONDUCTOR
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class TIPOCONDUCTOR
 {
+        [DisplayName("Código")]        
+        [Required(ErrorMessage = "El código es obligatorio")]
+        public int codigo { get; set; }
 
-    public int codigo { get; set; }
+        [DisplayName("Descripción")]
+        [StringLength(100, ErrorMessage = "La descripción no puede ser mayor a 100 caracteres")]
+        public string descripcion { get; set; }
 
-    public string descripcion { get; set; }
+        [DisplayName("Estado")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
+        public string estado { get; set; }
 
-    public string estado { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de inicio")]
+        [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
+        public System.DateTime fecha_inicio { get; set; }
 
-    public Nullable<System.DateTime> fecha_inicio { get; set; }
-
-    public Nullable<System.DateTime> fecha_fin { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de fin")]
+        [Required(ErrorMessage = "La fecha de finalización es obligatoria")]
+        public System.DateTime fecha_fin { get; set; }
 
 }
 

@@ -12,33 +12,55 @@
 namespace Cosevi.SIBOAC.Models
 {
 
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class ExamenNivelAlcohol
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class ExamenNivelAlcohol
 {
 
-    public int codexa { get; set; }
+        [DisplayName("Código")]
+        [Required(ErrorMessage = "El código es obligatorio")]
+        public int codexa { get; set; }
 
-    public string descripcion { get; set; }
+        [DisplayName("Descripción")]
+        [StringLength(50, ErrorMessage = "La descripción no puede ser mayor a 50 caracteres")]
+        public string descripcion { get; set; }
 
-    public Nullable<double> alcmin_aire { get; set; }
+        [DisplayName("AlcMin Aire")]
+        public Nullable<double> alcmin_aire { get; set; }
 
-    public Nullable<double> alcmax_aire { get; set; }
+        [DisplayName("AlcMax Aire")]
+        public Nullable<double> alcmax_aire { get; set; }
 
-    public Nullable<double> alcmin_sangre { get; set; }
+        [DisplayName("AlcMin Sangre")]
+        public Nullable<double> alcmin_sangre { get; set; }
 
-    public Nullable<double> alcmax_sangre { get; set; }
+        [DisplayName("AlcMax Sangre")]
+        public Nullable<double> alcmax_sangre { get; set; }
 
-    public Nullable<int> tipo_conductor { get; set; }
+        [DisplayName("Tipo Conductor")]
+        public Nullable<int> tipo_conductor { get; set; }
 
-    public string articulo_sugerido { get; set; }
+        [DisplayName("Artículo Sugerido")]
+        [StringLength(30, ErrorMessage = "El artículo sugerido no puede ser mayor a 30 caracteres")]
+        public string articulo_sugerido { get; set; }
 
-    public string estado { get; set; }
+        [DisplayName("Estado")]
+        [StringLength(1, ErrorMessage = "El estado no debe ser mayor a 1 caracter")]
+        [Required(ErrorMessage = "El estado es obligatorio")]
+        public string estado { get; set; }
 
-    public Nullable<System.DateTime> fecha_inicio { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de inicio")]
+        [Required(ErrorMessage = "La fecha de inicio es obligatoria")]
+        public System.DateTime fecha_inicio { get; set; }
 
-    public Nullable<System.DateTime> fecha_fin { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Fecha de fin")]
+        [Required(ErrorMessage = "La fecha de finalización es obligatoria")]
+        public System.DateTime fecha_fin { get; set; }
 
 }
 
