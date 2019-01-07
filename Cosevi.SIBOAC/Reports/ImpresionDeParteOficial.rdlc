@@ -3459,7 +3459,7 @@
                                                     <Paragraph>
                                                       <TextRuns>
                                                         <TextRun>
-                                                          <Value>=Fields!nivelAlcohoH.Value</Value>
+                                                          <Value>=IIf(Fields!alcoholSensorH.Value = "", "", Fields!nivelAlcohoH.Value)</Value>
                                                           <Style>
                                                             <FontSize>8pt</FontSize>
                                                           </Style>
@@ -5532,7 +5532,7 @@ AND Fields!SegOtro.Value=0,"Ninguno" )</Value>
                                             </Style>
                                           </TextRun>
                                           <TextRun>
-                                            <Value>=Fields!nivel_alcohol.Value</Value>
+                                            <Value>=IIf(Fields!num_alcohosensor.Value = "", "", Fields!nivel_alcohol.Value)</Value>
                                             <Style>
                                               <FontSize>8pt</FontSize>
                                             </Style>

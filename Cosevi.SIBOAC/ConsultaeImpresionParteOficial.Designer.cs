@@ -2576,7 +2576,12 @@ namespace Cosevi.SIBOAC {
                                 this.columnnumero_boleta,
                                 this.columnserie,
                                 this.columnfuente,
-                                this.columncodRolHerido}, false));
+                                this.columntipo_ideherido,
+                                this.columnidentificacionherido,
+                                this.columncodRolHerido,
+                                this.columnboletaHerido,
+                                this.columnserieHerido,
+                                this.columnfuenteHerido}, false));
                 this.columnFuenteParte.AllowDBNull = false;
                 this.columnFuenteParte.MaxLength = 1;
                 this.columnSerieParte.AllowDBNull = false;
@@ -2650,7 +2655,7 @@ namespace Cosevi.SIBOAC {
                 this.columncodObstaculo.AllowDBNull = false;
                 this.columnDescripcionObstaculo.AllowDBNull = false;
                 this.columnDescripcionObstaculo.MaxLength = 50;
-                this.columnObservaciones.MaxLength = 180;
+                this.columnObservaciones.MaxLength = 500;
                 this.columnPlanoAccidente.ReadOnly = true;
                 this.columnPlanoAccidente.MaxLength = 20;
                 this.columnTipoIdentificacionTestigo.ReadOnly = true;
@@ -2726,7 +2731,8 @@ namespace Cosevi.SIBOAC {
                 this.columncodhosp.MaxLength = 3;
                 this.columnDescripcionHospital.MaxLength = 50;
                 this.columnfuenteHerido.MaxLength = 1;
-                this.columnnivelAlcohoH.MaxLength = 9;
+                this.columnnivelAlcohoH.ReadOnly = true;
+                this.columnnivelAlcohoH.MaxLength = 6;
                 this.columnnumPrueAlcoholH.MaxLength = 10;
                 this.columnalcoholSensorH.MaxLength = 10;
                 this.columnrev_tecnica.ReadOnly = true;
@@ -2734,7 +2740,8 @@ namespace Cosevi.SIBOAC {
                 this.columncarga.MaxLength = 1;
                 this.columnPortaSenal.MaxLength = 1;
                 this.columnCondicionUsuario.MaxLength = 50;
-                this.columnnivel_alcohol.MaxLength = 9;
+                this.columnnivel_alcohol.ReadOnly = true;
+                this.columnnivel_alcohol.MaxLength = 6;
                 this.columnnum_prueba_alcohol.MaxLength = 10;
                 this.columnnum_alcohosensor.MaxLength = 10;
                 this.columnnumero_vin.ReadOnly = true;
