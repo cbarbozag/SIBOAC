@@ -104,5 +104,7 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<bool> por_denuncia { get; set; }
         public Nullable<bool> NoGuardaCoordenadas { get; set; }
         public string articulos_sugeridos_justificacion { get; set; }
+        public Nullable<int> Tipo_Examen { get; set; }
+        public Nullable<int> Tipo_Conductor { get; set; }
     }
 }
