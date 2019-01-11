@@ -929,6 +929,53 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
+                            #region Planos PDFs
+                            var extPlanPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "PDF" && oa.nombre.Contains("-p-")).ToList();
+
+                            foreach (var itemP in extPlanPDF)
+                            {
+                                try
+                                {
+                                    var existeP = itemP.nombre;
+                                    string existeAdjS = @"" + rutaPlano1 + "\\" + existeP;
+                                    string nombrePng = itemP.nombre.Replace(".pdf", ".png");
+
+                                    string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + nombrePng);
+
+                                    string link = @"" + rutaPlano1 + "\\" + nombrePng;
+
+                                    if (System.IO.File.Exists(existeAdjS))
+                                    {
+                                        List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(existeAdjS, strfn);                                        
+
+                                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == itemP.serie && oa.numero == itemP.numero && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+
+                                        var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente1, serParte1, numeParte1, itemP.nombre);
+                                        svgConvertido.extension = "pdfc";
+
+                                        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                        {
+                                            fuente = CodigoFuente1,
+                                            serie = serParte1,
+                                            numero = numeParte1,
+                                            extension = "png",
+                                            fechaRegistro = DateTime.Now,
+                                            nombre = nombrePng,
+                                            consecutivo_extension = maxValue.Value + 1,
+                                            linkArchivo = link
+                                        });
+
+                                        dbPivot.SaveChanges();
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("An error occurred: '{0}'", ex);
+                                }
+                            }
+                            #endregion
+
+
                             #region Convertir SVG a PNG
 
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
@@ -1450,6 +1497,52 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
+                            #region Planos PDFs
+                            var extPlanPDF = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "PDF" && oa.nombre.Contains("-p-")).ToList();
+
+                            foreach (var itemP in extPlanPDF)
+                            {
+                                try
+                                {
+                                    var existeP = itemP.nombre;
+                                    string existeAdjS = @"" + rutaPlano2 + "\\" + existeP;
+                                    string nombrePng = itemP.nombre.Replace(".pdf", ".png");
+
+                                    string strfn = Path.Combine(@"" + rutaPlano2 + "\\" + nombrePng);
+
+                                    string link = @"" + rutaPlano2 + "\\" + nombrePng;
+
+                                    if (System.IO.File.Exists(existeAdjS))
+                                    {
+                                        List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(existeAdjS, strfn);
+
+                                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == itemP.serie && oa.numero == itemP.numero && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+
+                                        var svgConvertido = dbPivot.OtrosAdjuntos.Find(CodigoFuente2, serieParte2, numeroParte2, itemP.nombre);
+                                        svgConvertido.extension = "pdfc";
+
+                                        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                        {
+                                            fuente = CodigoFuente2,
+                                            serie = serieParte2,
+                                            numero = numeroParte2,
+                                            extension = "png",
+                                            fechaRegistro = DateTime.Now,
+                                            nombre = nombrePng,
+                                            consecutivo_extension = maxValue.Value + 1,
+                                            linkArchivo = link
+                                        });
+
+                                        dbPivot.SaveChanges();
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("An error occurred: '{0}'", ex);
+                                }
+                            }
+                            #endregion
+
                             #region Convertir SVG a PNG
 
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.extension == "SVG").ToList();
@@ -1937,6 +2030,58 @@ namespace Cosevi.SIBOAC.Reports
                                 foreach (var item in otrosAdj3)
                                 {
                                     listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.nombre)).AbsoluteUri, item.numero, item.nombre);
+                                }
+                                #endregion
+
+                                #region Planos PDFs
+
+                                var extPlanPDF = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.extension == "PDF" && oa.nombre.Contains("-p-")).Select(oa => oa.nombre).ToList();
+                                var planoFuente3 = db.OtrosAdjuntos.Where(oa => extPlanPDF.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                                var planoSerie3 = db.OtrosAdjuntos.Where(oa => extPlanPDF.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                                var planoParte3 = db.OtrosAdjuntos.Where(oa => extPlanPDF.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                                var listPlanosPDF3 = extPlanPDF.Zip(planoParte3, (n, w) => new { NombreAr = n, NumPar = w }).Zip(planoSerie3, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(planoFuente3, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+
+                                foreach (var itemP in listPlanosPDF3)
+                                {
+                                    try
+                                    {
+                                        var existeP = itemP.Item1;
+                                        string existeAdjS = @"" + rutaPlano3 + "\\" + existeP;
+                                        string nombrePng = itemP.Item1.Replace(".pdf", ".png");
+
+                                        string strfn = Path.Combine(@"" + rutaPlano3 + "\\" + nombrePng);
+
+                                        string link = @"" + rutaPlano3 + "\\" + nombrePng;
+
+                                        if (System.IO.File.Exists(existeAdjS))
+                                        {
+                                            List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(existeAdjS, strfn);
+
+                                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == itemP.Item3 && oa.numero == itemP.Item2 && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+
+                                            var svgConvertido = dbPivot.OtrosAdjuntos.Find(itemP.Item4, itemP.Item3, itemP.Item2, itemP.Item1);
+                                            svgConvertido.extension = "pdfc";
+
+                                            dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                            {
+                                                fuente = itemP.Item4,
+                                                serie = itemP.Item3, 
+                                                numero = itemP.Item2,
+                                                extension = "png",
+                                                fechaRegistro = DateTime.Now,
+                                                nombre = nombrePng,
+                                                consecutivo_extension = maxValue.Value + 1,
+                                                linkArchivo = link
+                                            });
+
+                                            dbPivot.SaveChanges();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("An error occurred: '{0}'", ex);
+                                    }
                                 }
                                 #endregion
 
@@ -2450,12 +2595,110 @@ namespace Cosevi.SIBOAC.Reports
                                 }
                                 #endregion
 
+                                #region Planos PDFs
+
+                                var extPlanPDF = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "PDF" && oa.nombre.Contains("-p-")).Select(oa => oa.nombre).ToList();
+                                var planoFuente4 = db.OtrosAdjuntos.Where(oa => extPlanPDF.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                                var planoSerie4 = db.OtrosAdjuntos.Where(oa => extPlanPDF.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                                var planoParte4 = db.OtrosAdjuntos.Where(oa => extPlanPDF.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                                var listPlanosPDF4 = extPlanPDF.Zip(planoParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(planoSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(planoFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+
+                                foreach (var itemP in listPlanosPDF4)
+                                {
+                                    try
+                                    {
+                                        var existeP = itemP.Item1;
+                                        string existeAdjS = @"" + rutaPlano4 + "\\" + existeP;
+                                        string nombrePng = itemP.Item1.Replace(".pdf", ".png");
+
+                                        string strfn = Path.Combine(@"" + rutaPlano4 + "\\" + nombrePng);
+
+                                        string link = @"" + rutaPlano4 + "\\" + nombrePng;
+
+                                        if (System.IO.File.Exists(existeAdjS))
+                                        {
+                                            List<string> errors = cs_pdf_to_image.Pdf2Image.Convert(existeAdjS, strfn);
+
+                                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == itemP.Item3 && oa.numero == itemP.Item2 && String.Compare(oa.extension, "png", false) == 0 && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+
+                                            var svgConvertido = dbPivot.OtrosAdjuntos.Find(itemP.Item4, itemP.Item3, itemP.Item2, itemP.Item1);
+                                            svgConvertido.extension = "pdfc";
+
+                                            dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                            {
+                                                fuente = itemP.Item4,
+                                                serie = itemP.Item3,
+                                                numero = itemP.Item2,
+                                                extension = "png",
+                                                fechaRegistro = DateTime.Now,
+                                                nombre = nombrePng,
+                                                consecutivo_extension = maxValue.Value + 1,
+                                                linkArchivo = link
+                                            });
+
+                                            dbPivot.SaveChanges();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("An error occurred: '{0}'", ex);
+                                    }
+                                }
+                                #endregion                               
+
+                                #region Convertir SVG a PNG
+                                var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
+                                var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
+                                var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
+                                var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
+
+                                var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
+
+                                foreach (var item in listPlanos4)
+                                {
+                                    var existeSVG = item.Item1;
+                                    string existeAdjS = @"" + rutaPlano4 + "\\" + existeSVG;
+                                    string nombrePng = item.Item1.Replace(".svg", ".png");
+
+                                    string strfn = Path.Combine(@"" + rutaPlano4 + "\\" + nombrePng);
+
+                                    string link = @"" + rutaPlano4 + "\\" + nombrePng;
+
+                                    if (System.IO.File.Exists(existeAdjS))
+                                    {
+
+                                        var sampleDoc = SvgDocument.Open(existeAdjS);
+                                        sampleDoc.Draw().Save(strfn);
+
+                                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.Item3 && oa.numero == item.Item2 && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
+
+                                        var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
+                                        svgConvertido.extension = "svgc";
+
+                                        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                        {
+                                            fuente = item.Item4,
+                                            serie = item.Item3,
+                                            numero = item.Item2,
+                                            extension = "png",
+                                            fechaRegistro = DateTime.Now,
+                                            nombre = nombrePng,
+                                            consecutivo_extension = maxValue.Value + 1,
+                                            linkArchivo = link
+                                        });
+
+                                        dbPivot.SaveChanges();
+                                    }
+                                }
+                                #endregion
+
                                 #region Planos
 
                                 int serieP = Convert.ToInt32(lisPart4.serie_parteoficial);
                                 decimal numP = Convert.ToDecimal(lisPart4.numeroparte);
 
-                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart4.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();                             
+                                var listPlanos = db.OtrosAdjuntos.Where(oa => oa.fuente == lisPart4.fuente_parteoficial && oa.serie == serieP && oa.numero == numP && oa.nombre.Contains("-p-") && !extensionRestringidaIPO.Contains(oa.extension)).ToList();
 
                                 foreach (var itmeP in listPlanos)
                                 {
@@ -2478,7 +2721,7 @@ namespace Cosevi.SIBOAC.Reports
                                         dbPivot.SaveChanges();
 
                                         listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, itmeP.nombre)).AbsoluteUri, numP);
-                                    }                                    
+                                    }
                                 }
 
                                 if (listPlanos.Count() == 0)
@@ -2532,52 +2775,6 @@ namespace Cosevi.SIBOAC.Reports
                                             listaPlanos.Rows.Add(new Uri(Path.Combine(ruta4, existeA)).AbsoluteUri, numP);
                                         }
 
-                                    }
-                                }
-                                #endregion
-
-                                #region Convertir SVG a PNG
-                                var extSvg4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.extension == "SVG").Select(oa => oa.nombre).ToList();
-                                var extSvgFuente4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.fuente).ToList();
-                                var extSvgSerie4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.serie).ToList();
-                                var extSvgParte4 = db.OtrosAdjuntos.Where(oa => extSvg4.Contains(oa.nombre)).Select(oa => oa.numero).ToList();
-
-                                var listPlanos4 = extSvg4.Zip(extSvgParte4, (n, w) => new { NombreAr = n, NumPar = w }).Zip(extSvgSerie4, (x, z) => Tuple.Create(x.NombreAr, x.NumPar, z)).Zip(extSvgFuente4, (y, r) => Tuple.Create(y.Item1, y.Item2, y.Item3, r));
-
-                                foreach (var item in listPlanos4)
-                                {
-                                    var existeSVG = item.Item1;
-                                    string existeAdjS = @"" + rutaPlano4 + "\\" + existeSVG;
-                                    string nombrePng = item.Item1.Replace(".svg", ".png");
-
-                                    string strfn = Path.Combine(@"" + rutaPlano4 + "\\" + nombrePng);
-
-                                    string link = @"" + rutaPlano4 + "\\" + nombrePng;
-
-                                    if (System.IO.File.Exists(existeAdjS))
-                                    {
-
-                                        var sampleDoc = SvgDocument.Open(existeAdjS);
-                                        sampleDoc.Draw().Save(strfn);
-
-                                        int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == item.Item3 && oa.numero == item.Item2 && String.Compare(oa.extension, "png", false) == 0).Max(a => a.consecutivo_extension) ?? 0;
-
-                                        var svgConvertido = dbPivot.OtrosAdjuntos.Find(item.Item4, item.Item3, item.Item2, item.Item1);
-                                        svgConvertido.extension = "svgc";
-
-                                        dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
-                                        {
-                                            fuente = item.Item4,
-                                            serie = item.Item3,
-                                            numero = item.Item2,
-                                            extension = "png",
-                                            fechaRegistro = DateTime.Now,
-                                            nombre = nombrePng,
-                                            consecutivo_extension = maxValue.Value + 1,
-                                            linkArchivo = link
-                                        });
-
-                                        dbPivot.SaveChanges();
                                     }
                                 }
                                 #endregion
