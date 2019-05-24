@@ -159,11 +159,11 @@ namespace Cosevi.SIBOAC.Controllers
                             {
                                 parteOficial.StatusPlano = 6;
                             }
-                            //parteOficial.fecha_entrega = DateTime.Now;
-                            //var Inspector = (dbs.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.Usuario).ToList());
-                            //var codigo = User.Identity.Name;
-                            //codigo = Inspector.ToArray().FirstOrDefault() == null ? null : Inspector.ToArray().FirstOrDefault().ToString();
-                            //parteOficial.usuario_entregaPlano = codigo;
+                            parteOficial.fecha_entrega = DateTime.Now;
+                            var Inspector = (dbs.SIBOACUsuarios.Where(a => a.Usuario == User.Identity.Name).Select(a => a.Usuario).ToList());
+                            var codigo = User.Identity.Name;
+                            codigo = Inspector.ToArray().FirstOrDefault() == null ? null : Inspector.ToArray().FirstOrDefault().ToString();
+                            parteOficial.usuario_entregaPlano = codigo;
 
 
                         }
@@ -275,88 +275,97 @@ namespace Cosevi.SIBOAC.Controllers
                         HttpFileCollectionBase files = Request.Files;
                         for (int i = 0; i < files.Count; i++)
                         {
-                            HttpPostedFileBase file = files[i];
-                            string nombreArchivo;
 
-
-                            if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                            try
                             {
-                                string[] testfiles = file.FileName.Split(new char[] { '\\' });
-                                nombreArchivo = testfiles[testfiles.Length - 1];
-                            }
-                            else
-                            {
-                                nombreArchivo = file.FileName;
-                            }
+                                HttpPostedFileBase file = files[i];
+                                string nombreArchivo;
 
-                            string ext = Path.GetExtension(nombreArchivo).Replace(".", "");
 
-                            //Valida si la extension es permitida
-                            string[] allowFileTypes = ConfigurationManager.AppSettings["AllowFileTypes"].Split(',');
-                            bool isAllowExt = false;
-
-                            foreach (var item in allowFileTypes)
-                            {
-                                if (String.Compare(item, ext, true) == 0)
+                                if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
                                 {
-                                    isAllowExt = true;
-                                    break;
+                                    string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                                    nombreArchivo = testfiles[testfiles.Length - 1];
                                 }
+                                else
+                                {
+                                    nombreArchivo = file.FileName;
+                                }
+
+                                string ext = Path.GetExtension(nombreArchivo).Replace(".", "");
+
+                                //Valida si la extension es permitida
+                                string[] allowFileTypes = ConfigurationManager.AppSettings["AllowFileTypes"].Split(',');
+                                bool isAllowExt = false;
+
+                                foreach (var item in allowFileTypes)
+                                {
+                                    if (String.Compare(item, ext, true) == 0)
+                                    {
+                                        isAllowExt = true;
+                                        break;
+                                    }
+                                }
+
+                                if (!isAllowExt)
+                                {
+                                    TempData["Type"] = "warning";
+                                    TempData["Message"] = "Extensión no válida.";
+
+                                    return Json(new { result = false, msg = "Extensión no válida." });
+                                }
+
+                                int serie2 = Convert.ToInt32(Serie);
+                                decimal numero2 = Convert.ToDecimal(NumeroParte);
+
+                                string extConv = ext + "c";
+
+                                int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && (String.Compare(oa.extension, ext, false) == 0 || String.Compare(oa.extension, extConv, false) == 0) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
+
+
+                                string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
+
+                                if (!Directory.Exists(directoryPath))
+                                {
+                                    Directory.CreateDirectory(directoryPath);
+                                }
+
+                                string nombre = String.Format("{0}-{1}-{2}-{3}-{4}", fuente, Serie, NumeroParte, maxValue.Value + 1, nombreArchivo);
+                                nombreArchivo = Path.Combine(directoryPath, nombre);
+                                file.SaveAs(nombreArchivo);
+
+                                string link = @"" + directoryPath + "\\" + nombre;
+
+                                db.OtrosAdjuntos.Add(new OtrosAdjuntos
+                                {
+                                    consecutivo_extension = maxValue.Value + 1,
+                                    extension = ext,
+                                    fechaRegistro = DateTime.Now,
+                                    fuente = fuente,
+                                    nombre = nombre,
+                                    numero = Convert.ToDecimal(NumeroParte),
+                                    serie = Convert.ToInt32(Serie),
+                                    linkArchivo = link
+                                });
+
+                                db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
+                                {
+                                    serie = Convert.ToString(Serie),
+                                    numero = Convert.ToString(NumeroParte),
+                                    tipo = "Parte Oficial",
+                                    funcion = "Agregó Adjunto",
+                                    usuario = User.Identity.Name,
+                                    fechaHora = DateTime.Now,
+                                    nombreArchivo = nombre
+                                });
+
+                                db.SaveChanges();
+
+                                }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("An error occurred: '{0}'", ex);
                             }
-
-                            if (!isAllowExt)
-                            {
-                                TempData["Type"] = "warning";
-                                TempData["Message"] = "Extensión no válida.";
-
-                                return Json(new { result = false, msg = "Extensión no válida." });
-                            }
-
-                            int serie2 = Convert.ToInt32(Serie);
-                            decimal numero2 = Convert.ToDecimal(NumeroParte);
-
-                            string extConv = ext + "c";
-
-                            int? maxValue = db.OtrosAdjuntos.Where(oa => oa.serie == serie2 && oa.numero == numero2 && (String.Compare(oa.extension, ext, false) == 0 || String.Compare(oa.extension, extConv, false) == 0) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).Max(a => a.consecutivo_extension) ?? 0;
-
-
-                            string directoryPath = ConfigurationManager.AppSettings["UploadFilePath"];
-
-                            if (!Directory.Exists(directoryPath))
-                            {
-                                Directory.CreateDirectory(directoryPath);
-                            }
-
-                            string nombre = String.Format("{0}-{1}-{2}-{3}-{4}", fuente, Serie, NumeroParte, maxValue.Value + 1, nombreArchivo);
-                            nombreArchivo = Path.Combine(directoryPath, nombre);
-                            file.SaveAs(nombreArchivo);
-
-                            string link = @"" + directoryPath + "\\" + nombre;
-
-                            db.OtrosAdjuntos.Add(new OtrosAdjuntos
-                            {
-                                consecutivo_extension = maxValue.Value + 1,
-                                extension = ext,
-                                fechaRegistro = DateTime.Now,
-                                fuente = fuente,
-                                nombre = nombre,
-                                numero = Convert.ToDecimal(NumeroParte),
-                                serie = Convert.ToInt32(Serie),
-                                linkArchivo = link
-                            });
-
-                            db.SIBOACBITADJUNTOS.Add(new SIBOACBITADJUNTOS
-                            {
-                                serie = Convert.ToString(Serie),
-                                numero = Convert.ToString(NumeroParte),
-                                tipo = "Parte Oficial",
-                                funcion = "Agregó Adjunto",
-                                usuario = User.Identity.Name,
-                                fechaHora = DateTime.Now,
-                                nombreArchivo = nombre
-                            });
-
-                            db.SaveChanges();
 
                         }
                    

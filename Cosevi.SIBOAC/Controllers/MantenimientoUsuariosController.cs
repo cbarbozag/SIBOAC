@@ -36,7 +36,7 @@ namespace Cosevi.SIBOAC.Controllers
             {
                 list = list.Where(s => s.Usuario.Contains(searchString)
                                         || s.Identificacion.Contains(searchString)
-                                        || s.Nombre.Contains(searchString)
+                                        || s.Nombre.ToLower().Contains(searchString.ToLower())
                                         || s.Email.Contains(searchString)
                                         || s.codigo.Contains(searchString));
             }

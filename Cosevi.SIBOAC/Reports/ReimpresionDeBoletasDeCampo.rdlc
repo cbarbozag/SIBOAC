@@ -1860,6 +1860,7 @@
                   <Group Name="Details">
                     <GroupExpressions>
                       <GroupExpression>=Fields!codigo_articulo.Value</GroupExpression>
+                      <GroupExpression>=Fields!descripcion.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <TablixMembers>
