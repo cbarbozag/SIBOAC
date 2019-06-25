@@ -975,7 +975,6 @@ namespace Cosevi.SIBOAC.Reports
                             }
                             #endregion
 
-
                             #region Convertir SVG a PNG
 
                             var extSvg = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.extension == "SVG").ToList();
@@ -1045,19 +1044,12 @@ namespace Cosevi.SIBOAC.Reports
                                     {
                                         string strfn = Path.Combine(@"" + rutaPlano1 + "\\" + itmeP.nombre);
 
-
-
-
-
                                         Stream stream = File.OpenRead(strfn);
                                         System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
-
-
 
                                         int width = sourceImage.Width;
                                         int height = sourceImage.Height;
                                         stream.Close();
-
 
                                         if (width > height)
                                         {
@@ -1142,10 +1134,6 @@ namespace Cosevi.SIBOAC.Reports
                                                 fs.Close();
 
                                                 string strfn2 = Path.Combine(@"" + rutaPlano1 + "\\" + existeA);
-
-
-
-
 
                                                 Stream stream = File.OpenRead(strfn2);
                                                 System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
@@ -1276,7 +1264,6 @@ namespace Cosevi.SIBOAC.Reports
                                                 bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
                                                 bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                                 bitmap1.Save(existeAdj);
-
 
                                                 listaArchivos.Rows.Add(new Uri(Path.Combine(ruta1, existeA)).AbsoluteUri, numeroParte1);
                                             }
@@ -1650,19 +1637,12 @@ namespace Cosevi.SIBOAC.Reports
                                 {
                                     string strfn = Path.Combine(@"" + rutaPlano2 + "\\" + itmeP.nombre);
 
-
-
-
-
                                     Stream stream = File.OpenRead(strfn);
                                     System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
-
-
 
                                     int width = sourceImage.Width;
                                     int height = sourceImage.Height;
                                     stream.Close();
-
 
                                     if (width > height)
                                     {
@@ -1743,7 +1723,6 @@ namespace Cosevi.SIBOAC.Reports
 
                                             string strfn2 = Path.Combine(@"" + rutaPlano2 + "\\" + existeA);
 
-
                                             Stream stream = File.OpenRead(strfn2);
                                             System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
 
@@ -1756,7 +1735,6 @@ namespace Cosevi.SIBOAC.Reports
                                                 System.Drawing.Bitmap bitmap1;
                                                 bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
                                                 bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-
                                                 bitmap1.Save(strfn2);
                                             }
                                         }
@@ -1859,7 +1837,6 @@ namespace Cosevi.SIBOAC.Reports
                                             bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
                                             bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                             bitmap1.Save(existeAdj);
-
 
                                             listaArchivos.Rows.Add(new Uri(Path.Combine(ruta2, existeA)).AbsoluteUri, CodigoNumParte2);
                                         }
@@ -2164,7 +2141,6 @@ namespace Cosevi.SIBOAC.Reports
                                             dbPivot.OtrosAdjuntos.Add(new OtrosAdjuntos
                                             {
                                                 fuente = itemP.Item4,
-
                                                 serie = itemP.Item3,
                                                 numero = itemP.Item2,
                                                 extension = "png",
@@ -2248,19 +2224,12 @@ namespace Cosevi.SIBOAC.Reports
                                     {
                                         string strfn = Path.Combine(@"" + rutaPlano3 + "\\" + itmeP.nombre);
 
-
-
-
-
                                         Stream stream = File.OpenRead(strfn);
                                         System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
-
-
 
                                         int width = sourceImage.Width;
                                         int height = sourceImage.Height;
                                         stream.Close();
-
 
                                         if (width > height)
                                         {
@@ -2350,7 +2319,6 @@ namespace Cosevi.SIBOAC.Reports
                                                     System.Drawing.Bitmap bitmap1;
                                                     bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
                                                     bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-
                                                     bitmap1.Save(strfn2);
                                                 }
                                             }
@@ -2459,7 +2427,6 @@ namespace Cosevi.SIBOAC.Reports
                                                     bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
                                                     bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                                     bitmap1.Save(existeAdj);
-
 
                                                     listaArchivos.Rows.Add(new Uri(Path.Combine(ruta3, existeA)).AbsoluteUri, item2.Item3);
                                                 }
@@ -2791,7 +2758,6 @@ namespace Cosevi.SIBOAC.Reports
                                         Console.WriteLine("An error occurred: '{0}'", ex);
                                     }
                                 }
-
                                 #endregion
 
                                 #region Convertir SVG a PNG
@@ -2857,19 +2823,12 @@ namespace Cosevi.SIBOAC.Reports
                                     {
                                         string strfn = Path.Combine(@"" + rutaPlano4 + "\\" + itmeP.nombre);
 
-
-
-
-
                                         Stream stream = File.OpenRead(strfn);
                                         System.Drawing.Image sourceImage = System.Drawing.Image.FromStream(stream, false, false);
-
-
 
                                         int width = sourceImage.Width;
                                         int height = sourceImage.Height;
                                         stream.Close();
-
 
                                         if (width > height)
                                         {
@@ -2959,7 +2918,6 @@ namespace Cosevi.SIBOAC.Reports
                                                     System.Drawing.Bitmap bitmap1;
                                                     bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(strfn2);
                                                     bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-
                                                     bitmap1.Save(strfn2);
                                                 }
                                             }
@@ -3067,7 +3025,6 @@ namespace Cosevi.SIBOAC.Reports
                                                     bitmap1 = (System.Drawing.Bitmap)System.Drawing.Bitmap.FromFile(existeAdj);
                                                     bitmap1.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
                                                     bitmap1.Save(existeAdj);
-
 
                                                     listaArchivos.Rows.Add(new Uri(Path.Combine(ruta4, existeA)).AbsoluteUri, item2.Item3);
                                                 }

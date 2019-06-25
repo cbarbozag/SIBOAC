@@ -26,7 +26,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         // GET: MantenimientoUsuarios
         [SessionExpire]
-        public ActionResult Index(int ? page, string searchString)
+        public ActionResult Index(int? page, string searchString)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -43,8 +43,8 @@ namespace Cosevi.SIBOAC.Controllers
 
             int pageSize = 20;
             int pageNumber = (page ?? 1);
-            return View(list.ToPagedList(pageNumber, pageSize));            
-          
+            return View(list.ToPagedList(pageNumber, pageSize));
+
         }
 
 
@@ -120,7 +120,7 @@ namespace Cosevi.SIBOAC.Controllers
         {
             if (ModelState.IsValid)
             {
-                                
+
                 string mensaje = Verificar(sIBOACUsuarios.Usuario.ToString());
                 if (mensaje == "")
                 {
@@ -175,7 +175,7 @@ namespace Cosevi.SIBOAC.Controllers
             //var usuario = User.Identity.Name;
             //string mensaje = "No puede editar el usuario " + usuario;
 
-                if (id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -218,33 +218,33 @@ namespace Cosevi.SIBOAC.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( int Id, string Usuario, string Identificacion, string LugarTrabajo, string Email,string Contrasena,string Nombre,string codigo, string FechaDeActualizacionClave, string Activo, [System.Web.Http.FromUri] string[] SIBOACRoles)
+        public ActionResult Edit(int Id, string Usuario, string Identificacion, string LugarTrabajo, string Email, string Contrasena, string Nombre, string codigo, string FechaDeActualizacionClave, string Activo, [System.Web.Http.FromUri] string[] SIBOACRoles)
         {
             SIBOACUsuarios sIBOACUsuarios = new SIBOACUsuarios();
             if (ModelState.IsValid)
+            {
+                var sIBOACUsuariosAntes = dbs.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == Id).FirstOrDefault();
+
+                sIBOACUsuarios = dbs.SIBOACUsuarios.Find(Id);
+                sIBOACUsuarios.Usuario = Usuario;
+                sIBOACUsuarios.Identificacion = Identificacion;
+                sIBOACUsuarios.LugarTrabajo = LugarTrabajo;
+                sIBOACUsuarios.Email = Email;
+                sIBOACUsuarios.Nombre = Nombre;
+                sIBOACUsuarios.codigo = codigo == null ? null : codigo;
+                sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
+                sIBOACUsuarios.Contrasena = sIBOACUsuariosAntes.Contrasena;
+                sIBOACUsuarios.Activo = sIBOACUsuariosAntes.Activo;
+                var rolesTem = sIBOACUsuarios.SIBOACRoles;
+
+                if (SIBOACRoles == null)
                 {
-                    var sIBOACUsuariosAntes = dbs.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == Id).FirstOrDefault();
-
-                    sIBOACUsuarios = dbs.SIBOACUsuarios.Find(Id);               
-                    sIBOACUsuarios.Usuario = Usuario;
-                    sIBOACUsuarios.Identificacion = Identificacion;
-                    sIBOACUsuarios.LugarTrabajo = LugarTrabajo;
-                    sIBOACUsuarios.Email = Email;
-                    sIBOACUsuarios.Nombre = Nombre;
-                    sIBOACUsuarios.codigo = codigo ==null?null:codigo;
-                    sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
-                    sIBOACUsuarios.Contrasena = sIBOACUsuariosAntes.Contrasena;
-                    sIBOACUsuarios.Activo = sIBOACUsuariosAntes.Activo;
-                    var rolesTem = sIBOACUsuarios.SIBOACRoles;
-
-                   if (SIBOACRoles == null)
+                    for (int i = 0; i < rolesTem.Count; i++)
                     {
-                        for (int i = 0; i < rolesTem.Count; i++)
-                        {                           
-                                sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
-                                i--;                            
-                        }
+                        sIBOACUsuarios.SIBOACRoles.Remove(rolesTem.ElementAt(i));
+                        i--;
                     }
+                }
                 else
                 {
                     var query_where2 = from a in dbs.SIBOACRoles.Where(t => SIBOACRoles.Contains(t.Id.ToString()))
@@ -291,33 +291,33 @@ namespace Cosevi.SIBOAC.Controllers
 
                 dbs.Entry(sIBOACUsuarios).State = EntityState.Modified;
 
-                    try
-                    {
-                        // Your code...
-                        // Could also be before try if you know the exception occurs in SaveChanges
+                try
+                {
+                    // Your code...
+                    // Could also be before try if you know the exception occurs in SaveChanges
 
-                        dbs.SaveChanges();
-                    }
-                    catch (DbEntityValidationException e)
-                    {
-                        foreach (var eve in e.EntityValidationErrors)
-                        {
-                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                                eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                            foreach (var ve in eve.ValidationErrors)
-                            {
-                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                    ve.PropertyName, ve.ErrorMessage);
-                            }
-                        }
-                        throw;
-                    }
-
-                    Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
-                    TempData["Type"] = "info";
-                    TempData["Message"] = "La edición se realizó correctamente";
-                    return RedirectToAction("Index");
+                    dbs.SaveChanges();
                 }
+                catch (DbEntityValidationException e)
+                {
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
+
+                Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
+                TempData["Type"] = "info";
+                TempData["Message"] = "La edición se realizó correctamente";
+                return RedirectToAction("Index");
+            }
 
             ViewBag.IdUsuario = new SelectList(dbs.SIBOACUsuarios, "Id", "Nombre", sIBOACUsuarios.Id);
             return View(sIBOACUsuarios);
@@ -369,8 +369,11 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACUsuarios sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
-            SIBOACUsuarios sIBOACUsuariosAntes = ObtenerCopia(sIBOACUsuarios);
+            SIBOACUsuarios sIBOACUsuarios = new SIBOACUsuarios();
+
+            var sIBOACUsuariosAntes = dbs.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == id).FirstOrDefault();
+            sIBOACUsuarios = dbs.SIBOACUsuarios.Find(id);
+
             if (sIBOACUsuarios.Activo == false)
 
                 sIBOACUsuarios.Activo = true;
@@ -414,7 +417,7 @@ namespace Cosevi.SIBOAC.Controllers
                             reader = ExcelReaderFactory.CreateBinaryReader(stream);
 
                         }
-                        else if(file.FileName.EndsWith(".xlsx"))
+                        else if (file.FileName.EndsWith(".xlsx"))
                         {
                             reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
                         }
@@ -477,8 +480,8 @@ namespace Cosevi.SIBOAC.Controllers
                                     LugarTrabajo = Convert.ToString(usuarioP[3]),
                                     UltimoIngreso = DateTime.Now
                                 });
-                                
-                            }                            
+
+                            }
                         }
                         dbs.SaveChanges();
                     }

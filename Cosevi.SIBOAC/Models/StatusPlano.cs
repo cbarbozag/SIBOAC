@@ -13,7 +13,7 @@ namespace Cosevi.SIBOAC.Models
 
         public DateTime FechaAccidente { get; set; }
 
-        public Nullable< DateTime> FechaDescarga  { get; set; }
+        public Nullable<DateTime> FechaDescarga { get; set; }
 
         public decimal NumeroBoleta { get; set; }
 
@@ -28,6 +28,8 @@ namespace Cosevi.SIBOAC.Models
         public string DescripcionRol { get; set; }
 
         public Nullable<System.DateTime> FechaModificado { get; set; }
-       public string UsuarioModificaPlano { get; set; }
+        public string UsuarioModificaPlano { get; set; }
+
+        public Nullable<DateTime> FechaEntrega { get; set; }
     }
 }

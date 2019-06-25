@@ -18,7 +18,7 @@ namespace Cosevi.SIBOAC.Controllers
 
         // GET: ResetPasswords
         [SessionExpire]
-        public ActionResult Index(int ? page, string searchString)
+        public ActionResult Index(int? page, string searchString)
         {
             ViewBag.Type = TempData["Type"] != null ? TempData["Type"].ToString() : "";
             ViewBag.Message = TempData["Message"] != null ? TempData["Message"].ToString() : "";
@@ -125,12 +125,18 @@ namespace Cosevi.SIBOAC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            SIBOACUsuarios sIBOACUsuarios = dbSecurity.SIBOACUsuarios.Find(id);
-            SIBOACUsuarios sIBOACUsuariosAntes = ObtenerCopia(sIBOACUsuarios);
-            var usuario = sIBOACUsuarios.Usuario;
+            SIBOACUsuarios sIBOACUsuarios = new SIBOACUsuarios();
+
+            var sIBOACUsuariosAntes = dbSecurity.SIBOACUsuarios.AsNoTracking().Where(d => d.Id == id).FirstOrDefault();
+
+            //dbSecurity.SIBOACUsuarios.Find(id);
+
+            sIBOACUsuarios = dbSecurity.SIBOACUsuarios.Find(id);
+            string usuario = sIBOACUsuarios.Usuario;
             sIBOACUsuarios.Contrasena = usuario;
             sIBOACUsuarios.FechaDeActualizacionClave = DateTime.Now;
             dbSecurity.SaveChanges();
+
             Bitacora(sIBOACUsuarios, "U", "SIBOACUsuarios", sIBOACUsuariosAntes);
             TempData["Type"] = "success";
             TempData["Message"] = "La contraseña se reinició correctamente";
