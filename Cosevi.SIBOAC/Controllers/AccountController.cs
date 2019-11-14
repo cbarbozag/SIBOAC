@@ -265,30 +265,40 @@ namespace Cosevi.SIBOAC.Controllers
             string PassEmailFrom = ConfigurationManager.AppSettings["PassEmailFrom"];
             string UserNameEmailFrom = ConfigurationManager.AppSettings["UserNameEmailFrom"];
             string PortEmailFrom = ConfigurationManager.AppSettings["PortEmailFrom"];
-            string HostEmailFrom = ConfigurationManager.AppSettings["HostEmailFrom"];            
+            string HostEmailFrom = ConfigurationManager.AppSettings["HostEmailFrom"];
+            string EmailEnableSSL = ConfigurationManager.AppSettings["EmailEnableSSL"];
 
-            MailMessage msg = new MailMessage();
+            try
+            {
 
-            msg.To.Add(emailid);
-            msg.From = new MailAddress(EmailFrom, "no-reply@csv.go.cr");
-            msg.Sender = new MailAddress(EmailFrom,"no-reply@csv.go.cr");
-            //msg.Headers.Add("Sender", "no-reply@csv.go.cr");
+                    MailMessage msg = new MailMessage();
 
-            msg.Subject = subject;
-            msg.IsBodyHtml = true;
-            msg.Body = body;
+                msg.To.Add(emailid);
+                msg.From = new MailAddress(EmailFrom, "no-reply@csv.go.cr");
+                msg.Sender = new MailAddress(EmailFrom, "no-reply@csv.go.cr");
+                //msg.Headers.Add("Sender", "no-reply@csv.go.cr");
 
-            SmtpClient client = new SmtpClient();
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.EnableSsl = false;
-            client.Host = HostEmailFrom;
-            client.Port = Convert.ToInt32(PortEmailFrom);//587;//25;
+                msg.Subject = subject;
+                msg.IsBodyHtml = true;
+                msg.Body = body;
 
-            NetworkCredential credentials = new NetworkCredential(UserNameEmailFrom, PassEmailFrom);
-            client.UseDefaultCredentials = false;
-            client.Credentials = credentials;
+                SmtpClient client = new SmtpClient();
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;                
+                client.Host = HostEmailFrom;
+                client.Port = Convert.ToInt32(PortEmailFrom);//587;//25;
+                client.EnableSsl = Convert.ToBoolean(EmailEnableSSL);
 
-            client.Send(msg);
+                NetworkCredential credentials = new NetworkCredential(UserNameEmailFrom, PassEmailFrom);
+                client.UseDefaultCredentials = false;
+                client.Credentials = credentials;
+
+                client.Send(msg);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Type = "warning";
+                ViewBag.Message = "Ocurrió un problema mientras se enviaba el email " + "(" + ex.Message + ")";
+            }
         }
 
         //

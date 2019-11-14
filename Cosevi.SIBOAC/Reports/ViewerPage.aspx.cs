@@ -896,6 +896,7 @@ namespace Cosevi.SIBOAC.Reports
 
                         string[] extensionRestringidaIPO = ConfigurationManager.AppSettings["ExtenException"].Split(',');
                         string[] otrosAdjuntos = ConfigurationManager.AppSettings["ListOtrosAjuntos"].Split(',');
+                        string[] OtrosPlanos = ConfigurationManager.AppSettings["OtrosPlanos"].Split(',');
 
                         if (TipoConsulta2 == 1)
                         {
@@ -917,8 +918,9 @@ namespace Cosevi.SIBOAC.Reports
                             string rutaPlano1 = ConfigurationManager.AppSettings["UploadFilePath"];
                             string rutaV = ConfigurationManager.AppSettings["RutaVirtual"];
 
-                            #region Otros Adjuntos
+                            #region Otros Adjuntos y Otros Planos
                             var otrosAdj = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
+                            var otrosPla = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente1 && oa.serie == serParte1 && oa.numero == numeParte1 && oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && OtrosPlanos.Contains(oa.extension)).ToList();
 
                             listaOtrosArchivos.Columns.Add("ParteOficial");
                             listaOtrosArchivos.Columns.Add("Identificacion");
@@ -927,6 +929,12 @@ namespace Cosevi.SIBOAC.Reports
                             {
                                 listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta1, item.nombre)).AbsoluteUri, numeroParte1, item.nombre);
                             }
+
+                            foreach (var itemP in otrosPla)
+                            {
+                                listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta1, itemP.nombre)).AbsoluteUri, numeroParte1, itemP.nombre);
+                            }
+
                             #endregion
 
                             #region Planos PDFs
@@ -1523,6 +1531,7 @@ namespace Cosevi.SIBOAC.Reports
 
                             #region Otros Adjuntos
                             var otrosAdj2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
+                            var otrosPla2 = db.OtrosAdjuntos.Where(oa => oa.fuente == CodigoFuente2 && oa.serie == serieParte2 && oa.numero == numeroParte2 && oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && OtrosPlanos.Contains(oa.extension)).ToList();
 
                             listaOtrosArchivos.Columns.Add("ParteOficial");
                             listaOtrosArchivos.Columns.Add("Identificacion");
@@ -1530,6 +1539,11 @@ namespace Cosevi.SIBOAC.Reports
                             foreach (var item in otrosAdj2)
                             {
                                 listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta2, item.nombre)).AbsoluteUri, numeroParte2, item.nombre);
+                            }
+
+                            foreach (var itemP in otrosPla2)
+                            {
+                                listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta2, itemP.nombre)).AbsoluteUri, numeroParte2, itemP.nombre);
                             }
                             #endregion
 
@@ -2101,10 +2115,16 @@ namespace Cosevi.SIBOAC.Reports
 
                                 #region Otros Adjuntos
                                 var otrosAdj3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
+                                var otrosPla3 = db.OtrosAdjuntos.Where(oa => fuente3.Contains(oa.fuente) && serParte3.Contains(oa.serie) && numPartConv3.Contains(oa.numero) && oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && OtrosPlanos.Contains(oa.extension)).ToList();
 
                                 foreach (var item in otrosAdj3)
                                 {
                                     listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta3, item.nombre)).AbsoluteUri, item.numero, item.nombre);
+                                }
+
+                                foreach (var itemP in otrosPla3)
+                                {
+                                    listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta3, itemP.nombre)).AbsoluteUri, itemP.numero, itemP.nombre);
                                 }
                                 #endregion
 
@@ -2701,11 +2721,18 @@ namespace Cosevi.SIBOAC.Reports
 
                                 #region Otros Adjuntos
                                 var otrosAdj4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && !oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && otrosAdjuntos.Contains(oa.extension)).ToList();
+                                var otrosPla4 = db.OtrosAdjuntos.Where(oa => fuente4.Contains(oa.fuente) && serParte4.Contains(oa.serie) && numPartConv4.Contains(oa.numero) && oa.nombre.Contains("-p-") && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-") && OtrosPlanos.Contains(oa.extension)).ToList();
 
                                 foreach (var item in otrosAdj4)
                                 {
                                     listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta4, item.nombre)).AbsoluteUri, item.numero, item.nombre);
                                 }
+
+                                foreach (var itemP in otrosPla4)
+                                {
+                                    listaOtrosArchivos.Rows.Add(new Uri(Path.Combine(ruta4, itemP.nombre)).AbsoluteUri, itemP.numero, itemP.nombre);
+                                }
+
                                 #endregion                                
 
                                 #region Planos PDFs
