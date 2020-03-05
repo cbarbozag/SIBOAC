@@ -67,6 +67,7 @@ namespace Cosevi.SIBOAC.Models
         public Nullable<System.DateTime> FechaReag { get; set; }
 
         [DisplayName("Documento de registro")]
+        [StringLength(50, ErrorMessage = "El documento no debe ser mayor a 20 caracteres")]
         public string DocumentoReag { get; set; }
 
         [DisplayName("Codigo de delegación")]
