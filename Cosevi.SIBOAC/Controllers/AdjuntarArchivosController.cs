@@ -17,7 +17,7 @@ namespace Cosevi.SIBOAC.Controllers
     {
         private PC_HH_AndroidEntities db = new PC_HH_AndroidEntities();
         private PC_HH_AndroidEntities dbpivot = new PC_HH_AndroidEntities();
-        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();
+        private SIBOACSecurityEntities dbs = new SIBOACSecurityEntities();         
         // GET: StatusPlano       
 
         [SessionExpire]
@@ -50,74 +50,73 @@ namespace Cosevi.SIBOAC.Controllers
 
                 bool exist = this.db.BOLETA.Any(x => x.serie_parteoficial == seriet && x.numeroparte == NumeroParteT);
 
-                if (exist)
+                if (exist) { 
+
+                var list =
+                  (
+                     from p in db.PARTEOFICIAL
+                     where p.Serie == seriet && p.NumeroParte == NumeroParteT
+                     join b in db.BOLETA on new { fuente_parteoficial = p.Fuente, serie_parteoficial = p.Serie, numeroparte = p.NumeroParte } equals new { fuente_parteoficial = b.fuente_parteoficial, serie_parteoficial = b.serie_parteoficial, numeroparte = b.numeroparte } into o_join
+                     from b in o_join.DefaultIfEmpty()
+                     join a in db.AUTORIDAD on new { codigo = b.codigo_autoridad_registra } equals new { codigo = a.Id } into ba_join
+                     from a in ba_join.DefaultIfEmpty()
+                     join r in db.ROLPERSONA on new { codigo = b.codrol } equals new { codigo = r.Id } into br_join
+                     from r in br_join.DefaultIfEmpty()
+                     select new
+                     {
+                         CodigoAutoridad = b.codigo_autoridad_registra,
+                         DescripcionAutoridad = a.Descripcion,
+                         FechaAccidente = p.Fecha,
+                         FechaDescarga = p.fecha_descarga,
+                         NumeroBoleta = b.numero_boleta,
+                         CodigoRol = b.codrol,
+                         ClasePlaca = b.clase_placa,
+                         CodigoPlaca = b.codigo_placa,
+                         NumeroPlaca = b.numero_placa,
+                         EstadoPlano = p.StatusPlano,
+                         DescripcionRol = r.Descripcion,
+                         FechaEntrega = p.fecha_entrega
+                     }).ToList().Distinct()
+                  .Select(x => new StatusPlano
+                  {
+                      CodigoAutoridad = x.CodigoAutoridad,
+                      DescripcionAutoridad = x.DescripcionAutoridad,
+                      FechaAccidente = x.FechaAccidente,
+                      FechaDescarga = x.FechaDescarga,
+                      NumeroBoleta = x.NumeroBoleta,
+                      CodigoRol = x.CodigoRol,
+                      ClasePlaca = x.ClasePlaca,
+                      CodigoPlaca = x.CodigoPlaca,
+                      NumeroPlaca = x.NumeroPlaca,
+                      EstadoPlano = x.EstadoPlano,
+                      DescripcionRol = x.DescripcionRol,
+                      FechaEntrega = x.FechaEntrega
+
+                  }).Distinct();
+              
+
+                //Sí no trae datos es porque no existe 
+                if (list.Count() == 0 || list.FirstOrDefault() == null)
                 {
-
-                    var list =
-                      (
-                         from p in db.PARTEOFICIAL
-                         where p.Serie == seriet && p.NumeroParte == NumeroParteT
-                         join b in db.BOLETA on new { fuente_parteoficial = p.Fuente, serie_parteoficial = p.Serie, numeroparte = p.NumeroParte } equals new { fuente_parteoficial = b.fuente_parteoficial, serie_parteoficial = b.serie_parteoficial, numeroparte = b.numeroparte } into o_join
-                         from b in o_join.DefaultIfEmpty()
-                         join a in db.AUTORIDAD on new { codigo = b.codigo_autoridad_registra } equals new { codigo = a.Id } into ba_join
-                         from a in ba_join.DefaultIfEmpty()
-                         join r in db.ROLPERSONA on new { codigo = b.codrol } equals new { codigo = r.Id } into br_join
-                         from r in br_join.DefaultIfEmpty()
-                         select new
-                         {
-                             CodigoAutoridad = b.codigo_autoridad_registra,
-                             DescripcionAutoridad = a.Descripcion,
-                             FechaAccidente = p.Fecha,
-                             FechaDescarga = p.fecha_descarga,
-                             NumeroBoleta = b.numero_boleta,
-                             CodigoRol = b.codrol,
-                             ClasePlaca = b.clase_placa,
-                             CodigoPlaca = b.codigo_placa,
-                             NumeroPlaca = b.numero_placa,
-                             EstadoPlano = p.StatusPlano,
-                             DescripcionRol = r.Descripcion,
-                             FechaEntrega = p.fecha_entrega
-                         }).ToList().Distinct()
-                      .Select(x => new StatusPlano
-                      {
-                          CodigoAutoridad = x.CodigoAutoridad,
-                          DescripcionAutoridad = x.DescripcionAutoridad,
-                          FechaAccidente = x.FechaAccidente,
-                          FechaDescarga = x.FechaDescarga,
-                          NumeroBoleta = x.NumeroBoleta,
-                          CodigoRol = x.CodigoRol,
-                          ClasePlaca = x.ClasePlaca,
-                          CodigoPlaca = x.CodigoPlaca,
-                          NumeroPlaca = x.NumeroPlaca,
-                          EstadoPlano = x.EstadoPlano,
-                          DescripcionRol = x.DescripcionRol,
-                          FechaEntrega = x.FechaEntrega
-
-                      }).Distinct();
-
-
-                    //Sí no trae datos es porque no existe 
-                    if (list.Count() == 0 || list.FirstOrDefault() == null)
+                    _tipoMensaje = "error";
+                    _mensaje = "No se encontró información para el Parte Oficial " + NumeroParteT + " " + seriet;                        
+                }
+                if (list.Count() > 0)
+                {
+                    foreach (var item in list)
                     {
-                        _tipoMensaje = "error";
-                        _mensaje = "No se encontró información para el Parte Oficial " + NumeroParteT + " " + seriet;
-                    }
-                    if (list.Count() > 0)
-                    {
-                        foreach (var item in list)
-                        {
 
-                            Session["Datos"] = list;
-                            ViewBag.Valor = list;
-                            ViewBag.EstadoPlano = item.EstadoPlano.ToString();
-                            ViewBag.PlanoGenerado = item.FechaEntrega.ToString();
-                            return View();
-                        }
-
+                        Session["Datos"] = list;
+                        ViewBag.Valor = list;
+                        ViewBag.EstadoPlano = item.EstadoPlano.ToString();
+                        ViewBag.PlanoGenerado = item.FechaEntrega.ToString();
+                        return View();
                     }
+
+                }
                 }
                 else
-                {
+                { 
                     _tipoMensaje = "error";
                     _mensaje = "No se encontró boletas asociadas al Parte Oficial " + NumeroParteT + " " + seriet;
 
@@ -152,6 +151,7 @@ namespace Cosevi.SIBOAC.Controllers
                     }
 
                     string fecha_Entrega = parte.fecha_entrega.ToString();
+                    string usuario_e = parte.usuario_entregaPlano;
 
                     if (EntregoPlano == "1")
                     {
@@ -162,7 +162,7 @@ namespace Cosevi.SIBOAC.Controllers
                              select parteOficial;
                         foreach (var parteOficial in queryStatusPlano)
                         {
-                            if (EntregoPlano == "1" && fecha_Entrega == "")
+                            if (EntregoPlano == "1" && (fecha_Entrega == "" || usuario_e == ""))
                             {
                                 parteOficial.StatusPlano = 6;
 
@@ -378,7 +378,7 @@ namespace Cosevi.SIBOAC.Controllers
                             }
 
                         }
-
+                   
                     }
 
                     TempData["Type"] = "success";
@@ -409,7 +409,7 @@ namespace Cosevi.SIBOAC.Controllers
                 string fuente = fileParams[0];
                 int numSerie = Convert.ToInt32(fileParams[1]);
                 decimal numParte = Convert.ToDecimal(fileParams[2]);
-                string esPlano = fileParams[3];
+                string esPlano = fileParams[3];                
 
                 var adjunto = db.OtrosAdjuntos.Where(oa => oa.fuente == fuente && oa.serie == numSerie && oa.numero == numParte && oa.nombre == item && !oa.nombre.Contains("-u-") && !oa.nombre.Contains("-i-") && !oa.nombre.Contains("-t-")).FirstOrDefault();
 
@@ -441,10 +441,10 @@ namespace Cosevi.SIBOAC.Controllers
                                parteOficial.Serie == serie && parteOficial.NumeroParte == numero
                              select parteOficial;
                         foreach (var parteOficial in queryStatusPlano)
-                        {
-                            parteOficial.StatusPlano = 3;
-                            parteOficial.fecha_entrega = null;
-                            parteOficial.usuario_entregaPlano = null;
+                        {                            
+                                parteOficial.StatusPlano = 3;
+                                parteOficial.fecha_entrega = null;
+                                parteOficial.usuario_entregaPlano = null;
                         }
                         db.SaveChanges();
                     }
@@ -470,7 +470,7 @@ namespace Cosevi.SIBOAC.Controllers
                         db.SaveChanges();
 
                     }
-                }
+                }                                                             
             }
             TempData["Type"] = "warning";
             TempData["Message"] = "Se eliminó correctamente.";
